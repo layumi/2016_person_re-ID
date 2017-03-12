@@ -6,6 +6,10 @@ We also include matconvnet-beta23 which has been modified for our paper. All cod
 
 * [Xuanyi Dong](https://github.com/D-X-Y) also realizes our paper in [Caffe](https://github.com/D-X-Y/caffe-reid). Alternatively, you can run the code with Caffe.
 
+~What's new: We make the code of model structure more clean to follow.
+~What's new: We provide a better code for extract feature.
+~What's new: We provide a faster evaluation code for Market-1501.
+
 ## Installation
 1. Clone this repo
  
@@ -30,11 +34,11 @@ We also include matconvnet-beta23 which has been modified for our paper. All cod
 ## Dataset
 Download [Market1501 Dataset] (http://www.liangzheng.org/Project/project_reid.html)
 
-If you want to rehearsal our result on CUHK03, you can simply change the number of kernel from 751 to 1367 in `resnet52_market.m` and recreate `net.mat`. Because there are 751 IDs in Market1501 while 1367 training identities are in CUHK03.
+If you want to rehearsal our result on CUHK03, you can simply change the number of kernel from 751 to 1367 in `resnet52_market.m` and recreate `net.mat`. Because there are 751 IDs in Market-1501 while 1367 training identities are in CUHK03.
 
 ## Test 
 1. Run `test/test_gallery_query_crazy.m` to extract the features of images in the gallery and query set. They will store in a .mat file. Then you can use it to do evaluation.
-2. Evaluate feature on the Market. Run `evaluation/zzd_evaluation_res_faster.m`. You can get the following Single-query Result.
+2. Evaluate feature on the Market-1501. Run `evaluation/zzd_evaluation_res_faster.m`. You can get the following Single-query Result.
 
 |Methods |   Rank@1 | mAP|
 | --------   | -----  | ----  |
