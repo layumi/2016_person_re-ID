@@ -6,7 +6,7 @@ We also include matconvnet-beta23 which has been modified for our paper. All cod
 
 * [Xuanyi Dong](https://github.com/D-X-Y) also realizes our paper in [Caffe](https://github.com/D-X-Y/caffe-reid). Alternatively, you can run the code with Caffe.
 
-~What's new: We make the code of model structure more clean to follow.
+~What's new: We make the code of model structure more easy to follow.
 
 ~What's new: We provide a better code for extract feature.
 
