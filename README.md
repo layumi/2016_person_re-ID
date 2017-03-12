@@ -41,6 +41,12 @@ Run `test2/test_gallery_res.m` to extract the features of gallery. They will sto
 
 2. Run `train_id_net_res_2stream.m` to have fun.
 
+## Result
+|Methods |   Rank@1 | mAP|
+| --------   | -----  | ----  |
+|This Code* | 80.82% | 62.30%|
+
+*This result is slightly higher than the result reported in the paper.
 ## Citation
 Please cite this paper in your publications if it helps your research:
 ```
