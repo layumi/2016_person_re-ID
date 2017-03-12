@@ -1,0 +1,61 @@
+<group>
+<ul class='breadcrumb'><li><a href='%pathto:matlab;'>Index</a></li><li><a href='%pathto:vl_imintegral;'>Prev</a></li><li><a href='%pathto:vl_imreadbw;'>Next</a></li></ul><div class="documentation"><p>
+IM=VLPATTERN(NAME) returns an instance of the specified
+pattern. These stock patterns are useful for testing algoirthms.
+</p><p>
+All generated patterns are returned as an image of class
+DOUBLE. Both gray-scale and colour images have range in [0,1].
+</p><p>
+<a href="%pathto:vl_impattern;">VL_IMPATTERN</a>() without arguments shows a gallery of the stock
+patterns. The following patterns are supported:
+</p><dl><dt>
+Wedge
+</dt><dd><p>
+The image of a wedge.
+</p></dd><dt>
+Cone
+</dt><dd><p>
+The image of a cone.
+</p></dd><dt>
+SmoothChecker
+</dt><dd><p>
+A checkerboard with Gaussian filtering on top. Use the
+option-value pair 'sigma', SIGMA to specify the standard
+deviation of the smoothing and the pair 'step', STEP to specfity
+the checker size in pixels.
+</p></dd><dt>
+ThreeDotsSquare
+</dt><dd><p>
+A pattern with three small dots and two squares.
+</p></dd><dt>
+UniformNoise
+</dt><dd><p>
+Random i.i.d. noise.
+</p></dd></dl><p>
+Blobs:
+</p><pre>
+  Gaussian blobs of various sizes and anisotropies.
+</pre><p>
+Blobs1:
+</p><pre>
+  Gaussian blobs of various orientations and anisotropies.
+</pre><p>
+Blob:
+</p><pre>
+  One Gaussian blob. Use the option-value pairs 'sigma',
+  'orientation', and 'anisotropy' to specify the respective
+  parameters. 'sigma' is the scalar standard deviation of an
+  isotropic blob (the image domain is the rectangle
+  [-1,1]^2). 'orientation' is the clockwise rotation (as the Y
+  axis points downards). 'anisotropy' (&gt;= 1) is the ratio of the
+  the largest over the smallest axis of the blob (the smallest
+  axis length is set by 'sigma'). Set 'cut' to TRUE to cut half
+  half of the blob.
+</pre><dl><dt>
+A stock image
+</dt><dd><p>
+Any of 'box', 'roofs1', 'roofs2', 'river1', 'river2', 'spotted'.
+</p></dd></dl><p>
+All pattern accept a SIZE parameter [WIDTH,HEIGHT]. For all but
+the stock images, the default size is [128,128].
+</p></div></group>

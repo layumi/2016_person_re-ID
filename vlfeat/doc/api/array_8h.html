@@ -1,0 +1,871 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+  <!-- Page title -->
+  <title>VLFeat - Documentation > C API</title>
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  <link rel="stylesheet" type="text/css" href="doxygen.css"></link>
+  <!-- Scripts-->
+  <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li class='active'><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li class='active' class='activeLeaf'><a href="index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="../doc.html">Documentation</a></span><span class='separator'>></span><span class='page'><a href="index.html">C API</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+      <!-- <pagestyle href="%pathto:root;api/tabs.css"/> -->
+      <div class="doxygen">
+<div id="top">
+<div id="top">
+<!-- Generated by Doxygen 1.8.7 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li class="current"><a href="files.html"><span>Files</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>Globals</span></a></li>
+    </ul>
+  </div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_8dd540b382164c224dfa1eb6e8a3add6.html">vl</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Data Structures</a> &#124;
+<a href="#define-members">Macros</a>  </div>
+  <div class="headertitle">
+<div class="title">array.h File Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Array.  
+<a href="#details">More...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="generic_8h.html">generic.h</a>&quot;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVlArray.html">VlArray</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Numeric array.  <a href="structVlArray.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a80a9a517ee30d7400df369f6a126efd1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a80a9a517ee30d7400df369f6a126efd1"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8h.html#a80a9a517ee30d7400df369f6a126efd1">VL_ARRAY_MAX_NUM_DIMENSIONS</a>&#160;&#160;&#160;16</td></tr>
+<tr class="memdesc:a80a9a517ee30d7400df369f6a126efd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum number of array dimensions. <br /></td></tr>
+<tr class="separator:a80a9a517ee30d7400df369f6a126efd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Get data and parameters</div></td></tr>
+<tr class="memitem:a5c38f7c444dbab895b31fc4fdb88422d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8h.html#a5c38f7c444dbab895b31fc4fdb88422d">vl_array_get_num_dimensions</a> (<a class="el" href="structVlArray.html">VlArray</a> const *self)</td></tr>
+<tr class="memdesc:a5c38f7c444dbab895b31fc4fdb88422d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get number of dimensions.  <a href="#a5c38f7c444dbab895b31fc4fdb88422d">More...</a><br /></td></tr>
+<tr class="separator:a5c38f7c444dbab895b31fc4fdb88422d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c12c71703fc9a14d7006596a49e6da7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> const *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8h.html#a7c12c71703fc9a14d7006596a49e6da7">vl_array_get_dimensions</a> (<a class="el" href="structVlArray.html">VlArray</a> const *self)</td></tr>
+<tr class="memdesc:a7c12c71703fc9a14d7006596a49e6da7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get dimensions.  <a href="#a7c12c71703fc9a14d7006596a49e6da7">More...</a><br /></td></tr>
+<tr class="separator:a7c12c71703fc9a14d7006596a49e6da7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0772023f96ae890d81dc8b18367da34e"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8h.html#a0772023f96ae890d81dc8b18367da34e">vl_array_get_data</a> (<a class="el" href="structVlArray.html">VlArray</a> const *self)</td></tr>
+<tr class="memdesc:a0772023f96ae890d81dc8b18367da34e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get data.  <a href="#a0772023f96ae890d81dc8b18367da34e">More...</a><br /></td></tr>
+<tr class="separator:a0772023f96ae890d81dc8b18367da34e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a855ba511380e99590905879e578ed2"><td class="memItemLeft" align="right" valign="top">vl_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8h.html#a8a855ba511380e99590905879e578ed2">vl_array_get_data_type</a> (<a class="el" href="structVlArray.html">VlArray</a> const *self)</td></tr>
+<tr class="memdesc:a8a855ba511380e99590905879e578ed2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get type.  <a href="#a8a855ba511380e99590905879e578ed2">More...</a><br /></td></tr>
+<tr class="separator:a8a855ba511380e99590905879e578ed2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96d147d44ba7cbe905565181fa8b970f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8h.html#a96d147d44ba7cbe905565181fa8b970f">vl_array_get_num_elements</a> (<a class="el" href="structVlArray.html">VlArray</a> const *self)</td></tr>
+<tr class="memdesc:a96d147d44ba7cbe905565181fa8b970f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get number of elements in array.  <a href="#a96d147d44ba7cbe905565181fa8b970f">More...</a><br /></td></tr>
+<tr class="separator:a96d147d44ba7cbe905565181fa8b970f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Constructing and destroying</div></td></tr>
+<tr class="memitem:ace20f981fb6eb4a7747d2401e39d2dc1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structVlArray.html">VlArray</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8h.html#ace20f981fb6eb4a7747d2401e39d2dc1">vl_array_init</a> (<a class="el" href="structVlArray.html">VlArray</a> *self, vl_type type, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> numDimension, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> const *dimensions)</td></tr>
+<tr class="memdesc:ace20f981fb6eb4a7747d2401e39d2dc1"><td class="mdescLeft">&#160;</td><td class="mdescRight">New numeric array.  <a href="#ace20f981fb6eb4a7747d2401e39d2dc1">More...</a><br /></td></tr>
+<tr class="separator:ace20f981fb6eb4a7747d2401e39d2dc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c95a9c5c84f1424f0a6764fcd0aac04"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structVlArray.html">VlArray</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8h.html#a0c95a9c5c84f1424f0a6764fcd0aac04">vl_array_init_envelope</a> (<a class="el" href="structVlArray.html">VlArray</a> *self, void *data, vl_type type, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> numDimension, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> const *dimensions)</td></tr>
+<tr class="memdesc:a0c95a9c5c84f1424f0a6764fcd0aac04"><td class="mdescLeft">&#160;</td><td class="mdescRight">New numeric array envelope.  <a href="#a0c95a9c5c84f1424f0a6764fcd0aac04">More...</a><br /></td></tr>
+<tr class="separator:a0c95a9c5c84f1424f0a6764fcd0aac04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55a46e1a99eb574cefc4eb0dd09b56cc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structVlArray.html">VlArray</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8h.html#a55a46e1a99eb574cefc4eb0dd09b56cc">vl_array_init_matrix</a> (<a class="el" href="structVlArray.html">VlArray</a> *self, vl_type type, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> numRows, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> numColumns)</td></tr>
+<tr class="memdesc:a55a46e1a99eb574cefc4eb0dd09b56cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">New numeric array with matrix shape.  <a href="#a55a46e1a99eb574cefc4eb0dd09b56cc">More...</a><br /></td></tr>
+<tr class="separator:a55a46e1a99eb574cefc4eb0dd09b56cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a775d33f54544375456c90a9de92e72b3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structVlArray.html">VlArray</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8h.html#a775d33f54544375456c90a9de92e72b3">vl_array_init_matrix_envelope</a> (<a class="el" href="structVlArray.html">VlArray</a> *self, void *data, vl_type type, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> numRows, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> numColumns)</td></tr>
+<tr class="memdesc:a775d33f54544375456c90a9de92e72b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">New numeric array envelpe with matrix shape.  <a href="#a775d33f54544375456c90a9de92e72b3">More...</a><br /></td></tr>
+<tr class="separator:a775d33f54544375456c90a9de92e72b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6385e80257a49b73db54d6315148841"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structVlArray.html">VlArray</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8h.html#ac6385e80257a49b73db54d6315148841">vl_array_new</a> (vl_type type, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> numDimension, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> const *dimensions)</td></tr>
+<tr class="memdesc:ac6385e80257a49b73db54d6315148841"><td class="mdescLeft">&#160;</td><td class="mdescRight">New numeric array.  <a href="#ac6385e80257a49b73db54d6315148841">More...</a><br /></td></tr>
+<tr class="separator:ac6385e80257a49b73db54d6315148841"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6b2dfe3698bc8c2642eb188d1e06424"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structVlArray.html">VlArray</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8h.html#ad6b2dfe3698bc8c2642eb188d1e06424">vl_array_new_envelope</a> (void *data, vl_type type, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> numDimension, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> const *dimensions)</td></tr>
+<tr class="memdesc:ad6b2dfe3698bc8c2642eb188d1e06424"><td class="mdescLeft">&#160;</td><td class="mdescRight">New numeric array envelope.  <a href="#ad6b2dfe3698bc8c2642eb188d1e06424">More...</a><br /></td></tr>
+<tr class="separator:ad6b2dfe3698bc8c2642eb188d1e06424"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a690d8fec203e2f5ffb320fc788421171"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structVlArray.html">VlArray</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8h.html#a690d8fec203e2f5ffb320fc788421171">vl_array_new_matrix</a> (vl_type type, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> numRows, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> numColumns)</td></tr>
+<tr class="memdesc:a690d8fec203e2f5ffb320fc788421171"><td class="mdescLeft">&#160;</td><td class="mdescRight">New numeric array with matrix shape.  <a href="#a690d8fec203e2f5ffb320fc788421171">More...</a><br /></td></tr>
+<tr class="separator:a690d8fec203e2f5ffb320fc788421171"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15b066f9b7c6a29c1a324e9cb2a581c6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structVlArray.html">VlArray</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8h.html#a15b066f9b7c6a29c1a324e9cb2a581c6">vl_array_new_matrix_envelope</a> (void *data, vl_type type, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> numRows, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> numColumns)</td></tr>
+<tr class="memdesc:a15b066f9b7c6a29c1a324e9cb2a581c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">New numeric array envelpe with matrix shape.  <a href="#a15b066f9b7c6a29c1a324e9cb2a581c6">More...</a><br /></td></tr>
+<tr class="separator:a15b066f9b7c6a29c1a324e9cb2a581c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22469f7d3a16d6bd56025330c87c351e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8h.html#a22469f7d3a16d6bd56025330c87c351e">vl_array_dealloc</a> (<a class="el" href="structVlArray.html">VlArray</a> *self)</td></tr>
+<tr class="memdesc:a22469f7d3a16d6bd56025330c87c351e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete array.  <a href="#a22469f7d3a16d6bd56025330c87c351e">More...</a><br /></td></tr>
+<tr class="separator:a22469f7d3a16d6bd56025330c87c351e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32a8f1faf1c01c33c762b5a607a53582"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8h.html#a32a8f1faf1c01c33c762b5a607a53582">vl_array_delete</a> (<a class="el" href="structVlArray.html">VlArray</a> *self)</td></tr>
+<tr class="memdesc:a32a8f1faf1c01c33c762b5a607a53582"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete array.  <a href="#a32a8f1faf1c01c33c762b5a607a53582">More...</a><br /></td></tr>
+<tr class="separator:a32a8f1faf1c01c33c762b5a607a53582"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Array - Definition.</p>
+<dl class="section author"><dt>Author</dt><dd>Andrea Vedaldi </dd></dl>
+</div><h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a22469f7d3a16d6bd56025330c87c351e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_array_dealloc </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlArray.html">VlArray</a> *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>array. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a32a8f1faf1c01c33c762b5a607a53582"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_array_delete </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlArray.html">VlArray</a> *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>array. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a0772023f96ae890d81dc8b18367da34e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* vl_array_get_data </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlArray.html">VlArray</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>array. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>data. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a8a855ba511380e99590905879e578ed2"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vl_type vl_array_get_data_type </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlArray.html">VlArray</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>array. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>type. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a7c12c71703fc9a14d7006596a49e6da7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> const* vl_array_get_dimensions </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlArray.html">VlArray</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>array. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>dimensions. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a5c38f7c444dbab895b31fc4fdb88422d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> vl_array_get_num_dimensions </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlArray.html">VlArray</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>array. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>number of dimensions. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a96d147d44ba7cbe905565181fa8b970f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> vl_array_get_num_elements </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlArray.html">VlArray</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>array. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>number of elements. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ace20f981fb6eb4a7747d2401e39d2dc1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structVlArray.html">VlArray</a>* vl_array_init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlArray.html">VlArray</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vl_type&#160;</td>
+          <td class="paramname"><em>type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>numDimensions</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> const *&#160;</td>
+          <td class="paramname"><em>dimensions</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>array to initialize. </td></tr>
+    <tr><td class="paramname">type</td><td>data type. </td></tr>
+    <tr><td class="paramname">numDimensions</td><td>number of dimensions. </td></tr>
+    <tr><td class="paramname">dimensions</td><td>dimensions.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The function initializes the specified array and allocates the necessary memory for storage. </p>
+
+</div>
+</div>
+<a class="anchor" id="a0c95a9c5c84f1424f0a6764fcd0aac04"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structVlArray.html">VlArray</a>* vl_array_init_envelope </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlArray.html">VlArray</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vl_type&#160;</td>
+          <td class="paramname"><em>type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>numDimensions</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> const *&#160;</td>
+          <td class="paramname"><em>dimensions</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>array to initialize. </td></tr>
+    <tr><td class="paramname">data</td><td>data to envelople. </td></tr>
+    <tr><td class="paramname">type</td><td>data type. </td></tr>
+    <tr><td class="paramname">numDimensions</td><td>number of dimensions. </td></tr>
+    <tr><td class="paramname">dimensions</td><td>dimensions.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The function initializes the specified array wrapping the specified buffer. </p>
+
+</div>
+</div>
+<a class="anchor" id="a55a46e1a99eb574cefc4eb0dd09b56cc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structVlArray.html">VlArray</a>* vl_array_init_matrix </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlArray.html">VlArray</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vl_type&#160;</td>
+          <td class="paramname"><em>type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>numRows</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>numColumns</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>array to initialize. </td></tr>
+    <tr><td class="paramname">type</td><td>type. </td></tr>
+    <tr><td class="paramname">numRows</td><td>number of rows. </td></tr>
+    <tr><td class="paramname">numColumns</td><td>number of columns. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a775d33f54544375456c90a9de92e72b3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structVlArray.html">VlArray</a>* vl_array_init_matrix_envelope </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlArray.html">VlArray</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vl_type&#160;</td>
+          <td class="paramname"><em>type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>numRows</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>numColumns</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>array to initialize. </td></tr>
+    <tr><td class="paramname">data</td><td>data to envelope. </td></tr>
+    <tr><td class="paramname">type</td><td>type. </td></tr>
+    <tr><td class="paramname">numRows</td><td>number of rows. </td></tr>
+    <tr><td class="paramname">numColumns</td><td>number of columns. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ac6385e80257a49b73db54d6315148841"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structVlArray.html">VlArray</a>* vl_array_new </td>
+          <td>(</td>
+          <td class="paramtype">vl_type&#160;</td>
+          <td class="paramname"><em>type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>numDimensions</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> const *&#160;</td>
+          <td class="paramname"><em>dimensions</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>data type. </td></tr>
+    <tr><td class="paramname">numDimensions</td><td>number of dimensions. </td></tr>
+    <tr><td class="paramname">dimensions</td><td>dimensions.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The function creates a new VLArray instance and allocates the necessary memory for storage. </p>
+
+</div>
+</div>
+<a class="anchor" id="ad6b2dfe3698bc8c2642eb188d1e06424"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structVlArray.html">VlArray</a>* vl_array_new_envelope </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vl_type&#160;</td>
+          <td class="paramname"><em>type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>numDimensions</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> const *&#160;</td>
+          <td class="paramname"><em>dimensions</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>data to envelople. </td></tr>
+    <tr><td class="paramname">type</td><td>data type. </td></tr>
+    <tr><td class="paramname">numDimensions</td><td>number of dimensions. </td></tr>
+    <tr><td class="paramname">dimensions</td><td>dimensions. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a690d8fec203e2f5ffb320fc788421171"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structVlArray.html">VlArray</a>* vl_array_new_matrix </td>
+          <td>(</td>
+          <td class="paramtype">vl_type&#160;</td>
+          <td class="paramname"><em>type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>numRows</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>numColumns</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>type. </td></tr>
+    <tr><td class="paramname">numRows</td><td>number of rows. </td></tr>
+    <tr><td class="paramname">numColumns</td><td>number of columns. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a15b066f9b7c6a29c1a324e9cb2a581c6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structVlArray.html">VlArray</a>* vl_array_new_matrix_envelope </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vl_type&#160;</td>
+          <td class="paramname"><em>type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>numRows</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>numColumns</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>data to envelope. </td></tr>
+    <tr><td class="paramname">type</td><td>type. </td></tr>
+    <tr><td class="paramname">numRows</td><td>number of rows. </td></tr>
+    <tr><td class="paramname">numColumns</td><td>number of columns. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+        <!-- Doc Here -->
+      </div>
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>

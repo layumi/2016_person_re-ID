@@ -1,0 +1,43 @@
+<group>
+<ul class='breadcrumb'><li><a href='%pathto:matlab;'>Index</a></li><li><a href='%pathto:vl_roc;'>Prev</a></li><li><a href='%pathto:vl_tpfp;'>Next</a></li></ul><div class="documentation"><p>
+H = <a href="%pathto:vl_tightsubplot;">VL_TIGHTSUBPLOT</a>(K,P) returns an handle to the P-th axis in a
+regular grid of K axes. The K axes are numbered from left to right
+and from top to bottom.  The function operates similarly to
+SUBPLOT(), but by default it does not put any margin between
+axes. This is done by tiling the axes inner box rather than the
+axes outer box.
+</p><p>
+H = <a href="%pathto:vl_tightsubplot;">VL_TIGHTSUBPLOT</a>(M,N,P) retursn an handle to the P-th axes in a
+regular subdivision with M rows and N columns.
+</p><p>
+<a href="%pathto:vl_tightsubplot;">VL_TIGHTSUBPLOT</a>() accepts the following options:
+</p><dl><dt>
+Margin
+<span class="defaults">[0]</span></dt><dt>
+MarginLeft
+<span class="defaults">[0]</span></dt><dt>
+MarginRight
+<span class="defaults">[0]</span></dt><dt>
+MarginTop
+<span class="defaults">[0]</span></dt><dt>
+MarginBottom
+<span class="defaults">[0]</span></dt><dd><p>
+Set the axes inner box margin, either uniformly in all
+directions, or specifically to the left, right, top or bottom.
+</p></dd><dt>
+Box
+<span class="defaults">[0]</span></dt><dd><p>
+If set to 'outer', tile the axes outer box, thus protecting
+title and labels. Unfortunately this usually produces
+unnecesarily large margins.
+</p></dd><dt>
+Spacing
+<span class="defaults">[0] (legacy option)</span></dt><dd><p>
+Set extra spacing between axes.  The space is added between the
+inner or outer boxes, depending on the setting below.
+</p></dd></dl><p>
+REMARK. While SUBPLOT kills any pre-existing axes that overalps a
+new one, this function does not.
+</p><p>
+See also: SUBPLOT(), <a href="%pathto:vl_help;">VL_HELP</a>().
+</p></div></group>

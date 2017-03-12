@@ -1,0 +1,31 @@
+<group>
+<ul class='breadcrumb'><li><a href='%pathto:matlab;'>Index</a></li><li><a href='%pathto:vl_aib;'>Prev</a></li><li><a href='%pathto:vl_aibcuthist;'>Next</a></li></ul><div class="documentation"><p>
+CUT = <a href="%pathto:vl_aibcut;">VL_AIBCUT</a>(PARENTS, N) cuts the binary merge tree PARENTS and
+returns a cut CUT of N nodes. The format of PARENTS is the same
+used by the <a href="%pathto:vl_aib;">VL_AIB</a>() function.
+</p><p>
+A cut is a set of N nodes such that no node is a descendant of any
+other node in the cut and such that all leaves descend from a node
+in the cut. The vector CUT lists the nodes of the binary merge tree
+PARENT that form the cut.
+</p><p>
+Nodes with null parent (as defined by PARENTS) are included in the
+cut if the other nodes are not enough to fill a cut of N elements.
+</p><p>
+[CUT, MAP] = <a href="%pathto:vl_aibcut;">VL_AIBCUT</a>(...) returns a vector MAP with the same size
+as PARENTS. MAP assigns each node below or in the cut to the
+corresponding element in the CUT vector (each element above the cut
+or with null parent is mapped to 0). To get the index of the
+corresponding cut nodes use CUT(MAP). MAP can be used to quantize
+the leaves in a sequences of N contiguous indexes, starting from
+one (see also <a href="%pathto:vl_aibcutpush;">VL_AIBCUTPUSH</a>()).
+</p><p>
+[CUT, MAP, SHORT] = <a href="%pathto:vl_aibcut;">VL_AIBCUT</a>(...) returns also a vector SHORT that
+represents a version of the PARENTS tree where nodes below the cut
+are short-circuitied to link to the corresponding cut ancestors
+directly. Null parents are left unchanged, except if the
+corresponding node is in the cut (in which case the map-to-itself
+rule has the precedence).
+</p><p>
+See also: <a href="%pathto:vl_help;">VL_HELP</a>(), <a href="%pathto:vl_aib;">VL_AIB</a>().
+</p></div></group>

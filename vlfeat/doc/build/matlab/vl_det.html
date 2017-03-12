@@ -1,0 +1,19 @@
+<group>
+<ul class='breadcrumb'><li><a href='%pathto:matlab;'>Index</a></li><li><a href='%pathto:vl_clicksegment;'>Prev</a></li><li><a href='%pathto:vl_figaspect;'>Next</a></li></ul><div class="documentation"><p>
+[MISSRATE, FALSEALRAM] = <a href="%pathto:vl_det;">VL_DET</a>(LABELS, SCORES) computes the
+Detection Error Trade-off (DET) curve for the given set LABELS and
+SCORES. The function is a simple wrapper to <a href="%pathto:vl_roc;">VL_ROC</a>(LABELS,
+SCORES). In fact, MISSRATE is simply the false positive rate and
+FALSEARALM the false negative rate returned by <a href="%pathto:vl_roc;">VL_ROC</a>().
+</p><p>
+<a href="%pathto:vl_det;">VL_DET</a>(...) without output arguments plots the curves in the
+current axis. Note that the DET curves use logarithmic axis.
+</p><p>
+<a href="%pathto:vl_det;">VL_DET</a>(..., OPT, ARG, ...) accepts the same options as <a href="%pathto:vl_roc;">VL_ROC</a>().
+</p><p>
+REFERENCES:
+[1] A. Martin, G. Doddington, T. Kamm, M. Ordowski, and
+M. Przybocki. The DET curve in assessment of detection task
+performance. In Proc. Conf. on Speech Communication and Technology,
+1997.
+</p></div></group>

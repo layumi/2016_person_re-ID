@@ -1,0 +1,1299 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+  <!-- Page title -->
+  <title>VLFeat - Documentation > C API</title>
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  <link rel="stylesheet" type="text/css" href="doxygen.css"></link>
+  <!-- Scripts-->
+  <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li class='active'><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li class='active' class='activeLeaf'><a href="index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="../doc.html">Documentation</a></span><span class='separator'>></span><span class='page'><a href="index.html">C API</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+      <!-- <pagestyle href="%pathto:root;api/tabs.css"/> -->
+      <div class="doxygen">
+<div id="top">
+<div id="top">
+<!-- Generated by Doxygen 1.8.7 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li class="current"><a href="files.html"><span>Files</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>Globals</span></a></li>
+    </ul>
+  </div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_cb851817d6f77244316f2683559617a2.html">toolbox</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Data Structures</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">mexutils.h File Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>MEX utilities.  
+<a href="#details">More...</a></p>
+<div class="textblock"><code>#include &quot;mex.h&quot;</code><br />
+<code>#include &lt;<a class="el" href="generic_8h.html">vl/generic.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="array_8h.html">vl/array.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="stringop_8h.html">vl/stringop.h</a>&gt;</code><br />
+<code>#include &lt;ctype.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdarg.h&gt;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__vlmxOption.html">vlmxOption</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">MEX option.  <a href="struct__vlmxOption.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a602414ed5181cca60faf1b9fbea4d240"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a602414ed5181cca60faf1b9fbea4d240"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mexutils_8h.html#a602414ed5181cca60faf1b9fbea4d240">IN</a>(x)&#160;&#160;&#160;(in[IN_ ## x])</td></tr>
+<tr class="memdesc:a602414ed5181cca60faf1b9fbea4d240"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access MEX input argument. <br /></td></tr>
+<tr class="separator:a602414ed5181cca60faf1b9fbea4d240"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14e866e302d035546fbec8dd1ba8c8ca"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a14e866e302d035546fbec8dd1ba8c8ca"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mexutils_8h.html#a14e866e302d035546fbec8dd1ba8c8ca">OUT</a>(x)&#160;&#160;&#160;(out[OUT_ ## x])</td></tr>
+<tr class="memdesc:a14e866e302d035546fbec8dd1ba8c8ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access MEX output argument. <br /></td></tr>
+<tr class="separator:a14e866e302d035546fbec8dd1ba8c8ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76600f902337bf06037c62b27d76255c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mexutils_8h.html#a76600f902337bf06037c62b27d76255c">VL_USE_MATLAB_ENV</a></td></tr>
+<tr class="memdesc:a76600f902337bf06037c62b27d76255c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup VLFeat to be used in a MEX file.  <a href="#a76600f902337bf06037c62b27d76255c">More...</a><br /></td></tr>
+<tr class="separator:a76600f902337bf06037c62b27d76255c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ac0a3df5e3dcf06641cf7cb7ae81c0f54"><td class="memItemLeft" align="right" valign="top">static mxArray *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mexutils_8h.html#ac0a3df5e3dcf06641cf7cb7ae81c0f54">vlmxCreatePlainScalar</a> (double x)</td></tr>
+<tr class="memdesc:ac0a3df5e3dcf06641cf7cb7ae81c0f54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a MATLAB array which is a plain scalar.  <a href="#ac0a3df5e3dcf06641cf7cb7ae81c0f54">More...</a><br /></td></tr>
+<tr class="separator:ac0a3df5e3dcf06641cf7cb7ae81c0f54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d87fc57011b9d4f46535e0fe5e3a55a"><td class="memItemLeft" align="right" valign="top">static mxArray *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mexutils_8h.html#a1d87fc57011b9d4f46535e0fe5e3a55a">vlmxCreateArrayFromVlArray</a> (<a class="el" href="structVlArray.html">VlArray</a> const *x)</td></tr>
+<tr class="memdesc:a1d87fc57011b9d4f46535e0fe5e3a55a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a MATLAB array from a <a class="el" href="structVlArray.html" title="Numeric array. ">VlArray</a>.  <a href="#a1d87fc57011b9d4f46535e0fe5e3a55a">More...</a><br /></td></tr>
+<tr class="separator:a1d87fc57011b9d4f46535e0fe5e3a55a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a424bcf82af07807c0264291b48db9ab6"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structVlArray.html">VlArray</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mexutils_8h.html#a424bcf82af07807c0264291b48db9ab6">vlmxEnvelopeArrayInVlArray</a> (<a class="el" href="structVlArray.html">VlArray</a> *v, mxArray *x)</td></tr>
+<tr class="memdesc:a424bcf82af07807c0264291b48db9ab6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Envelope a MATLAB array in a <a class="el" href="structVlArray.html" title="Numeric array. ">VlArray</a> instance.  <a href="#a424bcf82af07807c0264291b48db9ab6">More...</a><br /></td></tr>
+<tr class="separator:a424bcf82af07807c0264291b48db9ab6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a57980687db8396fdd97766fe1bec14"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mexutils_8h.html#a6a57980687db8396fdd97766fe1bec14">vlmxCompareStringsI</a> (const char *s1, const char *s2)</td></tr>
+<tr class="memdesc:a6a57980687db8396fdd97766fe1bec14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Case insensitive string comparison.  <a href="#a6a57980687db8396fdd97766fe1bec14">More...</a><br /></td></tr>
+<tr class="separator:a6a57980687db8396fdd97766fe1bec14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac17232977bdd780e9387389212c6f318"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mexutils_8h.html#ac17232977bdd780e9387389212c6f318">vlmxCompareToStringI</a> (mxArray const *array, char const *string)</td></tr>
+<tr class="memdesc:ac17232977bdd780e9387389212c6f318"><td class="mdescLeft">&#160;</td><td class="mdescRight">Case insensitive string comparison with array.  <a href="#ac17232977bdd780e9387389212c6f318">More...</a><br /></td></tr>
+<tr class="separator:ac17232977bdd780e9387389212c6f318"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a480999aaa7a6d34243ca858789937ae7"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mexutils_8h.html#a480999aaa7a6d34243ca858789937ae7">vlmxIsEqualToStringI</a> (mxArray const *array, char const *string)</td></tr>
+<tr class="memdesc:a480999aaa7a6d34243ca858789937ae7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Case insensitive string equality test with array.  <a href="#a480999aaa7a6d34243ca858789937ae7">More...</a><br /></td></tr>
+<tr class="separator:a480999aaa7a6d34243ca858789937ae7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b8c52584738d2616f7e0576dc035ea3"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mexutils_8h.html#a6b8c52584738d2616f7e0576dc035ea3">vlmxNextOption</a> (mxArray const *args[], int nargs, vlmxOption const *options, int *next, mxArray const **<a class="el" href="getopt__long_8h.html#adb50a0eab9fed92fc3bfc7dfa4f2c410">optarg</a>)</td></tr>
+<tr class="memdesc:a6b8c52584738d2616f7e0576dc035ea3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse the next option.  <a href="#a6b8c52584738d2616f7e0576dc035ea3">More...</a><br /></td></tr>
+<tr class="separator:a6b8c52584738d2616f7e0576dc035ea3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a005ec291acfc071a28348d3742cfda00"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structVlEnumerator.html">VlEnumerator</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mexutils_8h.html#a005ec291acfc071a28348d3742cfda00">vlmxDecodeEnumeration</a> (mxArray const *name_array, <a class="el" href="structVlEnumerator.html">VlEnumerator</a> const *enumeration, <a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a> caseInsensitive)</td></tr>
+<tr class="memdesc:a005ec291acfc071a28348d3742cfda00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get an emumeration member by name.  <a href="#a005ec291acfc071a28348d3742cfda00">More...</a><br /></td></tr>
+<tr class="separator:a005ec291acfc071a28348d3742cfda00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Check for array attributes</div></td></tr>
+<tr class="memitem:a738f24a24faa9ebfeedb7439ccc4bf44"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mexutils_8h.html#a738f24a24faa9ebfeedb7439ccc4bf44">vlmxIsOfClass</a> (mxArray const *array, mxClassID classId)</td></tr>
+<tr class="memdesc:a738f24a24faa9ebfeedb7439ccc4bf44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a MATLAB array is of a prescribed class.  <a href="#a738f24a24faa9ebfeedb7439ccc4bf44">More...</a><br /></td></tr>
+<tr class="separator:a738f24a24faa9ebfeedb7439ccc4bf44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a923b6ac320a8aa620a5e8edbe0ee2d2e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mexutils_8h.html#a923b6ac320a8aa620a5e8edbe0ee2d2e">vlmxIsReal</a> (mxArray const *array)</td></tr>
+<tr class="memdesc:a923b6ac320a8aa620a5e8edbe0ee2d2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a MATLAB array is real.  <a href="#a923b6ac320a8aa620a5e8edbe0ee2d2e">More...</a><br /></td></tr>
+<tr class="separator:a923b6ac320a8aa620a5e8edbe0ee2d2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Check for scalar, vector and matrix arrays</div></td></tr>
+<tr class="memitem:a98ffbf2c20ade9e5094e234e8d58fd8a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mexutils_8h.html#a98ffbf2c20ade9e5094e234e8d58fd8a">vlmxIsScalar</a> (mxArray const *array)</td></tr>
+<tr class="memdesc:a98ffbf2c20ade9e5094e234e8d58fd8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a MATLAB array is scalar.  <a href="#a98ffbf2c20ade9e5094e234e8d58fd8a">More...</a><br /></td></tr>
+<tr class="separator:a98ffbf2c20ade9e5094e234e8d58fd8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62ed566c271ce76980b587ad2b62b18e"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mexutils_8h.html#a62ed566c271ce76980b587ad2b62b18e">vlmxIsVector</a> (mxArray const *array, <a class="el" href="host_8h.html#a66417c5847876295ea87b38140073879">vl_index</a> numElements)</td></tr>
+<tr class="memdesc:a62ed566c271ce76980b587ad2b62b18e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a MATLAB array is a vector.  <a href="#a62ed566c271ce76980b587ad2b62b18e">More...</a><br /></td></tr>
+<tr class="separator:a62ed566c271ce76980b587ad2b62b18e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2c48ea72560b1a395a6ce7d6f521ad5"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mexutils_8h.html#ab2c48ea72560b1a395a6ce7d6f521ad5">vlmxIsMatrix</a> (mxArray const *array, <a class="el" href="host_8h.html#a66417c5847876295ea87b38140073879">vl_index</a> M, <a class="el" href="host_8h.html#a66417c5847876295ea87b38140073879">vl_index</a> N)</td></tr>
+<tr class="memdesc:ab2c48ea72560b1a395a6ce7d6f521ad5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a MATLAB array is a matrix.  <a href="#ab2c48ea72560b1a395a6ce7d6f521ad5">More...</a><br /></td></tr>
+<tr class="separator:ab2c48ea72560b1a395a6ce7d6f521ad5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9cb2ff7d93e845c8e97260742e355da"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mexutils_8h.html#aa9cb2ff7d93e845c8e97260742e355da">vlmxIsArray</a> (mxArray const *array, <a class="el" href="host_8h.html#a66417c5847876295ea87b38140073879">vl_index</a> numDimensions, <a class="el" href="host_8h.html#a66417c5847876295ea87b38140073879">vl_index</a> *dimensions)</td></tr>
+<tr class="memdesc:aa9cb2ff7d93e845c8e97260742e355da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the MATLAB array has the specified dimensions.  <a href="#aa9cb2ff7d93e845c8e97260742e355da">More...</a><br /></td></tr>
+<tr class="separator:aa9cb2ff7d93e845c8e97260742e355da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Check for plain arrays</div></td></tr>
+<tr class="memitem:af28c45fe72ed8814a863f2f00b6909b8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mexutils_8h.html#af28c45fe72ed8814a863f2f00b6909b8">vlmxIsPlain</a> (mxArray const *array)</td></tr>
+<tr class="memdesc:af28c45fe72ed8814a863f2f00b6909b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a MATLAB array is plain.  <a href="#af28c45fe72ed8814a863f2f00b6909b8">More...</a><br /></td></tr>
+<tr class="separator:af28c45fe72ed8814a863f2f00b6909b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab77fcfb1602e857224014b8ffbad446b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mexutils_8h.html#ab77fcfb1602e857224014b8ffbad446b">vlmxIsPlainScalar</a> (mxArray const *array)</td></tr>
+<tr class="memdesc:ab77fcfb1602e857224014b8ffbad446b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a MATLAB array is plain scalar.  <a href="#ab77fcfb1602e857224014b8ffbad446b">More...</a><br /></td></tr>
+<tr class="separator:ab77fcfb1602e857224014b8ffbad446b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22eb52c5f6925ea272604bef184c6def"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mexutils_8h.html#a22eb52c5f6925ea272604bef184c6def">vlmxIsPlainVector</a> (mxArray const *array, <a class="el" href="host_8h.html#a66417c5847876295ea87b38140073879">vl_index</a> numElements)</td></tr>
+<tr class="memdesc:a22eb52c5f6925ea272604bef184c6def"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a MATLAB array is a plain vector.  <a href="#a22eb52c5f6925ea272604bef184c6def">More...</a><br /></td></tr>
+<tr class="separator:a22eb52c5f6925ea272604bef184c6def"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a853a2401a28a2b640f4510772057e75f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mexutils_8h.html#a853a2401a28a2b640f4510772057e75f">vlmxIsPlainMatrix</a> (mxArray const *array, <a class="el" href="host_8h.html#a66417c5847876295ea87b38140073879">vl_index</a> M, <a class="el" href="host_8h.html#a66417c5847876295ea87b38140073879">vl_index</a> N)</td></tr>
+<tr class="memdesc:a853a2401a28a2b640f4510772057e75f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a MATLAB array is a plain matrix.  <a href="#a853a2401a28a2b640f4510772057e75f">More...</a><br /></td></tr>
+<tr class="separator:a853a2401a28a2b640f4510772057e75f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a0c4101bd3fa1e931867980f3f94240"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mexutils_8h.html#a1a0c4101bd3fa1e931867980f3f94240">vlmxIsString</a> (const mxArray *array, <a class="el" href="host_8h.html#a66417c5847876295ea87b38140073879">vl_index</a> length)</td></tr>
+<tr class="memdesc:a1a0c4101bd3fa1e931867980f3f94240"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the array is a string.  <a href="#a1a0c4101bd3fa1e931867980f3f94240">More...</a><br /></td></tr>
+<tr class="separator:a1a0c4101bd3fa1e931867980f3f94240"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="member-group"></a>
+Error handling</h2></td></tr>
+<tr class="memitem:afe2395ec371beece50f65e7b18edf67a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afe2395ec371beece50f65e7b18edf67a"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mexutils_8h.html#afe2395ec371beece50f65e7b18edf67a">VlmxErrorId</a> </td></tr>
+<tr class="memdesc:afe2395ec371beece50f65e7b18edf67a"><td class="mdescLeft">&#160;</td><td class="mdescRight">VLFeat MEX errors. <br /></td></tr>
+<tr class="separator:afe2395ec371beece50f65e7b18edf67a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41187a1ec528ba20cb338d321ddbd512"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mexutils_8h.html#a41187a1ec528ba20cb338d321ddbd512">vlmxError</a> (<a class="el" href="mexutils_8h.html#afe2395ec371beece50f65e7b18edf67a">VlmxErrorId</a> errorId, char const *errorMessage,...)</td></tr>
+<tr class="memdesc:a41187a1ec528ba20cb338d321ddbd512"><td class="mdescLeft">&#160;</td><td class="mdescRight">Raise a MEX error with VLFeat format.  <a href="#a41187a1ec528ba20cb338d321ddbd512">More...</a><br /></td></tr>
+<tr class="separator:a41187a1ec528ba20cb338d321ddbd512"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a91f9f60803e7a808e71123340bdcb1"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mexutils_8h.html#a8a91f9f60803e7a808e71123340bdcb1">vlmxWarning</a> (<a class="el" href="mexutils_8h.html#afe2395ec371beece50f65e7b18edf67a">VlmxErrorId</a> errorId, char const *errorMessage,...)</td></tr>
+<tr class="memdesc:a8a91f9f60803e7a808e71123340bdcb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Raise a MEX warning with VLFeat format.  <a href="#a8a91f9f60803e7a808e71123340bdcb1">More...</a><br /></td></tr>
+<tr class="separator:a8a91f9f60803e7a808e71123340bdcb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><dl class="section author"><dt>Author</dt><dd>Andrea Vedaldi</dd></dl>
+<p>This header file provides helper functions for writing MATLAB MEX files.</p>
+<ul>
+<li><a class="el" href="mexutils_8h.html#mexutils-env">VLFeat environment</a></li>
+<li><a class="el" href="mexutils_8h.html#mexutils-array-test">Array tests</a></li>
+<li><a class="el" href="mexutils_8h.html#mexutils-options">Parsing options</a></li>
+</ul>
+<h1><a class="anchor" id="mexutils-env"></a>
+VLFeat environment</h1>
+<p>When the VLFeat DLL is linked to a MATLAB MEX files, at run time the MEX file must configure VLFeat to use MATLAB memory allocation and logging functions. This can be obtained by calling the macro <a class="el" href="mexutils_8h.html#a76600f902337bf06037c62b27d76255c" title="Setup VLFeat to be used in a MEX file. ">VL_USE_MATLAB_ENV</a> as the first line of each MEX file which is linked to the VLFeat DLL.</p>
+<h1><a class="anchor" id="mexutils-array-test"></a>
+Array tests</h1>
+<p>MATLAB supports a variety of array types. Most MEX file arguments are restricted to a few types and must be properly checked at run time. <a class="el" href="mexutils_8h.html">mexutils.h</a> provides some helper functions to make it simpler to check such arguments. MATLAB basic array types are:</p>
+<ul>
+<li>Numeric array: <code>mxDOUBLE_CLASS</code>, <code>mxSINGLE_CLASS</code>, <code>mxINT8_CLASS</code>, <code>mxUINT8_CLASS</code>, <code>mxINT16_CLASS</code>, <code>mxUINT16_CLASS</code>, <code>mxINT32_CLASS</code>, <code>mxUINT32_CLASS</code>. Moreover:<ul>
+<li>all such types have a <em>real</em> component</li>
+<li>all such types may have a <em>imaginary</em> component</li>
+<li><code>mxDOUBLE_LCASS</code> arrays with two dimensions can be <em>sparse</em>.</li>
+</ul>
+</li>
+<li>Logical array (<code>mxLOGICAL_CLASS</code>).</li>
+<li>Character array (<code>mxCHAR_CLASS</code>).</li>
+</ul>
+<p>The other MATLAB array types are:</p>
+<ul>
+<li>Struct array (<code>mxSTRUCT_CLASS</code>).</li>
+<li>Cell array (<code>mxCELL_CLASS</code>).</li>
+<li>Custom class array (<code>mxCLASS_CLASS</code>).</li>
+<li>Unkown type array (<code>mxUNKNOWN_CLASS</code>).</li>
+</ul>
+<p>VLFeat defines a number of common classes of arrays and corresponding tests.</p>
+<ul>
+<li><b>Scalar array</b> is a non-sparse array with exactly one element. Note that the array may have an arbitrary number of dimensions, and be of any numeric or other type. All dimensions are singleton (which is implied by having exactly one element). Use <a class="el" href="mexutils_8h.html#a98ffbf2c20ade9e5094e234e8d58fd8a" title="Check if a MATLAB array is scalar. ">vlmxIsScalar</a> to test if an array is scalar.</li>
+<li><b>Vector array</b> is a non-sparse array which is either empty (empty vector) or has at most one non-singleton dimension. The array can be of any numeric or other type. The elements of such a MATLAB array are stored as a plain C array with a number of elements equal to the number of elements in the array (obtained with <code>mxGetNumberOfElements</code>). Use <a class="el" href="mexutils_8h.html#a62ed566c271ce76980b587ad2b62b18e" title="Check if a MATLAB array is a vector. ">vlmxIsVector</a> to test whether an array is a vector.</li>
+<li><b>Matrix array</b> is a non-sparse array for which all dimensions beyond the first two are singleton, or a non-sparse array which is empty and for which at least one of the first two dimensions is zero. The array can be of any numeric or other type. The non-singleton dimensions can be zero (empty matrix), one, or more. The element of such a MATLAB array are stored as a C array in column major order and its dimensions can be obtained by <code>mxGetM</code> and <code>mxGetN</code>. Use <a class="el" href="mexutils_8h.html#ab2c48ea72560b1a395a6ce7d6f521ad5" title="Check if a MATLAB array is a matrix. ">vlmxIsMatrix</a> to test if an array is a matrix.</li>
+<li><b>Real array</b> is a numeric array (as for <code>mxIsNumeric</code>) without a complex component. Use <a class="el" href="mexutils_8h.html#a923b6ac320a8aa620a5e8edbe0ee2d2e" title="Check if a MATLAB array is real. ">vlmxIsReal</a> to check if an array is real.</li>
+<li>Use <a class="el" href="mexutils_8h.html#a738f24a24faa9ebfeedb7439ccc4bf44" title="Check if a MATLAB array is of a prescribed class. ">vlmxIsOfClass</a> to check if an array is of a prescribed (storage) class, such as <code>mxDOUBLE_CLASS</code>.</li>
+<li><b>Plain scalar, vector, and matrix</b> are a scalar, vector, and matrix arrays which are <em>real</em> and of class <code>mxDOUBLE_CLASS</code>. Use <a class="el" href="mexutils_8h.html#ab77fcfb1602e857224014b8ffbad446b" title="Check if a MATLAB array is plain scalar. ">vlmxIsPlainScalar</a>, <a class="el" href="mexutils_8h.html#a22eb52c5f6925ea272604bef184c6def" title="Check if a MATLAB array is a plain vector. ">vlmxIsPlainVector</a> and <a class="el" href="mexutils_8h.html#a853a2401a28a2b640f4510772057e75f" title="Check if a MATLAB array is a plain matrix. ">vlmxIsPlainMatrix</a> to check this.</li>
+</ul>
+<h1><a class="anchor" id="mexutils-options"></a>
+Parsing options</h1>
+<p>It is common to pass optional arguments to a MEX file as option type-value pairs. Here type is a string identifying the option and value is a MATLAB array specifing its value. The function <a class="el" href="mexutils_8h.html#a6b8c52584738d2616f7e0576dc035ea3" title="Parse the next option. ">vlmxNextOption</a> can be used to simplify parsing a list of such arguments (similar to UNIX <code>getopt</code>). The functions <a class="el" href="mexutils_8h.html#a41187a1ec528ba20cb338d321ddbd512" title="Raise a MEX error with VLFeat format. ">vlmxError</a> and <a class="el" href="mexutils_8h.html#a8a91f9f60803e7a808e71123340bdcb1" title="Raise a MEX warning with VLFeat format. ">vlmxWarning</a> are shortcuts to specify VLFeat formatted errors. </p>
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a class="anchor" id="a76600f902337bf06037c62b27d76255c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define VL_USE_MATLAB_ENV</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line"><a class="code" href="generic_8c.html#ac04fe278ac908fa6ed02bda099588cf0">vl_set_alloc_func</a> (mxMalloc, mxRealloc, mxCalloc, mxFree) ; <a class="code" href="generic_8c.html#a17ef7f5dfc74e0ff032f46617a5bc1c5">\</a></div>
+<div class="line"><a class="code" href="generic_8c.html#a17ef7f5dfc74e0ff032f46617a5bc1c5">  vl_set_printf_func</a> ((<a class="code" href="generic_8h.html#abed0f89efbee38c21c99d2967bab01c1">printf_func_t</a>)mexPrintf) ;</div>
+<div class="ttc" id="generic_8c_html_a17ef7f5dfc74e0ff032f46617a5bc1c5"><div class="ttname"><a href="generic_8c.html#a17ef7f5dfc74e0ff032f46617a5bc1c5">vl_set_printf_func</a></div><div class="ttdeci">void vl_set_printf_func(printf_func_t printf_func)</div><div class="ttdoc">Set the printf function. </div><div class="ttdef"><b>Definition:</b> generic.c:1372</div></div>
+<div class="ttc" id="generic_8h_html_abed0f89efbee38c21c99d2967bab01c1"><div class="ttname"><a href="generic_8h.html#abed0f89efbee38c21c99d2967bab01c1">printf_func_t</a></div><div class="ttdeci">int(* printf_func_t)(char const *format,...)</div><div class="ttdoc">Customizable printf function pointer type. </div><div class="ttdef"><b>Definition:</b> generic.h:154</div></div>
+<div class="ttc" id="generic_8c_html_ac04fe278ac908fa6ed02bda099588cf0"><div class="ttname"><a href="generic_8c.html#ac04fe278ac908fa6ed02bda099588cf0">vl_set_alloc_func</a></div><div class="ttdeci">void vl_set_alloc_func(void *(*malloc_func)(size_t), void *(*realloc_func)(void *, size_t), void *(*calloc_func)(size_t, size_t), void(*free_func)(void *))</div><div class="ttdoc">Set memory allocation functions. </div><div class="ttdef"><b>Definition:</b> generic.c:1289</div></div>
+</div><!-- fragment --><p>This makes VLFeat use MATLAB version of the memory allocation and logging functions. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a6a57980687db8396fdd97766fe1bec14"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int vlmxCompareStringsI </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>s1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>s2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s1</td><td>first string. </td></tr>
+    <tr><td class="paramname">s2</td><td>second string. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>comparison result.</dd></dl>
+<p>The comparison result is equal to 0 if the strings are equal, &gt;0 if the first string is greater than the second (in lexicographical order), and &lt;0 otherwise. </p>
+
+</div>
+</div>
+<a class="anchor" id="ac17232977bdd780e9387389212c6f318"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int vlmxCompareToStringI </td>
+          <td>(</td>
+          <td class="paramtype">mxArray const *&#160;</td>
+          <td class="paramname"><em>array</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char const *&#160;</td>
+          <td class="paramname"><em>string</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">array</td><td>first string (as a MATLAB array). </td></tr>
+    <tr><td class="paramname">string</td><td>second string. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>comparison result.</dd></dl>
+<p>The comparison result is equal to 0 if the strings are equal, &gt;0 if the first string is greater than the second (in lexicographical order), and &lt;0 otherwise. </p>
+
+</div>
+</div>
+<a class="anchor" id="a1d87fc57011b9d4f46535e0fe5e3a55a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static mxArray* vlmxCreateArrayFromVlArray </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlArray.html">VlArray</a> const *&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td><a class="el" href="structVlArray.html" title="Numeric array. ">VlArray</a> instance. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the new array. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ac0a3df5e3dcf06641cf7cb7ae81c0f54"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static mxArray* vlmxCreatePlainScalar </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>scalar value. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the new array. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a005ec291acfc071a28348d3742cfda00"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="structVlEnumerator.html">VlEnumerator</a>* vlmxDecodeEnumeration </td>
+          <td>(</td>
+          <td class="paramtype">mxArray const *&#160;</td>
+          <td class="paramname"><em>name_array</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structVlEnumerator.html">VlEnumerator</a> const *&#160;</td>
+          <td class="paramname"><em>enumeration</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a>&#160;</td>
+          <td class="paramname"><em>caseInsensitive</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">enumeration</td><td>the enumeration to decode. </td></tr>
+    <tr><td class="paramname">name_array</td><td>member name as a MATLAB string array. </td></tr>
+    <tr><td class="paramname">caseInsensitive</td><td>if <code>true</code> match the string case-insensitive. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the corresponding enumeration member, or <code>NULL</code> if any. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a424bcf82af07807c0264291b48db9ab6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="structVlArray.html">VlArray</a>* vlmxEnvelopeArrayInVlArray </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlArray.html">VlArray</a> *&#160;</td>
+          <td class="paramname"><em>v</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">mxArray *&#160;</td>
+          <td class="paramname"><em>x</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v</td><td><a class="el" href="structVlArray.html" title="Numeric array. ">VlArray</a> instance (out) </td></tr>
+    <tr><td class="paramname">x</td><td>MATALB array. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>v</code>. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a41187a1ec528ba20cb338d321ddbd512"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void vlmxError </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="mexutils_8h.html#afe2395ec371beece50f65e7b18edf67a">VlmxErrorId</a>&#160;</td>
+          <td class="paramname"><em>errorId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char const *&#160;</td>
+          <td class="paramname"><em>errorMessage</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>...</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">errorId</td><td>error ID string. </td></tr>
+    <tr><td class="paramname">errorMessage</td><td>error message C-style format string. </td></tr>
+    <tr><td class="paramname">...</td><td>format string arguments.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The function internally calls <code>mxErrMsgTxtAndId</code>, which causes the MEX file to abort. </p>
+
+</div>
+</div>
+<a class="anchor" id="aa9cb2ff7d93e845c8e97260742e355da"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a> vlmxIsArray </td>
+          <td>(</td>
+          <td class="paramtype">mxArray const *&#160;</td>
+          <td class="paramname"><em>array</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a66417c5847876295ea87b38140073879">vl_index</a>&#160;</td>
+          <td class="paramname"><em>numDimensions</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a66417c5847876295ea87b38140073879">vl_index</a> *&#160;</td>
+          <td class="paramname"><em>dimensions</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">array</td><td>array to check. </td></tr>
+    <tr><td class="paramname">numDimensions</td><td>number of dimensions. </td></tr>
+    <tr><td class="paramname">dimensions</td><td>dimensions. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true the test succeeds.</dd></dl>
+<p>The test is true if <em>numDimensions</em> &lt; 0. If not, it is false if the array has not <em>numDimensions</em>. Otherwise it is true is <em>dimensions</em> is <code>NULL</code> or if each entry of <em>dimensions</em> is either negative or equal to the corresponding array dimension. </p>
+
+</div>
+</div>
+<a class="anchor" id="a480999aaa7a6d34243ca858789937ae7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int vlmxIsEqualToStringI </td>
+          <td>(</td>
+          <td class="paramtype">mxArray const *&#160;</td>
+          <td class="paramname"><em>array</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char const *&#160;</td>
+          <td class="paramname"><em>string</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">array</td><td>first string (as a MATLAB array). </td></tr>
+    <tr><td class="paramname">string</td><td>second string. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the strings are equal. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ab2c48ea72560b1a395a6ce7d6f521ad5"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a> vlmxIsMatrix </td>
+          <td>(</td>
+          <td class="paramtype">mxArray const *&#160;</td>
+          <td class="paramname"><em>array</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a66417c5847876295ea87b38140073879">vl_index</a>&#160;</td>
+          <td class="paramname"><em>M</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a66417c5847876295ea87b38140073879">vl_index</a>&#160;</td>
+          <td class="paramname"><em>N</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">array</td><td>MATLAB array. </td></tr>
+    <tr><td class="paramname">M</td><td>number of rows (negative for any). </td></tr>
+    <tr><td class="paramname">N</td><td>number of columns (negative for any). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="host_8h.html#a0c72a8c7d2abcd2871b3348138c5f1f4" title="true (1) constant ">VL_TRUE</a> if the array is a matrix of the prescribed size. </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="mexutils_8h.html#mexutils-array-test">Array tests</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a738f24a24faa9ebfeedb7439ccc4bf44"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a> vlmxIsOfClass </td>
+          <td>(</td>
+          <td class="paramtype">mxArray const *&#160;</td>
+          <td class="paramname"><em>array</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">mxClassID&#160;</td>
+          <td class="paramname"><em>classId</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">array</td><td>MATLAB array. </td></tr>
+    <tr><td class="paramname">classId</td><td>prescribed class of the array. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="host_8h.html#a0c72a8c7d2abcd2871b3348138c5f1f4" title="true (1) constant ">VL_TRUE</a> if the class is of the array is of the prescribed class. </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="mexutils_8h.html#mexutils-array-test">Array tests</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="af28c45fe72ed8814a863f2f00b6909b8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a> vlmxIsPlain </td>
+          <td>(</td>
+          <td class="paramtype">mxArray const *&#160;</td>
+          <td class="paramname"><em>array</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">array</td><td>MATLAB array. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="host_8h.html#a0c72a8c7d2abcd2871b3348138c5f1f4" title="true (1) constant ">VL_TRUE</a> if the array is plain. </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="mexutils_8h.html#mexutils-array-test">Array tests</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a853a2401a28a2b640f4510772057e75f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a> vlmxIsPlainMatrix </td>
+          <td>(</td>
+          <td class="paramtype">mxArray const *&#160;</td>
+          <td class="paramname"><em>array</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a66417c5847876295ea87b38140073879">vl_index</a>&#160;</td>
+          <td class="paramname"><em>M</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a66417c5847876295ea87b38140073879">vl_index</a>&#160;</td>
+          <td class="paramname"><em>N</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">array</td><td>MATLAB array. </td></tr>
+    <tr><td class="paramname">M</td><td>number of rows (negative for any). </td></tr>
+    <tr><td class="paramname">N</td><td>number of columns (negative for any). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="host_8h.html#a0c72a8c7d2abcd2871b3348138c5f1f4" title="true (1) constant ">VL_TRUE</a> if the array is a plain matrix of the prescribed size. </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="mexutils_8h.html#mexutils-array-test">Array tests</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ab77fcfb1602e857224014b8ffbad446b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a> vlmxIsPlainScalar </td>
+          <td>(</td>
+          <td class="paramtype">mxArray const *&#160;</td>
+          <td class="paramname"><em>array</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">array</td><td>MATLAB array. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="host_8h.html#a0c72a8c7d2abcd2871b3348138c5f1f4" title="true (1) constant ">VL_TRUE</a> if the array is plain scalar. </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="mexutils_8h.html#mexutils-array-test">Array tests</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a22eb52c5f6925ea272604bef184c6def"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a> vlmxIsPlainVector </td>
+          <td>(</td>
+          <td class="paramtype">mxArray const *&#160;</td>
+          <td class="paramname"><em>array</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a66417c5847876295ea87b38140073879">vl_index</a>&#160;</td>
+          <td class="paramname"><em>numElements</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">array</td><td>MATLAB array. </td></tr>
+    <tr><td class="paramname">numElements</td><td>number of elements (negative for any). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="host_8h.html#a0c72a8c7d2abcd2871b3348138c5f1f4" title="true (1) constant ">VL_TRUE</a> if the array is a plain vecotr of the prescribed size. </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="mexutils_8h.html#mexutils-array-test">Array tests</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a923b6ac320a8aa620a5e8edbe0ee2d2e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a> vlmxIsReal </td>
+          <td>(</td>
+          <td class="paramtype">mxArray const *&#160;</td>
+          <td class="paramname"><em>array</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">array</td><td>MATLAB array. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="host_8h.html#a0c72a8c7d2abcd2871b3348138c5f1f4" title="true (1) constant ">VL_TRUE</a> if the array is real. </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="mexutils_8h.html#mexutils-array-test">Array tests</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a98ffbf2c20ade9e5094e234e8d58fd8a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a> vlmxIsScalar </td>
+          <td>(</td>
+          <td class="paramtype">mxArray const *&#160;</td>
+          <td class="paramname"><em>array</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">array</td><td>MATLAB array. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="host_8h.html#a0c72a8c7d2abcd2871b3348138c5f1f4" title="true (1) constant ">VL_TRUE</a> if the array is scalar. </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="mexutils_8h.html#mexutils-array-test">Array tests</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a1a0c4101bd3fa1e931867980f3f94240"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int vlmxIsString </td>
+          <td>(</td>
+          <td class="paramtype">const mxArray *&#160;</td>
+          <td class="paramname"><em>array</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a66417c5847876295ea87b38140073879">vl_index</a>&#160;</td>
+          <td class="paramname"><em>length</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">array</td><td>array to test. </td></tr>
+    <tr><td class="paramname">length</td><td>string length. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the array is a string of the specified length</dd></dl>
+<p>The array <em>array</em> satisfies the test if:</p><ul>
+<li>its storage class is CHAR;</li>
+<li>it has two dimensions but only one row;</li>
+<li><em>length</em> &lt; 0 or the array has <em>length</em> columns. </li>
+</ul>
+
+</div>
+</div>
+<a class="anchor" id="a62ed566c271ce76980b587ad2b62b18e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a> vlmxIsVector </td>
+          <td>(</td>
+          <td class="paramtype">mxArray const *&#160;</td>
+          <td class="paramname"><em>array</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a66417c5847876295ea87b38140073879">vl_index</a>&#160;</td>
+          <td class="paramname"><em>numElements</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">array</td><td>MATLAB array. </td></tr>
+    <tr><td class="paramname">numElements</td><td>number of elements (negative for any). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="host_8h.html#a0c72a8c7d2abcd2871b3348138c5f1f4" title="true (1) constant ">VL_TRUE</a> if the array is a vecotr of the prescribed size. </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="mexutils_8h.html#mexutils-array-test">Array tests</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a6b8c52584738d2616f7e0576dc035ea3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int vlmxNextOption </td>
+          <td>(</td>
+          <td class="paramtype">mxArray const *&#160;</td>
+          <td class="paramname"><em>args</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nargs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vlmxOption const *&#160;</td>
+          <td class="paramname"><em>options</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>next</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">mxArray const **&#160;</td>
+          <td class="paramname"><em>optarg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">args</td><td>MEX argument array. </td></tr>
+    <tr><td class="paramname">nargs</td><td>MEX argument array length. </td></tr>
+    <tr><td class="paramname">options</td><td>List of option definitions. </td></tr>
+    <tr><td class="paramname">next</td><td>Pointer to the next option (input and output). </td></tr>
+    <tr><td class="paramname">optarg</td><td>Pointer to the option optional argument (output). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the code of the next option, or -1 if there are no more options.</dd></dl>
+<p>The function parses the array <em>args</em> for options. <em>args</em> is expected to be a sequence alternating option names and option values, in the form of <em>nargs</em> instances of <code>mxArray</code>. The function then scans the option starting at position <em>next</em> in the array. The option name is matched (case insensitive) to the table of options <em>options</em>, a pointer to the option value is stored in <em>optarg</em>, <em>next</em> is advanced to the next option, and the option code is returned.</p>
+<p>The function is typically used in a loop to parse all the available options. <em>next</em> is initialized to zero, and then the function is called until the special code -1 is returned.</p>
+<p>If the option name cannot be matched to the available options, either because the option name is not a string array or because the name is unknown, the function exits the MEX file with an error. </p>
+
+</div>
+</div>
+<a class="anchor" id="a8a91f9f60803e7a808e71123340bdcb1"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void vlmxWarning </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="mexutils_8h.html#afe2395ec371beece50f65e7b18edf67a">VlmxErrorId</a>&#160;</td>
+          <td class="paramname"><em>errorId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char const *&#160;</td>
+          <td class="paramname"><em>errorMessage</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>...</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">errorId</td><td>error ID string. </td></tr>
+    <tr><td class="paramname">errorMessage</td><td>error message C-style format string. </td></tr>
+    <tr><td class="paramname">...</td><td>format string arguments.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The function internally calls <code>mxWarnMsgTxtAndId</code>. </p>
+
+</div>
+</div>
+</div><!-- contents -->
+        <!-- Doc Here -->
+      </div>
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>

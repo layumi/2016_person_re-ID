@@ -1,0 +1,49 @@
+<group>
+<ul class='breadcrumb'><li><a href='%pathto:matlab;'>Index</a></li><li><a href='%pathto:vl_sigmoid;'>Prev</a></li></ul><div class="documentation"><p>
+ENC = <a href="%pathto:vl_vlad;">VL_VLAD</a>(X, MEANS, ASSIGNMENTS) computes the VLAD
+encoding of the vectors X relative to cluster centers MEANS and
+vector-to-cluster soft assignments ASSIGNMENTS.
+</p><p>
+X has one column per data vector (e.g. a SIFT descriptor), and
+MEANS has one column per component. Usually one has one component
+per KMeans cluster and MEANS are the KMeans centers. X and MEANS
+have the same number of rows and the data class, which can be
+either SINGLE or DOUBLE.
+</p><p>
+ASSIGNMENTS has as many rows as clusters and as many columns as
+X. Its columns are non-negative and should sum to one,
+representing the soft assignment of the corresponding vector in X
+to each of the clusters. It is of the same class as X.
+</p><p>
+ENC is a vector of the same class of X of size equal to the
+product of the data dimension and the number of clusters.
+</p><p>
+By default, ENC is L2 normalized. <a href="%pathto:vl_vlad;">VL_VLAD</a>() accepts the following
+options:
+</p><dl><dt>
+Unnormalized
+</dt><dd><p>
+If specified, no overall normalization is applied to ENC.
+</p></dd><dt>
+NormalizeComponents
+</dt><dd><p>
+If specified, the part of the encoding corresponding to each
+cluster is individually normalized.
+</p></dd><dt>
+NormalizeMass
+</dt><dd><p>
+If specified, each component is re-normalized by the mass
+of data vectors assigned to it. If NormalizedComponents is
+also selected, this has no effect.
+</p></dd><dt>
+SquareRoot
+</dt><dd><p>
+If specified, the signed square root function is applied to
+ENC before normalization.
+</p></dd><dt>
+Verbose
+</dt><dd><p>
+Increase the verbosity level (may be specified multiple times).
+</p></dd></dl><p>
+See: <a href="%dox:vlad;">VLAD</a>, <a href="%pathto:vl_help;">VL_HELP</a>().
+</p></div></group>

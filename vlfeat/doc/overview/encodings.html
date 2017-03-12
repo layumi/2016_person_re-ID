@@ -1,0 +1,338 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+
+  <!-- Page title -->
+  <title>VLFeat - Tutorials > Fisher Vector and VLAD</title>
+
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  
+
+  <!-- Scripts-->
+  
+
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li class='active'><a href="tut.html">Tutorials</a>
+<ul>
+<li><a href="frame.html">Local feature frames</a>
+</li>
+<li><a href="covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="hog.html">HOG features</a>
+</li>
+<li><a href="sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="dsift.html">Dense SIFT</a>
+</li>
+<li><a href="liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="mser.html">MSER feature detector</a>
+</li>
+<li><a href="imdisttf.html">Distance transform</a>
+</li>
+<li class='active' class='activeLeaf'><a href="encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="kmeans.html">K-means clustering</a>
+</li>
+<li><a href="aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="slic.html">SLIC superpixels</a>
+</li>
+<li><a href="svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="ikm.html">Integer K-means</a>
+</li>
+<li><a href="hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li><a href="../api/index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+<ul>
+<li><a href="../man/mser.html">mser</a>
+</li>
+<li><a href="../man/sift.html">sift</a>
+</li>
+<li><a href="../man/vlfeat.html">vlfeat</a>
+</li>
+</ul></li>
+</ul></li>
+</ul>
+
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="tut.html">Tutorials</a></span><span class='separator'>></span><span class='page'><a href="encodings.html">Fisher Vector and VLAD</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+        
+    
+
+<div class='toc'>
+<h3>Table of Contents</h3><ul><li class="level1"><a href="#tut.fisher">Fisher encoding</a></li>
+<li class="level1"><a href="#tut.vlad">VLAD encoding</a></li>
+</ul>
+</div><!-- Table of contents -->
+
+
+<p>This short tutorial shows how to
+compute <b><a shape="rect" href="../api/fisher.html">Fisher vector</a></b> and
+<b><a shape="rect" href="../api/vlad.html">VLAD</a></b> encodings with VLFeat MATLAB
+interface.</p>
+
+<p>These encoding serve a similar purposes: summarizing in a vectorial
+statistic a number of local feature descriptors
+(e.g. <a shape="rect" href="../api/sift.html">SIFT</a>). Similarly to bag of visual
+words, they assign local descriptor to elements in a visual
+dictionary, obtained with vector quantization (KMeans) in the case of
+VLAD or a <a shape="rect" href="../api/gmm.html">Gaussian Mixture Models</a> for Fisher
+Vectors. However, rather than storing visual word occurrences only,
+these representations store a statistics of the difference between
+dictionary elements and pooled local features.</p>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h1 id="tut.fisher">Fisher encoding</h1>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<p>The Fisher encoding uses GMM to construct a visual word
+dictionary. To exemplify constructing a GMM, consider a number of 2
+dimensional data points (see also the <a shape="rect" href="gmm.html">GMM
+tutorial</a>). In practice, these points would be a collection of SIFT
+or other local image features. The following code fits a GMM to the
+points:</p>
+
+<div class="highlight"><pre><span class="n">numFeatures</span> <span class="p">=</span> <span class="mi">5000</span> <span class="p">;</span>
+<span class="n">dimension</span> <span class="p">=</span> <span class="mi">2</span> <span class="p">;</span>
+<span class="n">data</span> <span class="p">=</span> <span class="nb">rand</span><span class="p">(</span><span class="n">dimension</span><span class="p">,</span><span class="n">numFeatures</span><span class="p">)</span> <span class="p">;</span>
+
+<span class="n">numClusters</span> <span class="p">=</span> <span class="mi">30</span> <span class="p">;</span>
+<span class="p">[</span><span class="n">means</span><span class="p">,</span> <span class="n">covariances</span><span class="p">,</span> <span class="n">priors</span><span class="p">]</span> <span class="p">=</span> <span class="n">vl_gmm</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">numClusters</span><span class="p">);</span>
+</pre></div>
+
+
+<p>Next, we create another random set of vectors, which should be
+encoded using the Fisher Vector representation and the GMM just
+obtained:</p>
+
+<div class="highlight"><pre><span class="n">numDataToBeEncoded</span> <span class="p">=</span> <span class="mi">1000</span><span class="p">;</span>
+<span class="n">dataToBeEncoded</span> <span class="p">=</span> <span class="nb">rand</span><span class="p">(</span><span class="n">dimension</span><span class="p">,</span><span class="n">numDataToBeEncoded</span><span class="p">);</span>
+</pre></div>
+
+
+<p>The Fisher vector encoding <code/>enc</code> of these vectors is
+obtained by calling the <code/><a href=../matlab/vl_fisher.html>vl_fisher</a></code> function using the
+output of the <code/><a href=../matlab/vl_gmm.html>vl_gmm</a></code> function:</p>
+
+<div class="highlight"><pre><span class="n">encoding</span> <span class="p">=</span> <span class="n">vl_fisher</span><span class="p">(</span><span class="n">datatoBeEncoded</span><span class="p">,</span> <span class="n">means</span><span class="p">,</span> <span class="n">covariances</span><span class="p">,</span> <span class="n">priors</span><span class="p">);</span>
+</pre></div>
+
+
+<p>The <code/>encoding</code> vector is the Fisher vector
+representation of the data <code/>dataToBeEncoded</code>.</p>
+
+<p>Note that Fisher Vectors support
+several <a shape="rect" href="../api/fisher-fundamentals.html#fisher-normalization">normalization options</a>
+that can affect substantially the performance of the
+representation.</p>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h1 id="tut.vlad">VLAD encoding</h1>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<p>The <b>V</b>ector
+of <b>L</b>inearly <b>A</b>gregated <b>D</b>escriptors is similar to
+Fisher vectors but (i) it does not store second-order information
+about the features and (ii) it typically use KMeans instead of GMMs to
+generate the feature vocabulary (although the latter is also an
+option).</p>
+
+<p>Consider the same 2D data matrix <code/>data</code> used in the
+previous section to train the Fisher vector representation. To compute
+VLAD, we first need to obtain a visual word dictionary. This time, we
+use K-means:</p>
+
+<div class="highlight"><pre><span class="n">numClusters</span> <span class="p">=</span> <span class="mi">30</span> <span class="p">;</span>
+<span class="n">centers</span> <span class="p">=</span> <span class="n">vl_kmeans</span><span class="p">(</span><span class="n">dataLearn</span><span class="p">,</span> <span class="n">numClusters</span><span class="p">);</span>
+</pre></div>
+
+
+<p>Now consider the data <code/>dataToBeEncoded</code> and use
+the <code/><a href=../matlab/vl_vlad.html>vl_vlad</a></code> function to compute the encoding. Differently
+from <code/><a href=../matlab/vl_fisher.html>vl_fisher</a></code>, <code/><a href=../matlab/vl_vlad.html>vl_vlad</a></code> requires the
+data-to-cluster assignments to be passed in. This allows using a fast
+vector quantization technique (e.g. kd-tree) as well as switching from
+soft to hard assignment.</p>
+
+<p>In this example, we use a kd-tree for quantization:</p>
+
+<div class="highlight"><pre><span class="n">kdtree</span> <span class="p">=</span> <span class="n">vl_kdtreebuild</span><span class="p">(</span><span class="n">centers</span><span class="p">)</span> <span class="p">;</span>
+<span class="n">nn</span> <span class="p">=</span> <span class="n">vl_kdtreequery</span><span class="p">(</span><span class="n">kdtree</span><span class="p">,</span> <span class="n">centers</span><span class="p">,</span> <span class="n">dataEncode</span><span class="p">)</span> <span class="p">;</span>
+</pre></div>
+
+
+<p>Now we have in the <code/>nn</code> the indexes of the nearest
+center to each vector in the matrix <code/>dataToBeEncoded</code>. The
+next step is to create an assignment matrix:</p>
+
+<pre>
+assignments = zeros(numClusters,numDataToBeEncoded);
+assignments(sub2ind(size(assignments), nn, 1:length(nn))) = 1;
+</pre>
+
+<p>It is now possible to encode the data using
+the <code/><a href=../matlab/vl_vlad.html>vl_vlad</a></code> function:</p>
+
+<pre>
+enc = vl_vlad(dataToBeEncoded,centers,assignments);
+</pre>
+
+<p>Note that, similarly to Fisher vectors, VLAD supports
+several <a shape="rect" href="../api/vlad-fundamentals.html#vlad-normalization">normalization options</a>
+that can affect substantially the performance of the
+representation.</p>
+
+
+  
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>
+ 

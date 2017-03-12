@@ -1,0 +1,1112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+  <!-- Page title -->
+  <title>VLFeat - Documentation > C API</title>
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  <link rel="stylesheet" type="text/css" href="doxygen.css"></link>
+  <!-- Scripts-->
+  <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li class='active'><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li class='active' class='activeLeaf'><a href="index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="../doc.html">Documentation</a></span><span class='separator'>></span><span class='page'><a href="index.html">C API</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+      <!-- <pagestyle href="%pathto:root;api/tabs.css"/> -->
+      <div class="doxygen">
+<div id="top">
+<div id="top">
+<!-- Generated by Doxygen 1.8.7 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li class="current"><a href="files.html"><span>Files</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>Globals</span></a></li>
+    </ul>
+  </div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_8dd540b382164c224dfa1eb6e8a3add6.html">vl</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
+  <div class="headertitle">
+<div class="title">sift.c File Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>SIFT - Definition.  
+<a href="#details">More...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="sift_8h.html">sift.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="imopv_8h.html">imopv.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="mathop_8h.html">mathop.h</a>&quot;</code><br />
+<code>#include &lt;assert.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;math.h&gt;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a3292b2feb6b1aba4f34ba037f15bc2d0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sift_8c.html#a3292b2feb6b1aba4f34ba037f15bc2d0">VL_SIFT_BILINEAR_ORIENTATIONS</a>&#160;&#160;&#160;1</td></tr>
+<tr class="memdesc:a3292b2feb6b1aba4f34ba037f15bc2d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use bilinear interpolation to compute orientations.  <a href="#a3292b2feb6b1aba4f34ba037f15bc2d0">More...</a><br /></td></tr>
+<tr class="separator:a3292b2feb6b1aba4f34ba037f15bc2d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98146d82a06b921641fa84448c41343d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sift_8c.html#a98146d82a06b921641fa84448c41343d">EXPN_SZ</a>&#160;&#160;&#160;256</td></tr>
+<tr class="separator:a98146d82a06b921641fa84448c41343d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b559178f5db3bdf1ae9b89b58a703da"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sift_8c.html#a4b559178f5db3bdf1ae9b89b58a703da">EXPN_MAX</a>&#160;&#160;&#160;25.0</td></tr>
+<tr class="separator:a4b559178f5db3bdf1ae9b89b58a703da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:af6d47c007c0b124e219efeccd80d9888"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sift_8c.html#af6d47c007c0b124e219efeccd80d9888">fast_expn</a> (double x)</td></tr>
+<tr class="memdesc:af6d47c007c0b124e219efeccd80d9888"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fast \(exp(-x)\) approximation.  <a href="#af6d47c007c0b124e219efeccd80d9888">More...</a><br /></td></tr>
+<tr class="separator:af6d47c007c0b124e219efeccd80d9888"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ba399b1016b22b00d36111f94a414c4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sift_8c.html#a1ba399b1016b22b00d36111f94a414c4">fast_expn_init</a> ()</td></tr>
+<tr class="memdesc:a1ba399b1016b22b00d36111f94a414c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize tables for <a class="el" href="sift_8c.html#af6d47c007c0b124e219efeccd80d9888" title="Fast  approximation. ">fast_expn</a>.  <a href="#a1ba399b1016b22b00d36111f94a414c4">More...</a><br /></td></tr>
+<tr class="separator:a1ba399b1016b22b00d36111f94a414c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb42c89bf4510234d60ba3eef7010c29"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sift_8c.html#aeb42c89bf4510234d60ba3eef7010c29">copy_and_upsample_rows</a> (<a class="el" href="sift_8h.html#a7efac4fb08e4642f12ef439ac376a5cc">vl_sift_pix</a> *dst, <a class="el" href="sift_8h.html#a7efac4fb08e4642f12ef439ac376a5cc">vl_sift_pix</a> const *src, int width, int height)</td></tr>
+<tr class="memdesc:aeb42c89bf4510234d60ba3eef7010c29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy image, upsample rows and take transpose.  <a href="#aeb42c89bf4510234d60ba3eef7010c29">More...</a><br /></td></tr>
+<tr class="separator:aeb42c89bf4510234d60ba3eef7010c29"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3b643d6efaaeebb3107ecb11d398e8a"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sift_8c.html#aa3b643d6efaaeebb3107ecb11d398e8a">_vl_sift_smooth</a> (<a class="el" href="structVlSiftFilt.html">VlSiftFilt</a> *self, <a class="el" href="sift_8h.html#a7efac4fb08e4642f12ef439ac376a5cc">vl_sift_pix</a> *outputImage, <a class="el" href="sift_8h.html#a7efac4fb08e4642f12ef439ac376a5cc">vl_sift_pix</a> *tempImage, <a class="el" href="sift_8h.html#a7efac4fb08e4642f12ef439ac376a5cc">vl_sift_pix</a> const *inputImage, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> width, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> height, double sigma)</td></tr>
+<tr class="memdesc:aa3b643d6efaaeebb3107ecb11d398e8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Smooth an image.  <a href="#aa3b643d6efaaeebb3107ecb11d398e8a">More...</a><br /></td></tr>
+<tr class="separator:aa3b643d6efaaeebb3107ecb11d398e8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a457daa5f995f4b946c1a44a45e7702bb"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sift_8c.html#a457daa5f995f4b946c1a44a45e7702bb">copy_and_downsample</a> (<a class="el" href="sift_8h.html#a7efac4fb08e4642f12ef439ac376a5cc">vl_sift_pix</a> *dst, <a class="el" href="sift_8h.html#a7efac4fb08e4642f12ef439ac376a5cc">vl_sift_pix</a> const *src, int width, int height, int d)</td></tr>
+<tr class="memdesc:a457daa5f995f4b946c1a44a45e7702bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy and downsample an image.  <a href="#a457daa5f995f4b946c1a44a45e7702bb">More...</a><br /></td></tr>
+<tr class="separator:a457daa5f995f4b946c1a44a45e7702bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adff66a155e30ed412bc8bbb97dfa2fae"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structVlSiftFilt.html">VlSiftFilt</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sift_8c.html#adff66a155e30ed412bc8bbb97dfa2fae">vl_sift_new</a> (int width, int height, int noctaves, int nlevels, int o_min)</td></tr>
+<tr class="memdesc:adff66a155e30ed412bc8bbb97dfa2fae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new SIFT filter.  <a href="#adff66a155e30ed412bc8bbb97dfa2fae">More...</a><br /></td></tr>
+<tr class="separator:adff66a155e30ed412bc8bbb97dfa2fae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab242293326626641411e7d7f43a109b2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sift_8c.html#ab242293326626641411e7d7f43a109b2">vl_sift_delete</a> (<a class="el" href="structVlSiftFilt.html">VlSiftFilt</a> *f)</td></tr>
+<tr class="memdesc:ab242293326626641411e7d7f43a109b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete SIFT filter.  <a href="#ab242293326626641411e7d7f43a109b2">More...</a><br /></td></tr>
+<tr class="separator:ab242293326626641411e7d7f43a109b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97cca9a09efaadc9dd0671912b9d5e05"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sift_8c.html#a97cca9a09efaadc9dd0671912b9d5e05">vl_sift_process_first_octave</a> (<a class="el" href="structVlSiftFilt.html">VlSiftFilt</a> *f, <a class="el" href="sift_8h.html#a7efac4fb08e4642f12ef439ac376a5cc">vl_sift_pix</a> const *im)</td></tr>
+<tr class="memdesc:a97cca9a09efaadc9dd0671912b9d5e05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start processing a new image.  <a href="#a97cca9a09efaadc9dd0671912b9d5e05">More...</a><br /></td></tr>
+<tr class="separator:a97cca9a09efaadc9dd0671912b9d5e05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a610cab1a3bf7d38e389afda9037f14da"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sift_8c.html#a610cab1a3bf7d38e389afda9037f14da">vl_sift_process_next_octave</a> (<a class="el" href="structVlSiftFilt.html">VlSiftFilt</a> *f)</td></tr>
+<tr class="memdesc:a610cab1a3bf7d38e389afda9037f14da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Process next octave.  <a href="#a610cab1a3bf7d38e389afda9037f14da">More...</a><br /></td></tr>
+<tr class="separator:a610cab1a3bf7d38e389afda9037f14da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65c55820964f4f6609ca9ef1d547b2c4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sift_8c.html#a65c55820964f4f6609ca9ef1d547b2c4">vl_sift_detect</a> (<a class="el" href="structVlSiftFilt.html">VlSiftFilt</a> *f)</td></tr>
+<tr class="memdesc:a65c55820964f4f6609ca9ef1d547b2c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Detect keypoints.  <a href="#a65c55820964f4f6609ca9ef1d547b2c4">More...</a><br /></td></tr>
+<tr class="separator:a65c55820964f4f6609ca9ef1d547b2c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace1fba61b0cc6ad7b1b0f9a07eabdf87"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sift_8c.html#ace1fba61b0cc6ad7b1b0f9a07eabdf87">update_gradient</a> (<a class="el" href="structVlSiftFilt.html">VlSiftFilt</a> *f)</td></tr>
+<tr class="memdesc:ace1fba61b0cc6ad7b1b0f9a07eabdf87"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update gradients to current GSS octave.  <a href="#ace1fba61b0cc6ad7b1b0f9a07eabdf87">More...</a><br /></td></tr>
+<tr class="separator:ace1fba61b0cc6ad7b1b0f9a07eabdf87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e409d464f81582dc3e839bf0fece66e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sift_8c.html#a2e409d464f81582dc3e839bf0fece66e">vl_sift_calc_keypoint_orientations</a> (<a class="el" href="structVlSiftFilt.html">VlSiftFilt</a> *f, double angles[4], <a class="el" href="structVlSiftKeypoint.html">VlSiftKeypoint</a> const *k)</td></tr>
+<tr class="memdesc:a2e409d464f81582dc3e839bf0fece66e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the keypoint orientation(s)  <a href="#a2e409d464f81582dc3e839bf0fece66e">More...</a><br /></td></tr>
+<tr class="separator:a2e409d464f81582dc3e839bf0fece66e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8cde1754325194d2bcfb08474b4b573a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="sift_8h.html#a7efac4fb08e4642f12ef439ac376a5cc">vl_sift_pix</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sift_8c.html#a8cde1754325194d2bcfb08474b4b573a">normalize_histogram</a> (<a class="el" href="sift_8h.html#a7efac4fb08e4642f12ef439ac376a5cc">vl_sift_pix</a> *begin, <a class="el" href="sift_8h.html#a7efac4fb08e4642f12ef439ac376a5cc">vl_sift_pix</a> *end)</td></tr>
+<tr class="memdesc:a8cde1754325194d2bcfb08474b4b573a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Normalizes in norm L_2 a descriptor.  <a href="#a8cde1754325194d2bcfb08474b4b573a">More...</a><br /></td></tr>
+<tr class="separator:a8cde1754325194d2bcfb08474b4b573a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a335f3295ba77b3bb937e5272fe1a02fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sift_8c.html#a335f3295ba77b3bb937e5272fe1a02fc">vl_sift_calc_raw_descriptor</a> (<a class="el" href="structVlSiftFilt.html">VlSiftFilt</a> const *f, <a class="el" href="sift_8h.html#a7efac4fb08e4642f12ef439ac376a5cc">vl_sift_pix</a> const *grad, <a class="el" href="sift_8h.html#a7efac4fb08e4642f12ef439ac376a5cc">vl_sift_pix</a> *descr, int width, int height, double x, double y, double sigma, double angle0)</td></tr>
+<tr class="memdesc:a335f3295ba77b3bb937e5272fe1a02fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run the SIFT descriptor on raw data.  <a href="#a335f3295ba77b3bb937e5272fe1a02fc">More...</a><br /></td></tr>
+<tr class="separator:a335f3295ba77b3bb937e5272fe1a02fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85f3878a53ef7151b569c1b3ea4d13b6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sift_8c.html#a85f3878a53ef7151b569c1b3ea4d13b6">vl_sift_calc_keypoint_descriptor</a> (<a class="el" href="structVlSiftFilt.html">VlSiftFilt</a> *f, <a class="el" href="sift_8h.html#a7efac4fb08e4642f12ef439ac376a5cc">vl_sift_pix</a> *descr, <a class="el" href="structVlSiftKeypoint.html">VlSiftKeypoint</a> const *k, double angle0)</td></tr>
+<tr class="memdesc:a85f3878a53ef7151b569c1b3ea4d13b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the descriptor of a keypoint.  <a href="#a85f3878a53ef7151b569c1b3ea4d13b6">More...</a><br /></td></tr>
+<tr class="separator:a85f3878a53ef7151b569c1b3ea4d13b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f3fc8e38b6c0c520cb90b1a63ddc031"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sift_8c.html#a6f3fc8e38b6c0c520cb90b1a63ddc031">vl_sift_keypoint_init</a> (<a class="el" href="structVlSiftFilt.html">VlSiftFilt</a> const *f, <a class="el" href="structVlSiftKeypoint.html">VlSiftKeypoint</a> *k, double x, double y, double sigma)</td></tr>
+<tr class="memdesc:a6f3fc8e38b6c0c520cb90b1a63ddc031"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize a keypoint from its position and scale.  <a href="#a6f3fc8e38b6c0c520cb90b1a63ddc031">More...</a><br /></td></tr>
+<tr class="separator:a6f3fc8e38b6c0c520cb90b1a63ddc031"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a6bfe7ecf9f4b9125e9613e90e4dc8971"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sift_8c.html#a6bfe7ecf9f4b9125e9613e90e4dc8971">expn_tab</a> [<a class="el" href="sift_8c.html#a98146d82a06b921641fa84448c41343d">EXPN_SZ</a>+1]</td></tr>
+<tr class="separator:a6bfe7ecf9f4b9125e9613e90e4dc8971"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><dl class="section author"><dt>Author</dt><dd>Andrea Vedaldi </dd></dl>
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a class="anchor" id="a4b559178f5db3bdf1ae9b89b58a703da"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EXPN_MAX&#160;&#160;&#160;25.0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><a class="el" href="sift_8c.html#af6d47c007c0b124e219efeccd80d9888" title="Fast  approximation. ">fast_expn</a> table max</p>
+
+</div>
+</div>
+<a class="anchor" id="a98146d82a06b921641fa84448c41343d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EXPN_SZ&#160;&#160;&#160;256</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><a class="el" href="sift_8c.html#af6d47c007c0b124e219efeccd80d9888" title="Fast  approximation. ">fast_expn</a> table size</p>
+
+</div>
+</div>
+<a class="anchor" id="a3292b2feb6b1aba4f34ba037f15bc2d0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define VL_SIFT_BILINEAR_ORIENTATIONS&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="aa3b643d6efaaeebb3107ecb11d398e8a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void _vl_sift_smooth </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlSiftFilt.html">VlSiftFilt</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="sift_8h.html#a7efac4fb08e4642f12ef439ac376a5cc">vl_sift_pix</a> *&#160;</td>
+          <td class="paramname"><em>outputImage</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="sift_8h.html#a7efac4fb08e4642f12ef439ac376a5cc">vl_sift_pix</a> *&#160;</td>
+          <td class="paramname"><em>tempImage</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="sift_8h.html#a7efac4fb08e4642f12ef439ac376a5cc">vl_sift_pix</a> const *&#160;</td>
+          <td class="paramname"><em>inputImage</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>sigma</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>SIFT filter. </td></tr>
+    <tr><td class="paramname">outputImage</td><td>output imgae buffer. </td></tr>
+    <tr><td class="paramname">tempImage</td><td>temporary image buffer. </td></tr>
+    <tr><td class="paramname">inputImage</td><td>input image buffer. </td></tr>
+    <tr><td class="paramname">width</td><td>input image width. </td></tr>
+    <tr><td class="paramname">height</td><td>input image height. </td></tr>
+    <tr><td class="paramname">sigma</td><td>smoothing. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a457daa5f995f4b946c1a44a45e7702bb"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void copy_and_downsample </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="sift_8h.html#a7efac4fb08e4642f12ef439ac376a5cc">vl_sift_pix</a> *&#160;</td>
+          <td class="paramname"><em>dst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="sift_8h.html#a7efac4fb08e4642f12ef439ac376a5cc">vl_sift_pix</a> const *&#160;</td>
+          <td class="paramname"><em>src</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>d</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dst</td><td>output imgae buffer. </td></tr>
+    <tr><td class="paramname">src</td><td>input image buffer. </td></tr>
+    <tr><td class="paramname">width</td><td>input image width. </td></tr>
+    <tr><td class="paramname">height</td><td>input image height. </td></tr>
+    <tr><td class="paramname">d</td><td>octaves (non negative).</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The function downsamples the image <em>d</em> times, reducing it to <code>1/2^d</code> of its original size. The parameters <em>width</em> and <em>height</em> are the size of the input image. The destination image <em>dst</em> is assumed to be <code>floor(width/2^d)</code> pixels wide and <code>floor(height/2^d)</code> pixels high. </p>
+
+</div>
+</div>
+<a class="anchor" id="aeb42c89bf4510234d60ba3eef7010c29"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void copy_and_upsample_rows </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="sift_8h.html#a7efac4fb08e4642f12ef439ac376a5cc">vl_sift_pix</a> *&#160;</td>
+          <td class="paramname"><em>dst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="sift_8h.html#a7efac4fb08e4642f12ef439ac376a5cc">vl_sift_pix</a> const *&#160;</td>
+          <td class="paramname"><em>src</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>height</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dst</td><td>output image buffer. </td></tr>
+    <tr><td class="paramname">src</td><td>input image buffer. </td></tr>
+    <tr><td class="paramname">width</td><td>input image width. </td></tr>
+    <tr><td class="paramname">height</td><td>input image height.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The output image has dimensions <em>height</em> by 2 <em>width</em> (so the destination buffer must be at least as big as two times the input buffer).</p>
+<p>Upsampling is performed by linear interpolation. </p>
+
+</div>
+</div>
+<a class="anchor" id="af6d47c007c0b124e219efeccd80d9888"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double fast_expn </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>argument.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The argument must be in the range [0, <a class="el" href="sift_8c.html#a4b559178f5db3bdf1ae9b89b58a703da">EXPN_MAX</a>] .</p>
+<dl class="section return"><dt>Returns</dt><dd>approximation of \(exp(-x)\). </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a1ba399b1016b22b00d36111f94a414c4"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void fast_expn_init </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a8cde1754325194d2bcfb08474b4b573a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="sift_8h.html#a7efac4fb08e4642f12ef439ac376a5cc">vl_sift_pix</a> normalize_histogram </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="sift_8h.html#a7efac4fb08e4642f12ef439ac376a5cc">vl_sift_pix</a> *&#160;</td>
+          <td class="paramname"><em>begin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="sift_8h.html#a7efac4fb08e4642f12ef439ac376a5cc">vl_sift_pix</a> *&#160;</td>
+          <td class="paramname"><em>end</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">begin</td><td>begin of histogram. </td></tr>
+    <tr><td class="paramname">end</td><td>end of histogram. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ace1fba61b0cc6ad7b1b0f9a07eabdf87"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void update_gradient </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlSiftFilt.html">VlSiftFilt</a> *&#160;</td>
+          <td class="paramname"><em>f</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>SIFT filter.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The function makes sure that the gradient buffer is up-to-date with the current GSS data.</p>
+<dl class="section remark"><dt>Remarks</dt><dd>The minimum octave size is 2x2xS. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a85f3878a53ef7151b569c1b3ea4d13b6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_sift_calc_keypoint_descriptor </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlSiftFilt.html">VlSiftFilt</a> *&#160;</td>
+          <td class="paramname"><em>f</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="sift_8h.html#a7efac4fb08e4642f12ef439ac376a5cc">vl_sift_pix</a> *&#160;</td>
+          <td class="paramname"><em>descr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structVlSiftKeypoint.html">VlSiftKeypoint</a> const *&#160;</td>
+          <td class="paramname"><em>k</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>angle0</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>SIFT filter. </td></tr>
+    <tr><td class="paramname">descr</td><td>SIFT descriptor (output) </td></tr>
+    <tr><td class="paramname">k</td><td>keypoint. </td></tr>
+    <tr><td class="paramname">angle0</td><td>keypoint direction.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The function computes the SIFT descriptor of the keypoint <em>k</em> of orientation <em>angle0</em>. The function fills the buffer <em>descr</em> which must be large enough to hold the descriptor.</p>
+<p>The function assumes that the keypoint is on the current octave. If not, it does not do anything. </p>
+
+</div>
+</div>
+<a class="anchor" id="a2e409d464f81582dc3e839bf0fece66e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int vl_sift_calc_keypoint_orientations </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlSiftFilt.html">VlSiftFilt</a> *&#160;</td>
+          <td class="paramname"><em>f</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>angles</em>[4], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structVlSiftKeypoint.html">VlSiftKeypoint</a> const *&#160;</td>
+          <td class="paramname"><em>k</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>SIFT filter. </td></tr>
+    <tr><td class="paramname">angles</td><td>orientations (output). </td></tr>
+    <tr><td class="paramname">k</td><td>keypoint.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The function computes the orientation(s) of the keypoint <em>k</em>. The function returns the number of orientations found (up to four). The orientations themselves are written to the vector <em>angles</em>.</p>
+<dl class="section remark"><dt>Remarks</dt><dd>The function requires the keypoint octave <em>k-&gt;o</em> to be equal to the filter current octave <a class="el" href="sift_8h.html#a400759060e87dc7a6264555b90b0a221" title="Get current octave data. ">vl_sift_get_octave</a>. If this is not the case, the function returns zero orientations.</dd>
+<dd>
+The function requires the keypoint scale level <code>k-&gt;s</code> to be in the range <code>s_min+1</code> and <code>s_max-2</code> (where usually <code>s_min=0</code> and <code>s_max=S+2</code>). If this is not the case, the function returns zero orientations.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>number of orientations found. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a335f3295ba77b3bb937e5272fe1a02fc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_sift_calc_raw_descriptor </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlSiftFilt.html">VlSiftFilt</a> const *&#160;</td>
+          <td class="paramname"><em>f</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="sift_8h.html#a7efac4fb08e4642f12ef439ac376a5cc">vl_sift_pix</a> const *&#160;</td>
+          <td class="paramname"><em>grad</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="sift_8h.html#a7efac4fb08e4642f12ef439ac376a5cc">vl_sift_pix</a> *&#160;</td>
+          <td class="paramname"><em>descr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>sigma</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>angle0</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>SIFT filter. </td></tr>
+    <tr><td class="paramname">grad</td><td>image gradients. </td></tr>
+    <tr><td class="paramname">descr</td><td>SIFT descriptor (output). </td></tr>
+    <tr><td class="paramname">width</td><td>image width. </td></tr>
+    <tr><td class="paramname">height</td><td>image height. </td></tr>
+    <tr><td class="paramname">x</td><td>keypoint x coordinate. </td></tr>
+    <tr><td class="paramname">y</td><td>keypoint y coordinate. </td></tr>
+    <tr><td class="paramname">sigma</td><td>keypoint scale. </td></tr>
+    <tr><td class="paramname">angle0</td><td>keypoint orientation.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The function runs the SIFT descriptor on raw data. Here <em>image</em> is a 2 x <em>width</em> x <em>height</em> array (by convention, the memory layout is a s such the first index is the fastest varying one). The first <em>width</em> x <em>height</em> layer of the array contains the gradient magnitude and the second the gradient angle (in radians, between 0 and \( 2\pi \)). <em>x</em>, <em>y</em> and <em>sigma</em> give the keypoint center and scale respectively.</p>
+<p>In order to be equivalent to a standard SIFT descriptor the image gradient must be computed at a smoothing level equal to the scale of the keypoint. In practice, the actual SIFT algorithm makes the following additional approximation, which influence the result:</p>
+<ul>
+<li>Scale is discretized in <code>S</code> levels.</li>
+<li>The image is downsampled once for each octave (if you do this, the parameters <em>x</em>, <em>y</em> and <em>sigma</em> must be scaled too). </li>
+</ul>
+
+</div>
+</div>
+<a class="anchor" id="ab242293326626641411e7d7f43a109b2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_sift_delete </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlSiftFilt.html">VlSiftFilt</a> *&#160;</td>
+          <td class="paramname"><em>f</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>SIFT filter to delete.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The function frees the resources allocated by <a class="el" href="sift_8c.html#adff66a155e30ed412bc8bbb97dfa2fae" title="Create a new SIFT filter. ">vl_sift_new()</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="a65c55820964f4f6609ca9ef1d547b2c4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_sift_detect </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlSiftFilt.html">VlSiftFilt</a> *&#160;</td>
+          <td class="paramname"><em>f</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The function detect keypoints in the current octave filling the internal keypoint buffer. Keypoints can be retrieved by <a class="el" href="sift_8h.html#a8d7878f102c5e09b2df06b3662ed9c6a" title="Get keypoints. ">vl_sift_get_keypoints()</a>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>SIFT filter. </td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Index GSS</p>
+<p>Index matrix A</p>
+
+</div>
+</div>
+<a class="anchor" id="a6f3fc8e38b6c0c520cb90b1a63ddc031"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_sift_keypoint_init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlSiftFilt.html">VlSiftFilt</a> const *&#160;</td>
+          <td class="paramname"><em>f</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structVlSiftKeypoint.html">VlSiftKeypoint</a> *&#160;</td>
+          <td class="paramname"><em>k</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>sigma</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>SIFT filter. </td></tr>
+    <tr><td class="paramname">k</td><td>SIFT keypoint (output). </td></tr>
+    <tr><td class="paramname">x</td><td>x coordinate of the keypoint center. </td></tr>
+    <tr><td class="paramname">y</td><td>y coordinate of the keypoint center. </td></tr>
+    <tr><td class="paramname">sigma</td><td>keypoint scale.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The function initializes a keypoint structure <em>k</em> from the location <em>x</em> and <em>y</em> and the scale <em>sigma</em> of the keypoint. The keypoint structure maps the keypoint to an octave and scale level of the discretized Gaussian scale space, which is required for instance to compute the keypoint SIFT descriptor.</p>
+<dl class="section user"><dt>Algorithm</dt><dd></dd></dl>
+<p>The formula linking the keypoint scale sigma to the octave and scale indexes is</p>
+<p class="formulaDsp">
+\[ \sigma(o,s) = \sigma_0 2^{o+s/S} \]
+</p>
+<p>In addition to the scale index <em>s</em> (which can be fractional due to scale interpolation) a keypoint has an integer scale index <em>is</em> too (which is the index of the scale level where it was detected in the DoG scale space). We have the constraints (<a class="el" href="sift.html#sift-tech-detector">Detector</a> see also the "SIFT detector"):</p>
+<ul>
+<li><em>o</em> is integer in the range \( [o_\mathrm{min}, o_{\mathrm{min}}+O-1] \).</li>
+<li><em>is</em> is integer in the range \( [s_\mathrm{min}+1, s_\mathrm{max}-2] \). This depends on how the scale is determined during detection, and must be so here because gradients are computed only for this range of scale levels and are required for the calculation of the SIFT descriptor.</li>
+<li>\( |s - is| &lt; 0.5 \) for detected keypoints in most cases due to the interpolation technique used during detection. However this is not necessary.</li>
+</ul>
+<p>Thus octave o represents scales \( \{ \sigma(o, s) : s \in [s_\mathrm{min}+1-.5, s_\mathrm{max}-2+.5] \} \). Note that some scales may be represented more than once. For each scale, we select the largest possible octave that contains it, i.e.</p>
+<p class="formulaDsp">
+\[ o(\sigma) = \max \{ o \in \mathbb{Z} : \sigma_0 2^{\frac{s_\mathrm{min}+1-.5}{S}} \leq \sigma \} = \mathrm{floor}\,\left[ \log_2(\sigma / \sigma_0) - \frac{s_\mathrm{min}+1-.5}{S}\right] \]
+</p>
+<p>and then</p>
+<p class="formulaDsp">
+\[ s(\sigma) = S \left[\log_2(\sigma / \sigma_0) - o(\sigma)\right], \quad is(\sigma) = \mathrm{round}\,(s(\sigma)) \]
+</p>
+<p>In practice, both \( o(\sigma) \) and \( is(\sigma) \) are clamped to their feasible range as determined by the SIFT filter parameters. </p>
+
+</div>
+</div>
+<a class="anchor" id="adff66a155e30ed412bc8bbb97dfa2fae"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structVlSiftFilt.html">VlSiftFilt</a>* vl_sift_new </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>noctaves</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nlevels</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>o_min</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">width</td><td>image width. </td></tr>
+    <tr><td class="paramname">height</td><td>image height. </td></tr>
+    <tr><td class="paramname">noctaves</td><td>number of octaves. </td></tr>
+    <tr><td class="paramname">nlevels</td><td>number of levels per octave. </td></tr>
+    <tr><td class="paramname">o_min</td><td>first octave index.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The function allocates and returns a new SIFT filter for the specified image and scale space geometry.</p>
+<p>Setting <em>O</em> to a negative value sets the number of octaves to the maximum possible value depending on the size of the image.</p>
+<dl class="section return"><dt>Returns</dt><dd>the new SIFT filter. </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="sift_8c.html#ab242293326626641411e7d7f43a109b2" title="Delete SIFT filter. ">vl_sift_delete()</a>. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a97cca9a09efaadc9dd0671912b9d5e05"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int vl_sift_process_first_octave </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlSiftFilt.html">VlSiftFilt</a> *&#160;</td>
+          <td class="paramname"><em>f</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="sift_8h.html#a7efac4fb08e4642f12ef439ac376a5cc">vl_sift_pix</a> const *&#160;</td>
+          <td class="paramname"><em>im</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>SIFT filter. </td></tr>
+    <tr><td class="paramname">im</td><td>image data.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The function starts processing a new image by computing its Gaussian scale space at the lower octave. It also empties the internal keypoint buffer.</p>
+<dl class="section return"><dt>Returns</dt><dd>error code. The function returns <a class="el" href="generic_8h.html#a67cc69e40d7af2aec137b36e53422982">VL_ERR_EOF</a> if there are no more octaves to process.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="sift_8c.html#a610cab1a3bf7d38e389afda9037f14da" title="Process next octave. ">vl_sift_process_next_octave()</a>. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a610cab1a3bf7d38e389afda9037f14da"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int vl_sift_process_next_octave </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlSiftFilt.html">VlSiftFilt</a> *&#160;</td>
+          <td class="paramname"><em>f</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>SIFT filter.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The function computes the next octave of the Gaussian scale space. Notice that this clears the record of any feature detected in the previous octave.</p>
+<dl class="section return"><dt>Returns</dt><dd>error code. The function returns the error <a class="el" href="generic_8h.html#a67cc69e40d7af2aec137b36e53422982">VL_ERR_EOF</a> when there are no more octaves to process.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="sift_8c.html#a97cca9a09efaadc9dd0671912b9d5e05" title="Start processing a new image. ">vl_sift_process_first_octave()</a>. </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a class="anchor" id="a6bfe7ecf9f4b9125e9613e90e4dc8971"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double expn_tab[<a class="el" href="sift_8c.html#a98146d82a06b921641fa84448c41343d">EXPN_SZ</a>+1]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><a class="el" href="sift_8c.html#af6d47c007c0b124e219efeccd80d9888" title="Fast  approximation. ">fast_expn</a> table</p>
+
+</div>
+</div>
+</div><!-- contents -->
+        <!-- Doc Here -->
+      </div>
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>

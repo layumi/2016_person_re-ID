@@ -1,0 +1,445 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+  <!-- Page title -->
+  <title>VLFeat - Documentation > C API</title>
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  <link rel="stylesheet" type="text/css" href="doxygen.css"></link>
+  <!-- Scripts-->
+  <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li class='active'><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li class='active' class='activeLeaf'><a href="index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="../doc.html">Documentation</a></span><span class='separator'>></span><span class='page'><a href="index.html">C API</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+      <!-- <pagestyle href="%pathto:root;api/tabs.css"/> -->
+      <div class="doxygen">
+<div id="top">
+<div id="top">
+<!-- Generated by Doxygen 1.8.7 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
+    </ul>
+  </div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_8dd540b382164c224dfa1eb6e8a3add6.html">vl</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">vl Directory Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="files"></a>
+Files</h2></td></tr>
+<tr class="memitem:aib_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aib_8c.html">aib.c</a></td></tr>
+<tr class="memdesc:aib_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">AIB - Definition. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aib_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aib_8h.html">aib.h</a></td></tr>
+<tr class="memdesc:aib_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">AIB (<a class="el" href="aib.html">Agglomerative Information Bottleneck (AIB)</a>) <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:array_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><b>array.c</b></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:array_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8h.html">array.h</a></td></tr>
+<tr class="memdesc:array_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Array. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:covdet_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="covdet_8c.html">covdet.c</a></td></tr>
+<tr class="memdesc:covdet_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Covariant feature detectors - Definition. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:covdet_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="covdet_8h.html">covdet.h</a></td></tr>
+<tr class="memdesc:covdet_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Covariant feature detectors (<a class="el" href="covdet.html">Covariant feature detectors</a>) <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:dsift_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dsift_8c.html">dsift.c</a></td></tr>
+<tr class="memdesc:dsift_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dense SIFT - Definition. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:dsift_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dsift_8h.html">dsift.h</a></td></tr>
+<tr class="memdesc:dsift_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dense SIFT (<a class="el" href="dsift.html">Dense Scale Invariant Feature Transform (DSIFT)</a>) <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:fisher_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fisher_8c.html">fisher.c</a></td></tr>
+<tr class="memdesc:fisher_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fisher - Declaration. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:fisher_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fisher_8h.html">fisher.h</a></td></tr>
+<tr class="memdesc:fisher_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fisher encoding (<a class="el" href="fisher.html">Fisher Vector encoding (FV)</a>) <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:generic_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic_8c.html">generic.c</a></td></tr>
+<tr class="memdesc:generic_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generic - Definition. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:generic_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic_8h.html">generic.h</a></td></tr>
+<tr class="memdesc:generic_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generic (<a class="el" href="generic.html">General support functionalities</a>) <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:getopt__long_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="getopt__long_8c.html">getopt_long.c</a></td></tr>
+<tr class="memdesc:getopt__long_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">getopt_long - Definition <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:getopt__long_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="getopt__long_8h.html">getopt_long.h</a></td></tr>
+<tr class="memdesc:getopt__long_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">getopt_long <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gmm_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gmm_8c.html">gmm.c</a></td></tr>
+<tr class="memdesc:gmm_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gaussian Mixture Models - Implementation. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gmm_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gmm_8h.html">gmm.h</a></td></tr>
+<tr class="memdesc:gmm_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">GMM (<a class="el" href="gmm.html">Gaussian Mixture Models (GMM)</a>) <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:heap-def_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="heap-def_8h.html">heap-def.h</a></td></tr>
+<tr class="memdesc:heap-def_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Heap preprocessor metaprogram. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:hikmeans_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hikmeans_8c.html">hikmeans.c</a></td></tr>
+<tr class="memdesc:hikmeans_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hierarchical Integer K-Means Clustering - Declaration. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:hikmeans_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hikmeans_8h.html">hikmeans.h</a></td></tr>
+<tr class="memdesc:hikmeans_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hierarchical integer K-Means clustering. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:hog_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hog_8c.html">hog.c</a></td></tr>
+<tr class="memdesc:hog_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Histogram of Oriented Gradients (HOG) - Definition. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:hog_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hog_8h.html">hog.h</a></td></tr>
+<tr class="memdesc:hog_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Histogram of Oriented Gradients (<a class="el" href="hog.html">Histogram of Oriented Gradients (HOG) features</a>) <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:homkermap_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="homkermap_8c.html">homkermap.c</a></td></tr>
+<tr class="memdesc:homkermap_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Homogeneous kernel map - Definition. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:homkermap_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="homkermap_8h.html">homkermap.h</a></td></tr>
+<tr class="memdesc:homkermap_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Homogeneous kernel map (<a class="el" href="homkermap.html">Homogeneous kernel map</a>) <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:host_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="host_8c.html">host.c</a></td></tr>
+<tr class="memdesc:host_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Host - Definition. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:host_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="host_8h.html">host.h</a></td></tr>
+<tr class="memdesc:host_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Host. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ikmeans_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ikmeans_8c.html">ikmeans.c</a></td></tr>
+<tr class="memdesc:ikmeans_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Integer K-Means clustering - Definition. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ikmeans_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ikmeans_8h.html">ikmeans.h</a></td></tr>
+<tr class="memdesc:ikmeans_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Integer K-Means clustering. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ikmeans__elkan_8tc"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ikmeans__elkan_8tc.html">ikmeans_elkan.tc</a></td></tr>
+<tr class="memdesc:ikmeans__elkan_8tc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Integer K-Means - Elkan Algorithm - Definition. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ikmeans__init_8tc"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ikmeans__init_8tc.html">ikmeans_init.tc</a></td></tr>
+<tr class="memdesc:ikmeans__init_8tc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Integer K-Means - Initialization - Definition. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ikmeans__lloyd_8tc"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ikmeans__lloyd_8tc.html">ikmeans_lloyd.tc</a></td></tr>
+<tr class="memdesc:ikmeans__lloyd_8tc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Integer K-Means - LLoyd Algorithm - Definition. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:imopv_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="imopv_8c.html">imopv.c</a></td></tr>
+<tr class="memdesc:imopv_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vectorized image operations - Definition. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:imopv_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="imopv_8h.html">imopv.h</a></td></tr>
+<tr class="memdesc:imopv_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vectorized image operations. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:imopv__sse2_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="imopv__sse2_8c.html">imopv_sse2.c</a></td></tr>
+<tr class="memdesc:imopv__sse2_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vectorized image operations - SSE2 - Definition. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:imopv__sse2_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="imopv__sse2_8h.html">imopv_sse2.h</a></td></tr>
+<tr class="memdesc:imopv__sse2_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vectorized image operations - SSE2. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:kdtree_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kdtree_8c.html">kdtree.c</a></td></tr>
+<tr class="memdesc:kdtree_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">KD-tree - Definition. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:kdtree_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kdtree_8h.html">kdtree.h</a></td></tr>
+<tr class="memdesc:kdtree_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">KD-tree (<a class="el" href="kdtree.html">KD-trees and forests</a>) <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:kmeans_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kmeans_8c.html">kmeans.c</a></td></tr>
+<tr class="memdesc:kmeans_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">K-means - Declaration. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:kmeans_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kmeans_8h.html">kmeans.h</a></td></tr>
+<tr class="memdesc:kmeans_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">K-means (<a class="el" href="kmeans.html">K-means clustering</a>) <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:lbp_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lbp_8c.html">lbp.c</a></td></tr>
+<tr class="memdesc:lbp_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Local Binary Patterns (LBP) - Definition. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:lbp_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lbp_8h.html">lbp.h</a></td></tr>
+<tr class="memdesc:lbp_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Local Binary Patterns (LBP) descriptor (<a class="el" href="lbp.html">Local Binary Patterns (LBP) descriptor</a>) <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:liop_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="liop_8c.html">liop.c</a></td></tr>
+<tr class="memdesc:liop_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Local Intensity Order Pattern (LIOP) descriptor - Definition. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:liop_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="liop_8h.html">liop.h</a></td></tr>
+<tr class="memdesc:liop_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Local Intensity Order Pattern (LIOP) descriptor (<a class="el" href="liop.html">Local Intensity Order Pattern (LIOP) descriptor</a>) <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:mathop_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop_8c.html">mathop.c</a></td></tr>
+<tr class="memdesc:mathop_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Math operations - Definition. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:mathop_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop_8h.html">mathop.h</a></td></tr>
+<tr class="memdesc:mathop_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Math operations (<a class="el" href="mathop.html">Mathematical operations</a>) <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:mathop__avx_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop__avx_8c.html">mathop_avx.c</a></td></tr>
+<tr class="memdesc:mathop__avx_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">mathop for AVX - Definition <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:mathop__avx_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop__avx_8h.html">mathop_avx.h</a></td></tr>
+<tr class="memdesc:mathop__avx_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">mathop for avx <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:mathop__sse2_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop__sse2_8c.html">mathop_sse2.c</a></td></tr>
+<tr class="memdesc:mathop__sse2_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">mathop for SSE2 - Definition <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:mathop__sse2_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop__sse2_8h.html">mathop_sse2.h</a></td></tr>
+<tr class="memdesc:mathop__sse2_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">mathop for sse2 <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:mser_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mser_8c.html">mser.c</a></td></tr>
+<tr class="memdesc:mser_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">MSER - Definition. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:mser_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mser_8h.html">mser.h</a></td></tr>
+<tr class="memdesc:mser_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">MSER (<a class="el" href="mser.html">Maximally Stable Extremal Regions (MSER)</a>) <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:pgm_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pgm_8c.html">pgm.c</a></td></tr>
+<tr class="memdesc:pgm_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Portable graymap format (PGM) parser - Definition. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:pgm_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pgm_8h.html">pgm.h</a></td></tr>
+<tr class="memdesc:pgm_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Portable graymap format (PGM) parser. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:qsort-def_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="qsort-def_8h.html">qsort-def.h</a></td></tr>
+<tr class="memdesc:qsort-def_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">QSort preprocessor metaprogram. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:quickshift_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="quickshift_8c.html">quickshift.c</a></td></tr>
+<tr class="memdesc:quickshift_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Quick shift - Definition. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:quickshift_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="quickshift_8h.html">quickshift.h</a></td></tr>
+<tr class="memdesc:quickshift_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Quick shift (<a class="el" href="quickshift.html">Quick shift image segmentation</a>) <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:random_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="random_8c.html">random.c</a></td></tr>
+<tr class="memdesc:random_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Random number generator - Definition. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:random_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="random_8h.html">random.h</a></td></tr>
+<tr class="memdesc:random_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Random number generator (<a class="el" href="random.html">Random number generator</a>) <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:rodrigues_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rodrigues_8c.html">rodrigues.c</a></td></tr>
+<tr class="memdesc:rodrigues_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rodrigues formulas - Definition. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:rodrigues_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rodrigues_8h.html">rodrigues.h</a></td></tr>
+<tr class="memdesc:rodrigues_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rodrigues formulas. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:scalespace_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scalespace_8c.html">scalespace.c</a></td></tr>
+<tr class="memdesc:scalespace_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scale Space - Definition. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:scalespace_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scalespace_8h.html">scalespace.h</a></td></tr>
+<tr class="memdesc:scalespace_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scale Space (<a class="el" href="scalespace.html">Gaussian Scale Space (GSS)</a>) <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:shuffle-def_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="shuffle-def_8h.html">shuffle-def.h</a></td></tr>
+<tr class="memdesc:shuffle-def_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shuffle preprocessor metaprogram. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:sift_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sift_8c.html">sift.c</a></td></tr>
+<tr class="memdesc:sift_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">SIFT - Definition. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:sift_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sift_8h.html">sift.h</a></td></tr>
+<tr class="memdesc:sift_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">SIFT (<a class="el" href="sift.html">Scale Invariant Feature Transform (SIFT)</a>) <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:slic_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slic_8c.html">slic.c</a></td></tr>
+<tr class="memdesc:slic_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">SLIC superpixels - Definition. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:slic_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slic_8h.html">slic.h</a></td></tr>
+<tr class="memdesc:slic_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">SLIC superpixels (<a class="el" href="slic.html">Simple Linear Iterative Clustering (SLIC)</a>) <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:stringop_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stringop_8c.html">stringop.c</a></td></tr>
+<tr class="memdesc:stringop_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">String operations - Definition. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:stringop_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stringop_8h.html">stringop.h</a></td></tr>
+<tr class="memdesc:stringop_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">String operations. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:svm_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="svm_8c.html">svm.c</a></td></tr>
+<tr class="memdesc:svm_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Support Vector Machines (SVM) - Implementation. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:svm_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="svm_8h.html">svm.h</a></td></tr>
+<tr class="memdesc:svm_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Support Vector Machines (<a class="el" href="svm.html">Support Vector Machines (SVM)</a>) <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:svmdataset_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="svmdataset_8c.html">svmdataset.c</a></td></tr>
+<tr class="memdesc:svmdataset_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">SVM Dataset - Definition. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:svmdataset_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="svmdataset_8h.html">svmdataset.h</a></td></tr>
+<tr class="memdesc:svmdataset_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">SVM Dataset. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:vlad_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vlad_8c.html">vlad.c</a></td></tr>
+<tr class="memdesc:vlad_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">VLAD - Declaration. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:vlad_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vlad_8h.html">vlad.h</a></td></tr>
+<tr class="memdesc:vlad_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">VLAD encoding (<a class="el" href="vlad.html">Vector of Locally Aggregated Descriptors (VLAD) encoding</a>) <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+</div><!-- contents -->
+        <!-- Doc Here -->
+      </div>
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>

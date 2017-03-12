@@ -1,0 +1,20 @@
+<group>
+<ul class='breadcrumb'><li><a href='%pathto:matlab;'>Index</a></li><li><a href='%pathto:vl_pegasos;'>Prev</a></li><li><a href='%pathto:vl_simdctrl;'>Next</a></li></ul><div class="documentation"><p>
+HISTS = VL_SAMPLINTHIST(INTHIST, BOXES) samples the integral
+histogram INTHIST to obtain the histograms of the specified
+BOXES.
+</p><p>
+INTHIST is a MxNxK array, where M x N are ``spatial'' dimensions,
+and K is the number of histogram bins. INTHIST may be of class
+UINT32 or DOUBLE.
+</p><p>
+Each box is a four dimensional vector [IMIN JMIN IMAX JMAX]' of
+class UINT32 and correspond to the index set [IMIN, IMAX] x [JMIN,
+JMAX]. To specify an empty box, let IMIN &gt; IMAX.
+</p><p>
+HISTS stores one histogram per column (one for each box) and has K
+rows, one for each histogram bin. HIST is of the same class of
+INTHIST.
+</p><p>
+See also: <a href="%pathto:vl_inthist;">VL_INTHIST</a>(), <a href="%pathto:vl_imintegral;">VL_IMINTEGRAL</a>(), <a href="%pathto:vl_help;">VL_HELP</a>().
+</p></div></group>

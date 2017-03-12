@@ -1,0 +1,523 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+  <!-- Page title -->
+  <title>VLFeat - Documentation > C API</title>
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  <link rel="stylesheet" type="text/css" href="doxygen.css"></link>
+  <!-- Scripts-->
+  <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li class='active'><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li class='active' class='activeLeaf'><a href="index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="../doc.html">Documentation</a></span><span class='separator'>></span><span class='page'><a href="index.html">C API</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+      <!-- <pagestyle href="%pathto:root;api/tabs.css"/> -->
+      <div class="doxygen">
+<div id="top">
+<div id="top">
+<!-- Generated by Doxygen 1.8.7 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li class="current"><a href="files.html"><span>Files</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>Globals</span></a></li>
+    </ul>
+  </div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_8dd540b382164c224dfa1eb6e8a3add6.html">vl</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">quickshift.c File Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Quick shift - Definition.  
+<a href="#details">More...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="quickshift_8h.html">quickshift.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="mathop_8h.html">mathop.h</a>&quot;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;math.h&gt;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:aa70ffb9d0d0c62908a46b425604a7065"><td class="memItemLeft" align="right" valign="top"><a class="el" href="quickshift_8h.html#aee7aaa0947ccf164d8072bd798f419e2">vl_qs_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="quickshift_8c.html#aa70ffb9d0d0c62908a46b425604a7065">vl_quickshift_distance</a> (<a class="el" href="quickshift_8h.html#aee7aaa0947ccf164d8072bd798f419e2">vl_qs_type</a> const *I, int N1, int N2, int K, int i1, int i2, int j1, int j2)</td></tr>
+<tr class="memdesc:aa70ffb9d0d0c62908a46b425604a7065"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the accumulated channel L2 distance between i,j + the distance between i,j.  <a href="#aa70ffb9d0d0c62908a46b425604a7065">More...</a><br /></td></tr>
+<tr class="separator:aa70ffb9d0d0c62908a46b425604a7065"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d317b966c114ce48d921fbeeef13a3c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="quickshift_8h.html#aee7aaa0947ccf164d8072bd798f419e2">vl_qs_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="quickshift_8c.html#a7d317b966c114ce48d921fbeeef13a3c">vl_quickshift_inner</a> (<a class="el" href="quickshift_8h.html#aee7aaa0947ccf164d8072bd798f419e2">vl_qs_type</a> const *I, int N1, int N2, int K, int i1, int i2, int j1, int j2)</td></tr>
+<tr class="memdesc:a7d317b966c114ce48d921fbeeef13a3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the accumulated channel inner product between i,j + the distance between i,j.  <a href="#a7d317b966c114ce48d921fbeeef13a3c">More...</a><br /></td></tr>
+<tr class="separator:a7d317b966c114ce48d921fbeeef13a3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9fc34955bf121df6d1d5bd991b8d2b13"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structVlQS.html">VlQS</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="quickshift_8c.html#a9fc34955bf121df6d1d5bd991b8d2b13">vl_quickshift_new</a> (<a class="el" href="quickshift_8h.html#aee7aaa0947ccf164d8072bd798f419e2">vl_qs_type</a> const *image, int height, int width, int channels)</td></tr>
+<tr class="memdesc:a9fc34955bf121df6d1d5bd991b8d2b13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a quick shift object.  <a href="#a9fc34955bf121df6d1d5bd991b8d2b13">More...</a><br /></td></tr>
+<tr class="separator:a9fc34955bf121df6d1d5bd991b8d2b13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aebfc7337283b7a8f8be1a1c0fd4f5f92"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="quickshift_8c.html#aebfc7337283b7a8f8be1a1c0fd4f5f92">vl_quickshift_process</a> (<a class="el" href="structVlQS.html">VlQS</a> *q)</td></tr>
+<tr class="memdesc:aebfc7337283b7a8f8be1a1c0fd4f5f92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a quick shift objet.  <a href="#aebfc7337283b7a8f8be1a1c0fd4f5f92">More...</a><br /></td></tr>
+<tr class="separator:aebfc7337283b7a8f8be1a1c0fd4f5f92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c2a39344fb684d899f22faf358425e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="quickshift_8c.html#a9c2a39344fb684d899f22faf358425e8">vl_quickshift_delete</a> (<a class="el" href="structVlQS.html">VlQS</a> *q)</td></tr>
+<tr class="memdesc:a9c2a39344fb684d899f22faf358425e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete quick shift object.  <a href="#a9c2a39344fb684d899f22faf358425e8">More...</a><br /></td></tr>
+<tr class="separator:a9c2a39344fb684d899f22faf358425e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><dl class="section author"><dt>Author</dt><dd>Brian Fulkerson </dd>
+<dd>
+Andrea Vedaldi </dd></dl>
+</div><h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a9c2a39344fb684d899f22faf358425e8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_quickshift_delete </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlQS.html">VlQS</a> *&#160;</td>
+          <td class="paramname"><em>q</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">q</td><td>quick shift object. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="aa70ffb9d0d0c62908a46b425604a7065"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="quickshift_8h.html#aee7aaa0947ccf164d8072bd798f419e2">vl_qs_type</a> vl_quickshift_distance </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="quickshift_8h.html#aee7aaa0947ccf164d8072bd798f419e2">vl_qs_type</a> const *&#160;</td>
+          <td class="paramname"><em>I</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>N1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>N2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>K</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>i1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>i2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>j1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>j2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">I</td><td>input image buffer </td></tr>
+    <tr><td class="paramname">N1</td><td>size of the first dimension of the image </td></tr>
+    <tr><td class="paramname">N2</td><td>size of the second dimension of the image </td></tr>
+    <tr><td class="paramname">K</td><td>number of channels </td></tr>
+    <tr><td class="paramname">i1</td><td>first dimension index of the first pixel to compare </td></tr>
+    <tr><td class="paramname">i2</td><td>second dimension of the first pixel </td></tr>
+    <tr><td class="paramname">j1</td><td>index of the second pixel to compare </td></tr>
+    <tr><td class="paramname">j2</td><td>second dimension of the second pixel</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Takes the L2 distance between the values in I at pixel i and j, accumulating along K channels and adding in the distance between i,j in the image.</p>
+<dl class="section return"><dt>Returns</dt><dd>the distance as described above </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a7d317b966c114ce48d921fbeeef13a3c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="quickshift_8h.html#aee7aaa0947ccf164d8072bd798f419e2">vl_qs_type</a> vl_quickshift_inner </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="quickshift_8h.html#aee7aaa0947ccf164d8072bd798f419e2">vl_qs_type</a> const *&#160;</td>
+          <td class="paramname"><em>I</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>N1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>N2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>K</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>i1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>i2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>j1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>j2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">I</td><td>input image buffer </td></tr>
+    <tr><td class="paramname">N1</td><td>size of the first dimension of the image </td></tr>
+    <tr><td class="paramname">N2</td><td>size of the second dimension of the image </td></tr>
+    <tr><td class="paramname">K</td><td>number of channels </td></tr>
+    <tr><td class="paramname">i1</td><td>first dimension index of the first pixel to compare </td></tr>
+    <tr><td class="paramname">i2</td><td>second dimension of the first pixel </td></tr>
+    <tr><td class="paramname">j1</td><td>index of the second pixel to compare </td></tr>
+    <tr><td class="paramname">j2</td><td>second dimension of the second pixel</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Takes the channel-wise inner product between the values in I at pixel i and j, accumulating along K channels and adding in the inner product between i,j in the image.</p>
+<dl class="section return"><dt>Returns</dt><dd>the inner product as described above </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a9fc34955bf121df6d1d5bd991b8d2b13"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structVlQS.html">VlQS</a>* vl_quickshift_new </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="quickshift_8h.html#aee7aaa0947ccf164d8072bd798f419e2">vl_qs_type</a> const *&#160;</td>
+          <td class="paramname"><em>image</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>channels</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">image</td><td>the image. </td></tr>
+    <tr><td class="paramname">height</td><td>the height (number of rows) of the image. </td></tr>
+    <tr><td class="paramname">width</td><td>the width (number of columns) of the image. </td></tr>
+    <tr><td class="paramname">channels</td><td>the number of channels of the image. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>new quick shift object.</dd></dl>
+<p>The <code>image</code> is an array of <a class="el" href="quickshift_8h.html#aee7aaa0947ccf164d8072bd798f419e2" title="quick shift datatype ">vl_qs_type</a> values with three dimensions (respectively <code>widht</code>, <code>height</code>, and <code>channels</code>). Typically, a color (e.g, RGB) image has three channels. The linear index of a pixel is computed with: <code>channels</code> * <code>width*</code> <code>height</code> + <code>row</code> + <code>height</code> * <code>col</code>. </p>
+
+</div>
+</div>
+<a class="anchor" id="aebfc7337283b7a8f8be1a1c0fd4f5f92"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_quickshift_process </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlQS.html">VlQS</a> *&#160;</td>
+          <td class="paramname"><em>q</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">q</td><td>quick shift object. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+        <!-- Doc Here -->
+      </div>
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>

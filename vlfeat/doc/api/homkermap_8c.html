@@ -1,0 +1,523 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+  <!-- Page title -->
+  <title>VLFeat - Documentation > C API</title>
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  <link rel="stylesheet" type="text/css" href="doxygen.css"></link>
+  <!-- Scripts-->
+  <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li class='active'><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li class='active' class='activeLeaf'><a href="index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="../doc.html">Documentation</a></span><span class='separator'>></span><span class='page'><a href="index.html">C API</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+      <!-- <pagestyle href="%pathto:root;api/tabs.css"/> -->
+      <div class="doxygen">
+<div id="top">
+<div id="top">
+<!-- Generated by Doxygen 1.8.7 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li class="current"><a href="files.html"><span>Files</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>Globals</span></a></li>
+    </ul>
+  </div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_8dd540b382164c224dfa1eb6e8a3add6.html">vl</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">homkermap.c File Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Homogeneous kernel map - Definition.  
+<a href="#details">More...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="homkermap_8h.html">homkermap.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="mathop_8h.html">mathop.h</a>&quot;</code><br />
+<code>#include &lt;math.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="homkermap_8c.html">homkermap.c</a>&quot;</code><br />
+<code>#include &quot;float.th&quot;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a86c2873e6353bcfcbaa4abd4314af9d8"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="homkermap_8c.html#a86c2873e6353bcfcbaa4abd4314af9d8">vl_homogeneouskernelmap_get_spectrum</a> (<a class="el" href="homkermap_8h.html#a5606496b3524c531aef85d63e1f7d0d9">VlHomogeneousKernelMap</a> const *self, double omega)</td></tr>
+<tr class="memdesc:a86c2873e6353bcfcbaa4abd4314af9d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sample the kernel specturm.  <a href="#a86c2873e6353bcfcbaa4abd4314af9d8">More...</a><br /></td></tr>
+<tr class="separator:a86c2873e6353bcfcbaa4abd4314af9d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2d0164090862bfa17f25364447676e7"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="homkermap_8c.html#ac2d0164090862bfa17f25364447676e7">vl_homogeneouskernelmap_get_smooth_spectrum</a> (<a class="el" href="homkermap_8h.html#a5606496b3524c531aef85d63e1f7d0d9">VlHomogeneousKernelMap</a> const *self, double omega)</td></tr>
+<tr class="memdesc:ac2d0164090862bfa17f25364447676e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sample the smoothed kernel spectrum.  <a href="#ac2d0164090862bfa17f25364447676e7">More...</a><br /></td></tr>
+<tr class="separator:ac2d0164090862bfa17f25364447676e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87e86a2981550ae60f565575c32966ea"><td class="memItemLeft" align="right" valign="top"><a class="el" href="homkermap_8h.html#a5606496b3524c531aef85d63e1f7d0d9">VlHomogeneousKernelMap</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="homkermap_8c.html#a87e86a2981550ae60f565575c32966ea">vl_homogeneouskernelmap_new</a> (<a class="el" href="homkermap_8h.html#a13074dd7edec5d8c86dde5da80e8d8d8">VlHomogeneousKernelType</a> kernelType, double gamma, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> order, double period, <a class="el" href="homkermap_8h.html#a35a05da3e1eb781a6fa997ec9be69a62">VlHomogeneousKernelMapWindowType</a> windowType)</td></tr>
+<tr class="memdesc:a87e86a2981550ae60f565575c32966ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new homgeneous kernel map.  <a href="#a87e86a2981550ae60f565575c32966ea">More...</a><br /></td></tr>
+<tr class="separator:a87e86a2981550ae60f565575c32966ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a059f792833cb10e62f5f476f99f0da"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="homkermap_8c.html#a9a059f792833cb10e62f5f476f99f0da">vl_homogeneouskernelmap_delete</a> (<a class="el" href="homkermap_8h.html#a5606496b3524c531aef85d63e1f7d0d9">VlHomogeneousKernelMap</a> *self)</td></tr>
+<tr class="memdesc:a9a059f792833cb10e62f5f476f99f0da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete an object instance.  <a href="#a9a059f792833cb10e62f5f476f99f0da">More...</a><br /></td></tr>
+<tr class="separator:a9a059f792833cb10e62f5f476f99f0da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5313ff7a41b555600e5d2379613e486f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="homkermap_8c.html#a5313ff7a41b555600e5d2379613e486f">vl_homogeneouskernelmap_get_order</a> (<a class="el" href="homkermap_8h.html#a5606496b3524c531aef85d63e1f7d0d9">VlHomogeneousKernelMap</a> const *self)</td></tr>
+<tr class="memdesc:a5313ff7a41b555600e5d2379613e486f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the map order.  <a href="#a5313ff7a41b555600e5d2379613e486f">More...</a><br /></td></tr>
+<tr class="separator:a5313ff7a41b555600e5d2379613e486f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b0ff9e29e918d0591590a8857ca6ae1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="homkermap_8c.html#a9b0ff9e29e918d0591590a8857ca6ae1">vl_homogeneouskernelmap_get_dimension</a> (<a class="el" href="homkermap_8h.html#a5606496b3524c531aef85d63e1f7d0d9">VlHomogeneousKernelMap</a> const *self)</td></tr>
+<tr class="memdesc:a9b0ff9e29e918d0591590a8857ca6ae1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the map dimension.  <a href="#a9b0ff9e29e918d0591590a8857ca6ae1">More...</a><br /></td></tr>
+<tr class="separator:a9b0ff9e29e918d0591590a8857ca6ae1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61d8c4d7f2226bbdff7a67779c156bbb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="homkermap_8h.html#a13074dd7edec5d8c86dde5da80e8d8d8">VlHomogeneousKernelType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="homkermap_8c.html#a61d8c4d7f2226bbdff7a67779c156bbb">vl_homogeneouskernelmap_get_kernel_type</a> (<a class="el" href="homkermap_8h.html#a5606496b3524c531aef85d63e1f7d0d9">VlHomogeneousKernelMap</a> const *self)</td></tr>
+<tr class="memdesc:a61d8c4d7f2226bbdff7a67779c156bbb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the kernel type.  <a href="#a61d8c4d7f2226bbdff7a67779c156bbb">More...</a><br /></td></tr>
+<tr class="separator:a61d8c4d7f2226bbdff7a67779c156bbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3ed4aa68a26e81a8456743c7edda1c1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="homkermap_8h.html#a35a05da3e1eb781a6fa997ec9be69a62">VlHomogeneousKernelMapWindowType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="homkermap_8c.html#ae3ed4aa68a26e81a8456743c7edda1c1">vl_homogeneouskernelmap_get_window_type</a> (<a class="el" href="homkermap_8h.html#a5606496b3524c531aef85d63e1f7d0d9">VlHomogeneousKernelMap</a> const *self)</td></tr>
+<tr class="memdesc:ae3ed4aa68a26e81a8456743c7edda1c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the window type.  <a href="#ae3ed4aa68a26e81a8456743c7edda1c1">More...</a><br /></td></tr>
+<tr class="separator:ae3ed4aa68a26e81a8456743c7edda1c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><dl class="section author"><dt>Author</dt><dd>Andrea Vedaldi </dd></dl>
+</div><h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a9a059f792833cb10e62f5f476f99f0da"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_homogeneouskernelmap_delete </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="homkermap_8h.html#a5606496b3524c531aef85d63e1f7d0d9">VlHomogeneousKernelMap</a> *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object. The function deletes the specified map object. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a9b0ff9e29e918d0591590a8857ca6ae1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> vl_homogeneouskernelmap_get_dimension </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="homkermap_8h.html#a5606496b3524c531aef85d63e1f7d0d9">VlHomogeneousKernelMap</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the map dimension (2 <code>order</code> +1). </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a61d8c4d7f2226bbdff7a67779c156bbb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="homkermap_8h.html#a13074dd7edec5d8c86dde5da80e8d8d8">VlHomogeneousKernelType</a> vl_homogeneouskernelmap_get_kernel_type </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="homkermap_8h.html#a5606496b3524c531aef85d63e1f7d0d9">VlHomogeneousKernelMap</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>kernel type. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a5313ff7a41b555600e5d2379613e486f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> vl_homogeneouskernelmap_get_order </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="homkermap_8h.html#a5606496b3524c531aef85d63e1f7d0d9">VlHomogeneousKernelMap</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the map order. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ac2d0164090862bfa17f25364447676e7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double vl_homogeneouskernelmap_get_smooth_spectrum </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="homkermap_8h.html#a5606496b3524c531aef85d63e1f7d0d9">VlHomogeneousKernelMap</a> const *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>omega</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>homogeneous kernel map. </td></tr>
+    <tr><td class="paramname">omega</td><td>sampling frequency. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the spectrum sampled at <em>omega</em> after smoothing. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a86c2873e6353bcfcbaa4abd4314af9d8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double vl_homogeneouskernelmap_get_spectrum </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="homkermap_8h.html#a5606496b3524c531aef85d63e1f7d0d9">VlHomogeneousKernelMap</a> const *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>omega</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>homogeneous kernel map. </td></tr>
+    <tr><td class="paramname">omega</td><td>sampling frequency. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the spectrum sampled at <em>omega</em>. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ae3ed4aa68a26e81a8456743c7edda1c1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="homkermap_8h.html#a35a05da3e1eb781a6fa997ec9be69a62">VlHomogeneousKernelMapWindowType</a> vl_homogeneouskernelmap_get_window_type </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="homkermap_8h.html#a5606496b3524c531aef85d63e1f7d0d9">VlHomogeneousKernelMap</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>window type. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a87e86a2981550ae60f565575c32966ea"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="homkermap_8h.html#a5606496b3524c531aef85d63e1f7d0d9">VlHomogeneousKernelMap</a>* vl_homogeneouskernelmap_new </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="homkermap_8h.html#a13074dd7edec5d8c86dde5da80e8d8d8">VlHomogeneousKernelType</a>&#160;</td>
+          <td class="paramname"><em>kernelType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>gamma</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>order</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>period</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="homkermap_8h.html#a35a05da3e1eb781a6fa997ec9be69a62">VlHomogeneousKernelMapWindowType</a>&#160;</td>
+          <td class="paramname"><em>windowType</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">kernelType</td><td>type of homogeneous kernel. </td></tr>
+    <tr><td class="paramname">gamma</td><td>kernel homogeneity degree. </td></tr>
+    <tr><td class="paramname">order</td><td>approximation order. </td></tr>
+    <tr><td class="paramname">period</td><td>kernel period. </td></tr>
+    <tr><td class="paramname">windowType</td><td>type of window used to truncate the kernel. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the new homogeneous kernel map.</dd></dl>
+<p>The function intializes a new homogeneous kernel map for the specified kernel type, homogeneity degree, approximation order, period, and truncation window. See <a class="el" href="homkermap.html#homkermap-fundamentals">Fundamentals</a> for details.</p>
+<p>The homogeneity degree <code>gamma</code> must be positive (the standard kernels are obtained by setting <code>gamma</code> to 1). When unsure, set <code>windowType</code> to <a class="el" href="homkermap_8h.html#a35a05da3e1eb781a6fa997ec9be69a62a83070b8b6be773c61bc3f19fc4583053">VlHomogeneousKernelMapWindowRectangular</a>. The <code>period</code> should be non-negative; specifying a negative or null value causes the function to switch to a default value.</p>
+<p>The function returns <code>NULL</code> if there is not enough free memory. </p>
+
+</div>
+</div>
+</div><!-- contents -->
+        <!-- Doc Here -->
+      </div>
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>

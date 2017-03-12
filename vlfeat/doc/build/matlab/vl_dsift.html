@@ -1,0 +1,136 @@
+<group>
+<ul class='breadcrumb'><li><a href='%pathto:matlab;'>Index</a></li><li><a href='%pathto:vl_covdet;'>Prev</a></li><li><a href='%pathto:vl_frame2oell;'>Next</a></li></ul><div class="documentation"><p>
+[FRAMES,DESCRS] = <a href="%pathto:vl_dsift;">VL_DSIFT</a>(I) extracts a dense set of SIFT
+features from image I. I must be of class SINGLE and grayscale.
+FRAMES is a 2 x NUMKEYPOINTS, each colum storing the center (X,Y)
+of a keypoint frame (all frames have the same scale and
+orientation). DESCRS is a 128 x NUMKEYPOINTS matrix with one
+descriptor per column, in the same format of <a href="%pathto:vl_sift;">VL_SIFT</a>().
+</p><p>
+<a href="%pathto:vl_dsift;">VL_DSIFT</a>() does NOT compute a Gaussian scale space of the image
+I. Instead, the image should be pre-smoothed at the desired scale
+level, e.b. by using the <a href="%pathto:vl_imsmooth;">VL_IMSMOOTH</a>() function.
+</p><p>
+The scale of the extracted descriptors is controlled by the option
+SIZE, i.e. the width in pixels of a spatial bin (recall that a
+SIFT descriptor is a spatial histogram with 4 x 4 bins).
+</p><p>
+The sampling density is controlled by the option STEP, which is
+the horizontal and vertical displacement of each feature cetner to
+the next.
+</p><p>
+The sampled image area is controlled by the option BOUNDS,
+defining a rectangle in which features are comptued. A descriptor
+is included in the rectangle if all the centers of the spatial
+bins are included. The upper-left descriptor is placed so that the
+uppler-left spatial bin center is algined with the upper-left
+corner of the rectangle.
+</p><p>
+By default, <a href="%pathto:vl_dsift;">VL_DSIFT</a>() computes features equivalent to
+<a href="%pathto:vl_sift;">VL_SIFT</a>(). However, the FAST option can be used to turn on an
+variant of the descriptor (see VLFeat C API documentation for
+further details) which, while not strictly equivalent, it is much
+faster.
+</p><p>
+<a href="%pathto:vl_dsift;">VL_DSIFT</a>() accepts the following options:
+</p><dl><dt>
+Step
+<span class="defaults">1</span></dt><dd><p>
+Extracts a SIFT descriptor each STEP pixels.
+</p></dd><dt>
+Size
+<span class="defaults">3</span></dt><dd><p>
+A spatial bin covers SIZE pixels.
+</p></dd><dt>
+Bounds
+<span class="defaults">[whole image]</span></dt><dd><p>
+Specifies a rectangular area where descriptors should be
+extracted. The format is [XMIN, YMIN, XMAX, YMAX]. If this
+option is not specified, the entiere image is used.  The
+bounding box is clipped to the image boundaries.
+</p></dd><dt>
+Norm
+</dt><dd><p>
+If specified, adds to the FRAMES ouptut argument a third
+row containint the descriptor norm, or engergy, before
+contrast normalization. This information can be used to
+suppress low contrast descriptors.
+</p></dd><dt>
+Fast
+</dt><dd><p>
+If specified, use a piecewise-flat, rather than Gaussian,
+windowing function. While this breaks exact SIFT equivalence,
+in practice is much faster to compute.
+</p></dd><dt>
+FloatDescriptors
+</dt><dd><p>
+If specified, the descriptor are returned in floating point
+rather than integer format.
+</p></dd><dt>
+Geomerty
+<span class="defaults">[4 4 8]</span></dt><dd><p>
+Specify the geometry of the descriptor as [NX NY NO], where NX
+is the number of bin in the X direction, NY in the Y direction,
+and NO the nubmer of orientation bins.
+</p></dd><dt>
+Verbose
+</dt><dd><p>
+If specified, be verbose.
+</p></dd></dl><p>
+RELATION TO THE SIFT DETECTOR
+</p><p>
+In the standard SIFT detector/descriptor, implemented by
+<a href="%pathto:vl_sift;">VL_SIFT</a>(), the size of a spatial bin is related to the keypoint
+scale by a multiplier, called magnification factor, and denoted
+MAGNIF. Therefore, the keypoint scale corresponding to the
+descriptors extracted by <a href="%pathto:vl_dsift;">VL_DSIFT</a>() is equal to SIZE /
+MAGNIF. <a href="%pathto:vl_dsift;">VL_DSIFT</a>() does not use MAGNIF because, by using dense
+sampling, it avoids detecting keypoints in the first plance.
+</p><p>
+<a href="%pathto:vl_dsift;">VL_DSIFT</a>() does not smooth the image as SIFT does. Therefore, in
+order to obtain equivalent results, the image should be
+pre-smoothed approriately. Recall that in SIFT, for a keypoint of
+scale S, the image is pre-smoothed by a Gaussian of variance S.^2
+- 1/4 (see <a href="%pathto:vl_sift;">VL_SIFT</a>() and VLFeat C API documentation).
+</p><dl><dt>
+Example
+</dt><dd><p>
+This example produces equivalent SIFT descriptors using
+<a href="%pathto:vl_dsift;">VL_DSIFT</a>() and <a href="%pathto:vl_sift;">VL_SIFT</a>():
+</p><pre>
+ binSize = 8 ;
+ magnif = 3 ;
+ Is = vl_imsmooth(I, sqrt((binSize/magnif)^2 - .25)) ;
+
+ [f, d] = vl_dsift(Is, 'size', binSize) ;
+ f(3,:) = binSize/magnif ;
+ f(4,:) = 0 ;
+ [f_, d_] = vl_sift(I, 'frames', f) ;
+</pre></dd><dt>
+Remark
+</dt><dd><p>
+The equivalence is never exact due to (i) boundary effects
+and (ii) the fact that <a href="%pathto:vl_sift;">VL_SIFT</a>() downsamples the image to save
+computation. It is, however, usually very good.
+</p></dd><dt>
+Remark
+</dt><dd><p>
+In categorization it is often useful to under-smooth the image,
+comared to standard SIFT, in order to keep the gradients
+sharp.
+</p></dd></dl><p>
+FURTHER DETAILS ON THE GEOMETRY
+</p><p>
+As mentioned, the <a href="%pathto:vl_dsift;">VL_DSIFT</a>() descriptors cover the bounding box
+specified by BOUNDS = [XMIN YMIN XMAX YMAX]. Thus the top-left bin
+of the top-left descriptor is placed at (XMIN, YMIN). The next
+three bins to the right are at XMIN + SIZE, XMIN + 2*SIZE, XMIN +
+3*SIZE. The X coordiante of the center of the first descriptor is
+therefore at (XMIN + XMIN + 3*SIZE) / 2 = XMIN + 3/2 * SIZE.  For
+instance, if XMIN = 1 and SIZE = 3 (default values), the X
+coordinate of the center of the first descriptor is at 1 + 3/2 * 3
+= 5.5. For the second descriptor immediately to its right this is
+5.5 + STEP, and so on.
+</p><p>
+See also: <a href="%pathto:vl_sift;">VL_SIFT</a>(), <a href="%pathto:vl_help;">VL_HELP</a>().
+</p></div></group>

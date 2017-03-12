@@ -1,0 +1,264 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+
+  <!-- Page title -->
+  <title>VLFeat - Tutorials > LIOP local descriptor</title>
+
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  
+
+  <!-- Scripts-->
+  
+
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li class='active'><a href="tut.html">Tutorials</a>
+<ul>
+<li><a href="frame.html">Local feature frames</a>
+</li>
+<li><a href="covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="hog.html">HOG features</a>
+</li>
+<li><a href="sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="dsift.html">Dense SIFT</a>
+</li>
+<li class='active' class='activeLeaf'><a href="liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="mser.html">MSER feature detector</a>
+</li>
+<li><a href="imdisttf.html">Distance transform</a>
+</li>
+<li><a href="encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="kmeans.html">K-means clustering</a>
+</li>
+<li><a href="aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="slic.html">SLIC superpixels</a>
+</li>
+<li><a href="svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="ikm.html">Integer K-means</a>
+</li>
+<li><a href="hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li><a href="../api/index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+<ul>
+<li><a href="../man/mser.html">mser</a>
+</li>
+<li><a href="../man/sift.html">sift</a>
+</li>
+<li><a href="../man/vlfeat.html">vlfeat</a>
+</li>
+</ul></li>
+</ul></li>
+</ul>
+
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="tut.html">Tutorials</a></span><span class='separator'>></span><span class='page'><a href="liop.html">LIOP local descriptor</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+        
+    
+
+<div class='toc'>
+<h3>Table of Contents</h3><ul><li class="level1"><a href="#tut.liop.computation">LIOP descriptor computation</a></li>
+</ul>
+</div><!-- Table of contents -->
+
+
+<p>This tutorial shows how to extract <a shape="rect" href="../api/liop.html">Local
+Intensity Order Pattern</a> (LIOP) deascriptors using VLFeat. LIOP is
+implemented in the <code/><a href=../matlab/vl_liop.html>vl_liop</a></code> as well as
+in <code/><a href=../matlab/vl_covdet.html>vl_covdet</a></code>.</p>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h1 id="tut.liop.computation">LIOP descriptor computation</h1>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<p>A LIOP descriptor can be computed from a square, gray scale image
+with and odd side length <code/>patch</code>. This is usually not a
+restriction since local patches are obtained by cropping and warpinig
+an input image. The descriptor is computed using
+the <code/><a href=../matlab/vl_liop.html>vl_liop</a></code> function:</p>
+
+<div class="highlight"><pre><span class="n">descr</span> <span class="p">=</span> <span class="n">vl_covdet</span><span class="p">(</span><span class="n">patch</span><span class="p">)</span> <span class="p">;</span>
+</pre></div>
+
+
+<p>You can use the verbose option <code/>verbose</code> if you wish to
+see the parametr and descriptor details.</p>
+
+<div class="highlight"><pre><span class="n">descr</span> <span class="p">=</span> <span class="n">vl_covdet</span><span class="p">(</span><span class="n">patch</span><span class="p">,</span><span class="s">&#39;Verbose&#39;</span><span class="p">)</span> <span class="p">;</span>
+</pre></div>
+
+
+<p><code/>patch</code> can be a 3D array, with one image per 2D
+layer. In this case, <code/>descr</code> is a matrix with as many
+columns as images. LIOP is also integrated
+into <code/><a href=../matlab/vl_covdet.html>vl_covdet</a></code>.</p>
+
+<p><code/><a href=../matlab/vl_liop.html>vl_liop</a></code> allows full customization of the LIOP
+descriptor parameters. These are
+discussed <a shape="rect" href="../api/liop-fundamentals.html">here</a>. A parameter that
+is commonly tweaked is the <em>intensity threshold</em> to downweight
+unstalbe intensity order patterns in the descriptor computation. For
+example</p>
+
+<div class="highlight"><pre><span class="n">descr</span> <span class="p">=</span> <span class="n">vl_covdet</span><span class="p">(</span><span class="n">patch</span><span class="p">,</span><span class="s">&#39;IntensityThreshold&#39;</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span> <span class="p">;</span>
+</pre></div>
+
+
+<p>set this threshold to 0.1.</p>
+
+  
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>
+ 

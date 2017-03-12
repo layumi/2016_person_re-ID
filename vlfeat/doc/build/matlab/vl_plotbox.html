@@ -1,0 +1,22 @@
+<group>
+<ul class='breadcrumb'><li><a href='%pathto:matlab;'>Index</a></li><li><a href='%pathto:vl_linespec2prop;'>Prev</a></li><li><a href='%pathto:vl_plotframe;'>Next</a></li></ul><div class="documentation"><p>
+<a href="%pathto:vl_plotbox;">VL_PLOTBOX</a>(BOX) plots a box specified by the 4-dimensional column
+vector BOXES = [XMIN YMIN XMAX YMAX]'. If BOXES is a 4 x N matrix,
+a box for each of the N columns is plotted.
+</p><p>
+H = <a href="%pathto:vl_plotbox;">VL_PLOTBOX</a>(BOXES) returns a handle to the line drawing
+representing the boxes. For multiple boxes, H is a row vector with
+one handle per box.
+</p><p>
+<a href="%pathto:vl_plotbox;">VL_PLOTBOX</a>(BOXES, 'LABEL', LABEL) annotates the box with the
+string LABEL. If BOXES contains multiple boxes, then LABEL can be
+a cell array with one entry for each box. H is then a 2 x N array
+with handles to boxes and corresponding labels.
+</p><p>
+<a href="%pathto:vl_plotbox;">VL_PLOTBOX</a>(BOXES, ...) passes any extra argument to the underlying
+plotting function. The first optional argument can be a line
+specification string such as the one used by MATLAB's PLOT()
+function.
+</p><dl><dt>
+See also
+<span class="defaults">VL_PLOTFRAME().</span></dt></dl></div></group>

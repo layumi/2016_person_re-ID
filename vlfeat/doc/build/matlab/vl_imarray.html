@@ -1,0 +1,40 @@
+<group>
+<ul class='breadcrumb'><li><a href='%pathto:matlab;'>Index</a></li><li><a href='%pathto:vl_dwaffine;'>Prev</a></li><li><a href='%pathto:vl_imarraysc;'>Next</a></li></ul><div class="documentation"><p>
+J=<a href="%pathto:vl_imarray;">VL_IMARRAY</a>(A) creates a mosaic J from the array of images A. A
+can be either a M*N*K array, storing one gray-scale image per
+slice, or a M*N*3*K or M*N*K*3 array, storing a true color RGB
+image per slice. The function returns an image J which is a tiling
+of the images in the array. Tiles are filled from left to right
+and top to bottom.
+</p><p>
+<a href="%pathto:vl_imarray;">VL_IMARRAY</a>(...) displays the image J rather than returning it.
+</p><p>
+<a href="%pathto:vl_imarray;">VL_IMARRAY</a>() accepts the following options:
+</p><dl><dt>
+Spacing
+<span class="defaults">0</span></dt><dd><p>
+Separate the images by a border of the specified width (the
+border is assigned 0 value, which usually corresponds to black).
+</p></dd><dt>
+Layout
+<span class="defaults">empty</span></dt><dd><p>
+Specify a vector [TM TN] with the number of rows and columns of
+the tiling. If equal to [] the layout is computed automatically.
+</p></dd><dt>
+Movie
+<span class="defaults">false</span></dt><dd><p>
+Display or return a movie instead of generating a tiling.
+</p></dd><dt>
+CMap
+<span class="defaults">[]</span></dt><dd><p>
+Specify a colormap to construct a movie when the input is an
+indexed image array. If not specified, MATLAB default colormap
+is used.
+</p></dd><dt>
+Reverse
+<span class="defaults">true</span></dt><dd><p>
+Start filling the mosaic tiles from the bottom rather than from
+the top.
+</p></dd></dl><p>
+See also:<a href="%pathto:vl_imarraysc;">VL_IMARRAYSC</a>(), <a href="%pathto:vl_help;">VL_HELP</a>().
+</p></div></group>

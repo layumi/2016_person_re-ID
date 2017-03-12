@@ -1,0 +1,41 @@
+<group>
+<ul class='breadcrumb'><li><a href='%pathto:matlab;'>Index</a></li><li><a href='%pathto:vl_imarray;'>Prev</a></li><li><a href='%pathto:vl_imdisttf;'>Next</a></li></ul><div class="documentation"><p>
+J=<a href="%pathto:vl_imarraysc;">VL_IMARRAYSC</a>(A) constructs an image mosaic similar to
+J=<a href="%pathto:vl_imarray;">VL_IMARRAY</a>(A), but it rescales the range of each image in the
+array. If A is an array of grayscale images, J will index all the
+colors in the current colormap; if A is a true color image, J will
+span the range [0,1].
+</p><p>
+If A is of an integer class, J will be of class single SINGLE class.
+</p><p>
+<a href="%pathto:vl_imarraysc;">VL_IMARRAYSC</a>(...) displays the image J rather than returning it.
+</p><p>
+<a href="%pathto:vl_imarraysc;">VL_IMARRAYSC</a>() accepts the options of <a href="%pathto:vl_imarray;">VL_IMARRAY</a>() and:
+</p><dl><dt>
+CLim
+<span class="defaults">[]</span></dt><dd><p>
+Rescale the specified range of values rather than the actual
+range of each image.
+</p></dd><dt>
+Uniform
+<span class="defaults">[false]</span></dt><dd><p>
+Rescale the range of all the images together, rather than on
+an image-by-image basis.
+</p></dd><dt>
+CMap
+<span class="defaults">[]</span></dt><dd><p>
+Use the specified color map as a reference rather than the
+current or default one.
+</p></dd><dt>
+Algorithm
+</dt><dd><p>
+CLim is seet to the image range [m, M], where m is the minimum
+value of an image and M is the maximum. The image range CLim is
+then affinely mapped to the integers from 1 to C, where C is the
+number of colors in the colormap, or to the range [0,1] for true
+color images. The mapping is done so that the first color is
+assigned the first subinterval of length C of the range [m,M]
+and so on.
+</p></dd></dl><p>
+See also: <a href="%pathto:vl_imarray;">VL_IMARRAY</a>(), <a href="%pathto:vl_help;">VL_HELP</a>(), IMAGE().
+</p></div></group>

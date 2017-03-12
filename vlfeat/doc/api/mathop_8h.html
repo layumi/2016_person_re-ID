@@ -1,0 +1,1658 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+  <!-- Page title -->
+  <title>VLFeat - Documentation > C API</title>
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  <link rel="stylesheet" type="text/css" href="doxygen.css"></link>
+  <!-- Scripts-->
+  <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li class='active'><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li class='active' class='activeLeaf'><a href="index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="../doc.html">Documentation</a></span><span class='separator'>></span><span class='page'><a href="index.html">C API</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+      <!-- <pagestyle href="%pathto:root;api/tabs.css"/> -->
+      <div class="doxygen">
+<div id="top">
+<div id="top">
+<!-- Generated by Doxygen 1.8.7 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li class="current"><a href="files.html"><span>Files</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>Globals</span></a></li>
+    </ul>
+  </div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_8dd540b382164c224dfa1eb6e8a3add6.html">vl</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#define-members">Macros</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
+  <div class="headertitle">
+<div class="title">mathop.h File Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Math operations (<a class="el" href="mathop.html">Mathematical operations</a>)  
+<a href="#details">More...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="generic_8h.html">generic.h</a>&quot;</code><br />
+<code>#include &lt;math.h&gt;</code><br />
+<code>#include &lt;float.h&gt;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a72021996fb98d3130ead10a4989f4ca5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a72021996fb98d3130ead10a4989f4ca5"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop_8h.html#a72021996fb98d3130ead10a4989f4ca5">VL_E</a>&#160;&#160;&#160;2.718281828459045</td></tr>
+<tr class="memdesc:a72021996fb98d3130ead10a4989f4ca5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Euler constant. <br /></td></tr>
+<tr class="separator:a72021996fb98d3130ead10a4989f4ca5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5103e2bf416806fb511feaa8ee96328f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5103e2bf416806fb511feaa8ee96328f"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop_8h.html#a5103e2bf416806fb511feaa8ee96328f">VL_LOG_OF_2</a>&#160;&#160;&#160;0.693147180559945</td></tr>
+<tr class="memdesc:a5103e2bf416806fb511feaa8ee96328f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logarithm of 2 (math constant) <br /></td></tr>
+<tr class="separator:a5103e2bf416806fb511feaa8ee96328f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19d43a5e0c355df553ebe825208a4cc1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a19d43a5e0c355df553ebe825208a4cc1"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop_8h.html#a19d43a5e0c355df553ebe825208a4cc1">VL_PI</a>&#160;&#160;&#160;3.141592653589793</td></tr>
+<tr class="memdesc:a19d43a5e0c355df553ebe825208a4cc1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pi (math constant) <br /></td></tr>
+<tr class="separator:a19d43a5e0c355df553ebe825208a4cc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8088f3da04d6bce27544adaa6da948ca"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop_8h.html#a8088f3da04d6bce27544adaa6da948ca">VL_EPSILON_F</a>&#160;&#160;&#160;1.19209290E-07F</td></tr>
+<tr class="memdesc:a8088f3da04d6bce27544adaa6da948ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">IEEE single precision epsilon (math constant)  <a href="#a8088f3da04d6bce27544adaa6da948ca">More...</a><br /></td></tr>
+<tr class="separator:a8088f3da04d6bce27544adaa6da948ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2d957b08ce16011fc3827c270cd2664"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop_8h.html#aa2d957b08ce16011fc3827c270cd2664">VL_EPSILON_D</a>&#160;&#160;&#160;2.220446049250313e-16</td></tr>
+<tr class="memdesc:aa2d957b08ce16011fc3827c270cd2664"><td class="mdescLeft">&#160;</td><td class="mdescRight">IEEE double precision epsilon (math constant)  <a href="#aa2d957b08ce16011fc3827c270cd2664">More...</a><br /></td></tr>
+<tr class="separator:aa2d957b08ce16011fc3827c270cd2664"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afcbfd66dfa72bf495e08e1d622d6da0e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afcbfd66dfa72bf495e08e1d622d6da0e"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop_8h.html#afcbfd66dfa72bf495e08e1d622d6da0e">VL_NAN_F</a>&#160;&#160;&#160;(vl_nan_f.value)</td></tr>
+<tr class="memdesc:afcbfd66dfa72bf495e08e1d622d6da0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">IEEE single precision NaN (not signaling) <br /></td></tr>
+<tr class="separator:afcbfd66dfa72bf495e08e1d622d6da0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c8e51b4132fa5072a31ec38770e22c6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7c8e51b4132fa5072a31ec38770e22c6"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop_8h.html#a7c8e51b4132fa5072a31ec38770e22c6">VL_INFINITY_F</a>&#160;&#160;&#160;(vl_infinity_f.value)</td></tr>
+<tr class="memdesc:a7c8e51b4132fa5072a31ec38770e22c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">IEEE single precision positive infinity (not signaling) <br /></td></tr>
+<tr class="separator:a7c8e51b4132fa5072a31ec38770e22c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f9df65fc71880e96e21e93e3abfd99c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3f9df65fc71880e96e21e93e3abfd99c"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop_8h.html#a3f9df65fc71880e96e21e93e3abfd99c">VL_NAN_D</a>&#160;&#160;&#160;(vl_nan_d.value)</td></tr>
+<tr class="memdesc:a3f9df65fc71880e96e21e93e3abfd99c"><td class="mdescLeft">&#160;</td><td class="mdescRight">IEEE double precision NaN (not signaling) <br /></td></tr>
+<tr class="separator:a3f9df65fc71880e96e21e93e3abfd99c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9eb876cf62894be62a2467db9db0bb03"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9eb876cf62894be62a2467db9db0bb03"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop_8h.html#a9eb876cf62894be62a2467db9db0bb03">VL_INFINITY_D</a>&#160;&#160;&#160;(vl_infinity_d.value)</td></tr>
+<tr class="memdesc:a9eb876cf62894be62a2467db9db0bb03"><td class="mdescLeft">&#160;</td><td class="mdescRight">IEEE double precision positive infinity (not signaling) <br /></td></tr>
+<tr class="separator:a9eb876cf62894be62a2467db9db0bb03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:ab3bfc8e36e1d3a558ad4d1ba7d028bc1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab3bfc8e36e1d3a558ad4d1ba7d028bc1"></a>
+typedef float(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop_8h.html#ab3bfc8e36e1d3a558ad4d1ba7d028bc1">VlFloatVectorComparisonFunction</a> )(<a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> dimension, float const *X, float const *Y)</td></tr>
+<tr class="memdesc:ab3bfc8e36e1d3a558ad4d1ba7d028bc1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to a function to compare vectors of floats. <br /></td></tr>
+<tr class="separator:ab3bfc8e36e1d3a558ad4d1ba7d028bc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f01157d716a8023720436416e5b7ebd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9f01157d716a8023720436416e5b7ebd"></a>
+typedef double(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop_8h.html#a9f01157d716a8023720436416e5b7ebd">VlDoubleVectorComparisonFunction</a> )(<a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> dimension, double const *X, double const *Y)</td></tr>
+<tr class="memdesc:a9f01157d716a8023720436416e5b7ebd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to a function to compare vectors of doubles. <br /></td></tr>
+<tr class="separator:a9f01157d716a8023720436416e5b7ebd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55ba767ecd79b6edebd798141f8f7a92"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a55ba767ecd79b6edebd798141f8f7a92"></a>
+typedef float(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop_8h.html#a55ba767ecd79b6edebd798141f8f7a92">VlFloatVector3ComparisonFunction</a> )(<a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> dimension, float const *X, float const *Y, float const *Z)</td></tr>
+<tr class="memdesc:a55ba767ecd79b6edebd798141f8f7a92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to a function to compare 3 vectors of doubles. <br /></td></tr>
+<tr class="separator:a55ba767ecd79b6edebd798141f8f7a92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7673a4c14ad203748a8e94467ac990c4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7673a4c14ad203748a8e94467ac990c4"></a>
+typedef double(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop_8h.html#a7673a4c14ad203748a8e94467ac990c4">VlDoubleVector3ComparisonFunction</a> )(<a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> dimension, double const *X, double const *Y, double const *Z)</td></tr>
+<tr class="memdesc:a7673a4c14ad203748a8e94467ac990c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to a function to compare 3 vectors of doubles. <br /></td></tr>
+<tr class="separator:a7673a4c14ad203748a8e94467ac990c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4cc7d511f708d61bc8fe15c65ad6d74"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa4cc7d511f708d61bc8fe15c65ad6d74"></a>
+typedef enum <br class="typebreak" />
+<a class="el" href="mathop_8h.html#af7397bb42d71000754eafba9458b09ac">_VlVectorComparisonType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop_8h.html#aa4cc7d511f708d61bc8fe15c65ad6d74">VlVectorComparisonType</a></td></tr>
+<tr class="memdesc:aa4cc7d511f708d61bc8fe15c65ad6d74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector comparison types. <br /></td></tr>
+<tr class="separator:aa4cc7d511f708d61bc8fe15c65ad6d74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:af7397bb42d71000754eafba9458b09ac"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop_8h.html#af7397bb42d71000754eafba9458b09ac">_VlVectorComparisonType</a> { <br />
+&#160;&#160;<a class="el" href="mathop_8h.html#af7397bb42d71000754eafba9458b09acaff42f6aa9da4f0d11415de32089a1348">VlDistanceL1</a>, 
+<a class="el" href="mathop_8h.html#af7397bb42d71000754eafba9458b09acab44b9322465d703274acfa21690de9fd">VlDistanceL2</a>, 
+<a class="el" href="mathop_8h.html#af7397bb42d71000754eafba9458b09aca8bd37a4dd18960b8faf2c52093227857">VlDistanceChi2</a>, 
+<a class="el" href="mathop_8h.html#af7397bb42d71000754eafba9458b09acaa2290709524875cbabbce86ba2d28635">VlDistanceHellinger</a>, 
+<br />
+&#160;&#160;<a class="el" href="mathop_8h.html#af7397bb42d71000754eafba9458b09acaed22a8624bfdae0b2ca92a43750bf68a">VlDistanceJS</a>, 
+<a class="el" href="mathop_8h.html#af7397bb42d71000754eafba9458b09aca0793259deafb1d691a1a6daed52b245b">VlDistanceMahalanobis</a>, 
+<a class="el" href="mathop_8h.html#af7397bb42d71000754eafba9458b09aca5e26182d2d853d6e16238535fd8f7f98">VlKernelL1</a>, 
+<a class="el" href="mathop_8h.html#af7397bb42d71000754eafba9458b09acaad5fb6e24379dd36f94bdfb10068ec6c">VlKernelL2</a>, 
+<br />
+&#160;&#160;<a class="el" href="mathop_8h.html#af7397bb42d71000754eafba9458b09acad945961afcae876365e585655b3dbdde">VlKernelChi2</a>, 
+<a class="el" href="mathop_8h.html#af7397bb42d71000754eafba9458b09acae6735870a9191f6f9c44492bd2fdeae8">VlKernelHellinger</a>, 
+<a class="el" href="mathop_8h.html#af7397bb42d71000754eafba9458b09aca2b327ebbf8e9ad7e76df758a9062145f">VlKernelJS</a>
+<br />
+ }</td></tr>
+<tr class="memdesc:af7397bb42d71000754eafba9458b09ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector comparison types.  <a href="mathop_8h.html#af7397bb42d71000754eafba9458b09ac">More...</a><br /></td></tr>
+<tr class="separator:af7397bb42d71000754eafba9458b09ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a99beafd23bc68c4bf8fb525e4efb2749"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop_8h.html#a99beafd23bc68c4bf8fb525e4efb2749">vl_mod_2pi_f</a> (float x)</td></tr>
+<tr class="memdesc:a99beafd23bc68c4bf8fb525e4efb2749"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fast <code>mod(x, 2 * VL_PI)</code>  <a href="#a99beafd23bc68c4bf8fb525e4efb2749">More...</a><br /></td></tr>
+<tr class="separator:a99beafd23bc68c4bf8fb525e4efb2749"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ee66acb41ce542899a6e99e4fe5b6f3"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop_8h.html#a6ee66acb41ce542899a6e99e4fe5b6f3">vl_mod_2pi_d</a> (double x)</td></tr>
+<tr class="memdesc:a6ee66acb41ce542899a6e99e4fe5b6f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fast <code>mod(x, 2 * VL_PI)</code>  <a href="#a6ee66acb41ce542899a6e99e4fe5b6f3">More...</a><br /></td></tr>
+<tr class="separator:a6ee66acb41ce542899a6e99e4fe5b6f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7651faad897e764d74159d4661777115"><td class="memItemLeft" align="right" valign="top">long int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop_8h.html#a7651faad897e764d74159d4661777115">vl_floor_f</a> (float x)</td></tr>
+<tr class="memdesc:a7651faad897e764d74159d4661777115"><td class="mdescLeft">&#160;</td><td class="mdescRight">Floor and convert to integer.  <a href="#a7651faad897e764d74159d4661777115">More...</a><br /></td></tr>
+<tr class="separator:a7651faad897e764d74159d4661777115"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4573abdff2b32ef131f090a7cd8afeee"><td class="memItemLeft" align="right" valign="top">long int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop_8h.html#a4573abdff2b32ef131f090a7cd8afeee">vl_floor_d</a> (double x)</td></tr>
+<tr class="memdesc:a4573abdff2b32ef131f090a7cd8afeee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Floor and convert to integer.  <a href="#a4573abdff2b32ef131f090a7cd8afeee">More...</a><br /></td></tr>
+<tr class="separator:a4573abdff2b32ef131f090a7cd8afeee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e33bdf5324485def067bbbe66a54f91"><td class="memItemLeft" align="right" valign="top">long int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop_8h.html#a2e33bdf5324485def067bbbe66a54f91">vl_ceil_f</a> (float x)</td></tr>
+<tr class="memdesc:a2e33bdf5324485def067bbbe66a54f91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ceil and convert to integer.  <a href="#a2e33bdf5324485def067bbbe66a54f91">More...</a><br /></td></tr>
+<tr class="separator:a2e33bdf5324485def067bbbe66a54f91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a0c3cd1c2c65220bcdc472a5a9391d6"><td class="memItemLeft" align="right" valign="top">long int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop_8h.html#a6a0c3cd1c2c65220bcdc472a5a9391d6">vl_ceil_d</a> (double x)</td></tr>
+<tr class="memdesc:a6a0c3cd1c2c65220bcdc472a5a9391d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ceil and convert to integer.  <a href="#a6a0c3cd1c2c65220bcdc472a5a9391d6">More...</a><br /></td></tr>
+<tr class="separator:a6a0c3cd1c2c65220bcdc472a5a9391d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97fb4b325bc0dc8bb8618e132fab736c"><td class="memItemLeft" align="right" valign="top">long int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop_8h.html#a97fb4b325bc0dc8bb8618e132fab736c">vl_round_f</a> (float x)</td></tr>
+<tr class="memdesc:a97fb4b325bc0dc8bb8618e132fab736c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Round.  <a href="#a97fb4b325bc0dc8bb8618e132fab736c">More...</a><br /></td></tr>
+<tr class="separator:a97fb4b325bc0dc8bb8618e132fab736c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3adf65b9d416b2438ccfe78748ed60f"><td class="memItemLeft" align="right" valign="top">long int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop_8h.html#af3adf65b9d416b2438ccfe78748ed60f">vl_round_d</a> (double x)</td></tr>
+<tr class="memdesc:af3adf65b9d416b2438ccfe78748ed60f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Round.  <a href="#af3adf65b9d416b2438ccfe78748ed60f">More...</a><br /></td></tr>
+<tr class="separator:af3adf65b9d416b2438ccfe78748ed60f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a772d390dd8d1fb4adc4eda6e0d8f4c0b"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop_8h.html#a772d390dd8d1fb4adc4eda6e0d8f4c0b">vl_abs_f</a> (float x)</td></tr>
+<tr class="memdesc:a772d390dd8d1fb4adc4eda6e0d8f4c0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fast <code>abs(x)</code>  <a href="#a772d390dd8d1fb4adc4eda6e0d8f4c0b">More...</a><br /></td></tr>
+<tr class="separator:a772d390dd8d1fb4adc4eda6e0d8f4c0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87c54a1c66beffacfba7bf7bac52fb09"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop_8h.html#a87c54a1c66beffacfba7bf7bac52fb09">vl_abs_d</a> (double x)</td></tr>
+<tr class="memdesc:a87c54a1c66beffacfba7bf7bac52fb09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fast <code>abs(x)</code>  <a href="#a87c54a1c66beffacfba7bf7bac52fb09">More...</a><br /></td></tr>
+<tr class="separator:a87c54a1c66beffacfba7bf7bac52fb09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b8296f9c8f1266500860fcb08bf29b5"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop_8h.html#a2b8296f9c8f1266500860fcb08bf29b5">vl_log2_d</a> (double x)</td></tr>
+<tr class="memdesc:a2b8296f9c8f1266500860fcb08bf29b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base-2 logaritghm.  <a href="#a2b8296f9c8f1266500860fcb08bf29b5">More...</a><br /></td></tr>
+<tr class="separator:a2b8296f9c8f1266500860fcb08bf29b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d76b809ad52b5a4080cb94fdeac425e"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop_8h.html#a9d76b809ad52b5a4080cb94fdeac425e">vl_log2_f</a> (float x)</td></tr>
+<tr class="memdesc:a9d76b809ad52b5a4080cb94fdeac425e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base-2 logaritghm.  <a href="#a9d76b809ad52b5a4080cb94fdeac425e">More...</a><br /></td></tr>
+<tr class="separator:a9d76b809ad52b5a4080cb94fdeac425e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff464f96f4eb9651aef329228c68dcf9"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop_8h.html#aff464f96f4eb9651aef329228c68dcf9">vl_sqrt_d</a> (double x)</td></tr>
+<tr class="memdesc:aff464f96f4eb9651aef329228c68dcf9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Square root.  <a href="#aff464f96f4eb9651aef329228c68dcf9">More...</a><br /></td></tr>
+<tr class="separator:aff464f96f4eb9651aef329228c68dcf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b02ca15f62d4ec9056bf7f55324e0bc"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop_8h.html#a0b02ca15f62d4ec9056bf7f55324e0bc">vl_sqrt_f</a> (float x)</td></tr>
+<tr class="memdesc:a0b02ca15f62d4ec9056bf7f55324e0bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Square root.  <a href="#a0b02ca15f62d4ec9056bf7f55324e0bc">More...</a><br /></td></tr>
+<tr class="separator:a0b02ca15f62d4ec9056bf7f55324e0bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3752bdd4daa1e678178543f51ad18d72"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop_8h.html#a3752bdd4daa1e678178543f51ad18d72">vl_is_nan_f</a> (float x)</td></tr>
+<tr class="memdesc:a3752bdd4daa1e678178543f51ad18d72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check whether a floating point value is NaN.  <a href="#a3752bdd4daa1e678178543f51ad18d72">More...</a><br /></td></tr>
+<tr class="separator:a3752bdd4daa1e678178543f51ad18d72"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20334a5a243c1e6cee531e3f457b5a68"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop_8h.html#a20334a5a243c1e6cee531e3f457b5a68">vl_is_nan_d</a> (double x)</td></tr>
+<tr class="memdesc:a20334a5a243c1e6cee531e3f457b5a68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check whether a floating point value is NaN.  <a href="#a20334a5a243c1e6cee531e3f457b5a68">More...</a><br /></td></tr>
+<tr class="separator:a20334a5a243c1e6cee531e3f457b5a68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab51e6a4e74b39c8b8226c682e317323b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop_8h.html#ab51e6a4e74b39c8b8226c682e317323b">vl_is_inf_f</a> (float x)</td></tr>
+<tr class="memdesc:ab51e6a4e74b39c8b8226c682e317323b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check whether a floating point value is infinity.  <a href="#ab51e6a4e74b39c8b8226c682e317323b">More...</a><br /></td></tr>
+<tr class="separator:ab51e6a4e74b39c8b8226c682e317323b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89b3b96cfa1fa17814e209721368f0f1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop_8h.html#a89b3b96cfa1fa17814e209721368f0f1">vl_is_inf_d</a> (double x)</td></tr>
+<tr class="memdesc:a89b3b96cfa1fa17814e209721368f0f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check whether a floating point value is infinity.  <a href="#a89b3b96cfa1fa17814e209721368f0f1">More...</a><br /></td></tr>
+<tr class="separator:a89b3b96cfa1fa17814e209721368f0f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a302745de850d5b18b49359a830b74f6d"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop_8h.html#a302745de850d5b18b49359a830b74f6d">vl_fast_atan2_f</a> (float y, float x)</td></tr>
+<tr class="memdesc:a302745de850d5b18b49359a830b74f6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fast <code>atan2</code> approximation.  <a href="#a302745de850d5b18b49359a830b74f6d">More...</a><br /></td></tr>
+<tr class="separator:a302745de850d5b18b49359a830b74f6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae76d962e552bdddb02a687dd3dc38330"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop_8h.html#ae76d962e552bdddb02a687dd3dc38330">vl_fast_atan2_d</a> (double y, double x)</td></tr>
+<tr class="memdesc:ae76d962e552bdddb02a687dd3dc38330"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fast <code>atan2</code> approximation.  <a href="#ae76d962e552bdddb02a687dd3dc38330">More...</a><br /></td></tr>
+<tr class="separator:ae76d962e552bdddb02a687dd3dc38330"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a7ffdd0b23196a330e36d6e9aa8c6ff"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop_8h.html#a1a7ffdd0b23196a330e36d6e9aa8c6ff">vl_fast_resqrt_f</a> (float x)</td></tr>
+<tr class="memdesc:a1a7ffdd0b23196a330e36d6e9aa8c6ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fast <code>resqrt</code> approximation.  <a href="#a1a7ffdd0b23196a330e36d6e9aa8c6ff">More...</a><br /></td></tr>
+<tr class="separator:a1a7ffdd0b23196a330e36d6e9aa8c6ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8aab2f55af664aaef0d51b84fb09ebc7"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop_8h.html#a8aab2f55af664aaef0d51b84fb09ebc7">vl_fast_resqrt_d</a> (double x)</td></tr>
+<tr class="memdesc:a8aab2f55af664aaef0d51b84fb09ebc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fast <code>resqrt</code> approximation.  <a href="#a8aab2f55af664aaef0d51b84fb09ebc7">More...</a><br /></td></tr>
+<tr class="separator:a8aab2f55af664aaef0d51b84fb09ebc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69441a371eeaa0c183214d8f19204d46"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop_8h.html#a69441a371eeaa0c183214d8f19204d46">vl_fast_sqrt_f</a> (float x)</td></tr>
+<tr class="memdesc:a69441a371eeaa0c183214d8f19204d46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fast <code>sqrt</code> approximation.  <a href="#a69441a371eeaa0c183214d8f19204d46">More...</a><br /></td></tr>
+<tr class="separator:a69441a371eeaa0c183214d8f19204d46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a7ca9f7a6df25bd6869f648f1e643d9"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop_8h.html#a8a7ca9f7a6df25bd6869f648f1e643d9">vl_fast_sqrt_d</a> (float x)</td></tr>
+<tr class="memdesc:a8a7ca9f7a6df25bd6869f648f1e643d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fast <code>sqrt</code> approximation.  <a href="#a8a7ca9f7a6df25bd6869f648f1e643d9">More...</a><br /></td></tr>
+<tr class="separator:a8a7ca9f7a6df25bd6869f648f1e643d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15c07a9b9ec933f685115779c8913f5c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#af37832522d1f5c028ac15d0ccda7ff48">vl_uint64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop_8h.html#a15c07a9b9ec933f685115779c8913f5c">vl_fast_sqrt_ui64</a> (<a class="el" href="host_8h.html#af37832522d1f5c028ac15d0ccda7ff48">vl_uint64</a> x)</td></tr>
+<tr class="memdesc:a15c07a9b9ec933f685115779c8913f5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fast integer <code>sqrt</code> approximation.  <a href="#a15c07a9b9ec933f685115779c8913f5c">More...</a><br /></td></tr>
+<tr class="separator:a15c07a9b9ec933f685115779c8913f5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07ed33a01737b8aa5716e46d1afdf0b8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#aeb7c862765448a70017105efa4d25e7a">vl_uint32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop_8h.html#a07ed33a01737b8aa5716e46d1afdf0b8">vl_fast_sqrt_ui32</a> (<a class="el" href="host_8h.html#aeb7c862765448a70017105efa4d25e7a">vl_uint32</a> x)</td></tr>
+<tr class="memdesc:a07ed33a01737b8aa5716e46d1afdf0b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fast <code>sqrt</code> approximation.  <a href="#a07ed33a01737b8aa5716e46d1afdf0b8">More...</a><br /></td></tr>
+<tr class="separator:a07ed33a01737b8aa5716e46d1afdf0b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7475cc5573d9ff6147ebc9e97097740b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#ab2275d6c7bf6fc027151d11072b45f03">vl_uint16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop_8h.html#a7475cc5573d9ff6147ebc9e97097740b">vl_fast_sqrt_ui16</a> (<a class="el" href="host_8h.html#ab2275d6c7bf6fc027151d11072b45f03">vl_uint16</a> x)</td></tr>
+<tr class="memdesc:a7475cc5573d9ff6147ebc9e97097740b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fast <code>sqrt</code> approximation.  <a href="#a7475cc5573d9ff6147ebc9e97097740b">More...</a><br /></td></tr>
+<tr class="separator:a7475cc5573d9ff6147ebc9e97097740b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3ba8bee4d358e752175582321e96e10"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#a38fbd9a3cf53dfc9a5650c38497b7d35">vl_uint8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop_8h.html#ad3ba8bee4d358e752175582321e96e10">vl_fast_sqrt_ui8</a> (<a class="el" href="host_8h.html#a38fbd9a3cf53dfc9a5650c38497b7d35">vl_uint8</a> x)</td></tr>
+<tr class="memdesc:ad3ba8bee4d358e752175582321e96e10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fast <code>sqrt</code> approximation.  <a href="#ad3ba8bee4d358e752175582321e96e10">More...</a><br /></td></tr>
+<tr class="separator:ad3ba8bee4d358e752175582321e96e10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf470a9c2b4c9f91129f883a54d85bad"><td class="memItemLeft" align="right" valign="top">char const *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop_8h.html#acf470a9c2b4c9f91129f883a54d85bad">vl_get_vector_comparison_type_name</a> (int type)</td></tr>
+<tr class="memdesc:acf470a9c2b4c9f91129f883a54d85bad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the symbolic name of a vector comparison type.  <a href="#acf470a9c2b4c9f91129f883a54d85bad">More...</a><br /></td></tr>
+<tr class="separator:acf470a9c2b4c9f91129f883a54d85bad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5143f7d144cba8a1d302dacee14d23e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="mathop_8h.html#ab3bfc8e36e1d3a558ad4d1ba7d028bc1">VlFloatVectorComparisonFunction</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop_8h.html#ad5143f7d144cba8a1d302dacee14d23e">vl_get_vector_comparison_function_f</a> (<a class="el" href="mathop_8h.html#aa4cc7d511f708d61bc8fe15c65ad6d74">VlVectorComparisonType</a> type)</td></tr>
+<tr class="memdesc:ad5143f7d144cba8a1d302dacee14d23e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get vector comparison function from comparison type.  <a href="#ad5143f7d144cba8a1d302dacee14d23e">More...</a><br /></td></tr>
+<tr class="separator:ad5143f7d144cba8a1d302dacee14d23e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34ec850e1d4b291c4e7a4235206c23bd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="mathop_8h.html#a9f01157d716a8023720436416e5b7ebd">VlDoubleVectorComparisonFunction</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop_8h.html#a34ec850e1d4b291c4e7a4235206c23bd">vl_get_vector_comparison_function_d</a> (<a class="el" href="mathop_8h.html#aa4cc7d511f708d61bc8fe15c65ad6d74">VlVectorComparisonType</a> type)</td></tr>
+<tr class="memdesc:a34ec850e1d4b291c4e7a4235206c23bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get vector comparison function from comparison type.  <a href="#a34ec850e1d4b291c4e7a4235206c23bd">More...</a><br /></td></tr>
+<tr class="separator:a34ec850e1d4b291c4e7a4235206c23bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae38ee42a415c7958c38c02ea57cf9b4e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop_8h.html#ae38ee42a415c7958c38c02ea57cf9b4e">vl_eval_vector_comparison_on_all_pairs_f</a> (float *result, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> dimension, float const *X, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> numDataX, float const *Y, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> numDataY, <a class="el" href="mathop_8h.html#ab3bfc8e36e1d3a558ad4d1ba7d028bc1">VlFloatVectorComparisonFunction</a> function)</td></tr>
+<tr class="memdesc:ae38ee42a415c7958c38c02ea57cf9b4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluate vector comparison function on all vector pairs.  <a href="#ae38ee42a415c7958c38c02ea57cf9b4e">More...</a><br /></td></tr>
+<tr class="separator:ae38ee42a415c7958c38c02ea57cf9b4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2fa33c2469aa77aea316927d13e8e644"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop_8h.html#a2fa33c2469aa77aea316927d13e8e644">vl_eval_vector_comparison_on_all_pairs_d</a> (double *result, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> dimension, double const *X, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> numDataX, double const *Y, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> numDataY, <a class="el" href="mathop_8h.html#a9f01157d716a8023720436416e5b7ebd">VlDoubleVectorComparisonFunction</a> function)</td></tr>
+<tr class="memdesc:a2fa33c2469aa77aea316927d13e8e644"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluate vector comparison function on all vector pairs.  <a href="#a2fa33c2469aa77aea316927d13e8e644">More...</a><br /></td></tr>
+<tr class="separator:a2fa33c2469aa77aea316927d13e8e644"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a2930ae1c9c5c58257ef2ca4f7946ebc4"><td class="memItemLeft" >union {</td></tr>
+<tr class="memitem:a2930ae1c9c5c58257ef2ca4f7946ebc4"><td class="memItemLeft" valign="top">}&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop_8h.html#a2930ae1c9c5c58257ef2ca4f7946ebc4">vl_nan_f</a></td></tr>
+<tr class="memdesc:a2930ae1c9c5c58257ef2ca4f7946ebc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">IEEE single precision quiet NaN constant.  <a href="#a2930ae1c9c5c58257ef2ca4f7946ebc4">More...</a><br /></td></tr>
+<tr class="separator:a2930ae1c9c5c58257ef2ca4f7946ebc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa229f0ad87d42202ad17cdc019428455"><td class="memItemLeft" >union {</td></tr>
+<tr class="memitem:aa229f0ad87d42202ad17cdc019428455"><td class="memItemLeft" valign="top">}&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop_8h.html#aa229f0ad87d42202ad17cdc019428455">vl_infinity_f</a></td></tr>
+<tr class="memdesc:aa229f0ad87d42202ad17cdc019428455"><td class="mdescLeft">&#160;</td><td class="mdescRight">IEEE single precision infinity constant.  <a href="#aa229f0ad87d42202ad17cdc019428455">More...</a><br /></td></tr>
+<tr class="separator:aa229f0ad87d42202ad17cdc019428455"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5d519fcbb9f3c90414e6987df2e4cb5"><td class="memItemLeft" >union {</td></tr>
+<tr class="memitem:ad5d519fcbb9f3c90414e6987df2e4cb5"><td class="memItemLeft" valign="top">}&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop_8h.html#ad5d519fcbb9f3c90414e6987df2e4cb5">vl_nan_d</a></td></tr>
+<tr class="memdesc:ad5d519fcbb9f3c90414e6987df2e4cb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">IEEE double precision quiet NaN constant.  <a href="#ad5d519fcbb9f3c90414e6987df2e4cb5">More...</a><br /></td></tr>
+<tr class="separator:ad5d519fcbb9f3c90414e6987df2e4cb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afab36bf94fa017fd8c9023ab1c8caed1"><td class="memItemLeft" >union {</td></tr>
+<tr class="memitem:afab36bf94fa017fd8c9023ab1c8caed1"><td class="memItemLeft" valign="top">}&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathop_8h.html#afab36bf94fa017fd8c9023ab1c8caed1">vl_infinity_d</a></td></tr>
+<tr class="memdesc:afab36bf94fa017fd8c9023ab1c8caed1"><td class="mdescLeft">&#160;</td><td class="mdescRight">IEEE double precision infinity constant.  <a href="#afab36bf94fa017fd8c9023ab1c8caed1">More...</a><br /></td></tr>
+<tr class="separator:afab36bf94fa017fd8c9023ab1c8caed1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><dl class="section author"><dt>Author</dt><dd>Andrea Vedaldi, David Novotny </dd></dl>
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a class="anchor" id="aa2d957b08ce16011fc3827c270cd2664"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define VL_EPSILON_D&#160;&#160;&#160;2.220446049250313e-16</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><code>1.0 + VL_EPSILON_D</code> is the smallest representable double precision number greater than <code>1.0</code>. Numerically, <a class="el" href="mathop_8h.html#aa2d957b08ce16011fc3827c270cd2664" title="IEEE double precision epsilon (math constant) ">VL_EPSILON_D</a> is equal to \( 2^{-52} \). </p>
+
+</div>
+</div>
+<a class="anchor" id="a8088f3da04d6bce27544adaa6da948ca"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define VL_EPSILON_F&#160;&#160;&#160;1.19209290E-07F</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><code>1.0F + VL_EPSILON_F</code> is the smallest representable single precision number greater than <code>1.0F</code>. Numerically, <a class="el" href="mathop_8h.html#a8088f3da04d6bce27544adaa6da948ca" title="IEEE single precision epsilon (math constant) ">VL_EPSILON_F</a> is equal to \( 2^{-23} \). </p>
+
+</div>
+</div>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a class="anchor" id="af7397bb42d71000754eafba9458b09ac"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="mathop_8h.html#af7397bb42d71000754eafba9458b09ac">_VlVectorComparisonType</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a class="anchor" id="af7397bb42d71000754eafba9458b09acaff42f6aa9da4f0d11415de32089a1348"></a>VlDistanceL1&#160;</td><td class="fielddoc">
+<p>l1 distance (squared intersection metric) </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="af7397bb42d71000754eafba9458b09acab44b9322465d703274acfa21690de9fd"></a>VlDistanceL2&#160;</td><td class="fielddoc">
+<p>squared l2 distance </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="af7397bb42d71000754eafba9458b09aca8bd37a4dd18960b8faf2c52093227857"></a>VlDistanceChi2&#160;</td><td class="fielddoc">
+<p>squared Chi2 distance </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="af7397bb42d71000754eafba9458b09acaa2290709524875cbabbce86ba2d28635"></a>VlDistanceHellinger&#160;</td><td class="fielddoc">
+<p>squared Hellinger's distance </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="af7397bb42d71000754eafba9458b09acaed22a8624bfdae0b2ca92a43750bf68a"></a>VlDistanceJS&#160;</td><td class="fielddoc">
+<p>squared Jensen-Shannon distance </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="af7397bb42d71000754eafba9458b09aca0793259deafb1d691a1a6daed52b245b"></a>VlDistanceMahalanobis&#160;</td><td class="fielddoc">
+<p>squared mahalanobis distance </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="af7397bb42d71000754eafba9458b09aca5e26182d2d853d6e16238535fd8f7f98"></a>VlKernelL1&#160;</td><td class="fielddoc">
+<p>intersection kernel </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="af7397bb42d71000754eafba9458b09acaad5fb6e24379dd36f94bdfb10068ec6c"></a>VlKernelL2&#160;</td><td class="fielddoc">
+<p>l2 kernel </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="af7397bb42d71000754eafba9458b09acad945961afcae876365e585655b3dbdde"></a>VlKernelChi2&#160;</td><td class="fielddoc">
+<p>Chi2 kernel </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="af7397bb42d71000754eafba9458b09acae6735870a9191f6f9c44492bd2fdeae8"></a>VlKernelHellinger&#160;</td><td class="fielddoc">
+<p>Hellinger's kernel </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="af7397bb42d71000754eafba9458b09aca2b327ebbf8e9ad7e76df758a9062145f"></a>VlKernelJS&#160;</td><td class="fielddoc">
+<p>Jensen-Shannon kernel </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a87c54a1c66beffacfba7bf7bac52fb09"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double vl_abs_d </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="mathop_8h.html#a772d390dd8d1fb4adc4eda6e0d8f4c0b" title="Fast abs(x) ">vl_abs_f</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a772d390dd8d1fb4adc4eda6e0d8f4c0b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float vl_abs_f </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>argument. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>abs(x)</code> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a6a0c3cd1c2c65220bcdc472a5a9391d6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">long int vl_ceil_d </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="mathop_8h.html#a2e33bdf5324485def067bbbe66a54f91" title="Ceil and convert to integer. ">vl_ceil_f</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a2e33bdf5324485def067bbbe66a54f91"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">long int vl_ceil_f </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>argument. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>lceilf(x)</code> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a2fa33c2469aa77aea316927d13e8e644"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vl_eval_vector_comparison_on_all_pairs_d </td>
+          <td>(</td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>result</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>dimension</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double const *&#160;</td>
+          <td class="paramname"><em>X</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>numDataX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double const *&#160;</td>
+          <td class="paramname"><em>Y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>numDataY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="mathop_8h.html#a9f01157d716a8023720436416e5b7ebd">VlDoubleVectorComparisonFunction</a>&#160;</td>
+          <td class="paramname"><em>function</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="mathop_8h.html#ae38ee42a415c7958c38c02ea57cf9b4e" title="Evaluate vector comparison function on all vector pairs. ">vl_eval_vector_comparison_on_all_pairs_f</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ae38ee42a415c7958c38c02ea57cf9b4e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vl_eval_vector_comparison_on_all_pairs_f </td>
+          <td>(</td>
+          <td class="paramtype">float *&#160;</td>
+          <td class="paramname"><em>result</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>dimension</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float const *&#160;</td>
+          <td class="paramname"><em>X</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>numDataX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float const *&#160;</td>
+          <td class="paramname"><em>Y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>numDataY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="mathop_8h.html#ab3bfc8e36e1d3a558ad4d1ba7d028bc1">VlFloatVectorComparisonFunction</a>&#160;</td>
+          <td class="paramname"><em>function</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">result</td><td>comparison matrix (output). </td></tr>
+    <tr><td class="paramname">dimension</td><td>number of vector components (rows of <em>X</em> and <em>Y</em>). </td></tr>
+    <tr><td class="paramname">X</td><td>data matrix X. </td></tr>
+    <tr><td class="paramname">Y</td><td>data matrix Y. </td></tr>
+    <tr><td class="paramname">numDataX</td><td>number of vectors in <em>X</em> (columns of <em>X</em>) </td></tr>
+    <tr><td class="paramname">numDataY</td><td>number of vectros in <em>Y</em> (columns of <em>Y</em>) </td></tr>
+    <tr><td class="paramname">function</td><td>vector comparison function.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The function evaluates <em>function</em> on all pairs of columns from matrices <em>X</em> and <em>Y</em>, filling a <em>numDataX</em> by <em>numDataY</em> matrix.</p>
+<p>If <em>Y</em> is a null pointer the function compares all columns from <em>X</em> with themselves. </p>
+
+</div>
+</div>
+<a class="anchor" id="ae76d962e552bdddb02a687dd3dc38330"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double vl_fast_atan2_d </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>x</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="mathop_8h.html#a302745de850d5b18b49359a830b74f6d" title="Fast atan2 approximation. ">vl_fast_atan2_f</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a302745de850d5b18b49359a830b74f6d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float vl_fast_atan2_f </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>x</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">y</td><td>argument. </td></tr>
+    <tr><td class="paramname">x</td><td>argument.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The function computes a relatively rough but fast approximation of <code>atan2(y,x)</code>.</p>
+<dl class="section user"><dt>Algorithm</dt><dd></dd></dl>
+<p>The algorithm approximates the function \( f(r)=atan((1-r)/(1+r)) \), \( r \in [-1,1] \) with a third order polynomial \( f(r)=c_0 + c_1 r + c_2 r^2 + c_3 r^3 \). To fit the polynomial we impose the constraints</p>
+<p class="formulaDsp">
+\begin{eqnarray*} f(+1) &amp;=&amp; c_0 + c_1 + c_2 + c_3 = atan(0) = 0,\\ f(-1) &amp;=&amp; c_0 - c_1 + c_2 - c_3 = atan(\infty) = \pi/2,\\ f(0) &amp;=&amp; c_0 = atan(1) = \pi/4. \end{eqnarray*}
+</p>
+<p>The last degree of freedom is fixed by minimizing the \( l^{\infty} \) error, which yields</p>
+<p class="formulaDsp">
+\[ c_0=\pi/4, \quad c_1=-0.9675, \quad c_2=0, \quad c_3=0.1821, \]
+</p>
+<p>with maximum error of 0.0061 radians at 0.35 degrees.</p>
+<dl class="section return"><dt>Returns</dt><dd>Approximation of <code>atan2(y,x)</code>. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a8aab2f55af664aaef0d51b84fb09ebc7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double vl_fast_resqrt_d </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="mathop_8h.html#a8aab2f55af664aaef0d51b84fb09ebc7" title="Fast resqrt approximation. ">vl_fast_resqrt_d</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a1a7ffdd0b23196a330e36d6e9aa8c6ff"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float vl_fast_resqrt_f </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>argument. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>approximation of <code>resqrt(x)</code>.</dd></dl>
+<p>The function quickly computes an approximation of \( x^{-1/2} \).</p>
+<dl class="section user"><dt>Algorithm</dt><dd></dd></dl>
+<p>The goal is to compute \( y = x^{-1/2} \), which we do by finding the solution of \( 0 = f(y) = y^{-2} - x \) by two Newton steps. Each Newton iteration is given by</p>
+<p class="formulaDsp">
+\[ y \leftarrow y - \frac{f(y)}{\frac{df(y)}{dy}} = y + \frac{1}{2} (y-xy^3) = \frac{y}{2} \left( 3 - xy^2 \right) \]
+</p>
+<p>which yields a simple polynomial update rule.</p>
+<p>The clever bit (attributed to either J. Carmack or G. Tarolli) is the way an initial guess \( y \approx x^{-1/2} \) is chosen.</p>
+<dl class="section see"><dt>See also</dt><dd><a href="http://www.lomont.org/Math/Papers/2003/InvSqrt.pdf">Inverse Sqare Root</a>. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a8a7ca9f7a6df25bd6869f648f1e643d9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double vl_fast_sqrt_d </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Fast <code>sqrt</code> approximation. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>argument. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>approximation of <code>sqrt(x)</code>.</dd></dl>
+<p>The function uses <a class="el" href="mathop_8h.html#a1a7ffdd0b23196a330e36d6e9aa8c6ff" title="Fast resqrt approximation. ">vl_fast_resqrt_f</a> (or <a class="el" href="mathop_8h.html#a8aab2f55af664aaef0d51b84fb09ebc7" title="Fast resqrt approximation. ">vl_fast_resqrt_d</a>) to compute <code>x * vl_fast_resqrt_f(x)</code>. </p>
+
+</div>
+</div>
+<a class="anchor" id="a69441a371eeaa0c183214d8f19204d46"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float vl_fast_sqrt_f </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>argument. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>approximation of <code>sqrt(x)</code>.</dd></dl>
+<p>The function uses <a class="el" href="mathop_8h.html#a1a7ffdd0b23196a330e36d6e9aa8c6ff" title="Fast resqrt approximation. ">vl_fast_resqrt_f</a> (or <a class="el" href="mathop_8h.html#a8aab2f55af664aaef0d51b84fb09ebc7" title="Fast resqrt approximation. ">vl_fast_resqrt_d</a>) to compute <code>x * vl_fast_resqrt_f(x)</code>. </p>
+
+</div>
+</div>
+<a class="anchor" id="a7475cc5573d9ff6147ebc9e97097740b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#ab2275d6c7bf6fc027151d11072b45f03">vl_uint16</a> vl_fast_sqrt_ui16 </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="host_8h.html#ab2275d6c7bf6fc027151d11072b45f03">vl_uint16</a>&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Fast integer <code>sqrt</code> approximation. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>non-negative integer. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>largest integer \(y\) such that \(y^2 \leq x\). </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="mathop-sqrti.html">Algorithm</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a07ed33a01737b8aa5716e46d1afdf0b8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#aeb7c862765448a70017105efa4d25e7a">vl_uint32</a> vl_fast_sqrt_ui32 </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="host_8h.html#aeb7c862765448a70017105efa4d25e7a">vl_uint32</a>&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Fast integer <code>sqrt</code> approximation. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>non-negative integer. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>largest integer \(y\) such that \(y^2 \leq x\). </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="mathop-sqrti.html">Algorithm</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a15c07a9b9ec933f685115779c8913f5c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#af37832522d1f5c028ac15d0ccda7ff48">vl_uint64</a> vl_fast_sqrt_ui64 </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="host_8h.html#af37832522d1f5c028ac15d0ccda7ff48">vl_uint64</a>&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>non-negative integer. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>largest integer \(y\) such that \(y^2 \leq x\). </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="mathop-sqrti.html">Algorithm</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ad3ba8bee4d358e752175582321e96e10"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#a38fbd9a3cf53dfc9a5650c38497b7d35">vl_uint8</a> vl_fast_sqrt_ui8 </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a38fbd9a3cf53dfc9a5650c38497b7d35">vl_uint8</a>&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Fast integer <code>sqrt</code> approximation. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>non-negative integer. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>largest integer \(y\) such that \(y^2 \leq x\). </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="mathop-sqrti.html">Algorithm</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a4573abdff2b32ef131f090a7cd8afeee"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">long int vl_floor_d </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="mathop_8h.html#a7651faad897e764d74159d4661777115" title="Floor and convert to integer. ">vl_floor_f</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a7651faad897e764d74159d4661777115"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">long int vl_floor_f </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>argument. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Similar to <code></code>(int) floor(x) </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a34ec850e1d4b291c4e7a4235206c23bd"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vl_get_vector_comparison_function_d </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="mathop_8h.html#aa4cc7d511f708d61bc8fe15c65ad6d74">VlVectorComparisonType</a>&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="mathop_8h.html#ad5143f7d144cba8a1d302dacee14d23e" title="Get vector comparison function from comparison type. ">vl_get_vector_comparison_function_f</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ad5143f7d144cba8a1d302dacee14d23e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vl_get_vector_comparison_function_f </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="mathop_8h.html#aa4cc7d511f708d61bc8fe15c65ad6d74">VlVectorComparisonType</a>&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>vector comparison type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>comparison function. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="acf470a9c2b4c9f91129f883a54d85bad"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char const* vl_get_vector_comparison_type_name </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>vector comparison type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>data symbolic name. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a89b3b96cfa1fa17814e209721368f0f1"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a> vl_is_inf_d </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>argument. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if <em>x</em> is infinity. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ab51e6a4e74b39c8b8226c682e317323b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a> vl_is_inf_f </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>argument. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if <em>x</em> is infinity. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a20334a5a243c1e6cee531e3f457b5a68"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a> vl_is_nan_d </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>argument. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if <em>x</em> is NaN. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a3752bdd4daa1e678178543f51ad18d72"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a> vl_is_nan_f </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>argument. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if <em>x</em> is NaN. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a2b8296f9c8f1266500860fcb08bf29b5"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double vl_log2_d </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>argument. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>log(x)</code>. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a9d76b809ad52b5a4080cb94fdeac425e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float vl_log2_f </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>argument. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>log(x)</code>. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a6ee66acb41ce542899a6e99e4fe5b6f3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double vl_mod_2pi_d </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="mathop_8h.html#a99beafd23bc68c4bf8fb525e4efb2749" title="Fast mod(x, 2 * VL_PI) ">vl_mod_2pi_f</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a99beafd23bc68c4bf8fb525e4efb2749"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float vl_mod_2pi_f </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>input value. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>mod(x, 2 * VL_PI)</code></dd></dl>
+<p>The function is optimized for small absolute values of <em>x</em>.</p>
+<p>The result is guaranteed to be not smaller than 0. However, due to finite numerical precision and rounding errors, the result can be equal to 2 * VL_PI (for instance, if <code>x</code> is a very small negative number). </p>
+
+</div>
+</div>
+<a class="anchor" id="af3adf65b9d416b2438ccfe78748ed60f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">long int vl_round_d </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>argument. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>lround(x)</code> This function is either the same or similar to C99 <code>lround()</code>. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a97fb4b325bc0dc8bb8618e132fab736c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">long int vl_round_f </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>argument. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>lroundf(x)</code> This function is either the same or similar to C99 <code>lroundf()</code>. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aff464f96f4eb9651aef329228c68dcf9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double vl_sqrt_d </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>argument. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>sqrt(x)</code>. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a0b02ca15f62d4ec9056bf7f55324e0bc"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float vl_sqrt_f </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>argument. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>sqrt(x)</code>. </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a class="anchor" id="afab36bf94fa017fd8c9023ab1c8caed1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">union { ... }  vl_infinity_d</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">=</div>
+<div class="line"></div>
+<div class="line">    { 0x7FF0000000000000ui64 }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="aa229f0ad87d42202ad17cdc019428455"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">union { ... }  vl_infinity_f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">=</div>
+<div class="line">    { 0x7F800000UL }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="ad5d519fcbb9f3c90414e6987df2e4cb5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">union { ... }  vl_nan_d</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">=</div>
+<div class="line"></div>
+<div class="line">    { 0x7FF8000000000000ui64 }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a2930ae1c9c5c58257ef2ca4f7946ebc4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">union { ... }  vl_nan_f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">=</div>
+<div class="line">    { 0x7FC00000UL }</div>
+</div><!-- fragment -->
+</div>
+</div>
+</div><!-- contents -->
+        <!-- Doc Here -->
+      </div>
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>

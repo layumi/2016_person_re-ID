@@ -1,0 +1,677 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+  <!-- Page title -->
+  <title>VLFeat - Documentation > C API</title>
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  <link rel="stylesheet" type="text/css" href="doxygen.css"></link>
+  <!-- Scripts-->
+  <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li class='active'><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li class='active' class='activeLeaf'><a href="index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="../doc.html">Documentation</a></span><span class='separator'>></span><span class='page'><a href="index.html">C API</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+      <!-- <pagestyle href="%pathto:root;api/tabs.css"/> -->
+      <div class="doxygen">
+<div id="top">
+<div id="top">
+<!-- Generated by Doxygen 1.8.7 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li class="current"><a href="files.html"><span>Files</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>Globals</span></a></li>
+    </ul>
+  </div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_8dd540b382164c224dfa1eb6e8a3add6.html">vl</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#typedef-members">Typedefs</a>  </div>
+  <div class="headertitle">
+<div class="title">svmdataset.h File Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>SVM Dataset.  
+<a href="#details">More...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="generic_8h.html">generic.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="homkermap_8h.html">homkermap.h</a>&quot;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a5861f5083aeff8991fa982e4809c7258"><td class="memItemLeft" align="right" valign="top">typedef OPAQUE&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="svmdataset_8h.html#a5861f5083aeff8991fa982e4809c7258">VlSvmDataset</a></td></tr>
+<tr class="memdesc:a5861f5083aeff8991fa982e4809c7258"><td class="mdescLeft">&#160;</td><td class="mdescRight">SVM dataset object.  <a href="#a5861f5083aeff8991fa982e4809c7258">More...</a><br /></td></tr>
+<tr class="separator:a5861f5083aeff8991fa982e4809c7258"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">SVM callbacks</div></td></tr>
+<tr class="memitem:aa88e0bfe32f34da8904ce26fef46207f"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="svmdataset_8h.html#aa88e0bfe32f34da8904ce26fef46207f">VlSvmDiagnosticFunction</a> )(struct VlSvm_ *svm, void *data)</td></tr>
+<tr class="memdesc:aa88e0bfe32f34da8904ce26fef46207f"><td class="mdescLeft">&#160;</td><td class="mdescRight">SVM diagnostic function pointer.  <a href="#aa88e0bfe32f34da8904ce26fef46207f">More...</a><br /></td></tr>
+<tr class="separator:aa88e0bfe32f34da8904ce26fef46207f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e6f309e6cfe483680ae0b5baad6e63c"><td class="memItemLeft" align="right" valign="top">typedef double(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="svmdataset_8h.html#a0e6f309e6cfe483680ae0b5baad6e63c">VlSvmLossFunction</a> )(double inner, double label)</td></tr>
+<tr class="memdesc:a0e6f309e6cfe483680ae0b5baad6e63c"><td class="mdescLeft">&#160;</td><td class="mdescRight">SVM loss function pointer.  <a href="#a0e6f309e6cfe483680ae0b5baad6e63c">More...</a><br /></td></tr>
+<tr class="separator:a0e6f309e6cfe483680ae0b5baad6e63c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5bb6eb4863de6458604d5ddb77cdb057"><td class="memItemLeft" align="right" valign="top">typedef double(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="svmdataset_8h.html#a5bb6eb4863de6458604d5ddb77cdb057">VlSvmDcaUpdateFunction</a> )(double alpha, double inner, double norm2, double label)</td></tr>
+<tr class="memdesc:a5bb6eb4863de6458604d5ddb77cdb057"><td class="mdescLeft">&#160;</td><td class="mdescRight">SVM SDCA update function pointer.  <a href="#a5bb6eb4863de6458604d5ddb77cdb057">More...</a><br /></td></tr>
+<tr class="separator:a5bb6eb4863de6458604d5ddb77cdb057"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31cceb46535045f1176f718481569046"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a31cceb46535045f1176f718481569046"></a>
+typedef double(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="svmdataset_8h.html#a31cceb46535045f1176f718481569046">VlSvmInnerProductFunction</a> )(const void *data, <a class="el" href="host_8h.html#ac13bd3cc913e1da576e189a3ec8d66fc">vl_uindex</a> element, double *model)</td></tr>
+<tr class="memdesc:a31cceb46535045f1176f718481569046"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to a function that defines the inner product between the data point at position <em>element</em> and the SVM model. <br /></td></tr>
+<tr class="separator:a31cceb46535045f1176f718481569046"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afed5bca344240e8700ed1be9bf8567c1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afed5bca344240e8700ed1be9bf8567c1"></a>
+typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="svmdataset_8h.html#afed5bca344240e8700ed1be9bf8567c1">VlSvmAccumulateFunction</a> )(const void *data, <a class="el" href="host_8h.html#ac13bd3cc913e1da576e189a3ec8d66fc">vl_uindex</a> element, double *model, double multiplier)</td></tr>
+<tr class="memdesc:afed5bca344240e8700ed1be9bf8567c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to a function that adds to <em>model</em> the data point at position <em>element</em> multiplied by the constant <em>multiplier</em>. <br /></td></tr>
+<tr class="separator:afed5bca344240e8700ed1be9bf8567c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Create and destroy</div></td></tr>
+<tr class="memitem:aa418f02d933dd5f15267f42a6425cfe1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="svmdataset_8h.html#a5861f5083aeff8991fa982e4809c7258">VlSvmDataset</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="svmdataset_8h.html#aa418f02d933dd5f15267f42a6425cfe1">vl_svmdataset_new</a> (vl_type dataType, void *data, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> dimension, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> numData)</td></tr>
+<tr class="memdesc:aa418f02d933dd5f15267f42a6425cfe1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new object wrapping a dataset.  <a href="#aa418f02d933dd5f15267f42a6425cfe1">More...</a><br /></td></tr>
+<tr class="separator:aa418f02d933dd5f15267f42a6425cfe1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea5a446f62eb3ad21269f6a660b03bee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="svmdataset_8h.html#aea5a446f62eb3ad21269f6a660b03bee">vl_svmdataset_delete</a> (<a class="el" href="svmdataset_8h.html#a5861f5083aeff8991fa982e4809c7258">VlSvmDataset</a> *dataset)</td></tr>
+<tr class="memdesc:aea5a446f62eb3ad21269f6a660b03bee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete the object.  <a href="#aea5a446f62eb3ad21269f6a660b03bee">More...</a><br /></td></tr>
+<tr class="separator:aea5a446f62eb3ad21269f6a660b03bee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Set parameters</div></td></tr>
+<tr class="memitem:a6e72d282d3bb7e05410efe5d28026ad2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="svmdataset_8h.html#a6e72d282d3bb7e05410efe5d28026ad2">vl_svmdataset_set_homogeneous_kernel_map</a> (<a class="el" href="svmdataset_8h.html#a5861f5083aeff8991fa982e4809c7258">VlSvmDataset</a> *self, <a class="el" href="homkermap_8h.html#a5606496b3524c531aef85d63e1f7d0d9">VlHomogeneousKernelMap</a> *hom)</td></tr>
+<tr class="memdesc:a6e72d282d3bb7e05410efe5d28026ad2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the homogeneous kernel map object.  <a href="#a6e72d282d3bb7e05410efe5d28026ad2">More...</a><br /></td></tr>
+<tr class="separator:a6e72d282d3bb7e05410efe5d28026ad2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Get data and parameters</div></td></tr>
+<tr class="memitem:a33b791a16f490aaf128d4081f7ef223d"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="svmdataset_8h.html#a33b791a16f490aaf128d4081f7ef223d">vl_svmdataset_get_data</a> (<a class="el" href="svmdataset_8h.html#a5861f5083aeff8991fa982e4809c7258">VlSvmDataset</a> const *self)</td></tr>
+<tr class="memdesc:a33b791a16f490aaf128d4081f7ef223d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the wrapped data.  <a href="#a33b791a16f490aaf128d4081f7ef223d">More...</a><br /></td></tr>
+<tr class="separator:a33b791a16f490aaf128d4081f7ef223d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e26f54293c5999f146c1275662c96ae"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="svmdataset_8h.html#a9e26f54293c5999f146c1275662c96ae">vl_svmdataset_get_num_data</a> (<a class="el" href="svmdataset_8h.html#a5861f5083aeff8991fa982e4809c7258">VlSvmDataset</a> const *self)</td></tr>
+<tr class="memdesc:a9e26f54293c5999f146c1275662c96ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of wrapped data elements.  <a href="#a9e26f54293c5999f146c1275662c96ae">More...</a><br /></td></tr>
+<tr class="separator:a9e26f54293c5999f146c1275662c96ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7651f4dde6a4f607ce609eafbe8e9556"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="svmdataset_8h.html#a7651f4dde6a4f607ce609eafbe8e9556">vl_svmdataset_get_dimension</a> (<a class="el" href="svmdataset_8h.html#a5861f5083aeff8991fa982e4809c7258">VlSvmDataset</a> const *self)</td></tr>
+<tr class="memdesc:a7651f4dde6a4f607ce609eafbe8e9556"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the dimension of the wrapped data.  <a href="#a7651f4dde6a4f607ce609eafbe8e9556">More...</a><br /></td></tr>
+<tr class="separator:a7651f4dde6a4f607ce609eafbe8e9556"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa412e1cd79613d8c2bee54271197ef4e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa412e1cd79613d8c2bee54271197ef4e"></a>
+void *&#160;</td><td class="memItemRight" valign="bottom"><b>vl_svmdataset_get_map</b> (<a class="el" href="svmdataset_8h.html#a5861f5083aeff8991fa982e4809c7258">VlSvmDataset</a> const *self)</td></tr>
+<tr class="separator:aa412e1cd79613d8c2bee54271197ef4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a198d9cc3e78ef075f8907a4b80615461"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a198d9cc3e78ef075f8907a4b80615461"></a>
+<a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td><td class="memItemRight" valign="bottom"><b>vl_svmdataset_get_mapDim</b> (<a class="el" href="svmdataset_8h.html#a5861f5083aeff8991fa982e4809c7258">VlSvmDataset</a> const *self)</td></tr>
+<tr class="separator:a198d9cc3e78ef075f8907a4b80615461"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af311a005cf80188b291848969116c795"><td class="memItemLeft" align="right" valign="top"><a class="el" href="svmdataset_8h.html#afed5bca344240e8700ed1be9bf8567c1">VlSvmAccumulateFunction</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="svmdataset_8h.html#af311a005cf80188b291848969116c795">vl_svmdataset_get_accumulate_function</a> (<a class="el" href="svmdataset_8h.html#a5861f5083aeff8991fa982e4809c7258">VlSvmDataset</a> const *self)</td></tr>
+<tr class="memdesc:af311a005cf80188b291848969116c795"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the accumulate function.  <a href="#af311a005cf80188b291848969116c795">More...</a><br /></td></tr>
+<tr class="separator:af311a005cf80188b291848969116c795"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9eb6105fde6800091886cfd9f3f95927"><td class="memItemLeft" align="right" valign="top"><a class="el" href="svmdataset_8h.html#a31cceb46535045f1176f718481569046">VlSvmInnerProductFunction</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="svmdataset_8h.html#a9eb6105fde6800091886cfd9f3f95927">vl_svmdataset_get_inner_product_function</a> (<a class="el" href="svmdataset_8h.html#a5861f5083aeff8991fa982e4809c7258">VlSvmDataset</a> const *self)</td></tr>
+<tr class="memdesc:a9eb6105fde6800091886cfd9f3f95927"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the inner product function.  <a href="#a9eb6105fde6800091886cfd9f3f95927">More...</a><br /></td></tr>
+<tr class="separator:a9eb6105fde6800091886cfd9f3f95927"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b69e75bd761251792dcf0cdf106f375"><td class="memItemLeft" align="right" valign="top"><a class="el" href="homkermap_8h.html#a5606496b3524c531aef85d63e1f7d0d9">VlHomogeneousKernelMap</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="svmdataset_8h.html#a5b69e75bd761251792dcf0cdf106f375">vl_svmdataset_get_homogeneous_kernel_map</a> (<a class="el" href="svmdataset_8h.html#a5861f5083aeff8991fa982e4809c7258">VlSvmDataset</a> const *self)</td></tr>
+<tr class="memdesc:a5b69e75bd761251792dcf0cdf106f375"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the homogeneous kernel map object.  <a href="#a5b69e75bd761251792dcf0cdf106f375">More...</a><br /></td></tr>
+<tr class="separator:a5b69e75bd761251792dcf0cdf106f375"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><dl class="section author"><dt>Author</dt><dd>Daniele Perrone </dd>
+<dd>
+Andrea Vedaldi</dd></dl>
+<p>The SVM solver object <a class="el" href="svm_8h.html#ad54eb871794742668e91b2e73c6f8ea4" title="SVM solver. This object implements VLFeat SVM solvers (see svm.h). ">VlSvm</a>, supporting SVM learning in VLFeat, uses an abstraction mechanism to work on arbitrary data types. This module provides an helper object, <a class="el" href="svmdataset_8h.html#a5861f5083aeff8991fa982e4809c7258" title="SVM dataset object. ">VlSvmDataset</a>, that simplify taking advantage of this functionality, supporting for example different data types and the computation of feature maps out of the box.</p>
+<h1><a class="anchor" id="svmdataset-starting"></a>
+Getting started</h1>
+<p>As discussed in <a class="el" href="svm-advanced.html">Advanced SVM topics</a>, most linear SVM solvers, such as the ones implemented in VLFeat in <a class="el" href="svm.html">Support Vector Machines (SVM)</a>, require only two operations to be defined on the data:</p>
+<ul>
+<li><em>Inner product</em> between a data point \(\bx\) and the model vector \(\bw\). This is implemented by a function of type <a class="el" href="svmdataset_8h.html#a31cceb46535045f1176f718481569046" title="Pointer to a function that defines the inner product between the data point at position element and t...">VlSvmInnerProductFunction</a>.</li>
+<li><em>Accumulation</em> of a dataobint \(\bx\) to the model vector \(\bw\): \(\bw \leftarrow \bw + \alpha \bx\). This is implemented by a function of the type <a class="el" href="svmdataset_8h.html#afed5bca344240e8700ed1be9bf8567c1" title="Pointer to a function that adds to model the data point at position element multiplied by the constan...">VlSvmAccumulateFunction</a> .</li>
+</ul>
+<p>The SVM solver needs to know nothing about the data once these two operations are defined. These functions can do any number of things, such as supporting different formats for the data (dense or sparse, float or double), computing feature maps, or expanding compressed representations such as Product Quantization.</p>
+<p>VLFeat provides the helper object <a class="el" href="svmdataset_8h.html#a5861f5083aeff8991fa982e4809c7258" title="SVM dataset object. ">VlSvmDataset</a> to support some of these functionalities out of the box (it is important to remark that its use with the SVM solver <a class="el" href="svm_8h.html#ad54eb871794742668e91b2e73c6f8ea4" title="SVM solver. This object implements VLFeat SVM solvers (see svm.h). ">VlSvm</a> is entirely optional).</p>
+<p>Presently, <a class="el" href="svmdataset_8h.html#a5861f5083aeff8991fa982e4809c7258" title="SVM dataset object. ">VlSvmDataset</a> supports:</p>
+<ul>
+<li><code>float</code> and <code>double</code> dense arrays.</li>
+<li>The on-the-fly application of the homogeneous kernel map to implement additive non-linear kernels (see <a class="el" href="homkermap.html">Homogeneous kernel map</a>).</li>
+</ul>
+<p>For example, to learn a linear SVM on SINGLE data:</p>
+<div class="fragment"><div class="line"><span class="keywordtype">int</span> main()</div>
+<div class="line">{</div>
+<div class="line">  <a class="code" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> <span class="keyword">const</span> numData = 4 ;</div>
+<div class="line">  <a class="code" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> <span class="keyword">const</span> dimension = 2 ;</div>
+<div class="line">  single x [dimension * numData] = {</div>
+<div class="line">    0.0, -0.5,</div>
+<div class="line">    0.6, -0.3,</div>
+<div class="line">    0.0,  0.5,</div>
+<div class="line">    0.6,  0.0} ;</div>
+<div class="line">  <span class="keywordtype">double</span> y [numData] = {1, 1, -1, 1} ;</div>
+<div class="line">  <span class="keywordtype">double</span> lambda = 0.01;</div>
+<div class="line">  <span class="keywordtype">double</span> * <span class="keyword">const</span> model ;</div>
+<div class="line">  <span class="keywordtype">double</span> bias ;</div>
+<div class="line"></div>
+<div class="line">  <a class="code" href="svmdataset_8h.html#a5861f5083aeff8991fa982e4809c7258">VlSvmDataset</a> * dataset = <a class="code" href="svmdataset_8c.html#aa418f02d933dd5f15267f42a6425cfe1">vl_svmdataset_new</a> (VL_TYPE_SINGLE, x, dimension, numData) ;</div>
+<div class="line">  <a class="code" href="svm_8h.html#ad54eb871794742668e91b2e73c6f8ea4">VlSvm</a> * svm = <a class="code" href="svm_8c.html#aec64380a2d230ae5144723b67bfc3be2">vl_svm_new_with_dataset</a> (<a class="code" href="svm_8h.html#a0c5120e756a9a2b06d23130d54db90c9ad7ec41888bf7474e5d92a8b0f0dfa05a">VlSvmSolverSgd</a>, dataset, y, lambda) ;</div>
+<div class="line"></div>
+<div class="line">  <a class="code" href="svm_8c.html#a0812e42b5511e8da15b9a283a0564d02">vl_svm_train</a>(svm) ;</div>
+<div class="line"></div>
+<div class="line">  model = <a class="code" href="svm_8c.html#ac397b10574449237e2c736c775607edb">vl_svm_get_model</a>(svm) ;</div>
+<div class="line">  bias = <a class="code" href="svm_8c.html#aa7fb1a06113795e0fd1f24ce99324981">vl_svm_get_bias</a>(svm) ;</div>
+<div class="line"></div>
+<div class="line">  printf(<span class="stringliteral">&quot;model w = [ %f , %f ] , bias b = %f \n&quot;</span>,</div>
+<div class="line">         model[0],</div>
+<div class="line">         model[1],</div>
+<div class="line">         bias);</div>
+<div class="line"></div>
+<div class="line">  <a class="code" href="svm_8c.html#a473c326f265db2ad4752e514b86f2786">vl_svm_delete</a>(svm) ;</div>
+<div class="line">  <a class="code" href="svmdataset_8c.html#af0085da6bb1cca9fc48ecfb267b107d5">vl_svmdataset_delete</a>(dataset) ;</div>
+<div class="line">  <span class="keywordflow">return</span> 0;</div>
+<div class="line">}</div>
+</div><!-- fragment --><dl class="section author"><dt>Author</dt><dd>Daniele Perrone </dd>
+<dd>
+Andrea Vedaldi </dd></dl>
+</div><h2 class="groupheader">Typedef Documentation</h2>
+<a class="anchor" id="a5861f5083aeff8991fa982e4809c7258"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="svmdataset_8h.html#a5861f5083aeff8991fa982e4809c7258">VlSvmDataset</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This objects contain a training set to be used in combination with the SVM solver object <a class="el" href="svm_8h.html#ad54eb871794742668e91b2e73c6f8ea4" title="SVM solver. This object implements VLFeat SVM solvers (see svm.h). ">VlSvm</a>. Its main purpose is to implement the two basic operations inner product (<a class="el" href="svmdataset_8h.html#a31cceb46535045f1176f718481569046" title="Pointer to a function that defines the inner product between the data point at position element and t...">VlSvmInnerProductFunction</a>) and accumulation (<a class="el" href="svmdataset_8h.html#afed5bca344240e8700ed1be9bf8567c1" title="Pointer to a function that adds to model the data point at position element multiplied by the constan...">VlSvmAccumulateFunction</a>).</p>
+<p>See <a class="el" href="svm.html">Support Vector Machines (SVM)</a> and <a class="el" href="svm-advanced.html">Advanced SVM topics</a> for further information. </p>
+
+</div>
+</div>
+<a class="anchor" id="a5bb6eb4863de6458604d5ddb77cdb057"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">VlSvmDcaUpdateFunction</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">alpha</td><td>current value of the dual variable. </td></tr>
+    <tr><td class="paramname">inner</td><td>inner product \(\bw^\top \bx\) of the sample with the SVM model. </td></tr>
+    <tr><td class="paramname">norm2</td><td>normalization factor \(\|\bx\|^2/\lambda n\). </td></tr>
+    <tr><td class="paramname">label</td><td>label \(y\) of the sample. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>incremental update \(\Delta\alpha\) of the dual variable.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="svm-sdca.html">Stochastic Dual Coordinate Ascent</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aa88e0bfe32f34da8904ce26fef46207f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">VlSvmDiagnosticFunction</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">svm</td><td>is an instance of <a class="el" href="svm_8h.html#ad54eb871794742668e91b2e73c6f8ea4" title="SVM solver. This object implements VLFeat SVM solvers (see svm.h). ">VlSvm</a> . </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a0e6f309e6cfe483680ae0b5baad6e63c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">VlSvmLossFunction</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">inner</td><td>inner product between sample and model \(\bw^\top \bx\). </td></tr>
+    <tr><td class="paramname">label</td><td>sample label \(y\). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>value of the loss.</dd></dl>
+<p>The interface is the same for a loss function, its derivative, or the conjugate loss.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="svm-fundamentals.html">SVM fundamentals</a> </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="aea5a446f62eb3ad21269f6a660b03bee"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_svmdataset_delete </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="svmdataset_8h.html#a5861f5083aeff8991fa982e4809c7258">VlSvmDataset</a> *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object to delete.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The function frees the resources allocated by <a class="el" href="svmdataset_8c.html#aa418f02d933dd5f15267f42a6425cfe1" title="Create a new object wrapping a dataset. ">vl_svmdataset_new()</a>. Notice that the wrapped data will <em>not</em> be freed as it is not owned by the object. </p>
+
+</div>
+</div>
+<a class="anchor" id="af311a005cf80188b291848969116c795"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="svmdataset_8h.html#afed5bca344240e8700ed1be9bf8567c1">VlSvmAccumulateFunction</a> vl_svmdataset_get_accumulate_function </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="svmdataset_8h.html#a5861f5083aeff8991fa982e4809c7258">VlSvmDataset</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a pointer to the accumulate function to use with this data. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a33b791a16f490aaf128d4081f7ef223d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* vl_svmdataset_get_data </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="svmdataset_8h.html#a5861f5083aeff8991fa982e4809c7258">VlSvmDataset</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a pointer to the wrapped data. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a7651f4dde6a4f607ce609eafbe8e9556"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> vl_svmdataset_get_dimension </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="svmdataset_8h.html#a5861f5083aeff8991fa982e4809c7258">VlSvmDataset</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>dimension of the wrapped data. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a5b69e75bd761251792dcf0cdf106f375"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="homkermap_8h.html#a5606496b3524c531aef85d63e1f7d0d9">VlHomogeneousKernelMap</a>* vl_svmdataset_get_homogeneous_kernel_map </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="svmdataset_8h.html#a5861f5083aeff8991fa982e4809c7258">VlSvmDataset</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>homogenoeus kernel map object (or <code>NULL</code> if any). </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a9eb6105fde6800091886cfd9f3f95927"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="svmdataset_8h.html#a31cceb46535045f1176f718481569046">VlSvmInnerProductFunction</a> vl_svmdataset_get_inner_product_function </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="svmdataset_8h.html#a5861f5083aeff8991fa982e4809c7258">VlSvmDataset</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a pointer to the inner product function to use with this data. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a9e26f54293c5999f146c1275662c96ae"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> vl_svmdataset_get_num_data </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="svmdataset_8h.html#a5861f5083aeff8991fa982e4809c7258">VlSvmDataset</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>number of wrapped data elements. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aa418f02d933dd5f15267f42a6425cfe1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="svmdataset_8h.html#a5861f5083aeff8991fa982e4809c7258">VlSvmDataset</a>* vl_svmdataset_new </td>
+          <td>(</td>
+          <td class="paramtype">vl_type&#160;</td>
+          <td class="paramname"><em>dataType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>dimension</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>numData</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dataType</td><td>of data (<code>float</code> and <code>double</code> supported). </td></tr>
+    <tr><td class="paramname">data</td><td>pointer to the data. </td></tr>
+    <tr><td class="paramname">dimension</td><td>the dimension of a data vector. </td></tr>
+    <tr><td class="paramname">numData</td><td>number of wrapped data vectors. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>new object.</dd></dl>
+<p>The function allocates and returns a new SVM dataset object wrapping the data pointed by <em>data</em>. Note that no copy is made of data, so the caller should keep the data allocated as the object exists.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="svmdataset_8c.html#af0085da6bb1cca9fc48ecfb267b107d5" title="Delete the object. ">vl_svmdataset_delete</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a6e72d282d3bb7e05410efe5d28026ad2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_svmdataset_set_homogeneous_kernel_map </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="svmdataset_8h.html#a5861f5083aeff8991fa982e4809c7258">VlSvmDataset</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="homkermap_8h.html#a5606496b3524c531aef85d63e1f7d0d9">VlHomogeneousKernelMap</a> *&#160;</td>
+          <td class="paramname"><em>hom</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object. </td></tr>
+    <tr><td class="paramname">hom</td><td>homogeneous kernel map object to use.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>After changing the kernel map, the inner product and accumulator function should be queried again (<a class="el" href="svmdataset_8c.html#a9eb6105fde6800091886cfd9f3f95927" title="Get the inner product function. ">vl_svmdataset_get_inner_product_function</a> adn <a class="el" href="svmdataset_8c.html#af311a005cf80188b291848969116c795" title="Get the accumulate function. ">vl_svmdataset_get_accumulate_function</a>).</p>
+<p>Set this to <code>NULL</code> to avoid using a kernel map.</p>
+<p>Note that this does <em>not</em> transfer the ownership of the object to the function. Furthermore, <a class="el" href="svmdataset_8h.html#a5861f5083aeff8991fa982e4809c7258" title="SVM dataset object. ">VlSvmDataset</a> holds to the object until it is destroyed or the object is replaced or removed by calling this function again. </p>
+
+</div>
+</div>
+</div><!-- contents -->
+        <!-- Doc Here -->
+      </div>
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>

@@ -1,0 +1,527 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+
+  <!-- Page title -->
+  <title>VLFeat - Applications > phow_caltech101.m</title>
+
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  
+
+  <!-- Scripts-->
+  
+
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li class='active'><a href="apps.html">Applications</a>
+</li>
+<li><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li><a href="../api/index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="apps.html">Applications</a></span><span class='separator'>></span><span class='page'><a href="caltech-101-code.html">phow_caltech101.m</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+        
+  <div class="highlight"><pre><span class="k">function</span><span class="w"> </span><span class="nf">phow_caltech101</span><span class="p">()</span><span class="w"></span>
+<span class="c">% PHOW_CALTECH101 Image classification in the Caltech-101 dataset</span>
+<span class="c">%   This program demonstrates how to use VLFeat to construct an image</span>
+<span class="c">%   classifier on the Caltech-101 data. The classifier uses PHOW</span>
+<span class="c">%   features (dense SIFT), spatial histograms of visual words, and a</span>
+<span class="c">%   Chi2 SVM. To speedup computation it uses VLFeat fast dense SIFT,</span>
+<span class="c">%   kd-trees, and homogeneous kernel map. The program also</span>
+<span class="c">%   demonstrates VLFeat PEGASOS SVM solver, although for this small</span>
+<span class="c">%   dataset other solvers such as LIBLINEAR can be more efficient.</span>
+<span class="c">%</span>
+<span class="c">%   By default 15 training images are used, which should result in</span>
+<span class="c">%   about 64% performance (a good performance considering that only a</span>
+<span class="c">%   single feature type is being used).</span>
+<span class="c">%</span>
+<span class="c">%   Call PHOW_CALTECH101 to train and test a classifier on a small</span>
+<span class="c">%   subset of the Caltech-101 data. Note that the program</span>
+<span class="c">%   automatically downloads a copy of the Caltech-101 data from the</span>
+<span class="c">%   Internet if it cannot find a local copy.</span>
+<span class="c">%</span>
+<span class="c">%   Edit the PHOW_CALTECH101 file to change the program configuration.</span>
+<span class="c">%</span>
+<span class="c">%   To run on the entire dataset change CONF.TINYPROBLEM to FALSE.</span>
+<span class="c">%</span>
+<span class="c">%   The Caltech-101 data is saved into CONF.CALDIR, which defaults to</span>
+<span class="c">%   &#39;data/caltech-101&#39;. Change this path to the desired location, for</span>
+<span class="c">%   instance to point to an existing copy of the Caltech-101 data.</span>
+<span class="c">%</span>
+<span class="c">%   The program can also be used to train a model on custom data by</span>
+<span class="c">%   pointing CONF.CALDIR to it. Just create a subdirectory for each</span>
+<span class="c">%   class and put the training images there. Make sure to adjust</span>
+<span class="c">%   CONF.NUMTRAIN accordingly.</span>
+<span class="c">%</span>
+<span class="c">%   Intermediate files are stored in the directory CONF.DATADIR. All</span>
+<span class="c">%   such files begin with the prefix CONF.PREFIX, which can be changed</span>
+<span class="c">%   to test different parameter settings without overriding previous</span>
+<span class="c">%   results.</span>
+<span class="c">%</span>
+<span class="c">%   The program saves the trained model in</span>
+<span class="c">%   &lt;CONF.DATADIR&gt;/&lt;CONF.PREFIX&gt;-model.mat. This model can be used to</span>
+<span class="c">%   test novel images independently of the Caltech data.</span>
+<span class="c">%</span>
+<span class="c">%     load(&#39;data/baseline-model.mat&#39;) ; # change to the model path</span>
+<span class="c">%     label = model.classify(model, im) ;</span>
+<span class="c">%</span>
+
+<span class="c">% Author: Andrea Vedaldi</span>
+
+<span class="c">% Copyright (C) 2011-2013 Andrea Vedaldi</span>
+<span class="c">% All rights reserved.</span>
+<span class="c">%</span>
+<span class="c">% This file is part of the VLFeat library and is made available under</span>
+<span class="c">% the terms of the BSD license (see the COPYING file).</span>
+
+<span class="n">conf</span><span class="p">.</span><span class="n">calDir</span> <span class="p">=</span> <span class="s">&#39;data/caltech-101&#39;</span> <span class="p">;</span>
+<span class="n">conf</span><span class="p">.</span><span class="n">dataDir</span> <span class="p">=</span> <span class="s">&#39;data/&#39;</span> <span class="p">;</span>
+<span class="n">conf</span><span class="p">.</span><span class="n">autoDownloadData</span> <span class="p">=</span> <span class="n">true</span> <span class="p">;</span>
+<span class="n">conf</span><span class="p">.</span><span class="n">numTrain</span> <span class="p">=</span> <span class="mi">15</span> <span class="p">;</span>
+<span class="n">conf</span><span class="p">.</span><span class="n">numTest</span> <span class="p">=</span> <span class="mi">15</span> <span class="p">;</span>
+<span class="n">conf</span><span class="p">.</span><span class="n">numClasses</span> <span class="p">=</span> <span class="mi">102</span> <span class="p">;</span>
+<span class="n">conf</span><span class="p">.</span><span class="n">numWords</span> <span class="p">=</span> <span class="mi">600</span> <span class="p">;</span>
+<span class="n">conf</span><span class="p">.</span><span class="n">numSpatialX</span> <span class="p">=</span> <span class="p">[</span><span class="mi">2</span> <span class="mi">4</span><span class="p">]</span> <span class="p">;</span>
+<span class="n">conf</span><span class="p">.</span><span class="n">numSpatialY</span> <span class="p">=</span> <span class="p">[</span><span class="mi">2</span> <span class="mi">4</span><span class="p">]</span> <span class="p">;</span>
+<span class="n">conf</span><span class="p">.</span><span class="n">quantizer</span> <span class="p">=</span> <span class="s">&#39;kdtree&#39;</span> <span class="p">;</span>
+<span class="n">conf</span><span class="p">.</span><span class="n">svm</span><span class="p">.</span><span class="n">C</span> <span class="p">=</span> <span class="mi">10</span> <span class="p">;</span>
+
+<span class="n">conf</span><span class="p">.</span><span class="n">svm</span><span class="p">.</span><span class="n">solver</span> <span class="p">=</span> <span class="s">&#39;sdca&#39;</span> <span class="p">;</span>
+<span class="c">%conf.svm.solver = &#39;sgd&#39; ;</span>
+<span class="c">%conf.svm.solver = &#39;liblinear&#39; ;</span>
+
+<span class="n">conf</span><span class="p">.</span><span class="n">svm</span><span class="p">.</span><span class="n">biasMultiplier</span> <span class="p">=</span> <span class="mi">1</span> <span class="p">;</span>
+<span class="n">conf</span><span class="p">.</span><span class="n">phowOpts</span> <span class="p">=</span> <span class="p">{</span><span class="s">&#39;Step&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">}</span> <span class="p">;</span>
+<span class="n">conf</span><span class="p">.</span><span class="n">clobber</span> <span class="p">=</span> <span class="n">false</span> <span class="p">;</span>
+<span class="n">conf</span><span class="p">.</span><span class="n">tinyProblem</span> <span class="p">=</span> <span class="n">true</span> <span class="p">;</span>
+<span class="n">conf</span><span class="p">.</span><span class="n">prefix</span> <span class="p">=</span> <span class="s">&#39;baseline&#39;</span> <span class="p">;</span>
+<span class="n">conf</span><span class="p">.</span><span class="n">randSeed</span> <span class="p">=</span> <span class="mi">1</span> <span class="p">;</span>
+
+<span class="k">if</span> <span class="n">conf</span><span class="p">.</span><span class="n">tinyProblem</span>
+  <span class="n">conf</span><span class="p">.</span><span class="n">prefix</span> <span class="p">=</span> <span class="s">&#39;tiny&#39;</span> <span class="p">;</span>
+  <span class="n">conf</span><span class="p">.</span><span class="n">numClasses</span> <span class="p">=</span> <span class="mi">5</span> <span class="p">;</span>
+  <span class="n">conf</span><span class="p">.</span><span class="n">numSpatialX</span> <span class="p">=</span> <span class="mi">2</span> <span class="p">;</span>
+  <span class="n">conf</span><span class="p">.</span><span class="n">numSpatialY</span> <span class="p">=</span> <span class="mi">2</span> <span class="p">;</span>
+  <span class="n">conf</span><span class="p">.</span><span class="n">numWords</span> <span class="p">=</span> <span class="mi">300</span> <span class="p">;</span>
+  <span class="n">conf</span><span class="p">.</span><span class="n">phowOpts</span> <span class="p">=</span> <span class="p">{</span><span class="s">&#39;Verbose&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s">&#39;Sizes&#39;</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="s">&#39;Step&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">}</span> <span class="p">;</span>
+<span class="k">end</span>
+
+<span class="n">conf</span><span class="p">.</span><span class="n">vocabPath</span> <span class="p">=</span> <span class="n">fullfile</span><span class="p">(</span><span class="n">conf</span><span class="p">.</span><span class="n">dataDir</span><span class="p">,</span> <span class="p">[</span><span class="n">conf</span><span class="p">.</span><span class="n">prefix</span> <span class="s">&#39;-vocab.mat&#39;</span><span class="p">])</span> <span class="p">;</span>
+<span class="n">conf</span><span class="p">.</span><span class="n">histPath</span> <span class="p">=</span> <span class="n">fullfile</span><span class="p">(</span><span class="n">conf</span><span class="p">.</span><span class="n">dataDir</span><span class="p">,</span> <span class="p">[</span><span class="n">conf</span><span class="p">.</span><span class="n">prefix</span> <span class="s">&#39;-hists.mat&#39;</span><span class="p">])</span> <span class="p">;</span>
+<span class="n">conf</span><span class="p">.</span><span class="n">modelPath</span> <span class="p">=</span> <span class="n">fullfile</span><span class="p">(</span><span class="n">conf</span><span class="p">.</span><span class="n">dataDir</span><span class="p">,</span> <span class="p">[</span><span class="n">conf</span><span class="p">.</span><span class="n">prefix</span> <span class="s">&#39;-model.mat&#39;</span><span class="p">])</span> <span class="p">;</span>
+<span class="n">conf</span><span class="p">.</span><span class="n">resultPath</span> <span class="p">=</span> <span class="n">fullfile</span><span class="p">(</span><span class="n">conf</span><span class="p">.</span><span class="n">dataDir</span><span class="p">,</span> <span class="p">[</span><span class="n">conf</span><span class="p">.</span><span class="n">prefix</span> <span class="s">&#39;-result&#39;</span><span class="p">])</span> <span class="p">;</span>
+
+<span class="nb">randn</span><span class="p">(</span><span class="s">&#39;state&#39;</span><span class="p">,</span><span class="n">conf</span><span class="p">.</span><span class="n">randSeed</span><span class="p">)</span> <span class="p">;</span>
+<span class="nb">rand</span><span class="p">(</span><span class="s">&#39;state&#39;</span><span class="p">,</span><span class="n">conf</span><span class="p">.</span><span class="n">randSeed</span><span class="p">)</span> <span class="p">;</span>
+<span class="n">vl_twister</span><span class="p">(</span><span class="s">&#39;state&#39;</span><span class="p">,</span><span class="n">conf</span><span class="p">.</span><span class="n">randSeed</span><span class="p">)</span> <span class="p">;</span>
+
+<span class="c">% --------------------------------------------------------------------</span>
+<span class="c">%                                            Download Caltech-101 data</span>
+<span class="c">% --------------------------------------------------------------------</span>
+
+<span class="k">if</span> <span class="o">~</span><span class="n">exist</span><span class="p">(</span><span class="n">conf</span><span class="p">.</span><span class="n">calDir</span><span class="p">,</span> <span class="s">&#39;dir&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="c">...</span>
+   <span class="p">(</span><span class="o">~</span><span class="n">exist</span><span class="p">(</span><span class="n">fullfile</span><span class="p">(</span><span class="n">conf</span><span class="p">.</span><span class="n">calDir</span><span class="p">,</span> <span class="s">&#39;airplanes&#39;</span><span class="p">),</span><span class="s">&#39;dir&#39;</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="c">...</span>
+    <span class="o">~</span><span class="n">exist</span><span class="p">(</span><span class="n">fullfile</span><span class="p">(</span><span class="n">conf</span><span class="p">.</span><span class="n">calDir</span><span class="p">,</span> <span class="s">&#39;101_ObjectCategories&#39;</span><span class="p">,</span> <span class="s">&#39;airplanes&#39;</span><span class="p">)))</span>
+  <span class="k">if</span> <span class="o">~</span><span class="n">conf</span><span class="p">.</span><span class="n">autoDownloadData</span>
+    <span class="n">error</span><span class="p">(</span><span class="c">...</span>
+      <span class="p">[</span><span class="s">&#39;Caltech-101 data not found. &#39;</span> <span class="c">...</span>
+       <span class="s">&#39;Set conf.autoDownloadData=true to download the required data.&#39;</span><span class="p">])</span> <span class="p">;</span>
+  <span class="k">end</span>
+  <span class="n">vl_xmkdir</span><span class="p">(</span><span class="n">conf</span><span class="p">.</span><span class="n">calDir</span><span class="p">)</span> <span class="p">;</span>
+  <span class="n">calUrl</span> <span class="p">=</span> <span class="p">[</span><span class="s">&#39;http://www.vision.caltech.edu/Image_Datasets/&#39;</span> <span class="c">...</span>
+    <span class="s">&#39;Caltech101/101_ObjectCategories.tar.gz&#39;</span><span class="p">]</span> <span class="p">;</span>
+  <span class="n">fprintf</span><span class="p">(</span><span class="s">&#39;Downloading Caltech-101 data to &#39;&#39;%s&#39;&#39;. This will take a while.&#39;</span><span class="p">,</span> <span class="n">conf</span><span class="p">.</span><span class="n">calDir</span><span class="p">)</span> <span class="p">;</span>
+  <span class="n">untar</span><span class="p">(</span><span class="n">calUrl</span><span class="p">,</span> <span class="n">conf</span><span class="p">.</span><span class="n">calDir</span><span class="p">)</span> <span class="p">;</span>
+<span class="k">end</span>
+
+<span class="k">if</span> <span class="o">~</span><span class="n">exist</span><span class="p">(</span><span class="n">fullfile</span><span class="p">(</span><span class="n">conf</span><span class="p">.</span><span class="n">calDir</span><span class="p">,</span> <span class="s">&#39;airplanes&#39;</span><span class="p">),</span><span class="s">&#39;dir&#39;</span><span class="p">)</span>
+  <span class="n">conf</span><span class="p">.</span><span class="n">calDir</span> <span class="p">=</span> <span class="n">fullfile</span><span class="p">(</span><span class="n">conf</span><span class="p">.</span><span class="n">calDir</span><span class="p">,</span> <span class="s">&#39;101_ObjectCategories&#39;</span><span class="p">)</span> <span class="p">;</span>
+<span class="k">end</span>
+
+<span class="c">% --------------------------------------------------------------------</span>
+<span class="c">%                                                           Setup data</span>
+<span class="c">% --------------------------------------------------------------------</span>
+<span class="n">classes</span> <span class="p">=</span> <span class="n">dir</span><span class="p">(</span><span class="n">conf</span><span class="p">.</span><span class="n">calDir</span><span class="p">)</span> <span class="p">;</span>
+<span class="n">classes</span> <span class="p">=</span> <span class="n">classes</span><span class="p">([</span><span class="n">classes</span><span class="p">.</span><span class="n">isdir</span><span class="p">])</span> <span class="p">;</span>
+<span class="n">classes</span> <span class="p">=</span> <span class="p">{</span><span class="n">classes</span><span class="p">(</span><span class="mi">3</span><span class="p">:</span><span class="n">conf</span><span class="p">.</span><span class="n">numClasses</span><span class="o">+</span><span class="mi">2</span><span class="p">).</span><span class="n">name</span><span class="p">}</span> <span class="p">;</span>
+
+<span class="n">images</span> <span class="p">=</span> <span class="p">{}</span> <span class="p">;</span>
+<span class="n">imageClass</span> <span class="p">=</span> <span class="p">{}</span> <span class="p">;</span>
+<span class="k">for</span> <span class="n">ci</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="nb">length</span><span class="p">(</span><span class="n">classes</span><span class="p">)</span>
+  <span class="n">ims</span> <span class="p">=</span> <span class="n">dir</span><span class="p">(</span><span class="n">fullfile</span><span class="p">(</span><span class="n">conf</span><span class="p">.</span><span class="n">calDir</span><span class="p">,</span> <span class="n">classes</span><span class="p">{</span><span class="n">ci</span><span class="p">},</span> <span class="s">&#39;*.jpg&#39;</span><span class="p">))</span><span class="o">&#39;</span> <span class="p">;</span>
+  <span class="n">ims</span> <span class="p">=</span> <span class="n">vl_colsubset</span><span class="p">(</span><span class="n">ims</span><span class="p">,</span> <span class="n">conf</span><span class="p">.</span><span class="n">numTrain</span> <span class="o">+</span> <span class="n">conf</span><span class="p">.</span><span class="n">numTest</span><span class="p">)</span> <span class="p">;</span>
+  <span class="n">ims</span> <span class="p">=</span> <span class="n">cellfun</span><span class="p">(@(</span><span class="n">x</span><span class="p">)</span><span class="n">fullfile</span><span class="p">(</span><span class="n">classes</span><span class="p">{</span><span class="n">ci</span><span class="p">},</span><span class="n">x</span><span class="p">),{</span><span class="n">ims</span><span class="p">.</span><span class="n">name</span><span class="p">},</span><span class="s">&#39;UniformOutput&#39;</span><span class="p">,</span><span class="n">false</span><span class="p">)</span> <span class="p">;</span>
+  <span class="n">images</span> <span class="p">=</span> <span class="p">{</span><span class="n">images</span><span class="p">{:},</span> <span class="n">ims</span><span class="p">{:}}</span> <span class="p">;</span>
+  <span class="n">imageClass</span><span class="p">{</span><span class="k">end</span><span class="o">+</span><span class="mi">1</span><span class="p">}</span> <span class="p">=</span> <span class="n">ci</span> <span class="o">*</span> <span class="nb">ones</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">length</span><span class="p">(</span><span class="n">ims</span><span class="p">))</span> <span class="p">;</span>
+<span class="k">end</span>
+<span class="n">selTrain</span> <span class="p">=</span> <span class="nb">find</span><span class="p">(</span><span class="nb">mod</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="nb">length</span><span class="p">(</span><span class="n">images</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">conf</span><span class="p">.</span><span class="n">numTrain</span><span class="o">+</span><span class="n">conf</span><span class="p">.</span><span class="n">numTest</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">conf</span><span class="p">.</span><span class="n">numTrain</span><span class="p">)</span> <span class="p">;</span>
+<span class="n">selTest</span> <span class="p">=</span> <span class="n">setdiff</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="nb">length</span><span class="p">(</span><span class="n">images</span><span class="p">),</span> <span class="n">selTrain</span><span class="p">)</span> <span class="p">;</span>
+<span class="n">imageClass</span> <span class="p">=</span> <span class="nb">cat</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">imageClass</span><span class="p">{:})</span> <span class="p">;</span>
+
+<span class="n">model</span><span class="p">.</span><span class="n">classes</span> <span class="p">=</span> <span class="n">classes</span> <span class="p">;</span>
+<span class="n">model</span><span class="p">.</span><span class="n">phowOpts</span> <span class="p">=</span> <span class="n">conf</span><span class="p">.</span><span class="n">phowOpts</span> <span class="p">;</span>
+<span class="n">model</span><span class="p">.</span><span class="n">numSpatialX</span> <span class="p">=</span> <span class="n">conf</span><span class="p">.</span><span class="n">numSpatialX</span> <span class="p">;</span>
+<span class="n">model</span><span class="p">.</span><span class="n">numSpatialY</span> <span class="p">=</span> <span class="n">conf</span><span class="p">.</span><span class="n">numSpatialY</span> <span class="p">;</span>
+<span class="n">model</span><span class="p">.</span><span class="n">quantizer</span> <span class="p">=</span> <span class="n">conf</span><span class="p">.</span><span class="n">quantizer</span> <span class="p">;</span>
+<span class="n">model</span><span class="p">.</span><span class="n">vocab</span> <span class="p">=</span> <span class="p">[]</span> <span class="p">;</span>
+<span class="n">model</span><span class="p">.</span><span class="n">w</span> <span class="p">=</span> <span class="p">[]</span> <span class="p">;</span>
+<span class="n">model</span><span class="p">.</span><span class="n">b</span> <span class="p">=</span> <span class="p">[]</span> <span class="p">;</span>
+<span class="n">model</span><span class="p">.</span><span class="n">classify</span> <span class="p">=</span> <span class="p">@</span><span class="n">classify</span> <span class="p">;</span>
+
+<span class="c">% --------------------------------------------------------------------</span>
+<span class="c">%                                                     Train vocabulary</span>
+<span class="c">% --------------------------------------------------------------------</span>
+
+<span class="k">if</span> <span class="o">~</span><span class="n">exist</span><span class="p">(</span><span class="n">conf</span><span class="p">.</span><span class="n">vocabPath</span><span class="p">)</span> <span class="o">||</span> <span class="n">conf</span><span class="p">.</span><span class="n">clobber</span>
+
+  <span class="c">% Get some PHOW descriptors to train the dictionary</span>
+  <span class="n">selTrainFeats</span> <span class="p">=</span> <span class="n">vl_colsubset</span><span class="p">(</span><span class="n">selTrain</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span> <span class="p">;</span>
+  <span class="n">descrs</span> <span class="p">=</span> <span class="p">{}</span> <span class="p">;</span>
+  <span class="c">%for ii = 1:length(selTrainFeats)</span>
+  <span class="k">parfor</span> <span class="n">ii</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="nb">length</span><span class="p">(</span><span class="n">selTrainFeats</span><span class="p">)</span>
+    <span class="n">im</span> <span class="p">=</span> <span class="n">imread</span><span class="p">(</span><span class="n">fullfile</span><span class="p">(</span><span class="n">conf</span><span class="p">.</span><span class="n">calDir</span><span class="p">,</span> <span class="n">images</span><span class="p">{</span><span class="n">selTrainFeats</span><span class="p">(</span><span class="n">ii</span><span class="p">)}))</span> <span class="p">;</span>
+    <span class="n">im</span> <span class="p">=</span> <span class="n">standarizeImage</span><span class="p">(</span><span class="n">im</span><span class="p">)</span> <span class="p">;</span>
+    <span class="p">[</span><span class="n">drop</span><span class="p">,</span> <span class="n">descrs</span><span class="p">{</span><span class="n">ii</span><span class="p">}]</span> <span class="p">=</span> <span class="n">vl_phow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">model</span><span class="p">.</span><span class="n">phowOpts</span><span class="p">{:})</span> <span class="p">;</span>
+  <span class="k">end</span>
+
+  <span class="n">descrs</span> <span class="p">=</span> <span class="n">vl_colsubset</span><span class="p">(</span><span class="nb">cat</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">descrs</span><span class="p">{:}),</span> <span class="mf">10e4</span><span class="p">)</span> <span class="p">;</span>
+  <span class="n">descrs</span> <span class="p">=</span> <span class="n">single</span><span class="p">(</span><span class="n">descrs</span><span class="p">)</span> <span class="p">;</span>
+
+  <span class="c">% Quantize the descriptors to get the visual words</span>
+  <span class="n">vocab</span> <span class="p">=</span> <span class="n">vl_kmeans</span><span class="p">(</span><span class="n">descrs</span><span class="p">,</span> <span class="n">conf</span><span class="p">.</span><span class="n">numWords</span><span class="p">,</span> <span class="s">&#39;verbose&#39;</span><span class="p">,</span> <span class="s">&#39;algorithm&#39;</span><span class="p">,</span> <span class="s">&#39;elkan&#39;</span><span class="p">,</span> <span class="s">&#39;MaxNumIterations&#39;</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span> <span class="p">;</span>
+  <span class="n">save</span><span class="p">(</span><span class="n">conf</span><span class="p">.</span><span class="n">vocabPath</span><span class="p">,</span> <span class="s">&#39;vocab&#39;</span><span class="p">)</span> <span class="p">;</span>
+<span class="k">else</span>
+  <span class="n">load</span><span class="p">(</span><span class="n">conf</span><span class="p">.</span><span class="n">vocabPath</span><span class="p">)</span> <span class="p">;</span>
+<span class="k">end</span>
+
+<span class="n">model</span><span class="p">.</span><span class="n">vocab</span> <span class="p">=</span> <span class="n">vocab</span> <span class="p">;</span>
+
+<span class="k">if</span> <span class="n">strcmp</span><span class="p">(</span><span class="n">model</span><span class="p">.</span><span class="n">quantizer</span><span class="p">,</span> <span class="s">&#39;kdtree&#39;</span><span class="p">)</span>
+  <span class="n">model</span><span class="p">.</span><span class="n">kdtree</span> <span class="p">=</span> <span class="n">vl_kdtreebuild</span><span class="p">(</span><span class="n">vocab</span><span class="p">)</span> <span class="p">;</span>
+<span class="k">end</span>
+
+<span class="c">% --------------------------------------------------------------------</span>
+<span class="c">%                                           Compute spatial histograms</span>
+<span class="c">% --------------------------------------------------------------------</span>
+
+<span class="k">if</span> <span class="o">~</span><span class="n">exist</span><span class="p">(</span><span class="n">conf</span><span class="p">.</span><span class="n">histPath</span><span class="p">)</span> <span class="o">||</span> <span class="n">conf</span><span class="p">.</span><span class="n">clobber</span>
+  <span class="n">hists</span> <span class="p">=</span> <span class="p">{}</span> <span class="p">;</span>
+  <span class="k">parfor</span> <span class="n">ii</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="nb">length</span><span class="p">(</span><span class="n">images</span><span class="p">)</span>
+  <span class="c">% for ii = 1:length(images)</span>
+    <span class="n">fprintf</span><span class="p">(</span><span class="s">&#39;Processing %s (%.2f %%)\n&#39;</span><span class="p">,</span> <span class="n">images</span><span class="p">{</span><span class="n">ii</span><span class="p">},</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">ii</span> <span class="o">/</span> <span class="nb">length</span><span class="p">(</span><span class="n">images</span><span class="p">))</span> <span class="p">;</span>
+    <span class="n">im</span> <span class="p">=</span> <span class="n">imread</span><span class="p">(</span><span class="n">fullfile</span><span class="p">(</span><span class="n">conf</span><span class="p">.</span><span class="n">calDir</span><span class="p">,</span> <span class="n">images</span><span class="p">{</span><span class="n">ii</span><span class="p">}))</span> <span class="p">;</span>
+    <span class="n">hists</span><span class="p">{</span><span class="n">ii</span><span class="p">}</span> <span class="p">=</span> <span class="n">getImageDescriptor</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">im</span><span class="p">);</span>
+  <span class="k">end</span>
+
+  <span class="n">hists</span> <span class="p">=</span> <span class="nb">cat</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">hists</span><span class="p">{:})</span> <span class="p">;</span>
+  <span class="n">save</span><span class="p">(</span><span class="n">conf</span><span class="p">.</span><span class="n">histPath</span><span class="p">,</span> <span class="s">&#39;hists&#39;</span><span class="p">)</span> <span class="p">;</span>
+<span class="k">else</span>
+  <span class="n">load</span><span class="p">(</span><span class="n">conf</span><span class="p">.</span><span class="n">histPath</span><span class="p">)</span> <span class="p">;</span>
+<span class="k">end</span>
+
+<span class="c">% --------------------------------------------------------------------</span>
+<span class="c">%                                                  Compute feature map</span>
+<span class="c">% --------------------------------------------------------------------</span>
+
+<span class="n">psix</span> <span class="p">=</span> <span class="n">vl_homkermap</span><span class="p">(</span><span class="n">hists</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s">&#39;kchi2&#39;</span><span class="p">,</span> <span class="s">&#39;gamma&#39;</span><span class="p">,</span> <span class="p">.</span><span class="mi">5</span><span class="p">)</span> <span class="p">;</span>
+
+<span class="c">% --------------------------------------------------------------------</span>
+<span class="c">%                                                            Train SVM</span>
+<span class="c">% --------------------------------------------------------------------</span>
+
+<span class="k">if</span> <span class="o">~</span><span class="n">exist</span><span class="p">(</span><span class="n">conf</span><span class="p">.</span><span class="n">modelPath</span><span class="p">)</span> <span class="o">||</span> <span class="n">conf</span><span class="p">.</span><span class="n">clobber</span>
+  <span class="k">switch</span> <span class="n">conf</span><span class="p">.</span><span class="n">svm</span><span class="p">.</span><span class="n">solver</span>
+    <span class="k">case</span> <span class="p">{</span><span class="s">&#39;sgd&#39;</span><span class="p">,</span> <span class="s">&#39;sdca&#39;</span><span class="p">}</span>
+      <span class="n">lambda</span> <span class="p">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">conf</span><span class="p">.</span><span class="n">svm</span><span class="p">.</span><span class="n">C</span> <span class="o">*</span>  <span class="nb">length</span><span class="p">(</span><span class="n">selTrain</span><span class="p">))</span> <span class="p">;</span>
+      <span class="n">w</span> <span class="p">=</span> <span class="p">[]</span> <span class="p">;</span>
+      <span class="k">parfor</span> <span class="n">ci</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="nb">length</span><span class="p">(</span><span class="n">classes</span><span class="p">)</span>
+        <span class="n">perm</span> <span class="p">=</span> <span class="n">randperm</span><span class="p">(</span><span class="nb">length</span><span class="p">(</span><span class="n">selTrain</span><span class="p">))</span> <span class="p">;</span>
+        <span class="n">fprintf</span><span class="p">(</span><span class="s">&#39;Training model for class %s\n&#39;</span><span class="p">,</span> <span class="n">classes</span><span class="p">{</span><span class="n">ci</span><span class="p">})</span> <span class="p">;</span>
+        <span class="n">y</span> <span class="p">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">imageClass</span><span class="p">(</span><span class="n">selTrain</span><span class="p">)</span> <span class="o">==</span> <span class="n">ci</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">;</span>
+        <span class="p">[</span><span class="n">w</span><span class="p">(:,</span><span class="n">ci</span><span class="p">)</span> <span class="n">b</span><span class="p">(</span><span class="n">ci</span><span class="p">)</span> <span class="n">info</span><span class="p">]</span> <span class="p">=</span> <span class="n">vl_svmtrain</span><span class="p">(</span><span class="n">psix</span><span class="p">(:,</span> <span class="n">selTrain</span><span class="p">(</span><span class="n">perm</span><span class="p">)),</span> <span class="n">y</span><span class="p">(</span><span class="n">perm</span><span class="p">),</span> <span class="n">lambda</span><span class="p">,</span> <span class="c">...</span>
+          <span class="s">&#39;Solver&#39;</span><span class="p">,</span> <span class="n">conf</span><span class="p">.</span><span class="n">svm</span><span class="p">.</span><span class="n">solver</span><span class="p">,</span> <span class="c">...</span>
+          <span class="s">&#39;MaxNumIterations&#39;</span><span class="p">,</span> <span class="mi">50</span><span class="o">/</span><span class="n">lambda</span><span class="p">,</span> <span class="c">...</span>
+          <span class="s">&#39;BiasMultiplier&#39;</span><span class="p">,</span> <span class="n">conf</span><span class="p">.</span><span class="n">svm</span><span class="p">.</span><span class="n">biasMultiplier</span><span class="p">,</span> <span class="c">...</span>
+          <span class="s">&#39;Epsilon&#39;</span><span class="p">,</span> <span class="mf">1e-3</span><span class="p">);</span>
+      <span class="k">end</span>
+
+    <span class="k">case</span> <span class="s">&#39;liblinear&#39;</span>
+      <span class="n">svm</span> <span class="p">=</span> <span class="n">train</span><span class="p">(</span><span class="n">imageClass</span><span class="p">(</span><span class="n">selTrain</span><span class="p">)</span><span class="o">&#39;</span><span class="p">,</span> <span class="c">...</span>
+                  <span class="n">sparse</span><span class="p">(</span><span class="n">double</span><span class="p">(</span><span class="n">psix</span><span class="p">(:,</span><span class="n">selTrain</span><span class="p">))),</span>  <span class="c">...</span>
+                  <span class="n">sprintf</span><span class="p">(</span><span class="s">&#39; -s 3 -B %f -c %f&#39;</span><span class="p">,</span> <span class="c">...</span>
+                          <span class="n">conf</span><span class="p">.</span><span class="n">svm</span><span class="p">.</span><span class="n">biasMultiplier</span><span class="p">,</span> <span class="n">conf</span><span class="p">.</span><span class="n">svm</span><span class="p">.</span><span class="n">C</span><span class="p">),</span> <span class="c">...</span>
+                  <span class="s">&#39;col&#39;</span><span class="p">)</span> <span class="p">;</span>
+      <span class="n">w</span> <span class="p">=</span> <span class="n">svm</span><span class="p">.</span><span class="n">w</span><span class="p">(:,</span><span class="mi">1</span><span class="p">:</span><span class="k">end</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">&#39;</span> <span class="p">;</span>
+      <span class="n">b</span> <span class="p">=</span>  <span class="n">svm</span><span class="p">.</span><span class="n">w</span><span class="p">(:,</span><span class="k">end</span><span class="p">)</span><span class="o">&#39;</span> <span class="p">;</span>
+  <span class="k">end</span>
+
+  <span class="n">model</span><span class="p">.</span><span class="n">b</span> <span class="p">=</span> <span class="n">conf</span><span class="p">.</span><span class="n">svm</span><span class="p">.</span><span class="n">biasMultiplier</span> <span class="o">*</span> <span class="n">b</span> <span class="p">;</span>
+  <span class="n">model</span><span class="p">.</span><span class="n">w</span> <span class="p">=</span> <span class="n">w</span> <span class="p">;</span>
+
+  <span class="n">save</span><span class="p">(</span><span class="n">conf</span><span class="p">.</span><span class="n">modelPath</span><span class="p">,</span> <span class="s">&#39;model&#39;</span><span class="p">)</span> <span class="p">;</span>
+<span class="k">else</span>
+  <span class="n">load</span><span class="p">(</span><span class="n">conf</span><span class="p">.</span><span class="n">modelPath</span><span class="p">)</span> <span class="p">;</span>
+<span class="k">end</span>
+
+<span class="c">% --------------------------------------------------------------------</span>
+<span class="c">%                                                Test SVM and evaluate</span>
+<span class="c">% --------------------------------------------------------------------</span>
+
+<span class="c">% Estimate the class of the test images</span>
+<span class="n">scores</span> <span class="p">=</span> <span class="n">model</span><span class="p">.</span><span class="n">w</span><span class="o">&#39;</span> <span class="o">*</span> <span class="n">psix</span> <span class="o">+</span> <span class="n">model</span><span class="p">.</span><span class="n">b</span><span class="o">&#39;</span> <span class="o">*</span> <span class="nb">ones</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">size</span><span class="p">(</span><span class="n">psix</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span> <span class="p">;</span>
+<span class="p">[</span><span class="n">drop</span><span class="p">,</span> <span class="n">imageEstClass</span><span class="p">]</span> <span class="p">=</span> <span class="n">max</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="p">[],</span> <span class="mi">1</span><span class="p">)</span> <span class="p">;</span>
+
+<span class="c">% Compute the confusion matrix</span>
+<span class="n">idx</span> <span class="p">=</span> <span class="nb">sub2ind</span><span class="p">([</span><span class="nb">length</span><span class="p">(</span><span class="n">classes</span><span class="p">),</span> <span class="nb">length</span><span class="p">(</span><span class="n">classes</span><span class="p">)],</span> <span class="c">...</span>
+              <span class="n">imageClass</span><span class="p">(</span><span class="n">selTest</span><span class="p">),</span> <span class="n">imageEstClass</span><span class="p">(</span><span class="n">selTest</span><span class="p">))</span> <span class="p">;</span>
+<span class="n">confus</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="nb">length</span><span class="p">(</span><span class="n">classes</span><span class="p">))</span> <span class="p">;</span>
+<span class="n">confus</span> <span class="p">=</span> <span class="n">vl_binsum</span><span class="p">(</span><span class="n">confus</span><span class="p">,</span> <span class="nb">ones</span><span class="p">(</span><span class="nb">size</span><span class="p">(</span><span class="n">idx</span><span class="p">)),</span> <span class="n">idx</span><span class="p">)</span> <span class="p">;</span>
+
+<span class="c">% Plots</span>
+<span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">;</span> <span class="n">clf</span><span class="p">;</span>
+<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="p">;</span>
+<span class="n">imagesc</span><span class="p">(</span><span class="n">scores</span><span class="p">(:,[</span><span class="n">selTrain</span> <span class="n">selTest</span><span class="p">]))</span> <span class="p">;</span> <span class="n">title</span><span class="p">(</span><span class="s">&#39;Scores&#39;</span><span class="p">)</span> <span class="p">;</span>
+<span class="n">set</span><span class="p">(</span><span class="n">gca</span><span class="p">,</span> <span class="s">&#39;ytick&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="nb">length</span><span class="p">(</span><span class="n">classes</span><span class="p">),</span> <span class="s">&#39;yticklabel&#39;</span><span class="p">,</span> <span class="n">classes</span><span class="p">)</span> <span class="p">;</span>
+<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="p">;</span>
+<span class="n">imagesc</span><span class="p">(</span><span class="n">confus</span><span class="p">)</span> <span class="p">;</span>
+<span class="n">title</span><span class="p">(</span><span class="n">sprintf</span><span class="p">(</span><span class="s">&#39;Confusion matrix (%.2f %% accuracy)&#39;</span><span class="p">,</span> <span class="c">...</span>
+              <span class="mi">100</span> <span class="o">*</span> <span class="n">mean</span><span class="p">(</span><span class="nb">diag</span><span class="p">(</span><span class="n">confus</span><span class="p">)</span><span class="o">/</span><span class="n">conf</span><span class="p">.</span><span class="n">numTest</span><span class="p">)</span> <span class="p">))</span> <span class="p">;</span>
+<span class="n">print</span><span class="p">(</span><span class="s">&#39;-depsc2&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">conf</span><span class="p">.</span><span class="n">resultPath</span> <span class="s">&#39;.ps&#39;</span><span class="p">])</span> <span class="p">;</span>
+<span class="n">save</span><span class="p">([</span><span class="n">conf</span><span class="p">.</span><span class="n">resultPath</span> <span class="s">&#39;.mat&#39;</span><span class="p">],</span> <span class="s">&#39;confus&#39;</span><span class="p">,</span> <span class="s">&#39;conf&#39;</span><span class="p">)</span> <span class="p">;</span>
+
+<span class="c">% -------------------------------------------------------------------------</span>
+<span class="k">function</span><span class="w"> </span>im <span class="p">=</span><span class="w"> </span><span class="nf">standarizeImage</span><span class="p">(</span>im<span class="p">)</span><span class="w"></span>
+<span class="c">% -------------------------------------------------------------------------</span>
+
+<span class="n">im</span> <span class="p">=</span> <span class="n">im2single</span><span class="p">(</span><span class="n">im</span><span class="p">)</span> <span class="p">;</span>
+<span class="k">if</span> <span class="nb">size</span><span class="p">(</span><span class="n">im</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">480</span><span class="p">,</span> <span class="n">im</span> <span class="p">=</span> <span class="n">imresize</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="p">[</span><span class="mi">480</span> <span class="n">NaN</span><span class="p">])</span> <span class="p">;</span> <span class="k">end</span>
+
+<span class="c">% -------------------------------------------------------------------------</span>
+<span class="k">function</span><span class="w"> </span>hist <span class="p">=</span><span class="w"> </span><span class="nf">getImageDescriptor</span><span class="p">(</span>model, im<span class="p">)</span><span class="w"></span>
+<span class="c">% -------------------------------------------------------------------------</span>
+
+<span class="n">im</span> <span class="p">=</span> <span class="n">standarizeImage</span><span class="p">(</span><span class="n">im</span><span class="p">)</span> <span class="p">;</span>
+<span class="n">width</span> <span class="p">=</span> <span class="nb">size</span><span class="p">(</span><span class="n">im</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="p">;</span>
+<span class="n">height</span> <span class="p">=</span> <span class="nb">size</span><span class="p">(</span><span class="n">im</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="p">;</span>
+<span class="n">numWords</span> <span class="p">=</span> <span class="nb">size</span><span class="p">(</span><span class="n">model</span><span class="p">.</span><span class="n">vocab</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="p">;</span>
+
+<span class="c">% get PHOW features</span>
+<span class="p">[</span><span class="n">frames</span><span class="p">,</span> <span class="n">descrs</span><span class="p">]</span> <span class="p">=</span> <span class="n">vl_phow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">model</span><span class="p">.</span><span class="n">phowOpts</span><span class="p">{:})</span> <span class="p">;</span>
+
+<span class="c">% quantize local descriptors into visual words</span>
+<span class="k">switch</span> <span class="n">model</span><span class="p">.</span><span class="n">quantizer</span>
+  <span class="k">case</span> <span class="s">&#39;vq&#39;</span>
+    <span class="p">[</span><span class="n">drop</span><span class="p">,</span> <span class="n">binsa</span><span class="p">]</span> <span class="p">=</span> <span class="n">min</span><span class="p">(</span><span class="n">vl_alldist</span><span class="p">(</span><span class="n">model</span><span class="p">.</span><span class="n">vocab</span><span class="p">,</span> <span class="n">single</span><span class="p">(</span><span class="n">descrs</span><span class="p">)),</span> <span class="p">[],</span> <span class="mi">1</span><span class="p">)</span> <span class="p">;</span>
+  <span class="k">case</span> <span class="s">&#39;kdtree&#39;</span>
+    <span class="n">binsa</span> <span class="p">=</span> <span class="n">double</span><span class="p">(</span><span class="n">vl_kdtreequery</span><span class="p">(</span><span class="n">model</span><span class="p">.</span><span class="n">kdtree</span><span class="p">,</span> <span class="n">model</span><span class="p">.</span><span class="n">vocab</span><span class="p">,</span> <span class="c">...</span>
+                                  <span class="n">single</span><span class="p">(</span><span class="n">descrs</span><span class="p">),</span> <span class="c">...</span>
+                                  <span class="s">&#39;MaxComparisons&#39;</span><span class="p">,</span> <span class="mi">50</span><span class="p">))</span> <span class="p">;</span>
+<span class="k">end</span>
+
+<span class="k">for</span> <span class="nb">i</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="nb">length</span><span class="p">(</span><span class="n">model</span><span class="p">.</span><span class="n">numSpatialX</span><span class="p">)</span>
+  <span class="n">binsx</span> <span class="p">=</span> <span class="n">vl_binsearch</span><span class="p">(</span><span class="nb">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">width</span><span class="p">,</span><span class="n">model</span><span class="p">.</span><span class="n">numSpatialX</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">frames</span><span class="p">(</span><span class="mi">1</span><span class="p">,:))</span> <span class="p">;</span>
+  <span class="n">binsy</span> <span class="p">=</span> <span class="n">vl_binsearch</span><span class="p">(</span><span class="nb">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">height</span><span class="p">,</span><span class="n">model</span><span class="p">.</span><span class="n">numSpatialY</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">frames</span><span class="p">(</span><span class="mi">2</span><span class="p">,:))</span> <span class="p">;</span>
+
+  <span class="c">% combined quantization</span>
+  <span class="n">bins</span> <span class="p">=</span> <span class="nb">sub2ind</span><span class="p">([</span><span class="n">model</span><span class="p">.</span><span class="n">numSpatialY</span><span class="p">(</span><span class="nb">i</span><span class="p">),</span> <span class="n">model</span><span class="p">.</span><span class="n">numSpatialX</span><span class="p">(</span><span class="nb">i</span><span class="p">),</span> <span class="n">numWords</span><span class="p">],</span> <span class="c">...</span>
+                 <span class="n">binsy</span><span class="p">,</span><span class="n">binsx</span><span class="p">,</span><span class="n">binsa</span><span class="p">)</span> <span class="p">;</span>
+  <span class="n">hist</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">model</span><span class="p">.</span><span class="n">numSpatialY</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="o">*</span> <span class="n">model</span><span class="p">.</span><span class="n">numSpatialX</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="o">*</span> <span class="n">numWords</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="p">;</span>
+  <span class="n">hist</span> <span class="p">=</span> <span class="n">vl_binsum</span><span class="p">(</span><span class="n">hist</span><span class="p">,</span> <span class="nb">ones</span><span class="p">(</span><span class="nb">size</span><span class="p">(</span><span class="n">bins</span><span class="p">)),</span> <span class="n">bins</span><span class="p">)</span> <span class="p">;</span>
+  <span class="n">hists</span><span class="p">{</span><span class="nb">i</span><span class="p">}</span> <span class="p">=</span> <span class="n">single</span><span class="p">(</span><span class="n">hist</span> <span class="o">/</span> <span class="n">sum</span><span class="p">(</span><span class="n">hist</span><span class="p">))</span> <span class="p">;</span>
+<span class="k">end</span>
+<span class="n">hist</span> <span class="p">=</span> <span class="nb">cat</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">hists</span><span class="p">{:})</span> <span class="p">;</span>
+<span class="n">hist</span> <span class="p">=</span> <span class="n">hist</span> <span class="o">/</span> <span class="n">sum</span><span class="p">(</span><span class="n">hist</span><span class="p">)</span> <span class="p">;</span>
+
+<span class="c">% -------------------------------------------------------------------------</span>
+<span class="k">function</span><span class="w"> </span>[className, score] <span class="p">=</span><span class="w"> </span><span class="nf">classify</span><span class="p">(</span>model, im<span class="p">)</span><span class="w"></span>
+<span class="c">% -------------------------------------------------------------------------</span>
+
+<span class="n">hist</span> <span class="p">=</span> <span class="n">getImageDescriptor</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">im</span><span class="p">)</span> <span class="p">;</span>
+<span class="n">psix</span> <span class="p">=</span> <span class="n">vl_homkermap</span><span class="p">(</span><span class="n">hist</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s">&#39;kchi2&#39;</span><span class="p">,</span> <span class="s">&#39;gamma&#39;</span><span class="p">,</span> <span class="p">.</span><span class="mi">5</span><span class="p">)</span> <span class="p">;</span>
+<span class="n">scores</span> <span class="p">=</span> <span class="n">model</span><span class="p">.</span><span class="n">w</span><span class="o">&#39;</span> <span class="o">*</span> <span class="n">psix</span> <span class="o">+</span> <span class="n">model</span><span class="p">.</span><span class="n">b</span><span class="o">&#39;</span> <span class="p">;</span>
+<span class="p">[</span><span class="n">score</span><span class="p">,</span> <span class="n">best</span><span class="p">]</span> <span class="p">=</span> <span class="n">max</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span> <span class="p">;</span>
+<span class="n">className</span> <span class="p">=</span> <span class="n">model</span><span class="p">.</span><span class="n">classes</span><span class="p">{</span><span class="n">best</span><span class="p">}</span> <span class="p">;</span>
+</pre></div>
+
+
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>
+ 

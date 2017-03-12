@@ -1,0 +1,278 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+  <!-- Page title -->
+  <title>VLFeat - Documentation > C API</title>
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  <link rel="stylesheet" type="text/css" href="doxygen.css"></link>
+  <!-- Scripts-->
+  <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li class='active'><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li class='active' class='activeLeaf'><a href="index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="../doc.html">Documentation</a></span><span class='separator'>></span><span class='page'><a href="index.html">C API</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+      <!-- <pagestyle href="%pathto:root;api/tabs.css"/> -->
+      <div class="doxygen">
+<div id="top">
+<div id="top">
+<!-- Generated by Doxygen 1.8.7 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li class="current"><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
+    </ul>
+  </div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="index.html">Vision Lab Features Library (VLFeat)</a></li><li class="navelem"><a class="el" href="scalespace.html">Gaussian Scale Space (GSS)</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Gaussian scale space fundamentals </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="toc"><h3>Table of Contents</h3>
+<ul><li class="level1"><a href="#scalespace-definition">Scale space definition</a></li>
+<li class="level1"><a href="#scalespace-geometry">Scale space geometry</a></li>
+<li class="level1"><a href="#scalespace-algorithm">Algorithm and limitations</a></li>
+</ul>
+</div>
+<div class="textblock"><p>This page discusses the notion of <em>Gaussian scale space</em> and the relative data structure. For the C API see <a class="el" href="scalespace_8h.html">scalespace.h</a> and <a class="el" href="scalespace.html#scalespace-starting">Getting started</a>.</p>
+<p>A <em>scale space</em> is representation of an image at multiple resolution levels. An image is a function \(\ell(x,y)\) of two coordinates \(x\), \(y\); the scale space \(\ell(x,y,\sigma)\) adds a third coordinate \(\sigma\) indexing the <em>scale</em>. Here the focus is the Gaussian scale space, where the image \(\ell(x,y,\sigma)\) is obtained by smoothing \(\ell(x,y)\) by a Gaussian kernel of isotropic standard deviation \(\sigma\).</p>
+<h1><a class="anchor" id="scalespace-definition"></a>
+Scale space definition</h1>
+<p>Formally, the <em>Gaussian scale space</em> of an image \(\ell(x,y)\) is defined as</p>
+<p class="formulaDsp">
+\[ \ell(x,y,\sigma) = [g_{\sigma} * \ell](x,y,\sigma) \]
+</p>
+<p>where \(g_\sigma\) denotes a 2D Gaussian kernel of isotropic standard deviation \(\sigma\):</p>
+<p class="formulaDsp">
+\[ g_{\sigma}(x,y) = \frac{1}{2\pi\sigma^2} \exp\left( - \frac{x^2 + y^2}{2\sigma^2} \right). \]
+</p>
+<p>An important detail is that the algorithm computing the scale space assumes that the input image \(\ell(x,y)\) is pre-smoothed, roughly capturing the effect of the finite pixel size in a CCD. This is modelled by assuming that the input is not \(\ell(x,y)\), but \(\ell(x,y,\sigma_n)\), where \(\sigma_n\) is a <em>nominal smoothing</em>, usually taken to be 0.5 (half a pixel standard deviation). This also means that \(\sigma = \sigma_n = 0.5\) is the <em>finest scale</em> that can actually be computed.</p>
+<p>The scale space structure stores samples of the function \(\ell(x,y,\sigma)\). The density of the sampling of the spatial coordinates \(x\) and \(y\) is adjusted as a function of the scale \(\sigma\), corresponding to the intuition that images at a coarse resolution can be sampled more coarsely without loss of information. Thus, the scale space has the structure of a <em>pyramid</em>: a collection of digital images sampled at progressively coarser spatial resolution and hence of progressively smaller size (in pixels).</p>
+<p>The following figure illustrates the scale space pyramid structure:</p>
+<div class="image">
+<img src="scalespace-basic.png" alt="scalespace-basic.png"/>
+<div class="caption">
+A scalespace structure with 2 octaves and S=3 subdivisions per octave</div></div>
+<p> The pyramid is organised in a number of <em>octaves</em>, indexed by a parameter <code>o</code>. Each octave is further subdivided into <em>sublevels</em>, indexed by a parameter <code>s</code>. These are related to the scale \(\sigma\) by the equation</p>
+<p class="formulaDsp">
+\[ \sigma(s,o) = \sigma_o 2^{\displaystyle o + \frac{s}{\mathtt{octaveResolution}}} \]
+</p>
+<p>where <code>octaveResolution</code> is the resolution of the octave subsampling \(\sigma_0\) is the <em>base smoothing</em>.</p>
+<p>At each octave the spatial resolution is doubled, in the sense that samples are take with a step of </p><p class="formulaDsp">
+\[ \mathtt{step} = 2^o. \]
+</p>
+<p> Hence, denoting as <code>level[i,j]</code> the corresponding samples, one has \(\ell(x,y,\sigma) = \mathtt{level}[i,j]\), where </p><p class="formulaDsp">
+\[ (x,y) = (i,j) \times \mathtt{step}, \quad \sigma = \sigma(o,s), \quad 0 \leq i &lt; \mathtt{lwidth}, \quad 0 \leq j &lt; \mathtt{lheight}, \]
+</p>
+<p> where </p><p class="formulaDsp">
+\[ \mathtt{lwidth} = \lfloor \frac{\mathtt{width}}{2^\mathtt{o}}\rfloor, \quad \mathtt{lheight} = \lfloor \frac{\mathtt{height}}{2^\mathtt{o}}\rfloor. \]
+</p>
+<h1><a class="anchor" id="scalespace-geometry"></a>
+Scale space geometry</h1>
+<p>In addition to the parameters discussed above, the geometry of the data stored in a scale space structure depends on the range of allowable octaves <code>o</code> and scale sublevels <code>s</code>.</p>
+<p>While <code>o</code> may range in any reasonable value given the size of the input image <code>image</code>, usually its minimum value is either 0 or -1. The latter corresponds to doubling the resolution of the image in the first octave of the scale space and it is often used in feature extraction. While there is no information added to the image by upsampling in this manner, fine scale filters, including derivative filters, are much easier to compute by upsalmpling first. The maximum practical value is dictated by the image resolution, as it should be \(2^o\leq\min\{\mathtt{width},\mathtt{height}\}\). VLFeat has the flexibility of specifying the range of <code>o</code> using the <code>firstOctave</code> and <code>lastOctave</code> parameters of the <a class="el" href="structVlScaleSpaceGeometry.html" title="Geometry of a scale space. ">VlScaleSpaceGeometry</a> structure.</p>
+<p>The sublevel <code>s</code> varies naturally in the range \(\{0,\dots,\mathtt{octaveResolution}-1\}\). However, it is often convenient to store a few extra levels per octave (e.g. to compute the local maxima of a function in scale or the Difference of Gaussian cornerness measure). Thus VLFeat scale space structure allows this parameter to vary in an arbitrary range, specified by the parameters <code>octaveFirstSubdivision</code> and <code>octaveLastSubdivision</code> of <a class="el" href="structVlScaleSpaceGeometry.html" title="Geometry of a scale space. ">VlScaleSpaceGeometry</a>.</p>
+<p>Overall the possible values of the indexes <code>o</code> and <code>s</code> are:</p>
+<p class="formulaDsp">
+\[ \mathtt{firstOctave} \leq o \leq \mathtt{lastOctave}, \qquad \mathtt{octaveFirstSubdivision} \leq s \leq \mathtt{octaveLastSubdivision}. \]
+</p>
+<p>Note that, depending on these ranges, there could be <em>redundant pairs</em> of indexes <code>o</code> and <code>s</code> that represent the <em>same</em> pyramid level at more than one sampling resolution. In practice, the ability to generate such redundant information is very useful in algorithms using scalespaces, as coding multiscale operations using a fixed sampling resolution is far easier. For example, the DoG feature detector computes the scalespace with three redundant levels per octave, as follows:</p>
+<div class="image">
+<img src="scalespace.png" alt="scalespace.png"/>
+<div class="caption">
+A scalespace containing redundant representation of certain scale levels.</div></div>
+<h1><a class="anchor" id="scalespace-algorithm"></a>
+Algorithm and limitations</h1>
+<p>Given \(\ell(x,y,\sigma_n)\), any of a vast number digitial filtering techniques can be used to compute the scale levels. Presently, VLFeat uses a basic FIR implementation of the Gaussian filters.</p>
+<p>The FIR implementation is obtained by sampling the Gaussian function and re-normalizing it to have unit norm. This simple construction does not account properly for sampling effect, which may be a problem for very small Gausisan kernels. As a rule of thumb, such filters work sufficiently well for, say, standard deviation \(\sigma\) at least 1.6 times the sampling step. A work around to apply this basic FIR implementation to very small Gaussian filters is to upsample the image first.</p>
+<p>The limitations on the FIR filters have relatively important for the pyramid construction, as the latter is obtained by <em>incremental smoothing</em>: each successive level is obtained from the previous one by adding the needed amount of smoothing. In this manner, the size of the FIR filters remains small, which makes them efficient; at the same time, for what discussed, excessively small filters are not represented properly. </p>
+</div></div><!-- contents -->
+        <!-- Doc Here -->
+      </div>
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>

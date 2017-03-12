@@ -1,0 +1,64 @@
+<group>
+<ul class='breadcrumb'><li><a href='%pathto:matlab;'>Index</a></li><li><a href='%pathto:vl_setup;'>Prev</a></li><li><a href='%pathto:vl_aibcut;'>Next</a></li></ul><div class="documentation"><p>
+PARENTS = <a href="%pathto:vl_aib;">VL_AIB</a>(PCX) runs Agglomerative Information Bottleneck
+(AIB) on the class-feature co-occurrence matrix PCX and returns a
+vector PARENTS representing the sequence of compressed AIB
+alphabets.
+</p><p>
+PCX is the joint probability of the occurrence of the class label
+C and the feature value X. PCX has one row for each class label
+and one column for each feature value, non negative entires and
+sums to one. AIB iteratively merges the pair of feature values
+that decreases the mutual information I(X,C) the least. This
+compresses the alphabet of the discrete random variable X in such
+a way that the new variable is still informative about C.
+</p><p>
+Merge operations are represented by a binary tree. The nodes of
+the tree correspond to the original feature values and any other
+value obtained by merging.
+</p><p>
+The vector PARENTS represents the merge tree. The nodes are
+numbered in breadth-first order, starting from the leaves. The
+numbers associated to the tree leaves correspond to the original
+feature values (so the first leaf has number one and correspond to
+the first feature value).  In total there are 2*M-1 nodes, where M
+is the number of feature values (the number of columns of
+PCX). The internal nodes are numbered according to the order in
+which AIB generates them. It is therefore possible to recover from
+the tree the state of the AIB algorithm at each step (see also
+<a href="%pathto:vl_aibcut;">VL_AIBCUT</a>()). PARENTS is a UINT32 array with one element for each
+tree node storing the index of the parent node. The root parent is
+conventionally set to 1.
+</p><p>
+Feature values with null probability (null columns of the PCX
+matrix) are ignored by the AIB algorithm and the corresponding
+entries in the PARENTS vectors are set to zero. Notice that this
+causes the root of the tree to have index smaller of 2*M-1
+(PARENTS has still 2*M-1 entries, but the last portion is
+zero-padded).
+</p><p>
+Alternatively, the option ClusterNull can be used to assign the
+null probability values to a special value. The result is similar
+to pretending that the null probability nodes have indeed very
+small probability, uniform across categories.
+</p><p>
+[PARENTS, COST] = <a href="%pathto:vl_aib;">VL_AIB</a>(...) returns the values COST of the cost
+function being optimized by AIB (i.e. the mutual information
+I(X,C)). COST has M column. The first column is the initial value
+of the cost function. The others correspond to the cost after each
+of the M-1 merges. If less than M-1 merges are performed, the rest
+of the vector is filled with NaNs.
+</p><p>
+<a href="%pathto:vl_aib;">VL_AIB</a>() accepts the following options:
+</p><dl><dt>
+Verbose
+</dt><dd><p>
+If specified, increase verbosity level.
+</p></dd><dt>
+ClusterNull
+</dt><dd><p>
+If specified, do not signal null nodes; instead cluster them.
+</p></dd></dl><p>
+See also: <a href="%pathto:vl_aibcut;">VL_AIBCUT</a>(), <a href="%pathto:vl_aibhist;">VL_AIBHIST</a>(), <a href="%pathto:vl_aibcuthist;">VL_AIBCUTHIST</a>(),
+<a href="%pathto:vl_aibcutpush;">VL_AIBCUTPUSH</a>(), <a href="%pathto:vl_help;">VL_HELP</a>().
+</p></div></group>

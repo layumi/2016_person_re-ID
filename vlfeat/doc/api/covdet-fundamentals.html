@@ -1,0 +1,277 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+  <!-- Page title -->
+  <title>VLFeat - Documentation > C API</title>
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  <link rel="stylesheet" type="text/css" href="doxygen.css"></link>
+  <!-- Scripts-->
+  <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li class='active'><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li class='active' class='activeLeaf'><a href="index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="../doc.html">Documentation</a></span><span class='separator'>></span><span class='page'><a href="index.html">C API</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+      <!-- <pagestyle href="%pathto:root;api/tabs.css"/> -->
+      <div class="doxygen">
+<div id="top">
+<div id="top">
+<!-- Generated by Doxygen 1.8.7 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li class="current"><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
+    </ul>
+  </div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="index.html">Vision Lab Features Library (VLFeat)</a></li><li class="navelem"><a class="el" href="covdet.html">Covariant feature detectors</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Covariant detectors fundamentals </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="toc"><h3>Table of Contents</h3>
+<ul><li class="level1"><a href="#covdet-covariance">Covariant detection</a></li>
+<li class="level1"><a href="#covdet-frame">Feature geometry and feature frames</a></li>
+<li class="level1"><a href="#covdet-frame-transformation">Transforming feature frames</a></li>
+<li class="level1"><a href="#covdet-frame-normalization">Normalizing feature frames</a></li>
+</ul>
+</div>
+<div class="textblock"><p>This page describes the fundamental concepts required to understand a covariant feature detector, the geometry of covariant features, and the process of feature normalization.</p>
+<h1><a class="anchor" id="covdet-covariance"></a>
+Covariant detection</h1>
+<p>The purpose of a <em>covariant detector</em> is to extract from an image a set of local features in a manner which is consistent with spatial transformations of the image itself. For instance, a covariant detector that extracts interest points \(\bx_1,\dots,\bx_n\) from image \(\ell\) extracts the translated points \(\bx_1+T,\dots,\bx_n+T\) from the translated image \(\ell&#39;(\bx) = \ell(\bx-T)\).</p>
+<p>More in general, consider a image \(\ell\) and a transformed version \(\ell&#39; = \ell \circ w^{-1}\) of it, as in the following figure:</p>
+<div class="image">
+<img src="covdet.png" alt="covdet.png"/>
+<div class="caption">
+Covariant detection of local features.</div></div>
+<p> The transformation or <em>warp</em> \(w : \real^2 \mapsto \real^2\) is a deformation of the image domain which may capture a change of camera viewpoint or similar imaging factor. Examples of warps typically considered are translations, scaling, rotations, and general affine transformations; however, in \(w\) could be another type of continuous and invertible transformation.</p>
+<p>Given an image \(\ell\), a <b>detector</b> selects features \(R_1,\dots,R_n\) (one such features is shown in the example as a green circle). The detector is said to be <b>covariant</b> with the warps \(w\) if it extracts the transformed features \(w[R_1],\dots, w[R_n]\) from the transformed image \(w[\ell]\). Intuitively, this means that the &ldquo;same features&rdquo; are extracted in both cases up to the transformation \(w\). This property is described more formally in <a class="el" href="covdet-principles.html">Principles of covariant detection</a>.</p>
+<p>Covariance is a key property of local feature detectors as it allows extracting corresponding features from two or more images, making it possible to match them in a meaningful way.</p>
+<p>The <a class="el" href="covdet_8h.html">covdet.h</a> module in VLFeat implements an array of feature detection algorithm that have are covariant to different classes of transformations.</p>
+<h1><a class="anchor" id="covdet-frame"></a>
+Feature geometry and feature frames</h1>
+<p>As we have seen, local features are subject to image transformations, and they apply a fundamental role in matching and normalizing images. To operates effectively with local features is therefore necessary to understand their geometry.</p>
+<p>The geometry of a local feature is captured by a <b>feature frame</b> \(R\). In VLFeat, depending on the specific detector, the frame can be either a point, a disc, an ellipse, an oriented disc, or an oriented ellipse.</p>
+<p>A frame captures both the extent of the local features, useful to know which portions of two images are put in correspondence, as well their shape. The latter can be used to associate to diagnose the transformation that affects a feature and remove it through the process of <b>normalization</b>.</p>
+<p>More precisely, in covariant detection feature frames are constructed to be compatible with a certain class of transformations. For example, circles are compatible with similarity transformations as they are closed under them. Likewise, ellipses are compatible with affine transformations.</p>
+<p>Beyond this closure property, the key idea here is that all feature occurrences can be seen as transformed versions of a base or <b>canonical</b> feature. For example, all discs \(R\) can be obtained by applying a similarity transformation to the unit disc \(\bar R\) centered at the origin. \(\bar R\) is an example of canonical frame as any other disc can be written as \(R = w[\bar R]\) for a suitable similarity \(w\).</p>
+<div class="image">
+<img src="frame-canonical.png" alt="frame-canonical.png"/>
+<div class="caption">
+The idea of canonical frame and normalization</div></div>
+<p> The equation \(R = w[\bar R_0]\) matching the canonical and detected feature frames establishes a constraint on the warp \(w\), very similar to the way two reference frames in geometry establish a transformation between spaces. The transformation \(w\) can be thought as a the pose** of the detected feature, a generalization of its location.</p>
+<p>In the case of discs and similarity transformations, the equation \(R = w[\bar R_0]\) fixes \(w\) up to a residual rotation. This can be addressed by considering oriented discs instead. An <b>oriented disc</b> is a disc with a radius highlighted to represent the feature orientation.</p>
+<p>While discs are appropriate for similarity transformations, they are not closed under general affine transformations. In this case, one should consider the more general class of (oriented) ellipses. The following image illustrates the five types of feature frames used in VLFeat:</p>
+<div class="image">
+<img src="frame-types.png" alt="frame-types.png"/>
+<div class="caption">
+Types of local feature frames: points, discs, oriented discs, ellipses, oriented ellipses.</div></div>
+<p> Note that these frames are described respectively by 2, 3, 4, 5 and 6 parameters. The most general type are the oriented ellipses, which can be used to represent all the other frame types as well.</p>
+<h1><a class="anchor" id="covdet-frame-transformation"></a>
+Transforming feature frames</h1>
+<p>Consider a warp \(w\) mapping image \(\ell\) into image \(\ell&#39;\) as in the figure below. A feature \(R\) in the first image co-variantly transform into a feature \(R&#39;=w[R]\) in the second image:</p>
+<div class="image">
+<img src="covdet-normalization.png" alt="covdet-normalization.png"/>
+<div class="caption">
+Normalization removes the effect of an image deformation.</div></div>
+<p> The poses \(u,u&#39;\) of \(R=u[R_0]\) and \(R&#39; = u&#39;[R_0]\) are then related by the simple expression:</p>
+<p class="formulaDsp">
+\[ u&#39; = w \circ u. \]
+</p>
+<h1><a class="anchor" id="covdet-frame-normalization"></a>
+Normalizing feature frames</h1>
+<p>In the example above, the poses \(u\) and \(u&#39;\) relate the two occurrences \(R\) and \(R&#39;\) of the feature to its canonical version \(R_0\). If the pose \(u\) of the feature in image \(\ell\) is known, the canonical feature appearance can be computed by un-warping it:</p>
+<p class="formulaDsp">
+\[ \ell_0 = u^{-1}[\ell] = \ell \circ u. \]
+</p>
+<p>This process is known as <b>normalization</b> and is the key in the computation of invariant feature descriptors as well as in the construction of most co-variant detectors. </p>
+</div></div><!-- contents -->
+        <!-- Doc Here -->
+      </div>
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>

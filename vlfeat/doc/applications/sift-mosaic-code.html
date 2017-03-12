@@ -1,0 +1,363 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+
+  <!-- Page title -->
+  <title>VLFeat - Applications > sift_mosaic.m</title>
+
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  
+
+  <!-- Scripts-->
+  
+
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li class='active'><a href="apps.html">Applications</a>
+</li>
+<li><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li><a href="../api/index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+<ul>
+<li><a href="../man/mser.html">mser</a>
+</li>
+<li><a href="../man/sift.html">sift</a>
+</li>
+<li><a href="../man/vlfeat.html">vlfeat</a>
+</li>
+</ul></li>
+</ul></li>
+</ul>
+
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="apps.html">Applications</a></span><span class='separator'>></span><span class='page'><a href="sift-mosaic-code.html">sift_mosaic.m</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+        
+  <div class="highlight"><pre><span class="k">function</span><span class="w"> </span>mosaic <span class="p">=</span><span class="w"> </span><span class="nf">sift_mosaic</span><span class="p">(</span>im1, im2<span class="p">)</span><span class="w"></span>
+<span class="c">% SIFT_MOSAIC Demonstrates matching two images using SIFT and RANSAC</span>
+<span class="c">%</span>
+<span class="c">%   SIFT_MOSAIC demonstrates matching two images based on SIFT</span>
+<span class="c">%   features and RANSAC and computing their mosaic.</span>
+<span class="c">%</span>
+<span class="c">%   SIFT_MOSAIC by itself runs the algorithm on two standard test</span>
+<span class="c">%   images. Use SIFT_MOSAIC(IM1,IM2) to compute the mosaic of two</span>
+<span class="c">%   custom images IM1 and IM2.</span>
+
+<span class="c">% AUTORIGHTS</span>
+
+<span class="k">if</span> <span class="n">nargin</span> <span class="o">==</span> <span class="mi">0</span>
+  <span class="n">im1</span> <span class="p">=</span> <span class="n">imread</span><span class="p">(</span><span class="n">fullfile</span><span class="p">(</span><span class="n">vl_root</span><span class="p">,</span> <span class="s">&#39;data&#39;</span><span class="p">,</span> <span class="s">&#39;river1.jpg&#39;</span><span class="p">))</span> <span class="p">;</span>
+  <span class="n">im2</span> <span class="p">=</span> <span class="n">imread</span><span class="p">(</span><span class="n">fullfile</span><span class="p">(</span><span class="n">vl_root</span><span class="p">,</span> <span class="s">&#39;data&#39;</span><span class="p">,</span> <span class="s">&#39;river2.jpg&#39;</span><span class="p">))</span> <span class="p">;</span>
+<span class="k">end</span>
+
+<span class="c">% make single</span>
+<span class="n">im1</span> <span class="p">=</span> <span class="n">im2single</span><span class="p">(</span><span class="n">im1</span><span class="p">)</span> <span class="p">;</span>
+<span class="n">im2</span> <span class="p">=</span> <span class="n">im2single</span><span class="p">(</span><span class="n">im2</span><span class="p">)</span> <span class="p">;</span>
+
+<span class="c">% make grayscale</span>
+<span class="k">if</span> <span class="nb">size</span><span class="p">(</span><span class="n">im1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="n">im1g</span> <span class="p">=</span> <span class="n">rgb2gray</span><span class="p">(</span><span class="n">im1</span><span class="p">)</span> <span class="p">;</span> <span class="k">else</span> <span class="n">im1g</span> <span class="p">=</span> <span class="n">im1</span> <span class="p">;</span> <span class="k">end</span>
+<span class="k">if</span> <span class="nb">size</span><span class="p">(</span><span class="n">im2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="n">im2g</span> <span class="p">=</span> <span class="n">rgb2gray</span><span class="p">(</span><span class="n">im2</span><span class="p">)</span> <span class="p">;</span> <span class="k">else</span> <span class="n">im2g</span> <span class="p">=</span> <span class="n">im2</span> <span class="p">;</span> <span class="k">end</span>
+
+<span class="c">% --------------------------------------------------------------------</span>
+<span class="c">%                                                         SIFT matches</span>
+<span class="c">% --------------------------------------------------------------------</span>
+
+<span class="p">[</span><span class="n">f1</span><span class="p">,</span><span class="n">d1</span><span class="p">]</span> <span class="p">=</span> <span class="n">vl_sift</span><span class="p">(</span><span class="n">im1g</span><span class="p">)</span> <span class="p">;</span>
+<span class="p">[</span><span class="n">f2</span><span class="p">,</span><span class="n">d2</span><span class="p">]</span> <span class="p">=</span> <span class="n">vl_sift</span><span class="p">(</span><span class="n">im2g</span><span class="p">)</span> <span class="p">;</span>
+
+<span class="p">[</span><span class="n">matches</span><span class="p">,</span> <span class="n">scores</span><span class="p">]</span> <span class="p">=</span> <span class="n">vl_ubcmatch</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span><span class="n">d2</span><span class="p">)</span> <span class="p">;</span>
+
+<span class="n">numMatches</span> <span class="p">=</span> <span class="nb">size</span><span class="p">(</span><span class="n">matches</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="p">;</span>
+
+<span class="n">X1</span> <span class="p">=</span> <span class="n">f1</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="n">matches</span><span class="p">(</span><span class="mi">1</span><span class="p">,:))</span> <span class="p">;</span> <span class="n">X1</span><span class="p">(</span><span class="mi">3</span><span class="p">,:)</span> <span class="p">=</span> <span class="mi">1</span> <span class="p">;</span>
+<span class="n">X2</span> <span class="p">=</span> <span class="n">f2</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="n">matches</span><span class="p">(</span><span class="mi">2</span><span class="p">,:))</span> <span class="p">;</span> <span class="n">X2</span><span class="p">(</span><span class="mi">3</span><span class="p">,:)</span> <span class="p">=</span> <span class="mi">1</span> <span class="p">;</span>
+
+<span class="c">% --------------------------------------------------------------------</span>
+<span class="c">%                                         RANSAC with homography model</span>
+<span class="c">% --------------------------------------------------------------------</span>
+
+<span class="n">clear</span> <span class="n">H</span> <span class="n">score</span> <span class="n">ok</span> <span class="p">;</span>
+<span class="k">for</span> <span class="n">t</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">100</span>
+  <span class="c">% estimate homograpyh</span>
+  <span class="n">subset</span> <span class="p">=</span> <span class="n">vl_colsubset</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">numMatches</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="p">;</span>
+  <span class="n">A</span> <span class="p">=</span> <span class="p">[]</span> <span class="p">;</span>
+  <span class="k">for</span> <span class="nb">i</span> <span class="p">=</span> <span class="n">subset</span>
+    <span class="n">A</span> <span class="p">=</span> <span class="nb">cat</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">kron</span><span class="p">(</span><span class="n">X1</span><span class="p">(:,</span><span class="nb">i</span><span class="p">)</span><span class="o">&#39;</span><span class="p">,</span> <span class="n">vl_hat</span><span class="p">(</span><span class="n">X2</span><span class="p">(:,</span><span class="nb">i</span><span class="p">))))</span> <span class="p">;</span>
+  <span class="k">end</span>
+  <span class="p">[</span><span class="n">U</span><span class="p">,</span><span class="n">S</span><span class="p">,</span><span class="n">V</span><span class="p">]</span> <span class="p">=</span> <span class="n">svd</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="p">;</span>
+  <span class="n">H</span><span class="p">{</span><span class="n">t</span><span class="p">}</span> <span class="p">=</span> <span class="nb">reshape</span><span class="p">(</span><span class="n">V</span><span class="p">(:,</span><span class="mi">9</span><span class="p">),</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="p">;</span>
+
+  <span class="c">% score homography</span>
+  <span class="n">X2_</span> <span class="p">=</span> <span class="n">H</span><span class="p">{</span><span class="n">t</span><span class="p">}</span> <span class="o">*</span> <span class="n">X1</span> <span class="p">;</span>
+  <span class="n">du</span> <span class="p">=</span> <span class="n">X2_</span><span class="p">(</span><span class="mi">1</span><span class="p">,:)</span><span class="o">./</span><span class="n">X2_</span><span class="p">(</span><span class="mi">3</span><span class="p">,:)</span> <span class="o">-</span> <span class="n">X2</span><span class="p">(</span><span class="mi">1</span><span class="p">,:)</span><span class="o">./</span><span class="n">X2</span><span class="p">(</span><span class="mi">3</span><span class="p">,:)</span> <span class="p">;</span>
+  <span class="n">dv</span> <span class="p">=</span> <span class="n">X2_</span><span class="p">(</span><span class="mi">2</span><span class="p">,:)</span><span class="o">./</span><span class="n">X2_</span><span class="p">(</span><span class="mi">3</span><span class="p">,:)</span> <span class="o">-</span> <span class="n">X2</span><span class="p">(</span><span class="mi">2</span><span class="p">,:)</span><span class="o">./</span><span class="n">X2</span><span class="p">(</span><span class="mi">3</span><span class="p">,:)</span> <span class="p">;</span>
+  <span class="n">ok</span><span class="p">{</span><span class="n">t</span><span class="p">}</span> <span class="p">=</span> <span class="p">(</span><span class="n">du</span><span class="o">.*</span><span class="n">du</span> <span class="o">+</span> <span class="n">dv</span><span class="o">.*</span><span class="n">dv</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">6</span><span class="o">*</span><span class="mi">6</span> <span class="p">;</span>
+  <span class="n">score</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="p">=</span> <span class="n">sum</span><span class="p">(</span><span class="n">ok</span><span class="p">{</span><span class="n">t</span><span class="p">})</span> <span class="p">;</span>
+<span class="k">end</span>
+
+<span class="p">[</span><span class="n">score</span><span class="p">,</span> <span class="n">best</span><span class="p">]</span> <span class="p">=</span> <span class="n">max</span><span class="p">(</span><span class="n">score</span><span class="p">)</span> <span class="p">;</span>
+<span class="n">H</span> <span class="p">=</span> <span class="n">H</span><span class="p">{</span><span class="n">best</span><span class="p">}</span> <span class="p">;</span>
+<span class="n">ok</span> <span class="p">=</span> <span class="n">ok</span><span class="p">{</span><span class="n">best</span><span class="p">}</span> <span class="p">;</span>
+
+<span class="c">% --------------------------------------------------------------------</span>
+<span class="c">%                                                  Optional refinement</span>
+<span class="c">% --------------------------------------------------------------------</span>
+
+<span class="k">function</span><span class="w"> </span>err <span class="p">=</span><span class="w"> </span><span class="nf">residual</span><span class="p">(</span>H<span class="p">)</span><span class="w"></span>
+<span class="w"> </span><span class="n">u</span> <span class="p">=</span> <span class="n">H</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">X1</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">ok</span><span class="p">)</span> <span class="o">+</span> <span class="n">H</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="o">*</span> <span class="n">X1</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">ok</span><span class="p">)</span> <span class="o">+</span> <span class="n">H</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span> <span class="p">;</span>
+ <span class="n">v</span> <span class="p">=</span> <span class="n">H</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">X1</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">ok</span><span class="p">)</span> <span class="o">+</span> <span class="n">H</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">*</span> <span class="n">X1</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">ok</span><span class="p">)</span> <span class="o">+</span> <span class="n">H</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span> <span class="p">;</span>
+ <span class="n">d</span> <span class="p">=</span> <span class="n">H</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">X1</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">ok</span><span class="p">)</span> <span class="o">+</span> <span class="n">H</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">*</span> <span class="n">X1</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">ok</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">;</span>
+ <span class="n">du</span> <span class="p">=</span> <span class="n">X2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">ok</span><span class="p">)</span> <span class="o">-</span> <span class="n">u</span> <span class="o">./</span> <span class="n">d</span> <span class="p">;</span>
+ <span class="n">dv</span> <span class="p">=</span> <span class="n">X2</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">ok</span><span class="p">)</span> <span class="o">-</span> <span class="n">v</span> <span class="o">./</span> <span class="n">d</span> <span class="p">;</span>
+ <span class="n">err</span> <span class="p">=</span> <span class="n">sum</span><span class="p">(</span><span class="n">du</span><span class="o">.*</span><span class="n">du</span> <span class="o">+</span> <span class="n">dv</span><span class="o">.*</span><span class="n">dv</span><span class="p">)</span> <span class="p">;</span>
+<span class="k">end</span>
+
+<span class="k">if</span> <span class="n">exist</span><span class="p">(</span><span class="s">&#39;fminsearch&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
+  <span class="n">H</span> <span class="p">=</span> <span class="n">H</span> <span class="o">/</span> <span class="n">H</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="p">;</span>
+  <span class="n">opts</span> <span class="p">=</span> <span class="n">optimset</span><span class="p">(</span><span class="s">&#39;Display&#39;</span><span class="p">,</span> <span class="s">&#39;none&#39;</span><span class="p">,</span> <span class="s">&#39;TolFun&#39;</span><span class="p">,</span> <span class="mf">1e-8</span><span class="p">,</span> <span class="s">&#39;TolX&#39;</span><span class="p">,</span> <span class="mf">1e-8</span><span class="p">)</span> <span class="p">;</span>
+  <span class="n">H</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">8</span><span class="p">)</span> <span class="p">=</span> <span class="n">fminsearch</span><span class="p">(@</span><span class="n">residual</span><span class="p">,</span> <span class="n">H</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">8</span><span class="p">)</span><span class="o">&#39;</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span> <span class="p">;</span>
+<span class="k">else</span>
+  <span class="n">warning</span><span class="p">(</span><span class="s">&#39;Refinement disabled as fminsearch was not found.&#39;</span><span class="p">)</span> <span class="p">;</span>
+<span class="k">end</span>
+
+<span class="c">% --------------------------------------------------------------------</span>
+<span class="c">%                                                         Show matches</span>
+<span class="c">% --------------------------------------------------------------------</span>
+
+<span class="n">dh1</span> <span class="p">=</span> <span class="n">max</span><span class="p">(</span><span class="nb">size</span><span class="p">(</span><span class="n">im2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="nb">size</span><span class="p">(</span><span class="n">im1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mi">0</span><span class="p">)</span> <span class="p">;</span>
+<span class="n">dh2</span> <span class="p">=</span> <span class="n">max</span><span class="p">(</span><span class="nb">size</span><span class="p">(</span><span class="n">im1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="nb">size</span><span class="p">(</span><span class="n">im2</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mi">0</span><span class="p">)</span> <span class="p">;</span>
+
+<span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">;</span> <span class="n">clf</span> <span class="p">;</span>
+<span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="p">;</span>
+<span class="n">imagesc</span><span class="p">([</span><span class="n">padarray</span><span class="p">(</span><span class="n">im1</span><span class="p">,</span><span class="n">dh1</span><span class="p">,</span><span class="s">&#39;post&#39;</span><span class="p">)</span> <span class="n">padarray</span><span class="p">(</span><span class="n">im2</span><span class="p">,</span><span class="n">dh2</span><span class="p">,</span><span class="s">&#39;post&#39;</span><span class="p">)])</span> <span class="p">;</span>
+<span class="n">o</span> <span class="p">=</span> <span class="nb">size</span><span class="p">(</span><span class="n">im1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="p">;</span>
+<span class="n">line</span><span class="p">([</span><span class="n">f1</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">matches</span><span class="p">(</span><span class="mi">1</span><span class="p">,:));</span><span class="n">f2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">matches</span><span class="p">(</span><span class="mi">2</span><span class="p">,:))</span><span class="o">+</span><span class="n">o</span><span class="p">],</span> <span class="c">...</span>
+     <span class="p">[</span><span class="n">f1</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">matches</span><span class="p">(</span><span class="mi">1</span><span class="p">,:));</span><span class="n">f2</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">matches</span><span class="p">(</span><span class="mi">2</span><span class="p">,:))])</span> <span class="p">;</span>
+<span class="n">title</span><span class="p">(</span><span class="n">sprintf</span><span class="p">(</span><span class="s">&#39;%d tentative matches&#39;</span><span class="p">,</span> <span class="n">numMatches</span><span class="p">))</span> <span class="p">;</span>
+<span class="n">axis</span> <span class="n">image</span> <span class="n">off</span> <span class="p">;</span>
+
+<span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="p">;</span>
+<span class="n">imagesc</span><span class="p">([</span><span class="n">padarray</span><span class="p">(</span><span class="n">im1</span><span class="p">,</span><span class="n">dh1</span><span class="p">,</span><span class="s">&#39;post&#39;</span><span class="p">)</span> <span class="n">padarray</span><span class="p">(</span><span class="n">im2</span><span class="p">,</span><span class="n">dh2</span><span class="p">,</span><span class="s">&#39;post&#39;</span><span class="p">)])</span> <span class="p">;</span>
+<span class="n">o</span> <span class="p">=</span> <span class="nb">size</span><span class="p">(</span><span class="n">im1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="p">;</span>
+<span class="n">line</span><span class="p">([</span><span class="n">f1</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">matches</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">ok</span><span class="p">));</span><span class="n">f2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">matches</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">ok</span><span class="p">))</span><span class="o">+</span><span class="n">o</span><span class="p">],</span> <span class="c">...</span>
+     <span class="p">[</span><span class="n">f1</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">matches</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">ok</span><span class="p">));</span><span class="n">f2</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">matches</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">ok</span><span class="p">))])</span> <span class="p">;</span>
+<span class="n">title</span><span class="p">(</span><span class="n">sprintf</span><span class="p">(</span><span class="s">&#39;%d (%.2f%%) inliner matches out of %d&#39;</span><span class="p">,</span> <span class="c">...</span>
+              <span class="n">sum</span><span class="p">(</span><span class="n">ok</span><span class="p">),</span> <span class="c">...</span>
+              <span class="mi">100</span><span class="o">*</span><span class="n">sum</span><span class="p">(</span><span class="n">ok</span><span class="p">)</span><span class="o">/</span><span class="n">numMatches</span><span class="p">,</span> <span class="c">...</span>
+              <span class="n">numMatches</span><span class="p">))</span> <span class="p">;</span>
+<span class="n">axis</span> <span class="n">image</span> <span class="n">off</span> <span class="p">;</span>
+
+<span class="n">drawnow</span> <span class="p">;</span>
+
+<span class="c">% --------------------------------------------------------------------</span>
+<span class="c">%                                                               Mosaic</span>
+<span class="c">% --------------------------------------------------------------------</span>
+
+<span class="n">box2</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span>  <span class="nb">size</span><span class="p">(</span><span class="n">im2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="nb">size</span><span class="p">(</span><span class="n">im2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>  <span class="mi">1</span> <span class="p">;</span>
+        <span class="mi">1</span>  <span class="mi">1</span>           <span class="nb">size</span><span class="p">(</span><span class="n">im2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>  <span class="nb">size</span><span class="p">(</span><span class="n">im2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="p">;</span>
+        <span class="mi">1</span>  <span class="mi">1</span>           <span class="mi">1</span>            <span class="mi">1</span> <span class="p">]</span> <span class="p">;</span>
+<span class="n">box2_</span> <span class="p">=</span> <span class="n">inv</span><span class="p">(</span><span class="n">H</span><span class="p">)</span> <span class="o">*</span> <span class="n">box2</span> <span class="p">;</span>
+<span class="n">box2_</span><span class="p">(</span><span class="mi">1</span><span class="p">,:)</span> <span class="p">=</span> <span class="n">box2_</span><span class="p">(</span><span class="mi">1</span><span class="p">,:)</span> <span class="o">./</span> <span class="n">box2_</span><span class="p">(</span><span class="mi">3</span><span class="p">,:)</span> <span class="p">;</span>
+<span class="n">box2_</span><span class="p">(</span><span class="mi">2</span><span class="p">,:)</span> <span class="p">=</span> <span class="n">box2_</span><span class="p">(</span><span class="mi">2</span><span class="p">,:)</span> <span class="o">./</span> <span class="n">box2_</span><span class="p">(</span><span class="mi">3</span><span class="p">,:)</span> <span class="p">;</span>
+<span class="n">ur</span> <span class="p">=</span> <span class="n">min</span><span class="p">([</span><span class="mi">1</span> <span class="n">box2_</span><span class="p">(</span><span class="mi">1</span><span class="p">,:)]):</span><span class="n">max</span><span class="p">([</span><span class="nb">size</span><span class="p">(</span><span class="n">im1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="n">box2_</span><span class="p">(</span><span class="mi">1</span><span class="p">,:)])</span> <span class="p">;</span>
+<span class="n">vr</span> <span class="p">=</span> <span class="n">min</span><span class="p">([</span><span class="mi">1</span> <span class="n">box2_</span><span class="p">(</span><span class="mi">2</span><span class="p">,:)]):</span><span class="n">max</span><span class="p">([</span><span class="nb">size</span><span class="p">(</span><span class="n">im1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="n">box2_</span><span class="p">(</span><span class="mi">2</span><span class="p">,:)])</span> <span class="p">;</span>
+
+<span class="p">[</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">]</span> <span class="p">=</span> <span class="nb">meshgrid</span><span class="p">(</span><span class="n">ur</span><span class="p">,</span><span class="n">vr</span><span class="p">)</span> <span class="p">;</span>
+<span class="n">im1_</span> <span class="p">=</span> <span class="n">vl_imwbackward</span><span class="p">(</span><span class="n">im2double</span><span class="p">(</span><span class="n">im1</span><span class="p">),</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">)</span> <span class="p">;</span>
+
+<span class="n">z_</span> <span class="p">=</span> <span class="n">H</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">u</span> <span class="o">+</span> <span class="n">H</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">v</span> <span class="o">+</span> <span class="n">H</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="p">;</span>
+<span class="n">u_</span> <span class="p">=</span> <span class="p">(</span><span class="n">H</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">u</span> <span class="o">+</span> <span class="n">H</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">v</span> <span class="o">+</span> <span class="n">H</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span> <span class="o">./</span> <span class="n">z_</span> <span class="p">;</span>
+<span class="n">v_</span> <span class="p">=</span> <span class="p">(</span><span class="n">H</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">u</span> <span class="o">+</span> <span class="n">H</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">v</span> <span class="o">+</span> <span class="n">H</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span> <span class="o">./</span> <span class="n">z_</span> <span class="p">;</span>
+<span class="n">im2_</span> <span class="p">=</span> <span class="n">vl_imwbackward</span><span class="p">(</span><span class="n">im2double</span><span class="p">(</span><span class="n">im2</span><span class="p">),</span><span class="n">u_</span><span class="p">,</span><span class="n">v_</span><span class="p">)</span> <span class="p">;</span>
+
+<span class="n">mass</span> <span class="p">=</span> <span class="o">~</span><span class="nb">isnan</span><span class="p">(</span><span class="n">im1_</span><span class="p">)</span> <span class="o">+</span> <span class="o">~</span><span class="nb">isnan</span><span class="p">(</span><span class="n">im2_</span><span class="p">)</span> <span class="p">;</span>
+<span class="n">im1_</span><span class="p">(</span><span class="nb">isnan</span><span class="p">(</span><span class="n">im1_</span><span class="p">))</span> <span class="p">=</span> <span class="mi">0</span> <span class="p">;</span>
+<span class="n">im2_</span><span class="p">(</span><span class="nb">isnan</span><span class="p">(</span><span class="n">im2_</span><span class="p">))</span> <span class="p">=</span> <span class="mi">0</span> <span class="p">;</span>
+<span class="n">mosaic</span> <span class="p">=</span> <span class="p">(</span><span class="n">im1_</span> <span class="o">+</span> <span class="n">im2_</span><span class="p">)</span> <span class="o">./</span> <span class="n">mass</span> <span class="p">;</span>
+
+<span class="n">figure</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="p">;</span> <span class="n">clf</span> <span class="p">;</span>
+<span class="n">imagesc</span><span class="p">(</span><span class="n">mosaic</span><span class="p">)</span> <span class="p">;</span> <span class="n">axis</span> <span class="n">image</span> <span class="n">off</span> <span class="p">;</span>
+<span class="n">title</span><span class="p">(</span><span class="s">&#39;Mosaic&#39;</span><span class="p">)</span> <span class="p">;</span>
+
+<span class="k">if</span> <span class="n">nargout</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="n">clear</span> <span class="n">mosaic</span> <span class="p">;</span> <span class="k">end</span>
+
+<span class="k">end</span>
+</pre></div>
+
+
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>
+ 

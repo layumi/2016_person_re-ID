@@ -1,0 +1,73 @@
+<group>
+<ul class='breadcrumb'><li><a href='%pathto:matlab;'>Index</a></li><li><a href='%pathto:vl_plotsiftdescriptor;'>Prev</a></li><li><a href='%pathto:vl_sift;'>Next</a></li></ul><div class="documentation"><p>
+<a href="%pathto:vl_plotss;">VL_PLOTSS</a>(SS) plots the scale space SS. SS is a structure
+with the following members:
+</p><dl><dt>
+ss.firstOctave
+</dt><dd><p>
+The index of the first octave in the scale space.
+</p></dd><dt>
+ss.lastOctave
+</dt><dd><p>
+The index of the last octave in the scale space.
+</p></dd><dt>
+ss.octaveResolution
+</dt><dd><p>
+The octave resolution, i.e. the nubmer of subdivisions
+per octave.
+</p></dd><dt>
+ss.octaveFirstLevel
+</dt><dd><p>
+The index of the first level of subdivisions for each octave.
+</p></dd><dt>
+ss.octaveLastLevel
+</dt><dd><p>
+The iundex of last leve of subdivisions for each cotave.
+</p></dd><dt>
+ss.data
+</dt><dd><p>
+A cell array of 3D arrays representing the scale space data.
+The cell array has a length equal to the nubmer of octaves
+contained in the scale space. Each entry is a 3D array, the
+first two dimensions of which correspond to image rows and
+columns respectively, and the third to scale levels.
+</p></dd><dt>
+ss.sigma0
+</dt><dd><p>
+Base smoothing.
+</p></dd></dl><p>
+A scale space is a representation of a 2D signal (image) at
+multiple scales. In the simplest case, a scale SIGMA is defined as
+the input image I(x,y) convolved by a Gaussian kernel of isotropic
+standard deviation SIGMA:
+</p><pre>
+  I(x,y;sigma) = (g_sigma * I)(x,y)
+</pre><p>
+where scales are sampled as follows:
+</p><pre>
+  sigma(o,s) = sigma0 2^{o + s / ss.octaveResolution),
+  ss.firstOctave &lt;= o &lt;= ss.lastOctave,
+  ss.octaveFirstLeve &lt;= s &lt;= ss.octaveLastLevel.
+</pre><p>
+Moving from one octave to the next, the size of the kernel
+doubles. Hence the effective bandwith of the signal halves, and
+resolution can be reduced by half. Typically, for example, sigma0
+= 1.6, so at octave 0 the image can be effectively sampled with a
+step of 1, and the resolution of octave 0 is the same as the one
+at which the input image is presented. Then at octave o the
+sampling step is 2^o.
+</p><p>
+ss.octaveResolution is the number of scale subdivisions per
+octave. ss.firstOctave and ss.lastOctave give the additional
+flexibility of specifying a range for the level index s to exceed
+the standard setting [0, ss.octaveResolution-1]. In this manner
+the same scales can be represented twice, at two sampling
+rates. This is often convenient in feature computation (e.g. to
+find local maxima in scale of a function).
+</p><p>
+<a href="%pathto:vl_plotss;">VL_PLOTSS</a>(SS, 'Option', value) supports the following options:
+</p><dl><dt>
+Uniform
+<span class="defaults">false</span></dt><dd><p>
+If TRUE then use a fixed gray scale for all the levels.
+</p></dd></dl></div></group>

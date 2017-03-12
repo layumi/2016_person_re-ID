@@ -1,0 +1,253 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+  <!-- Page title -->
+  <title>VLFeat - Documentation > C API</title>
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  <link rel="stylesheet" type="text/css" href="doxygen.css"></link>
+  <!-- Scripts-->
+  <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li class='active'><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li class='active' class='activeLeaf'><a href="index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="../doc.html">Documentation</a></span><span class='separator'>></span><span class='page'><a href="index.html">C API</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+      <!-- <pagestyle href="%pathto:root;api/tabs.css"/> -->
+      <div class="doxygen">
+<div id="top">
+<div id="top">
+<!-- Generated by Doxygen 1.8.7 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li class="current"><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
+    </ul>
+  </div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="index.html">Vision Lab Features Library (VLFeat)</a></li><li class="navelem"><a class="el" href="fisher.html">Fisher Vector encoding (FV)</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Fisher vector derivation </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p>The FV of <a class="el" href="citelist.html#CITEREF_perronnin06fisher">[23]</a> is a special case of the <a class="el" href="fisher-kernel.html">Fisher kernel</a> construction. It is designed to encode local image features in a format that is suitable for learning and comparison with simple metrics such as the Euclidean. In this construction, an image is modeled as a collection of \(D\)-dimensional feature vectors \(I=(\bx_1,\dots,\bx_n)\) generated by a GMM with \(K\) components \(\Theta=(\mu_k,\Sigma_k,\pi_k:k=1,\dots,K)\). The covariance matrices are assumed to be diagonal, i.e. \(\Sigma_k = \diag \bsigma_k^2\), \(\bsigma_k \in \real^D_+\).</p>
+<p>The generative model of <em>one</em> feature vector \(\bx\) is given by the GMM density function:</p>
+<p class="formulaDsp">
+\[ p(\bx|\Theta) = \sum_{k=1}^K \pi_k p(\bx|\Theta_k), \quad p(\bx|\Theta_k) = \frac{1}{(2\pi)^\frac{D}{2} (\det \Sigma_k)^{\frac{1}{2}}} \exp \left[ -\frac{1}{2} (\bx - \mu_k)^\top \Sigma_k^{-1} (\bx - \mu_k) \right] \]
+</p>
+<p>where \(\Theta_k = (\mu_k,\Sigma_k)\). The Fisher Vector requires computing the derivative of the log-likelihood function with respect to the various model parameters. Consider in particular the parameters \(\Theta_k\) of a mode. Due to the exponent in the Gaussian density function, the derivative can be written as</p>
+<p class="formulaDsp">
+\[ \nabla_{\Theta_k} p(\bx|\Theta_k) = p(\bx|\Theta_k) g(\bx|\Theta_k) \]
+</p>
+<p>for a simple vector function \(g\). The derivative of the log-likelihood function is then</p>
+<p class="formulaDsp">
+\[ \nabla_{\Theta_k} \log p(\bx|\Theta) = \frac{\pi_k p(\bx|\Theta_k)}{\sum_{t=1}^K \pi_k p(\bx|\Theta_k)} g(\bx|\Theta_k) = q_k(\bx) g(\bx|\Theta_k) \]
+</p>
+<p>where \(q_k(\bx)\) is the soft-assignment of the point \(\bx\) to the mode \(k\). We make the approximation that \(q_k(\bx)\approx 1\) if \(\bx\) is sampled from mode \(k\) and \(\approx 0\) otherwise <a class="el" href="citelist.html#CITEREF_perronnin06fisher">[23]</a> . Hence one gets:</p>
+<p class="formulaDsp">
+\[ E_{\bx \sim p(\bx|\Theta)} [ \nabla_{\Theta_k} \log p(\bx|\Theta) \nabla_{\Theta_t} \log p(\bx|\Theta)^\top ] \approx \begin{cases} \pi_k E_{\bx \sim p(\bx|\Theta_k)} [ g(\bx|\Theta_k) g(\bx|\Theta_k)^\top], &amp; t = k, \\ 0, &amp; t\not=k. \end{cases} \]
+</p>
+<p>Thus under this approximation there is no correlation between the parameters of the various Gaussian modes.</p>
+<p>The function \(g\) can be further broken down as the stacking of the derivative w.r.t. the mean and the diagonal covariance.</p>
+<p class="formulaDsp">
+\[ g(\bx|\Theta_k) = \begin{bmatrix} g(\bx|\mu_k) \\ g(\bx|\bsigma_k) \end{bmatrix}, \quad [g(\bx|\mu_k)]_j = \frac{x_j - \mu_{jk}}{\sigma_{jk}^2}, \quad [g(\bx|\bsigma_k^2)]_j = \frac{1}{2\sigma_{jk}^2} \left( \left(\frac{x_j - \mu_{jk}}{\sigma_{jk}}\right)^2 - 1 \right) \]
+</p>
+<p>Thus the covariance of the model (Fisher information) is diagonal and the diagonal entries are given by</p>
+<p class="formulaDsp">
+\[ H_{\mu_{jk}} = \pi_k E[g(\bx|\mu_{jk})g(\bx|\mu_{jk})] = \frac{\pi_k}{\sigma_{jk}^2}, \quad H_{\sigma_{jk}^2} = \frac{\pi_k}{2 \sigma_{jk}^4}. \]
+</p>
+<p>where in the calculation it was used the fact that the fourth moment of the standard Gaussian distribution is 3. Multiplying the inverse square root of the matrix \(H\) by the derivative of the log-likelihood function results in the Fisher vector encoding of one image feature \(\bx\):</p>
+<p class="formulaDsp">
+\[ \Phi_{\mu_{jk}}(\bx) = H_{\mu_{jk}}^{-\frac{1}{2}} q_k(\bx) g(\bx|\mu_{jk}) = q_k(\bx) \frac{x_j - \mu_{jk}}{\sqrt{\pi_k}\sigma_{jk}}, \qquad \Phi_{\sigma^2_{jk}}(\bx) = \frac{q_k(\bx)}{\sqrt{2 \pi_k}} \left( \left(\frac{x_j - \mu_{jk}}{\sigma_{jk}}\right)^2 - 1 \right) \]
+</p>
+<p>Assuming that features are sampled i.i.d. from the GMM results in the formulas given in <a class="el" href="fisher-fundamentals.html">Fisher vector fundamentals</a> (note the normalization factor). Note that:</p>
+<p>The Fisher components relative to the prior probabilities \(\pi_k\) have been ignored. This is because they have little effect on the representation <a class="el" href="citelist.html#CITEREF_perronnin10improving">[24]</a> .</p>
+<p>Technically, the derivation of the Fisher Vector for multiple image features requires the number of features to be the same in both images. Ultimately, however, the representation can be computed by using any number of features. </p>
+</div></div><!-- contents -->
+        <!-- Doc Here -->
+      </div>
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>

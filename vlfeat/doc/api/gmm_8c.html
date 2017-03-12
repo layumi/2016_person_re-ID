@@ -1,0 +1,1301 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+  <!-- Page title -->
+  <title>VLFeat - Documentation > C API</title>
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  <link rel="stylesheet" type="text/css" href="doxygen.css"></link>
+  <!-- Scripts-->
+  <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li class='active'><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li class='active' class='activeLeaf'><a href="index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="../doc.html">Documentation</a></span><span class='separator'>></span><span class='page'><a href="index.html">C API</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+      <!-- <pagestyle href="%pathto:root;api/tabs.css"/> -->
+      <div class="doxygen">
+<div id="top">
+<div id="top">
+<!-- Generated by Doxygen 1.8.7 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li class="current"><a href="files.html"><span>Files</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>Globals</span></a></li>
+    </ul>
+  </div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_8dd540b382164c224dfa1eb6e8a3add6.html">vl</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">gmm.c File Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Gaussian Mixture Models - Implementation.  
+<a href="#details">More...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="gmm_8h.html">gmm.h</a>&quot;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="mathop__avx_8h.html">mathop_avx.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="shuffle-def_8h.html">shuffle-def.h</a>&quot;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:afe0bdce1cf97a7b64011ae58bc8b9697"><td class="memItemLeft" align="right" valign="top"><a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gmm_8c.html#afe0bdce1cf97a7b64011ae58bc8b9697">vl_gmm_new</a> (vl_type dataType, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> dimension, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> numComponents)</td></tr>
+<tr class="memdesc:afe0bdce1cf97a7b64011ae58bc8b9697"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new GMM object.  <a href="#afe0bdce1cf97a7b64011ae58bc8b9697">More...</a><br /></td></tr>
+<tr class="separator:afe0bdce1cf97a7b64011ae58bc8b9697"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1baeb175e0cdb68c548addc837d7baae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gmm_8c.html#a1baeb175e0cdb68c548addc837d7baae">vl_gmm_reset</a> (<a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> *self)</td></tr>
+<tr class="memdesc:a1baeb175e0cdb68c548addc837d7baae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset state.  <a href="#a1baeb175e0cdb68c548addc837d7baae">More...</a><br /></td></tr>
+<tr class="separator:a1baeb175e0cdb68c548addc837d7baae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adbde533172047f780e2713d18387a9d0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gmm_8c.html#adbde533172047f780e2713d18387a9d0">vl_gmm_delete</a> (<a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> *self)</td></tr>
+<tr class="memdesc:adbde533172047f780e2713d18387a9d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes a GMM object.  <a href="#adbde533172047f780e2713d18387a9d0">More...</a><br /></td></tr>
+<tr class="separator:adbde533172047f780e2713d18387a9d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8980d73a2bac3f4aba64108ea9b7986"><td class="memItemLeft" align="right" valign="top">vl_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gmm_8c.html#ac8980d73a2bac3f4aba64108ea9b7986">vl_gmm_get_data_type</a> (<a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> const *self)</td></tr>
+<tr class="memdesc:ac8980d73a2bac3f4aba64108ea9b7986"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get data type.  <a href="#ac8980d73a2bac3f4aba64108ea9b7986">More...</a><br /></td></tr>
+<tr class="separator:ac8980d73a2bac3f4aba64108ea9b7986"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d4f30630fd47af3dec762a58df7b653"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gmm_8c.html#a6d4f30630fd47af3dec762a58df7b653">vl_gmm_get_num_clusters</a> (<a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> const *self)</td></tr>
+<tr class="memdesc:a6d4f30630fd47af3dec762a58df7b653"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of clusters.  <a href="#a6d4f30630fd47af3dec762a58df7b653">More...</a><br /></td></tr>
+<tr class="separator:a6d4f30630fd47af3dec762a58df7b653"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83a3fb14322069092b4618bcabaf5fda"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gmm_8c.html#a83a3fb14322069092b4618bcabaf5fda">vl_gmm_get_num_data</a> (<a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> const *self)</td></tr>
+<tr class="memdesc:a83a3fb14322069092b4618bcabaf5fda"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of data points.  <a href="#a83a3fb14322069092b4618bcabaf5fda">More...</a><br /></td></tr>
+<tr class="separator:a83a3fb14322069092b4618bcabaf5fda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a618c40e1338f2433505f83d0745fce7f"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gmm_8c.html#a618c40e1338f2433505f83d0745fce7f">vl_gmm_get_loglikelihood</a> (<a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> const *self)</td></tr>
+<tr class="memdesc:a618c40e1338f2433505f83d0745fce7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the log likelihood of the current mixture.  <a href="#a618c40e1338f2433505f83d0745fce7f">More...</a><br /></td></tr>
+<tr class="separator:a618c40e1338f2433505f83d0745fce7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a167e3a1208bc756e1681dfc44dab5928"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gmm_8c.html#a167e3a1208bc756e1681dfc44dab5928">vl_gmm_get_verbosity</a> (<a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> const *self)</td></tr>
+<tr class="memdesc:a167e3a1208bc756e1681dfc44dab5928"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get verbosity level.  <a href="#a167e3a1208bc756e1681dfc44dab5928">More...</a><br /></td></tr>
+<tr class="separator:a167e3a1208bc756e1681dfc44dab5928"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96708e3c10107c49f136a0fe1082684a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gmm_8c.html#a96708e3c10107c49f136a0fe1082684a">vl_gmm_set_verbosity</a> (<a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> *self, int verbosity)</td></tr>
+<tr class="memdesc:a96708e3c10107c49f136a0fe1082684a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set verbosity level.  <a href="#a96708e3c10107c49f136a0fe1082684a">More...</a><br /></td></tr>
+<tr class="separator:a96708e3c10107c49f136a0fe1082684a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8598b36a92ca066e26e03ea46dee466"><td class="memItemLeft" align="right" valign="top">void const *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gmm_8c.html#ae8598b36a92ca066e26e03ea46dee466">vl_gmm_get_means</a> (<a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> const *self)</td></tr>
+<tr class="memdesc:ae8598b36a92ca066e26e03ea46dee466"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get means.  <a href="#ae8598b36a92ca066e26e03ea46dee466">More...</a><br /></td></tr>
+<tr class="separator:ae8598b36a92ca066e26e03ea46dee466"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a319648cad7d83d2a31c7beb79b1ba125"><td class="memItemLeft" align="right" valign="top">void const *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gmm_8c.html#a319648cad7d83d2a31c7beb79b1ba125">vl_gmm_get_covariances</a> (<a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> const *self)</td></tr>
+<tr class="memdesc:a319648cad7d83d2a31c7beb79b1ba125"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get covariances.  <a href="#a319648cad7d83d2a31c7beb79b1ba125">More...</a><br /></td></tr>
+<tr class="separator:a319648cad7d83d2a31c7beb79b1ba125"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a556605dddee3aa3f2c35898436c5e811"><td class="memItemLeft" align="right" valign="top">void const *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gmm_8c.html#a556605dddee3aa3f2c35898436c5e811">vl_gmm_get_priors</a> (<a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> const *self)</td></tr>
+<tr class="memdesc:a556605dddee3aa3f2c35898436c5e811"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get priors.  <a href="#a556605dddee3aa3f2c35898436c5e811">More...</a><br /></td></tr>
+<tr class="separator:a556605dddee3aa3f2c35898436c5e811"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54b1da9397fdb22c1036690e80816e76"><td class="memItemLeft" align="right" valign="top">void const *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gmm_8c.html#a54b1da9397fdb22c1036690e80816e76">vl_gmm_get_posteriors</a> (<a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> const *self)</td></tr>
+<tr class="memdesc:a54b1da9397fdb22c1036690e80816e76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get posteriors.  <a href="#a54b1da9397fdb22c1036690e80816e76">More...</a><br /></td></tr>
+<tr class="separator:a54b1da9397fdb22c1036690e80816e76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa311e17e0190fa3a247349d4e127e3d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gmm_8c.html#aaa311e17e0190fa3a247349d4e127e3d">vl_gmm_get_max_num_iterations</a> (<a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> const *self)</td></tr>
+<tr class="memdesc:aaa311e17e0190fa3a247349d4e127e3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get maximum number of iterations.  <a href="#aaa311e17e0190fa3a247349d4e127e3d">More...</a><br /></td></tr>
+<tr class="separator:aaa311e17e0190fa3a247349d4e127e3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a606ce33d200101fa6a60e10a3e89cec1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gmm_8c.html#a606ce33d200101fa6a60e10a3e89cec1">vl_gmm_set_max_num_iterations</a> (<a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> *self, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> maxNumIterations)</td></tr>
+<tr class="memdesc:a606ce33d200101fa6a60e10a3e89cec1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set maximum number of iterations.  <a href="#a606ce33d200101fa6a60e10a3e89cec1">More...</a><br /></td></tr>
+<tr class="separator:a606ce33d200101fa6a60e10a3e89cec1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9801c187ad6f0561275a715d3e589a59"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gmm_8c.html#a9801c187ad6f0561275a715d3e589a59">vl_gmm_set_num_repetitions</a> (<a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> *self, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> numRepetitions)</td></tr>
+<tr class="memdesc:a9801c187ad6f0561275a715d3e589a59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set maximum number of repetitions.  <a href="#a9801c187ad6f0561275a715d3e589a59">More...</a><br /></td></tr>
+<tr class="separator:a9801c187ad6f0561275a715d3e589a59"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5dd301238834c161a8ca142f32b2a83c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gmm_8c.html#a5dd301238834c161a8ca142f32b2a83c">vl_gmm_get_dimension</a> (<a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> const *self)</td></tr>
+<tr class="memdesc:a5dd301238834c161a8ca142f32b2a83c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get data dimension.  <a href="#a5dd301238834c161a8ca142f32b2a83c">More...</a><br /></td></tr>
+<tr class="separator:a5dd301238834c161a8ca142f32b2a83c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51e3a8e372e5d019c215d126823986b0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="gmm_8h.html#a89681cfc201e4ddfff3084c2898d1974">VlGMMInitialization</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gmm_8c.html#a51e3a8e372e5d019c215d126823986b0">vl_gmm_get_initialization</a> (<a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> const *self)</td></tr>
+<tr class="memdesc:a51e3a8e372e5d019c215d126823986b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get initialization algorithm.  <a href="#a51e3a8e372e5d019c215d126823986b0">More...</a><br /></td></tr>
+<tr class="separator:a51e3a8e372e5d019c215d126823986b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f34a10ef70b880a81eabce9fc29cc2e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gmm_8c.html#a3f34a10ef70b880a81eabce9fc29cc2e">vl_gmm_set_initialization</a> (<a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> *self, <a class="el" href="gmm_8h.html#a89681cfc201e4ddfff3084c2898d1974">VlGMMInitialization</a> init)</td></tr>
+<tr class="memdesc:a3f34a10ef70b880a81eabce9fc29cc2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set initialization algorithm.  <a href="#a3f34a10ef70b880a81eabce9fc29cc2e">More...</a><br /></td></tr>
+<tr class="separator:a3f34a10ef70b880a81eabce9fc29cc2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c35a5179c1a1061b0ed243d56e12dc7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structVlKMeans.html">VlKMeans</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gmm_8c.html#a6c35a5179c1a1061b0ed243d56e12dc7">vl_gmm_get_kmeans_init_object</a> (<a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> const *self)</td></tr>
+<tr class="memdesc:a6c35a5179c1a1061b0ed243d56e12dc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get KMeans initialization object.  <a href="#a6c35a5179c1a1061b0ed243d56e12dc7">More...</a><br /></td></tr>
+<tr class="separator:a6c35a5179c1a1061b0ed243d56e12dc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae740ca4d9c354ac9d83c89127bce744c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gmm_8c.html#ae740ca4d9c354ac9d83c89127bce744c">vl_gmm_set_kmeans_init_object</a> (<a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> *self, <a class="el" href="structVlKMeans.html">VlKMeans</a> *kmeans)</td></tr>
+<tr class="memdesc:ae740ca4d9c354ac9d83c89127bce744c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set KMeans initialization object.  <a href="#ae740ca4d9c354ac9d83c89127bce744c">More...</a><br /></td></tr>
+<tr class="separator:ae740ca4d9c354ac9d83c89127bce744c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e149ef463f029ba96788f0aa7442025"><td class="memItemLeft" align="right" valign="top">double const *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gmm_8c.html#a6e149ef463f029ba96788f0aa7442025">vl_gmm_get_covariance_lower_bounds</a> (<a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> const *self)</td></tr>
+<tr class="memdesc:a6e149ef463f029ba96788f0aa7442025"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the lower bound on the diagonal covariance values.  <a href="#a6e149ef463f029ba96788f0aa7442025">More...</a><br /></td></tr>
+<tr class="separator:a6e149ef463f029ba96788f0aa7442025"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5b9aa600e348e99907cdb9f160c8d1d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gmm_8c.html#ac5b9aa600e348e99907cdb9f160c8d1d">vl_gmm_set_covariance_lower_bounds</a> (<a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> *self, double const *bounds)</td></tr>
+<tr class="memdesc:ac5b9aa600e348e99907cdb9f160c8d1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the lower bounds on diagonal covariance values.  <a href="#ac5b9aa600e348e99907cdb9f160c8d1d">More...</a><br /></td></tr>
+<tr class="separator:ac5b9aa600e348e99907cdb9f160c8d1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a607ba2f82f3bfe5949f71acca0d332c8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gmm_8c.html#a607ba2f82f3bfe5949f71acca0d332c8">vl_gmm_set_covariance_lower_bound</a> (<a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> *self, double bound)</td></tr>
+<tr class="memdesc:a607ba2f82f3bfe5949f71acca0d332c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the lower bounds on diagonal covariance values.  <a href="#a607ba2f82f3bfe5949f71acca0d332c8">More...</a><br /></td></tr>
+<tr class="separator:a607ba2f82f3bfe5949f71acca0d332c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c6889a0569271e72096d18735f28211"><td class="memItemLeft" align="right" valign="top"><a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gmm_8c.html#a2c6889a0569271e72096d18735f28211">vl_gmm_new_copy</a> (<a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> const *self)</td></tr>
+<tr class="memdesc:a2c6889a0569271e72096d18735f28211"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new GMM object by copy.  <a href="#a2c6889a0569271e72096d18735f28211">More...</a><br /></td></tr>
+<tr class="separator:a2c6889a0569271e72096d18735f28211"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab9d461e2fca63960f2751ae86946804"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gmm_8c.html#aab9d461e2fca63960f2751ae86946804">vl_gmm_init_with_rand_data</a> (<a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> *self, void const *data, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> numData)</td></tr>
+<tr class="memdesc:aab9d461e2fca63960f2751ae86946804"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize mixture before EM takes place using random initialization.  <a href="#aab9d461e2fca63960f2751ae86946804">More...</a><br /></td></tr>
+<tr class="separator:aab9d461e2fca63960f2751ae86946804"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21934aa27cd02d67734d311c4207829e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gmm_8c.html#a21934aa27cd02d67734d311c4207829e">vl_gmm_init_with_kmeans</a> (<a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> *self, void const *data, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> numData, <a class="el" href="structVlKMeans.html">VlKMeans</a> *kmeansInit)</td></tr>
+<tr class="memdesc:a21934aa27cd02d67734d311c4207829e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the GMM using KMeans.  <a href="#a21934aa27cd02d67734d311c4207829e">More...</a><br /></td></tr>
+<tr class="separator:a21934aa27cd02d67734d311c4207829e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a856cdfe758b7c48c3309859853f38e36"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gmm_8c.html#a856cdfe758b7c48c3309859853f38e36">vl_gmm_cluster</a> (<a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> *self, void const *data, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> numData)</td></tr>
+<tr class="memdesc:a856cdfe758b7c48c3309859853f38e36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run GMM clustering - includes initialization and EM.  <a href="#a856cdfe758b7c48c3309859853f38e36">More...</a><br /></td></tr>
+<tr class="separator:a856cdfe758b7c48c3309859853f38e36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f8f3fc91d284a2866fc5fd5d5b48dfd"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gmm_8c.html#a4f8f3fc91d284a2866fc5fd5d5b48dfd">vl_gmm_em</a> (<a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> *self, void const *data, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> numData)</td></tr>
+<tr class="memdesc:a4f8f3fc91d284a2866fc5fd5d5b48dfd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invoke the EM algorithm.  <a href="#a4f8f3fc91d284a2866fc5fd5d5b48dfd">More...</a><br /></td></tr>
+<tr class="separator:a4f8f3fc91d284a2866fc5fd5d5b48dfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a001f4a994fbb997e7b7b38d56e69e495"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gmm_8c.html#a001f4a994fbb997e7b7b38d56e69e495">vl_gmm_set_means</a> (<a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> *self, void const *means)</td></tr>
+<tr class="memdesc:a001f4a994fbb997e7b7b38d56e69e495"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicitly set the initial means for EM.  <a href="#a001f4a994fbb997e7b7b38d56e69e495">More...</a><br /></td></tr>
+<tr class="separator:a001f4a994fbb997e7b7b38d56e69e495"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9467941c38e0eb70f1e7de2cf8242716"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gmm_8c.html#a9467941c38e0eb70f1e7de2cf8242716">vl_gmm_set_covariances</a> (<a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> *self, void const *covariances)</td></tr>
+<tr class="memdesc:a9467941c38e0eb70f1e7de2cf8242716"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicitly set the initial sigma diagonals for EM.  <a href="#a9467941c38e0eb70f1e7de2cf8242716">More...</a><br /></td></tr>
+<tr class="separator:a9467941c38e0eb70f1e7de2cf8242716"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c0e4759f7b082400cfe4da0991139c8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gmm_8c.html#a4c0e4759f7b082400cfe4da0991139c8">vl_gmm_set_priors</a> (<a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> *self, void const *priors)</td></tr>
+<tr class="memdesc:a4c0e4759f7b082400cfe4da0991139c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicitly set the initial priors of the gaussians.  <a href="#a4c0e4759f7b082400cfe4da0991139c8">More...</a><br /></td></tr>
+<tr class="separator:a4c0e4759f7b082400cfe4da0991139c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Get parameters</div></td></tr>
+<tr class="memitem:aba79f6a785a9c33b84f5dc38c9b670aa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gmm_8c.html#aba79f6a785a9c33b84f5dc38c9b670aa">vl_gmm_get_num_repetitions</a> (<a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> const *self)</td></tr>
+<tr class="memdesc:aba79f6a785a9c33b84f5dc38c9b670aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get maximum number of repetitions.  <a href="#aba79f6a785a9c33b84f5dc38c9b670aa">More...</a><br /></td></tr>
+<tr class="separator:aba79f6a785a9c33b84f5dc38c9b670aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><dl class="section author"><dt>Author</dt><dd>David Novotny </dd>
+<dd>
+Andrea Vedaldi </dd></dl>
+</div><h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a856cdfe758b7c48c3309859853f38e36"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double vl_gmm_cluster </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void const *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>numData</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>GMM object instance. </td></tr>
+    <tr><td class="paramname">data</td><td>data points which should be clustered. </td></tr>
+    <tr><td class="paramname">numData</td><td>number of data points. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="adbde533172047f780e2713d18387a9d0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_gmm_delete </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>GMM object instance.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The function deletes the GMM object instance created by <a class="el" href="gmm_8c.html#afe0bdce1cf97a7b64011ae58bc8b9697" title="Create a new GMM object. ">vl_gmm_new</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="a4f8f3fc91d284a2866fc5fd5d5b48dfd"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double vl_gmm_em </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void const *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>numData</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>GMM object instance. </td></tr>
+    <tr><td class="paramname">data</td><td>data points which should be clustered. </td></tr>
+    <tr><td class="paramname">numData</td><td>number of data points. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a6e149ef463f029ba96788f0aa7442025"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double const* vl_gmm_get_covariance_lower_bounds </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>lower bound on covariances. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a319648cad7d83d2a31c7beb79b1ba125"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void const* vl_gmm_get_covariances </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>diagonals of cluster covariance matrices. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ac8980d73a2bac3f4aba64108ea9b7986"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vl_type vl_gmm_get_data_type </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>data type. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a5dd301238834c161a8ca142f32b2a83c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> vl_gmm_get_dimension </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>data dimension. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a51e3a8e372e5d019c215d126823986b0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="gmm_8h.html#a89681cfc201e4ddfff3084c2898d1974">VlGMMInitialization</a> vl_gmm_get_initialization </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>initialization algorithm. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a6c35a5179c1a1061b0ed243d56e12dc7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structVlKMeans.html">VlKMeans</a>* vl_gmm_get_kmeans_init_object </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>kmeans initialization object. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a618c40e1338f2433505f83d0745fce7f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double vl_gmm_get_loglikelihood </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>loglikelihood. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aaa311e17e0190fa3a247349d4e127e3d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> vl_gmm_get_max_num_iterations </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>maximum number of iterations. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ae8598b36a92ca066e26e03ea46dee466"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void const* vl_gmm_get_means </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>cluster means. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a6d4f30630fd47af3dec762a58df7b653"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> vl_gmm_get_num_clusters </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>number of clusters. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a83a3fb14322069092b4618bcabaf5fda"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> vl_gmm_get_num_data </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>number of data points. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aba79f6a785a9c33b84f5dc38c9b670aa"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> vl_gmm_get_num_repetitions </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>current number of repretitions for quantization. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a54b1da9397fdb22c1036690e80816e76"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void const* vl_gmm_get_posteriors </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>posterior probabilities of cluster memberships. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a556605dddee3aa3f2c35898436c5e811"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void const* vl_gmm_get_priors </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>priors of cluster gaussians. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a167e3a1208bc756e1681dfc44dab5928"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int vl_gmm_get_verbosity </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>verbosity level. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a21934aa27cd02d67734d311c4207829e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_gmm_init_with_kmeans </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void const *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>numData</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structVlKMeans.html">VlKMeans</a> *&#160;</td>
+          <td class="paramname"><em>kmeansInit</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>GMM object instance. </td></tr>
+    <tr><td class="paramname">data</td><td>data points which should be clustered. </td></tr>
+    <tr><td class="paramname">numData</td><td>number of data points. </td></tr>
+    <tr><td class="paramname">kmeansInit</td><td>KMeans object to use. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="aab9d461e2fca63960f2751ae86946804"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_gmm_init_with_rand_data </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void const *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>numData</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>GMM object instance. </td></tr>
+    <tr><td class="paramname">data</td><td>data points which should be clustered. </td></tr>
+    <tr><td class="paramname">numData</td><td>number of data points. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="afe0bdce1cf97a7b64011ae58bc8b9697"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a>* vl_gmm_new </td>
+          <td>(</td>
+          <td class="paramtype">vl_type&#160;</td>
+          <td class="paramname"><em>dataType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>dimension</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>numComponents</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dataType</td><td>type of data (<a class="el" href="generic_8h.html#aa034d0b942f9800b2a02aeb30ff10fa2">VL_TYPE_FLOAT</a> or <a class="el" href="generic_8h.html#a41d6691dac0cc3648ca9701d27e5d2b0">VL_TYPE_DOUBLE</a>) </td></tr>
+    <tr><td class="paramname">dimension</td><td>dimension of the data. </td></tr>
+    <tr><td class="paramname">numComponents</td><td>number of Gaussian mixture components. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>new GMM object instance. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a2c6889a0569271e72096d18735f28211"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a>* vl_gmm_new_copy </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>new copy.</dd></dl>
+<p>Most parameters, including the cluster priors, means, and covariances are copied. Data posteriors (available after initalization or EM) are not; nor is the KMeans object used for initialization, if any. </p>
+
+</div>
+</div>
+<a class="anchor" id="a1baeb175e0cdb68c548addc837d7baae"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_gmm_reset </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The function reset the state of the GMM object. It deletes any stored posterior and other internal state variables. </p>
+
+</div>
+</div>
+<a class="anchor" id="a607ba2f82f3bfe5949f71acca0d332c8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_gmm_set_covariance_lower_bound </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>bound</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object. </td></tr>
+    <tr><td class="paramname">bound</td><td>bound.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>While there is one lower bound per dimension, this function sets all of them to the specified scalar. Use <a class="el" href="gmm_8c.html#ac5b9aa600e348e99907cdb9f160c8d1d" title="Set the lower bounds on diagonal covariance values. ">vl_gmm_set_covariance_lower_bounds</a> to set them individually. </p>
+
+</div>
+</div>
+<a class="anchor" id="ac5b9aa600e348e99907cdb9f160c8d1d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_gmm_set_covariance_lower_bounds </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double const *&#160;</td>
+          <td class="paramname"><em>bounds</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object. </td></tr>
+    <tr><td class="paramname">bounds</td><td>bounds.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>There is one lower bound per dimension. Use <a class="el" href="gmm_8c.html#a607ba2f82f3bfe5949f71acca0d332c8" title="Set the lower bounds on diagonal covariance values. ">vl_gmm_set_covariance_lower_bound</a> to set all of them to a given scalar. </p>
+
+</div>
+</div>
+<a class="anchor" id="a9467941c38e0eb70f1e7de2cf8242716"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_gmm_set_covariances </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void const *&#160;</td>
+          <td class="paramname"><em>covariances</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>GMM object instance. </td></tr>
+    <tr><td class="paramname">covariances</td><td>initial values of covariance matrix diagonals. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a3f34a10ef70b880a81eabce9fc29cc2e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_gmm_set_initialization </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="gmm_8h.html#a89681cfc201e4ddfff3084c2898d1974">VlGMMInitialization</a>&#160;</td>
+          <td class="paramname"><em>init</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object </td></tr>
+    <tr><td class="paramname">init</td><td>initialization algorithm. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ae740ca4d9c354ac9d83c89127bce744c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_gmm_set_kmeans_init_object </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structVlKMeans.html">VlKMeans</a> *&#160;</td>
+          <td class="paramname"><em>kmeans</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object </td></tr>
+    <tr><td class="paramname">kmeans</td><td>initialization KMeans object. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a606ce33d200101fa6a60e10a3e89cec1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_gmm_set_max_num_iterations </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>maxNumIterations</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>VlGMM filter. </td></tr>
+    <tr><td class="paramname">maxNumIterations</td><td>maximum number of iterations. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a001f4a994fbb997e7b7b38d56e69e495"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_gmm_set_means </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void const *&#160;</td>
+          <td class="paramname"><em>means</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>GMM object instance. </td></tr>
+    <tr><td class="paramname">means</td><td>initial values of means. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a9801c187ad6f0561275a715d3e589a59"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_gmm_set_num_repetitions </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>numRepetitions</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object </td></tr>
+    <tr><td class="paramname">numRepetitions</td><td>maximum number of repetitions. The number of repetitions cannot be smaller than 1. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a4c0e4759f7b082400cfe4da0991139c8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_gmm_set_priors </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void const *&#160;</td>
+          <td class="paramname"><em>priors</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>GMM object instance. </td></tr>
+    <tr><td class="paramname">priors</td><td>initial values of the gaussian priors. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a96708e3c10107c49f136a0fe1082684a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_gmm_set_verbosity </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">VlGMM</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>verbosity</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object </td></tr>
+    <tr><td class="paramname">verbosity</td><td>verbosity level. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+        <!-- Doc Here -->
+      </div>
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>

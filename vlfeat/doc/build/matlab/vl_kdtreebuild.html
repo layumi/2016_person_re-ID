@@ -1,0 +1,74 @@
+<group>
+<ul class='breadcrumb'><li><a href='%pathto:matlab;'>Index</a></li><li><a href='%pathto:vl_isoctave;'>Prev</a></li><li><a href='%pathto:vl_kdtreequery;'>Next</a></li></ul><div class="documentation"><p>
+FOREST = <a href="%pathto:vl_kdtreebuild;">VL_KDTREEBUILD</a>(X) returns a structure FOREST containing
+the kd-tree indexing the data X. X is a M x N dimensional matrix
+of class DOUBLE or SINGLE with one data point per column. Use
+<a href="%pathto:vl_kdtreequery;">VL_KDTREEQUERY</a>() to query the index.
+</p><p>
+VL_KDETREEBUILD() accepts the following options:
+</p><dl><dt>
+NumTrees
+<span class="defaults">[1]</span></dt><dd><p>
+Specifies the number of semi-randomized KD-trees to add to the
+forest. Multiple trees can be used to improve approximate
+nearest-neighbors searches with <a href="%pathto:vl_kdtreequery;">VL_KDTREEQUERY</a>().
+</p></dd><dt>
+ThresholdMethod
+<span class="defaults">[MEDIAN]</span></dt><dd><p>
+Specifies the thresholding method used to split the data.  Two
+methods are supported: split around the median (MEDIAN) or split
+around the mean (MEAN).
+</p></dd><dt>
+Verbose
+</dt><dd><p>
+Increases the verbosity level (can be repeated).
+</p></dd><dt>
+Distance
+<span class="defaults">[L2]</span></dt><dd><p>
+Specifies the type of norm which the KD-Tree should use (L1 or L2)
+</p></dd></dl><p>
+The FOREST structure has the following fields:
+</p><dl><dt>
+FOREST.TREES
+</dt><dd><p>
+A structure array with one element per tree.
+</p></dd><dt>
+FOREST.DIMENSION
+</dt><dd><p>
+Dimensionality of the indexed data.
+</p></dd><dt>
+FOREST.NUMDATA
+</dt><dd><p>
+Number of indexed data points.
+</p></dd></dl><p>
+The TREE structure has the following fields:
+</p><dl><dt>
+TREE.NODES
+</dt><dd><p>
+A structure array representing the nodes of the tree.
+</p></dd><dt>
+TREE.DATAINDEX
+</dt><dd><p>
+A 1 x NUMDATA vector of class UINT32 representing a permutation
+of the data.
+</p></dd></dl><p>
+Nodes are numbered from 1 to NUMNODES.  The NODES structure array
+has the following fields:
+</p><dl><dt>
+NODES.LOWERCHILD and NODES.UPPERCHILD
+</dt><dd><p>
+1 x NUMNODES vectors of class INT32. A positive value is the
+index of the lower/upper child node. A negative value denotes a
+leaf and is (after negation) is the first or last element plus
+one of a range of entries in the permutation TREE.DATAINDEX.
+Such entries are in turn indexes of the data points that belong
+to that leaf. Typically there is one point per leaf.
+</p></dd><dt>
+NODES.SPLITDIMENSION and NODES.SPLITTHRESHOLD
+</dt><dd><p>
+1 x NUMNODES vector of class UINT32 and DOUBLE, respectively,
+with the index of the splitting dimension and the threshold for
+each node.
+</p></dd></dl><p>
+See also: <a href="%pathto:vl_kdtreequery;">VL_KDTREEQUERY</a>(), <a href="%pathto:vl_help;">VL_HELP</a>().
+</p></div></group>

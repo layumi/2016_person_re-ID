@@ -1,0 +1,291 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+  <!-- Page title -->
+  <title>VLFeat - Documentation > C API</title>
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  <link rel="stylesheet" type="text/css" href="doxygen.css"></link>
+  <!-- Scripts-->
+  <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li class='active'><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li class='active' class='activeLeaf'><a href="index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="../doc.html">Documentation</a></span><span class='separator'>></span><span class='page'><a href="index.html">C API</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+      <!-- <pagestyle href="%pathto:root;api/tabs.css"/> -->
+      <div class="doxygen">
+<div id="top">
+<div id="top">
+<!-- Generated by Doxygen 1.8.7 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li class="current"><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
+    </ul>
+  </div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="index.html">Vision Lab Features Library (VLFeat)</a></li><li class="navelem"><a class="el" href="svm.html">Support Vector Machines (SVM)</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Stochastic Gradient Descent </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="toc"><h3>Table of Contents</h3>
+<ul><li class="level1"><a href="#svm-sgd-convergence">Convergence and speed</a></li>
+<li class="level1"><a href="#svm-sgd-bias">The bias term</a></li>
+<li class="level1"><a href="#svm-sgd-starting-iteration">Adjusting the learning rate</a><ul><li class="level2"><a href="#svm-sgd-warm-start">Warm start</a></li>
+</ul>
+</li>
+<li class="level1"><a href="#svm-sgd-details">Implementation details</a></li>
+</ul>
+</div>
+<div class="textblock"><p>This page describes the <em>Stochastic Gradient Descent</em> (SGD) linear SVM solver. SGD minimizes directly the primal SVM objective (see <a class="el" href="svm.html">Support Vector Machines (SVM)</a>):</p>
+<p class="formulaDsp">
+\[ E(\bw) = \frac{\lambda}{2} \left\| \bw \right\|^2 + \frac{1}{n} \sum_{i=1}^n \ell_i(\langle \bw,\bx\rangle) \]
+</p>
+<p>Firts, rewrite the objective as the average</p>
+<p class="formulaDsp">
+\[ E(\bw) = \frac{1}{n} \sum_{i=1}^n E_i(\bw), \quad E_i(\bw) = \frac{\lambda}{2} \left\| \bw \right\|^2 + \ell_i(\langle \bw,\bx\rangle). \]
+</p>
+<p>Then SGD performs gradient steps by considering at each iteration one term \(E_i(\bw)\) selected at random from this average. In its most basic form, the algorithm is:</p>
+<ul>
+<li>Start with \(\bw_0 = 0\).</li>
+<li>For \(t=1,2,\dots T\):<ul>
+<li>Sample one index \(i\) in \(1,\dots,n\) uniformly at random.</li>
+<li>Compute a subgradient \(\bg_t\) of \(E_i(\bw)\) at \(\bw_t\).</li>
+<li>Compute the learning rate \(\eta_t\).</li>
+<li>Update \(\bw_{t+1} = \bw_t - \eta_t \bg_t\).</li>
+</ul>
+</li>
+</ul>
+<p>Provided that the learning rate \(\eta_t\) is chosen correctly, this simple algorithm is guaranteed to converge to the minimizer \(\bw^*\) of \(E\).</p>
+<h1><a class="anchor" id="svm-sgd-convergence"></a>
+Convergence and speed</h1>
+<p>The goal of the SGD algorithm is to bring the <em>primal suboptimality</em> below a threshold \(\epsilon_P\): </p><p class="formulaDsp">
+\[ E(\bw_t) - E(\bw^*) \leq \epsilon_P. \]
+</p>
+<p>If the learning rate \(\eta_t\) is selected appropriately, SGD can be shown to converge properly. For example, <a class="el" href="citelist.html#CITEREF_shalev-shwartz07pegasos">[26]</a> show that, since \(E(\bw)\) is \(\lambda\)-strongly convex, then using the learning rate </p><p class="formulaDsp">
+\[ \boxed{\eta_t = \frac{1}{\lambda t}} \]
+</p>
+<p> guarantees that the algorithm reaches primal-suboptimality \(\epsilon_P\) in </p><p class="formulaDsp">
+\[ \tilde O\left( \frac{1}{\lambda \epsilon_P} \right). \]
+</p>
+<p> iterations. This particular SGD variant is sometimes known as PEGASOS <a class="el" href="citelist.html#CITEREF_shalev-shwartz07pegasos">[26]</a> and is the version implemented in VLFeat.</p>
+<p>The <em>convergence speed</em> is not sufficient to tell the <em>learning speed</em>, i.e. how quickly an algorithm can learn an SVM that performs optimally on the test set. The following two observations can be used to link convergence speed to learning speed:</p>
+<ul>
+<li>The regularizer strength is often heuristically selected to be inversely proportional to the number of training samples: \(\lambda = \lambda_0 /n\). This reflects the fact that with more training data the prior should count less.</li>
+<li>The primal suboptimality \(\epsilon_P\) should be about the same as the estimation error of the SVM primal. This estimation error is due to the finite training set size and can be shown to be of the order of \(1/\lambda n = 1 / \lambda_0\).</li>
+</ul>
+<p>Under these two assumptions, PEGASOS can learn a linear SVM in time \(\tilde O(n)\), which is <em>linear in the number of training examples</em>. This fares much better with \(O(n^2)\) or worse of non-linear SVM solvers.</p>
+<h1><a class="anchor" id="svm-sgd-bias"></a>
+The bias term</h1>
+<p>Adding a bias \(b\) to the SVM scoring function \(\langle \bw, \bx \rangle +b\) is done, as explained in <a class="el" href="svm-fundamentals.html#svm-bias">Adding a bias</a>, by appending a constant feature \(B\) (the <em>bias multiplier</em>) to the data vectors \(\bx\) and a corresponding weight element \(w_b\) to the weight vector \(\bw\), so that \(b = B w_b\) As noted, the bias multiplier should be relatively large in order to avoid shrinking the bias towards zero, but small to make the optimization stable. In particular, setting \(B\) to zero learns an unbiased SVM (<a class="el" href="svm_8c.html#a1225f0f7f32f8fe5ee4090e77efc4e2c" title="Set the bias multiplier. ">vl_svm_set_bias_multiplier</a>).</p>
+<p>To counter instability caused by a large bias multiplier, the learning rate of the bias is slowed down by multiplying the overall learning rate \(\eta_t\) by a bias-specific rate coefficient (<a class="el" href="svm_8c.html#a330b9011895064b930c772c1b28e1d9e" title="Set the bias learning rate. ">vl_svm_set_bias_learning_rate</a>).</p>
+<p>As a rule of thumb, if the data vectors \(\bx\) are \(l^2\) normalized (as they typically should for optimal performance), then a reasonable bias multiplier is in the range 1 to 10 and a reasonable bias learning rate is somewhere in the range of the inverse of that (in this manner the two parts of the extended feature vector \((\bx, B)\) are balanced).</p>
+<h1><a class="anchor" id="svm-sgd-starting-iteration"></a>
+Adjusting the learning rate</h1>
+<p>Initially, the learning rate \(\eta_t = 1/\lambda t\) is usually too fast: as usually \(\lambda \ll 1\), \(\eta_1 \gg 1\). But this is clearly excessive (for example, without a loss term, the best learning rate at the first iteration is simply \(\eta_1=1\), as this nails the optimum in one step). Thus, the learning rate formula is modified to be \(\eta_t = 1 / \lambda (t + t_0)\), where \(t_0 \approx 2/\lambda\), which is equivalent to start \(t_0\) iterations later. In this manner \(\eta_1 \approx 1/2\).</p>
+<h2><a class="anchor" id="svm-sgd-warm-start"></a>
+Warm start</h2>
+<p>Starting from a given model \(\bw\) is easy in SGD as the optimization runs in the primal. However, the starting iteration index \(t\) should also be advanced for a warm start, as otherwise the initial setting of \(\bw\) is rapidly forgot (<a class="el" href="svm_8c.html#a11cfeb959efa6d18ced2e55603e32097" title="Set the SVM model. ">vl_svm_set_model</a>, <a class="el" href="svm_8c.html#a60d6f706dcde30fea14fbf80714c93ce" title="Set the SVM bias. ">vl_svm_set_bias</a>, <a class="el" href="svm_8c.html#a446295ef005b5f19fa3648a199c0254d" title="Set the current iteratio number. ">vl_svm_set_iteration_number</a>).</p>
+<h1><a class="anchor" id="svm-sgd-details"></a>
+Implementation details</h1>
+<dl class="section user"><dt>Random sampling of points</dt><dd></dd></dl>
+<p>Rather than visiting points completely at random, VLFeat SDCA follows the best practice of visiting all the points at every epoch (pass through the data), changing the order of the visit randomly by picking every time a new random permutation.</p>
+<dl class="section user"><dt>Factored representation</dt><dd></dd></dl>
+<p>At each iteration, the SGD algorithm updates the vector \(\bw\) (including the additional bias component \(w_b\)) as \(\bw_{t+1} \leftarrow \bw_t - \lambda \eta_t \bw_t - \eta_t \bg_t\), where \(\eta_t\) is the learning rate. If the subgradient of the loss function \(\bg_t\) is zero at a given iteration, this amounts to simply shrink \(\bw\) towards the origin by multiplying it by the factor \(1 - \lambda \eta_t\). Thus such an iteration can be accelerated significantly by representing internally \(\bw_t = f_t \bu_t\), where \(f_t\) is a scaling factor. Then, the update becomes </p><p class="formulaDsp">
+\[ f_{t+1} \bu_{t+1} = f_{t} \bu_{t} - \lambda \eta_t f_{t} \bu_{t} - \eta_t \bg_t = (1-\lambda \eta_t) f_{t} \bu_{t} - \eta_t \bg_t. \]
+</p>
+<p> Setting \(f_{t+1} = (1-\lambda \eta_t) f_{t}\), this gives the update equation for \(\bu_t\) </p><p class="formulaDsp">
+\[ \bu_{t+1} = \bu_{t} - \frac{\eta_t}{f_{t+1}} \bg_t. \]
+</p>
+<p> but this step can be skipped whenever \(\bg_t\) is equal to zero.</p>
+<p>When the bias component has a different learning rate, this scheme must be adjusted slightly by adding a separated factor for the bias, but it is otherwise identical. </p>
+</div></div><!-- contents -->
+        <!-- Doc Here -->
+      </div>
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>

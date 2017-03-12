@@ -1,0 +1,26 @@
+<group>
+<ul class='breadcrumb'><li><a href='%pathto:matlab;'>Index</a></li><li><a href='%pathto:vl_imarraysc;'>Prev</a></li><li><a href='%pathto:vl_imdown;'>Next</a></li></ul><div class="documentation"><p>
+DT = <a href="%pathto:vl_imdisttf;">VL_IMDISTTF</a>(I) computes the distance transform of image I.
+The distance transform is defined as
+</p><pre>
+    DT(x,y) = min_{u,v} I(u,v) + (u - x)^2 + (v - y)^2.
+</pre><p>
+[D, INDEXES] = <a href="%pathto:vl_imdisttf;">VL_IMDISTTF</a>(...) returns a matrix INDEXES that
+contains for each pixel (x,y) the index of the pixel (u,v) which
+is the minimizer of the distance transform objective.
+</p><p>
+VL_IMDSITTF(I, PARAM) uses differenet parameters for the
+transform:
+</p><pre>
+   DT(u,v) = min_{u,v} I(u,v) + PARAM(1) (u - x - PARAM(2))^2
+                              + PARAM(3) (v - y - PARAM(4))^2
+</pre><p>
+The function uses the fast algorithm from [1].
+</p><dl><dt>
+REFERENCES
+</dt><dd><p>
+[1] P. F. Felzenszwalb and D. P. Huttenlocher. Distance transforms
+of sampled functions. Technical report, Cornell University, 2004.
+</p></dd></dl><p>
+See also: <a href="%pathto:vl_help;">VL_HELP</a>().
+</p></div></group>

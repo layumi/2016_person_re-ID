@@ -1,0 +1,27 @@
+<group>
+<ul class='breadcrumb'><li><a href='%pathto:matlab;'>Index</a></li><li><a href='%pathto:vl_siftdescriptor;'>Prev</a></li><li><a href='%pathto:vl_ubcread;'>Next</a></li></ul><div class="documentation"><p>
+MATCHES = <a href="%pathto:vl_ubcmatch;">VL_UBCMATCH</a>(DESCR1, DESCR2) matches the two sets of SIFT
+descriptors DESCR1 and DESCR2.
+</p><p>
+[MATCHES,SCORES] = <a href="%pathto:vl_ubcmatch;">VL_UBCMATCH</a>(DESCR1, DESCR2) retuns the matches and
+also the squared Euclidean distance between the matches.
+</p><p>
+The function uses the algorithm suggested by D. Lowe [1] to reject
+matches that are too ambiguous.
+</p><p>
+<a href="%pathto:vl_ubcmatch;">VL_UBCMATCH</a>(DESCR1, DESCR2, THRESH) uses the specified threshold
+THRESH. A descriptor D1 is matched to a descriptor D2 only if the
+distance d(D1,D2) multiplied by THRESH is not greater than the
+distance of D1 to all other descriptors. The default value of
+THRESH is 1.5.
+</p><p>
+The storage class of the descriptors can be either DOUBLE, FLOAT,
+INT8 or UINT8. Usually integer classes are faster.
+</p><dl><dt>
+REFERENCES
+</dt><dd><p>
+[1] D. G. Lowe, Distinctive image features from scale-invariant
+keypoints. IJCV, vol. 2, no. 60, pp. 91-110, 2004.
+</p></dd></dl><p>
+See also: <a href="%pathto:vl_help;">VL_HELP</a>(), <a href="%pathto:vl_sift;">VL_SIFT</a>().
+</p></div></group>

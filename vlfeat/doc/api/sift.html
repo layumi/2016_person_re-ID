@@ -1,0 +1,470 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+  <!-- Page title -->
+  <title>VLFeat - Documentation > C API</title>
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  <link rel="stylesheet" type="text/css" href="doxygen.css"></link>
+  <!-- Scripts-->
+  <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li class='active'><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li class='active' class='activeLeaf'><a href="index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="../doc.html">Documentation</a></span><span class='separator'>></span><span class='page'><a href="index.html">C API</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+      <!-- <pagestyle href="%pathto:root;api/tabs.css"/> -->
+      <div class="doxygen">
+<div id="top">
+<div id="top">
+<!-- Generated by Doxygen 1.8.7 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li class="current"><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
+    </ul>
+  </div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="index.html">Vision Lab Features Library (VLFeat)</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Scale Invariant Feature Transform (SIFT) </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="toc"><h3>Table of Contents</h3>
+<ul><li class="level1"><a href="#sift-intro">Overview</a><ul><li class="level2"><a href="#sift-intro-detector">SIFT detector</a></li>
+<li class="level2"><a href="#sift-intro-descriptor">SIFT Descriptor</a></li>
+</ul>
+</li>
+<li class="level1"><a href="#sift-intro-extensions">Extensions</a></li>
+<li class="level1"><a href="#sift-usage">Using the SIFT filter object</a></li>
+<li class="level1"><a href="#sift-tech">Technical details</a><ul><li class="level2"><a href="#sift-tech-ss">Scale space</a></li>
+<li class="level2"><a href="#sift-tech-detector">Detector</a><ul><li class="level3"><a href="#sift-tech-detector-peak">Eliminating low contrast responses</a></li>
+<li class="level3"><a href="#sift-tech-detector-edge">Eliminating edge responses</a></li>
+</ul>
+</li>
+<li class="level2"><a href="#sift-tech-detector-orientation">Orientation assignment</a></li>
+<li class="level2"><a href="#sift-tech-descriptor">Descriptor</a><ul><li class="level3"><a href="#sift-tech-descriptor-can">Construction in the canonical frame</a></li>
+<li class="level3"><a href="#sift-tech-descriptor-image">Calculation in the image frame</a></li>
+<li class="level3"><a href="#sift-tech-descriptor-std">Standard SIFT descriptor</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="textblock"><dl class="section author"><dt>Author</dt><dd>Andrea Vedaldi </dd></dl>
+<dl class="section user"><dt>Credits:</dt><dd>May people have contributed with suggestions and bug reports. Although the following list is certainly incomplete, we would like to thank: Wei Dong, Loic, Giuseppe, Liu, Erwin, P. Ivanov, and Q. S. Luo.</dd></dl>
+<p><a class="el" href="sift_8h.html">sift.h</a> implements a <a class="el" href="sift.html#sift-usage">SIFT filter object</a>, a reusable object to extract SIFT features <a class="el" href="citelist.html#CITEREF_lowe99object">[17]</a> from one or multiple images.</p>
+<p>This is the original VLFeat implementation of SIFT, designed to be compatible with Lowe's original SIFT. See <a class="el" href="covdet.html">Covariant feature detectors</a> for a different version of SIFT integrated in the more general covariant feature detector engine.</p>
+<h1><a class="anchor" id="sift-intro"></a>
+Overview</h1>
+<p>A SIFT feature is a selected image region (also called keypoint) with an associated descriptor. Keypoints are extracted by the <b><a class="el" href="sift.html#sift-intro-detector">SIFT detector</a></b> and their descriptors are computed by the <b><a class="el" href="sift.html#sift-intro-descriptor">SIFT descriptor</a></b>. It is also common to use independently the SIFT detector (i.e. computing the keypoints without descriptors) or the SIFT descriptor (i.e. computing descriptors of custom keypoints).</p>
+<h2><a class="anchor" id="sift-intro-detector"></a>
+SIFT detector</h2>
+<p>A SIFT <em>keypoint</em> is a circular image region with an orientation. It is described by a geometric <em>frame</em> of four parameters: the keypoint center coordinates <em>x</em> and <em>y</em>, its <em>scale</em> (the radius of the region), and its <em>orientation</em> (an angle expressed in radians). The SIFT detector uses as keypoints image structures which resemble &ldquo;blobs&rdquo;. By searching for blobs at multiple scales and positions, the SIFT detector is invariant (or, more accurately, covariant) to translation, rotations, and re scaling of the image.</p>
+<p>The keypoint orientation is also determined from the local image appearance and is covariant to image rotations. Depending on the symmetry of the keypoint appearance, determining the orientation can be ambiguous. In this case, the SIFT detectors returns a list of up to four possible orientations, constructing up to four frames (differing only by their orientation) for each detected image blob.</p>
+<div class="image">
+<img src="sift-frame.png" alt="sift-frame.png"/>
+<div class="caption">
+SIFT keypoints are circular image regions with an orientation.</div></div>
+<p> There are several parameters that influence the detection of SIFT keypoints. First, searching keypoints at multiple scales is obtained by constructing a so-called &ldquo;Gaussian scale space&rdquo;. The scale space is just a collection of images obtained by progressively smoothing the input image, which is analogous to gradually reducing the image resolution. Conventionally, the smoothing level is called <em>scale</em> of the image. The construction of the scale space is influenced by the following parameters, set when creating the SIFT filter object by <a class="el" href="sift_8c.html#adff66a155e30ed412bc8bbb97dfa2fae" title="Create a new SIFT filter. ">vl_sift_new()</a>:</p>
+<ul>
+<li><b>Number of octaves</b>. Increasing the scale by an octave means doubling the size of the smoothing kernel, whose effect is roughly equivalent to halving the image resolution. By default, the scale space spans as many octaves as possible (i.e. roughly <code> log2(min(width,height)</code>), which has the effect of searching keypoints of all possible sizes.</li>
+<li><b>First octave index</b>. By convention, the octave of index 0 starts with the image full resolution. Specifying an index greater than 0 starts the scale space at a lower resolution (e.g. 1 halves the resolution). Similarly, specifying a negative index starts the scale space at an higher resolution image, and can be useful to extract very small features (since this is obtained by interpolating the input image, it does not make much sense to go past -1).</li>
+<li><b>Number of levels per octave</b>. Each octave is sampled at this given number of intermediate scales (by default 3). Increasing this number might in principle return more refined keypoints, but in practice can make their selection unstable due to noise (see [1]).</li>
+</ul>
+<p>Keypoints are further refined by eliminating those that are likely to be unstable, either because they are selected nearby an image edge, rather than an image blob, or are found on image structures with low contrast. Filtering is controlled by the follow:</p>
+<ul>
+<li><b>Peak threshold.</b> This is the minimum amount of contrast to accept a keypoint. It is set by configuring the SIFT filter object by <a class="el" href="sift_8h.html#af69118a1c5d4d17bccac87d11fe8ce8f" title="Set peaks threshold. ">vl_sift_set_peak_thresh()</a>.</li>
+<li><b>Edge threshold.</b> This is the edge rejection threshold. It is set by configuring the SIFT filter object by <a class="el" href="sift_8h.html#ab7173b402b85de43ebf36fcabde77508" title="Set edges threshold. ">vl_sift_set_edge_thresh()</a>.</li>
+</ul>
+<table class="doxtable">
+<caption align="bottom">Summary of the parameters influencing the SIFT detector.</caption>
+<tr style="font-weight:bold;">
+<td>Parameter </td><td>See also </td><td>Controlled by </td><td>Comment  </td></tr>
+<tr>
+<td>number of octaves </td><td><a class="el" href="sift.html#sift-intro-detector">SIFT detector</a>  </td><td><a class="el" href="sift_8c.html#adff66a155e30ed412bc8bbb97dfa2fae" title="Create a new SIFT filter. ">vl_sift_new</a> </td><td></td></tr>
+<tr>
+<td>first octave index </td><td><a class="el" href="sift.html#sift-intro-detector">SIFT detector</a>  </td><td><a class="el" href="sift_8c.html#adff66a155e30ed412bc8bbb97dfa2fae" title="Create a new SIFT filter. ">vl_sift_new</a> </td><td>set to -1 to extract very small features  </td></tr>
+<tr>
+<td>number of scale levels per octave </td><td><a class="el" href="sift.html#sift-intro-detector">SIFT detector</a>  </td><td><a class="el" href="sift_8c.html#adff66a155e30ed412bc8bbb97dfa2fae" title="Create a new SIFT filter. ">vl_sift_new</a> </td><td>can affect the number of extracted keypoints  </td></tr>
+<tr>
+<td>edge threshold </td><td><a class="el" href="sift.html#sift-intro-detector">SIFT detector</a>  </td><td><a class="el" href="sift_8h.html#ab7173b402b85de43ebf36fcabde77508" title="Set edges threshold. ">vl_sift_set_edge_thresh</a> </td><td>decrease to eliminate more keypoints  </td></tr>
+<tr>
+<td>peak threshold </td><td><a class="el" href="sift.html#sift-intro-detector">SIFT detector</a>  </td><td><a class="el" href="sift_8h.html#af69118a1c5d4d17bccac87d11fe8ce8f" title="Set peaks threshold. ">vl_sift_set_peak_thresh</a> </td><td>increase to eliminate more keypoints  </td></tr>
+</table>
+<h2><a class="anchor" id="sift-intro-descriptor"></a>
+SIFT Descriptor</h2>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="sift.html#sift-tech-descriptor">Descriptor technical details</a></dd></dl>
+<p>A SIFT descriptor is a 3-D spatial histogram of the image gradients in characterizing the appearance of a keypoint. The gradient at each pixel is regarded as a sample of a three-dimensional elementary feature vector, formed by the pixel location and the gradient orientation. Samples are weighed by the gradient norm and accumulated in a 3-D histogram <em>h</em>, which (up to normalization and clamping) forms the SIFT descriptor of the region. An additional Gaussian weighting function is applied to give less importance to gradients farther away from the keypoint center. Orientations are quantized into eight bins and the spatial coordinates into four each, as follows:</p>
+<div class="image">
+<img src="sift-descr-easy.png" alt="sift-descr-easy.png"/>
+<div class="caption">
+The SIFT descriptor is a spatial histogram of the image gradient.</div></div>
+<p> SIFT descriptors are computed by either calling <a class="el" href="sift_8c.html#a85f3878a53ef7151b569c1b3ea4d13b6" title="Compute the descriptor of a keypoint. ">vl_sift_calc_keypoint_descriptor</a> or <a class="el" href="sift_8c.html#a335f3295ba77b3bb937e5272fe1a02fc" title="Run the SIFT descriptor on raw data. ">vl_sift_calc_raw_descriptor</a>. They accept as input a keypoint frame, which specifies the descriptor center, its size, and its orientation on the image plane. The following parameters influence the descriptor calculation:</p>
+<ul>
+<li><b>magnification factor</b>. The descriptor size is determined by multiplying the keypoint scale by this factor. It is set by <a class="el" href="sift_8h.html#a595579dd7952807c074c5311a6500121" title="Set the magnification factor. ">vl_sift_set_magnif</a>.</li>
+<li><b>Gaussian window size</b>. The descriptor support is determined by a Gaussian window, which discounts gradient contributions farther away from the descriptor center. The standard deviation of this window is set by <a class="el" href="sift_8h.html#af5996cc6171c6e3c8810fb400abbad21" title="Set the Gaussian window size. ">vl_sift_set_window_size</a> and expressed in unit of bins.</li>
+</ul>
+<p>VLFeat SIFT descriptor uses the following convention. The <em>y</em> axis points downwards and angles are measured clockwise (to be consistent with the standard image convention). The 3-D histogram (consisting of \( 8 \times 4 \times 4 = 128 \) bins) is stacked as a single 128-dimensional vector, where the fastest varying dimension is the orientation and the slowest the <em>y</em> spatial coordinate. This is illustrated by the following figure.</p>
+<div class="image">
+<img src="sift-conv-vlfeat.png" alt="sift-conv-vlfeat.png"/>
+<div class="caption">
+VLFeat conventions</div></div>
+ <dl class="section note"><dt>Note</dt><dd>Keypoints (frames) D. Lowe's SIFT implementation convention is slightly different: The <em>y</em> axis points upwards and the angles are measured counter-clockwise.</dd></dl>
+<div class="image">
+<img src="sift-conv.png" alt="sift-conv.png"/>
+<div class="caption">
+D. Lowes' SIFT implementation conventions</div></div>
+ <table class="doxtable">
+<caption align="bottom">Summary of the parameters influencing the SIFT descriptor.</caption>
+<tr style="font-weight:bold;">
+<td>Parameter </td><td>See also </td><td>Controlled by </td><td>Comment  </td></tr>
+<tr>
+<td>magnification factor </td><td><a class="el" href="sift.html#sift-intro-descriptor">SIFT Descriptor</a>  </td><td><a class="el" href="sift_8h.html#a595579dd7952807c074c5311a6500121" title="Set the magnification factor. ">vl_sift_set_magnif</a> </td><td>increase this value to enlarge the image region described  </td></tr>
+<tr>
+<td>Gaussian window size </td><td><a class="el" href="sift.html#sift-intro-descriptor">SIFT Descriptor</a>  </td><td><a class="el" href="sift_8h.html#af5996cc6171c6e3c8810fb400abbad21" title="Set the Gaussian window size. ">vl_sift_set_window_size</a> </td><td>smaller values let the center of the descriptor count more  </td></tr>
+</table>
+<h1><a class="anchor" id="sift-intro-extensions"></a>
+Extensions</h1>
+<p><b>Eliminating low-contrast descriptors.</b> Near-uniform patches do not yield stable keypoints or descriptors. <a class="el" href="sift_8h.html#a86703f33aad31638909acd9697f93115" title="Set norm threshold. ">vl_sift_set_norm_thresh()</a> can be used to set a threshold on the average norm of the local gradient to zero-out descriptors that correspond to very low contrast regions. By default, the threshold is equal to zero, which means that no descriptor is zeroed. Normally this option is useful only with custom keypoints, as detected keypoints are implicitly selected at high contrast image regions.</p>
+<h1><a class="anchor" id="sift-usage"></a>
+Using the SIFT filter object</h1>
+<p>The code provided in this module can be used in different ways. You can instantiate and use a <b>SIFT filter</b> to extract both SIFT keypoints and descriptors from one or multiple images. Alternatively, you can use one of the low level functions to run only a part of the SIFT algorithm (for instance, to compute the SIFT descriptors of custom keypoints).</p>
+<p>To use a <b>SIFT filter</b> object:</p>
+<ul>
+<li>Initialize a SIFT filter object with <a class="el" href="sift_8c.html#adff66a155e30ed412bc8bbb97dfa2fae" title="Create a new SIFT filter. ">vl_sift_new()</a>. The filter can be reused for multiple images of the same size (e.g. for an entire video sequence).</li>
+<li>For each octave in the scale space:<ul>
+<li>Compute the next octave of the DOG scale space using either <a class="el" href="sift_8c.html#a97cca9a09efaadc9dd0671912b9d5e05" title="Start processing a new image. ">vl_sift_process_first_octave()</a> or <a class="el" href="sift_8c.html#a610cab1a3bf7d38e389afda9037f14da" title="Process next octave. ">vl_sift_process_next_octave()</a> (stop processing if <a class="el" href="generic_8h.html#a67cc69e40d7af2aec137b36e53422982">VL_ERR_EOF</a> is returned).</li>
+<li>Run the SIFT detector with <a class="el" href="sift_8c.html#a65c55820964f4f6609ca9ef1d547b2c4" title="Detect keypoints. ">vl_sift_detect()</a> to get the keypoints.</li>
+<li>For each keypoint:<ul>
+<li>Use <a class="el" href="sift_8c.html#a2e409d464f81582dc3e839bf0fece66e" title="Calculate the keypoint orientation(s) ">vl_sift_calc_keypoint_orientations()</a> to get the keypoint orientation(s).</li>
+<li>For each orientation:<ul>
+<li>Use <a class="el" href="sift_8c.html#a85f3878a53ef7151b569c1b3ea4d13b6" title="Compute the descriptor of a keypoint. ">vl_sift_calc_keypoint_descriptor()</a> to get the keypoint descriptor.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Delete the SIFT filter by <a class="el" href="sift_8c.html#ab242293326626641411e7d7f43a109b2" title="Delete SIFT filter. ">vl_sift_delete()</a>.</li>
+</ul>
+<p>To compute SIFT descriptors of custom keypoints, use <a class="el" href="sift_8c.html#a335f3295ba77b3bb937e5272fe1a02fc" title="Run the SIFT descriptor on raw data. ">vl_sift_calc_raw_descriptor()</a>.</p>
+<h1><a class="anchor" id="sift-tech"></a>
+Technical details</h1>
+<h2><a class="anchor" id="sift-tech-ss"></a>
+Scale space</h2>
+<p>In order to search for image blobs at multiple scale, the SIFT detector construct a scale space, defined as follows. Let \(I_0(\mathbf{x})\) denote an idealized <em>infinite resolution</em> image. Consider the <em>Gaussian kernel</em></p>
+<p class="formulaDsp">
+\[ g_{\sigma}(\mathbf{x}) = \frac{1}{2\pi\sigma^2} \exp \left( -\frac{1}{2} \frac{\mathbf{x}^\top\mathbf{x}}{\sigma^2} \right) \]
+</p>
+<p>The <b>Gaussian scale space</b> is the collection of smoothed images</p>
+<p class="formulaDsp">
+\[ I_\sigma = g_\sigma * I, \quad \sigma \geq 0. \]
+</p>
+<p>The image at infinite resolution \( I_0 \) is useful conceptually, but is not available to us; instead, the input image \( I_{\sigma_n} \) is assumed to be pre-smoothed at a nominal level \( \sigma_n = 0.5 \) to account for the finite resolution of the pixels. Thus in practice the scale space is computed by</p>
+<p class="formulaDsp">
+\[ I_\sigma = g_{\sqrt{\sigma^2 - \sigma_n^2}} * I_{\sigma_n}, \quad \sigma \geq \sigma_n. \]
+</p>
+<p>Scales are sampled at logarithmic steps given by</p>
+<p class="formulaDsp">
+\[ \sigma = \sigma_0 2^{o+s/S}, \quad s = 0,\dots,S-1, \quad o = o_{\min}, \dots, o_{\min}+O-1, \]
+</p>
+<p>where \( \sigma_0 = 1.6 \) is the <em>base scale</em>, \( o_{\min} \) is the <em>first octave index</em>, <em>O</em> the <em>number of octaves</em> and <em>S</em> the <em>number of scales per octave</em>.</p>
+<p>Blobs are detected as local extrema of the <b>Difference of Gaussians</b> (DoG) scale space, obtained by subtracting successive scales of the Gaussian scale space:</p>
+<p class="formulaDsp">
+\[ \mathrm{DoG}_{\sigma(o,s)} = I_{\sigma(o,s+1)} - I_{\sigma(o,s)} \]
+</p>
+<p>At each next octave, the resolution of the images is halved to save computations. The images composing the Gaussian and DoG scale space can then be arranged as in the following figure:</p>
+<div class="image">
+<img src="sift-ss.png" alt="sift-ss.png"/>
+<div class="caption">
+GSS and DoG scale space structures.</div></div>
+<p> The black vertical segments represent images of the Gaussian Scale Space (GSS), arranged by increasing scale \(\sigma\). Notice that the scale level index <em>s</em> varies in a slightly redundant set</p>
+<p class="formulaDsp">
+\[ s = -1, \dots, S+2 \]
+</p>
+<p>This simplifies glueing together different octaves and extracting DoG maxima (required by the SIFT detector).</p>
+<h2><a class="anchor" id="sift-tech-detector"></a>
+Detector</h2>
+<p>The SIFT frames (keypoints) are extracted based on local extrema (peaks) of the DoG scale space. Numerically, local extrema are elements whose \( 3 \times 3 \times 3 \) neighbors (in space and scale) have all smaller (or larger) value. Once extracted, local extrema are quadratically interpolated (this is very important especially at the lower resolution scales in order to have accurate keypoint localization at the full resolution). Finally, they are filtered to eliminate low-contrast responses or responses close to edges and the orientation(s) are assigned, as explained next.</p>
+<h3><a class="anchor" id="sift-tech-detector-peak"></a>
+Eliminating low contrast responses</h3>
+<p>Peaks which are too short may have been generated by noise and are discarded. This is done by comparing the absolute value of the DoG scale space at the peak with the <b>peak threshold</b> \(t_p\) and discarding the peak its value is below the threshold.</p>
+<h3><a class="anchor" id="sift-tech-detector-edge"></a>
+Eliminating edge responses</h3>
+<p>Peaks which are too flat are often generated by edges and do not yield stable features. These peaks are detected and removed as follows. Given a peak \(x,y,\sigma\), the algorithm evaluates the <em>x</em>,<em>y</em> Hessian of of the DoG scale space at the scale \(\sigma\). Then the following score (similar to the Harris function) is computed:</p>
+<p class="formulaDsp">
+\[ \frac{(\mathrm{tr}\,D(x,y,\sigma))^2}{\det D(x,y,\sigma)}, \quad D = \left[ \begin{array}{cc} \frac{\partial^2 \mathrm{DoG}}{\partial x^2} &amp; \frac{\partial^2 \mathrm{DoG}}{\partial x\partial y} \\ \frac{\partial^2 \mathrm{DoG}}{\partial x\partial y} &amp; \frac{\partial^2 \mathrm{DoG}}{\partial y^2} \end{array} \right]. \]
+</p>
+<p>This score has a minimum (equal to 4) when both eigenvalues of the Jacobian are equal (curved peak) and increases as one of the eigenvalues grows and the other stays small. Peaks are retained if the score is below the quantity \((t_e+1)(t_e+1)/t_e\), where \(t_e\) is the <b>edge threshold</b>. Notice that this quantity has a minimum equal to 4 when \(t_e=1\) and grows thereafter. Therefore the range of the edge threshold is \([1,\infty)\).</p>
+<h2><a class="anchor" id="sift-tech-detector-orientation"></a>
+Orientation assignment</h2>
+<p>A peak in the DoG scale space fixes 2 parameters of the keypoint: the position and scale. It remains to choose an orientation. In order to do this, SIFT computes an histogram of the gradient orientations in a Gaussian window with a standard deviation which is 1.5 times bigger than the scale \(\sigma\) of the keypoint.</p>
+<div class="image">
+<img src="sift-orient.png" alt="sift-orient.png"/>
+</div>
+<p>This histogram is then smoothed and the maximum is selected. In addition to the biggest mode, up to other three modes whose amplitude is within the 80% of the biggest mode are retained and returned as additional orientations.</p>
+<h2><a class="anchor" id="sift-tech-descriptor"></a>
+Descriptor</h2>
+<p>A SIFT descriptor of a local region (keypoint) is a 3-D spatial histogram of the image gradients. The gradient at each pixel is regarded as a sample of a three-dimensional elementary feature vector, formed by the pixel location and the gradient orientation. Samples are weighed by the gradient norm and accumulated in a 3-D histogram <em>h</em>, which (up to normalization and clamping) forms the SIFT descriptor of the region. An additional Gaussian weighting function is applied to give less importance to gradients farther away from the keypoint center.</p>
+<h3><a class="anchor" id="sift-tech-descriptor-can"></a>
+Construction in the canonical frame</h3>
+<p>Denote the gradient vector field computed at the scale \( \sigma \) by </p><p class="formulaDsp">
+\[ J(x,y) = \nabla I_\sigma(x,y) = \left[\begin{array}{cc} \frac{\partial I_\sigma}{\partial x} &amp; \frac{\partial I_\sigma}{\partial y} &amp; \end{array}\right] \]
+</p>
+<p>The descriptor is a 3-D spatial histogram capturing the distribution of \( J(x,y) \). It is convenient to describe its construction in the <em>canonical frame</em>. In this frame, the image and descriptor axes coincide and each spatial bin has side 1. The histogram has \( N_\theta \times N_x \times N_y \) bins (usually \( 8 \times 4 \times 4 \)), as in the following figure:</p>
+<div class="image">
+<img src="sift-can.png" alt="sift-can.png"/>
+<div class="caption">
+Canonical SIFT descriptor and spatial binning functions</div></div>
+<p>Bins are indexed by a triplet of indexes <em>t, i, j</em> and their centers are given by</p>
+<p class="formulaDsp">
+\begin{eqnarray*} \theta_t &amp;=&amp; \frac{2\pi}{N_\theta} t, \quad t = 0,\dots,N_{\theta}-1, \\ x_i &amp;=&amp; i - \frac{N_x -1}{2}, \quad i = 0,\dots,N_x-1, \\ y_j &amp;=&amp; j - \frac{N_x -1}{2}, \quad j = 0,\dots,N_y-1. \\ \end{eqnarray*}
+</p>
+<p>The histogram is computed by using trilinear interpolation, i.e. by weighing contributions by the <em>binning functions</em></p>
+<p class="formulaDsp">
+\begin{eqnarray*} \displaystyle w(z) &amp;=&amp; \mathrm{max}(0, 1 - |z|), \\ \displaystyle w_\mathrm{ang}(z) &amp;=&amp; \sum_{k=-\infty}^{+\infty} w\left( \frac{N_\theta}{2\pi} z + N_\theta k \right). \end{eqnarray*}
+</p>
+<p>The gradient vector field is transformed in a three-dimensional density map of weighed contributions</p>
+<p class="formulaDsp">
+\[ f(\theta, x, y) = |J(x,y)| \delta(\theta - \angle J(x,y)) \]
+</p>
+<p>The historam is localized in the keypoint support by a Gaussian window of standard deviation \( \sigma_{\mathrm{win}} \). The histogram is then given by</p>
+<p class="formulaDsp">
+\begin{eqnarray*} h(t,i,j) &amp;=&amp; \int g_{\sigma_\mathrm{win}}(x,y) w_\mathrm{ang}(\theta - \theta_t) w(x-x_i) w(y-y_j) f(\theta,x,y) d\theta\,dx\,dy \\ &amp;=&amp; \int g_{\sigma_\mathrm{win}}(x,y) w_\mathrm{ang}(\angle J(x,y) - \theta_t) w(x-x_i) w(y-y_j) |J(x,y)|\,dx\,dy \end{eqnarray*}
+</p>
+<p>In post processing, the histogram is \( l^2 \) normalized, then clamped at 0.2, and \( l^2 \) normalized again.</p>
+<h3><a class="anchor" id="sift-tech-descriptor-image"></a>
+Calculation in the image frame</h3>
+<p>Invariance to similarity transformation is attained by attaching descriptors to SIFT keypoints (or other similarity-covariant frames). Then projecting the image in the canonical descriptor frames has the effect of undoing the image deformation.</p>
+<p>In practice, however, it is convenient to compute the descriptor directly in the image frame. To do this, denote with a hat quantities relative to the canonical frame and without a hat quantities relative to the image frame (so for instance \( \hat x \) is the <em>x-coordinate</em> in the canonical frame and \( x \) the x-coordinate in the image frame). Assume that canonical and image frame are related by an affinity:</p>
+<p class="formulaDsp">
+\[ \mathbf{x} = A \hat{\mathbf{x}} + T, \qquad \mathbf{x} = \begin{bmatrix}{c} x \\ y \end{bmatrix}, \quad \mathbf{x} = \begin{bmatrix}{c} \hat x \\ \hat y \end{bmatrix}. \]
+</p>
+<div class="image">
+<img src="sift-image-frame.png" alt="sift-image-frame.png"/>
+</div>
+<p>Then all quantities can be computed in the image frame directly. For instance, the image at infinite resolution in the two frames are related by</p>
+<p class="formulaDsp">
+\[ \hat I_0(\hat{\mathbf{x}}) = I_0(\mathbf{x}), \qquad \mathbf{x} = A \hat{\mathbf{x}} + T. \]
+</p>
+<p>The canonized image at scale \( \hat \sigma \) is in relation with the scaled image</p>
+<p class="formulaDsp">
+\[ \hat I_{\hat{\sigma}}(\hat{\mathbf{x}}) = I_{A\hat{\sigma}}(\mathbf{x}), \qquad \mathbf{x} = A \hat{\mathbf{x}} + T \]
+</p>
+<p>where, by generalizing the previous definitions, we have</p>
+<p class="formulaDsp">
+\[ I_{A\hat \sigma}(\mathbf{x}) = (g_{A\hat\sigma} * I_0)(\mathbf{x}), \quad g_{A\hat\sigma}(\mathbf{x}) = \frac{1}{2\pi|A|\hat \sigma^2} \exp \left( -\frac{1}{2} \frac{\mathbf{x}^\top A^{-\top}A^{-1}\mathbf{x}}{\hat \sigma^2} \right) \]
+</p>
+<p>Deriving shows that the gradient fields are in relation</p>
+<p class="formulaDsp">
+\[ \hat J(\hat{\mathbf{x}}) = J(\mathbf{x}) A, \quad J(\mathbf{x}) = (\nabla I_{A\hat\sigma})(\mathbf{x}), \qquad \mathbf{x} = A \hat{\mathbf{x}} + T. \]
+</p>
+<p>Therefore we can compute the descriptor either in the image or canonical frame as:</p>
+<p class="formulaDsp">
+\begin{eqnarray*} h(t,i,j) &amp;=&amp; \int g_{\hat \sigma_\mathrm{win}}(\hat{\mathbf{x}})\, w_\mathrm{ang}(\angle \hat J(\hat{\mathbf{x}}) - \theta_t)\, w_{ij}(\hat{\mathbf{x}})\, |\hat J(\hat{\mathbf{x}})|\, d\hat{\mathbf{x}} \\ &amp;=&amp; \int g_{A \hat \sigma_\mathrm{win}}(\mathbf{x} - T)\, w_\mathrm{ang}(\angle J(\mathbf{x})A - \theta_t)\, w_{ij}(A^{-1}(\mathbf{x} - T))\, |J(\mathbf{x})A|\, d\mathbf{x}. \end{eqnarray*}
+</p>
+<p>where we defined the product of the two spatial binning functions</p>
+<p class="formulaDsp">
+\[ w_{ij}(\hat{\mathbf{x}}) = w(\hat x - \hat x_i) w(\hat y - \hat y_j) \]
+</p>
+<p>In the actual implementation, this integral is computed by visiting a rectangular area of the image that fully contains the keypoint grid (along with half a bin border to fully include the bin windowing function). Since the descriptor can be rotated, this area is a rectangle of sides \(m/2\sqrt{2} (N_x+1,N_y+1)\) (see also the illustration).</p>
+<h3><a class="anchor" id="sift-tech-descriptor-std"></a>
+Standard SIFT descriptor</h3>
+<p>For a SIFT-detected keypoint of center \( T \), scale \( \sigma \) and orientation \( \theta \), the affine transformation \( (A,T) \) reduces to the similarity transformation</p>
+<p class="formulaDsp">
+\[ \mathbf{x} = m \sigma R(\theta) \hat{\mathbf{x}} + T \]
+</p>
+<p>where \( R(\theta) \) is a counter-clockwise rotation of \( \theta \) radians, \( m \mathcal{\sigma} \) is the size of a descriptor bin in pixels, and <em>m</em> is the <b>descriptor magnification factor</b> which expresses how much larger a descriptor bin is compared to the scale of the keypoint \( \sigma \) (the default value is <em>m</em> = 3). Moreover, the standard SIFT descriptor computes the image gradient at the scale of the keypoints, which in the canonical frame is equivalent to a smoothing of \( \hat \sigma = 1/m \). Finally, the default Gaussian window size is set to have standard deviation \( \hat \sigma_\mathrm{win} = 2 \). This yields the formula</p>
+<p class="formulaDsp">
+\begin{eqnarray*} h(t,i,j) &amp;=&amp; m \sigma \int g_{\sigma_\mathrm{win}}(\mathbf{x} - T)\, w_\mathrm{ang}(\angle J(\mathbf{x}) - \theta - \theta_t)\, w_{ij}\left(\frac{R(\theta)^\top \mathbf{x} - T}{m\sigma}\right)\, |J(\mathbf{x})|\, d\mathbf{x}, \\ \sigma_{\mathrm{win}} &amp;=&amp; m\sigma\hat \sigma_{\mathrm{win}}, \\ J(\mathbf{x}) &amp;=&amp; \nabla (g_{m \sigma \hat \sigma} * I)(\mathbf{x}) = \nabla (g_{\sigma} * I)(\mathbf{x}) = \nabla I_{\sigma} (\mathbf{x}). \end{eqnarray*}
+</p>
+ </div></div><!-- contents -->
+        <!-- Doc Here -->
+      </div>
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>

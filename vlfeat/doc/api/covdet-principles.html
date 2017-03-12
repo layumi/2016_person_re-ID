@@ -1,0 +1,283 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+  <!-- Page title -->
+  <title>VLFeat - Documentation > C API</title>
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  <link rel="stylesheet" type="text/css" href="doxygen.css"></link>
+  <!-- Scripts-->
+  <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li class='active'><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li class='active' class='activeLeaf'><a href="index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="../doc.html">Documentation</a></span><span class='separator'>></span><span class='page'><a href="index.html">C API</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+      <!-- <pagestyle href="%pathto:root;api/tabs.css"/> -->
+      <div class="doxygen">
+<div id="top">
+<div id="top">
+<!-- Generated by Doxygen 1.8.7 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li class="current"><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
+    </ul>
+  </div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="index.html">Vision Lab Features Library (VLFeat)</a></li><li class="navelem"><a class="el" href="covdet.html">Covariant feature detectors</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Principles of covariant detection </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="toc"><h3>Table of Contents</h3>
+<ul><li class="level1"><a href="#covdet-cornerness">Detection using a cornerness measure</a><ul><li class="level2"><a href="#covdet-cornerness-localmax">Local maxima of a cornerness measure</a></li>
+<li class="level2"><a href="#covdet-cornerness-normalization">Covariant detection by normalization</a></li>
+<li class="level2"><a href="#covdet-locality">Locality of the detected features</a></li>
+</ul>
+</li>
+<li class="level1"><a href="#covdet-partial">Partial and iterated normalization</a></li>
+</ul>
+</div>
+<div class="textblock"><p>The goals of a co-variant detector were discussed in <a class="el" href="covdet-fundamentals.html">Covariant detectors fundamentals</a>. This page introduces a few general principles that are at the basis of most covariant detection algorithms. Consider an input image \(\ell\) and a two dimensional continuous and invertible warp \(w\). The <em>warped image</em> \(w[\ell]\) is defined to be</p>
+<p class="formulaDsp">
+\[ w[\ell] = \ell \circ w^{-1}, \]
+</p>
+<p>or, equivalently,</p>
+<p class="formulaDsp">
+\[ w[\ell](x,y) = \ell(w^{-1}(x,y)), \qquad \forall (x,y)\in\real^2. \]
+</p>
+<p>Note that, while \(w\) pushes pixels forward, from the original to the transformed image domain, defining the transformed image \(\ell&#39;\) requires inverting the warp and composing \(\ell\) with \(w^{-1}\).</p>
+<p>The goal a covariant detector is to extract the same local features irregardless of image transformations. The detector is said to be <b>covariant</b> or <b>equivariant</b> with a class of warps \(w\in\mathcal{W}\) if, when the feature \(R\) is detected in image \(\ell\), then the transformed feature \(w[R]\) is detected in the transformed image \(w[\ell]\).</p>
+<p>The net effect is that a covariant feature detector appears to &ldquo;track&rdquo; image transformations; however, it is important to note that a detector <em>is not a tracker</em> because it processes images individually rather than jointly as part of a sequence.</p>
+<p>An intuitive way to construct a covariant feature detector is to extract features in correspondence of images structures that are easily identifiable even after a transformation. Example of specific structures include dots, corners, and blobs. These will be generically indicated as <b>corners</b> in the followup.</p>
+<p>A covariant detector faces two challenges. First, corners have, in practice, an infinite variety of individual appearances and the detector must be able to capture them to be of general applicability. Second, the way corners are identified and detected must remain stable under transformations of the image. These two problems are addressed in <a class="el" href="covdet-principles.html#covdet-cornerness-localmax">Local maxima of a cornerness measure</a> and <a class="el" href="covdet-principles.html#covdet-cornerness-normalization">Covariant detection by normalization</a> respectively.</p>
+<h1><a class="anchor" id="covdet-cornerness"></a>
+Detection using a cornerness measure</h1>
+<p>One way to decide whether an image region \(R\) contains a corner is to compare the local appearance to a model or template of the corner; the result of this comparisons produces a <em>cornerness score</em> at that location. This page describe general theoretical properties of the cornerness and the detection process. Concrete examples of cornerness are given in <a class="el" href="covdet-corner-types.html">Cornerness measures</a>.</p>
+<p>A <b>cornerness measure</b> associate a score to all possible feature locations in an image \(\ell\). As described in <a class="el" href="covdet-fundamentals.html#covdet-frame">Feature geometry and feature frames</a>, the location or, more in general, pose \(u\) of a feature \(R\) is the warp \(w\) that maps the canonical feature frame \(R_0\) to \(R\):</p>
+<p class="formulaDsp">
+\[ R = u[R_0]. \]
+</p>
+<p>The goal of a cornerness measure is to associate a score \(F(u;\ell)\) to all possible feature poses \(u\) and use this score to extract a finite number of co-variant features from any image.</p>
+<h2><a class="anchor" id="covdet-cornerness-localmax"></a>
+Local maxima of a cornerness measure</h2>
+<p>Given the cornerness of each candidate feature, the detector must extract a finite number of them. However, the cornerness of features with nearly identical pose must be similar (otherwise the cornerness measure would be unstable). As such, simply thresholding \(F(w;\ell)\) would detect an infinite number of nearly identical features rather than a finite number.</p>
+<p>The solution is to detect features in correspondence of the local maxima of the score measure:</p>
+<p class="formulaDsp">
+\[ \{w_1,\dots,w_n\} = \operatorname{localmax}_{w\in\mathcal{W}} F(w;\ell). \]
+</p>
+<p>This also means that features are never detected in isolation, but by comparing neighborhoods of them.</p>
+<h2><a class="anchor" id="covdet-cornerness-normalization"></a>
+Covariant detection by normalization</h2>
+<p>The next difficulty is to guarantee that detection is co-variant with image transformations. Hence, if \(u\) is the pose of a feature extracted from image \(\ell\), then the transformed pose \(u&#39; = w[u]\) must be detected in the transformed image \(\ell&#39; = w[\ell]\).</p>
+<p>Since features are extracted in correspondence of the local maxima of the cornerness score, a sufficient condition is that corresponding features attain the same score in the two images:</p>
+<p class="formulaDsp">
+\[ \forall u\in\mathcal{W}: \quad F(u;\ell) = F(w[u];w[\ell]), \qquad\text{or}\qquad F(u;\ell) = F(w \circ u ;\ell \circ w^{-1}). \]
+</p>
+<p>One simple way to satisfy this equation is to compute a cornerness score <em>after normalizing the image</em> by the inverse of the candidate feature pose warp \(u\), as follows:</p>
+<p class="formulaDsp">
+\[ F(u;\ell) = F(1;u^{-1}[\ell]) = F(1;\ell \circ u) = \mathcal{F}(\ell \circ u), \]
+</p>
+<p>where \(1 = u^{-1} \circ u\) is the identity transformation and \(\mathcal{F}\) is an arbitrary functional. Intuitively, co-variant detection is obtained by looking if the appearance of the feature resembles a corner only <em>after normalization</em>. Formally:</p>
+<p class="formulaDsp">
+\begin{align*} F(w[u];w[\ell]) &amp;= F(w \circ u ;\ell \circ w^{-1}) \\ &amp;= F(1; \ell \circ w^{-1} \circ w \circ u) \\ &amp;= \mathcal{F}(\ell\circ u) \\ &amp;= F(u;\ell). \end{align*}
+</p>
+<p>Concrete examples of the functional \(\mathcal{F}\) are given in <a class="el" href="covdet-corner-types.html">Cornerness measures</a>.</p>
+<h2><a class="anchor" id="covdet-locality"></a>
+Locality of the detected features</h2>
+<p>In the definition above, the cornenress functional \(\mathcal{F}\) is an arbitrary functional of the entire normalized image \(u^{-1}[\ell]\). In practice, one is always interested in detecting <b>local features</b> (at the very least because the image extent is finite).</p>
+<p>This is easily obtained by considering a cornerness \(\mathcal{F}\) which only looks in a small region of the normalized image, usually corresponding to the extent of the canonical feature \(R_0\) (e.g. a unit disc centered at the origin).</p>
+<p>In this case the extent of the local feature in the original image is simply given by \(R = u[R_0]\).</p>
+<h1><a class="anchor" id="covdet-partial"></a>
+Partial and iterated normalization</h1>
+<p>Practical detectors implement variants of the ideas above. Very often, for instance, detection is an iterative process, in which successive parameters of the pose of a feature are determined. For instance, it is typical to first detect the location and scale of a feature using a rotation-invariant cornerness score \(\mathcal{F}\). Once these two parameters are known, the rotation can be determined using a different score, sensitive to the orientation of the local image structures.</p>
+<p>Certain detectors (such as Harris-Laplace and Hessian-Laplace) use even more sophisticated schemes, in which different scores are used to jointly (rather than in succession) different parameters of the pose of a feature, such as its translation and scale. While a formal treatment of these cases is possible as well, we point to the original papers. </p>
+</div></div><!-- contents -->
+        <!-- Doc Here -->
+      </div>
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>

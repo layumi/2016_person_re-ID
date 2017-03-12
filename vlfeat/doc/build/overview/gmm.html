@@ -1,0 +1,364 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+
+  <!-- Page title -->
+  <title>VLFeat - Tutorials > Gaussian Mixture Models</title>
+
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  
+
+  <!-- Scripts-->
+  
+
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li class='active'><a href="tut.html">Tutorials</a>
+<ul>
+<li><a href="frame.html">Local feature frames</a>
+</li>
+<li><a href="covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="hog.html">HOG features</a>
+</li>
+<li><a href="sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="dsift.html">Dense SIFT</a>
+</li>
+<li><a href="liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="mser.html">MSER feature detector</a>
+</li>
+<li><a href="imdisttf.html">Distance transform</a>
+</li>
+<li><a href="encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li class='active' class='activeLeaf'><a href="gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="kmeans.html">K-means clustering</a>
+</li>
+<li><a href="aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="slic.html">SLIC superpixels</a>
+</li>
+<li><a href="svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="ikm.html">Integer K-means</a>
+</li>
+<li><a href="hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li><a href="../api/index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="tut.html">Tutorials</a></span><span class='separator'>></span><span class='page'><a href="gmm.html">Gaussian Mixture Models</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+        
+    
+
+<div class='toc'>
+<h3>Table of Contents</h3><ul><li class="level1"><a href="#tut.gmm.introduction">Learning a GMM with expectation maximization</a></li>
+<ul><li class="level2"><a href="#tut.gmm.cov">Diagonal covariance restriction</a></li>
+</ul>
+<li class="level1"><a href="#tut.gmm.initialization">Initializing a GMM model before running EM</a></li>
+</ul>
+</div><!-- Table of contents -->
+
+
+<p>This tutorial shows how to estiamte <a shape="rect" href="">Gaussian
+mixture model</a> using the VlFeat implementation of
+the <em>Expectation Maximization</em> (EM) algorithm.</p>
+
+<p>A GMM is a collection of $K$ Gaussian distribution. Each
+distribution is called a <em>mode</em> of the GMM and represents a
+cluster of data points.  In computer vision applications, GMM are
+often used to model <em>dictionaries of visual words</em>. One
+important application is the computation
+of <a shape="rect" href="encodings.html#tut.fisher">Fisher vectors encodings</a>.</p>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h1 id="tut.gmm.introduction">Learning a GMM with expectation maximization</h1>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<p>Consider a dataset containing 1000 randomly sampled 2D points:</p>
+
+<div class="highlight"><pre><span class="n">numPoints</span> <span class="p">=</span> <span class="mi">1000</span> <span class="p">;</span>
+<span class="n">dimension</span> <span class="p">=</span> <span class="mi">2</span> <span class="p">;</span>
+<span class="n">data</span> <span class="p">=</span> <span class="nb">rand</span><span class="p">(</span><span class="n">dimension</span><span class="p">,</span><span class="n">N</span><span class="p">)</span> <span class="p">;</span>
+</pre></div>
+
+
+<p>The goal is to fit a GMM to this data. This can be obtained by
+running the <code/>vl_gmm</code> function, implementing
+the <a shape="rect" href="">EM algorithm</a>.</p>
+
+<div class="highlight"><pre><span class="n">numClusters</span> <span class="p">=</span> <span class="mi">30</span> <span class="p">;</span>
+<span class="p">[</span><span class="n">means</span><span class="p">,</span> <span class="n">covariances</span><span class="p">,</span> <span class="n">priors</span><span class="p">]</span> <span class="p">=</span> <span class="n">vl_gmm</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">numClusters</span><span class="p">)</span> <span class="p">;</span>
+</pre></div>
+
+
+<p>Here <code/>means</code>, <code/>covariances</code>
+and <code/>priors</code> are respectively the means $\mu_k$, diagonal
+covariance matrices $\Sigma_k$, and prior probabilities $\pi_k$ of
+the <code/>numClusters</code> Gaussian modes.</p>
+
+<p>These modes can be visualized on the 2D plane by plotting ellipses
+corresponding to the equation:
+\[
+   \{ \bx: (\bx-\mu_k)^\top \Sigma_k^{-1} (\bx-\mu_k) = 1 \}
+\]
+for each of the modes. To this end, we can use
+the <code/>vl_plotframe</code>:</p>
+
+<div class="highlight"><pre><span class="n">figure</span> <span class="p">;</span>
+<span class="n">hold</span> <span class="n">on</span> <span class="p">;</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">(</span><span class="mi">1</span><span class="p">,:),</span><span class="n">data</span><span class="p">(</span><span class="mi">2</span><span class="p">,:),</span><span class="s">&#39;r.&#39;</span><span class="p">)</span> <span class="p">;</span>
+<span class="k">for</span> <span class="nb">i</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="n">numClusters</span>
+    <span class="n">vl_plotframe</span><span class="p">([</span><span class="n">means</span><span class="p">(:,</span><span class="nb">i</span><span class="p">)</span><span class="o">&#39;</span> <span class="n">sigmas</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">i</span><span class="p">)</span> <span class="mi">0</span> <span class="n">sigmas</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="nb">i</span><span class="p">)]);</span>
+<span class="k">end</span>
+</pre></div>
+
+
+<p>This results in the figure:</p>
+
+<div class="figure">
+  <image src="../demo/gmm_2d_rand.jpg"></image>
+  <div class="caption">GMM fittting 2D random points.</div>
+</div>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h2 id="tut.gmm.cov">Diagonal covariance restriction</h2>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<p>Note that the ellipses in the previous example are axis
+alligned. This is a restriction of the <code/>vl_gmm</code>
+implementation that imposes covariance matrices to be diagonal.</p>
+
+<p>This is suitable for most computer vision applications, where
+estimating a full covariance matrix would be prohebitive due to the
+relative high dimensionality of the data. For example, when clustering
+SIFT features, the data has dimension 128, and each full covariance
+matrix would contain more than 8k parameters.</p>
+
+<p>For this reason, it is sometimes desirable to globally decorrelated
+the data before learning a GMM mode. This can be obtained by
+pre-multiplying the data by the inverse of a square root of its
+covariance.</p>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h1 id="tut.gmm.initialization">Initializing a GMM model before running EM</h1>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<p>The EM algorithm is a local optimization method, and hence
+particularly sensitive to the initialization of the model. The
+simplest way to initiate the GMM is to pick <code/>numClusters</code>
+data points at random as mode means, initialize the individual
+covariances as the covariance of the data, and assign equa prior
+probabilities to the modes. This is the default initialization
+method used by <code/>vl_gmm</code>.</p>
+
+<p>Alternatively, a user can specifiy manually the initial paramters
+of the GMM model by using the <code/>custom</code> initalization
+method. To do so, set
+the <code/>'Initialization'</code> option  to <code/>'Custom'</code> and
+also the options <code/>'InitMeans'</code>, <code/>'InitCovariances'</code> and
+<code/>'IniPriors'</code> to the desired values.</p>
+
+<p>A common approach to obtain an initial value for these parameters
+is to run KMeans first, as demonstrated in the following code
+snippet:</p>
+
+<div class="highlight"><pre><span class="n">numClusters</span> <span class="p">=</span> <span class="mi">30</span><span class="p">;</span>
+<span class="n">numData</span> <span class="p">=</span> <span class="mi">1000</span><span class="p">;</span>
+<span class="n">dimension</span> <span class="p">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="n">data</span> <span class="p">=</span> <span class="nb">rand</span><span class="p">(</span><span class="n">dimension</span><span class="p">,</span><span class="n">numData</span><span class="p">);</span>
+
+<span class="c">% Run KMeans to pre-cluster the data</span>
+<span class="p">[</span><span class="n">initMeans</span><span class="p">,</span> <span class="n">assignments</span><span class="p">]</span> <span class="p">=</span> <span class="n">vl_kmeans</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">numClusters</span><span class="p">,</span> <span class="c">...</span>
+    <span class="s">&#39;Algorithm&#39;</span><span class="p">,</span><span class="s">&#39;Lloyd&#39;</span><span class="p">,</span> <span class="c">...</span>
+    <span class="s">&#39;MaxNumIterations&#39;</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span>
+
+<span class="n">initCovariances</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">dimension</span><span class="p">,</span><span class="n">numClusters</span><span class="p">);</span>
+<span class="n">initPriors</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">numClusters</span><span class="p">);</span>
+
+<span class="c">% Find the initial means, covariances and priors</span>
+<span class="k">for</span> <span class="nb">i</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="n">numClusters</span>
+    <span class="n">data_k</span> <span class="p">=</span> <span class="n">data</span><span class="p">(:,</span><span class="n">assignments</span><span class="o">==</span><span class="nb">i</span><span class="p">);</span>
+    <span class="n">initPriors</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="p">=</span> <span class="nb">size</span><span class="p">(</span><span class="n">data_k</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="n">numClusters</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="nb">size</span><span class="p">(</span><span class="n">data_k</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="nb">size</span><span class="p">(</span><span class="n">data_k</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+        <span class="n">initCovariances</span><span class="p">(:,</span><span class="nb">i</span><span class="p">)</span> <span class="p">=</span> <span class="nb">diag</span><span class="p">(</span><span class="n">cov</span><span class="p">(</span><span class="n">data</span><span class="o">&#39;</span><span class="p">));</span>
+    <span class="k">else</span>
+        <span class="n">initCovariances</span><span class="p">(:,</span><span class="nb">i</span><span class="p">)</span> <span class="p">=</span> <span class="nb">diag</span><span class="p">(</span><span class="n">cov</span><span class="p">(</span><span class="n">data_k</span><span class="o">&#39;</span><span class="p">));</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c">% Run EM starting from the given parameters</span>
+<span class="p">[</span><span class="n">means</span><span class="p">,</span><span class="n">covariances</span><span class="p">,</span><span class="n">priors</span><span class="p">,</span><span class="n">ll</span><span class="p">,</span><span class="n">posteriors</span><span class="p">]</span> <span class="p">=</span> <span class="n">vl_gmm</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">numClusters</span><span class="p">,</span> <span class="c">...</span>
+    <span class="s">&#39;initialization&#39;</span><span class="p">,</span><span class="s">&#39;custom&#39;</span><span class="p">,</span> <span class="c">...</span>
+    <span class="s">&#39;InitMeans&#39;</span><span class="p">,</span><span class="n">initMeans</span><span class="p">,</span> <span class="c">...</span>
+    <span class="s">&#39;InitCovariances&#39;</span><span class="p">,</span><span class="n">initCovariances</span><span class="p">,</span> <span class="c">...</span>
+    <span class="s">&#39;InitPriors&#39;</span><span class="p">,</span><span class="n">initPriors</span><span class="p">);</span>
+</pre></div>
+
+
+<p>The demo scripts <code/>vl_demo_gmm_2d</code>
+and <code/>vl_demo_gmm_3d</code> also produce cute colorized figures
+such as these: </p>
+
+<div class="figure">
+  <image src="../demo/gmm_2d_shell.jpg"></image>
+  <div class="caption">The figure shows how the estimated gaussian
+  mixture looks like with and without the kmeans initialization.</div>
+</div>
+
+
+  
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>
+ 

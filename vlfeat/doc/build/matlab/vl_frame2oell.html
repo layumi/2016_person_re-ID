@@ -1,0 +1,26 @@
+<group>
+<ul class='breadcrumb'><li><a href='%pathto:matlab;'>Index</a></li><li><a href='%pathto:vl_dsift;'>Prev</a></li><li><a href='%pathto:vl_liop;'>Next</a></li></ul><div class="documentation"><p>
+EFRAME = <a href="%pathto:vl_frame2oell;">VL_FRAME2OELL</a>(FRAME) converts the generic FRAME to an
+oriented ellipses EFRAME. FRAME and EFRAME can be matrices, with
+one frame per column.
+</p><p>
+A frame is either a point, a disc, an oriented disc, an ellipse,
+or an oriented ellipse. These are represented respectively by 2,
+3, 4, 5 and 6 parameters each, as described in <a href="%pathto:vl_plotframe;">VL_PLOTFRAME</a>().  An
+oriented ellipse is the most general geometric frame; hence, there
+is no loss of information in this conversion.
+</p><p>
+If FRAME is an oriented disc or ellipse, then the conversion is
+immediate. If, however, FRAME is not oriented (it is either a
+point or an unoriented disc or ellipse), then an orientation must
+be assigned. The orientation is chosen in such a way that the
+affine transformation that maps the standard oriented frame into
+the output EFRAME does not rotate the Y axis. If frames represent
+detected visual features, this convention corresponds to assume
+that features are upright.
+</p><p>
+If FRAME is a point, then the output is an ellipse with null area.
+</p><p>
+See: &lt;a href=&quot;matlab:vl_help('tut.frame')&quot;&gt;feature frames&lt;/a&gt;,
+<a href="%pathto:vl_plotframe;">VL_PLOTFRAME</a>(), <a href="%pathto:vl_help;">VL_HELP</a>().
+</p></div></group>

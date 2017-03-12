@@ -1,0 +1,288 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+  <!-- Page title -->
+  <title>VLFeat - Documentation > C API</title>
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  <link rel="stylesheet" type="text/css" href="doxygen.css"></link>
+  <!-- Scripts-->
+  <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li class='active'><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li class='active' class='activeLeaf'><a href="index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="../doc.html">Documentation</a></span><span class='separator'>></span><span class='page'><a href="index.html">C API</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+      <!-- <pagestyle href="%pathto:root;api/tabs.css"/> -->
+      <div class="doxygen">
+<div id="top">
+<div id="top">
+<!-- Generated by Doxygen 1.8.7 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li class="current"><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
+    </ul>
+  </div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="index.html">Vision Lab Features Library (VLFeat)</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Covariant feature detectors </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="toc"><h3>Table of Contents</h3>
+<ul><li class="level1"><a href="#covdet-starting">Getting started</a></li>
+</ul>
+</div>
+<div class="textblock"><dl class="section author"><dt>Author</dt><dd>Karel Lenc </dd>
+<dd>
+Andrea Vedaldi </dd>
+<dd>
+Michal Perdoch</dd></dl>
+<p><a class="el" href="covdet_8h.html">covdet.h</a> implements a number of covariant feature detectors, based on three cornerness measures (determinant of the Hessian, trace of the Hessian (aka Difference of Gaussians, and Harris). It supprots affine adaptation, orientation estimation, as well as Laplacian scale detection.</p>
+<ul>
+<li><a class="el" href="covdet-fundamentals.html">Covariant detectors fundamentals</a></li>
+<li><a class="el" href="covdet-principles.html">Principles of covariant detection</a></li>
+<li><a class="el" href="covdet-differential.html">Differential and integral image operations</a></li>
+<li><a class="el" href="covdet-corner-types.html">Cornerness measures</a></li>
+</ul>
+<h1><a class="anchor" id="covdet-starting"></a>
+Getting started</h1>
+<p>The <a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c" title="Covariant feature detector. ">VlCovDet</a> object implements a number of covariant feature detectors: Difference of Gaussian, Harris, determinant of Hessian. Variant of the basic detectors support scale selection by maximizing the Laplacian measure as well as affine normalization.</p>
+<div class="fragment"><div class="line"><span class="comment">// create a detector object</span></div>
+<div class="line"><a class="code" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> * covdet = <a class="code" href="covdet_8c.html#adff732c569785b7dff7f15601bc77a68">vl_covdet_new</a>(method) ;</div>
+<div class="line"></div>
+<div class="line"><span class="comment">// set various parameters (optional)</span></div>
+<div class="line"><a class="code" href="covdet_8c.html#af51d1a729e1611201ae7208a1144b8d8">vl_covdet_set_first_octave</a>(covdet, -1) ; <span class="comment">// start by doubling the image resolution</span></div>
+<div class="line"><a class="code" href="covdet_8c.html#a3ab247f8ce822636bb32ccd48c753a1d">vl_covdet_set_octave_resolution</a>(covdet, octaveResolution) ;</div>
+<div class="line"><a class="code" href="covdet_8c.html#afcbfb9f6cade3f20bf429cd520b9cee8">vl_covdet_set_peak_threshold</a>(covdet, peakThreshold) ;</div>
+<div class="line"><a class="code" href="covdet_8c.html#a16e0f9b96b16727a1bcec2df7bff0017">vl_covdet_set_edge_threshold</a>(covdet, edgeThreshold) ;</div>
+<div class="line"></div>
+<div class="line"><span class="comment">// process the image and run the detector</span></div>
+<div class="line"><a class="code" href="covdet_8c.html#affcedda1fdc7ed72d223e0aab003024e">vl_covdet_put_image</a>(covdet, image, numRows, numCols) ;</div>
+<div class="line"><a class="code" href="covdet_8c.html#abfe553fdb25132cbcf9cbb08839b7f98">vl_covdet_detect</a>(covdet) ;</div>
+<div class="line"></div>
+<div class="line"><span class="comment">// drop features on the margin (optional)</span></div>
+<div class="line"><a class="code" href="covdet_8c.html#a614fd4d42d8d2c938c945c76a544680f">vl_covdet_drop_features_outside</a> (covdet, boundaryMargin) ;</div>
+<div class="line"></div>
+<div class="line"><span class="comment">// compute the affine shape of the features (optional)</span></div>
+<div class="line"><a class="code" href="covdet_8c.html#aee6fc0f35fb23b32e558e8d0131abb96">vl_covdet_extract_affine_shape</a>(covdet) ;</div>
+<div class="line"></div>
+<div class="line"><span class="comment">// compute the orientation of the features (optional)</span></div>
+<div class="line"><a class="code" href="covdet_8c.html#a0f9823a4cffd55760cf6c16352381f1a">vl_covdet_extract_orientations</a>(covdet) ;</div>
+<div class="line"></div>
+<div class="line"><span class="comment">// get feature frames back</span></div>
+<div class="line"><a class="code" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> numFeatures = <a class="code" href="covdet_8c.html#a463ed222516fe046e8b170e3d3c06585">vl_covdet_get_num_features</a>(covdet) ;</div>
+<div class="line"><a class="code" href="structVlCovDetFeature.html">VlCovDetFeature</a> <span class="keyword">const</span> * feature = <a class="code" href="covdet_8c.html#a8a703daa248e50accd2c09430caeeadd">vl_covdet_get_features</a>(covdet) ;</div>
+<div class="line"></div>
+<div class="line"><span class="comment">// get normalized feature appearance patches (optional)</span></div>
+<div class="line"><a class="code" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> w = 2*patchResolution + 1 ;</div>
+<div class="line"><span class="keywordflow">for</span> (i = 0 ; i &lt; numFeatures ; ++i) {</div>
+<div class="line">  <span class="keywordtype">float</span> * patch = malloc(w*w*<span class="keyword">sizeof</span>(*desc)) ;</div>
+<div class="line">  <a class="code" href="covdet_8c.html#a5332ef1f0e09654f5787c19e156404a9">vl_covdet_extract_patch_for_frame</a>(covdet,</div>
+<div class="line">                                    patch,</div>
+<div class="line">                                    patchResolution,</div>
+<div class="line">                                    patchRelativeExtent,</div>
+<div class="line">                                    patchRelativeSmoothing,</div>
+<div class="line">                                    feature[i].frame) ;</div>
+<div class="line">  <span class="comment">// do something with patch</span></div>
+<div class="line">}</div>
+</div><!-- fragment --><p>This example code:</p>
+<ul>
+<li>Calls <a class="el" href="covdet_8c.html#adff732c569785b7dff7f15601bc77a68" title="Create a new object instance. ">vl_covdet_new</a> constructs a new detector object. <a class="el" href="covdet_8h.html">covdet.h</a> supports a variety of different detectors (see <a class="el" href="covdet_8h.html#a29fcb6ced2bee0db21c3c3f81a54477e" title="Covariant feature detection method. ">VlCovDetMethod</a>).</li>
+<li>Optionally calls various functions to set the detector parameters if needed (e.g. <a class="el" href="covdet_8c.html#afcbfb9f6cade3f20bf429cd520b9cee8" title="Set the peak threshold. ">vl_covdet_set_peak_threshold</a>).</li>
+<li>Calls <a class="el" href="covdet_8c.html#affcedda1fdc7ed72d223e0aab003024e" title="Detect features in an image. ">vl_covdet_put_image</a> to start processing a new image. It causes the detector to compute the scale space representation of the image, but does not compute the features yet.</li>
+<li>Calls <a class="el" href="covdet_8c.html#abfe553fdb25132cbcf9cbb08839b7f98" title="Detect scale-space features. ">vl_covdet_detect</a> runs the detector. At this point features are ready to be extracted. However, one or all of the following steps may be executed in order to process the features further.</li>
+<li>Optionally calls <a class="el" href="covdet_8c.html#a614fd4d42d8d2c938c945c76a544680f" title="Drop features (partially) outside the image. ">vl_covdet_drop_features_outside</a> to drop features outside the image boundary.</li>
+<li>Optionally calls <a class="el" href="covdet_8c.html#aee6fc0f35fb23b32e558e8d0131abb96" title="Extract the affine shape for the stored features. ">vl_covdet_extract_affine_shape</a> to compute the affine shape of features using affine adaptation.</li>
+<li>Optionally calls <a class="el" href="covdet_8c.html#a0f9823a4cffd55760cf6c16352381f1a" title="Extract the orientation(s) for the stored features. ">vl_covdet_extract_orientations</a> to compute the dominant orientation of features looking for the dominant gradient orientation in patches.</li>
+<li>Optionally calls <a class="el" href="covdet_8c.html#a5332ef1f0e09654f5787c19e156404a9" title="Helper for extracting patches. ">vl_covdet_extract_patch_for_frame</a> to extract a normalized feature patch, for example to compute an invariant feature descriptor. </li>
+</ul>
+</div></div><!-- contents -->
+        <!-- Doc Here -->
+      </div>
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>

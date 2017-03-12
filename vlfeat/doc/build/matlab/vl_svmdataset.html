@@ -1,0 +1,17 @@
+<group>
+<ul class='breadcrumb'><li><a href='%pathto:matlab;'>Index</a></li><li><a href='%pathto:vl_simdctrl;'>Prev</a></li><li><a href='%pathto:vl_svmpegasos;'>Next</a></li></ul><div class="documentation"><p>
+DATASET = <a href="%pathto:vl_svmdataset;">VL_SVMDATASET</a>(X) wraps the matrix X into a dataset
+structure. All the formats supported by <a href="%pathto:vl_svmtrain;">VL_SVMTRAIN</a>() are
+suppported here as well.
+</p><p>
+DATASET = <a href="%pathto:vl_svmdataset;">VL_SVMDATASET</a>(X, 'homkermap', HOM) where HOM is a
+structure with zero or more of the following fields: HOM.kernel,
+HOM.order, HOM.window, HOM.gamma, HOM.period, See <a href="%pathto:vl_homkermap;">VL_HOMKERMAP</a>()
+for a discussion of these parameters. The effect is to use the
+homogeneous kernel map to expand the data on the fly. This is
+equivalent (albeit somewhat slower) to running <a href="%pathto:vl_homkermap;">VL_HOMKERMAP</a>()
+prior to learning. The main advantage is the significant memory
+saving as the expanded data needs not to be stored in memory.
+</p><dl><dt>
+See
+<span class="defaults">VL_SVMTRAIN(), VL_HOMKERMAP(), VL_HELP().</span></dt></dl></div></group>

@@ -1,0 +1,2121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+  <!-- Page title -->
+  <title>VLFeat - Documentation > C API</title>
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  <link rel="stylesheet" type="text/css" href="doxygen.css"></link>
+  <!-- Scripts-->
+  <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li class='active'><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li class='active' class='activeLeaf'><a href="index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="../doc.html">Documentation</a></span><span class='separator'>></span><span class='page'><a href="index.html">C API</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+      <!-- <pagestyle href="%pathto:root;api/tabs.css"/> -->
+      <div class="doxygen">
+<div id="top">
+<div id="top">
+<!-- Generated by Doxygen 1.8.7 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li class="current"><a href="files.html"><span>Files</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>Globals</span></a></li>
+    </ul>
+  </div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_8dd540b382164c224dfa1eb6e8a3add6.html">vl</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Data Structures</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">covdet.c File Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Covariant feature detectors - Definition.  
+<a href="#details">More...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="covdet_8h.html">covdet.h</a>&quot;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__VlCovDet.html">_VlCovDet</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Covariant feature detector.  <a href="struct__VlCovDet.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a9115190fadfffd887d24132ea02954f7"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="covdet_8c.html#a9115190fadfffd887d24132ea02954f7">_vl_resize_buffer</a> (void **buffer, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> *bufferSize, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> targetSize)</td></tr>
+<tr class="memdesc:a9115190fadfffd887d24132ea02954f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reallocate buffer.  <a href="#a9115190fadfffd887d24132ea02954f7">More...</a><br /></td></tr>
+<tr class="separator:a9115190fadfffd887d24132ea02954f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb3bdb49a23d115dafa953f2be5f87c0"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="covdet_8c.html#afb3bdb49a23d115dafa953f2be5f87c0">_vl_enlarge_buffer</a> (void **buffer, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> *bufferSize, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> targetSize)</td></tr>
+<tr class="memdesc:afb3bdb49a23d115dafa953f2be5f87c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enlarge buffer.  <a href="#afb3bdb49a23d115dafa953f2be5f87c0">More...</a><br /></td></tr>
+<tr class="separator:afb3bdb49a23d115dafa953f2be5f87c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af951de09ebfe2adfb18887be739ed73e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="covdet_8c.html#af951de09ebfe2adfb18887be739ed73e">vl_find_local_extrema_3</a> (<a class="el" href="host_8h.html#a66417c5847876295ea87b38140073879">vl_index</a> **extrema, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> *bufferSize, float const *map, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> width, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> height, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> depth, double threshold)</td></tr>
+<tr class="memdesc:af951de09ebfe2adfb18887be739ed73e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find the extrema of a 3D function.  <a href="#af951de09ebfe2adfb18887be739ed73e">More...</a><br /></td></tr>
+<tr class="separator:af951de09ebfe2adfb18887be739ed73e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25225132de55749d72a506c20565fbfc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="covdet_8c.html#a25225132de55749d72a506c20565fbfc">vl_find_local_extrema_2</a> (<a class="el" href="host_8h.html#a66417c5847876295ea87b38140073879">vl_index</a> **extrema, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> *bufferSize, float const *map, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> width, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> height, double threshold)</td></tr>
+<tr class="memdesc:a25225132de55749d72a506c20565fbfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find extrema in a 2D function.  <a href="#a25225132de55749d72a506c20565fbfc">More...</a><br /></td></tr>
+<tr class="separator:a25225132de55749d72a506c20565fbfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6eb190e7eb77268734e56bb9a8773f30"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="covdet_8c.html#a6eb190e7eb77268734e56bb9a8773f30">vl_refine_local_extreum_3</a> (VlCovDetExtremum3 *refined, float const *map, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> width, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> height, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> depth, <a class="el" href="host_8h.html#a66417c5847876295ea87b38140073879">vl_index</a> x, <a class="el" href="host_8h.html#a66417c5847876295ea87b38140073879">vl_index</a> y, <a class="el" href="host_8h.html#a66417c5847876295ea87b38140073879">vl_index</a> z)</td></tr>
+<tr class="memdesc:a6eb190e7eb77268734e56bb9a8773f30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Refine the location of a local extremum of a 3D map.  <a href="#a6eb190e7eb77268734e56bb9a8773f30">More...</a><br /></td></tr>
+<tr class="separator:a6eb190e7eb77268734e56bb9a8773f30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98a72bd26a4cb59bb9899e9cffc32bd3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="covdet_8c.html#a98a72bd26a4cb59bb9899e9cffc32bd3">vl_refine_local_extreum_2</a> (VlCovDetExtremum2 *refined, float const *map, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> width, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> height, <a class="el" href="host_8h.html#a66417c5847876295ea87b38140073879">vl_index</a> x, <a class="el" href="host_8h.html#a66417c5847876295ea87b38140073879">vl_index</a> y)</td></tr>
+<tr class="memdesc:a98a72bd26a4cb59bb9899e9cffc32bd3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Refine the location of a local extremum of a 2D map.  <a href="#a98a72bd26a4cb59bb9899e9cffc32bd3">More...</a><br /></td></tr>
+<tr class="separator:a98a72bd26a4cb59bb9899e9cffc32bd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adff732c569785b7dff7f15601bc77a68"><td class="memItemLeft" align="right" valign="top"><a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="covdet_8c.html#adff732c569785b7dff7f15601bc77a68">vl_covdet_new</a> (<a class="el" href="covdet_8h.html#a29fcb6ced2bee0db21c3c3f81a54477e">VlCovDetMethod</a> method)</td></tr>
+<tr class="memdesc:adff732c569785b7dff7f15601bc77a68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new object instance.  <a href="#adff732c569785b7dff7f15601bc77a68">More...</a><br /></td></tr>
+<tr class="separator:adff732c569785b7dff7f15601bc77a68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7cfe6bd396893127c69f02f189e7f359"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="covdet_8c.html#a7cfe6bd396893127c69f02f189e7f359">vl_covdet_reset</a> (<a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> *self)</td></tr>
+<tr class="memdesc:a7cfe6bd396893127c69f02f189e7f359"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset object.  <a href="#a7cfe6bd396893127c69f02f189e7f359">More...</a><br /></td></tr>
+<tr class="separator:a7cfe6bd396893127c69f02f189e7f359"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7abfa72a8bb2a05c12376052c29ea17f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="covdet_8c.html#a7abfa72a8bb2a05c12376052c29ea17f">vl_covdet_delete</a> (<a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> *self)</td></tr>
+<tr class="memdesc:a7abfa72a8bb2a05c12376052c29ea17f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete object instance.  <a href="#a7abfa72a8bb2a05c12376052c29ea17f">More...</a><br /></td></tr>
+<tr class="separator:a7abfa72a8bb2a05c12376052c29ea17f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af266ce65ae19bff2c5d9ef1ad499b5fd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="covdet_8c.html#af266ce65ae19bff2c5d9ef1ad499b5fd">vl_covdet_append_feature</a> (<a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> *self, <a class="el" href="structVlCovDetFeature.html">VlCovDetFeature</a> const *feature)</td></tr>
+<tr class="memdesc:af266ce65ae19bff2c5d9ef1ad499b5fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append a feature to the internal buffer.  <a href="#af266ce65ae19bff2c5d9ef1ad499b5fd">More...</a><br /></td></tr>
+<tr class="separator:af266ce65ae19bff2c5d9ef1ad499b5fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affcedda1fdc7ed72d223e0aab003024e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="covdet_8c.html#affcedda1fdc7ed72d223e0aab003024e">vl_covdet_put_image</a> (<a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> *self, float const *image, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> width, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> height)</td></tr>
+<tr class="memdesc:affcedda1fdc7ed72d223e0aab003024e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Detect features in an image.  <a href="#affcedda1fdc7ed72d223e0aab003024e">More...</a><br /></td></tr>
+<tr class="separator:affcedda1fdc7ed72d223e0aab003024e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9b4be768992adb630dbaa53698f4b71"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="covdet_8c.html#ad9b4be768992adb630dbaa53698f4b71">_vl_det_hessian_response</a> (float *hessian, float const *image, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> width, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> height, double step, double sigma)</td></tr>
+<tr class="memdesc:ad9b4be768992adb630dbaa53698f4b71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scaled derminant of the Hessian filter.  <a href="#ad9b4be768992adb630dbaa53698f4b71">More...</a><br /></td></tr>
+<tr class="separator:ad9b4be768992adb630dbaa53698f4b71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad32aecc30ae52c6d666935b655ea0881"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="covdet_8c.html#ad32aecc30ae52c6d666935b655ea0881">_vl_harris_response</a> (float *harris, float const *image, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> width, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> height, double step, double sigma, double sigmaI, double alpha)</td></tr>
+<tr class="memdesc:ad32aecc30ae52c6d666935b655ea0881"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scale-normalised Harris response.  <a href="#ad32aecc30ae52c6d666935b655ea0881">More...</a><br /></td></tr>
+<tr class="separator:ad32aecc30ae52c6d666935b655ea0881"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a953455b468b827819e8586e5f1a859b2"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="covdet_8c.html#a953455b468b827819e8586e5f1a859b2">_vl_dog_response</a> (float *dog, float const *level1, float const *level2, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> width, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> height)</td></tr>
+<tr class="memdesc:a953455b468b827819e8586e5f1a859b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Difference of Gaussian.  <a href="#a953455b468b827819e8586e5f1a859b2">More...</a><br /></td></tr>
+<tr class="separator:a953455b468b827819e8586e5f1a859b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfe553fdb25132cbcf9cbb08839b7f98"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="covdet_8c.html#abfe553fdb25132cbcf9cbb08839b7f98">vl_covdet_detect</a> (<a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> *self)</td></tr>
+<tr class="memdesc:abfe553fdb25132cbcf9cbb08839b7f98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Detect scale-space features.  <a href="#abfe553fdb25132cbcf9cbb08839b7f98">More...</a><br /></td></tr>
+<tr class="separator:abfe553fdb25132cbcf9cbb08839b7f98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8cc86041f081986e633e621272ee9218"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="covdet_8c.html#a8cc86041f081986e633e621272ee9218">vl_covdet_extract_patch_helper</a> (<a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> *self, double *sigma1, double *sigma2, float *patch, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> resolution, double extent, double sigma, double A_[4], double T_[2], double d1, double d2)</td></tr>
+<tr class="memdesc:a8cc86041f081986e633e621272ee9218"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper for extracting patches.  <a href="#a8cc86041f081986e633e621272ee9218">More...</a><br /></td></tr>
+<tr class="separator:a8cc86041f081986e633e621272ee9218"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5332ef1f0e09654f5787c19e156404a9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="covdet_8c.html#a5332ef1f0e09654f5787c19e156404a9">vl_covdet_extract_patch_for_frame</a> (<a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> *self, float *patch, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> resolution, double extent, double sigma, <a class="el" href="structVlFrameOrientedEllipse.html">VlFrameOrientedEllipse</a> frame)</td></tr>
+<tr class="memdesc:a5332ef1f0e09654f5787c19e156404a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper for extracting patches.  <a href="#a5332ef1f0e09654f5787c19e156404a9">More...</a><br /></td></tr>
+<tr class="separator:a5332ef1f0e09654f5787c19e156404a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3c1402a759e6056b6bd58a27ba4799c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="covdet_8c.html#ad3c1402a759e6056b6bd58a27ba4799c">vl_covdet_extract_affine_shape_for_frame</a> (<a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> *self, <a class="el" href="structVlFrameOrientedEllipse.html">VlFrameOrientedEllipse</a> *adapted, <a class="el" href="structVlFrameOrientedEllipse.html">VlFrameOrientedEllipse</a> frame)</td></tr>
+<tr class="memdesc:ad3c1402a759e6056b6bd58a27ba4799c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extract the affine shape for a feature frame.  <a href="#ad3c1402a759e6056b6bd58a27ba4799c">More...</a><br /></td></tr>
+<tr class="separator:ad3c1402a759e6056b6bd58a27ba4799c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee6fc0f35fb23b32e558e8d0131abb96"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="covdet_8c.html#aee6fc0f35fb23b32e558e8d0131abb96">vl_covdet_extract_affine_shape</a> (<a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> *self)</td></tr>
+<tr class="memdesc:aee6fc0f35fb23b32e558e8d0131abb96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extract the affine shape for the stored features.  <a href="#aee6fc0f35fb23b32e558e8d0131abb96">More...</a><br /></td></tr>
+<tr class="separator:aee6fc0f35fb23b32e558e8d0131abb96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adec4bf7848db7577c51a1e875a63beaa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structVlCovDetFeatureOrientation.html">VlCovDetFeatureOrientation</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="covdet_8c.html#adec4bf7848db7577c51a1e875a63beaa">vl_covdet_extract_orientations_for_frame</a> (<a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> *self, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> *numOrientations, <a class="el" href="structVlFrameOrientedEllipse.html">VlFrameOrientedEllipse</a> frame)</td></tr>
+<tr class="memdesc:adec4bf7848db7577c51a1e875a63beaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extract the orientation(s) for a feature.  <a href="#adec4bf7848db7577c51a1e875a63beaa">More...</a><br /></td></tr>
+<tr class="separator:adec4bf7848db7577c51a1e875a63beaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f9823a4cffd55760cf6c16352381f1a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="covdet_8c.html#a0f9823a4cffd55760cf6c16352381f1a">vl_covdet_extract_orientations</a> (<a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> *self)</td></tr>
+<tr class="memdesc:a0f9823a4cffd55760cf6c16352381f1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extract the orientation(s) for the stored features.  <a href="#a0f9823a4cffd55760cf6c16352381f1a">More...</a><br /></td></tr>
+<tr class="separator:a0f9823a4cffd55760cf6c16352381f1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c8b9af2827291c930c6b1d6cce1794f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structVlCovDetFeatureLaplacianScale.html">VlCovDetFeatureLaplacianScale</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="covdet_8c.html#a6c8b9af2827291c930c6b1d6cce1794f">vl_covdet_extract_laplacian_scales_for_frame</a> (<a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> *self, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> *numScales, <a class="el" href="structVlFrameOrientedEllipse.html">VlFrameOrientedEllipse</a> frame)</td></tr>
+<tr class="memdesc:a6c8b9af2827291c930c6b1d6cce1794f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extract the Laplacian scale(s) for a feature frame.  <a href="#a6c8b9af2827291c930c6b1d6cce1794f">More...</a><br /></td></tr>
+<tr class="separator:a6c8b9af2827291c930c6b1d6cce1794f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1858e75418d7c6364a66bbbd8899fdd6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="covdet_8c.html#a1858e75418d7c6364a66bbbd8899fdd6">vl_covdet_extract_laplacian_scales</a> (<a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> *self)</td></tr>
+<tr class="memdesc:a1858e75418d7c6364a66bbbd8899fdd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extract the Laplacian scales for the stored features.  <a href="#a1858e75418d7c6364a66bbbd8899fdd6">More...</a><br /></td></tr>
+<tr class="separator:a1858e75418d7c6364a66bbbd8899fdd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a614fd4d42d8d2c938c945c76a544680f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="covdet_8c.html#a614fd4d42d8d2c938c945c76a544680f">vl_covdet_drop_features_outside</a> (<a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> *self, double margin)</td></tr>
+<tr class="memdesc:a614fd4d42d8d2c938c945c76a544680f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drop features (partially) outside the image.  <a href="#a614fd4d42d8d2c938c945c76a544680f">More...</a><br /></td></tr>
+<tr class="separator:a614fd4d42d8d2c938c945c76a544680f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55d10412a55bc52e6468f347daa84c2d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="covdet_8c.html#a55d10412a55bc52e6468f347daa84c2d">vl_covdet_get_transposed</a> (<a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> const *self)</td></tr>
+<tr class="memdesc:a55d10412a55bc52e6468f347daa84c2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get wether images are passed in transposed.  <a href="#a55d10412a55bc52e6468f347daa84c2d">More...</a><br /></td></tr>
+<tr class="separator:a55d10412a55bc52e6468f347daa84c2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca7fefc61bf17249380bef9410e0b2b2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="covdet_8c.html#aca7fefc61bf17249380bef9410e0b2b2">vl_covdet_set_transposed</a> (<a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> *self, <a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a> t)</td></tr>
+<tr class="memdesc:aca7fefc61bf17249380bef9410e0b2b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the index of the first octave.  <a href="#aca7fefc61bf17249380bef9410e0b2b2">More...</a><br /></td></tr>
+<tr class="separator:aca7fefc61bf17249380bef9410e0b2b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd380e24e7525b6c5bc2dfa656d7a9b2"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="covdet_8c.html#acd380e24e7525b6c5bc2dfa656d7a9b2">vl_covdet_get_edge_threshold</a> (<a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> const *self)</td></tr>
+<tr class="memdesc:acd380e24e7525b6c5bc2dfa656d7a9b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the edge threshold.  <a href="#acd380e24e7525b6c5bc2dfa656d7a9b2">More...</a><br /></td></tr>
+<tr class="separator:acd380e24e7525b6c5bc2dfa656d7a9b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16e0f9b96b16727a1bcec2df7bff0017"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="covdet_8c.html#a16e0f9b96b16727a1bcec2df7bff0017">vl_covdet_set_edge_threshold</a> (<a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> *self, double edgeThreshold)</td></tr>
+<tr class="memdesc:a16e0f9b96b16727a1bcec2df7bff0017"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the edge threshold.  <a href="#a16e0f9b96b16727a1bcec2df7bff0017">More...</a><br /></td></tr>
+<tr class="separator:a16e0f9b96b16727a1bcec2df7bff0017"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4fd154b4600ca2bf32b87adf77f62825"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="covdet_8c.html#a4fd154b4600ca2bf32b87adf77f62825">vl_covdet_get_peak_threshold</a> (<a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> const *self)</td></tr>
+<tr class="memdesc:a4fd154b4600ca2bf32b87adf77f62825"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the peak threshold.  <a href="#a4fd154b4600ca2bf32b87adf77f62825">More...</a><br /></td></tr>
+<tr class="separator:a4fd154b4600ca2bf32b87adf77f62825"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afcbfb9f6cade3f20bf429cd520b9cee8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="covdet_8c.html#afcbfb9f6cade3f20bf429cd520b9cee8">vl_covdet_set_peak_threshold</a> (<a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> *self, double peakThreshold)</td></tr>
+<tr class="memdesc:afcbfb9f6cade3f20bf429cd520b9cee8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the peak threshold.  <a href="#afcbfb9f6cade3f20bf429cd520b9cee8">More...</a><br /></td></tr>
+<tr class="separator:afcbfb9f6cade3f20bf429cd520b9cee8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a997689d5bf1078028223ebad6f1f0626"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="covdet_8c.html#a997689d5bf1078028223ebad6f1f0626">vl_covdet_get_laplacian_peak_threshold</a> (<a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> const *self)</td></tr>
+<tr class="memdesc:a997689d5bf1078028223ebad6f1f0626"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the Laplacian peak threshold.  <a href="#a997689d5bf1078028223ebad6f1f0626">More...</a><br /></td></tr>
+<tr class="separator:a997689d5bf1078028223ebad6f1f0626"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a214c8968e436f281f70532fa85b54043"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="covdet_8c.html#a214c8968e436f281f70532fa85b54043">vl_covdet_set_laplacian_peak_threshold</a> (<a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> *self, double peakThreshold)</td></tr>
+<tr class="memdesc:a214c8968e436f281f70532fa85b54043"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the Laplacian peak threshold.  <a href="#a214c8968e436f281f70532fa85b54043">More...</a><br /></td></tr>
+<tr class="separator:a214c8968e436f281f70532fa85b54043"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab06c5d750facf9105d6e3036c1ba40bb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#a66417c5847876295ea87b38140073879">vl_index</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="covdet_8c.html#ab06c5d750facf9105d6e3036c1ba40bb">vl_covdet_get_first_octave</a> (<a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> const *self)</td></tr>
+<tr class="memdesc:ab06c5d750facf9105d6e3036c1ba40bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the index of the first octave.  <a href="#ab06c5d750facf9105d6e3036c1ba40bb">More...</a><br /></td></tr>
+<tr class="separator:ab06c5d750facf9105d6e3036c1ba40bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af51d1a729e1611201ae7208a1144b8d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="covdet_8c.html#af51d1a729e1611201ae7208a1144b8d8">vl_covdet_set_first_octave</a> (<a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> *self, <a class="el" href="host_8h.html#a66417c5847876295ea87b38140073879">vl_index</a> o)</td></tr>
+<tr class="memdesc:af51d1a729e1611201ae7208a1144b8d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the index of the first octave.  <a href="#af51d1a729e1611201ae7208a1144b8d8">More...</a><br /></td></tr>
+<tr class="separator:af51d1a729e1611201ae7208a1144b8d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ccdfbf6b9fbfa01429ed2713c555846"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="covdet_8c.html#a9ccdfbf6b9fbfa01429ed2713c555846">vl_covdet_get_octave_resolution</a> (<a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> const *self)</td></tr>
+<tr class="memdesc:a9ccdfbf6b9fbfa01429ed2713c555846"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the octave resolution.  <a href="#a9ccdfbf6b9fbfa01429ed2713c555846">More...</a><br /></td></tr>
+<tr class="separator:a9ccdfbf6b9fbfa01429ed2713c555846"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ab247f8ce822636bb32ccd48c753a1d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="covdet_8c.html#a3ab247f8ce822636bb32ccd48c753a1d">vl_covdet_set_octave_resolution</a> (<a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> *self, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> r)</td></tr>
+<tr class="memdesc:a3ab247f8ce822636bb32ccd48c753a1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the octave resolutuon.  <a href="#a3ab247f8ce822636bb32ccd48c753a1d">More...</a><br /></td></tr>
+<tr class="separator:a3ab247f8ce822636bb32ccd48c753a1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad91ad31d5ca752e14c351e9cffbde68c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="covdet_8c.html#ad91ad31d5ca752e14c351e9cffbde68c">vl_covdet_get_aa_accurate_smoothing</a> (<a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> const *self)</td></tr>
+<tr class="memdesc:ad91ad31d5ca752e14c351e9cffbde68c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get whether affine adaptation uses accurate smoothing.  <a href="#ad91ad31d5ca752e14c351e9cffbde68c">More...</a><br /></td></tr>
+<tr class="separator:ad91ad31d5ca752e14c351e9cffbde68c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8573f2724701397d5684e0dfbc987423"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="covdet_8c.html#a8573f2724701397d5684e0dfbc987423">vl_covdet_set_aa_accurate_smoothing</a> (<a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> *self, <a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a> x)</td></tr>
+<tr class="memdesc:a8573f2724701397d5684e0dfbc987423"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set whether affine adaptation uses accurate smoothing.  <a href="#a8573f2724701397d5684e0dfbc987423">More...</a><br /></td></tr>
+<tr class="separator:a8573f2724701397d5684e0dfbc987423"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68dbea737c1c5ced8590b0b6ae66a3ad"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="covdet_8c.html#a68dbea737c1c5ced8590b0b6ae66a3ad">vl_covdet_get_non_extrema_suppression_threshold</a> (<a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> const *self)</td></tr>
+<tr class="memdesc:a68dbea737c1c5ced8590b0b6ae66a3ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the non-extrema suppression threshold.  <a href="#a68dbea737c1c5ced8590b0b6ae66a3ad">More...</a><br /></td></tr>
+<tr class="separator:a68dbea737c1c5ced8590b0b6ae66a3ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50bd5cc5eb6584f585d0bf7af8feff2f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="covdet_8c.html#a50bd5cc5eb6584f585d0bf7af8feff2f">vl_covdet_set_non_extrema_suppression_threshold</a> (<a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> *self, double x)</td></tr>
+<tr class="memdesc:a50bd5cc5eb6584f585d0bf7af8feff2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the non-extrema suppression threshod.  <a href="#a50bd5cc5eb6584f585d0bf7af8feff2f">More...</a><br /></td></tr>
+<tr class="separator:a50bd5cc5eb6584f585d0bf7af8feff2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e2c647eb87bea3d0935734acd2ba8f5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="covdet_8c.html#a6e2c647eb87bea3d0935734acd2ba8f5">vl_covdet_get_num_non_extrema_suppressed</a> (<a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> const *self)</td></tr>
+<tr class="memdesc:a6e2c647eb87bea3d0935734acd2ba8f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of non-extrema suppressed.  <a href="#a6e2c647eb87bea3d0935734acd2ba8f5">More...</a><br /></td></tr>
+<tr class="separator:a6e2c647eb87bea3d0935734acd2ba8f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a463ed222516fe046e8b170e3d3c06585"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="covdet_8c.html#a463ed222516fe046e8b170e3d3c06585">vl_covdet_get_num_features</a> (<a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> const *self)</td></tr>
+<tr class="memdesc:a463ed222516fe046e8b170e3d3c06585"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get number of stored frames.  <a href="#a463ed222516fe046e8b170e3d3c06585">More...</a><br /></td></tr>
+<tr class="separator:a463ed222516fe046e8b170e3d3c06585"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a703daa248e50accd2c09430caeeadd"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="covdet_8c.html#a8a703daa248e50accd2c09430caeeadd">vl_covdet_get_features</a> (<a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> *self)</td></tr>
+<tr class="memdesc:a8a703daa248e50accd2c09430caeeadd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the stored frames.  <a href="#a8a703daa248e50accd2c09430caeeadd">More...</a><br /></td></tr>
+<tr class="separator:a8a703daa248e50accd2c09430caeeadd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9416c377debcf2e9e630d4d20818da8e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structVlScaleSpace.html">VlScaleSpace</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="covdet_8c.html#a9416c377debcf2e9e630d4d20818da8e">vl_covdet_get_gss</a> (<a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> const *self)</td></tr>
+<tr class="memdesc:a9416c377debcf2e9e630d4d20818da8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the Gaussian scale space.  <a href="#a9416c377debcf2e9e630d4d20818da8e">More...</a><br /></td></tr>
+<tr class="separator:a9416c377debcf2e9e630d4d20818da8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f400eefd8cd2a866295dd928b046f58"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structVlScaleSpace.html">VlScaleSpace</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="covdet_8c.html#a6f400eefd8cd2a866295dd928b046f58">vl_covdet_get_css</a> (<a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> const *self)</td></tr>
+<tr class="memdesc:a6f400eefd8cd2a866295dd928b046f58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the cornerness measure scale space.  <a href="#a6f400eefd8cd2a866295dd928b046f58">More...</a><br /></td></tr>
+<tr class="separator:a6f400eefd8cd2a866295dd928b046f58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2fce4c4f82f50598abe75f756b631366"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> const *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="covdet_8c.html#a2fce4c4f82f50598abe75f756b631366">vl_covdet_get_laplacian_scales_statistics</a> (<a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> const *self, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> *numScales)</td></tr>
+<tr class="memdesc:a2fce4c4f82f50598abe75f756b631366"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of features found with a certain number of scales.  <a href="#a2fce4c4f82f50598abe75f756b631366">More...</a><br /></td></tr>
+<tr class="separator:a2fce4c4f82f50598abe75f756b631366"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><dl class="section author"><dt>Author</dt><dd>Karel Lenc </dd>
+<dd>
+Andrea Vedaldi </dd>
+<dd>
+Michal Perdoch </dd></dl>
+</div><h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="ad9b4be768992adb630dbaa53698f4b71"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void _vl_det_hessian_response </td>
+          <td>(</td>
+          <td class="paramtype">float *&#160;</td>
+          <td class="paramname"><em>hessian</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float const *&#160;</td>
+          <td class="paramname"><em>image</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>step</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>sigma</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">hessian</td><td>output image. </td></tr>
+    <tr><td class="paramname">image</td><td>input image. </td></tr>
+    <tr><td class="paramname">width</td><td>image width. </td></tr>
+    <tr><td class="paramname">height</td><td>image height. </td></tr>
+    <tr><td class="paramname">step</td><td>image sampling step (pixel size). </td></tr>
+    <tr><td class="paramname">sigma</td><td>Gaussian smoothing of the input image. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a953455b468b827819e8586e5f1a859b2"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void _vl_dog_response </td>
+          <td>(</td>
+          <td class="paramtype">float *&#160;</td>
+          <td class="paramname"><em>dog</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float const *&#160;</td>
+          <td class="paramname"><em>level1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float const *&#160;</td>
+          <td class="paramname"><em>level2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>height</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dog</td><td>output image. </td></tr>
+    <tr><td class="paramname">level1</td><td>input image at the smaller Gaussian scale. </td></tr>
+    <tr><td class="paramname">level2</td><td>input image at the larger Gaussian scale. </td></tr>
+    <tr><td class="paramname">width</td><td>image width. </td></tr>
+    <tr><td class="paramname">height</td><td>image height. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="afb3bdb49a23d115dafa953f2be5f87c0"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int _vl_enlarge_buffer </td>
+          <td>(</td>
+          <td class="paramtype">void **&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> *&#160;</td>
+          <td class="paramname"><em>bufferSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>targetSize</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">buffer</td><td></td></tr>
+    <tr><td class="paramname">bufferSize</td><td></td></tr>
+    <tr><td class="paramname">targetSize</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>error code </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ad32aecc30ae52c6d666935b655ea0881"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void _vl_harris_response </td>
+          <td>(</td>
+          <td class="paramtype">float *&#160;</td>
+          <td class="paramname"><em>harris</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float const *&#160;</td>
+          <td class="paramname"><em>image</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>step</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>sigma</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>sigmaI</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>alpha</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">harris</td><td>output image. </td></tr>
+    <tr><td class="paramname">image</td><td>input image. </td></tr>
+    <tr><td class="paramname">width</td><td>image width. </td></tr>
+    <tr><td class="paramname">height</td><td>image height. </td></tr>
+    <tr><td class="paramname">step</td><td>image sampling step (pixel size). </td></tr>
+    <tr><td class="paramname">sigma</td><td>Gaussian smoothing of the input image. </td></tr>
+    <tr><td class="paramname">sigmaI</td><td>integration scale. </td></tr>
+    <tr><td class="paramname">alpha</td><td>factor in the definition of the Harris score. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a9115190fadfffd887d24132ea02954f7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int _vl_resize_buffer </td>
+          <td>(</td>
+          <td class="paramtype">void **&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> *&#160;</td>
+          <td class="paramname"><em>bufferSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>targetSize</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">buffer</td><td></td></tr>
+    <tr><td class="paramname">bufferSize</td><td></td></tr>
+    <tr><td class="paramname">targetSize</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>error code </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="af266ce65ae19bff2c5d9ef1ad499b5fd"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int vl_covdet_append_feature </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structVlCovDetFeature.html">VlCovDetFeature</a> const *&#160;</td>
+          <td class="paramname"><em>feature</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object. </td></tr>
+    <tr><td class="paramname">feature</td><td>a pointer to the feature to append. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>status.</dd></dl>
+<p>The feature is copied. The function may fail with <code>status</code> equal to <a class="el" href="generic_8h.html#a0a05979eb0e5e1bb8edd1d6992d73f5f">VL_ERR_ALLOC</a> if there is insufficient memory. </p>
+
+</div>
+</div>
+<a class="anchor" id="a7abfa72a8bb2a05c12376052c29ea17f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_covdet_delete </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="abfe553fdb25132cbcf9cbb08839b7f98"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_covdet_detect </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>This function runs the configured feature detector on the image that was passed by using <a class="el" href="covdet_8c.html#affcedda1fdc7ed72d223e0aab003024e" title="Detect features in an image. ">vl_covdet_put_image</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="a614fd4d42d8d2c938c945c76a544680f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_covdet_drop_features_outside </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>margin</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object. </td></tr>
+    <tr><td class="paramname">margin</td><td>geometric marging.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The feature extent is defined by <code>maring</code>. A bounding box in the normalised feature frame containin a circle of radius <em>maring</em> is created and mapped to the image by the feature frame transformation. Then the feature is dropped if the bounding box is not contained in the image.</p>
+<p>For example, setting <code>margin</code> to zero drops a feature only if its center is not contained.</p>
+<p>Typically a valua of <code>margin</code> equal to 1 or 2 is used. </p>
+
+</div>
+</div>
+<a class="anchor" id="aee6fc0f35fb23b32e558e8d0131abb96"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_covdet_extract_affine_shape </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>This function may discard features for which no affine shape can reliably be detected. </p>
+
+</div>
+</div>
+<a class="anchor" id="ad3c1402a759e6056b6bd58a27ba4799c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int vl_covdet_extract_affine_shape_for_frame </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structVlFrameOrientedEllipse.html">VlFrameOrientedEllipse</a> *&#160;</td>
+          <td class="paramname"><em>adapted</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structVlFrameOrientedEllipse.html">VlFrameOrientedEllipse</a>&#160;</td>
+          <td class="paramname"><em>frame</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object. </td></tr>
+    <tr><td class="paramname">adapted</td><td>the shape-adapted frame. </td></tr>
+    <tr><td class="paramname">frame</td><td>the input frame. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="generic_8h.html#a26519a3dd2966d2d46538eb46921abba">VL_ERR_OK</a> if affine adaptation is successful.</dd></dl>
+<p>This function may fail if adaptation is unsuccessful or if memory is insufficient. </p>
+
+</div>
+</div>
+<a class="anchor" id="a1858e75418d7c6364a66bbbd8899fdd6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_covdet_extract_laplacian_scales </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Note that, since more than one orientation can be detected for each feature, this function may create copies of them, one for each orientation. </p>
+
+</div>
+</div>
+<a class="anchor" id="a6c8b9af2827291c930c6b1d6cce1794f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structVlCovDetFeatureLaplacianScale.html">VlCovDetFeatureLaplacianScale</a>* vl_covdet_extract_laplacian_scales_for_frame </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> *&#160;</td>
+          <td class="paramname"><em>numScales</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structVlFrameOrientedEllipse.html">VlFrameOrientedEllipse</a>&#160;</td>
+          <td class="paramname"><em>frame</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object. </td></tr>
+    <tr><td class="paramname">numScales</td><td>the number of detected scales. </td></tr>
+    <tr><td class="paramname">frame</td><td>pose of the feature. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>an array of detected scales.</dd></dl>
+<p>The function returns <code>NULL</code> if memory is insufficient. </p>
+
+</div>
+</div>
+<a class="anchor" id="a0f9823a4cffd55760cf6c16352381f1a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_covdet_extract_orientations </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Note that, since more than one orientation can be detected for each feature, this function may create copies of them, one for each orientation. </p>
+
+</div>
+</div>
+<a class="anchor" id="adec4bf7848db7577c51a1e875a63beaa"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structVlCovDetFeatureOrientation.html">VlCovDetFeatureOrientation</a>* vl_covdet_extract_orientations_for_frame </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> *&#160;</td>
+          <td class="paramname"><em>numOrientations</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structVlFrameOrientedEllipse.html">VlFrameOrientedEllipse</a>&#160;</td>
+          <td class="paramname"><em>frame</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object. </td></tr>
+    <tr><td class="paramname">numOrientations</td><td>the number of detected orientations. </td></tr>
+    <tr><td class="paramname">frame</td><td>pose of the feature. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>an array of detected orientations with their scores.</dd></dl>
+<p>The returned array is a matrix of size \( 2 \times n \) where <em>n</em> is the number of detected orientations.</p>
+<p>The function returns <code>NULL</code> if memory is insufficient. </p>
+
+</div>
+</div>
+<a class="anchor" id="a5332ef1f0e09654f5787c19e156404a9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a> vl_covdet_extract_patch_for_frame </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *&#160;</td>
+          <td class="paramname"><em>patch</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>resolution</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>extent</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>sigma</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structVlFrameOrientedEllipse.html">VlFrameOrientedEllipse</a>&#160;</td>
+          <td class="paramname"><em>frame</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object. </td></tr>
+    <tr><td class="paramname">patch</td><td>buffer. </td></tr>
+    <tr><td class="paramname">resolution</td><td>patch resolution. </td></tr>
+    <tr><td class="paramname">extent</td><td>patch extent. </td></tr>
+    <tr><td class="paramname">sigma</td><td>desired smoothing in the patch frame. </td></tr>
+    <tr><td class="paramname">frame</td><td>feature frame.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The function considers a patch of extent <code>[-extent,extent]</code> on each side, with a side counting <code>2*resolution+1</code> pixels. In attempts to extract from the scale space a patch based on the affine warping specified by <em>frame</em> in such a way that the resulting smoothing of the image is <em>sigma</em> (in the patch frame).</p>
+<p>The transformation is specified by the matrices <code>A</code> and <code>T</code> embedded in the feature <em>frame</em>. Note that this transformation maps pixels from the patch frame to the image frame. </p>
+
+</div>
+</div>
+<a class="anchor" id="a8cc86041f081986e633e621272ee9218"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a> vl_covdet_extract_patch_helper </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>sigma1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>sigma2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *&#160;</td>
+          <td class="paramname"><em>patch</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>resolution</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>extent</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>sigma</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>A_</em>[4], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>T_</em>[2], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>d1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>d2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir"></td><td class="paramname">self</td><td>object. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">sigma1</td><td>actual patch smoothing along the first axis. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">sigma2</td><td>actual patch smoothing along the second axis. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">patch</td><td>buffer. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">resolution</td><td>patch resolution. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">extent</td><td>patch extent. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">sigma</td><td>desired smoothing in the patch frame. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">A_</td><td>linear transfomration from patch to image. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">T_</td><td>translation from patch to image. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">d1</td><td>first singular value <em>A</em>. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">d2</td><td>second singular value of <em>A</em>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ad91ad31d5ca752e14c351e9cffbde68c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a> vl_covdet_get_aa_accurate_smoothing </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if accurate smoothing is used. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a6f400eefd8cd2a866295dd928b046f58"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structVlScaleSpace.html">VlScaleSpace</a>* vl_covdet_get_css </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>cornerness measure scale space.</dd></dl>
+<p>A cornerness measure scale space exists only after calling <a class="el" href="covdet_8c.html#abfe553fdb25132cbcf9cbb08839b7f98" title="Detect scale-space features. ">vl_covdet_detect</a>. Otherwise the function returns <code>NULL</code>. </p>
+
+</div>
+</div>
+<a class="anchor" id="acd380e24e7525b6c5bc2dfa656d7a9b2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double vl_covdet_get_edge_threshold </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the edge threshold. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a8a703daa248e50accd2c09430caeeadd"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* vl_covdet_get_features </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>frames stored in the detector. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ab06c5d750facf9105d6e3036c1ba40bb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#a66417c5847876295ea87b38140073879">vl_index</a> vl_covdet_get_first_octave </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>index of the first octave. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a9416c377debcf2e9e630d4d20818da8e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structVlScaleSpace.html">VlScaleSpace</a>* vl_covdet_get_gss </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Gaussian scale space.</dd></dl>
+<p>A Gaussian scale space exists only after calling <a class="el" href="covdet_8c.html#affcedda1fdc7ed72d223e0aab003024e" title="Detect features in an image. ">vl_covdet_put_image</a>. Otherwise the function returns <code>NULL</code>. </p>
+
+</div>
+</div>
+<a class="anchor" id="a997689d5bf1078028223ebad6f1f0626"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double vl_covdet_get_laplacian_peak_threshold </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the Laplacian peak threshold.</dd></dl>
+<p>This parameter affects only the detecors using the Laplacian scale selectino method such as Harris-Laplace. </p>
+
+</div>
+</div>
+<a class="anchor" id="a2fce4c4f82f50598abe75f756b631366"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> const* vl_covdet_get_laplacian_scales_statistics </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> const *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> *&#160;</td>
+          <td class="paramname"><em>numScales</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object. </td></tr>
+    <tr><td class="paramname">numScales</td><td>length of the histogram (out). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>histogram.</dd></dl>
+<p>Calling this function makes sense only after running a detector that uses the Laplacian as a secondary measure for scale detection </p>
+
+</div>
+</div>
+<a class="anchor" id="a68dbea737c1c5ced8590b0b6ae66a3ad"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double vl_covdet_get_non_extrema_suppression_threshold </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>threshold. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a463ed222516fe046e8b170e3d3c06585"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> vl_covdet_get_num_features </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>number of frames stored in the detector. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a6e2c647eb87bea3d0935734acd2ba8f5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> vl_covdet_get_num_non_extrema_suppressed </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>number. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a9ccdfbf6b9fbfa01429ed2713c555846"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> vl_covdet_get_octave_resolution </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>octave resolution. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a4fd154b4600ca2bf32b87adf77f62825"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double vl_covdet_get_peak_threshold </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the peak threshold. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a55d10412a55bc52e6468f347daa84c2d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a> vl_covdet_get_transposed </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>whether images are transposed. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="adff732c569785b7dff7f15601bc77a68"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a>* vl_covdet_new </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="covdet_8h.html#a29fcb6ced2bee0db21c3c3f81a54477e">VlCovDetMethod</a>&#160;</td>
+          <td class="paramname"><em>method</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">method</td><td>method for covariant feature detection. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>new covariant detector. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="affcedda1fdc7ed72d223e0aab003024e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int vl_covdet_put_image </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float const *&#160;</td>
+          <td class="paramname"><em>image</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>height</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object. </td></tr>
+    <tr><td class="paramname">image</td><td>image to process. </td></tr>
+    <tr><td class="paramname">width</td><td>image width. </td></tr>
+    <tr><td class="paramname">height</td><td>image height. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>status.</dd></dl>
+<p><em>width</em> and <em>height</em> must be at least one pixel. The function fails by returing <a class="el" href="generic_8h.html#a0a05979eb0e5e1bb8edd1d6992d73f5f">VL_ERR_ALLOC</a> if the memory is insufficient. </p>
+
+</div>
+</div>
+<a class="anchor" id="a7cfe6bd396893127c69f02f189e7f359"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_covdet_reset </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>This function removes any buffered features and frees other internal buffers. </p>
+
+</div>
+</div>
+<a class="anchor" id="a8573f2724701397d5684e0dfbc987423"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_covdet_set_aa_accurate_smoothing </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a>&#160;</td>
+          <td class="paramname"><em>x</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object. </td></tr>
+    <tr><td class="paramname">x</td><td>whether accurate smoothing should be usd. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a16e0f9b96b16727a1bcec2df7bff0017"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_covdet_set_edge_threshold </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>edgeThreshold</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object. </td></tr>
+    <tr><td class="paramname">edgeThreshold</td><td>the edge threshold.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The edge threshold must be non-negative. </p>
+
+</div>
+</div>
+<a class="anchor" id="af51d1a729e1611201ae7208a1144b8d8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_covdet_set_first_octave </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a66417c5847876295ea87b38140073879">vl_index</a>&#160;</td>
+          <td class="paramname"><em>o</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object. </td></tr>
+    <tr><td class="paramname">o</td><td>index of the first octave.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Calling this function resets the detector. </p>
+
+</div>
+</div>
+<a class="anchor" id="a214c8968e436f281f70532fa85b54043"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_covdet_set_laplacian_peak_threshold </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>peakThreshold</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object. </td></tr>
+    <tr><td class="paramname">peakThreshold</td><td>the Laplacian peak threshold.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The peak threshold must be non-negative. </p>
+
+</div>
+</div>
+<a class="anchor" id="a50bd5cc5eb6584f585d0bf7af8feff2f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_covdet_set_non_extrema_suppression_threshold </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>x</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object. </td></tr>
+    <tr><td class="paramname">x</td><td>threshold. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a3ab247f8ce822636bb32ccd48c753a1d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_covdet_set_octave_resolution </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>r</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object. </td></tr>
+    <tr><td class="paramname">r</td><td>octave resoltuion.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Calling this function resets the detector. </p>
+
+</div>
+</div>
+<a class="anchor" id="afcbfb9f6cade3f20bf429cd520b9cee8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_covdet_set_peak_threshold </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>peakThreshold</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object. </td></tr>
+    <tr><td class="paramname">peakThreshold</td><td>the peak threshold.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The peak threshold must be non-negative. </p>
+
+</div>
+</div>
+<a class="anchor" id="aca7fefc61bf17249380bef9410e0b2b2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_covdet_set_transposed </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">VlCovDet</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a>&#160;</td>
+          <td class="paramname"><em>t</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object. </td></tr>
+    <tr><td class="paramname">t</td><td>whether images are transposed. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a25225132de55749d72a506c20565fbfc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> vl_find_local_extrema_2 </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a66417c5847876295ea87b38140073879">vl_index</a> **&#160;</td>
+          <td class="paramname"><em>extrema</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> *&#160;</td>
+          <td class="paramname"><em>bufferSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float const *&#160;</td>
+          <td class="paramname"><em>map</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>threshold</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">extrema</td><td>buffer containing the found extrema (in/out). </td></tr>
+    <tr><td class="paramname">bufferSize</td><td>size of the <em>extrema</em> buffer in bytes (in/out). </td></tr>
+    <tr><td class="paramname">map</td><td>a 3D array representing the map. </td></tr>
+    <tr><td class="paramname">width</td><td>of the map. </td></tr>
+    <tr><td class="paramname">height</td><td>of the map. </td></tr>
+    <tr><td class="paramname">threshold</td><td>minumum extremum value. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>number of extrema found.</dd></dl>
+<p>An extremum contains 2 <a class="el" href="host_8h.html#a66417c5847876295ea87b38140073879" title="Signed version of vl_size and vl_uindex. ">vl_index</a> values; they are arranged sequentially.</p>
+<p>The function can reuse an already allocated buffer if <em>extrema</em> and <em>bufferSize</em> are initialized on input. It may have to <em>realloc</em> the memory if the buffer is too small. </p>
+
+</div>
+</div>
+<a class="anchor" id="af951de09ebfe2adfb18887be739ed73e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> vl_find_local_extrema_3 </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a66417c5847876295ea87b38140073879">vl_index</a> **&#160;</td>
+          <td class="paramname"><em>extrema</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> *&#160;</td>
+          <td class="paramname"><em>bufferSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float const *&#160;</td>
+          <td class="paramname"><em>map</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>depth</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>threshold</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">extrema</td><td>buffer containing the extrema found (in/out). </td></tr>
+    <tr><td class="paramname">bufferSize</td><td>size of the <em>extrema</em> buffer in bytes (in/out). </td></tr>
+    <tr><td class="paramname">map</td><td>a 3D array representing the map. </td></tr>
+    <tr><td class="paramname">width</td><td>of the map. </td></tr>
+    <tr><td class="paramname">height</td><td>of the map. </td></tr>
+    <tr><td class="paramname">depth</td><td>of the map. </td></tr>
+    <tr><td class="paramname">threshold</td><td>minumum extremum value. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>number of extrema found. </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="covdet_8c.html#a98a72bd26a4cb59bb9899e9cffc32bd3">vl_refine_local_extreum_2</a>. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a98a72bd26a4cb59bb9899e9cffc32bd3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a> vl_refine_local_extreum_2 </td>
+          <td>(</td>
+          <td class="paramtype">VlCovDetExtremum2 *&#160;</td>
+          <td class="paramname"><em>refined</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float const *&#160;</td>
+          <td class="paramname"><em>map</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a66417c5847876295ea87b38140073879">vl_index</a>&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a66417c5847876295ea87b38140073879">vl_index</a>&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">refined</td><td>refined extremum (out). </td></tr>
+    <tr><td class="paramname">map</td><td>a 2D array representing the map. </td></tr>
+    <tr><td class="paramname">width</td><td>of the map. </td></tr>
+    <tr><td class="paramname">height</td><td>of the map. </td></tr>
+    <tr><td class="paramname">x</td><td>initial x position. </td></tr>
+    <tr><td class="paramname">y</td><td>initial y position. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a flat indicating whether the extrema refinement was stable. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a6eb190e7eb77268734e56bb9a8773f30"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a> vl_refine_local_extreum_3 </td>
+          <td>(</td>
+          <td class="paramtype">VlCovDetExtremum3 *&#160;</td>
+          <td class="paramname"><em>refined</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float const *&#160;</td>
+          <td class="paramname"><em>map</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>depth</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a66417c5847876295ea87b38140073879">vl_index</a>&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a66417c5847876295ea87b38140073879">vl_index</a>&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a66417c5847876295ea87b38140073879">vl_index</a>&#160;</td>
+          <td class="paramname"><em>z</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">refined</td><td>refined extremum (out). </td></tr>
+    <tr><td class="paramname">map</td><td>a 3D array representing the map. </td></tr>
+    <tr><td class="paramname">width</td><td>of the map. </td></tr>
+    <tr><td class="paramname">height</td><td>of the map. </td></tr>
+    <tr><td class="paramname">depth</td><td>of the map. </td></tr>
+    <tr><td class="paramname">x</td><td>initial x position. </td></tr>
+    <tr><td class="paramname">y</td><td>initial y position. </td></tr>
+    <tr><td class="paramname">z</td><td>initial z position. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a flat indicating whether the extrema refinement was stable. </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+        <!-- Doc Here -->
+      </div>
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>

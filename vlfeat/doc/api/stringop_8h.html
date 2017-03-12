@@ -1,0 +1,818 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+  <!-- Page title -->
+  <title>VLFeat - Documentation > C API</title>
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  <link rel="stylesheet" type="text/css" href="doxygen.css"></link>
+  <!-- Scripts-->
+  <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li class='active'><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li class='active' class='activeLeaf'><a href="index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="../doc.html">Documentation</a></span><span class='separator'>></span><span class='page'><a href="index.html">C API</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+      <!-- <pagestyle href="%pathto:root;api/tabs.css"/> -->
+      <div class="doxygen">
+<div id="top">
+<div id="top">
+<!-- Generated by Doxygen 1.8.7 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li class="current"><a href="files.html"><span>Files</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>Globals</span></a></li>
+    </ul>
+  </div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_8dd540b382164c224dfa1eb6e8a3add6.html">vl</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Data Structures</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">stringop.h File Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>String operations.  
+<a href="#details">More...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="generic_8h.html">generic.h</a>&quot;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVlEnumerator.html">VlEnumerator</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Member of an enumeration.  <a href="structVlEnumerator.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:a61dadd085c1777f559549e05962b2c9e"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <a class="el" href="stringop_8h.html#a61dadd085c1777f559549e05962b2c9ea71fca21ec3ae6a26edbe380fedc2ebec">VL_PROT_UNKNOWN</a> = -1, 
+<a class="el" href="stringop_8h.html#a61dadd085c1777f559549e05962b2c9ea94b2ad9436eeeb7e7a08baf24e00f3d6">VL_PROT_NONE</a> = 0, 
+<a class="el" href="stringop_8h.html#a61dadd085c1777f559549e05962b2c9ea611cc6138919fdd98ce2a9137a762b91">VL_PROT_ASCII</a>, 
+<a class="el" href="stringop_8h.html#a61dadd085c1777f559549e05962b2c9eaa92055b1172e1b8fa98177304d495653">VL_PROT_BINARY</a>
+ }</td></tr>
+<tr class="memdesc:a61dadd085c1777f559549e05962b2c9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">File protocols.  <a href="stringop_8h.html#a61dadd085c1777f559549e05962b2c9e">More...</a><br /></td></tr>
+<tr class="separator:a61dadd085c1777f559549e05962b2c9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a12595787245c1d92c5d3bbe6c0cea9f4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stringop_8h.html#a12595787245c1d92c5d3bbe6c0cea9f4">vl_string_copy</a> (char *destination, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> destinationSize, char const *source)</td></tr>
+<tr class="memdesc:a12595787245c1d92c5d3bbe6c0cea9f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy string.  <a href="#a12595787245c1d92c5d3bbe6c0cea9f4">More...</a><br /></td></tr>
+<tr class="separator:a12595787245c1d92c5d3bbe6c0cea9f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ecf896f613bca486a0821f076aa8855"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stringop_8h.html#a3ecf896f613bca486a0821f076aa8855">vl_string_copy_sub</a> (char *destination, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> destinationSize, char const *beginning, char const *end)</td></tr>
+<tr class="memdesc:a3ecf896f613bca486a0821f076aa8855"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy substring.  <a href="#a3ecf896f613bca486a0821f076aa8855">More...</a><br /></td></tr>
+<tr class="separator:a3ecf896f613bca486a0821f076aa8855"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa45c4b3fc38383ad1d152485ccfe3356"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stringop_8h.html#aa45c4b3fc38383ad1d152485ccfe3356">vl_string_parse_protocol</a> (char const *string, int *protocol)</td></tr>
+<tr class="memdesc:aa45c4b3fc38383ad1d152485ccfe3356"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extract the protocol prefix from a string.  <a href="#aa45c4b3fc38383ad1d152485ccfe3356">More...</a><br /></td></tr>
+<tr class="separator:aa45c4b3fc38383ad1d152485ccfe3356"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79a3a25967d2fd344d3812c31f7af6d7"><td class="memItemLeft" align="right" valign="top">char const *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stringop_8h.html#a79a3a25967d2fd344d3812c31f7af6d7">vl_string_protocol_name</a> (int prot)</td></tr>
+<tr class="memdesc:a79a3a25967d2fd344d3812c31f7af6d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get protocol name.  <a href="#a79a3a25967d2fd344d3812c31f7af6d7">More...</a><br /></td></tr>
+<tr class="separator:a79a3a25967d2fd344d3812c31f7af6d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c19551fb6bb7e1f45c453caef5b9044"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stringop_8h.html#a7c19551fb6bb7e1f45c453caef5b9044">vl_string_basename</a> (char *destination, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> destinationSize, char const *source, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> maxNumStrippedExtension)</td></tr>
+<tr class="memdesc:a7c19551fb6bb7e1f45c453caef5b9044"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extract base of file name.  <a href="#a7c19551fb6bb7e1f45c453caef5b9044">More...</a><br /></td></tr>
+<tr class="separator:a7c19551fb6bb7e1f45c453caef5b9044"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3333f80d5012dadb8967ab297ff02645"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stringop_8h.html#a3333f80d5012dadb8967ab297ff02645">vl_string_replace_wildcard</a> (char *destination, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> destinationSize, char const *src, char wildcardChar, char escapeChar, char const *replacement)</td></tr>
+<tr class="memdesc:a3333f80d5012dadb8967ab297ff02645"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replace wildcard characters by a string.  <a href="#a3333f80d5012dadb8967ab297ff02645">More...</a><br /></td></tr>
+<tr class="separator:a3333f80d5012dadb8967ab297ff02645"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc6a3ecad1c4fde280008c2bc7663dea"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stringop_8h.html#acc6a3ecad1c4fde280008c2bc7663dea">vl_string_find_char_rev</a> (char const *beginning, char const *end, char c)</td></tr>
+<tr class="memdesc:acc6a3ecad1c4fde280008c2bc7663dea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Search character in reversed order.  <a href="#acc6a3ecad1c4fde280008c2bc7663dea">More...</a><br /></td></tr>
+<tr class="separator:acc6a3ecad1c4fde280008c2bc7663dea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc9de03bedf2b67ce907a7478e34bc4e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stringop_8h.html#acc9de03bedf2b67ce907a7478e34bc4e">vl_string_length</a> (char const *string)</td></tr>
+<tr class="memdesc:acc9de03bedf2b67ce907a7478e34bc4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate string length.  <a href="#acc9de03bedf2b67ce907a7478e34bc4e">More...</a><br /></td></tr>
+<tr class="separator:acc9de03bedf2b67ce907a7478e34bc4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad006cebd610a7a6f7b6d97c93e398824"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stringop_8h.html#ad006cebd610a7a6f7b6d97c93e398824">vl_string_casei_cmp</a> (const char *string1, const char *string2)</td></tr>
+<tr class="memdesc:ad006cebd610a7a6f7b6d97c93e398824"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compare strings case-insensitive.  <a href="#ad006cebd610a7a6f7b6d97c93e398824">More...</a><br /></td></tr>
+<tr class="separator:ad006cebd610a7a6f7b6d97c93e398824"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">String enumerations</div></td></tr>
+<tr class="memitem:aadc62a75665e4d45a4e890def1eff7e4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structVlEnumerator.html">VlEnumerator</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stringop_8h.html#aadc62a75665e4d45a4e890def1eff7e4">vl_enumeration_get</a> (<a class="el" href="structVlEnumerator.html">VlEnumerator</a> const *enumeration, char const *name)</td></tr>
+<tr class="memdesc:aadc62a75665e4d45a4e890def1eff7e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a member of an enumeration by name.  <a href="#aadc62a75665e4d45a4e890def1eff7e4">More...</a><br /></td></tr>
+<tr class="separator:aadc62a75665e4d45a4e890def1eff7e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30b7412f99917d5907f9b683f727b188"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structVlEnumerator.html">VlEnumerator</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stringop_8h.html#a30b7412f99917d5907f9b683f727b188">vl_enumeration_get_casei</a> (<a class="el" href="structVlEnumerator.html">VlEnumerator</a> const *enumeration, char const *name)</td></tr>
+<tr class="memdesc:a30b7412f99917d5907f9b683f727b188"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a member of an enumeration by name (case insensitive)  <a href="#a30b7412f99917d5907f9b683f727b188">More...</a><br /></td></tr>
+<tr class="separator:a30b7412f99917d5907f9b683f727b188"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41870b6b4f144d8b019c6f6371f41b28"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structVlEnumerator.html">VlEnumerator</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stringop_8h.html#a41870b6b4f144d8b019c6f6371f41b28">vl_enumeration_get_by_value</a> (<a class="el" href="structVlEnumerator.html">VlEnumerator</a> const *enumeration, <a class="el" href="host_8h.html#a66417c5847876295ea87b38140073879">vl_index</a> value)</td></tr>
+<tr class="memdesc:a41870b6b4f144d8b019c6f6371f41b28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a member of an enumeration by value.  <a href="#a41870b6b4f144d8b019c6f6371f41b28">More...</a><br /></td></tr>
+<tr class="separator:a41870b6b4f144d8b019c6f6371f41b28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><dl class="section author"><dt>Author</dt><dd>Andrea Vedaldi</dd></dl>
+<p><a class="el" href="stringop_8h.html">stringop.h</a> implements basic string operations. All functions that write to strings use range checking, which makes them safer than some standard POSIX equivalent (see <a class="el" href="stringop_8h.html#vl-stringop-err">Detecting overflow</a>).</p>
+<h1><a class="anchor" id="vl-stringop-enumeration"></a>
+Enumerations</h1>
+<p><a class="el" href="stringop_8h.html">stringop.h</a> defines a simple enumeration data type. This is given by an array of enumeration members, represented by instances of the <a class="el" href="structVlEnumerator.html" title="Member of an enumeration. ">VlEnumerator</a> strucutre, each storing a name-value pair. The enumeration must end by a member whose name is set to <code>NULL</code>.</p>
+<p>Use <a class="el" href="stringop_8h.html#aadc62a75665e4d45a4e890def1eff7e4" title="Get a member of an enumeration by name. ">vl_enumeration_get</a> and <a class="el" href="stringop_8h.html#a30b7412f99917d5907f9b683f727b188" title="Get a member of an enumeration by name (case insensitive) ">vl_enumeration_get_casei</a> to retrieve an enumeration member by name.</p>
+<h1><a class="anchor" id="vl-stringop-file-protocols"></a>
+File protocols</h1>
+<p><a class="el" href="stringop_8h.html">stringop.h</a> defines a few file "protocols" and helps parsing them from URL-like formatted strings. The supported protocols are:</p>
+<table class="doxtable">
+<caption align="bottom">File protocols</caption>
+<tr>
+<td>Protocol</td><td>Code</td><td>URL prefix </td></tr>
+<tr>
+<td>ASCII</td><td><a class="el" href="stringop_8h.html#a61dadd085c1777f559549e05962b2c9ea611cc6138919fdd98ce2a9137a762b91">VL_PROT_ASCII</a></td><td><code>ascii://</code> </td></tr>
+<tr>
+<td>BINARY</td><td><a class="el" href="stringop_8h.html#a61dadd085c1777f559549e05962b2c9eaa92055b1172e1b8fa98177304d495653">VL_PROT_BINARY</a></td><td><code>binary://</code> </td></tr>
+</table>
+<h1><a class="anchor" id="vl-stringop-err"></a>
+Detecting overflow</h1>
+<p><a class="el" href="stringop_8h.html">stringop.h</a> functions that write a string to a character buffer take both the buffer and its size <code>n</code> as input. If <code>n</code> is not large enough, the output may be truncated but it is always a null terminated string (provided that <code>n</code> &gt;= 1). Such functions also return the length of the string that would have been written <code>r</code> (which does not include the terminating null character) had the buffer been large enough. Hence an <em>overflow</em> can be detected by testing if <code>r</code> &gt;= <code>n</code>, <code>r</code> can be used to re-allocate a buffer large enough to contain the result, and the operation can be repeated.</p>
+<dl class="section author"><dt>Author</dt><dd>Andrea Vedaldi </dd></dl>
+</div><h2 class="groupheader">Enumeration Type Documentation</h2>
+<a class="anchor" id="a61dadd085c1777f559549e05962b2c9e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">anonymous enum</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a class="anchor" id="a61dadd085c1777f559549e05962b2c9ea71fca21ec3ae6a26edbe380fedc2ebec"></a>VL_PROT_UNKNOWN&#160;</td><td class="fielddoc">
+<p>unknown protocol </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="a61dadd085c1777f559549e05962b2c9ea94b2ad9436eeeb7e7a08baf24e00f3d6"></a>VL_PROT_NONE&#160;</td><td class="fielddoc">
+<p>no protocol </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="a61dadd085c1777f559549e05962b2c9ea611cc6138919fdd98ce2a9137a762b91"></a>VL_PROT_ASCII&#160;</td><td class="fielddoc">
+<p>ASCII protocol </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="a61dadd085c1777f559549e05962b2c9eaa92055b1172e1b8fa98177304d495653"></a>VL_PROT_BINARY&#160;</td><td class="fielddoc">
+<p>Binary protocol </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="aadc62a75665e4d45a4e890def1eff7e4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structVlEnumerator.html">VlEnumerator</a>* vl_enumeration_get </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlEnumerator.html">VlEnumerator</a> const *&#160;</td>
+          <td class="paramname"><em>enumeration</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char const *&#160;</td>
+          <td class="paramname"><em>name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">enumeration</td><td>array of <a class="el" href="structVlEnumerator.html" title="Member of an enumeration. ">VlEnumerator</a> objects. </td></tr>
+    <tr><td class="paramname">name</td><td>the name of the desired member. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>enumerator matching <em>name</em>.</dd></dl>
+<p>If <em>name</em> is not found in the enumeration, then the value <code>NULL</code> is returned.</p>
+<dl class="section see"><dt>See also</dt><dd>vl-stringop-enumeration </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a41870b6b4f144d8b019c6f6371f41b28"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structVlEnumerator.html">VlEnumerator</a>* vl_enumeration_get_by_value </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlEnumerator.html">VlEnumerator</a> const *&#160;</td>
+          <td class="paramname"><em>enumeration</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a66417c5847876295ea87b38140073879">vl_index</a>&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">enumeration</td><td>array of <a class="el" href="structVlEnumerator.html" title="Member of an enumeration. ">VlEnumerator</a> objects. </td></tr>
+    <tr><td class="paramname">value</td><td>value of the desired member. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>enumerator matching <em>value</em>.</dd></dl>
+<p>If <em>value</em> is not found in the enumeration, then the value <code>NULL</code> is returned.</p>
+<dl class="section see"><dt>See also</dt><dd>vl-stringop-enumeration </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a30b7412f99917d5907f9b683f727b188"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structVlEnumerator.html">VlEnumerator</a>* vl_enumeration_get_casei </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlEnumerator.html">VlEnumerator</a> const *&#160;</td>
+          <td class="paramname"><em>enumeration</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char const *&#160;</td>
+          <td class="paramname"><em>name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">enumeration</td><td>array of <a class="el" href="structVlEnumerator.html" title="Member of an enumeration. ">VlEnumerator</a> objects. </td></tr>
+    <tr><td class="paramname">name</td><td>the name of the desired member. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>enumerator matching <em>name</em>.</dd></dl>
+<p>If <em>name</em> is not found in the enumeration, then the value <code>NULL</code> is returned. <em>string</em> is matched case insensitive.</p>
+<dl class="section see"><dt>See also</dt><dd>vl-stringop-enumeration </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a7c19551fb6bb7e1f45c453caef5b9044"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> vl_string_basename </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>destination</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>destinationSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char const *&#160;</td>
+          <td class="paramname"><em>source</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>maxNumStrippedExtensions</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">destination</td><td>destination buffer. </td></tr>
+    <tr><td class="paramname">destinationSize</td><td>size of destination buffer. </td></tr>
+    <tr><td class="paramname">source</td><td>input string. </td></tr>
+    <tr><td class="paramname">maxNumStrippedExtensions</td><td>maximum number of extensions to strip. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>length of the destination string.</dd></dl>
+<p>The function removes the leading path and up to <code>maxNumStrippedExtensions</code> trailing extensions from the string <em>source</em> and writes the result to the buffer <em>destination</em>.</p>
+<p>The leading path is the longest suffix that ends with either the <code>\</code> or <code>/</code> characters. An extension is a string starting with the <code>.</code> character not containing it. For instance, the string <code>file.png</code> contains the extension <code>.png</code> and the string <code>file.tar.gz</code> contains two extensions (<code>.tar</code> and <code><code></code>.gz</code>).</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="stringop_8h.html#vl-stringop-err">Detecting overflow</a>. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ad006cebd610a7a6f7b6d97c93e398824"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int vl_string_casei_cmp </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>string1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>string2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">string1</td><td>fisrt string. </td></tr>
+    <tr><td class="paramname">string2</td><td>second string. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>an integer =,&lt;,&gt; 0 if <code>string1</code> =,&lt;,&gt; <code>string2</code> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a12595787245c1d92c5d3bbe6c0cea9f4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> vl_string_copy </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>destination</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>destinationSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char const *&#160;</td>
+          <td class="paramname"><em>source</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">destination</td><td>output buffer. </td></tr>
+    <tr><td class="paramname">destinationSize</td><td>size of the output buffer. </td></tr>
+    <tr><td class="paramname">source</td><td>string to copy. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>length of the source string.</dd></dl>
+<p>The function copies the string <em>source</em> to the buffer <em>destination</em> of size <em>destinationSize</em>.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="stringop_8h.html#vl-stringop-err">Detecting overflow</a>. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a3ecf896f613bca486a0821f076aa8855"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> vl_string_copy_sub </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>destination</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>destinationSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char const *&#160;</td>
+          <td class="paramname"><em>beginning</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char const *&#160;</td>
+          <td class="paramname"><em>end</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">destination</td><td>output buffer. </td></tr>
+    <tr><td class="paramname">destinationSize</td><td>size of output buffer. </td></tr>
+    <tr><td class="paramname">beginning</td><td>start of the substring. </td></tr>
+    <tr><td class="paramname">end</td><td>end of the substring. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>length of the destination string.</dd></dl>
+<p>The function copies the substring from at <em>beginning</em> to <em>end</em> (not included) to the buffer <em>destination</em> of size <em>destinationSize</em>. If, however, the null character is found before <em>end</em>, the substring terminates there.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="stringop_8h.html#vl-stringop-err">Detecting overflow</a>. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="acc6a3ecad1c4fde280008c2bc7663dea"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* vl_string_find_char_rev </td>
+          <td>(</td>
+          <td class="paramtype">char const *&#160;</td>
+          <td class="paramname"><em>beginning</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char const *&#160;</td>
+          <td class="paramname"><em>end</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>c</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">beginning</td><td>pointer to the substring beginning. </td></tr>
+    <tr><td class="paramname">end</td><td>pointer to the substring end. </td></tr>
+    <tr><td class="paramname">c</td><td>character to search for. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>pointer to last occurrence of <em>c</em>, or 0 if none.</dd></dl>
+<p>The function searches for the last occurrence of the character <em>c</em> in the substring from <em>beg</em> to <em>end</em> (the latter not being included). </p>
+
+</div>
+</div>
+<a class="anchor" id="acc9de03bedf2b67ce907a7478e34bc4e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> vl_string_length </td>
+          <td>(</td>
+          <td class="paramtype">char const *&#160;</td>
+          <td class="paramname"><em>string</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">string</td><td>string. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>string length. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aa45c4b3fc38383ad1d152485ccfe3356"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* vl_string_parse_protocol </td>
+          <td>(</td>
+          <td class="paramtype">char const *&#160;</td>
+          <td class="paramname"><em>string</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>protocol</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">string</td><td>string. </td></tr>
+    <tr><td class="paramname">protocol</td><td>protocol code (output). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>pointer to the first character after the protocol prefix.</dd></dl>
+<p>The function extracts the prefix of the string <em>string</em> terminated by the first occurrence of the <code></code>:// substring (if any). It then matches the suffix terminated by <code></code>:// to the supported <a class="el" href="stringop_8h.html#vl-stringop-file-protocols">File protocols</a> protocols. If <code>protocol</code> is not <code>NULL</code>, the corresponding protocol code is written to <em>protocol</em> </p>
+<p>The function writes to <em>protocol</em> the value <a class="el" href="stringop_8h.html#a61dadd085c1777f559549e05962b2c9ea94b2ad9436eeeb7e7a08baf24e00f3d6">VL_PROT_NONE</a> if no suffix is detected and <a class="el" href="stringop_8h.html#a61dadd085c1777f559549e05962b2c9ea71fca21ec3ae6a26edbe380fedc2ebec">VL_PROT_UNKNOWN</a> if there is a suffix but it cannot be matched to any of the supported protocols. </p>
+
+</div>
+</div>
+<a class="anchor" id="a79a3a25967d2fd344d3812c31f7af6d7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char const* vl_string_protocol_name </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>protocol</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">protocol</td><td>protocol code. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>pointer protocol name string.</dd></dl>
+<p>The function returns a pointer to a string containing the name of the protocol <em>protocol</em> (see the <em>vl-file-protocols</em> protocols list). If the protocol is unknown the function returns the empty string. </p>
+
+</div>
+</div>
+<a class="anchor" id="a3333f80d5012dadb8967ab297ff02645"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> vl_string_replace_wildcard </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>destination</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>destinationSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char const *&#160;</td>
+          <td class="paramname"><em>source</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>wildcardChar</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>escapeChar</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char const *&#160;</td>
+          <td class="paramname"><em>replacement</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">destination</td><td>output buffer. </td></tr>
+    <tr><td class="paramname">destinationSize</td><td>size of the output buffer. </td></tr>
+    <tr><td class="paramname">source</td><td>input string. </td></tr>
+    <tr><td class="paramname">wildcardChar</td><td>wildcard character. </td></tr>
+    <tr><td class="paramname">escapeChar</td><td>escape character. </td></tr>
+    <tr><td class="paramname">replacement</td><td>replacement string.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The function replaces the occurrence of the specified wildcard character <em>wildcardChar</em> by the string <em>replacement</em>. The result is written to the buffer <em>destination</em> of size <em>destinationSize</em>.</p>
+<p>Wildcard characters may be escaped by preceding them by the <em>esc</em> character. More in general, anything following an occurrence of <em>esc</em> character is copied verbatim. To disable the escape characters simply set <em>esc</em> to 0.</p>
+<dl class="section return"><dt>Returns</dt><dd>length of the result. </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="stringop_8h.html#vl-stringop-err">Detecting overflow</a>. </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+        <!-- Doc Here -->
+      </div>
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>

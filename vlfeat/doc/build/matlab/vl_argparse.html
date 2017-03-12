@@ -1,0 +1,30 @@
+<group>
+<ul class='breadcrumb'><li><a href='%pathto:matlab;'>Index</a></li><li><a href='%pathto:vl_alphanum;'>Prev</a></li><li><a href='%pathto:vl_binsearch;'>Next</a></li></ul><div class="documentation"><p>
+CONF = <a href="%pathto:vl_argparse;">VL_ARGPARSE</a>(CONF, ARGS) updates the structure CONF based on
+the specified parameter-value pairs ARGS={PAR1, VAL1, ... PARN,
+VALN}. The function produces an error if an unknown parameter name
+is passed in.
+</p><p>
+[CONF, ARGS] = <a href="%pathto:vl_argparse;">VL_ARGPARSE</a>(CONF, ARGS) copies any parameter in
+ARGS that does not match CONF back to ARGS instead of producing an
+error.
+</p><dl><dt>
+Example
+</dt><dd><p>
+The function can be used to parse a list of arguments
+passed to a MATLAB functions:
+</p><pre>
+  function myFunction(x,y,z,varargin)
+  conf.parameterName = defaultValue ;
+  conf = vl_argparse(conf, varargin)
+</pre><p>
+If only a subset of the options should be parsed, for example
+because the other options are interpreted by a subroutine, then
+use the form
+</p><pre>
+ [conf, varargin] = vl_argparse(conf, varargin)
+</pre><p>
+that copies back to VARARGIN any unknown parameter.
+</p></dd></dl><p>
+See also: <a href="%pathto:vl_override;">VL_OVERRIDE</a>(), <a href="%pathto:vl_help;">VL_HELP</a>().
+</p></div></group>

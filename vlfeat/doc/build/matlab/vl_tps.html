@@ -1,0 +1,20 @@
+<group>
+<ul class='breadcrumb'><li><a href='%pathto:matlab;'>Index</a></li><li><a href='%pathto:vl_rgb2xyz;'>Prev</a></li><li><a href='%pathto:vl_tpsu;'>Next</a></li></ul><div class="documentation"><p>
+PHI=<a href="%pathto:vl_tps;">VL_TPS</a>(X1,X2,Y) returns the basis PHI of a thin-plate spline
+(TPS) defined on the domain X1,X2 with control points Y.
+</p><p>
+X1 and X2 are MxN matrices specifying the grid vertices.  When
+warping images, these usually correspond to image pixels.
+</p><p>
+Y is a 2xK matrix specifying the control points, one per
+column. Ofthen Y is a subset of the domain X1,X2, but this is not
+required.
+</p><p>
+PHI is a (K+3)xNxM matrix, with one layer per basis element. Each
+basis element is a function of the domain X1,X2.
+</p><p>
+[PHI,S] = <a href="%pathto:vl_tps;">VL_TPS</a>(X1,X2,Y) additionally returns the stiffness matrix S
+of the TPS.
+</p><p>
+See also: <a href="%pathto:vl_wtps;">VL_WTPS</a>(), <a href="%pathto:vl_help;">VL_HELP</a>().
+</p></div></group>

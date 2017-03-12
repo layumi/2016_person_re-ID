@@ -1,0 +1,343 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+  <!-- Page title -->
+  <title>VLFeat - Documentation > C API</title>
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  <link rel="stylesheet" type="text/css" href="doxygen.css"></link>
+  <!-- Scripts-->
+  <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li class='active'><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li class='active' class='activeLeaf'><a href="index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="../doc.html">Documentation</a></span><span class='separator'>></span><span class='page'><a href="index.html">C API</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+      <!-- <pagestyle href="%pathto:root;api/tabs.css"/> -->
+      <div class="doxygen">
+<div id="top">
+<div id="top">
+<!-- Generated by Doxygen 1.8.7 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li class="current"><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
+    </ul>
+  </div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="index.html">Vision Lab Features Library (VLFeat)</a></li><li class="navelem"><a class="el" href="covdet.html">Covariant feature detectors</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Cornerness measures </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="toc"><h3>Table of Contents</h3>
+<ul><li class="level1"><a href="#covdet-harris">Harris corners</a><ul><li class="level2"><a href="#covdet-harris-warped">Harris in the warped domain</a></li>
+</ul>
+</li>
+<li class="level1"><a href="#covdet-hessian">Hessian blobs</a><ul><li class="level2"><a href="#covdet-hessian-warped">Hessian in the warped domain</a></li>
+</ul>
+</li>
+<li class="level1"><a href="#covdet-laplacian">Laplacian and Difference of Gaussians blobs</a><ul><li class="level2"><a href="#covdet-laplacian-warped">Laplacian in the warped domain</a></li>
+<li class="level2"><a href="#covdet-laplacian-matched">Laplacian as a matched filter</a></li>
+<li class="level2"><a href="#covdet-laplacian-dog">Difference of Gaussians</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="textblock"><p>The goal of a cornerness measure (<a class="el" href="covdet-principles.html#covdet-cornerness">Detection using a cornerness measure</a>) is to associate to an image patch a score proportional to how strongly the patch contain a certain strucuture, for example a corner or a blob. This page reviews the most important cornerness measures as implemented in VLFeat:</p>
+<ul>
+<li><a class="el" href="covdet-corner-types.html#covdet-harris">Harris corners</a></li>
+<li><a class="el" href="covdet-corner-types.html#covdet-laplacian">Laplacian and Difference of Gaussians blobs</a></li>
+<li><a class="el" href="covdet-corner-types.html#covdet-hessian">Hessian blobs</a></li>
+</ul>
+<p>This page makes use of notation introduced in <a class="el" href="covdet-differential.html">Differential and integral image operations</a>.</p>
+<h1><a class="anchor" id="covdet-harris"></a>
+Harris corners</h1>
+<p>This section introduces the fist of the cornerness measure \(\mathcal{F}[\ell]\). Recall (<a class="el" href="covdet-principles.html#covdet-cornerness">Detection using a cornerness measure</a>) that the goal of this functional is to respond strongly to images \(\ell\) of corner-like structure.</p>
+<p>Rather than explicitly encoding the appearance of corners, the idea of the Harris measure is to label as corner <em>any</em> image patch whose appearance is sufficiently distinctive to allow accurate localization. In particular, consider an image patch \(\ell(\bx), \bx\in\Omega\), where \(\Omega\) is a smooth circular window of radius approximately \(\sigma_i\); at necessary condition for the patch to allow accurate localization is that even a small translation \(\ell(\bx+\delta)\) causes the appearance to vary significantly (if not the origin and location \(\delta\) would not be distinguishable from the image alone). This variation is measured by the sum of squared differences</p>
+<p class="formulaDsp">
+\[ E(\delta) = \int g_{\sigma_i^2}(\bx) (\ell_{\sigma_d^2}(\bx+\delta) - \ell_{\sigma_d^2}(\bx))^2 \,d\bx \]
+</p>
+<p>Note that images are compared at scale \(\sigma_d\), known as differentiation scale* for reasons that will be clear in a moment, and that the squared differences are summed over a window softly defined by \(\sigma_i\), also known as <em>integration scale</em>. This function can be approximated as \(E(\delta)\approx \delta^\top M[\ell;\sigma_i^2,\sigma_d^2] \delta\) where</p>
+<p class="formulaDsp">
+\[ M[\ell;\sigma_i^2,\sigma_d^2] = \int g_{\sigma_i^2}(\bx) (\nabla \ell_{\sigma_d^2}(\bx)) (\nabla \ell_{\sigma_d^2}(\bx))^\top \, d\bx. \]
+</p>
+<p>is the so called <b>structure tensor</b>.</p>
+<p>A corner is identified when the sum of squared differences \(E(\delta)\) is large for displacements \(\delta\) in all directions. This condition is obtained when both the eignenvalues \(\lambda_1,\lambda_2\) of the structure tensor \(M\) are large. The <b>Harris cornerness measure</b> captures this fact:</p>
+<p class="formulaDsp">
+\[ \operatorname{Harris}[\ell;\sigma_i^2,\sigma_d^2] = \det M - \kappa \operatorname{trace}^2 M = \lambda_1\lambda_2 - \kappa (\lambda_1+\lambda_2)^2 \]
+</p>
+<h2><a class="anchor" id="covdet-harris-warped"></a>
+Harris in the warped domain</h2>
+<p>The cornerness measure of a feature a location \(u\) (recall that locations \(u\) are in general defined as image warps) should be computed after normalizing the image (by applying to it the warp \(u^{-1}\)). This section shows that, for affine warps, the Harris cornerness measure can be computed directly in the Gaussian affine scale space of the image. In particular, for similarities, it can be computed in the standard Gaussian scale space.</p>
+<p>To this end, let \(u=(A,T)\) be an affine warp identifying a feature location in image \(\ell(\bx)\). Let \(\bar\ell(\bar\bx) = \ell(A\bar\bx+T)\) be the normalized image and rewrite the structure tensor of the normalized image as follows:</p>
+<p class="formulaDsp">
+\[ M[\bar\ell; \bar\Sigma_i, \bar\Sigma_d] = M[\bar\ell; \bar\Sigma_i, \bar\Sigma_d](\mathbf{0}) = \left[ g_{\bar\Sigma_i} * (\nabla\bar\ell_{\bar\Sigma_d}) (\nabla\bar\ell_{\bar\Sigma_d})^\top \right](\mathbf{0}) \]
+</p>
+<p>This notation emphasizes that the structure tensor is obtained by taking derivatives and convolutions of the image. Using the fact that \(\nabla g_{\bar\Sigma_d} * \bar\ell = A^\top (\nabla g_{A\bar\Sigma A^\top} * \ell) \circ (A,T)\) and that \(g_{\bar\Sigma} * \bar \ell = (g_{A\bar\Sigma A^\top} * \ell) \circ (A,T)\), we get the equivalent expression:</p>
+<p class="formulaDsp">
+\[ M[\bar\ell; \bar\Sigma_i, \bar\Sigma_d](\mathbf{0}) = A^\top \left[ g_{A\bar\Sigma_i A^\top} * (\nabla\ell_{A\bar\Sigma_dA^\top})(\nabla\ell_{A\bar\Sigma_d A^\top})^\top \right](A\mathbf{0}+T) A. \]
+</p>
+<p>In other words, the structure tensor of the normalized image can be computed as:</p>
+<p class="formulaDsp">
+\[ M[\bar\ell; \bar\Sigma_i, \bar\Sigma_d](\mathbf{0}) = A^\top M[\ell; \Sigma_i, \Sigma_d](T) A, \quad \Sigma_{i} = A\bar\Sigma_{i}A^\top, \quad \Sigma_{d} = A\bar\Sigma_{d}A^\top. \]
+</p>
+<p>This equation allows to compute the structure tensor for feature at all locations directly in the original image. In particular, features at all translations \(T\) can be evaluated efficiently by computing convolutions and derivatives of the image \(\ell_{A\bar\Sigma_dA^\top}\).</p>
+<p>A case of particular instance is when \(\bar\Sigma_i= \bar\sigma_i^2 I\) and \(\bar\Sigma_d = \bar\sigma_d^2\) are both isotropic covariance matrices and the affine transformation is a similarity \(A=sR\). Using the fact that \(\det\left( s^2 R^\top M R \right)= s^4 \det M\) and \(\operatorname{tr}\left(s^2 R^\top M R\right) = s^2 \operatorname{tr} M\), one obtains the relation</p>
+<p class="formulaDsp">
+\[ \operatorname{Harris}[\bar \ell;\bar\sigma_i^2,\bar\sigma_d^2] = s^4 \operatorname{Harris}[\ell;s^2\bar\sigma_i^2,s^2\bar\sigma_d^2](T). \]
+</p>
+<p>This equation indicates that, for similarity transformations, not only the structure tensor, but directly the Harris cornerness measure can be computed on the original image and then be transferred back to the normalized domain. Note, however, that this requires rescaling the measure by the factor \(s^4\).</p>
+<p>Another important consequence of this relation is that the Harris measure is invariant to pure image rotations. It cannot, therefore, be used to associate an orientation to the detected features.</p>
+<h1><a class="anchor" id="covdet-hessian"></a>
+Hessian blobs</h1>
+<p>The *(determinant of the) Hessian* cornerness measure is given determinant of the Hessian of the image:</p>
+<p class="formulaDsp">
+\[ \operatorname{DetHess}[\ell;\sigma_d^2] = \det H_{g_{\sigma_d^2} * \ell}(\mathbf{0}) \]
+</p>
+<p>This number is large and positive if the image is locally curved (peaked), roughly corresponding to blob-like structures in the image. In particular, a large score requires the product of the eigenvalues of the Hessian to be large, which requires both of them to have the same sign and are large in absolute value.</p>
+<h2><a class="anchor" id="covdet-hessian-warped"></a>
+Hessian in the warped domain</h2>
+<p>Similarly to the Harris measure, it is possible to work with the Hessian measure on the original unnormalized image. As before, let \(\bar\ell(\bar\bx) = \ell(A\bar\bx+T)\) be the normalized image and rewrite the Hessian of the normalized image as follows:</p>
+<p class="formulaDsp">
+\[ H_{g_{\bar\Sigma_d} * \bar\ell}(\mathbf{0}) = A^\top \left(H_{g_{\Sigma_d} * \ell}(T)\right) A. \]
+</p>
+<p>Then</p>
+<p class="formulaDsp">
+\[ \operatorname{DetHess}[\bar\ell;\bar\Sigma_d] = (\det A)^2 \operatorname{DetHess}[\ell;A\bar\Sigma_d A^\top](T). \]
+</p>
+<p>In particular, for isotropic covariance matrices and similarity transformations \(A=sR\):</p>
+<p class="formulaDsp">
+\[ \operatorname{DetHess}[\bar\ell;\bar\sigma_d^2] = s^4 \operatorname{DetHess}[\ell;s^2\bar\sigma_d^2](T) \]
+</p>
+<h1><a class="anchor" id="covdet-laplacian"></a>
+Laplacian and Difference of Gaussians blobs</h1>
+<p>The <b>Laplacian of Gaussian (LoG)</b> or <b>trace of the Hessian</b> cornerness measure is given by the trace of the Hessian of the image:</p>
+<p class="formulaDsp">
+\[ \operatorname{Lap}[\ell;\sigma_d^2] = \operatorname{tr} H_{g_{\sigma_d}^2 * \ell} \]
+</p>
+<h2><a class="anchor" id="covdet-laplacian-warped"></a>
+Laplacian in the warped domain</h2>
+<p>Similarly to the Hessian measure, the Laplacian cornenress can often be efficiently computed for features at all locations in the original unnormalized image domain. In particular, if the derivative covariance matrix \(\Sigma_d\) is isotropic and one considers as warpings similarity transformations \(A=sR\), where \(R\) is a rotatin and \(s\) a rescaling, one has</p>
+<p class="formulaDsp">
+\[ \operatorname{Lap}[\bar\ell;\bar\sigma_d^2] = s^2 \operatorname{Lap}[\ell;s^2\bar\sigma_d^2](T) \]
+</p>
+<p>Note that, comparing to the Harris and determinant of Hessian measures, the scaling for the Laplacian is \(s^2\) rather than \(s^4\).</p>
+<h2><a class="anchor" id="covdet-laplacian-matched"></a>
+Laplacian as a matched filter</h2>
+<p>The Laplacian is given by the trace of the Hessian operator. Differently from the determinant of the Hessian, this is a linear operation. This means that computing the Laplacian cornerness measure can be seen as applying a linear filtering operator to the image. This filter can then be interpreted as a <em>template</em> of a corner being matched to the image. Hence, the Laplacian cornerness measure can be interpreted as matching this corner template at all possible image locations.</p>
+<p>To see this formally, compute the Laplacian score in the input image domain:</p>
+<p class="formulaDsp">
+\[ \operatorname{Lap}[\bar\ell;\bar\sigma_d^2] = s^2 \operatorname{Lap}[\ell;s^2\bar\sigma_d^2](T) = s^2 (\Delta g_{s^2\bar\sigma_d^2} * \ell)(T) \]
+</p>
+<p>The Laplacian fitler is obtained by moving the Laplacian operator from the image to the Gaussian smoothing kernel:</p>
+<p class="formulaDsp">
+\[ s^2 (\Delta g_{s^2\bar\sigma_d^2} * \ell) = (s^2 \Delta g_{s^2\bar\sigma_d^2}) * \ell \]
+</p>
+<p>Note that the filter is rescaled by the \(s^2\); sometimes, this factor is incorporated in the Laplacian operator, yielding the so-called normalized Laplacian.</p>
+<p>The Laplacian of Gaussian is also called <em>top-hat function</em> and has the expression:</p>
+<p class="formulaDsp">
+\[ \Delta g_{\sigma^2}(x,y) = \frac{x^2+y^2 - 2 \sigma^2}{\sigma^4} g_{\sigma^2}(x,y). \]
+</p>
+<p>This filter, which acts as corner template, resembles a blob (a dark disk surrounded by a bright ring).</p>
+<h2><a class="anchor" id="covdet-laplacian-dog"></a>
+Difference of Gaussians</h2>
+<p>The <b>Difference of Gaussian</b> (DoG) cornerness measure can be interpreted as an approximation of the Laplacian that is easy to obtain once a scalespace of the input image has been computed.</p>
+<p>As noted above, the Laplacian cornerness of the normalized feature can be computed directly from the input image by convolving the image by the normalized Laplacian of Gaussian filter \(s^2 \Delta g_{s^2\bar\sigma_d^2}\).</p>
+<p>Like the other derivative operators, this filter is simpe to discriteize. However, it is often approximated by computing the the Difference of Gaussians* (DoG) approximation instead. This approximation is obtained from the easily-proved identity:</p>
+<p class="formulaDsp">
+\[ \frac{\partial}{\partial \sigma} g_{\sigma^2} = \sigma \Delta g_{\sigma^2}. \]
+</p>
+<p>This indicates that computing the normalized Laplacian of a Gaussian filter is, in the limit, the same as taking the difference between Gaussian filters of slightly increasing standard deviation \(\sigma\) and \(\kappa\sigma\), where \(\kappa \approx 1\):</p>
+<p class="formulaDsp">
+\[ \sigma^2 \Delta g_{\sigma^2} \approx \sigma \frac{g_{(\kappa\sigma)^2} - g_{\sigma^2}}{\kappa\sigma - \sigma} = \frac{1}{\kappa - 1} (g_{(\kappa\sigma)^2} - g_{\sigma^2}). \]
+</p>
+<p>One nice propery of this expression is that the factor \(\sigma\) cancels out in the right-hand side. Usually, scales \(\sigma\) and \(\kappa\sigma\) are pre-computed in the image scale-space and successive scales are sampled with uniform geometric spacing, meaning that the factor \(\kappa\) is the same for all scales. Then, up to a overall scaling factor, the LoG cornerness measure can be obtained by taking the difference of successive scale space images \(\ell_{(\kappa\sigma)^2}\) and \(\ell_{\sigma^2}\). </p>
+</div></div><!-- contents -->
+        <!-- Doc Here -->
+      </div>
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>

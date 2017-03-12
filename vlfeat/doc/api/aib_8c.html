@@ -1,0 +1,682 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+  <!-- Page title -->
+  <title>VLFeat - Documentation > C API</title>
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  <link rel="stylesheet" type="text/css" href="doxygen.css"></link>
+  <!-- Scripts-->
+  <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li class='active'><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li class='active' class='activeLeaf'><a href="index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="../doc.html">Documentation</a></span><span class='separator'>></span><span class='page'><a href="index.html">C API</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+      <!-- <pagestyle href="%pathto:root;api/tabs.css"/> -->
+      <div class="doxygen">
+<div id="top">
+<div id="top">
+<!-- Generated by Doxygen 1.8.7 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li class="current"><a href="files.html"><span>Files</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>Globals</span></a></li>
+    </ul>
+  </div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_8dd540b382164c224dfa1eb6e8a3add6.html">vl</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">aib.c File Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>AIB - Definition.  
+<a href="#details">More...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="aib_8h.html">aib.h</a>&quot;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;float.h&gt;</code><br />
+<code>#include &lt;math.h&gt;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a14bc24cb8ad409132d16de6e3f27b002"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aib_8c.html#a14bc24cb8ad409132d16de6e3f27b002">vl_aib_normalize_P</a> (double *P, <a class="el" href="host_8h.html#a5bd6e91d6bfd0be04101fdca94069c92">vl_uint</a> nelem)</td></tr>
+<tr class="memdesc:a14bc24cb8ad409132d16de6e3f27b002"><td class="mdescLeft">&#160;</td><td class="mdescRight">Normalizes an array of probabilities to sum to 1.  <a href="#a14bc24cb8ad409132d16de6e3f27b002">More...</a><br /></td></tr>
+<tr class="separator:a14bc24cb8ad409132d16de6e3f27b002"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4a8a12f8fa47997c140b43cd993dc30"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#a5bd6e91d6bfd0be04101fdca94069c92">vl_uint</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aib_8c.html#af4a8a12f8fa47997c140b43cd993dc30">vl_aib_new_nodelist</a> (<a class="el" href="host_8h.html#a5bd6e91d6bfd0be04101fdca94069c92">vl_uint</a> nentries)</td></tr>
+<tr class="memdesc:af4a8a12f8fa47997c140b43cd993dc30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates and creates a list of nodes.  <a href="#af4a8a12f8fa47997c140b43cd993dc30">More...</a><br /></td></tr>
+<tr class="separator:af4a8a12f8fa47997c140b43cd993dc30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b903a69b8d1167f48cfe1e00a9e1d33"><td class="memItemLeft" align="right" valign="top">double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aib_8c.html#a9b903a69b8d1167f48cfe1e00a9e1d33">vl_aib_new_Px</a> (double *Pcx, <a class="el" href="host_8h.html#a5bd6e91d6bfd0be04101fdca94069c92">vl_uint</a> nvalues, <a class="el" href="host_8h.html#a5bd6e91d6bfd0be04101fdca94069c92">vl_uint</a> nlabels)</td></tr>
+<tr class="memdesc:a9b903a69b8d1167f48cfe1e00a9e1d33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates and creates the marginal distribution Px.  <a href="#a9b903a69b8d1167f48cfe1e00a9e1d33">More...</a><br /></td></tr>
+<tr class="separator:a9b903a69b8d1167f48cfe1e00a9e1d33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a171cd4a6e0622a97286a0a2b2130841c"><td class="memItemLeft" align="right" valign="top">double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aib_8c.html#a171cd4a6e0622a97286a0a2b2130841c">vl_aib_new_Pc</a> (double *Pcx, <a class="el" href="host_8h.html#a5bd6e91d6bfd0be04101fdca94069c92">vl_uint</a> nvalues, <a class="el" href="host_8h.html#a5bd6e91d6bfd0be04101fdca94069c92">vl_uint</a> nlabels)</td></tr>
+<tr class="memdesc:a171cd4a6e0622a97286a0a2b2130841c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates and creates the marginal distribution Pc.  <a href="#a171cd4a6e0622a97286a0a2b2130841c">More...</a><br /></td></tr>
+<tr class="separator:a171cd4a6e0622a97286a0a2b2130841c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa567101e4f0835b9a73a9b037afa0953"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aib_8c.html#aa567101e4f0835b9a73a9b037afa0953">vl_aib_min_beta</a> (<a class="el" href="structVlAIB.html">VlAIB</a> *aib, <a class="el" href="host_8h.html#a5bd6e91d6bfd0be04101fdca94069c92">vl_uint</a> *besti, <a class="el" href="host_8h.html#a5bd6e91d6bfd0be04101fdca94069c92">vl_uint</a> *bestj, double *minbeta)</td></tr>
+<tr class="memdesc:aa567101e4f0835b9a73a9b037afa0953"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find the two nodes which have minimum beta.  <a href="#aa567101e4f0835b9a73a9b037afa0953">More...</a><br /></td></tr>
+<tr class="separator:aa567101e4f0835b9a73a9b037afa0953"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b04bbe5d45b4a9fd84aecb173fbab93"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aib_8c.html#a4b04bbe5d45b4a9fd84aecb173fbab93">vl_aib_merge_nodes</a> (<a class="el" href="structVlAIB.html">VlAIB</a> *aib, <a class="el" href="host_8h.html#a5bd6e91d6bfd0be04101fdca94069c92">vl_uint</a> i, <a class="el" href="host_8h.html#a5bd6e91d6bfd0be04101fdca94069c92">vl_uint</a> j, <a class="el" href="host_8h.html#a5bd6e91d6bfd0be04101fdca94069c92">vl_uint</a> new)</td></tr>
+<tr class="memdesc:a4b04bbe5d45b4a9fd84aecb173fbab93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Merges two nodes i,j in the internal datastructure.  <a href="#a4b04bbe5d45b4a9fd84aecb173fbab93">More...</a><br /></td></tr>
+<tr class="separator:a4b04bbe5d45b4a9fd84aecb173fbab93"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a474eae5c9436f86251eea120221e8bd1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aib_8c.html#a474eae5c9436f86251eea120221e8bd1">vl_aib_update_beta</a> (<a class="el" href="structVlAIB.html">VlAIB</a> *aib)</td></tr>
+<tr class="memdesc:a474eae5c9436f86251eea120221e8bd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates <code>aib-&gt;beta</code> and <code>aib-&gt;bidx</code> according to <code>aib-&gt;which</code>.  <a href="#a474eae5c9436f86251eea120221e8bd1">More...</a><br /></td></tr>
+<tr class="separator:a474eae5c9436f86251eea120221e8bd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a531a6f39064384f6728df5a1641d7f54"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aib_8c.html#a531a6f39064384f6728df5a1641d7f54">vl_aib_calculate_information</a> (<a class="el" href="structVlAIB.html">VlAIB</a> *aib, double *I, double *H)</td></tr>
+<tr class="memdesc:a531a6f39064384f6728df5a1641d7f54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the current information and entropy.  <a href="#a531a6f39064384f6728df5a1641d7f54">More...</a><br /></td></tr>
+<tr class="separator:a531a6f39064384f6728df5a1641d7f54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4bb02325ebe150348976dbb46183f8f3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structVlAIB.html">VlAIB</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aib_8c.html#a4bb02325ebe150348976dbb46183f8f3">vl_aib_new</a> (double *Pcx, <a class="el" href="host_8h.html#a5bd6e91d6bfd0be04101fdca94069c92">vl_uint</a> nvalues, <a class="el" href="host_8h.html#a5bd6e91d6bfd0be04101fdca94069c92">vl_uint</a> nlabels)</td></tr>
+<tr class="memdesc:a4bb02325ebe150348976dbb46183f8f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates and initializes the internal data structure.  <a href="#a4bb02325ebe150348976dbb46183f8f3">More...</a><br /></td></tr>
+<tr class="separator:a4bb02325ebe150348976dbb46183f8f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a145bb0e2d8f512613e8fd3fb92fe7ace"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aib_8c.html#a145bb0e2d8f512613e8fd3fb92fe7ace">vl_aib_delete</a> (<a class="el" href="structVlAIB.html">VlAIB</a> *aib)</td></tr>
+<tr class="memdesc:a145bb0e2d8f512613e8fd3fb92fe7ace"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes AIB data structure.  <a href="#a145bb0e2d8f512613e8fd3fb92fe7ace">More...</a><br /></td></tr>
+<tr class="separator:a145bb0e2d8f512613e8fd3fb92fe7ace"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2adbc69469a6200896e6582474c398ee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aib_8c.html#a2adbc69469a6200896e6582474c398ee">vl_aib_process</a> (<a class="el" href="structVlAIB.html">VlAIB</a> *aib)</td></tr>
+<tr class="memdesc:a2adbc69469a6200896e6582474c398ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs AIB on Pcx.  <a href="#a2adbc69469a6200896e6582474c398ee">More...</a><br /></td></tr>
+<tr class="separator:a2adbc69469a6200896e6582474c398ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><dl class="section author"><dt>Author</dt><dd>Brian Fulkerson </dd>
+<dd>
+Andrea Vedaldi </dd></dl>
+</div><h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a531a6f39064384f6728df5a1641d7f54"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_aib_calculate_information </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlAIB.html">VlAIB</a> *&#160;</td>
+          <td class="paramname"><em>aib</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>I</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>H</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">aib</td><td>A pointer to the internal data structure </td></tr>
+    <tr><td class="paramname">I</td><td>The current mutual information (out). </td></tr>
+    <tr><td class="paramname">H</td><td>The current entropy (out).</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Calculates the current mutual information and entropy of Pcx and sets <em>I</em> and <em>H</em> to these new values. </p>
+
+</div>
+</div>
+<a class="anchor" id="a145bb0e2d8f512613e8fd3fb92fe7ace"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_aib_delete </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlAIB.html">VlAIB</a> *&#160;</td>
+          <td class="paramname"><em>aib</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">aib</td><td>data structure to delete. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a4b04bbe5d45b4a9fd84aecb173fbab93"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_aib_merge_nodes </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlAIB.html">VlAIB</a> *&#160;</td>
+          <td class="paramname"><em>aib</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a5bd6e91d6bfd0be04101fdca94069c92">vl_uint</a>&#160;</td>
+          <td class="paramname"><em>i</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a5bd6e91d6bfd0be04101fdca94069c92">vl_uint</a>&#160;</td>
+          <td class="paramname"><em>j</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a5bd6e91d6bfd0be04101fdca94069c92">vl_uint</a>&#160;</td>
+          <td class="paramname"><em>new</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">aib</td><td>A pointer to the internal data structure </td></tr>
+    <tr><td class="paramname">i</td><td>The index of one member of the pair to merge </td></tr>
+    <tr><td class="paramname">j</td><td>The index of the other member of the pair to merge </td></tr>
+    <tr><td class="paramname">new</td><td>The index of the new node which corresponds to the union of (<em>i</em>, <em>j</em>).</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Nodes are merged by replacing the entry <em>i</em> with the union of <code>ij</code>, moving the node stored in last position (called <code>lastnode</code>) back to jth position and the entry at the end.</p>
+<p>After the nodes have been merged, it updates which nodes should be considered on the next iteration based on which beta values could potentially change. The merged node will always be part of this list. </p>
+
+</div>
+</div>
+<a class="anchor" id="aa567101e4f0835b9a73a9b037afa0953"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_aib_min_beta </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlAIB.html">VlAIB</a> *&#160;</td>
+          <td class="paramname"><em>aib</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a5bd6e91d6bfd0be04101fdca94069c92">vl_uint</a> *&#160;</td>
+          <td class="paramname"><em>besti</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a5bd6e91d6bfd0be04101fdca94069c92">vl_uint</a> *&#160;</td>
+          <td class="paramname"><em>bestj</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>minbeta</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">aib</td><td>A pointer to the internal data structure </td></tr>
+    <tr><td class="paramname">besti</td><td>The index of one member of the pair which has mininum beta </td></tr>
+    <tr><td class="paramname">bestj</td><td>The index of the other member of the pair which minimizes beta </td></tr>
+    <tr><td class="paramname">minbeta</td><td>The minimum beta value corresponding to (<em>i</em>, <em>j</em>)</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Searches <em>aib-&gt;beta</em> to find the minimum value and fills <em>minbeta</em> and <em>besti</em> and <em>bestj</em> with this information. </p>
+
+</div>
+</div>
+<a class="anchor" id="a4bb02325ebe150348976dbb46183f8f3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structVlAIB.html">VlAIB</a>* vl_aib_new </td>
+          <td>(</td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>Pcx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a5bd6e91d6bfd0be04101fdca94069c92">vl_uint</a>&#160;</td>
+          <td class="paramname"><em>nvalues</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a5bd6e91d6bfd0be04101fdca94069c92">vl_uint</a>&#160;</td>
+          <td class="paramname"><em>nlabels</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Pcx</td><td>A pointer to a 2D array of probabilities </td></tr>
+    <tr><td class="paramname">nvalues</td><td>The number of rows in the array </td></tr>
+    <tr><td class="paramname">nlabels</td><td>The number of columns in the array</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Creates a new <em><a class="el" href="structVlAIB.html" title="AIB algorithm data. ">VlAIB</a></em> struct containing pointers to all the data that will be used during the AIB process.</p>
+<p>Allocates memory for the following:</p><ul>
+<li>Px (nvalues*sizeof(double))</li>
+<li>Pc (nlabels*sizeof(double))</li>
+<li>nodelist (nvalues*sizeof(vl_uint))</li>
+<li>which (nvalues*sizeof(vl_uint))</li>
+<li>beta (nvalues*sizeof(double))</li>
+<li>bidx (nvalues*sizeof(vl_uint))</li>
+<li>parents ((2*nvalues-1)*sizeof(vl_uint))</li>
+<li>costs (nvalues*sizeof(double))</li>
+</ul>
+<p>Since it simply copies to pointer to Pcx, the total additional memory requirement is:</p>
+<p>(3*nvalues+nlabels)*sizeof(double) + 4*nvalues*sizeof(vl_uint)</p>
+<dl class="section return"><dt>Returns</dt><dd>An allocated and initialized <em><a class="el" href="structVlAIB.html" title="AIB algorithm data. ">VlAIB</a></em> pointer </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="af4a8a12f8fa47997c140b43cd993dc30"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#a5bd6e91d6bfd0be04101fdca94069c92">vl_uint</a>* vl_aib_new_nodelist </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a5bd6e91d6bfd0be04101fdca94069c92">vl_uint</a>&#160;</td>
+          <td class="paramname"><em>nentries</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nentries</td><td>The size of the list which will be created</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>an array containing elements 0...nentries </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a171cd4a6e0622a97286a0a2b2130841c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double* vl_aib_new_Pc </td>
+          <td>(</td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>Pcx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a5bd6e91d6bfd0be04101fdca94069c92">vl_uint</a>&#160;</td>
+          <td class="paramname"><em>nvalues</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a5bd6e91d6bfd0be04101fdca94069c92">vl_uint</a>&#160;</td>
+          <td class="paramname"><em>nlabels</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Pcx</td><td>A two-dimensional array of probabilities </td></tr>
+    <tr><td class="paramname">nvalues</td><td>The number of rows in Pcx </td></tr>
+    <tr><td class="paramname">nlabels</td><td>The number of columns in Pcx</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>an array of size <em>nlabels</em> which contains the marginal distribution over the columns </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a9b903a69b8d1167f48cfe1e00a9e1d33"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double* vl_aib_new_Px </td>
+          <td>(</td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>Pcx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a5bd6e91d6bfd0be04101fdca94069c92">vl_uint</a>&#160;</td>
+          <td class="paramname"><em>nvalues</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a5bd6e91d6bfd0be04101fdca94069c92">vl_uint</a>&#160;</td>
+          <td class="paramname"><em>nlabels</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Pcx</td><td>A two-dimensional array of probabilities </td></tr>
+    <tr><td class="paramname">nvalues</td><td>The number of rows in Pcx </td></tr>
+    <tr><td class="paramname">nlabels</td><td>The number of columns in Pcx</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>an array of size <em>nvalues</em> which contains the marginal distribution over the rows. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a14bc24cb8ad409132d16de6e3f27b002"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_aib_normalize_P </td>
+          <td>(</td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>P</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a5bd6e91d6bfd0be04101fdca94069c92">vl_uint</a>&#160;</td>
+          <td class="paramname"><em>nelem</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">P</td><td>The array of probabilities </td></tr>
+    <tr><td class="paramname">nelem</td><td>The number of elements in the array</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Modifies P to contain values which sum to 1 </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a2adbc69469a6200896e6582474c398ee"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_aib_process </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlAIB.html">VlAIB</a> *&#160;</td>
+          <td class="paramname"><em>aib</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">aib</td><td>AIB object to process</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The function runs Agglomerative Information Bottleneck (AIB) on the joint probability table <em>aib-&gt;Pcx</em> which has labels along the columns and feature values along the rows. AIB iteratively merges the two values of the feature <code>x</code> that causes the smallest decrease in mutual information between the random variables <code>x</code> and <code>c</code>.</p>
+<p>Merge operations are arranged in a binary tree. The nodes of the tree correspond to the original feature values and any other value obtained as a result of a merge operation. The nodes are indexed in breadth-first order, starting from the leaves. The first index is zero. In this way, the leaves correspond directly to the original feature values. In total there are <code>2*nvalues-1</code> nodes.</p>
+<p>The results may be accessed through vl_aib_get_parents which returns an array with one element per tree node. Each element is the index the parent node. The root parent is equal to zero. The array has <code>2*nvalues-1</code> elements.</p>
+<p>Feature values with null probability are ignored by the algorithm and their nodes have parents indexing a non-existent tree node (a value bigger than <code>2*nvalues-1</code>).</p>
+<p>Then the function will also compute the information level after each merge. vl_get_costs will return a vector with the information level after each merge. <em>cost</em> has <code>nvalues</code> entries: The first is the value of the cost functional before any merge, and the others are the cost after the <code>nvalues-1</code> merges. </p>
+
+</div>
+</div>
+<a class="anchor" id="a474eae5c9436f86251eea120221e8bd1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_aib_update_beta </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlAIB.html">VlAIB</a> *&#160;</td>
+          <td class="paramname"><em>aib</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">aib</td><td>AIB data structure.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The function calculates <code>beta</code>[i] and <code>bidx</code>[i] for the nodes <code>i</code> listed in <code>aib-&gt;which</code>. <code>beta</code>[i] is the minimal variation of mutual information (or other score) caused by merging entry <code>i</code> with another entry and <code>bidx</code>[i] is the index of this best matching entry.</p>
+<p>Notice that for each entry <code>i</code> that we need to update, a full scan of all the other entries must be performed. </p>
+
+</div>
+</div>
+</div><!-- contents -->
+        <!-- Doc Here -->
+      </div>
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>

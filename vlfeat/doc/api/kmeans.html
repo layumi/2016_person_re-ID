@@ -1,0 +1,284 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+  <!-- Page title -->
+  <title>VLFeat - Documentation > C API</title>
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  <link rel="stylesheet" type="text/css" href="doxygen.css"></link>
+  <!-- Scripts-->
+  <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li class='active'><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li class='active' class='activeLeaf'><a href="index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="../doc.html">Documentation</a></span><span class='separator'>></span><span class='page'><a href="index.html">C API</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+      <!-- <pagestyle href="%pathto:root;api/tabs.css"/> -->
+      <div class="doxygen">
+<div id="top">
+<div id="top">
+<!-- Generated by Doxygen 1.8.7 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li class="current"><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
+    </ul>
+  </div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="index.html">Vision Lab Features Library (VLFeat)</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">K-means clustering </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="toc"><h3>Table of Contents</h3>
+<ul><li class="level1"><a href="#kmeans-starting">Getting started</a></li>
+</ul>
+</div>
+<div class="textblock"><dl class="section author"><dt>Author</dt><dd>Andrea Vedaldi </dd>
+<dd>
+David Novotny</dd></dl>
+<p><a class="el" href="kmeans_8h.html">kmeans.h</a> implements a number of algorithm for <b>K-means quantization</b>: Lloyd <a class="el" href="citelist.html#CITEREF_lloyd82least">[16]</a> , an accelerated version by Elkan <a class="el" href="citelist.html#CITEREF_elkan03using">[7]</a> , and a large scale algorithm based on Approximate Nearest Neighbors (ANN). All algorithms support <code>float</code> or <code>double</code> data and can use the \(l^1\) or the \(l^2\) distance for clustering. Furthermore, all algorithms can take advantage of multiple CPU cores.</p>
+<p>Please see <a class="el" href="kmeans-fundamentals.html">K-means fundamentals</a> for a technical description of K-means and of the algorithms implemented here.</p>
+<h1><a class="anchor" id="kmeans-starting"></a>
+Getting started</h1>
+<p>The goal of K-means is to partition a dataset into \(K\) &ldquo;compact&rdquo; clusters. The following example demonstrates using <a class="el" href="kmeans_8h.html">kmeans.h</a> in the C programming language to partition <code>numData</code> <code>float</code> vectors into compute <code>numCenters</code> clusters using Lloyd's algorithm:</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="kmeans_8h.html">vl/kmeans.h</a>&gt;</span></div>
+<div class="line"><span class="keywordtype">double</span> energy ;</div>
+<div class="line"><span class="keywordtype">double</span> * centers ;</div>
+<div class="line"></div>
+<div class="line"><span class="comment">// Use float data and the L2 distance for clustering</span></div>
+<div class="line">KMeans * kmeans = <a class="code" href="kmeans_8c.html#a868a729d2ea5b9f9fec15a18e0a27a76">vl_kmeans_new</a> (VLDistanceL2, <a class="code" href="generic_8h.html#aa034d0b942f9800b2a02aeb30ff10fa2">VL_TYPE_FLOAT</a>) ;</div>
+<div class="line"></div>
+<div class="line"><span class="comment">// Use Lloyd algorithm</span></div>
+<div class="line"><a class="code" href="kmeans_8h.html#ae2ab27c25bb4730d854219af20f37804">vl_kmeans_set_algorithm</a> (kmeans, <a class="code" href="kmeans_8h.html#a4c431fed2c5377435e08cbad0040c9f3a19e04f61cc224d6f970a6cba351d6692">VlKMeansLloyd</a>) ;</div>
+<div class="line"></div>
+<div class="line"><span class="comment">// Initialize the cluster centers by randomly sampling the data</span></div>
+<div class="line"><a class="code" href="kmeans_8c.html#ae32387a856746fe4c39ae10fd533c8d3">vl_kmeans_init_centers_with_rand_data</a> (kmeans, data, dimension, numData, numCenters) ;</div>
+<div class="line"></div>
+<div class="line"><span class="comment">// Run at most 100 iterations of cluster refinement using Lloyd algorithm</span></div>
+<div class="line"><a class="code" href="kmeans_8h.html#a34f80e7e3f4c7213366b88169cc2f70f">vl_kmeans_set_max_num_iterations</a> (kmeans, 100) ;</div>
+<div class="line"><a class="code" href="kmeans_8c.html#a9fd1885e6b4742a93b4672f56eb9f2ce">vl_kmeans_refine_centers</a> (kmeans, data, numData) ;</div>
+<div class="line"></div>
+<div class="line"><span class="comment">// Obtain the energy of the solution</span></div>
+<div class="line">energy = <a class="code" href="kmeans_8h.html#a02365a4146fabad03f76bb4cdad7cb77">vl_kmeans_get_energy</a>(kmeans) ;</div>
+<div class="line"></div>
+<div class="line"><span class="comment">// Obtain the cluster centers</span></div>
+<div class="line">centers = <a class="code" href="kmeans_8h.html#a69ecb61159ce9418679f5283c5cb427a">vl_kmeans_get_centers</a>(kmeans) ;</div>
+</div><!-- fragment --><p>Once the centers have been obtained, new data points can be assigned to clusters by using the <a class="el" href="kmeans_8c.html#a3649fe42a94e9b4945511b5665f82355" title="Quantize data. ">vl_kmeans_quantize</a> function:</p>
+<div class="fragment"><div class="line"><a class="code" href="host_8h.html#aeb7c862765448a70017105efa4d25e7a">vl_uint32</a> * assignments = <a class="code" href="generic_8c.html#a9f0d2ab48ad66f0588c89a3e526044ed">vl_malloc</a>(<span class="keyword">sizeof</span>(<a class="code" href="host_8h.html#aeb7c862765448a70017105efa4d25e7a">vl_uint32</a>) * numData) ;</div>
+<div class="line"><span class="keywordtype">float</span> * distances = <a class="code" href="generic_8c.html#a9f0d2ab48ad66f0588c89a3e526044ed">vl_malloc</a>(<span class="keyword">sizeof</span>(<span class="keywordtype">float</span>) * numData) ;</div>
+<div class="line"><a class="code" href="kmeans_8c.html#a3649fe42a94e9b4945511b5665f82355">vl_kmeans_quantize</a>(kmeans, assignments, distances, data, numData) ;</div>
+</div><!-- fragment --><p>Alternatively, one can directly assign new pointers to the closest centers, without bothering with a <a class="el" href="structVlKMeans.html" title="K-means quantizer. ">VlKMeans</a> object.</p>
+<p>There are several considerations that may impact the performance of KMeans. First, since K-means is usually based local optimization algorithm, the <b>initialization method</b> is important. The following initialization methods are supported:</p>
+<table class="doxtable">
+<tr>
+<th>Method </th><th>Function </th><th>Description  </th></tr>
+<tr>
+<td>Random samples </td><td><a class="el" href="kmeans_8c.html#ae32387a856746fe4c39ae10fd533c8d3" title="init centers by randomly sampling data ">vl_kmeans_init_centers_with_rand_data</a> </td><td>Random data points </td></tr>
+<tr>
+<td>K-means++ </td><td><a class="el" href="kmeans_8c.html#a5867c89e2916d933ecbc383c4da348c9" title="Seed centers by the KMeans++ algorithm. ">vl_kmeans_init_centers_plus_plus</a> </td><td>Random selection biased towards diversity </td></tr>
+<tr>
+<td>Custom </td><td><a class="el" href="kmeans_8c.html#ac86bd2fa181f6e23e22a6ad92f25288c" title="Set centers. ">vl_kmeans_set_centers</a> </td><td>Choose centers (useful to run quantization only) </td></tr>
+</table>
+<p>See <a class="el" href="kmeans-fundamentals.html#kmeans-init">Initialization methods</a> for further details. The initialization methods use a randomized selection of the data points; the random number generator init is controlled by <a class="el" href="random_8h.html#adc85f15763be5c5de846697a2af843df" title="Initialise random number generator. ">vl_rand_init</a>.</p>
+<p>The second important choice is the <b>optimization algorithm</b>. The following optimization algorithms are supported:</p>
+<table class="doxtable">
+<tr>
+<th>Algorithm </th><th>Symbol </th><th>See </th><th>Description  </th></tr>
+<tr>
+<td>Lloyd </td><td><a class="el" href="kmeans_8h.html#a4c431fed2c5377435e08cbad0040c9f3a19e04f61cc224d6f970a6cba351d6692">VlKMeansLloyd</a> </td><td><a class="el" href="kmeans-fundamentals.html#kmeans-lloyd">Lloyd's algorithm</a> </td><td>Alternate EM-style optimization </td></tr>
+<tr>
+<td>Elkan </td><td><a class="el" href="kmeans_8h.html#a4c431fed2c5377435e08cbad0040c9f3a5f262d513ca0a82ddb577bbe31aa164c">VlKMeansElkan</a> </td><td><a class="el" href="kmeans-fundamentals.html#kmeans-elkan">Elkan's algorithm</a> </td><td>A speedup using triangular inequalities </td></tr>
+<tr>
+<td>ANN </td><td><a class="el" href="kmeans_8h.html#a4c431fed2c5377435e08cbad0040c9f3adc59056a09e72cdca518cfd6860d0ce4">VlKMeansANN</a> </td><td><a class="el" href="kmeans-fundamentals.html#kmeans-ann">ANN algorithm</a> </td><td>A speedup using approximated nearest neighbors </td></tr>
+</table>
+<p>See the relative sections for further details. These algorithm are iterative, and stop when either a <b>maximum number of iterations</b> (<a class="el" href="kmeans_8h.html#a34f80e7e3f4c7213366b88169cc2f70f" title="Set maximum number of iterations. ">vl_kmeans_set_max_num_iterations</a>) is reached, or when the energy changes sufficiently slowly in one iteration (<a class="el" href="kmeans_8h.html#aa807a9a807f80ad1dc5359a81e06566b" title="Set the maximum relative energy variation for convergence. ">vl_kmeans_set_min_energy_variation</a>).</p>
+<p>All the three algorithms support multithreaded computations. The number of threads used is usually controlled globally by <a class="el" href="generic_8h.html#adbbde4d47763c8e581640b23db5b6a1a" title="Set the maximum number of threads used by VLFeat. ">vl_set_num_threads</a>. </p>
+</div></div><!-- contents -->
+        <!-- Doc Here -->
+      </div>
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>

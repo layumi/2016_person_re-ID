@@ -1,0 +1,51 @@
+<group>
+<ul class='breadcrumb'><li><a href='%pathto:matlab;'>Index</a></li><li><a href='%pathto:vl_sift;'>Prev</a></li><li><a href='%pathto:vl_ubcmatch;'>Next</a></li></ul><div class="documentation"><p>
+D = <a href="%pathto:vl_siftdescriptor;">VL_SIFTDESCRIPTOR</a>(GRAD, F) calculates the SIFT descriptors of
+the keypoints F on the pre-processed image GRAD. GRAD is a 2xMxN
+array. The first layer GRAD(1,:,:) contains the modulus of
+gradient of the original image modulus. The second layer
+GRAD(2,:,:) contains the gradient angle (measured in radians,
+clockwise, starting from the X axis -- this assumes that the Y
+axis points down). The matrix F contains one column per keypoint
+with the X, Y, SIGMA and ANGLE parameters.
+</p><p>
+In order to match the standard SIFT descriptor, the gradient GRAD
+should be calculated after mapping the image to the keypoint
+scale. This is obtained by smoothing the image by a a Gaussian
+kernel of variance equal to the scale of the keypoint.
+Additionaly, SIFT assumes that the input image is pre-smoothed at
+scale 0.5 (this roughly compensates for the effect of the CCD
+integrators), so the amount of smoothing that needs to be applied
+is slightly less. The following code computes a standard SIFT
+descriptor by using <a href="%pathto:vl_siftdescriptor;">VL_SIFTDESCRIPTOR</a>():
+</p><pre>
+  I_       = vl_imsmooth(im2double(I), sqrt(f(3)^2 - 0.5^2)) ;
+  [Ix, Iy] = vl_grad(I_) ;
+  mod      = sqrt(Ix.^2 + Iy.^2) ;
+  ang      = atan2(Iy,Ix) ;
+  grd      = shiftdim(cat(3,mod,ang),2) ;
+  grd      = single(grd) ;
+  d        = vl_siftdescriptor(grd, f) ;
+</pre><dl><dt>
+Remark
+</dt><dd><p>
+The above fragment generates results which are very close
+but not identical to the output of <a href="%pathto:vl_sift;">VL_SIFT</a>() as the latter
+samples the scale space at finite steps.
+</p></dd><dt>
+Remark
+</dt><dd><p>
+For object categorization is sometimes useful to compute
+SIFT descriptors without smoothing the image.
+</p></dd></dl><p>
+Options:
+</p><dl><dt>
+Magnif
+<span class="defaults">[3]</span></dt><dd><p>
+Magnification factor (see <a href="%pathto:vl_sift;">VL_SIFT</a>()).
+</p></dd><dt>
+NormThresh
+<span class="defaults">[-inf]</span></dt><dd><p>
+Set the minimum l2-norm of the descriptors before
+normalization. Descriptors below the threshold are set to zero.
+</p></dd></dl></div></group>

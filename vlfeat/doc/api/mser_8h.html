@@ -1,0 +1,1053 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+  <!-- Page title -->
+  <title>VLFeat - Documentation > C API</title>
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  <link rel="stylesheet" type="text/css" href="doxygen.css"></link>
+  <!-- Scripts-->
+  <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li class='active'><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li class='active' class='activeLeaf'><a href="index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="../doc.html">Documentation</a></span><span class='separator'>></span><span class='page'><a href="index.html">C API</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+      <!-- <pagestyle href="%pathto:root;api/tabs.css"/> -->
+      <div class="doxygen">
+<div id="top">
+<div id="top">
+<!-- Generated by Doxygen 1.8.7 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li class="current"><a href="files.html"><span>Files</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>Globals</span></a></li>
+    </ul>
+  </div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_8dd540b382164c224dfa1eb6e8a3add6.html">vl</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Data Structures</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#typedef-members">Typedefs</a>  </div>
+  <div class="headertitle">
+<div class="title">mser.h File Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>MSER (<a class="el" href="mser.html">Maximally Stable Extremal Regions (MSER)</a>)  
+<a href="#details">More...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="generic_8h.html">generic.h</a>&quot;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__VlMserStats.html">VlMserStats</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">MSER filter statistics definition.  <a href="struct__VlMserStats.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__VlMserReg.html">VlMserReg</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">MSER: basic region (declaration)  <a href="struct__VlMserReg.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__VlMserExtrReg.html">VlMserExtrReg</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">MSER: extremal region (declaration)  <a href="struct__VlMserExtrReg.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__VlMserFilt.html">VlMserFilt</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">MSER filter.  <a href="struct__VlMserFilt.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:ab88df95be093992e6c90caf07711182a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mser_8h.html#ab88df95be093992e6c90caf07711182a">VL_MSER_PIX_MAXVAL</a>&#160;&#160;&#160;256</td></tr>
+<tr class="memdesc:ab88df95be093992e6c90caf07711182a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum value.  <a href="#ab88df95be093992e6c90caf07711182a">More...</a><br /></td></tr>
+<tr class="separator:ab88df95be093992e6c90caf07711182a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8dedc365f221c110cee8b0634ab86241"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mser_8h.html#a8dedc365f221c110cee8b0634ab86241">VL_MSER_VOID_NODE</a>&#160;&#160;&#160;((1ui64&lt;&lt;32) - 1)</td></tr>
+<tr class="memdesc:a8dedc365f221c110cee8b0634ab86241"><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic region flag: null region.  <a href="#a8dedc365f221c110cee8b0634ab86241">More...</a><br /></td></tr>
+<tr class="separator:a8dedc365f221c110cee8b0634ab86241"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a5f6872cfbb7787c2a38cc2d5f138c716"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="host_8h.html#a38fbd9a3cf53dfc9a5650c38497b7d35">vl_uint8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mser_8h.html#a5f6872cfbb7787c2a38cc2d5f138c716">vl_mser_pix</a></td></tr>
+<tr class="memdesc:a5f6872cfbb7787c2a38cc2d5f138c716"><td class="mdescLeft">&#160;</td><td class="mdescRight">MSER image data type.  <a href="#a5f6872cfbb7787c2a38cc2d5f138c716">More...</a><br /></td></tr>
+<tr class="separator:a5f6872cfbb7787c2a38cc2d5f138c716"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4da3be7334e5383e02c829c53ddb9e34"><td class="memItemLeft" align="right" valign="top">typedef float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mser_8h.html#a4da3be7334e5383e02c829c53ddb9e34">vl_mser_acc</a></td></tr>
+<tr class="memdesc:a4da3be7334e5383e02c829c53ddb9e34"><td class="mdescLeft">&#160;</td><td class="mdescRight">MSER accumulator data type.  <a href="#a4da3be7334e5383e02c829c53ddb9e34">More...</a><br /></td></tr>
+<tr class="separator:a4da3be7334e5383e02c829c53ddb9e34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Construction and Destruction</div></td></tr>
+<tr class="memitem:af6dbdcb894693e90c43d51140d17cb9c"><td class="memItemLeft" align="right" valign="top">VlMserFilt *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mser_8h.html#af6dbdcb894693e90c43d51140d17cb9c">vl_mser_new</a> (int ndims, int const *dims)</td></tr>
+<tr class="memdesc:af6dbdcb894693e90c43d51140d17cb9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new MSER filter.  <a href="#af6dbdcb894693e90c43d51140d17cb9c">More...</a><br /></td></tr>
+<tr class="separator:af6dbdcb894693e90c43d51140d17cb9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d94ff216cb9389b49dc5799e26ad3ba"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mser_8h.html#a3d94ff216cb9389b49dc5799e26ad3ba">vl_mser_delete</a> (VlMserFilt *f)</td></tr>
+<tr class="memdesc:a3d94ff216cb9389b49dc5799e26ad3ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete MSER filter.  <a href="#a3d94ff216cb9389b49dc5799e26ad3ba">More...</a><br /></td></tr>
+<tr class="separator:a3d94ff216cb9389b49dc5799e26ad3ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Processing</div></td></tr>
+<tr class="memitem:ae50c576bc27a1ee7837cbbe6e5089583"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mser_8h.html#ae50c576bc27a1ee7837cbbe6e5089583">vl_mser_process</a> (VlMserFilt *f, <a class="el" href="mser_8h.html#a5f6872cfbb7787c2a38cc2d5f138c716">vl_mser_pix</a> const *im)</td></tr>
+<tr class="memdesc:ae50c576bc27a1ee7837cbbe6e5089583"><td class="mdescLeft">&#160;</td><td class="mdescRight">Process image.  <a href="#ae50c576bc27a1ee7837cbbe6e5089583">More...</a><br /></td></tr>
+<tr class="separator:ae50c576bc27a1ee7837cbbe6e5089583"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeeee08edd486e41126316f1d3bf90013"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mser_8h.html#aeeee08edd486e41126316f1d3bf90013">vl_mser_ell_fit</a> (VlMserFilt *f)</td></tr>
+<tr class="memdesc:aeeee08edd486e41126316f1d3bf90013"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fit ellipsoids.  <a href="#aeeee08edd486e41126316f1d3bf90013">More...</a><br /></td></tr>
+<tr class="separator:aeeee08edd486e41126316f1d3bf90013"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Retrieving data</div></td></tr>
+<tr class="memitem:abb4d8f51eeecdda9be01fc99b8144c52"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#a5bd6e91d6bfd0be04101fdca94069c92">vl_uint</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mser_8h.html#abb4d8f51eeecdda9be01fc99b8144c52">vl_mser_get_regions_num</a> (VlMserFilt const *f)</td></tr>
+<tr class="memdesc:abb4d8f51eeecdda9be01fc99b8144c52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get number of maximally stable extremal regions.  <a href="#abb4d8f51eeecdda9be01fc99b8144c52">More...</a><br /></td></tr>
+<tr class="separator:abb4d8f51eeecdda9be01fc99b8144c52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac13e050b5ea00ae60d34f00ff2400126"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#a5bd6e91d6bfd0be04101fdca94069c92">vl_uint</a> const *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mser_8h.html#ac13e050b5ea00ae60d34f00ff2400126">vl_mser_get_regions</a> (VlMserFilt const *f)</td></tr>
+<tr class="memdesc:ac13e050b5ea00ae60d34f00ff2400126"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get maximally stable extremal regions.  <a href="#ac13e050b5ea00ae60d34f00ff2400126">More...</a><br /></td></tr>
+<tr class="separator:ac13e050b5ea00ae60d34f00ff2400126"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ce0f94d6cc33244be2f5ca736a0bff4"><td class="memItemLeft" align="right" valign="top">float const *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mser_8h.html#a9ce0f94d6cc33244be2f5ca736a0bff4">vl_mser_get_ell</a> (VlMserFilt const *f)</td></tr>
+<tr class="memdesc:a9ce0f94d6cc33244be2f5ca736a0bff4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get ellipsoids.  <a href="#a9ce0f94d6cc33244be2f5ca736a0bff4">More...</a><br /></td></tr>
+<tr class="separator:a9ce0f94d6cc33244be2f5ca736a0bff4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f7172365b355735c1ee1cc4bded9915"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#a5bd6e91d6bfd0be04101fdca94069c92">vl_uint</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mser_8h.html#a7f7172365b355735c1ee1cc4bded9915">vl_mser_get_ell_num</a> (VlMserFilt const *f)</td></tr>
+<tr class="memdesc:a7f7172365b355735c1ee1cc4bded9915"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get number of ellipsoids.  <a href="#a7f7172365b355735c1ee1cc4bded9915">More...</a><br /></td></tr>
+<tr class="separator:a7f7172365b355735c1ee1cc4bded9915"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e10d949e672ffd82dd230a7f0ab37a8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#a5bd6e91d6bfd0be04101fdca94069c92">vl_uint</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mser_8h.html#a0e10d949e672ffd82dd230a7f0ab37a8">vl_mser_get_ell_dof</a> (VlMserFilt const *f)</td></tr>
+<tr class="memdesc:a0e10d949e672ffd82dd230a7f0ab37a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get number of degrees of freedom of ellipsoids.  <a href="#a0e10d949e672ffd82dd230a7f0ab37a8">More...</a><br /></td></tr>
+<tr class="separator:a0e10d949e672ffd82dd230a7f0ab37a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8d2c9381ee97127e5da27be9ad7cc38"><td class="memItemLeft" align="right" valign="top">VlMserStats const *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mser_8h.html#af8d2c9381ee97127e5da27be9ad7cc38">vl_mser_get_stats</a> (VlMserFilt const *f)</td></tr>
+<tr class="memdesc:af8d2c9381ee97127e5da27be9ad7cc38"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get statistics.  <a href="#af8d2c9381ee97127e5da27be9ad7cc38">More...</a><br /></td></tr>
+<tr class="separator:af8d2c9381ee97127e5da27be9ad7cc38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Retrieving parameters</div></td></tr>
+<tr class="memitem:abcd71f7677c7daf6902c022c825637de"><td class="memItemLeft" align="right" valign="top"><a class="el" href="mser_8h.html#a5f6872cfbb7787c2a38cc2d5f138c716">vl_mser_pix</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mser_8h.html#abcd71f7677c7daf6902c022c825637de">vl_mser_get_delta</a> (VlMserFilt const *f)</td></tr>
+<tr class="memdesc:abcd71f7677c7daf6902c022c825637de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get delta.  <a href="#abcd71f7677c7daf6902c022c825637de">More...</a><br /></td></tr>
+<tr class="separator:abcd71f7677c7daf6902c022c825637de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82b28392b17bfd5bd6765e1cab61f049"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mser_8h.html#a82b28392b17bfd5bd6765e1cab61f049">vl_mser_get_min_area</a> (VlMserFilt const *f)</td></tr>
+<tr class="memdesc:a82b28392b17bfd5bd6765e1cab61f049"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get minimum region area.  <a href="#a82b28392b17bfd5bd6765e1cab61f049">More...</a><br /></td></tr>
+<tr class="separator:a82b28392b17bfd5bd6765e1cab61f049"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9598f59824914b8cd39ff384cdf2d708"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mser_8h.html#a9598f59824914b8cd39ff384cdf2d708">vl_mser_get_max_area</a> (VlMserFilt const *f)</td></tr>
+<tr class="memdesc:a9598f59824914b8cd39ff384cdf2d708"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get maximum region area.  <a href="#a9598f59824914b8cd39ff384cdf2d708">More...</a><br /></td></tr>
+<tr class="separator:a9598f59824914b8cd39ff384cdf2d708"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a546850260c72fa3ef1d5b5887a1240ad"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mser_8h.html#a546850260c72fa3ef1d5b5887a1240ad">vl_mser_get_max_variation</a> (VlMserFilt const *f)</td></tr>
+<tr class="memdesc:a546850260c72fa3ef1d5b5887a1240ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get maximum region variation.  <a href="#a546850260c72fa3ef1d5b5887a1240ad">More...</a><br /></td></tr>
+<tr class="separator:a546850260c72fa3ef1d5b5887a1240ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a420d10de58b8e7878c6e4708f223493f"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mser_8h.html#a420d10de58b8e7878c6e4708f223493f">vl_mser_get_min_diversity</a> (VlMserFilt const *f)</td></tr>
+<tr class="memdesc:a420d10de58b8e7878c6e4708f223493f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get minimum diversity.  <a href="#a420d10de58b8e7878c6e4708f223493f">More...</a><br /></td></tr>
+<tr class="separator:a420d10de58b8e7878c6e4708f223493f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Setting parameters</div></td></tr>
+<tr class="memitem:a9aa9f3041186a969cb35268d4ab656bb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mser_8h.html#a9aa9f3041186a969cb35268d4ab656bb">vl_mser_set_delta</a> (VlMserFilt *f, <a class="el" href="mser_8h.html#a5f6872cfbb7787c2a38cc2d5f138c716">vl_mser_pix</a> x)</td></tr>
+<tr class="memdesc:a9aa9f3041186a969cb35268d4ab656bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set delta.  <a href="#a9aa9f3041186a969cb35268d4ab656bb">More...</a><br /></td></tr>
+<tr class="separator:a9aa9f3041186a969cb35268d4ab656bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25744f49395d441a8769b9f605480f4c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mser_8h.html#a25744f49395d441a8769b9f605480f4c">vl_mser_set_min_area</a> (VlMserFilt *f, double x)</td></tr>
+<tr class="memdesc:a25744f49395d441a8769b9f605480f4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set minimum region area.  <a href="#a25744f49395d441a8769b9f605480f4c">More...</a><br /></td></tr>
+<tr class="separator:a25744f49395d441a8769b9f605480f4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af517861a633fbd7cc5637ea4baef0db6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mser_8h.html#af517861a633fbd7cc5637ea4baef0db6">vl_mser_set_max_area</a> (VlMserFilt *f, double x)</td></tr>
+<tr class="memdesc:af517861a633fbd7cc5637ea4baef0db6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set maximum region area.  <a href="#af517861a633fbd7cc5637ea4baef0db6">More...</a><br /></td></tr>
+<tr class="separator:af517861a633fbd7cc5637ea4baef0db6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7feb4b477fe6340639d40461174cfabe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mser_8h.html#a7feb4b477fe6340639d40461174cfabe">vl_mser_set_max_variation</a> (VlMserFilt *f, double x)</td></tr>
+<tr class="memdesc:a7feb4b477fe6340639d40461174cfabe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set maximum region variation.  <a href="#a7feb4b477fe6340639d40461174cfabe">More...</a><br /></td></tr>
+<tr class="separator:a7feb4b477fe6340639d40461174cfabe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb7fe6fc94bb7503bdc0dd160a549de1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mser_8h.html#abb7fe6fc94bb7503bdc0dd160a549de1">vl_mser_set_min_diversity</a> (VlMserFilt *f, double x)</td></tr>
+<tr class="memdesc:abb7fe6fc94bb7503bdc0dd160a549de1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set minimum diversity.  <a href="#abb7fe6fc94bb7503bdc0dd160a549de1">More...</a><br /></td></tr>
+<tr class="separator:abb7fe6fc94bb7503bdc0dd160a549de1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><dl class="section author"><dt>Author</dt><dd>Andrea Vedaldi </dd></dl>
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a class="anchor" id="ab88df95be093992e6c90caf07711182a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define VL_MSER_PIX_MAXVAL&#160;&#160;&#160;256</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Maximum value of the integer type <a class="el" href="mser_8h.html#a5f6872cfbb7787c2a38cc2d5f138c716" title="MSER image data type. ">vl_mser_pix</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="a8dedc365f221c110cee8b0634ab86241"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define VL_MSER_VOID_NODE&#160;&#160;&#160;((1ui64&lt;&lt;32) - 1)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a class="anchor" id="a4da3be7334e5383e02c829c53ddb9e34"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef float <a class="el" href="mser_8h.html#a4da3be7334e5383e02c829c53ddb9e34">vl_mser_acc</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This is a large integer type. It should be large enough to contain a number equal to the area (volume) of the image by the image width by the image height (for instance, if the image is a square of side 256, the maximum value is 256 x 256 x 256). </p>
+
+</div>
+</div>
+<a class="anchor" id="a5f6872cfbb7787c2a38cc2d5f138c716"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="host_8h.html#a38fbd9a3cf53dfc9a5650c38497b7d35">vl_uint8</a> <a class="el" href="mser_8h.html#a5f6872cfbb7787c2a38cc2d5f138c716">vl_mser_pix</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This is the data type of the image pixels. It has to be an integer. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a3d94ff216cb9389b49dc5799e26ad3ba"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_mser_delete </td>
+          <td>(</td>
+          <td class="paramtype">VlMserFilt *&#160;</td>
+          <td class="paramname"><em>f</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The function releases the MSER filter <em>f</em> and all its resources.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>MSER filter to be deleted. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="aeeee08edd486e41126316f1d3bf90013"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_mser_ell_fit </td>
+          <td>(</td>
+          <td class="paramtype">VlMserFilt *&#160;</td>
+          <td class="paramname"><em>f</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>MSER filter.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="mser-fundamentals.html#mser-ell">Ellipsoids</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="abcd71f7677c7daf6902c022c825637de"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="mser_8h.html#a5f6872cfbb7787c2a38cc2d5f138c716">vl_mser_pix</a> vl_mser_get_delta </td>
+          <td>(</td>
+          <td class="paramtype">VlMserFilt const *&#160;</td>
+          <td class="paramname"><em>f</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>MSER filter. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>value of <code>delta</code>. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a9ce0f94d6cc33244be2f5ca736a0bff4"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float const * vl_mser_get_ell </td>
+          <td>(</td>
+          <td class="paramtype">VlMserFilt const *&#160;</td>
+          <td class="paramname"><em>f</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>MSER filter. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>ellipsoids. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a0e10d949e672ffd82dd230a7f0ab37a8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#a5bd6e91d6bfd0be04101fdca94069c92">vl_uint</a> vl_mser_get_ell_dof </td>
+          <td>(</td>
+          <td class="paramtype">VlMserFilt const *&#160;</td>
+          <td class="paramname"><em>f</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>MSER filter. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>number of degrees of freedom. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a7f7172365b355735c1ee1cc4bded9915"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#a5bd6e91d6bfd0be04101fdca94069c92">vl_uint</a> vl_mser_get_ell_num </td>
+          <td>(</td>
+          <td class="paramtype">VlMserFilt const *&#160;</td>
+          <td class="paramname"><em>f</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>MSER filter. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>number of ellipsoids </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a9598f59824914b8cd39ff384cdf2d708"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double vl_mser_get_max_area </td>
+          <td>(</td>
+          <td class="paramtype">VlMserFilt const *&#160;</td>
+          <td class="paramname"><em>f</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>MSER filter. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>maximum region area. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a546850260c72fa3ef1d5b5887a1240ad"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double vl_mser_get_max_variation </td>
+          <td>(</td>
+          <td class="paramtype">VlMserFilt const *&#160;</td>
+          <td class="paramname"><em>f</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>MSER filter. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>maximum region variation. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a82b28392b17bfd5bd6765e1cab61f049"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double vl_mser_get_min_area </td>
+          <td>(</td>
+          <td class="paramtype">VlMserFilt const *&#160;</td>
+          <td class="paramname"><em>f</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>MSER filter. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>minimum region area. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a420d10de58b8e7878c6e4708f223493f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double vl_mser_get_min_diversity </td>
+          <td>(</td>
+          <td class="paramtype">VlMserFilt const *&#160;</td>
+          <td class="paramname"><em>f</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>MSER filter. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>value of <code>minimum</code> diversity. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ac13e050b5ea00ae60d34f00ff2400126"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#a5bd6e91d6bfd0be04101fdca94069c92">vl_uint</a> const * vl_mser_get_regions </td>
+          <td>(</td>
+          <td class="paramtype">VlMserFilt const *&#160;</td>
+          <td class="paramname"><em>f</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>MSER filter. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>array of MSER pivots. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="abb4d8f51eeecdda9be01fc99b8144c52"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#a5bd6e91d6bfd0be04101fdca94069c92">vl_uint</a> vl_mser_get_regions_num </td>
+          <td>(</td>
+          <td class="paramtype">VlMserFilt const *&#160;</td>
+          <td class="paramname"><em>f</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>MSER filter. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>number of MSERs. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="af8d2c9381ee97127e5da27be9ad7cc38"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">VlMserStats const * vl_mser_get_stats </td>
+          <td>(</td>
+          <td class="paramtype">VlMserFilt const *&#160;</td>
+          <td class="paramname"><em>f</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>MSER filter. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>statistics. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="af6dbdcb894693e90c43d51140d17cb9c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">VlMserFilt* vl_mser_new </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ndims</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int const *&#160;</td>
+          <td class="paramname"><em>dims</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Initializes a new MSER filter for images of the specified dimensions. Images are <em>ndims</em> -dimensional arrays of dimensions <em>dims</em>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ndims</td><td>number of dimensions. </td></tr>
+    <tr><td class="paramname">dims</td><td>dimensions. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ae50c576bc27a1ee7837cbbe6e5089583"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_mser_process </td>
+          <td>(</td>
+          <td class="paramtype">VlMserFilt *&#160;</td>
+          <td class="paramname"><em>f</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="mser_8h.html#a5f6872cfbb7787c2a38cc2d5f138c716">vl_mser_pix</a> const *&#160;</td>
+          <td class="paramname"><em>im</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The functions calculates the Maximally Stable Extremal Regions (MSERs) of image <em>im</em> using the MSER filter <em>f</em>.</p>
+<p>The filter <em>f</em> must have been initialized to be compatible with the dimensions of <em>im</em>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>MSER filter. </td></tr>
+    <tr><td class="paramname">im</td><td>image data. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a9aa9f3041186a969cb35268d4ab656bb"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_mser_set_delta </td>
+          <td>(</td>
+          <td class="paramtype">VlMserFilt *&#160;</td>
+          <td class="paramname"><em>f</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="mser_8h.html#a5f6872cfbb7787c2a38cc2d5f138c716">vl_mser_pix</a>&#160;</td>
+          <td class="paramname"><em>x</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>MSER filter. </td></tr>
+    <tr><td class="paramname">x</td><td>value of <code>delta</code>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="af517861a633fbd7cc5637ea4baef0db6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_mser_set_max_area </td>
+          <td>(</td>
+          <td class="paramtype">VlMserFilt *&#160;</td>
+          <td class="paramname"><em>f</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>x</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>MSER filter. </td></tr>
+    <tr><td class="paramname">x</td><td>maximum region area. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a7feb4b477fe6340639d40461174cfabe"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_mser_set_max_variation </td>
+          <td>(</td>
+          <td class="paramtype">VlMserFilt *&#160;</td>
+          <td class="paramname"><em>f</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>x</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>MSER filter. </td></tr>
+    <tr><td class="paramname">x</td><td>maximum region variation. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a25744f49395d441a8769b9f605480f4c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_mser_set_min_area </td>
+          <td>(</td>
+          <td class="paramtype">VlMserFilt *&#160;</td>
+          <td class="paramname"><em>f</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>x</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>MSER filter. </td></tr>
+    <tr><td class="paramname">x</td><td>minimum region area. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="abb7fe6fc94bb7503bdc0dd160a549de1"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_mser_set_min_diversity </td>
+          <td>(</td>
+          <td class="paramtype">VlMserFilt *&#160;</td>
+          <td class="paramname"><em>f</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>x</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>MSER filter. </td></tr>
+    <tr><td class="paramname">x</td><td>value of <code>minimum</code> diversity. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+        <!-- Doc Here -->
+      </div>
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>

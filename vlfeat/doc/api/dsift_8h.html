@@ -1,0 +1,1090 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+  <!-- Page title -->
+  <title>VLFeat - Documentation > C API</title>
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  <link rel="stylesheet" type="text/css" href="doxygen.css"></link>
+  <!-- Scripts-->
+  <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li class='active'><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li class='active' class='activeLeaf'><a href="index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="../doc.html">Documentation</a></span><span class='separator'>></span><span class='page'><a href="index.html">C API</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+      <!-- <pagestyle href="%pathto:root;api/tabs.css"/> -->
+      <div class="doxygen">
+<div id="top">
+<div id="top">
+<!-- Generated by Doxygen 1.8.7 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li class="current"><a href="files.html"><span>Files</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>Globals</span></a></li>
+    </ul>
+  </div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_8dd540b382164c224dfa1eb6e8a3add6.html">vl</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Data Structures</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">dsift.h File Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Dense SIFT (<a class="el" href="dsift.html">Dense Scale Invariant Feature Transform (DSIFT)</a>)  
+<a href="#details">More...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="generic_8h.html">generic.h</a>&quot;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVlDsiftKeypoint.html">VlDsiftKeypoint</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dense SIFT keypoint.  <a href="structVlDsiftKeypoint.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVlDsiftDescriptorGeometry.html">VlDsiftDescriptorGeometry</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dense SIFT descriptor geometry.  <a href="structVlDsiftDescriptorGeometry.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVlDsiftFilter.html">VlDsiftFilter</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dense SIFT filter.  <a href="structVlDsiftFilter.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a5f86d3d3a12bedab236a12e55a91edd1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structVlDsiftFilter.html">VlDsiftFilter</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dsift_8h.html#a5f86d3d3a12bedab236a12e55a91edd1">vl_dsift_new</a> (int width, int height)</td></tr>
+<tr class="memdesc:a5f86d3d3a12bedab236a12e55a91edd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new DSIFT filter.  <a href="#a5f86d3d3a12bedab236a12e55a91edd1">More...</a><br /></td></tr>
+<tr class="separator:a5f86d3d3a12bedab236a12e55a91edd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a100b0508f06275474caf3de958f09ea6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structVlDsiftFilter.html">VlDsiftFilter</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dsift_8h.html#a100b0508f06275474caf3de958f09ea6">vl_dsift_new_basic</a> (int width, int height, int step, int binSize)</td></tr>
+<tr class="memdesc:a100b0508f06275474caf3de958f09ea6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new DSIFT filter (basic interface)  <a href="#a100b0508f06275474caf3de958f09ea6">More...</a><br /></td></tr>
+<tr class="separator:a100b0508f06275474caf3de958f09ea6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa123f1d9e79ab01882646f713dfb4f0c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dsift_8h.html#aa123f1d9e79ab01882646f713dfb4f0c">vl_dsift_delete</a> (<a class="el" href="structVlDsiftFilter.html">VlDsiftFilter</a> *self)</td></tr>
+<tr class="memdesc:aa123f1d9e79ab01882646f713dfb4f0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete DSIFT filter.  <a href="#aa123f1d9e79ab01882646f713dfb4f0c">More...</a><br /></td></tr>
+<tr class="separator:aa123f1d9e79ab01882646f713dfb4f0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09d5525ad7e16e2b9f3f1b9d273c85f6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dsift_8h.html#a09d5525ad7e16e2b9f3f1b9d273c85f6">vl_dsift_process</a> (<a class="el" href="structVlDsiftFilter.html">VlDsiftFilter</a> *self, float const *im)</td></tr>
+<tr class="memdesc:a09d5525ad7e16e2b9f3f1b9d273c85f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute keypoints and descriptors.  <a href="#a09d5525ad7e16e2b9f3f1b9d273c85f6">More...</a><br /></td></tr>
+<tr class="separator:a09d5525ad7e16e2b9f3f1b9d273c85f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab31145db21c1f0ed2e8843c159598526"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dsift_8h.html#ab31145db21c1f0ed2e8843c159598526">vl_dsift_transpose_descriptor</a> (float *dst, float const *src, int numBinT, int numBinX, int numBinY)</td></tr>
+<tr class="memdesc:ab31145db21c1f0ed2e8843c159598526"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transpose descriptor.  <a href="#ab31145db21c1f0ed2e8843c159598526">More...</a><br /></td></tr>
+<tr class="separator:ab31145db21c1f0ed2e8843c159598526"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af83ee4f65210d5f4476a39167802ec97"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dsift_8h.html#af83ee4f65210d5f4476a39167802ec97">_vl_dsift_update_buffers</a> (<a class="el" href="structVlDsiftFilter.html">VlDsiftFilter</a> *self)</td></tr>
+<tr class="memdesc:af83ee4f65210d5f4476a39167802ec97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates internal buffers to current geometry.  <a href="#af83ee4f65210d5f4476a39167802ec97">More...</a><br /></td></tr>
+<tr class="separator:af83ee4f65210d5f4476a39167802ec97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Setting parameters</div></td></tr>
+<tr class="memitem:a42ae6bf77a9b737fd1e45ad5c43263dd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dsift_8h.html#a42ae6bf77a9b737fd1e45ad5c43263dd">vl_dsift_set_steps</a> (<a class="el" href="structVlDsiftFilter.html">VlDsiftFilter</a> *self, int stepX, int stepY)</td></tr>
+<tr class="memdesc:a42ae6bf77a9b737fd1e45ad5c43263dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set steps.  <a href="#a42ae6bf77a9b737fd1e45ad5c43263dd">More...</a><br /></td></tr>
+<tr class="separator:a42ae6bf77a9b737fd1e45ad5c43263dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d34c8e257c873f2ed580b046296d1ac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dsift_8h.html#a7d34c8e257c873f2ed580b046296d1ac">vl_dsift_set_bounds</a> (<a class="el" href="structVlDsiftFilter.html">VlDsiftFilter</a> *self, int minX, int minY, int maxX, int maxY)</td></tr>
+<tr class="memdesc:a7d34c8e257c873f2ed580b046296d1ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set bounds.  <a href="#a7d34c8e257c873f2ed580b046296d1ac">More...</a><br /></td></tr>
+<tr class="separator:a7d34c8e257c873f2ed580b046296d1ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a930f20c25eab08d9490830b0a358ff2b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dsift_8h.html#a930f20c25eab08d9490830b0a358ff2b">vl_dsift_set_geometry</a> (<a class="el" href="structVlDsiftFilter.html">VlDsiftFilter</a> *self, <a class="el" href="structVlDsiftDescriptorGeometry.html">VlDsiftDescriptorGeometry</a> const *geom)</td></tr>
+<tr class="memdesc:a930f20c25eab08d9490830b0a358ff2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set SIFT descriptor geometry.  <a href="#a930f20c25eab08d9490830b0a358ff2b">More...</a><br /></td></tr>
+<tr class="separator:a930f20c25eab08d9490830b0a358ff2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8dfe2d20dbe9885d0c139c5b81b5f4b0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dsift_8h.html#a8dfe2d20dbe9885d0c139c5b81b5f4b0">vl_dsift_set_flat_window</a> (<a class="el" href="structVlDsiftFilter.html">VlDsiftFilter</a> *self, <a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a> useFlatWindow)</td></tr>
+<tr class="memdesc:a8dfe2d20dbe9885d0c139c5b81b5f4b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set flat window flag.  <a href="#a8dfe2d20dbe9885d0c139c5b81b5f4b0">More...</a><br /></td></tr>
+<tr class="separator:a8dfe2d20dbe9885d0c139c5b81b5f4b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae60fa31ff4df09e8025525714dac9563"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dsift_8h.html#ae60fa31ff4df09e8025525714dac9563">vl_dsift_set_window_size</a> (<a class="el" href="structVlDsiftFilter.html">VlDsiftFilter</a> *self, double windowSize)</td></tr>
+<tr class="memdesc:ae60fa31ff4df09e8025525714dac9563"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set SIFT descriptor Gaussian window size.  <a href="#ae60fa31ff4df09e8025525714dac9563">More...</a><br /></td></tr>
+<tr class="separator:ae60fa31ff4df09e8025525714dac9563"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Retrieving data and parameters</div></td></tr>
+<tr class="memitem:acd5425e9764383a5ef05bce00fd40e94"><td class="memItemLeft" align="right" valign="top">float const *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dsift_8h.html#acd5425e9764383a5ef05bce00fd40e94">vl_dsift_get_descriptors</a> (<a class="el" href="structVlDsiftFilter.html">VlDsiftFilter</a> const *self)</td></tr>
+<tr class="memdesc:acd5425e9764383a5ef05bce00fd40e94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get descriptors.  <a href="#acd5425e9764383a5ef05bce00fd40e94">More...</a><br /></td></tr>
+<tr class="separator:acd5425e9764383a5ef05bce00fd40e94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeade8b18c21954f00d76f5dcb12b9bfe"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dsift_8h.html#aeade8b18c21954f00d76f5dcb12b9bfe">vl_dsift_get_descriptor_size</a> (<a class="el" href="structVlDsiftFilter.html">VlDsiftFilter</a> const *self)</td></tr>
+<tr class="memdesc:aeade8b18c21954f00d76f5dcb12b9bfe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get descriptor size.  <a href="#aeade8b18c21954f00d76f5dcb12b9bfe">More...</a><br /></td></tr>
+<tr class="separator:aeade8b18c21954f00d76f5dcb12b9bfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b5fabb1496fc91a70669d4201f47a5b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dsift_8h.html#a3b5fabb1496fc91a70669d4201f47a5b">vl_dsift_get_keypoint_num</a> (<a class="el" href="structVlDsiftFilter.html">VlDsiftFilter</a> const *self)</td></tr>
+<tr class="memdesc:a3b5fabb1496fc91a70669d4201f47a5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get number of keypoints.  <a href="#a3b5fabb1496fc91a70669d4201f47a5b">More...</a><br /></td></tr>
+<tr class="separator:a3b5fabb1496fc91a70669d4201f47a5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0cba85e88ae5232fe74368175a8ba510"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structVlDsiftKeypoint.html">VlDsiftKeypoint</a> const *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dsift_8h.html#a0cba85e88ae5232fe74368175a8ba510">vl_dsift_get_keypoints</a> (<a class="el" href="structVlDsiftFilter.html">VlDsiftFilter</a> const *self)</td></tr>
+<tr class="memdesc:a0cba85e88ae5232fe74368175a8ba510"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get keypoints.  <a href="#a0cba85e88ae5232fe74368175a8ba510">More...</a><br /></td></tr>
+<tr class="separator:a0cba85e88ae5232fe74368175a8ba510"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6847be5d2204f06551e12c4a2a84990"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dsift_8h.html#ae6847be5d2204f06551e12c4a2a84990">vl_dsift_get_bounds</a> (<a class="el" href="structVlDsiftFilter.html">VlDsiftFilter</a> const *self, int *minX, int *minY, int *maxX, int *maxY)</td></tr>
+<tr class="memdesc:ae6847be5d2204f06551e12c4a2a84990"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get bounds.  <a href="#ae6847be5d2204f06551e12c4a2a84990">More...</a><br /></td></tr>
+<tr class="separator:ae6847be5d2204f06551e12c4a2a84990"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaae1634a166ab5a61d89236fa5bf04d3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dsift_8h.html#aaae1634a166ab5a61d89236fa5bf04d3">vl_dsift_get_steps</a> (<a class="el" href="structVlDsiftFilter.html">VlDsiftFilter</a> const *self, int *stepX, int *stepY)</td></tr>
+<tr class="memdesc:aaae1634a166ab5a61d89236fa5bf04d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get steps.  <a href="#aaae1634a166ab5a61d89236fa5bf04d3">More...</a><br /></td></tr>
+<tr class="separator:aaae1634a166ab5a61d89236fa5bf04d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55eb4068cd76b03c3bb120a895b7ed13"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structVlDsiftDescriptorGeometry.html">VlDsiftDescriptorGeometry</a> const *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dsift_8h.html#a55eb4068cd76b03c3bb120a895b7ed13">vl_dsift_get_geometry</a> (<a class="el" href="structVlDsiftFilter.html">VlDsiftFilter</a> const *self)</td></tr>
+<tr class="memdesc:a55eb4068cd76b03c3bb120a895b7ed13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get SIFT descriptor geometry.  <a href="#a55eb4068cd76b03c3bb120a895b7ed13">More...</a><br /></td></tr>
+<tr class="separator:a55eb4068cd76b03c3bb120a895b7ed13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f20d74d4250ebf12dc80235a31a64b6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dsift_8h.html#a2f20d74d4250ebf12dc80235a31a64b6">vl_dsift_get_flat_window</a> (<a class="el" href="structVlDsiftFilter.html">VlDsiftFilter</a> const *self)</td></tr>
+<tr class="memdesc:a2f20d74d4250ebf12dc80235a31a64b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get flat window flag.  <a href="#a2f20d74d4250ebf12dc80235a31a64b6">More...</a><br /></td></tr>
+<tr class="separator:a2f20d74d4250ebf12dc80235a31a64b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa8d4a02e6f7a0d8b89b585c689e164e"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dsift_8h.html#afa8d4a02e6f7a0d8b89b585c689e164e">vl_dsift_get_window_size</a> (<a class="el" href="structVlDsiftFilter.html">VlDsiftFilter</a> const *self)</td></tr>
+<tr class="memdesc:afa8d4a02e6f7a0d8b89b585c689e164e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get SIFT descriptor Gaussian window size.  <a href="#afa8d4a02e6f7a0d8b89b585c689e164e">More...</a><br /></td></tr>
+<tr class="separator:afa8d4a02e6f7a0d8b89b585c689e164e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><dl class="section author"><dt>Author</dt><dd>Andrea Vedaldi </dd>
+<dd>
+Brian Fulkerson </dd></dl>
+</div><h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="af83ee4f65210d5f4476a39167802ec97"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void _vl_dsift_update_buffers </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlDsiftFilter.html">VlDsiftFilter</a> *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aa123f1d9e79ab01882646f713dfb4f0c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_dsift_delete </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlDsiftFilter.html">VlDsiftFilter</a> *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>DSIFT filter. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ae6847be5d2204f06551e12c4a2a84990"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_dsift_get_bounds </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlDsiftFilter.html">VlDsiftFilter</a> const *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>minX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>minY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>maxX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>maxY</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>DSIFT filter object. </td></tr>
+    <tr><td class="paramname">minX</td><td>bounding box minimum X coordinate. </td></tr>
+    <tr><td class="paramname">minY</td><td>bounding box minimum Y coordinate. </td></tr>
+    <tr><td class="paramname">maxX</td><td>bounding box maximum X coordinate. </td></tr>
+    <tr><td class="paramname">maxY</td><td>bounding box maximum Y coordinate. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="aeade8b18c21954f00d76f5dcb12b9bfe"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int vl_dsift_get_descriptor_size </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlDsiftFilter.html">VlDsiftFilter</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>DSIFT filter object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>size of a descriptor. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="acd5425e9764383a5ef05bce00fd40e94"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float const * vl_dsift_get_descriptors </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlDsiftFilter.html">VlDsiftFilter</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>DSIFT filter object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>descriptors. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a2f20d74d4250ebf12dc80235a31a64b6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int vl_dsift_get_flat_window </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlDsiftFilter.html">VlDsiftFilter</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>DSIFT filter object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>TRUE</code> if the DSIFT filter uses a flat window. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a55eb4068cd76b03c3bb120a895b7ed13"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structVlDsiftDescriptorGeometry.html">VlDsiftDescriptorGeometry</a> const * vl_dsift_get_geometry </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlDsiftFilter.html">VlDsiftFilter</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>DSIFT filter object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>DSIFT descriptor geometry. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a3b5fabb1496fc91a70669d4201f47a5b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int vl_dsift_get_keypoint_num </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlDsiftFilter.html">VlDsiftFilter</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>DSIFT filter object. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a0cba85e88ae5232fe74368175a8ba510"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structVlDsiftKeypoint.html">VlDsiftKeypoint</a> const * vl_dsift_get_keypoints </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlDsiftFilter.html">VlDsiftFilter</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>DSIFT filter object. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="aaae1634a166ab5a61d89236fa5bf04d3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_dsift_get_steps </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlDsiftFilter.html">VlDsiftFilter</a> const *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>stepX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>stepY</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>DSIFT filter object. </td></tr>
+    <tr><td class="paramname">stepX</td><td>sampling step along X. </td></tr>
+    <tr><td class="paramname">stepY</td><td>sampling step along Y. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="afa8d4a02e6f7a0d8b89b585c689e164e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double vl_dsift_get_window_size </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlDsiftFilter.html">VlDsiftFilter</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>DSIFT filter object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>window size. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a5f86d3d3a12bedab236a12e55a91edd1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structVlDsiftFilter.html">VlDsiftFilter</a>* vl_dsift_new </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>imWidth</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>imHeight</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">imWidth</td><td>width of the image. </td></tr>
+    <tr><td class="paramname">imHeight</td><td>height of the image</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>new filter. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a100b0508f06275474caf3de958f09ea6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structVlDsiftFilter.html">VlDsiftFilter</a>* vl_dsift_new_basic </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>imWidth</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>imHeight</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>step</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>binSize</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">imWidth</td><td>width of the image. </td></tr>
+    <tr><td class="paramname">imHeight</td><td>height of the image. </td></tr>
+    <tr><td class="paramname">step</td><td>sampling step. </td></tr>
+    <tr><td class="paramname">binSize</td><td>bin size. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>new filter.</dd></dl>
+<p>The descriptor geometry matches the standard SIFT descriptor. </p>
+
+</div>
+</div>
+<a class="anchor" id="a09d5525ad7e16e2b9f3f1b9d273c85f6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_dsift_process </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlDsiftFilter.html">VlDsiftFilter</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float const *&#160;</td>
+          <td class="paramname"><em>im</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>DSIFT filter. </td></tr>
+    <tr><td class="paramname">im</td><td>image data. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a7d34c8e257c873f2ed580b046296d1ac"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_dsift_set_bounds </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlDsiftFilter.html">VlDsiftFilter</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>minX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>minY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>maxX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>maxY</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>DSIFT filter object. </td></tr>
+    <tr><td class="paramname">minX</td><td>bounding box minimum X coordinate. </td></tr>
+    <tr><td class="paramname">minY</td><td>bounding box minimum Y coordinate. </td></tr>
+    <tr><td class="paramname">maxX</td><td>bounding box maximum X coordinate. </td></tr>
+    <tr><td class="paramname">maxY</td><td>bounding box maximum Y coordinate. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a8dfe2d20dbe9885d0c139c5b81b5f4b0"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_dsift_set_flat_window </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlDsiftFilter.html">VlDsiftFilter</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a>&#160;</td>
+          <td class="paramname"><em>useFlatWindow</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>DSIFT filter object. </td></tr>
+    <tr><td class="paramname">useFlatWindow</td><td><code>true</code> if the DSIFT filter should use a flat window. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a930f20c25eab08d9490830b0a358ff2b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_dsift_set_geometry </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlDsiftFilter.html">VlDsiftFilter</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structVlDsiftDescriptorGeometry.html">VlDsiftDescriptorGeometry</a> const *&#160;</td>
+          <td class="paramname"><em>geom</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>DSIFT filter object. </td></tr>
+    <tr><td class="paramname">geom</td><td>descriptor geometry parameters. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a42ae6bf77a9b737fd1e45ad5c43263dd"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_dsift_set_steps </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlDsiftFilter.html">VlDsiftFilter</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>stepX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>stepY</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>DSIFT filter object. </td></tr>
+    <tr><td class="paramname">stepX</td><td>sampling step along X. </td></tr>
+    <tr><td class="paramname">stepY</td><td>sampling step along Y. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ae60fa31ff4df09e8025525714dac9563"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_dsift_set_window_size </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlDsiftFilter.html">VlDsiftFilter</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>windowSize</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>DSIFT filter object. </td></tr>
+    <tr><td class="paramname">windowSize</td><td>window size. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ab31145db21c1f0ed2e8843c159598526"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_dsift_transpose_descriptor </td>
+          <td>(</td>
+          <td class="paramtype">float *&#160;</td>
+          <td class="paramname"><em>dst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float const *&#160;</td>
+          <td class="paramname"><em>src</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>numBinT</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>numBinX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>numBinY</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dst</td><td>destination buffer. </td></tr>
+    <tr><td class="paramname">src</td><td>source buffer. </td></tr>
+    <tr><td class="paramname">numBinT</td><td></td></tr>
+    <tr><td class="paramname">numBinX</td><td></td></tr>
+    <tr><td class="paramname">numBinY</td><td>The function writes to <em>dst</em> the transpose of the SIFT descriptor <em>src</em>. Let <code>I</code> be an image. The transpose operator satisfies the equation <code>transpose(dsift(I,x,y)) = dsift(transpose(I),y,x)</code> </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+        <!-- Doc Here -->
+      </div>
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>

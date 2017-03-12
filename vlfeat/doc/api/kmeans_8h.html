@@ -1,0 +1,1555 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+  <!-- Page title -->
+  <title>VLFeat - Documentation > C API</title>
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  <link rel="stylesheet" type="text/css" href="doxygen.css"></link>
+  <!-- Scripts-->
+  <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li class='active'><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li class='active' class='activeLeaf'><a href="index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="../doc.html">Documentation</a></span><span class='separator'>></span><span class='page'><a href="index.html">C API</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+      <!-- <pagestyle href="%pathto:root;api/tabs.css"/> -->
+      <div class="doxygen">
+<div id="top">
+<div id="top">
+<!-- Generated by Doxygen 1.8.7 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li class="current"><a href="files.html"><span>Files</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>Globals</span></a></li>
+    </ul>
+  </div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_8dd540b382164c224dfa1eb6e8a3add6.html">vl</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Data Structures</a> &#124;
+<a href="#enum-members">Enumerations</a>  </div>
+  <div class="headertitle">
+<div class="title">kmeans.h File Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>K-means (<a class="el" href="kmeans.html">K-means clustering</a>)  
+<a href="#details">More...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="generic_8h.html">generic.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="random_8h.html">random.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="mathop_8h.html">mathop.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="kdtree_8h.html">kdtree.h</a>&quot;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVlKMeans.html">VlKMeans</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">K-means quantizer.  <a href="structVlKMeans.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:a4c431fed2c5377435e08cbad0040c9f3"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kmeans_8h.html#a4c431fed2c5377435e08cbad0040c9f3">VlKMeansAlgorithm</a> { <a class="el" href="kmeans_8h.html#a4c431fed2c5377435e08cbad0040c9f3a19e04f61cc224d6f970a6cba351d6692">VlKMeansLloyd</a>, 
+<a class="el" href="kmeans_8h.html#a4c431fed2c5377435e08cbad0040c9f3a5f262d513ca0a82ddb577bbe31aa164c">VlKMeansElkan</a>, 
+<a class="el" href="kmeans_8h.html#a4c431fed2c5377435e08cbad0040c9f3adc59056a09e72cdca518cfd6860d0ce4">VlKMeansANN</a>
+ }</td></tr>
+<tr class="memdesc:a4c431fed2c5377435e08cbad0040c9f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">K-means algorithms.  <a href="kmeans_8h.html#a4c431fed2c5377435e08cbad0040c9f3">More...</a><br /></td></tr>
+<tr class="separator:a4c431fed2c5377435e08cbad0040c9f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5a665f209dfbe8e9d53af18fdf489d5"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kmeans_8h.html#ab5a665f209dfbe8e9d53af18fdf489d5">VlKMeansInitialization</a> { <a class="el" href="kmeans_8h.html#ab5a665f209dfbe8e9d53af18fdf489d5a60e94b6baf611109b87ca291ff86943b">VlKMeansRandomSelection</a>, 
+<a class="el" href="kmeans_8h.html#ab5a665f209dfbe8e9d53af18fdf489d5a314ecb9e2d2f166ce7199e1a6cb0594a">VlKMeansPlusPlus</a>
+ }</td></tr>
+<tr class="memdesc:ab5a665f209dfbe8e9d53af18fdf489d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">K-means initialization algorithms.  <a href="kmeans_8h.html#ab5a665f209dfbe8e9d53af18fdf489d5">More...</a><br /></td></tr>
+<tr class="separator:ab5a665f209dfbe8e9d53af18fdf489d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Create and destroy</div></td></tr>
+<tr class="memitem:a868a729d2ea5b9f9fec15a18e0a27a76"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structVlKMeans.html">VlKMeans</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kmeans_8h.html#a868a729d2ea5b9f9fec15a18e0a27a76">vl_kmeans_new</a> (vl_type dataType, <a class="el" href="mathop_8h.html#aa4cc7d511f708d61bc8fe15c65ad6d74">VlVectorComparisonType</a> distance)</td></tr>
+<tr class="memdesc:a868a729d2ea5b9f9fec15a18e0a27a76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new KMeans object.  <a href="#a868a729d2ea5b9f9fec15a18e0a27a76">More...</a><br /></td></tr>
+<tr class="separator:a868a729d2ea5b9f9fec15a18e0a27a76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae251eb379788d26613057f0014bb15bd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structVlKMeans.html">VlKMeans</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kmeans_8h.html#ae251eb379788d26613057f0014bb15bd">vl_kmeans_new_copy</a> (<a class="el" href="structVlKMeans.html">VlKMeans</a> const *kmeans)</td></tr>
+<tr class="memdesc:ae251eb379788d26613057f0014bb15bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new KMeans object by copy.  <a href="#ae251eb379788d26613057f0014bb15bd">More...</a><br /></td></tr>
+<tr class="separator:ae251eb379788d26613057f0014bb15bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55a50b06dfd493861651200c61458609"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kmeans_8h.html#a55a50b06dfd493861651200c61458609">vl_kmeans_delete</a> (<a class="el" href="structVlKMeans.html">VlKMeans</a> *self)</td></tr>
+<tr class="memdesc:a55a50b06dfd493861651200c61458609"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes a KMeans object.  <a href="#a55a50b06dfd493861651200c61458609">More...</a><br /></td></tr>
+<tr class="separator:a55a50b06dfd493861651200c61458609"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Basic data processing</div></td></tr>
+<tr class="memitem:a77b5f58050110584e188534ad15c1dd0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kmeans_8h.html#a77b5f58050110584e188534ad15c1dd0">vl_kmeans_reset</a> (<a class="el" href="structVlKMeans.html">VlKMeans</a> *self)</td></tr>
+<tr class="memdesc:a77b5f58050110584e188534ad15c1dd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset state.  <a href="#a77b5f58050110584e188534ad15c1dd0">More...</a><br /></td></tr>
+<tr class="separator:a77b5f58050110584e188534ad15c1dd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f35fc9b75799b10a6e32ec81a9cd54d"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kmeans_8h.html#a3f35fc9b75799b10a6e32ec81a9cd54d">vl_kmeans_cluster</a> (<a class="el" href="structVlKMeans.html">VlKMeans</a> *self, void const *data, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> dimension, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> numData, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> numCenters)</td></tr>
+<tr class="memdesc:a3f35fc9b75799b10a6e32ec81a9cd54d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cluster data.  <a href="#a3f35fc9b75799b10a6e32ec81a9cd54d">More...</a><br /></td></tr>
+<tr class="separator:a3f35fc9b75799b10a6e32ec81a9cd54d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3649fe42a94e9b4945511b5665f82355"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kmeans_8h.html#a3649fe42a94e9b4945511b5665f82355">vl_kmeans_quantize</a> (<a class="el" href="structVlKMeans.html">VlKMeans</a> *self, <a class="el" href="host_8h.html#aeb7c862765448a70017105efa4d25e7a">vl_uint32</a> *assignments, void *distances, void const *data, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> numData)</td></tr>
+<tr class="memdesc:a3649fe42a94e9b4945511b5665f82355"><td class="mdescLeft">&#160;</td><td class="mdescRight">Quantize data.  <a href="#a3649fe42a94e9b4945511b5665f82355">More...</a><br /></td></tr>
+<tr class="separator:a3649fe42a94e9b4945511b5665f82355"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65cc82cb4ef740f5aab0bdce21ebeb13"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a65cc82cb4ef740f5aab0bdce21ebeb13"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>vl_kmeans_quantize_ANN</b> (<a class="el" href="structVlKMeans.html">VlKMeans</a> *self, <a class="el" href="host_8h.html#aeb7c862765448a70017105efa4d25e7a">vl_uint32</a> *assignments, void *distances, void const *data, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> numData, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> iteration)</td></tr>
+<tr class="separator:a65cc82cb4ef740f5aab0bdce21ebeb13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Advanced data processing</div></td></tr>
+<tr class="memitem:ac86bd2fa181f6e23e22a6ad92f25288c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kmeans_8h.html#ac86bd2fa181f6e23e22a6ad92f25288c">vl_kmeans_set_centers</a> (<a class="el" href="structVlKMeans.html">VlKMeans</a> *self, void const *centers, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> dimension, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> numCenters)</td></tr>
+<tr class="memdesc:ac86bd2fa181f6e23e22a6ad92f25288c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set centers.  <a href="#ac86bd2fa181f6e23e22a6ad92f25288c">More...</a><br /></td></tr>
+<tr class="separator:ac86bd2fa181f6e23e22a6ad92f25288c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4fca3ae363d35813cde918fddc41a456"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kmeans_8h.html#a4fca3ae363d35813cde918fddc41a456">vl_kmeans_init_centers_with_rand_data</a> (<a class="el" href="structVlKMeans.html">VlKMeans</a> *self, void const *data, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> dimensions, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> numData, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> numCenters)</td></tr>
+<tr class="memdesc:a4fca3ae363d35813cde918fddc41a456"><td class="mdescLeft">&#160;</td><td class="mdescRight">init centers by randomly sampling data  <a href="#a4fca3ae363d35813cde918fddc41a456">More...</a><br /></td></tr>
+<tr class="separator:a4fca3ae363d35813cde918fddc41a456"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08f5ecf2c5b1a75f7dacd6f29b922020"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kmeans_8h.html#a08f5ecf2c5b1a75f7dacd6f29b922020">vl_kmeans_init_centers_plus_plus</a> (<a class="el" href="structVlKMeans.html">VlKMeans</a> *self, void const *data, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> dimensions, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> numData, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> numCenters)</td></tr>
+<tr class="memdesc:a08f5ecf2c5b1a75f7dacd6f29b922020"><td class="mdescLeft">&#160;</td><td class="mdescRight">Seed centers by the KMeans++ algorithm.  <a href="#a08f5ecf2c5b1a75f7dacd6f29b922020">More...</a><br /></td></tr>
+<tr class="separator:a08f5ecf2c5b1a75f7dacd6f29b922020"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9fd1885e6b4742a93b4672f56eb9f2ce"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kmeans_8h.html#a9fd1885e6b4742a93b4672f56eb9f2ce">vl_kmeans_refine_centers</a> (<a class="el" href="structVlKMeans.html">VlKMeans</a> *self, void const *data, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> numData)</td></tr>
+<tr class="memdesc:a9fd1885e6b4742a93b4672f56eb9f2ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Refine center locations.  <a href="#a9fd1885e6b4742a93b4672f56eb9f2ce">More...</a><br /></td></tr>
+<tr class="separator:a9fd1885e6b4742a93b4672f56eb9f2ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Retrieve data and parameters</div></td></tr>
+<tr class="memitem:abc797cd0e7228d096313fd97b412a21c"><td class="memItemLeft" align="right" valign="top">vl_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kmeans_8h.html#abc797cd0e7228d096313fd97b412a21c">vl_kmeans_get_data_type</a> (<a class="el" href="structVlKMeans.html">VlKMeans</a> const *self)</td></tr>
+<tr class="memdesc:abc797cd0e7228d096313fd97b412a21c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get data type.  <a href="#abc797cd0e7228d096313fd97b412a21c">More...</a><br /></td></tr>
+<tr class="separator:abc797cd0e7228d096313fd97b412a21c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61bd032e28960a20cf86e8c77577b67e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="mathop_8h.html#aa4cc7d511f708d61bc8fe15c65ad6d74">VlVectorComparisonType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kmeans_8h.html#a61bd032e28960a20cf86e8c77577b67e">vl_kmeans_get_distance</a> (<a class="el" href="structVlKMeans.html">VlKMeans</a> const *self)</td></tr>
+<tr class="memdesc:a61bd032e28960a20cf86e8c77577b67e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get data type.  <a href="#a61bd032e28960a20cf86e8c77577b67e">More...</a><br /></td></tr>
+<tr class="separator:a61bd032e28960a20cf86e8c77577b67e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6d9f44be8b5d6fc71f11554de742a63"><td class="memItemLeft" align="right" valign="top"><a class="el" href="kmeans_8h.html#a4c431fed2c5377435e08cbad0040c9f3">VlKMeansAlgorithm</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kmeans_8h.html#ae6d9f44be8b5d6fc71f11554de742a63">vl_kmeans_get_algorithm</a> (<a class="el" href="structVlKMeans.html">VlKMeans</a> const *self)</td></tr>
+<tr class="memdesc:ae6d9f44be8b5d6fc71f11554de742a63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get K-means algorithm.  <a href="#ae6d9f44be8b5d6fc71f11554de742a63">More...</a><br /></td></tr>
+<tr class="separator:ae6d9f44be8b5d6fc71f11554de742a63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af920d0fc7e802901fd071eec3def47d2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="kmeans_8h.html#ab5a665f209dfbe8e9d53af18fdf489d5">VlKMeansInitialization</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kmeans_8h.html#af920d0fc7e802901fd071eec3def47d2">vl_kmeans_get_initialization</a> (<a class="el" href="structVlKMeans.html">VlKMeans</a> const *self)</td></tr>
+<tr class="memdesc:af920d0fc7e802901fd071eec3def47d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get K-means initialization algorithm.  <a href="#af920d0fc7e802901fd071eec3def47d2">More...</a><br /></td></tr>
+<tr class="separator:af920d0fc7e802901fd071eec3def47d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae84b1f054eacec5dd7cf2d54668ba181"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kmeans_8h.html#ae84b1f054eacec5dd7cf2d54668ba181">vl_kmeans_get_num_repetitions</a> (<a class="el" href="structVlKMeans.html">VlKMeans</a> const *self)</td></tr>
+<tr class="memdesc:ae84b1f054eacec5dd7cf2d54668ba181"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get maximum number of repetitions.  <a href="#ae84b1f054eacec5dd7cf2d54668ba181">More...</a><br /></td></tr>
+<tr class="separator:ae84b1f054eacec5dd7cf2d54668ba181"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16d8a8bb5d3d7484c4645561dc42ee53"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kmeans_8h.html#a16d8a8bb5d3d7484c4645561dc42ee53">vl_kmeans_get_dimension</a> (<a class="el" href="structVlKMeans.html">VlKMeans</a> const *self)</td></tr>
+<tr class="memdesc:a16d8a8bb5d3d7484c4645561dc42ee53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get data dimension.  <a href="#a16d8a8bb5d3d7484c4645561dc42ee53">More...</a><br /></td></tr>
+<tr class="separator:a16d8a8bb5d3d7484c4645561dc42ee53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acba49a529f1393cd04c02a6ef8e2cacd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kmeans_8h.html#acba49a529f1393cd04c02a6ef8e2cacd">vl_kmeans_get_num_centers</a> (<a class="el" href="structVlKMeans.html">VlKMeans</a> const *self)</td></tr>
+<tr class="memdesc:acba49a529f1393cd04c02a6ef8e2cacd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of centers (K)  <a href="#acba49a529f1393cd04c02a6ef8e2cacd">More...</a><br /></td></tr>
+<tr class="separator:acba49a529f1393cd04c02a6ef8e2cacd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7747422051ced08941d2306951445d79"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kmeans_8h.html#a7747422051ced08941d2306951445d79">vl_kmeans_get_verbosity</a> (<a class="el" href="structVlKMeans.html">VlKMeans</a> const *self)</td></tr>
+<tr class="memdesc:a7747422051ced08941d2306951445d79"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get verbosity level.  <a href="#a7747422051ced08941d2306951445d79">More...</a><br /></td></tr>
+<tr class="separator:a7747422051ced08941d2306951445d79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6312397c35e56ccd50ac1fa8dbc6bcc2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kmeans_8h.html#a6312397c35e56ccd50ac1fa8dbc6bcc2">vl_kmeans_get_max_num_iterations</a> (<a class="el" href="structVlKMeans.html">VlKMeans</a> const *self)</td></tr>
+<tr class="memdesc:a6312397c35e56ccd50ac1fa8dbc6bcc2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get maximum number of iterations.  <a href="#a6312397c35e56ccd50ac1fa8dbc6bcc2">More...</a><br /></td></tr>
+<tr class="separator:a6312397c35e56ccd50ac1fa8dbc6bcc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49bb2db622503ca24038be22e76aae24"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kmeans_8h.html#a49bb2db622503ca24038be22e76aae24">vl_kmeans_get_min_energy_variation</a> (<a class="el" href="structVlKMeans.html">VlKMeans</a> const *self)</td></tr>
+<tr class="memdesc:a49bb2db622503ca24038be22e76aae24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the minimum relative energy variation for convergence.  <a href="#a49bb2db622503ca24038be22e76aae24">More...</a><br /></td></tr>
+<tr class="separator:a49bb2db622503ca24038be22e76aae24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec83e043931adc13fe73f3e0a0586600"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kmeans_8h.html#aec83e043931adc13fe73f3e0a0586600">vl_kmeans_get_max_num_comparisons</a> (<a class="el" href="structVlKMeans.html">VlKMeans</a> const *self)</td></tr>
+<tr class="memdesc:aec83e043931adc13fe73f3e0a0586600"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the maximum number of comparisons in the KD-forest ANN algorithm.  <a href="#aec83e043931adc13fe73f3e0a0586600">More...</a><br /></td></tr>
+<tr class="separator:aec83e043931adc13fe73f3e0a0586600"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aedc4960679b0b01782b0a803cb2cc9b8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aedc4960679b0b01782b0a803cb2cc9b8"></a>
+<a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td><td class="memItemRight" valign="bottom"><b>vl_kmeans_get_num_trees</b> (<a class="el" href="structVlKMeans.html">VlKMeans</a> const *self)</td></tr>
+<tr class="separator:aedc4960679b0b01782b0a803cb2cc9b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02365a4146fabad03f76bb4cdad7cb77"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kmeans_8h.html#a02365a4146fabad03f76bb4cdad7cb77">vl_kmeans_get_energy</a> (<a class="el" href="structVlKMeans.html">VlKMeans</a> const *self)</td></tr>
+<tr class="memdesc:a02365a4146fabad03f76bb4cdad7cb77"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number energy of the current fit.  <a href="#a02365a4146fabad03f76bb4cdad7cb77">More...</a><br /></td></tr>
+<tr class="separator:a02365a4146fabad03f76bb4cdad7cb77"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69ecb61159ce9418679f5283c5cb427a"><td class="memItemLeft" align="right" valign="top">void const *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kmeans_8h.html#a69ecb61159ce9418679f5283c5cb427a">vl_kmeans_get_centers</a> (<a class="el" href="structVlKMeans.html">VlKMeans</a> const *self)</td></tr>
+<tr class="memdesc:a69ecb61159ce9418679f5283c5cb427a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get centers.  <a href="#a69ecb61159ce9418679f5283c5cb427a">More...</a><br /></td></tr>
+<tr class="separator:a69ecb61159ce9418679f5283c5cb427a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Set parameters</div></td></tr>
+<tr class="memitem:ae2ab27c25bb4730d854219af20f37804"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kmeans_8h.html#ae2ab27c25bb4730d854219af20f37804">vl_kmeans_set_algorithm</a> (<a class="el" href="structVlKMeans.html">VlKMeans</a> *self, <a class="el" href="kmeans_8h.html#a4c431fed2c5377435e08cbad0040c9f3">VlKMeansAlgorithm</a> algorithm)</td></tr>
+<tr class="memdesc:ae2ab27c25bb4730d854219af20f37804"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set K-means algorithm.  <a href="#ae2ab27c25bb4730d854219af20f37804">More...</a><br /></td></tr>
+<tr class="separator:ae2ab27c25bb4730d854219af20f37804"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c61513feb74bb5393326ed3cced2650"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kmeans_8h.html#a7c61513feb74bb5393326ed3cced2650">vl_kmeans_set_initialization</a> (<a class="el" href="structVlKMeans.html">VlKMeans</a> *self, <a class="el" href="kmeans_8h.html#ab5a665f209dfbe8e9d53af18fdf489d5">VlKMeansInitialization</a> initialization)</td></tr>
+<tr class="memdesc:a7c61513feb74bb5393326ed3cced2650"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set K-means initialization algorithm.  <a href="#a7c61513feb74bb5393326ed3cced2650">More...</a><br /></td></tr>
+<tr class="separator:a7c61513feb74bb5393326ed3cced2650"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a1095cdba2192ee48e15d19144315fb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kmeans_8h.html#a7a1095cdba2192ee48e15d19144315fb">vl_kmeans_set_num_repetitions</a> (<a class="el" href="structVlKMeans.html">VlKMeans</a> *self, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> numRepetitions)</td></tr>
+<tr class="memdesc:a7a1095cdba2192ee48e15d19144315fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set maximum number of repetitions.  <a href="#a7a1095cdba2192ee48e15d19144315fb">More...</a><br /></td></tr>
+<tr class="separator:a7a1095cdba2192ee48e15d19144315fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34f80e7e3f4c7213366b88169cc2f70f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kmeans_8h.html#a34f80e7e3f4c7213366b88169cc2f70f">vl_kmeans_set_max_num_iterations</a> (<a class="el" href="structVlKMeans.html">VlKMeans</a> *self, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> maxNumIterations)</td></tr>
+<tr class="memdesc:a34f80e7e3f4c7213366b88169cc2f70f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set maximum number of iterations.  <a href="#a34f80e7e3f4c7213366b88169cc2f70f">More...</a><br /></td></tr>
+<tr class="separator:a34f80e7e3f4c7213366b88169cc2f70f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa807a9a807f80ad1dc5359a81e06566b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kmeans_8h.html#aa807a9a807f80ad1dc5359a81e06566b">vl_kmeans_set_min_energy_variation</a> (<a class="el" href="structVlKMeans.html">VlKMeans</a> *self, double minEnergyVariation)</td></tr>
+<tr class="memdesc:aa807a9a807f80ad1dc5359a81e06566b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the maximum relative energy variation for convergence.  <a href="#aa807a9a807f80ad1dc5359a81e06566b">More...</a><br /></td></tr>
+<tr class="separator:aa807a9a807f80ad1dc5359a81e06566b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2411b97e440ef5419657c41273d38cb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kmeans_8h.html#af2411b97e440ef5419657c41273d38cb">vl_kmeans_set_verbosity</a> (<a class="el" href="structVlKMeans.html">VlKMeans</a> *self, int verbosity)</td></tr>
+<tr class="memdesc:af2411b97e440ef5419657c41273d38cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set verbosity level.  <a href="#af2411b97e440ef5419657c41273d38cb">More...</a><br /></td></tr>
+<tr class="separator:af2411b97e440ef5419657c41273d38cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac19079ea46c3b5d719dc66f81b38bb5a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kmeans_8h.html#ac19079ea46c3b5d719dc66f81b38bb5a">vl_kmeans_set_max_num_comparisons</a> (<a class="el" href="structVlKMeans.html">VlKMeans</a> *self, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> maxNumComparisons)</td></tr>
+<tr class="memdesc:ac19079ea46c3b5d719dc66f81b38bb5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set maximum number of comparisons in ANN-KD-Tree.  <a href="#ac19079ea46c3b5d719dc66f81b38bb5a">More...</a><br /></td></tr>
+<tr class="separator:ac19079ea46c3b5d719dc66f81b38bb5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a607e91823a83cbcb9c5eaecab99843"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kmeans_8h.html#a1a607e91823a83cbcb9c5eaecab99843">vl_kmeans_set_num_trees</a> (<a class="el" href="structVlKMeans.html">VlKMeans</a> *self, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> numTrees)</td></tr>
+<tr class="memdesc:a1a607e91823a83cbcb9c5eaecab99843"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the number of trees in the KD-forest ANN algorithm.  <a href="#a1a607e91823a83cbcb9c5eaecab99843">More...</a><br /></td></tr>
+<tr class="separator:a1a607e91823a83cbcb9c5eaecab99843"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><dl class="section author"><dt>Author</dt><dd>Andrea Vedaldi </dd>
+<dd>
+David Novotny </dd></dl>
+</div><h2 class="groupheader">Enumeration Type Documentation</h2>
+<a class="anchor" id="a4c431fed2c5377435e08cbad0040c9f3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="kmeans_8h.html#a4c431fed2c5377435e08cbad0040c9f3">VlKMeansAlgorithm</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a class="anchor" id="a4c431fed2c5377435e08cbad0040c9f3a19e04f61cc224d6f970a6cba351d6692"></a>VlKMeansLloyd&#160;</td><td class="fielddoc">
+<p>Lloyd algorithm </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="a4c431fed2c5377435e08cbad0040c9f3a5f262d513ca0a82ddb577bbe31aa164c"></a>VlKMeansElkan&#160;</td><td class="fielddoc">
+<p>Elkan algorithm </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="a4c431fed2c5377435e08cbad0040c9f3adc59056a09e72cdca518cfd6860d0ce4"></a>VlKMeansANN&#160;</td><td class="fielddoc">
+<p>Approximate nearest neighbors </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a class="anchor" id="ab5a665f209dfbe8e9d53af18fdf489d5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="kmeans_8h.html#ab5a665f209dfbe8e9d53af18fdf489d5">VlKMeansInitialization</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a class="anchor" id="ab5a665f209dfbe8e9d53af18fdf489d5a60e94b6baf611109b87ca291ff86943b"></a>VlKMeansRandomSelection&#160;</td><td class="fielddoc">
+<p>Randomized selection </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="ab5a665f209dfbe8e9d53af18fdf489d5a314ecb9e2d2f166ce7199e1a6cb0594a"></a>VlKMeansPlusPlus&#160;</td><td class="fielddoc">
+<p>Plus plus raondomized selection </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a3f35fc9b75799b10a6e32ec81a9cd54d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double vl_kmeans_cluster </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlKMeans.html">VlKMeans</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void const *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>dimension</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>numData</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>numCenters</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>KMeans object. </td></tr>
+    <tr><td class="paramname">data</td><td>data to quantize. </td></tr>
+    <tr><td class="paramname">dimension</td><td>data dimension. </td></tr>
+    <tr><td class="paramname">numData</td><td>number of data points. </td></tr>
+    <tr><td class="paramname">numCenters</td><td>number of clusters. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>K-means energy at the end of optimization.</dd></dl>
+<p>The function initializes the centers by using the initialization algorithm set by <a class="el" href="kmeans_8h.html#a7c61513feb74bb5393326ed3cced2650" title="Set K-means initialization algorithm. ">vl_kmeans_set_initialization</a> and refines them by the quantization algorithm set by <a class="el" href="kmeans_8h.html#ae2ab27c25bb4730d854219af20f37804" title="Set K-means algorithm. ">vl_kmeans_set_algorithm</a>. The process is repeated one or more times (see <a class="el" href="kmeans_8h.html#a7a1095cdba2192ee48e15d19144315fb" title="Set maximum number of repetitions. ">vl_kmeans_set_num_repetitions</a>) and the resutl with smaller energy is retained. </p>
+
+</div>
+</div>
+<a class="anchor" id="a55a50b06dfd493861651200c61458609"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_kmeans_delete </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlKMeans.html">VlKMeans</a> *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>KMeans object instance.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The function deletes the KMeans object instance created by <a class="el" href="kmeans_8c.html#a868a729d2ea5b9f9fec15a18e0a27a76" title="Create a new KMeans object. ">vl_kmeans_new</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="ae6d9f44be8b5d6fc71f11554de742a63"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="kmeans_8h.html#a4c431fed2c5377435e08cbad0040c9f3">VlKMeansAlgorithm</a> vl_kmeans_get_algorithm </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlKMeans.html">VlKMeans</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>KMeans object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>algorithm. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a69ecb61159ce9418679f5283c5cb427a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void const * vl_kmeans_get_centers </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlKMeans.html">VlKMeans</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>KMeans object instance. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>cluster centers. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="abc797cd0e7228d096313fd97b412a21c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vl_type vl_kmeans_get_data_type </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlKMeans.html">VlKMeans</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>KMeans object instance. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>data type. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a16d8a8bb5d3d7484c4645561dc42ee53"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> vl_kmeans_get_dimension </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlKMeans.html">VlKMeans</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>KMeans object instance. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>data dimension. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a61bd032e28960a20cf86e8c77577b67e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="mathop_8h.html#aa4cc7d511f708d61bc8fe15c65ad6d74">VlVectorComparisonType</a> vl_kmeans_get_distance </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlKMeans.html">VlKMeans</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>KMeans object instance. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>data type. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a02365a4146fabad03f76bb4cdad7cb77"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double vl_kmeans_get_energy </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlKMeans.html">VlKMeans</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>KMeans object instance. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>energy. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="af920d0fc7e802901fd071eec3def47d2"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="kmeans_8h.html#ab5a665f209dfbe8e9d53af18fdf489d5">VlKMeansInitialization</a> vl_kmeans_get_initialization </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlKMeans.html">VlKMeans</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>KMeans object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>algorithm. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aec83e043931adc13fe73f3e0a0586600"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> vl_kmeans_get_max_num_comparisons </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlKMeans.html">VlKMeans</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>KMeans object instance. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>maximum number of comparisons. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a6312397c35e56ccd50ac1fa8dbc6bcc2"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> vl_kmeans_get_max_num_iterations </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlKMeans.html">VlKMeans</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>KMeans object instance. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>maximum number of iterations. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a49bb2db622503ca24038be22e76aae24"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double vl_kmeans_get_min_energy_variation </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlKMeans.html">VlKMeans</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>KMeans object instance. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>minimum energy variation. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="acba49a529f1393cd04c02a6ef8e2cacd"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> vl_kmeans_get_num_centers </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlKMeans.html">VlKMeans</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>KMeans object instance. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>number of centers. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ae84b1f054eacec5dd7cf2d54668ba181"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> vl_kmeans_get_num_repetitions </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlKMeans.html">VlKMeans</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>KMeans object instance. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>current number of repretitions for quantization. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a7747422051ced08941d2306951445d79"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int vl_kmeans_get_verbosity </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlKMeans.html">VlKMeans</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>KMeans object instance. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>verbosity level. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a08f5ecf2c5b1a75f7dacd6f29b922020"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_kmeans_init_centers_plus_plus </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlKMeans.html">VlKMeans</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void const *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>dimension</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>numData</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>numCenters</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>KMeans object. </td></tr>
+    <tr><td class="paramname">data</td><td>data to sample from. </td></tr>
+    <tr><td class="paramname">dimension</td><td>data dimension. </td></tr>
+    <tr><td class="paramname">numData</td><td>nmber of data points. </td></tr>
+    <tr><td class="paramname">numCenters</td><td>number of centers. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a4fca3ae363d35813cde918fddc41a456"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_kmeans_init_centers_with_rand_data </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlKMeans.html">VlKMeans</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void const *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>dimension</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>numData</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>numCenters</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>KMeans object. </td></tr>
+    <tr><td class="paramname">data</td><td>data to sample from. </td></tr>
+    <tr><td class="paramname">dimension</td><td>data dimension. </td></tr>
+    <tr><td class="paramname">numData</td><td>nmber of data points. </td></tr>
+    <tr><td class="paramname">numCenters</td><td>number of centers.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The function inits the KMeans centers by randomly sampling the data <em>data</em>. </p>
+
+</div>
+</div>
+<a class="anchor" id="a868a729d2ea5b9f9fec15a18e0a27a76"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structVlKMeans.html">VlKMeans</a>* vl_kmeans_new </td>
+          <td>(</td>
+          <td class="paramtype">vl_type&#160;</td>
+          <td class="paramname"><em>dataType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="mathop_8h.html#aa4cc7d511f708d61bc8fe15c65ad6d74">VlVectorComparisonType</a>&#160;</td>
+          <td class="paramname"><em>distance</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dataType</td><td>type of data (<a class="el" href="generic_8h.html#aa034d0b942f9800b2a02aeb30ff10fa2">VL_TYPE_FLOAT</a> or <a class="el" href="generic_8h.html#a41d6691dac0cc3648ca9701d27e5d2b0">VL_TYPE_DOUBLE</a>) </td></tr>
+    <tr><td class="paramname">distance</td><td>distance. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>new KMeans object instance. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ae251eb379788d26613057f0014bb15bd"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structVlKMeans.html">VlKMeans</a>* vl_kmeans_new_copy </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlKMeans.html">VlKMeans</a> const *&#160;</td>
+          <td class="paramname"><em>kmeans</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">kmeans</td><td>KMeans object to copy. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>new copy. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a3649fe42a94e9b4945511b5665f82355"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_kmeans_quantize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlKMeans.html">VlKMeans</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#aeb7c862765448a70017105efa4d25e7a">vl_uint32</a> *&#160;</td>
+          <td class="paramname"><em>assignments</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>distances</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void const *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>numData</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>KMeans object. </td></tr>
+    <tr><td class="paramname">assignments</td><td>data to closest center assignments (output). </td></tr>
+    <tr><td class="paramname">distances</td><td>data to closest center distance (output). </td></tr>
+    <tr><td class="paramname">data</td><td>data to quantize. </td></tr>
+    <tr><td class="paramname">numData</td><td>number of data points to quantize. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a9fd1885e6b4742a93b4672f56eb9f2ce"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double vl_kmeans_refine_centers </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlKMeans.html">VlKMeans</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void const *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>numData</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>KMeans object. </td></tr>
+    <tr><td class="paramname">data</td><td>data to quantize. </td></tr>
+    <tr><td class="paramname">numData</td><td>number of data points. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>K-means energy at the end of optimization.</dd></dl>
+<p>The function calls the underlying K-means quantization algorithm (<a class="el" href="kmeans_8h.html#a4c431fed2c5377435e08cbad0040c9f3">VlKMeansAlgorithm</a>) to quantize the specified data <em>data</em>. The function assumes that the cluster centers have already been assigned by using one of the seeding functions, or by setting them. </p>
+
+</div>
+</div>
+<a class="anchor" id="a77b5f58050110584e188534ad15c1dd0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_kmeans_reset </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlKMeans.html">VlKMeans</a> *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The function reset the state of the KMeans object. It deletes any stored centers, releasing the corresponding memory. This cancels the effect of seeding or setting the centers, but does not change the other configuration parameters. </p>
+
+</div>
+</div>
+<a class="anchor" id="ae2ab27c25bb4730d854219af20f37804"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_kmeans_set_algorithm </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlKMeans.html">VlKMeans</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="kmeans_8h.html#a4c431fed2c5377435e08cbad0040c9f3">VlKMeansAlgorithm</a>&#160;</td>
+          <td class="paramname"><em>algorithm</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>KMeans object. </td></tr>
+    <tr><td class="paramname">algorithm</td><td>K-means algorithm. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ac86bd2fa181f6e23e22a6ad92f25288c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_kmeans_set_centers </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlKMeans.html">VlKMeans</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void const *&#160;</td>
+          <td class="paramname"><em>centers</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>dimension</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>numCenters</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>KMeans object. </td></tr>
+    <tr><td class="paramname">centers</td><td>centers to copy. </td></tr>
+    <tr><td class="paramname">dimension</td><td>data dimension. </td></tr>
+    <tr><td class="paramname">numCenters</td><td>number of centers. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a7c61513feb74bb5393326ed3cced2650"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_kmeans_set_initialization </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlKMeans.html">VlKMeans</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="kmeans_8h.html#ab5a665f209dfbe8e9d53af18fdf489d5">VlKMeansInitialization</a>&#160;</td>
+          <td class="paramname"><em>initialization</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>KMeans object. </td></tr>
+    <tr><td class="paramname">initialization</td><td>initialization. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ac19079ea46c3b5d719dc66f81b38bb5a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_kmeans_set_max_num_comparisons </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlKMeans.html">VlKMeans</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>maxNumComparisons</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>KMeans filter. </td></tr>
+    <tr><td class="paramname">maxNumComparisons</td><td>maximum number of comparisons. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a34f80e7e3f4c7213366b88169cc2f70f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_kmeans_set_max_num_iterations </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlKMeans.html">VlKMeans</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>maxNumIterations</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>KMeans filter. </td></tr>
+    <tr><td class="paramname">maxNumIterations</td><td>maximum number of iterations. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="aa807a9a807f80ad1dc5359a81e06566b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_kmeans_set_min_energy_variation </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlKMeans.html">VlKMeans</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>minEnergyVariation</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>KMeans object instance. </td></tr>
+    <tr><td class="paramname">minEnergyVariation</td><td>maximum number of repetitions. The variation cannot be negative.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The relative energy variation is calculated after the \(t\)-th update to the parameters as:</p>
+<p class="formulaDsp">
+\[ \epsilon_t = \frac{E_{t-1} - E_t}{E_0 - E_t} \]
+</p>
+<p>Note that this quantitiy is non-negative since \(E_{t+1} \leq E_t\). Hence, \(\epsilon_t\) is the improvement to the energy made in the last iteration compared to the total improvement so far. The algorithm stops if this value is less or equal than <em>minEnergyVariation</em>.</p>
+<p>This test is applied only to the LLoyd and ANN algorithms. </p>
+
+</div>
+</div>
+<a class="anchor" id="a7a1095cdba2192ee48e15d19144315fb"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_kmeans_set_num_repetitions </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlKMeans.html">VlKMeans</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>numRepetitions</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>KMeans object instance. </td></tr>
+    <tr><td class="paramname">numRepetitions</td><td>maximum number of repetitions. The number of repetitions cannot be smaller than 1. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a1a607e91823a83cbcb9c5eaecab99843"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_kmeans_set_num_trees </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlKMeans.html">VlKMeans</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>numTrees</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>KMeans object instance. </td></tr>
+    <tr><td class="paramname">numTrees</td><td>number of trees to use. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="af2411b97e440ef5419657c41273d38cb"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_kmeans_set_verbosity </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlKMeans.html">VlKMeans</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>verbosity</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>KMeans object instance. </td></tr>
+    <tr><td class="paramname">verbosity</td><td>verbosity level. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+        <!-- Doc Here -->
+      </div>
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>

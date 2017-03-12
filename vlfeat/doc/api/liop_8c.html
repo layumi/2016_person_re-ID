@@ -1,0 +1,611 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+  <!-- Page title -->
+  <title>VLFeat - Documentation > C API</title>
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  <link rel="stylesheet" type="text/css" href="doxygen.css"></link>
+  <!-- Scripts-->
+  <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li class='active'><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li class='active' class='activeLeaf'><a href="index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="../doc.html">Documentation</a></span><span class='separator'>></span><span class='page'><a href="index.html">C API</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+      <!-- <pagestyle href="%pathto:root;api/tabs.css"/> -->
+      <div class="doxygen">
+<div id="top">
+<div id="top">
+<!-- Generated by Doxygen 1.8.7 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li class="current"><a href="files.html"><span>Files</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>Globals</span></a></li>
+    </ul>
+  </div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_8dd540b382164c224dfa1eb6e8a3add6.html">vl</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">liop.c File Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Local Intensity Order Pattern (LIOP) descriptor - Definition.  
+<a href="#details">More...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="liop_8h.html">liop.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="mathop_8h.html">mathop.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="imopv_8h.html">imopv.h</a>&quot;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="qsort-def_8h.html">qsort-def.h</a>&quot;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a4ea5d8f10dc339704875072b27e71737"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#a66417c5847876295ea87b38140073879">vl_index</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="liop_8c.html#a4ea5d8f10dc339704875072b27e71737">get_permutation_index</a> (<a class="el" href="host_8h.html#ac13bd3cc913e1da576e189a3ec8d66fc">vl_uindex</a> *permutation, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> size)</td></tr>
+<tr class="memdesc:a4ea5d8f10dc339704875072b27e71737"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute permutation index.  <a href="#a4ea5d8f10dc339704875072b27e71737">More...</a><br /></td></tr>
+<tr class="separator:a4ea5d8f10dc339704875072b27e71737"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58f0187de91697299f22036831453a9e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structVlLiopDesc.html">VlLiopDesc</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="liop_8c.html#a58f0187de91697299f22036831453a9e">vl_liopdesc_new</a> (<a class="el" href="host_8h.html#a8127af01f6220099c1dd4ec579f5ae09">vl_int</a> numNeighbours, <a class="el" href="host_8h.html#a8127af01f6220099c1dd4ec579f5ae09">vl_int</a> numSpatialBins, float radius, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> sideLength)</td></tr>
+<tr class="memdesc:a58f0187de91697299f22036831453a9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new LIOP object instance.  <a href="#a58f0187de91697299f22036831453a9e">More...</a><br /></td></tr>
+<tr class="separator:a58f0187de91697299f22036831453a9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62182ec2c1ee31d0eba5b7203f64f8bc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structVlLiopDesc.html">VlLiopDesc</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="liop_8c.html#a62182ec2c1ee31d0eba5b7203f64f8bc">vl_liopdesc_new_basic</a> (<a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> sideLength)</td></tr>
+<tr class="memdesc:a62182ec2c1ee31d0eba5b7203f64f8bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new object with default parameters.  <a href="#a62182ec2c1ee31d0eba5b7203f64f8bc">More...</a><br /></td></tr>
+<tr class="separator:a62182ec2c1ee31d0eba5b7203f64f8bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e765f1f59a64454f05999de06e48d28"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="liop_8c.html#a2e765f1f59a64454f05999de06e48d28">vl_liopdesc_delete</a> (<a class="el" href="structVlLiopDesc.html">VlLiopDesc</a> *self)</td></tr>
+<tr class="memdesc:a2e765f1f59a64454f05999de06e48d28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete object instance.  <a href="#a2e765f1f59a64454f05999de06e48d28">More...</a><br /></td></tr>
+<tr class="separator:a2e765f1f59a64454f05999de06e48d28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33e638228068ce2674b23eee7af5ce43"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="liop_8c.html#a33e638228068ce2674b23eee7af5ce43">vl_liopdesc_process</a> (<a class="el" href="structVlLiopDesc.html">VlLiopDesc</a> *self, float *desc, float const *patch)</td></tr>
+<tr class="memdesc:a33e638228068ce2674b23eee7af5ce43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute liop descriptor for a patch.  <a href="#a33e638228068ce2674b23eee7af5ce43">More...</a><br /></td></tr>
+<tr class="separator:a33e638228068ce2674b23eee7af5ce43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea42b7981535254d18c8d55a4c32f606"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="liop_8c.html#aea42b7981535254d18c8d55a4c32f606">vl_liopdesc_get_dimension</a> (<a class="el" href="structVlLiopDesc.html">VlLiopDesc</a> const *self)</td></tr>
+<tr class="memdesc:aea42b7981535254d18c8d55a4c32f606"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the dimension of a LIOP descriptor.  <a href="#aea42b7981535254d18c8d55a4c32f606">More...</a><br /></td></tr>
+<tr class="separator:aea42b7981535254d18c8d55a4c32f606"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac90f67676f91f17d9f3b51df4dab4730"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="liop_8c.html#ac90f67676f91f17d9f3b51df4dab4730">vl_liopdesc_get_num_neighbours</a> (<a class="el" href="structVlLiopDesc.html">VlLiopDesc</a> const *self)</td></tr>
+<tr class="memdesc:ac90f67676f91f17d9f3b51df4dab4730"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of neighbours.  <a href="#ac90f67676f91f17d9f3b51df4dab4730">More...</a><br /></td></tr>
+<tr class="separator:ac90f67676f91f17d9f3b51df4dab4730"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad861a14df3f0236ca908726c9fbe269a"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="liop_8c.html#ad861a14df3f0236ca908726c9fbe269a">vl_liopdesc_get_intensity_threshold</a> (<a class="el" href="structVlLiopDesc.html">VlLiopDesc</a> const *self)</td></tr>
+<tr class="memdesc:ad861a14df3f0236ca908726c9fbe269a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the intensity threshold.  <a href="#ad861a14df3f0236ca908726c9fbe269a">More...</a><br /></td></tr>
+<tr class="separator:ad861a14df3f0236ca908726c9fbe269a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d385f07442b954b658ae419abdd31eb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="liop_8c.html#a1d385f07442b954b658ae419abdd31eb">vl_liopdesc_set_intensity_threshold</a> (<a class="el" href="structVlLiopDesc.html">VlLiopDesc</a> *self, float x)</td></tr>
+<tr class="memdesc:a1d385f07442b954b658ae419abdd31eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the intensity threshold.  <a href="#a1d385f07442b954b658ae419abdd31eb">More...</a><br /></td></tr>
+<tr class="separator:a1d385f07442b954b658ae419abdd31eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a409893390d672968c871861a37c3dc0c"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="liop_8c.html#a409893390d672968c871861a37c3dc0c">vl_liopdesc_get_neighbourhood_radius</a> (<a class="el" href="structVlLiopDesc.html">VlLiopDesc</a> const *self)</td></tr>
+<tr class="memdesc:a409893390d672968c871861a37c3dc0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the neighbourhood radius.  <a href="#a409893390d672968c871861a37c3dc0c">More...</a><br /></td></tr>
+<tr class="separator:a409893390d672968c871861a37c3dc0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbb31827623d0b7f7957ba76e6a705cb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="liop_8c.html#afbb31827623d0b7f7957ba76e6a705cb">vl_liopdesc_get_num_spatial_bins</a> (<a class="el" href="structVlLiopDesc.html">VlLiopDesc</a> const *self)</td></tr>
+<tr class="memdesc:afbb31827623d0b7f7957ba76e6a705cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of spatial bins.  <a href="#afbb31827623d0b7f7957ba76e6a705cb">More...</a><br /></td></tr>
+<tr class="separator:afbb31827623d0b7f7957ba76e6a705cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><dl class="section author"><dt>Author</dt><dd>Hana Sarbortova </dd>
+<dd>
+Andrea Vedaldi </dd></dl>
+</div><h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a4ea5d8f10dc339704875072b27e71737"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#a66417c5847876295ea87b38140073879">vl_index</a> get_permutation_index </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="host_8h.html#ac13bd3cc913e1da576e189a3ec8d66fc">vl_uindex</a> *&#160;</td>
+          <td class="paramname"><em>permutation</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">permutation</td><td>array containing all values from 0 to (size - 1) (input/output). </td></tr>
+    <tr><td class="paramname">size</td><td>size of the permutation array. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>permutation index.</dd></dl>
+<p>Compute the position of <em>permutation</em> in the lexycographcial sorting of permutations of the given <em>size</em>.</p>
+<p>For example, in the lexicographical ordering, permutations of four elements are listed as [1 2 3 4], [1 2 4 3], [1 3 2 4], [1 3 4 2], [1 4 2 3], [1 4 3 2], [2 1 3 4], ..., [4 3 2 1].</p>
+<p>The index can be computed as follows. First pick the first digit perm[1]. This is either 1,2,...,n. For each choice of the first digits, there are (n-1)! other permutations, separated therefore by (n-1)! elements in lexicographical order.</p>
+<p>Process then the second digit perm[2]. This can be though as finding the lexycotraphical index of perm[2], ..., perm[n], a permutation of n-1 elements. This can be explicitly obtained by taking out 1 from all elements perm[i] &gt; perm[1]. </p>
+
+</div>
+</div>
+<a class="anchor" id="a2e765f1f59a64454f05999de06e48d28"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_liopdesc_delete </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlLiopDesc.html">VlLiopDesc</a> *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object instance. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="aea42b7981535254d18c8d55a4c32f606"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> vl_liopdesc_get_dimension </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlLiopDesc.html">VlLiopDesc</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>dimension. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ad861a14df3f0236ca908726c9fbe269a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float vl_liopdesc_get_intensity_threshold </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlLiopDesc.html">VlLiopDesc</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>intensity threshold. </dd></dl>
+<dl class="section see"><dt>See also</dt><dd>liop-weighing </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a409893390d672968c871861a37c3dc0c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double vl_liopdesc_get_neighbourhood_radius </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlLiopDesc.html">VlLiopDesc</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>neighbourhood radius. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ac90f67676f91f17d9f3b51df4dab4730"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> vl_liopdesc_get_num_neighbours </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlLiopDesc.html">VlLiopDesc</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>number of neighbours. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="afbb31827623d0b7f7957ba76e6a705cb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> vl_liopdesc_get_num_spatial_bins </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlLiopDesc.html">VlLiopDesc</a> const *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>number of spatial bins. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a58f0187de91697299f22036831453a9e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structVlLiopDesc.html">VlLiopDesc</a>* vl_liopdesc_new </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a8127af01f6220099c1dd4ec579f5ae09">vl_int</a>&#160;</td>
+          <td class="paramname"><em>numNeighbours</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a8127af01f6220099c1dd4ec579f5ae09">vl_int</a>&#160;</td>
+          <td class="paramname"><em>numSpatialBins</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>radius</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>sideLength</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">numNeighbours</td><td>number of neighbours. </td></tr>
+    <tr><td class="paramname">numSpatialBins</td><td>number of bins. </td></tr>
+    <tr><td class="paramname">radius</td><td>radius of the cirucal sample neighbourhoods. </td></tr>
+    <tr><td class="paramname">sideLength</td><td>width of the input image patch (the patch is square). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>new object instance.</dd></dl>
+<p>The value of <em>radius</em> should be at least less than half the <em>sideLength</em> of the patch. </p>
+
+</div>
+</div>
+<a class="anchor" id="a62182ec2c1ee31d0eba5b7203f64f8bc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structVlLiopDesc.html">VlLiopDesc</a>* vl_liopdesc_new_basic </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>sideLength</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sideLength</td><td>size of the patches to be processed. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>new object.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="liop_8c.html#a58f0187de91697299f22036831453a9e" title="Create a new LIOP object instance. ">vl_liopdesc_new</a>. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a33e638228068ce2674b23eee7af5ce43"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_liopdesc_process </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlLiopDesc.html">VlLiopDesc</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *&#160;</td>
+          <td class="paramname"><em>desc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float const *&#160;</td>
+          <td class="paramname"><em>patch</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object instance </td></tr>
+    <tr><td class="paramname">desc</td><td>descriptor to be computed (output). </td></tr>
+    <tr><td class="paramname">patch</td><td>patch to process</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Use <a class="el" href="liop_8c.html#aea42b7981535254d18c8d55a4c32f606" title="Get the dimension of a LIOP descriptor. ">vl_liopdesc_get_dimension</a> to get the size of the descriptor <em>desc</em>. </p>
+
+</div>
+</div>
+<a class="anchor" id="a1d385f07442b954b658ae419abdd31eb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_liopdesc_set_intensity_threshold </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlLiopDesc.html">VlLiopDesc</a> *&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>x</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>object. </td></tr>
+    <tr><td class="paramname">x</td><td>intensity threshold.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>If non-negative, the threshold as is is used when comparing intensities. If negative, the absolute value of the specified number is multipled by the maximum intensity difference inside a patch to obtain the threshold.</p>
+<dl class="section see"><dt>See also</dt><dd>liop-weighing </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+        <!-- Doc Here -->
+      </div>
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>

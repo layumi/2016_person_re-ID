@@ -1,0 +1,691 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+  <!-- Page title -->
+  <title>VLFeat - Documentation > C API</title>
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  <link rel="stylesheet" type="text/css" href="doxygen.css"></link>
+  <!-- Scripts-->
+  <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li class='active'><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li class='active' class='activeLeaf'><a href="index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="../doc.html">Documentation</a></span><span class='separator'>></span><span class='page'><a href="index.html">C API</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+      <!-- <pagestyle href="%pathto:root;api/tabs.css"/> -->
+      <div class="doxygen">
+<div id="top">
+<div id="top">
+<!-- Generated by Doxygen 1.8.7 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li class="current"><a href="files.html"><span>Files</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>Globals</span></a></li>
+    </ul>
+  </div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_8dd540b382164c224dfa1eb6e8a3add6.html">vl</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">pgm.c File Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Portable graymap format (PGM) parser - Definition.  
+<a href="#details">More...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="pgm_8h.html">pgm.h</a>&quot;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:aec39fb8104ed58ac87b75e896fbb7ceb"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pgm_8c.html#aec39fb8104ed58ac87b75e896fbb7ceb">remove_line</a> (FILE *f)</td></tr>
+<tr class="memdesc:aec39fb8104ed58ac87b75e896fbb7ceb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove all characters to the next new-line.  <a href="#aec39fb8104ed58ac87b75e896fbb7ceb">More...</a><br /></td></tr>
+<tr class="separator:aec39fb8104ed58ac87b75e896fbb7ceb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7160d7d1836b470963d12b4e5997ea62"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pgm_8c.html#a7160d7d1836b470963d12b4e5997ea62">remove_blanks</a> (FILE *f)</td></tr>
+<tr class="memdesc:a7160d7d1836b470963d12b4e5997ea62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove white-spaces and comments.  <a href="#a7160d7d1836b470963d12b4e5997ea62">More...</a><br /></td></tr>
+<tr class="separator:a7160d7d1836b470963d12b4e5997ea62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0e5d7cf948817fa0929b4216100665b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pgm_8c.html#aa0e5d7cf948817fa0929b4216100665b">vl_pgm_get_npixels</a> (<a class="el" href="structVlPgmImage.html">VlPgmImage</a> const *im)</td></tr>
+<tr class="memdesc:aa0e5d7cf948817fa0929b4216100665b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get PGM image number of pixels.  <a href="#aa0e5d7cf948817fa0929b4216100665b">More...</a><br /></td></tr>
+<tr class="separator:aa0e5d7cf948817fa0929b4216100665b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef628fa82fec40803ce5cdcecdd82f14"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pgm_8c.html#aef628fa82fec40803ce5cdcecdd82f14">vl_pgm_get_bpp</a> (<a class="el" href="structVlPgmImage.html">VlPgmImage</a> const *im)</td></tr>
+<tr class="memdesc:aef628fa82fec40803ce5cdcecdd82f14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get PGM image bytes per pixel.  <a href="#aef628fa82fec40803ce5cdcecdd82f14">More...</a><br /></td></tr>
+<tr class="separator:aef628fa82fec40803ce5cdcecdd82f14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a829c23407220c6e7953ee45cca900565"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pgm_8c.html#a829c23407220c6e7953ee45cca900565">vl_pgm_extract_head</a> (FILE *f, <a class="el" href="structVlPgmImage.html">VlPgmImage</a> *im)</td></tr>
+<tr class="memdesc:a829c23407220c6e7953ee45cca900565"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extract PGM header from stream.  <a href="#a829c23407220c6e7953ee45cca900565">More...</a><br /></td></tr>
+<tr class="separator:a829c23407220c6e7953ee45cca900565"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ff673e681338e79a1c1591179504b5f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pgm_8c.html#a5ff673e681338e79a1c1591179504b5f">vl_pgm_extract_data</a> (FILE *f, <a class="el" href="structVlPgmImage.html">VlPgmImage</a> const *im, void *data)</td></tr>
+<tr class="memdesc:a5ff673e681338e79a1c1591179504b5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extract PGM data from stream.  <a href="#a5ff673e681338e79a1c1591179504b5f">More...</a><br /></td></tr>
+<tr class="separator:a5ff673e681338e79a1c1591179504b5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a418f48a6aa8471ccaaf79640f4298d0a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pgm_8c.html#a418f48a6aa8471ccaaf79640f4298d0a">vl_pgm_insert</a> (FILE *f, <a class="el" href="structVlPgmImage.html">VlPgmImage</a> const *im, void const *data)</td></tr>
+<tr class="memdesc:a418f48a6aa8471ccaaf79640f4298d0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Insert a PGM image into a stream.  <a href="#a418f48a6aa8471ccaaf79640f4298d0a">More...</a><br /></td></tr>
+<tr class="separator:a418f48a6aa8471ccaaf79640f4298d0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5814312e5e026dc51396dd09b864fb8b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pgm_8c.html#a5814312e5e026dc51396dd09b864fb8b">vl_pgm_read_new</a> (char const *name, <a class="el" href="structVlPgmImage.html">VlPgmImage</a> *im, <a class="el" href="host_8h.html#a38fbd9a3cf53dfc9a5650c38497b7d35">vl_uint8</a> **data)</td></tr>
+<tr class="memdesc:a5814312e5e026dc51396dd09b864fb8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a PGM file.  <a href="#a5814312e5e026dc51396dd09b864fb8b">More...</a><br /></td></tr>
+<tr class="separator:a5814312e5e026dc51396dd09b864fb8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b9eb82a66e8cb72bdf6ab3ad1d30015"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pgm_8c.html#a8b9eb82a66e8cb72bdf6ab3ad1d30015">vl_pgm_read_new_f</a> (char const *name, <a class="el" href="structVlPgmImage.html">VlPgmImage</a> *im, float **data)</td></tr>
+<tr class="memdesc:a8b9eb82a66e8cb72bdf6ab3ad1d30015"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read floats from a PGM file.  <a href="#a8b9eb82a66e8cb72bdf6ab3ad1d30015">More...</a><br /></td></tr>
+<tr class="separator:a8b9eb82a66e8cb72bdf6ab3ad1d30015"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2e33d504690aeff3eeb3e035727df9b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pgm_8c.html#af2e33d504690aeff3eeb3e035727df9b">vl_pgm_write</a> (char const *name, <a class="el" href="host_8h.html#a38fbd9a3cf53dfc9a5650c38497b7d35">vl_uint8</a> const *data, int width, int height)</td></tr>
+<tr class="memdesc:af2e33d504690aeff3eeb3e035727df9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write bytes to a PGM file.  <a href="#af2e33d504690aeff3eeb3e035727df9b">More...</a><br /></td></tr>
+<tr class="separator:af2e33d504690aeff3eeb3e035727df9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3751d1ee6548a567dd0860dfe921b498"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pgm_8c.html#a3751d1ee6548a567dd0860dfe921b498">vl_pgm_write_f</a> (char const *name, float const *data, int width, int height)</td></tr>
+<tr class="memdesc:a3751d1ee6548a567dd0860dfe921b498"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write floats to PGM file.  <a href="#a3751d1ee6548a567dd0860dfe921b498">More...</a><br /></td></tr>
+<tr class="separator:a3751d1ee6548a567dd0860dfe921b498"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><dl class="section author"><dt>Author</dt><dd>Andrea Vedaldi </dd></dl>
+</div><h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a7160d7d1836b470963d12b4e5997ea62"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int remove_blanks </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>f</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>file to strip. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>number of characters removed. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aec39fb8104ed58ac87b75e896fbb7ceb"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int remove_line </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>f</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>file to strip. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>number of characters removed. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a5ff673e681338e79a1c1591179504b5f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int vl_pgm_extract_data </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>f</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structVlPgmImage.html">VlPgmImage</a> const *&#160;</td>
+          <td class="paramname"><em>im</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>input file. </td></tr>
+    <tr><td class="paramname">im</td><td>PGM image descriptor. </td></tr>
+    <tr><td class="paramname">data</td><td>data buffer to fill. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>error code.</dd></dl>
+<p>The function extracts from the file <em>f</em> the data section of an image encoded in PGM format. The function fills the buffer <em>data</em> according. The buffer <em>data</em> should be <a class="el" href="pgm_8c.html#aa0e5d7cf948817fa0929b4216100665b" title="Get PGM image number of pixels. ">vl_pgm_get_npixels()</a> by <a class="el" href="pgm_8c.html#aef628fa82fec40803ce5cdcecdd82f14" title="Get PGM image bytes per pixel. ">vl_pgm_get_bpp()</a> bytes large. </p>
+
+</div>
+</div>
+<a class="anchor" id="a829c23407220c6e7953ee45cca900565"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int vl_pgm_extract_head </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>f</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structVlPgmImage.html">VlPgmImage</a> *&#160;</td>
+          <td class="paramname"><em>im</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>input file. </td></tr>
+    <tr><td class="paramname">im</td><td>image structure to fill. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>error code.</dd></dl>
+<p>The function extracts from the file <em>f</em> the meta-data section of an image encoded in PGM format. The function fills the structure <a class="el" href="structVlPgmImage.html" title="PGM image meta data. ">VlPgmImage</a> accordingly.</p>
+<p>The error may be either <a class="el" href="pgm_8h.html#aa0566322098c2b529a027f1f00a9b586">VL_ERR_PGM_INV_HEAD</a> or <a class="el" href="pgm_8h.html#ad7d582518c6bbb8409649207443b0d42">VL_ERR_PGM_INV_META</a> depending whether the error occurred in decoding the header or meta section of the PGM file. </p>
+
+</div>
+</div>
+<a class="anchor" id="aef628fa82fec40803ce5cdcecdd82f14"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> vl_pgm_get_bpp </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlPgmImage.html">VlPgmImage</a> const *&#160;</td>
+          <td class="paramname"><em>im</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">im</td><td>PGM image descriptor. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>number of bytes per pixel.</dd></dl>
+<p>The function returns the number of bytes for each pixel of the PGM image <em>im</em>. </p>
+
+</div>
+</div>
+<a class="anchor" id="aa0e5d7cf948817fa0929b4216100665b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> vl_pgm_get_npixels </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlPgmImage.html">VlPgmImage</a> const *&#160;</td>
+          <td class="paramname"><em>im</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">im</td><td>PGM image descriptor. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>number of pixels of the image.</dd></dl>
+<p>The functions returns the number of pixels of the PGM image <em>im</em>.</p>
+<p>To calculate the image data size in bytes, this value must be multiplied by the number of byte per pixels (see <a class="el" href="pgm_8c.html#aef628fa82fec40803ce5cdcecdd82f14" title="Get PGM image bytes per pixel. ">vl_pgm_get_bpp()</a>). </p>
+
+</div>
+</div>
+<a class="anchor" id="a418f48a6aa8471ccaaf79640f4298d0a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int vl_pgm_insert </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>f</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structVlPgmImage.html">VlPgmImage</a> const *&#160;</td>
+          <td class="paramname"><em>im</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void const *&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>output file. </td></tr>
+    <tr><td class="paramname">im</td><td>PGM image meta-data. </td></tr>
+    <tr><td class="paramname">data</td><td>image data. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>error code. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a5814312e5e026dc51396dd09b864fb8b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int vl_pgm_read_new </td>
+          <td>(</td>
+          <td class="paramtype">char const *&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structVlPgmImage.html">VlPgmImage</a> *&#160;</td>
+          <td class="paramname"><em>im</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a38fbd9a3cf53dfc9a5650c38497b7d35">vl_uint8</a> **&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>file name. </td></tr>
+    <tr><td class="paramname">im</td><td>a pointer to the PGM image structure to fill. </td></tr>
+    <tr><td class="paramname">data</td><td>a pointer to the pointer to the allocated buffer. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>error code.</dd></dl>
+<p>The function reads a PGM image from file <em>name</em> and initializes the structure <em>im</em> and the buffer <em>data</em> accordingly.</p>
+<p>The ownership of the buffer <em>data</em> is transfered to the caller. <em>data</em> should be freed by means of <a class="el" href="generic_8c.html#ae070a0a4d3d367a1ba8308644c88ada3" title="Free a memory block. ">vl_free()</a>.</p>
+<dl class="bug"><dt><b><a class="el" href="bug.html#_bug000001">Bug:</a></b></dt><dd>Only PGM files with 1 BPP are supported. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a8b9eb82a66e8cb72bdf6ab3ad1d30015"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int vl_pgm_read_new_f </td>
+          <td>(</td>
+          <td class="paramtype">char const *&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structVlPgmImage.html">VlPgmImage</a> *&#160;</td>
+          <td class="paramname"><em>im</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float **&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>file name. </td></tr>
+    <tr><td class="paramname">im</td><td>a pointer to the PGM image structure to fill. </td></tr>
+    <tr><td class="paramname">data</td><td>a pointer to the pointer to the allocated buffer. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>error code.</dd></dl>
+<p>The function reads a PGM image from file <em>name</em> and initializes the structure <em>im</em> and the buffer <em>data</em> accordingly. The buffer <em>data</em> is an array of floats in the range [0, 1].</p>
+<p>The ownership of the buffer <em>data</em> is transfered to the caller. <em>data</em> should be freed by means of <a class="el" href="generic_8c.html#ae070a0a4d3d367a1ba8308644c88ada3" title="Free a memory block. ">vl_free()</a>.</p>
+<dl class="bug"><dt><b><a class="el" href="bug.html#_bug000002">Bug:</a></b></dt><dd>Only PGM files with 1 BPP are supported. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="af2e33d504690aeff3eeb3e035727df9b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int vl_pgm_write </td>
+          <td>(</td>
+          <td class="paramtype">char const *&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a38fbd9a3cf53dfc9a5650c38497b7d35">vl_uint8</a> const *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>height</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>file name. </td></tr>
+    <tr><td class="paramname">data</td><td>data to write. </td></tr>
+    <tr><td class="paramname">width</td><td>width of the image. </td></tr>
+    <tr><td class="paramname">height</td><td>height of the image. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>error code.</dd></dl>
+<p>The function dumps the image <em>data</em> to the PGM file of the specified name. This is an helper function simplifying the usage of <a class="el" href="pgm_8c.html#a418f48a6aa8471ccaaf79640f4298d0a" title="Insert a PGM image into a stream. ">vl_pgm_insert()</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="a3751d1ee6548a567dd0860dfe921b498"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int vl_pgm_write_f </td>
+          <td>(</td>
+          <td class="paramtype">char const *&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float const *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>height</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>file name. </td></tr>
+    <tr><td class="paramname">data</td><td>data to write. </td></tr>
+    <tr><td class="paramname">width</td><td>width of the image. </td></tr>
+    <tr><td class="paramname">height</td><td>height of the image. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>error code.</dd></dl>
+<p>The function dumps the image <em>data</em> to the PGM file of the specified name. The data is re-scaled to fit in the range 0-255. This is an helper function simplifying the usage of <a class="el" href="pgm_8c.html#a418f48a6aa8471ccaaf79640f4298d0a" title="Insert a PGM image into a stream. ">vl_pgm_insert()</a>. </p>
+
+</div>
+</div>
+</div><!-- contents -->
+        <!-- Doc Here -->
+      </div>
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>

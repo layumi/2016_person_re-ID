@@ -1,0 +1,19 @@
+<group>
+<ul class='breadcrumb'><li><a href='%pathto:matlab;'>Index</a></li><li><a href='%pathto:vl_irodr;'>Prev</a></li><li><a href='%pathto:vl_gmm;'>Next</a></li></ul><div class="documentation"><p>
+R = <a href="%pathto:vl_rodr;">VL_RODR</a>(OM) where OM a 3-dimensional column vector computes the
+Rodrigues' formula of OM, returning the rotation matrix R =
+expm(vl_hat(OM)).
+</p><p>
+[R,DR] = <a href="%pathto:vl_rodr;">VL_RODR</a>(OM) computes also the derivative of the Rodrigues
+formula. In matrix notation this is the expression
+</p><pre>
+        d(vec expm(vl_hat(OM)) )
+  dR = ----------------------.
+               d om^T
+</pre><p>
+[R,DR]=<a href="%pathto:vl_rodr;">VL_RODR</a>(OM) when OM is a 3xK matrix repeats the operation for
+each column (or equivalently matrix with 3*K elements). In this
+case R and DR are arrays with K slices, one per rotation.
+</p><p>
+See also: <a href="%pathto:vl_irodr;">VL_IRODR</a>(), <a href="%pathto:vl_help;">VL_HELP</a>().
+</p></div></group>

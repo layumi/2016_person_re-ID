@@ -1,0 +1,432 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+
+  <!-- Page title -->
+  <title>VLFeat - Tutorials > Plotting AP and ROC curves</title>
+
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  
+
+  <!-- Scripts-->
+  
+
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li class='active'><a href="tut.html">Tutorials</a>
+<ul>
+<li><a href="frame.html">Local feature frames</a>
+</li>
+<li><a href="covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="hog.html">HOG features</a>
+</li>
+<li><a href="sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="dsift.html">Dense SIFT</a>
+</li>
+<li><a href="liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="mser.html">MSER feature detector</a>
+</li>
+<li><a href="imdisttf.html">Distance transform</a>
+</li>
+<li><a href="encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="kmeans.html">K-means clustering</a>
+</li>
+<li><a href="aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="slic.html">SLIC superpixels</a>
+</li>
+<li><a href="svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="kdtree.html">KD-trees and forests</a>
+</li>
+<li class='active' class='activeLeaf'><a href="plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="ikm.html">Integer K-means</a>
+</li>
+<li><a href="hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li><a href="../api/index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+<ul>
+<li><a href="../man/mser.html">mser</a>
+</li>
+<li><a href="../man/sift.html">sift</a>
+</li>
+<li><a href="../man/vlfeat.html">vlfeat</a>
+</li>
+</ul></li>
+</ul></li>
+</ul>
+
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="tut.html">Tutorials</a></span><span class='separator'>></span><span class='page'><a href="plots-rank.html">Plotting AP and ROC curves</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+        
+    
+
+<p><em>This tutorial illustrates the use of the functions
+<code/><a href=../matlab/vl_roc.html>vl_roc</a></code>,
+<code/><a href=../matlab/vl_det.html>vl_det</a></code>, and
+<code/><a href=../matlab/vl_pr.html>vl_pr</a></code> to generate ROC, DET, and precision-recall
+curves.</em></p>
+
+<p>VLFeat includes support for plotting starndard information
+retrieval curves such as the <em>Receiver Operating Characteristic
+(ROC)</em> and the <em>Precision-Recall (PR)</em> curves.</p>
+
+<p>Consider a set of samples with labels <code/>labels</code> and
+score <code/>scores</code>. <code/>scores</code> is typically the output
+of a classifier, with higher scores corresponding to positive
+labels. Ideally, sorting the data by decreasing scores should leave
+all the positive samples first and the negative samples last.  In
+practice, a classifier is not perfect and the ranking is not ideal.
+The tools discussed in this tutorial allow to evaluate and visualize
+the quality of the ranking.</p>
+
+<p>For the sake of the illustration generate some data randomly as
+follows:</p>
+
+<div class="highlight"><pre><span class="n">numPos</span> <span class="p">=</span> <span class="mi">20</span> <span class="p">;</span>
+<span class="n">numNeg</span> <span class="p">=</span> <span class="mi">100</span> <span class="p">;</span>
+<span class="n">labels</span> <span class="p">=</span> <span class="p">[</span><span class="nb">ones</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">numPos</span><span class="p">)</span> <span class="o">-</span><span class="nb">ones</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">numNeg</span><span class="p">)]</span> <span class="p">;</span>
+<span class="n">scores</span> <span class="p">=</span> <span class="nb">randn</span><span class="p">(</span><span class="nb">size</span><span class="p">(</span><span class="n">labels</span><span class="p">))</span> <span class="o">+</span> <span class="n">labels</span> <span class="p">;</span>
+</pre></div>
+
+
+<p>In this case, there have five times more negative samples than
+positive ones. The scores are correlated to the labels as expected,
+but do not allow for a perfect separation of the two classes.</p>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h1 id="plots-rank.roc">ROC and DET curves</h1>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<p>To visualize the quality of the ranking, one can plot the ROC curve
+by using the <code/><a href=../matlab/vl_roc.html><a shape="rect" href="../matlab/vl_roc.html">vl_roc</a></a></code>
+function:</p>
+
+<div class="highlight"><pre><span class="n">vl_roc</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">scores</span><span class="p">)</span> <span class="p">;</span>
+</pre></div>
+
+
+<p>This produces the figure</p>
+
+<div class="figure">
+<img src="../demo/plots_rank_roc.jpg"></img>
+<div class="caption">An example ROC curve.</div>
+</div>
+
+<p>The ROC curve is the parametric curve given by the true positve
+rate (TPR) against the true negative rate (TNR). These two quantities
+can be obtained from <code/><a href=../matlab/vl_roc.html>vl_roc</a></code> as follows:</p>
+
+<div class="highlight"><pre><span class="p">[</span><span class="n">tpr</span><span class="p">,</span> <span class="n">tnr</span><span class="p">]</span> <span class="p">=</span> <span class="n">vl_roc</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">scores</span><span class="p">)</span> <span class="p">;</span>
+</pre></div>
+
+
+<p>The TPR value <code/>tpr(k)</code> is the percentage of positive
+samples that have rank smaller or equal than <code/>k</code> (where
+ranks are assigned by decreasing scores). <code/>tnr(k)</code> is
+instead the percentage of negative samples that have rank larger
+than <code/>k</code>. Therefore, if one classifies the samples with
+rank smaller or equal than <code/>k</code> to be positive and the rest
+to be negative, <code/>tpr(k)</code> and <code/>tnr(k)</code> are
+repsectively the probability that a positive/negative sample is
+classified correctly.</p>
+
+<p>Moving from rank <code/>k</code> to rank <code/>k+1</code>, if the
+sample of rank <code/>k+1</code> is positive then <code/>tpr</code>
+increases; otherwise <code/>tnr</code> decreases. An ideal classifier
+has all the positive samples first, and the corresponding ROC curve is
+one that describes two sides of the unit square.</p>
+
+<p>The <em>Area Under the Curve (AUC)</em> is an indicator of the
+overall quality of a ROC curve. For example, the ROC of the ideal
+classifier has AUC equal to 1. Another indicator is the <em>Equal
+Error Rate (EER)</em>, the point on the ROC curve that corresponds to
+have an equal probability of miss-classifying a positive or negative
+sample. This point is obtained by intersecting the ROC curve with a
+diagonal of the unit square. Both AUC and EER can be computed
+by <code/><a href=../matlab/vl_roc.html>vl_roc</a></code>:</p>
+
+<div class="highlight"><pre><span class="p">[</span><span class="n">tpr</span><span class="p">,</span> <span class="n">tnr</span><span class="p">,</span> <span class="n">info</span><span class="p">]</span> <span class="p">=</span> <span class="n">vl_roc</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">scores</span><span class="p">)</span> <span class="p">;</span>
+<span class="nb">disp</span><span class="p">(</span><span class="n">info</span><span class="p">.</span><span class="n">auc</span><span class="p">)</span> <span class="p">;</span>
+<span class="nb">disp</span><span class="p">(</span><span class="n">info</span><span class="p">.</span><span class="n">eer</span><span class="p">)</span> <span class="p">;</span>
+</pre></div>
+
+
+<p><code/><a href=../matlab/vl_roc.html>vl_roc</a></code> has a couple of useful functionalities:</p>
+
+<ul class="text">
+<li>Any sample with label equal to zero is effecitvely ignored in the
+evaluation.</li>
+
+<li>Samples with scores equal to <code/>-inf</code> are assumed to be
+never retrieved by the classifier. For these, the TNR is
+conventionally set to be equal to zero.</li>
+
+<li>Additional negative and positive samples with <code/>-inf</code>
+score can be added to the evaluation by means of
+the <code/>numNegatives</code> and <code/>numPositives</code>
+options. For example,
+<code/>vl_roc(labels,scores,'numNegatives',1e4)</code> sets the number
+of negative samples to 10,000. This can be useful when evaluating
+large retrieval systems, for which one may want to record
+in <code/>labels</code> and <code/>scores</code> only the top ranked
+results from a classifier.</li>
+
+<li>Different variants of the ROC plot can be produced. For example
+<code/>vl_roc(labels,scores,'plot','tptn')</code> swaps the two axis,
+plotting the TNR against the TPR.  Since the TPR is also the recall
+(i.e., the percentage of positive samples retrieved up to a certain
+rank), this makes the plot more directly comparable to
+a <a shape="rect" href="plots-rank.pr">precision-recall plot</a>.
+<div class="figure">
+<img src="../demo/plots_rank_roc_variants.jpg"></img>
+<div class="caption">Variants of the ROC plot.</div>
+</div>
+</li>
+</ul>
+
+<p>A limitation of the ROC curves in evaluating a typical retrieval
+system is that they put equal emphasis on false positive and false
+negative errors. In a tipical retrieval application, however, the vast
+majority of the samples are negative, so the false negative rate is
+typically very small for any operating point of interest. Therefore
+the emphasis is usually on the very first portion of the rank, where
+the few positive samples should concentrate. This can be emphasized by
+using either <a shape="rect" href="plots-rank.pr">precision-recall plot</a> or a
+variant of the ROC curves called <em>Detection Error Tradeoff (DET)
+curves</em>.</p>
+
+<p>A DET curve plots the FNR (also called <em>false alarm rate</em>)
+against teh FPR (also called <em>miss rate</em>) in logarithmic
+coordiantes.  It can be generated
+by <code/><a href=../matlab/vl_det.html><a shape="rect" href="../matlab/vl_det.html">vl_det</a></a></code> function
+call:</p>
+
+<div class="figure">
+<img src="../demo/plots_rank_det.jpg"></img>
+<div class="caption">An example DET curve.</div>
+</div>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h1 id="plots-rank.pr">Precision-recall curves</h1>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<p>Both ROC and DET curves normalize out the relative proportions of
+positive and negative samples. By contrast, a <em>Precision-Recall
+(PR)</em> curve reflects this directly. One can plot the PR curve by
+using the <code/><a href=../matlab/vl_pr.html><a shape="rect" href="../matlab/vl_pr.html">vl_pr</a></a></code>
+function:</p>
+
+<div class="highlight"><pre><span class="n">vl_pr</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">scores</span><span class="p">)</span> <span class="p">;</span>
+</pre></div>
+
+
+<p>This produces the figure</p>
+
+<div class="figure">
+<img src="../demo/plots_rank_pr.jpg"></img>
+<div class="caption">An example precision-recall curve.</div>
+</div>
+
+<p>The PR curve is the parametric curve given by precision and
+recall. These two quantities can be obtained from <code/><a href=../matlab/vl_roc.html>vl_roc</a></code>
+as follows:</p>
+
+<div class="highlight"><pre><span class="p">[</span><span class="n">recall</span><span class="p">,</span> <span class="n">precision</span><span class="p">]</span> <span class="p">=</span> <span class="n">vl_roc</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">scores</span><span class="p">)</span> <span class="p">;</span>
+</pre></div>
+
+
+<p>The precision value <code/>precision(k)</code> is the proportion of
+samples with rank smaller or equal than <code/>k-1</code> that are
+positive(where ranks are assigned by decreasing
+scores). <code/>recall(k)</code> is instead the percentage of positive
+samples that have rank smaller or equal than <code/>k-1</code>. For
+example, if the first two samples are one positive and one
+negative, <code/>precision(3)</code> is 1/2. If there are in total 5
+positive samples, then <code/>recall(3)</code> is 1/5.</p>
+
+<p>Moving from rank <code/>k</code> to rank <code/>k+1</code>, if the
+sample of rank <code/>k+1</code> is positive then
+both <code/>precision</code> and <code/>recall</code> increase;
+otherwise <code/>precision</code> decreases and <code/>recall</code>
+stays constant. This gives the PR curve a characteristic
+saw-shape. For aan ideal classifier that ranks all the positive
+samples first the PR curve is one that describes two sides of the unit
+square.</p>
+
+<p>Similar to the ROC curves, the <em>Area Under the Curve (AUC)</em>
+can be used to summarize the quality of a ranking in term of precision
+and recall. This can be obtained as <code/>info.auc</code> by</p>
+
+<div class="highlight"><pre><span class="p">[</span><span class="n">rc</span><span class="p">,</span> <span class="n">pr</span><span class="p">,</span> <span class="n">info</span><span class="p">]</span> <span class="p">=</span> <span class="n">vl_pr</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">scores</span><span class="p">)</span> <span class="p">;</span>
+<span class="nb">disp</span><span class="p">(</span><span class="n">info</span><span class="p">.</span><span class="n">auc</span><span class="p">)</span> <span class="p">;</span>
+<span class="nb">disp</span><span class="p">(</span><span class="n">info</span><span class="p">.</span><span class="n">ap</span><span class="p">)</span> <span class="p">;</span>
+<span class="nb">disp</span><span class="p">(</span><span class="n">info</span><span class="p">.</span><span class="n">ap_interp_11</span><span class="p">)</span> <span class="p">;</span>
+</pre></div>
+
+
+<p>The AUC is obtained by trapezoidal interpolation of the precision.
+An alternative and usually almost equivalent metric is the <em>Average
+Precision (AP)</em>, returned as <code/>info.ap</code>. This is the
+average of the precision obtained every time a new positive sample is
+recalled. It is the same as the AUC if precision is interpolated by
+constant segments and is the definition used by TREC most
+often. Finally, the <em>11 points interpolated average precision</em>,
+returned as <code/>info.ap_interp_11</code>. This is an older TREC
+definition and is obtained by taking the average of eleven precision
+values, obtained as the maximum precision for recalls largerer than
+0.0, 0.1, ..., 1.0. This particular metric was used, for example, in
+the PASCAL VOC challenge until the 2008 edition.</p>
+
+
+  
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>
+ 

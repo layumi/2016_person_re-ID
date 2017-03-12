@@ -1,0 +1,50 @@
+<group>
+<ul class='breadcrumb'><li><a href='%pathto:matlab;'>Index</a></li><li><a href='%pathto:vl_histmarg;'>Prev</a></li><li><a href='%pathto:vl_homkermap;'>Next</a></li></ul><div class="documentation"><p>
+HOG = <a href="%pathto:vl_hog;">VL_HOG</a>(IM, CELLSIZE) computes the HOG features for image IM
+and the specified CELLSIZE. IM can be either grayscale or colour
+in SINGLE storage class. HOG is an array of cells: its number
+of columns is approximately the number of columns of IM divided
+by CELLSIZE and the same for the number of rows. The third
+dimension spans the feature compoents.
+</p><p>
+PERM = <a href="%pathto:vl_hog;">VL_HOG</a>('permutation') returns the left-right permutation
+to apply to each HOG cell to flip it.
+</p><p>
+IMAGE = <a href="%pathto:vl_hog;">VL_HOG</a>('render', HOG) returns an IMAGE containing an
+iconic representation of the array of cells HOG.
+</p><p>
+Options:
+</p><dl><dt>
+Variant
+<span class="defaults">'UoCTTI'</span></dt><dd><p>
+Choose a HOG variant: 'UoCTTI' or 'DalalTriggs'.
+</p></dd><dt>
+NumOrientations
+<span class="defaults">9</span></dt><dd><p>
+Choose a number of undirected orientations in the orientation
+histograms. The angle [0,pi) is divided in to NumOrientation
+equal parts.
+</p></dd><dt>
+DirectedPolarField
+</dt><dd><p>
+By specifying this flag the image IM is interpreted as samples
+from a 2D vector field specified by their argument IM(:,:,2) and
+modulus IM(:,:,1).
+</p></dd><dt>
+UndirectedPolarField
+</dt><dd><p>
+Same as above, but wraps angles in [0,pi).
+</p></dd><dt>
+BilinearOrientations
+</dt><dd><p>
+This flags activates the use of bilinear interpolation to assign
+orientations to bins. This produces a smoother feature, but is
+not some other implementations (e.g. UoCTTI).
+</p></dd><dt>
+Example
+<span class="defaults">computing and visualizing HOG features</span></dt><dd><p>
+hog = vl_hog(im2single(im)) ; % compute HOG features
+</p></dd></dl><p>
+See also: <a href="%dox:hog;">HOG fundamentals</a>,
+<a href="%pathto:vl_help;">VL_HELP</a>().
+</p></div></group>

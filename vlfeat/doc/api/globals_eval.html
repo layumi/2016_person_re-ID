@@ -1,0 +1,376 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+  <!-- Page title -->
+  <title>VLFeat - Documentation > C API</title>
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  <link rel="stylesheet" type="text/css" href="doxygen.css"></link>
+  <!-- Scripts-->
+  <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li class='active'><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li class='active' class='activeLeaf'><a href="index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="../doc.html">Documentation</a></span><span class='separator'>></span><span class='page'><a href="index.html">C API</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+      <!-- <pagestyle href="%pathto:root;api/tabs.css"/> -->
+      <div class="doxygen">
+<div id="top">
+<div id="top">
+<!-- Generated by Doxygen 1.8.7 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li class="current"><a href="files.html"><span>Files</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li class="current"><a href="globals.html"><span>Globals</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow3" class="tabs2">
+    <ul class="tablist">
+      <li><a href="globals.html"><span>All</span></a></li>
+      <li><a href="globals_func.html"><span>Functions</span></a></li>
+      <li><a href="globals_vars.html"><span>Variables</span></a></li>
+      <li><a href="globals_type.html"><span>Typedefs</span></a></li>
+      <li><a href="globals_enum.html"><span>Enumerations</span></a></li>
+      <li class="current"><a href="globals_eval.html"><span>Enumerator</span></a></li>
+      <li><a href="globals_defs.html"><span>Macros</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow4" class="tabs3">
+    <ul class="tablist">
+      <li class="current"><a href="#index_v"><span>v</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div class="contents">
+&#160;
+
+<h3><a class="anchor" id="index_v"></a>- v -</h3><ul>
+<li>VL_FRAMETYPE_DISC
+: <a class="el" href="covdet_8h.html#afbadee402b023a061620226e2f4bb45ea7dc9a8930f7f37eedc693977464b3fd4">covdet.h</a>
+</li>
+<li>VL_FRAMETYPE_ELLIPSE
+: <a class="el" href="covdet_8h.html#afbadee402b023a061620226e2f4bb45ea6145863075f58a45373a3f72a7f411a9">covdet.h</a>
+</li>
+<li>VL_FRAMETYPE_ORIENTED_DISC
+: <a class="el" href="covdet_8h.html#afbadee402b023a061620226e2f4bb45ea18b389125522f1c5944e5d1d07edb218">covdet.h</a>
+</li>
+<li>VL_FRAMETYPE_ORIENTED_ELLIPSE
+: <a class="el" href="covdet_8h.html#afbadee402b023a061620226e2f4bb45ea5d51e0a1b4f08d13e50e689b990a7a87">covdet.h</a>
+</li>
+<li>VL_IKM_ELKAN
+: <a class="el" href="ikmeans_8h.html#a4aa95067e495fa8309ab028307a3418da46d6e04c3599a881c16722b6969c5a21">ikmeans.h</a>
+</li>
+<li>VL_IKM_LLOYD
+: <a class="el" href="ikmeans_8h.html#a4aa95067e495fa8309ab028307a3418da03abd693c3d932bb543401274eb868c4">ikmeans.h</a>
+</li>
+<li>VL_PROT_ASCII
+: <a class="el" href="stringop_8h.html#a61dadd085c1777f559549e05962b2c9ea611cc6138919fdd98ce2a9137a762b91">stringop.h</a>
+</li>
+<li>VL_PROT_BINARY
+: <a class="el" href="stringop_8h.html#a61dadd085c1777f559549e05962b2c9eaa92055b1172e1b8fa98177304d495653">stringop.h</a>
+</li>
+<li>VL_PROT_NONE
+: <a class="el" href="stringop_8h.html#a61dadd085c1777f559549e05962b2c9ea94b2ad9436eeeb7e7a08baf24e00f3d6">stringop.h</a>
+</li>
+<li>VL_PROT_UNKNOWN
+: <a class="el" href="stringop_8h.html#a61dadd085c1777f559549e05962b2c9ea71fca21ec3ae6a26edbe380fedc2ebec">stringop.h</a>
+</li>
+<li>VlDistanceChi2
+: <a class="el" href="mathop_8h.html#af7397bb42d71000754eafba9458b09aca8bd37a4dd18960b8faf2c52093227857">mathop.h</a>
+</li>
+<li>VlDistanceHellinger
+: <a class="el" href="mathop_8h.html#af7397bb42d71000754eafba9458b09acaa2290709524875cbabbce86ba2d28635">mathop.h</a>
+</li>
+<li>VlDistanceJS
+: <a class="el" href="mathop_8h.html#af7397bb42d71000754eafba9458b09acaed22a8624bfdae0b2ca92a43750bf68a">mathop.h</a>
+</li>
+<li>VlDistanceL1
+: <a class="el" href="mathop_8h.html#af7397bb42d71000754eafba9458b09acaff42f6aa9da4f0d11415de32089a1348">mathop.h</a>
+</li>
+<li>VlDistanceL2
+: <a class="el" href="mathop_8h.html#af7397bb42d71000754eafba9458b09acab44b9322465d703274acfa21690de9fd">mathop.h</a>
+</li>
+<li>VlDistanceMahalanobis
+: <a class="el" href="mathop_8h.html#af7397bb42d71000754eafba9458b09aca0793259deafb1d691a1a6daed52b245b">mathop.h</a>
+</li>
+<li>VlGMMCustom
+: <a class="el" href="gmm_8h.html#a89681cfc201e4ddfff3084c2898d1974adaee798f6850c527ecf774cedfc44cb7">gmm.h</a>
+</li>
+<li>VlGMMKMeans
+: <a class="el" href="gmm_8h.html#a89681cfc201e4ddfff3084c2898d1974a5a63bb7b0105d969855a9097d13ffd34">gmm.h</a>
+</li>
+<li>VlGMMRand
+: <a class="el" href="gmm_8h.html#a89681cfc201e4ddfff3084c2898d1974affba7144b2bd2505b6b0ccaa89bd4f51">gmm.h</a>
+</li>
+<li>VlHomogeneousKernelChi2
+: <a class="el" href="homkermap_8h.html#a13074dd7edec5d8c86dde5da80e8d8d8a0ddb0dafd4c63088336d983b944ac5df">homkermap.h</a>
+</li>
+<li>VlHomogeneousKernelIntersection
+: <a class="el" href="homkermap_8h.html#a13074dd7edec5d8c86dde5da80e8d8d8af793e7c7238192b64f007e7a5bc9b3b2">homkermap.h</a>
+</li>
+<li>VlHomogeneousKernelJS
+: <a class="el" href="homkermap_8h.html#a13074dd7edec5d8c86dde5da80e8d8d8a685a81b7c2636dffa06eb5b59e836df5">homkermap.h</a>
+</li>
+<li>VlHomogeneousKernelMapWindowRectangular
+: <a class="el" href="homkermap_8h.html#a35a05da3e1eb781a6fa997ec9be69a62a83070b8b6be773c61bc3f19fc4583053">homkermap.h</a>
+</li>
+<li>VlHomogeneousKernelMapWindowUniform
+: <a class="el" href="homkermap_8h.html#a35a05da3e1eb781a6fa997ec9be69a62ab9d8903c4fc8d17dadf194dac6682238">homkermap.h</a>
+</li>
+<li>VlKernelChi2
+: <a class="el" href="mathop_8h.html#af7397bb42d71000754eafba9458b09acad945961afcae876365e585655b3dbdde">mathop.h</a>
+</li>
+<li>VlKernelHellinger
+: <a class="el" href="mathop_8h.html#af7397bb42d71000754eafba9458b09acae6735870a9191f6f9c44492bd2fdeae8">mathop.h</a>
+</li>
+<li>VlKernelJS
+: <a class="el" href="mathop_8h.html#af7397bb42d71000754eafba9458b09aca2b327ebbf8e9ad7e76df758a9062145f">mathop.h</a>
+</li>
+<li>VlKernelL1
+: <a class="el" href="mathop_8h.html#af7397bb42d71000754eafba9458b09aca5e26182d2d853d6e16238535fd8f7f98">mathop.h</a>
+</li>
+<li>VlKernelL2
+: <a class="el" href="mathop_8h.html#af7397bb42d71000754eafba9458b09acaad5fb6e24379dd36f94bdfb10068ec6c">mathop.h</a>
+</li>
+<li>VlKMeansANN
+: <a class="el" href="kmeans_8h.html#a4c431fed2c5377435e08cbad0040c9f3adc59056a09e72cdca518cfd6860d0ce4">kmeans.h</a>
+</li>
+<li>VlKMeansElkan
+: <a class="el" href="kmeans_8h.html#a4c431fed2c5377435e08cbad0040c9f3a5f262d513ca0a82ddb577bbe31aa164c">kmeans.h</a>
+</li>
+<li>VlKMeansLloyd
+: <a class="el" href="kmeans_8h.html#a4c431fed2c5377435e08cbad0040c9f3a19e04f61cc224d6f970a6cba351d6692">kmeans.h</a>
+</li>
+<li>VlKMeansPlusPlus
+: <a class="el" href="kmeans_8h.html#ab5a665f209dfbe8e9d53af18fdf489d5a314ecb9e2d2f166ce7199e1a6cb0594a">kmeans.h</a>
+</li>
+<li>VlKMeansRandomSelection
+: <a class="el" href="kmeans_8h.html#ab5a665f209dfbe8e9d53af18fdf489d5a60e94b6baf611109b87ca291ff86943b">kmeans.h</a>
+</li>
+<li>VlLbpUniform
+: <a class="el" href="lbp_8h.html#add3c75c3439f492a9c4b445d80af3d48a56d4fb4c61f28ddf9fb2569935a5a9a4">lbp.h</a>
+</li>
+<li>VlSvmLossHinge
+: <a class="el" href="svm_8h.html#a039ed185475e457e96dcb41a096bd8a7a9f3f057683a70fc737622274a94e8d76">svm.h</a>
+</li>
+<li>VlSvmLossHinge2
+: <a class="el" href="svm_8h.html#a039ed185475e457e96dcb41a096bd8a7a9b9299ce069ae6dab29a0f99a82f370d">svm.h</a>
+</li>
+<li>VlSvmLossL1
+: <a class="el" href="svm_8h.html#a039ed185475e457e96dcb41a096bd8a7a0b10b3dc74d3a4908e22200fb314e9af">svm.h</a>
+</li>
+<li>VlSvmLossL2
+: <a class="el" href="svm_8h.html#a039ed185475e457e96dcb41a096bd8a7a8694da194009c2496e28e5be1c6d0a47">svm.h</a>
+</li>
+<li>VlSvmLossLogistic
+: <a class="el" href="svm_8h.html#a039ed185475e457e96dcb41a096bd8a7a2ce88153bc65e0ebad17b92b7841409a">svm.h</a>
+</li>
+<li>VlSvmSolverNone
+: <a class="el" href="svm_8h.html#a0c5120e756a9a2b06d23130d54db90c9a0813728ebdd6388e9df7d8ad8787d0ef">svm.h</a>
+</li>
+<li>VlSvmSolverSdca
+: <a class="el" href="svm_8h.html#a0c5120e756a9a2b06d23130d54db90c9a65819739f150850ac0033ddc142ec593">svm.h</a>
+</li>
+<li>VlSvmSolverSgd
+: <a class="el" href="svm_8h.html#a0c5120e756a9a2b06d23130d54db90c9ad7ec41888bf7474e5d92a8b0f0dfa05a">svm.h</a>
+</li>
+<li>VlSvmStatusConverged
+: <a class="el" href="svm_8h.html#ab10b6ec323abb9c4ed1c75290ac7032aa3aaf89d2a76ae35ce2a5761628ac6bbf">svm.h</a>
+</li>
+<li>VlSvmStatusMaxNumIterationsReached
+: <a class="el" href="svm_8h.html#ab10b6ec323abb9c4ed1c75290ac7032aa6a48b72e94b4f9b00053885982af3958">svm.h</a>
+</li>
+<li>VlSvmStatusTraining
+: <a class="el" href="svm_8h.html#ab10b6ec323abb9c4ed1c75290ac7032aa1b47ec65b19b761a65abd4c4864b162b">svm.h</a>
+</li>
+</ul>
+</div><!-- contents -->
+        <!-- Doc Here -->
+      </div>
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>

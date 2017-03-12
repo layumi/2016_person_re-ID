@@ -1,0 +1,261 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+  <!-- Page title -->
+  <title>VLFeat - Documentation > C API</title>
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  <link rel="stylesheet" type="text/css" href="doxygen.css"></link>
+  <!-- Scripts-->
+  <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li class='active'><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li class='active' class='activeLeaf'><a href="index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="../doc.html">Documentation</a></span><span class='separator'>></span><span class='page'><a href="index.html">C API</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+      <!-- <pagestyle href="%pathto:root;api/tabs.css"/> -->
+      <div class="doxygen">
+<div id="top">
+<div id="top">
+<!-- Generated by Doxygen 1.8.7 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li class="current"><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
+    </ul>
+  </div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="index.html">Vision Lab Features Library (VLFeat)</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Gaussian Scale Space (GSS) </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="toc"><h3>Table of Contents</h3>
+<ul><li class="level1"><a href="#scalespace-starting">Getting started</a></li>
+</ul>
+</div>
+<div class="textblock"><dl class="section author"><dt>Author</dt><dd>Karel Lenc </dd>
+<dd>
+Andrea Vedaldi </dd>
+<dd>
+Michal Perdoch</dd></dl>
+<p><a class="el" href="scalespace_8h.html">scalespace.h</a> implements a Gaussian scale space, a data structure representing an image at multiple resolutions <a class="el" href="citelist.html#CITEREF_witkin83scale-space">[33]</a> <a class="el" href="citelist.html#CITEREF_koenderink84the-structure">[13]</a> <a class="el" href="citelist.html#CITEREF_lindeberg94scale-space">[14]</a> . Scale spaces have many use, including the detection of co-variant local features <a class="el" href="citelist.html#CITEREF_lindeberg98principles">[15]</a> such as SIFT, Hessian-Affine, Harris-Affine, Harris-Laplace, etc. <a class="el" href="scalespace.html#scalespace-starting">Getting started</a> demonstreates how to use the C API to compute the scalespace of an image. For further details refer to:</p>
+<ul>
+<li><a class="el" href="scalespace-fundamentals.html">Gaussian scale space fundamentals</a></li>
+</ul>
+<h1><a class="anchor" id="scalespace-starting"></a>
+Getting started</h1>
+<p>Given an input image <code>image</code>, the following example uses the <a class="el" href="structVlScaleSpace.html" title="Scale space class. ">VlScaleSpace</a> object to compute its Gaussian scale space and return the image <code>level</code> at scale <code>(o,s)</code>, where <code>o</code> is the octave and <code>s</code> is the octave subdivision or sublevel:</p>
+<div class="fragment"><div class="line"><span class="keywordtype">float</span>* level ;</div>
+<div class="line"><a class="code" href="structVlScaleSpace.html">VlScaleSpace</a> ss = <a class="code" href="scalespace_8c.html#a42931ebe6e7e762b7d0ccd7856d97834">vl_scalespace_new</a>(imageWidth, imageHeight) ;</div>
+<div class="line"><a class="code" href="scalespace_8c.html#a2e2be28c7c1017222fec22a8c0df02f5">vl_scalespace_put_image</a>(ss, image) ;</div>
+<div class="line">level = <a class="code" href="scalespace_8c.html#a5010e154df5b981f31afff3af704ae30">vl_scalespace_get_level</a>(ss, o, s) ;</div>
+</div><!-- fragment --><p>The image <code>level</code> is obtained by convolving <code>image</code> by a Gaussian filter of isotropic standard deviation given by</p>
+<div class="fragment"><div class="line"><span class="keywordtype">double</span> sigma = vl_scalespace_get_sigma(ss, o, s) ;</div>
+</div><!-- fragment --><p>The resolution of <code>level</code> is in general different from the resolution of <code>image</code> and is determined by the octave <code>o</code>. It can be obtained as follows:</p>
+<div class="fragment"><div class="line"><a class="code" href="structVlScaleSpaceOctaveGeometry.html">VlScaleSpaceOctaveGeometry</a> ogeom = <a class="code" href="scalespace_8c.html#a5c63aee8d9c6e9393308eb3306264108">vl_scalespace_get_octave_geometry</a>(ss, o) ;</div>
+<div class="line">ogeom.<a class="code" href="structVlScaleSpaceOctaveGeometry.html#a6453dbc6d4d71f937f6f33ba47305ffd">width</a> <span class="comment">// width of level (in number of pixels)</span></div>
+<div class="line">ogeom.<a class="code" href="structVlScaleSpaceOctaveGeometry.html#a3213379847cead09269f075d6605dda1">height</a> <span class="comment">// height of level (in number of pixels)</span></div>
+<div class="line">ogeom.<a class="code" href="structVlScaleSpaceOctaveGeometry.html#a4138bb23b20fa0d96b98027243b79816">step</a> <span class="comment">// spatial sampling step</span></div>
+</div><!-- fragment --><p>The parameter <code>ogeom.step</code> is the sampling step relatively to the sampling of the input image <code>image</code>. The ranges of valid octaves and scale sublevels can be obtained as</p>
+<div class="fragment"><div class="line"><a class="code" href="structVlScaleSpaceGeometry.html">VlScaleSpaceGeometry</a> geom = <a class="code" href="scalespace_8c.html#a13e0136527672f35a76ffb60fcea2bba">vl_scalespace_get_geometry</a>(ss) ;</div>
+<div class="line">geom.<a class="code" href="structVlScaleSpaceGeometry.html#a96805e209d1452bfb9aa36b9269efcfc">firstOctave</a> <span class="comment">// Index of the fisrt octave</span></div>
+<div class="line">geom.<a class="code" href="structVlScaleSpaceGeometry.html#a0030186c55207e827d3d91b05faa7673">lastOctave</a> <span class="comment">// Index of the last octave</span></div>
+<div class="line">geom.<a class="code" href="structVlScaleSpaceGeometry.html#a1ce73bc970c420bd4c93154727edd16d">octaveResolution</a> ; <span class="comment">// Number of octave subdivisions</span></div>
+<div class="line">geom.<a class="code" href="structVlScaleSpaceGeometry.html#a6336d051b8aa479fe3085c9fde98db66">octaveFirstSubdivision</a> <span class="comment">// Index of the first octave subdivision</span></div>
+<div class="line">geom.<a class="code" href="structVlScaleSpaceGeometry.html#a0bff7bc6133eabbfb78b1c1c96bc3fa2">octaveLastSubdivision</a>  <span class="comment">// Index of the last octave subdivision</span></div>
+</div><!-- fragment --><p>So for example <code>o</code> minimum value is <code>geom.firstOctave</code> and maximum value is <code>geom.lastOctave</code>. The subdivision index <code>s</code> naturally spans the range 0 to <code>geom.octaveResolution-1</code>. However, the scale space object is flexible in that it allows different ranges of subdivisions to be computed and <code>s</code> varies in the range <code>geom.octaveFirstSubdivision</code> to <code>geom.octaveLastSubdivision</code>. See <a class="el" href="scalespace-fundamentals.html">Gaussian scale space fundamentals</a> for further details.</p>
+<p>The geometry of the scale space can be customized upon creation, as follows:</p>
+<div class="fragment"><div class="line"><a class="code" href="structVlScaleSpaceGeometry.html">VlScaleSpaceGeometry</a> geom = <a class="code" href="scalespace_8c.html#ab9a838a41d9fe1e04f1477061055b6d9">vl_scalespace_get_default_geometry</a>(imageWidth, imageHeight) ;</div>
+<div class="line">geom.<a class="code" href="structVlScaleSpaceGeometry.html#a96805e209d1452bfb9aa36b9269efcfc">firstOctave</a> = -1 ;</div>
+<div class="line">geom.<a class="code" href="structVlScaleSpaceGeometry.html#a6336d051b8aa479fe3085c9fde98db66">octaveFirstSubdivision</a> = -1 ;</div>
+<div class="line">geom.<a class="code" href="structVlScaleSpaceGeometry.html#a0bff7bc6133eabbfb78b1c1c96bc3fa2">octaveLastSubdivision</a> = geom.<a class="code" href="structVlScaleSpaceGeometry.html#a1ce73bc970c420bd4c93154727edd16d">octaveResolution</a> ;</div>
+<div class="line">VlScaleSpacae ss = <a class="code" href="scalespace_8c.html#a6e997ce733e67a186769e2877a5aaa6a">vl_scalespace_new_with_geometry</a> (geom) ;</div>
+</div><!-- fragment --> </div></div><!-- contents -->
+        <!-- Doc Here -->
+      </div>
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>

@@ -1,0 +1,882 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+  <!-- Page title -->
+  <title>VLFeat - Documentation > C API</title>
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  <link rel="stylesheet" type="text/css" href="doxygen.css"></link>
+  <!-- Scripts-->
+  <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li class='active'><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li class='active' class='activeLeaf'><a href="index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="../doc.html">Documentation</a></span><span class='separator'>></span><span class='page'><a href="index.html">C API</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+      <!-- <pagestyle href="%pathto:root;api/tabs.css"/> -->
+      <div class="doxygen">
+<div id="top">
+<div id="top">
+<!-- Generated by Doxygen 1.8.7 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li class="current"><a href="files.html"><span>Files</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>Globals</span></a></li>
+    </ul>
+  </div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_8dd540b382164c224dfa1eb6e8a3add6.html">vl</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Data Structures</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#enum-members">Enumerations</a>  </div>
+  <div class="headertitle">
+<div class="title">ikmeans.h File Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Integer K-Means clustering.  
+<a href="#details">More...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="generic_8h.html">generic.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="random_8h.html">random.h</a>&quot;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVlIKMFilt.html">VlIKMFilt</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">IKM quantizer.  <a href="structVlIKMFilt.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a6a9ff8a15b1f0d96c187e96705d350e2"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="host_8h.html#a03fa435c713d3141c4a700f79f5b2600">vl_int32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ikmeans_8h.html#a6a9ff8a15b1f0d96c187e96705d350e2">vl_ikmacc_t</a></td></tr>
+<tr class="separator:a6a9ff8a15b1f0d96c187e96705d350e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:a4aa95067e495fa8309ab028307a3418d"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ikmeans_8h.html#a4aa95067e495fa8309ab028307a3418d">VlIKMAlgorithms</a> { <a class="el" href="ikmeans_8h.html#a4aa95067e495fa8309ab028307a3418da03abd693c3d932bb543401274eb868c4">VL_IKM_LLOYD</a>, 
+<a class="el" href="ikmeans_8h.html#a4aa95067e495fa8309ab028307a3418da46d6e04c3599a881c16722b6969c5a21">VL_IKM_ELKAN</a>
+ }</td></tr>
+<tr class="memdesc:a4aa95067e495fa8309ab028307a3418d"><td class="mdescLeft">&#160;</td><td class="mdescRight">IKM algorithms.  <a href="ikmeans_8h.html#a4aa95067e495fa8309ab028307a3418d">More...</a><br /></td></tr>
+<tr class="separator:a4aa95067e495fa8309ab028307a3418d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Create and destroy</div></td></tr>
+<tr class="memitem:af5a42441a336dd73c39c5a1ec8028444"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structVlIKMFilt.html">VlIKMFilt</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ikmeans_8h.html#af5a42441a336dd73c39c5a1ec8028444">vl_ikm_new</a> (int method)</td></tr>
+<tr class="memdesc:af5a42441a336dd73c39c5a1ec8028444"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new IKM quantizer.  <a href="#af5a42441a336dd73c39c5a1ec8028444">More...</a><br /></td></tr>
+<tr class="separator:af5a42441a336dd73c39c5a1ec8028444"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33a659152e03286d390aa17b1a212a7b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ikmeans_8h.html#a33a659152e03286d390aa17b1a212a7b">vl_ikm_delete</a> (<a class="el" href="structVlIKMFilt.html">VlIKMFilt</a> *f)</td></tr>
+<tr class="memdesc:a33a659152e03286d390aa17b1a212a7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete IKM quantizer.  <a href="#a33a659152e03286d390aa17b1a212a7b">More...</a><br /></td></tr>
+<tr class="separator:a33a659152e03286d390aa17b1a212a7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Process data</div></td></tr>
+<tr class="memitem:a8186963805a62e3f7f87c45471c9e56a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ikmeans_8h.html#a8186963805a62e3f7f87c45471c9e56a">vl_ikm_init</a> (<a class="el" href="structVlIKMFilt.html">VlIKMFilt</a> *f, <a class="el" href="ikmeans_8h.html#a6a9ff8a15b1f0d96c187e96705d350e2">vl_ikmacc_t</a> const *centers, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> M, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> K)</td></tr>
+<tr class="memdesc:a8186963805a62e3f7f87c45471c9e56a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize quantizer with centers.  <a href="#a8186963805a62e3f7f87c45471c9e56a">More...</a><br /></td></tr>
+<tr class="separator:a8186963805a62e3f7f87c45471c9e56a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d630ed16753218a87a28c0bf35b16a6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ikmeans_8h.html#a1d630ed16753218a87a28c0bf35b16a6">vl_ikm_init_rand</a> (<a class="el" href="structVlIKMFilt.html">VlIKMFilt</a> *f, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> M, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> K)</td></tr>
+<tr class="memdesc:a1d630ed16753218a87a28c0bf35b16a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize quantizer with random centers.  <a href="#a1d630ed16753218a87a28c0bf35b16a6">More...</a><br /></td></tr>
+<tr class="separator:a1d630ed16753218a87a28c0bf35b16a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe6688368a83b5a38908ed0cc33f4ecd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ikmeans_8h.html#abe6688368a83b5a38908ed0cc33f4ecd">vl_ikm_init_rand_data</a> (<a class="el" href="structVlIKMFilt.html">VlIKMFilt</a> *f, <a class="el" href="host_8h.html#a38fbd9a3cf53dfc9a5650c38497b7d35">vl_uint8</a> const *data, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> M, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> N, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> K)</td></tr>
+<tr class="memdesc:abe6688368a83b5a38908ed0cc33f4ecd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize with centers from random data.  <a href="#abe6688368a83b5a38908ed0cc33f4ecd">More...</a><br /></td></tr>
+<tr class="separator:abe6688368a83b5a38908ed0cc33f4ecd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58ccd60ab79dbfe8b9823a1caede7879"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ikmeans_8h.html#a58ccd60ab79dbfe8b9823a1caede7879">vl_ikm_train</a> (<a class="el" href="structVlIKMFilt.html">VlIKMFilt</a> *f, <a class="el" href="host_8h.html#a38fbd9a3cf53dfc9a5650c38497b7d35">vl_uint8</a> const *data, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> N)</td></tr>
+<tr class="memdesc:a58ccd60ab79dbfe8b9823a1caede7879"><td class="mdescLeft">&#160;</td><td class="mdescRight">Train clusters.  <a href="#a58ccd60ab79dbfe8b9823a1caede7879">More...</a><br /></td></tr>
+<tr class="separator:a58ccd60ab79dbfe8b9823a1caede7879"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7e2bc8d34d514a4fe43b57d12dc244a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ikmeans_8h.html#ac7e2bc8d34d514a4fe43b57d12dc244a">vl_ikm_push</a> (<a class="el" href="structVlIKMFilt.html">VlIKMFilt</a> *f, <a class="el" href="host_8h.html#aeb7c862765448a70017105efa4d25e7a">vl_uint32</a> *asgn, <a class="el" href="host_8h.html#a38fbd9a3cf53dfc9a5650c38497b7d35">vl_uint8</a> const *data, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> N)</td></tr>
+<tr class="memdesc:ac7e2bc8d34d514a4fe43b57d12dc244a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Project data to clusters.  <a href="#ac7e2bc8d34d514a4fe43b57d12dc244a">More...</a><br /></td></tr>
+<tr class="separator:ac7e2bc8d34d514a4fe43b57d12dc244a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03f0ed5b6f3680b1f872c01e47b36cb8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#a5bd6e91d6bfd0be04101fdca94069c92">vl_uint</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ikmeans_8h.html#a03f0ed5b6f3680b1f872c01e47b36cb8">vl_ikm_push_one</a> (<a class="el" href="ikmeans_8h.html#a6a9ff8a15b1f0d96c187e96705d350e2">vl_ikmacc_t</a> const *centers, <a class="el" href="host_8h.html#a38fbd9a3cf53dfc9a5650c38497b7d35">vl_uint8</a> const *data, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> M, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> K)</td></tr>
+<tr class="memdesc:a03f0ed5b6f3680b1f872c01e47b36cb8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Project one datum to clusters.  <a href="#a03f0ed5b6f3680b1f872c01e47b36cb8">More...</a><br /></td></tr>
+<tr class="separator:a03f0ed5b6f3680b1f872c01e47b36cb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Retrieve data and parameters</div></td></tr>
+<tr class="memitem:a10787adeb3ac4c3d6cce7a2e3598525f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ikmeans_8h.html#a10787adeb3ac4c3d6cce7a2e3598525f">vl_ikm_get_ndims</a> (<a class="el" href="structVlIKMFilt.html">VlIKMFilt</a> const *f)</td></tr>
+<tr class="memdesc:a10787adeb3ac4c3d6cce7a2e3598525f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get data dimensionality.  <a href="#a10787adeb3ac4c3d6cce7a2e3598525f">More...</a><br /></td></tr>
+<tr class="separator:a10787adeb3ac4c3d6cce7a2e3598525f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba2ce262018aae7049c53a33af0db8e1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ikmeans_8h.html#aba2ce262018aae7049c53a33af0db8e1">vl_ikm_get_K</a> (<a class="el" href="structVlIKMFilt.html">VlIKMFilt</a> const *f)</td></tr>
+<tr class="memdesc:aba2ce262018aae7049c53a33af0db8e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of centers K.  <a href="#aba2ce262018aae7049c53a33af0db8e1">More...</a><br /></td></tr>
+<tr class="separator:aba2ce262018aae7049c53a33af0db8e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe77d60b7c64f773b9e5edbcebca6e21"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ikmeans_8h.html#afe77d60b7c64f773b9e5edbcebca6e21">vl_ikm_get_verbosity</a> (<a class="el" href="structVlIKMFilt.html">VlIKMFilt</a> const *f)</td></tr>
+<tr class="memdesc:afe77d60b7c64f773b9e5edbcebca6e21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get verbosity level.  <a href="#afe77d60b7c64f773b9e5edbcebca6e21">More...</a><br /></td></tr>
+<tr class="separator:afe77d60b7c64f773b9e5edbcebca6e21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1dcf031fd04bdbaf9d389dcd960c953"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ikmeans_8h.html#ad1dcf031fd04bdbaf9d389dcd960c953">vl_ikm_get_max_niters</a> (<a class="el" href="structVlIKMFilt.html">VlIKMFilt</a> const *f)</td></tr>
+<tr class="memdesc:ad1dcf031fd04bdbaf9d389dcd960c953"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get maximum number of iterations.  <a href="#ad1dcf031fd04bdbaf9d389dcd960c953">More...</a><br /></td></tr>
+<tr class="separator:ad1dcf031fd04bdbaf9d389dcd960c953"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56e13744afc5e1917f4c036fe1c36678"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ikmeans_8h.html#a6a9ff8a15b1f0d96c187e96705d350e2">vl_ikmacc_t</a> const *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ikmeans_8h.html#a56e13744afc5e1917f4c036fe1c36678">vl_ikm_get_centers</a> (<a class="el" href="structVlIKMFilt.html">VlIKMFilt</a> const *f)</td></tr>
+<tr class="memdesc:a56e13744afc5e1917f4c036fe1c36678"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get maximum number of iterations.  <a href="#a56e13744afc5e1917f4c036fe1c36678">More...</a><br /></td></tr>
+<tr class="separator:a56e13744afc5e1917f4c036fe1c36678"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Set parameters</div></td></tr>
+<tr class="memitem:adbf9d13d091a5bec378023de11bfa690"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ikmeans_8h.html#adbf9d13d091a5bec378023de11bfa690">vl_ikm_set_verbosity</a> (<a class="el" href="structVlIKMFilt.html">VlIKMFilt</a> *f, int verb)</td></tr>
+<tr class="memdesc:adbf9d13d091a5bec378023de11bfa690"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set verbosity level.  <a href="#adbf9d13d091a5bec378023de11bfa690">More...</a><br /></td></tr>
+<tr class="separator:adbf9d13d091a5bec378023de11bfa690"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25053477cd794f1a0fc3095a08640c62"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ikmeans_8h.html#a25053477cd794f1a0fc3095a08640c62">vl_ikm_set_max_niters</a> (<a class="el" href="structVlIKMFilt.html">VlIKMFilt</a> *f, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> max_niters)</td></tr>
+<tr class="memdesc:a25053477cd794f1a0fc3095a08640c62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set maximum number of iterations.  <a href="#a25053477cd794f1a0fc3095a08640c62">More...</a><br /></td></tr>
+<tr class="separator:a25053477cd794f1a0fc3095a08640c62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Integer K-means (IKM) is an implementation of K-means clustering (or Vector Quantization, VQ) for integer data. This is particularly useful for clustering large collections of visual descriptors.</p>
+<p>Use the function <a class="el" href="ikmeans_8h.html#af5a42441a336dd73c39c5a1ec8028444" title="Create a new IKM quantizer. ">vl_ikm_new()</a> to create a IKM quantizer. Initialize the IKM quantizer with <code>K</code> clusters by <a class="el" href="ikmeans_8h.html#a8186963805a62e3f7f87c45471c9e56a" title="Initialize quantizer with centers. ">vl_ikm_init()</a> or similar function. Use <a class="el" href="ikmeans_8h.html#a58ccd60ab79dbfe8b9823a1caede7879" title="Train clusters. ">vl_ikm_train()</a> to train the quantizer. Use <a class="el" href="ikmeans_8h.html#ac7e2bc8d34d514a4fe43b57d12dc244a" title="Project data to clusters. ">vl_ikm_push()</a> or <a class="el" href="ikmeans_8h.html#a03f0ed5b6f3680b1f872c01e47b36cb8" title="Project one datum to clusters. ">vl_ikm_push_one()</a> to quantize new data.</p>
+<p>Given data \(x_1,\dots,x_N\in R^d\) and a number of clusters \(K\), the goal is to find assignments \(a_i\in\{1,\dots,K\},\) and centers \(c_1,\dots,c_K\in R^d\) so that the <em>expected distortion</em></p>
+<p class="formulaDsp">
+\[ E(\{a_{i}, c_j\}) = \frac{1}{N} \sum_{i=1}^N d(x_i, c_{a_i}) \]
+</p>
+<p>is minimized. Here \(d(x_i, c_{a_i})\) is the <em>distortion</em>, i.e. the cost we pay for representing \( x_i \) by \( c_{a_i} \). IKM uses the squared distortion \(d(x,y)=\|x-y\|^2_2\).</p>
+<h1><a class="anchor" id="ikmeans-algo"></a>
+Algorithms</h1>
+<h2><a class="anchor" id="ikmeans-alg-init"></a>
+Initialization</h2>
+<p>Most K-means algorithms are iterative and needs an initialization in the form of an initial choice of the centers \(c_1,\dots,c_K\). We include the following options:</p>
+<ul>
+<li>User specified centers (<a class="el" href="ikmeans_8h.html#a8186963805a62e3f7f87c45471c9e56a" title="Initialize quantizer with centers. ">vl_ikm_init</a>);</li>
+<li>Random centers (<a class="el" href="ikmeans_8h.html#a1d630ed16753218a87a28c0bf35b16a6" title="Initialize quantizer with random centers. ">vl_ikm_init_rand</a>);</li>
+<li>Centers from <code>K</code> randomly selected data points (<a class="el" href="ikmeans_8h.html#abe6688368a83b5a38908ed0cc33f4ecd" title="Initialize with centers from random data. ">vl_ikm_init_rand_data</a>).</li>
+</ul>
+<h2><a class="anchor" id="ikmeans-alg-lloyd"></a>
+Lloyd</h2>
+<p>The Lloyd (also known as Lloyd-Max and LBG) algorithm iteratively:</p>
+<ul>
+<li>Fixes the centers, optimizing the assignments (minimizing by exhaustive search the association of each data point to the centers);</li>
+<li>Fixes the assignments and optimizes the centers (by descending the distortion error function). For the squared distortion, this step is in closed form.</li>
+</ul>
+<p>This algorithm is not particularly efficient because all data points need to be compared to all centers, for a complexity \(O(dNKT)\), where <em>T</em> is the total number of iterations.</p>
+<h2><a class="anchor" id="ikmeans-alg-elkan"></a>
+Elkan</h2>
+<p>The Elkan algorithm is an optimized variant of Lloyd. By making use of the triangle inequality, many comparisons of data points and centers are avoided, especially at later iterations. Usually 4-5 times less comparisons than Lloyd are preformed, providing a dramatic speedup in the execution time.</p>
+<dl class="section author"><dt>Author</dt><dd>Brian Fulkerson </dd>
+<dd>
+Andrea Vedaldi </dd></dl>
+</div><h2 class="groupheader">Typedef Documentation</h2>
+<a class="anchor" id="a6a9ff8a15b1f0d96c187e96705d350e2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="host_8h.html#a03fa435c713d3141c4a700f79f5b2600">vl_int32</a> <a class="el" href="ikmeans_8h.html#a6a9ff8a15b1f0d96c187e96705d350e2">vl_ikmacc_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>IKM accumulator data type </p>
+
+</div>
+</div>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a class="anchor" id="a4aa95067e495fa8309ab028307a3418d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="ikmeans_8h.html#a4aa95067e495fa8309ab028307a3418d">VlIKMAlgorithms</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a class="anchor" id="a4aa95067e495fa8309ab028307a3418da03abd693c3d932bb543401274eb868c4"></a>VL_IKM_LLOYD&#160;</td><td class="fielddoc">
+<p>Lloyd algorithm </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="a4aa95067e495fa8309ab028307a3418da46d6e04c3599a881c16722b6969c5a21"></a>VL_IKM_ELKAN&#160;</td><td class="fielddoc">
+<p>Elkan algorithm </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a33a659152e03286d390aa17b1a212a7b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_ikm_delete </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlIKMFilt.html">VlIKMFilt</a> *&#160;</td>
+          <td class="paramname"><em>f</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>IKM quantizer. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a56e13744afc5e1917f4c036fe1c36678"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="ikmeans_8h.html#a6a9ff8a15b1f0d96c187e96705d350e2">vl_ikmacc_t</a> const* vl_ikm_get_centers </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlIKMFilt.html">VlIKMFilt</a> const *&#160;</td>
+          <td class="paramname"><em>f</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>IKM filter. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>maximum number of iterations. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aba2ce262018aae7049c53a33af0db8e1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> vl_ikm_get_K </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlIKMFilt.html">VlIKMFilt</a> const *&#160;</td>
+          <td class="paramname"><em>f</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>IKM filter. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>number of centers K. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ad1dcf031fd04bdbaf9d389dcd960c953"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> vl_ikm_get_max_niters </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlIKMFilt.html">VlIKMFilt</a> const *&#160;</td>
+          <td class="paramname"><em>f</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>IKM filter. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>maximum number of iterations. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a10787adeb3ac4c3d6cce7a2e3598525f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> vl_ikm_get_ndims </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlIKMFilt.html">VlIKMFilt</a> const *&#160;</td>
+          <td class="paramname"><em>f</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>IKM filter. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>data dimensionality. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="afe77d60b7c64f773b9e5edbcebca6e21"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int vl_ikm_get_verbosity </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlIKMFilt.html">VlIKMFilt</a> const *&#160;</td>
+          <td class="paramname"><em>f</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>IKM filter. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>verbosity level. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a8186963805a62e3f7f87c45471c9e56a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_ikm_init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlIKMFilt.html">VlIKMFilt</a> *&#160;</td>
+          <td class="paramname"><em>f</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="ikmeans_8h.html#a6a9ff8a15b1f0d96c187e96705d350e2">vl_ikmacc_t</a> const *&#160;</td>
+          <td class="paramname"><em>centers</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>M</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>K</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>IKM quantizer. </td></tr>
+    <tr><td class="paramname">centers</td><td>centers. </td></tr>
+    <tr><td class="paramname">M</td><td>data dimensionality. </td></tr>
+    <tr><td class="paramname">K</td><td>number of clusters. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a1d630ed16753218a87a28c0bf35b16a6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_ikm_init_rand </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlIKMFilt.html">VlIKMFilt</a> *&#160;</td>
+          <td class="paramname"><em>f</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>M</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>K</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>IKM quantizer. </td></tr>
+    <tr><td class="paramname">M</td><td>data dimensionality. </td></tr>
+    <tr><td class="paramname">K</td><td>number of clusters. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="abe6688368a83b5a38908ed0cc33f4ecd"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_ikm_init_rand_data </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlIKMFilt.html">VlIKMFilt</a> *&#160;</td>
+          <td class="paramname"><em>f</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a38fbd9a3cf53dfc9a5650c38497b7d35">vl_uint8</a> const *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>M</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>N</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>K</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>IKM quantizer. </td></tr>
+    <tr><td class="paramname">data</td><td>data. </td></tr>
+    <tr><td class="paramname">M</td><td>data dimensionality. </td></tr>
+    <tr><td class="paramname">N</td><td>number of data. </td></tr>
+    <tr><td class="paramname">K</td><td>number of clusters. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="af5a42441a336dd73c39c5a1ec8028444"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structVlIKMFilt.html">VlIKMFilt</a>* vl_ikm_new </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>method</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">method</td><td>Clustering algorithm. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>new IKM quantizer.</dd></dl>
+<p>The function allocates initializes a new IKM quantizer to operate based algorithm <em>method</em>.</p>
+<p><em>method</em> has values in the enumerations <a class="el" href="ikmeans_8h.html#a4aa95067e495fa8309ab028307a3418d" title="IKM algorithms. ">VlIKMAlgorithms</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="ac7e2bc8d34d514a4fe43b57d12dc244a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_ikm_push </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlIKMFilt.html">VlIKMFilt</a> *&#160;</td>
+          <td class="paramname"><em>f</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#aeb7c862765448a70017105efa4d25e7a">vl_uint32</a> *&#160;</td>
+          <td class="paramname"><em>asgn</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a38fbd9a3cf53dfc9a5650c38497b7d35">vl_uint8</a> const *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>N</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>IKM quantizer. </td></tr>
+    <tr><td class="paramname">asgn</td><td>Assignments (out). </td></tr>
+    <tr><td class="paramname">data</td><td>data. </td></tr>
+    <tr><td class="paramname">N</td><td>number of data (<em>N</em> <code>&gt;=</code> 1).</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The function projects the data <em>data</em> on the integer K-means clusters specified by the IKM quantizer <em>f</em>. Notice that the quantizer must be initialized. </p>
+
+</div>
+</div>
+<a class="anchor" id="a03f0ed5b6f3680b1f872c01e47b36cb8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#a5bd6e91d6bfd0be04101fdca94069c92">vl_uint</a> vl_ikm_push_one </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="ikmeans_8h.html#a6a9ff8a15b1f0d96c187e96705d350e2">vl_ikmacc_t</a> const *&#160;</td>
+          <td class="paramname"><em>centers</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a38fbd9a3cf53dfc9a5650c38497b7d35">vl_uint8</a> const *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>M</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>K</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">centers</td><td>centers. </td></tr>
+    <tr><td class="paramname">data</td><td>datum to project. </td></tr>
+    <tr><td class="paramname">K</td><td>number of centers. </td></tr>
+    <tr><td class="paramname">M</td><td>dimensionality of the datum. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the cluster index.</dd></dl>
+<p>The function projects the specified datum <em>data</em> on the clusters specified by the centers <em>centers</em>. </p>
+
+</div>
+</div>
+<a class="anchor" id="a25053477cd794f1a0fc3095a08640c62"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_ikm_set_max_niters </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlIKMFilt.html">VlIKMFilt</a> *&#160;</td>
+          <td class="paramname"><em>f</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>max_niters</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>IKM filter. </td></tr>
+    <tr><td class="paramname">max_niters</td><td>maximum number of iterations. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="adbf9d13d091a5bec378023de11bfa690"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_ikm_set_verbosity </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlIKMFilt.html">VlIKMFilt</a> *&#160;</td>
+          <td class="paramname"><em>f</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>verb</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>IKM filter. </td></tr>
+    <tr><td class="paramname">verb</td><td>verbosity level. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a58ccd60ab79dbfe8b9823a1caede7879"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int vl_ikm_train </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVlIKMFilt.html">VlIKMFilt</a> *&#160;</td>
+          <td class="paramname"><em>f</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a38fbd9a3cf53dfc9a5650c38497b7d35">vl_uint8</a> const *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>N</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>IKM quantizer. </td></tr>
+    <tr><td class="paramname">data</td><td>data. </td></tr>
+    <tr><td class="paramname">N</td><td>number of data (<em>N</em> <code>&gt;=</code> 1). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>-1 if an overflow may have occurred. </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+        <!-- Doc Here -->
+      </div>
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>

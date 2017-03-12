@@ -1,0 +1,21 @@
+<group>
+<ul class='breadcrumb'><li><a href='%pathto:matlab;'>Index</a></li><li><a href='%pathto:vl_cf;'>Prev</a></li><li><a href='%pathto:vl_clickpoint;'>Next</a></li></ul><div class="documentation"><p>
+P=<a href="%pathto:vl_click;">VL_CLICK</a>() let the user click a point in the current figure and
+returns its coordinates in P. P is a two dimensiona vectors where
+P(1) is the point X-coordinate and P(2) the point Y-coordinate. The
+user can abort the operation by pressing any key, in which case the
+empty matrix is returned.
+</p><p>
+P=<a href="%pathto:vl_click;">VL_CLICK</a>(N) lets the user select N points in a row. The user can
+stop inserting points by pressing any key, in which case the
+partial list is returned.
+</p><p>
+<a href="%pathto:vl_click;">VL_CLICK</a>() accepts the following options:
+</p><dl><dt>
+PlotMarker
+<span class="defaults">[0]</span></dt><dd><p>
+Plot a marker as points are selected. The markers are deleted on
+exiting the function.
+</p></dd></dl><p>
+See also: <a href="%pathto:vl_clickpoint;">VL_CLICKPOINT</a>(), <a href="%pathto:vl_help;">VL_HELP</a>().
+</p></div></group>

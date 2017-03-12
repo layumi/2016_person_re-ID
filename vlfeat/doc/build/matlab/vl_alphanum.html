@@ -1,0 +1,23 @@
+<group>
+<ul class='breadcrumb'><li><a href='%pathto:matlab;'>Index</a></li><li><a href='%pathto:vl_alldist2;'>Prev</a></li><li><a href='%pathto:vl_argparse;'>Next</a></li></ul><div class="documentation"><p>
+STRINGS = <a href="%pathto:vl_alphanum;">VL_ALPHANUM</a>(STRINGS) sorts the cell array of strings
+STRINGS by using the Alphanum algorithm [1]. [STRINGS,PERM] =
+<a href="%pathto:vl_alphanum;">VL_ALPHANUM</a>(...) returns the corresponding permutation PERM as
+well.
+</p><dl><dt>
+Example
+</dt><dd><p>
+Alphanum sorts strings in a way that 'makes sense'. For instance
+</p><pre>
+ strings = {'B1', 'B2', 'B12', 'A12', 'A1', 'A2'} ;
+ sorted = vl_alphanum(strings) ;
+</pre><p>
+produces the sorted array {'A1', 'A2', 'A12', 'B1', B2',
+'B12'}. By contrast, SORT() produces the array {'A1', 'A12',
+'A2', 'B1', B12', 'B2'} (note the position of the elements
+'A12', 'B12').
+</p></dd></dl><p>
+References:
+[1] Dave Koelle, 'The Alphanum Algorithm',
+http://www.davekoelle.com/alphanum.html
+</p></div></group>

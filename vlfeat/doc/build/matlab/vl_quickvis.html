@@ -1,0 +1,25 @@
+<group>
+<ul class='breadcrumb'><li><a href='%pathto:matlab;'>Index</a></li><li><a href='%pathto:vl_quickshift;'>Prev</a></li><li><a href='%pathto:vl_covdet;'>Next</a></li></ul><div class="documentation"><p>
+IEDGE = <a href="%pathto:vl_quickvis;">VL_QUICKVIS</a>(I, RATIO, KERNELSIZE, MAXDIST, MAXCUTS) creates an edge
+stability image from a Quickshift segmentation. RATIO controls the tradeoff
+between color consistency and spatial consistency (See VL_QUICKSEG) and
+KERNELSIZE controls the bandwidth of the density estimator (See VL_QUICKSEG,
+VL_QUICKSHIFT). MAXDIST is the maximum distance between neighbors which
+increase the density.
+</p><p>
+VL_QUICKVIS takes at most MAXCUTS thresholds less than MAXDIST, forming at
+most MAXCUTS segmentations. The edges between regions in each of these
+segmentations are labeled in IEDGE, where the label corresponds to the
+largest DIST which preserves the edge.
+</p><p>
+[IEDGE,DISTS] = <a href="%pathto:vl_quickvis;">VL_QUICKVIS</a>(I, RATIO, KERNELSIZE, MAXDIST, MAXCUTS) also
+returns the DIST thresholds that were chosen.
+</p><p>
+IEDGE = <a href="%pathto:vl_quickvis;">VL_QUICKVIS</a>(I, RATIO, KERNELSIZE, DISTS) will use the DISTS
+specified
+</p><p>
+[IEDGE,DISTS,MAP,GAPS] = <a href="%pathto:vl_quickvis;">VL_QUICKVIS</a>(I, RATIO, KERNELSIZE, MAXDIST, MAXCUTS)
+also returns the MAP and GAPS from VL_QUICKSHIFT.
+</p><p>
+See Also: <a href="%pathto:vl_quickshift;">VL_QUICKSHIFT</a>(), <a href="%pathto:vl_quickseg;">VL_QUICKSEG</a>(), <a href="%pathto:vl_help;">VL_HELP</a>().
+</p></div></group>

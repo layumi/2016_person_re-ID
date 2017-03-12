@@ -1,0 +1,20 @@
+<group>
+<ul class='breadcrumb'><li><a href='%pathto:matlab;'>Index</a></li><li><a href='%pathto:vl_imgrad;'>Prev</a></li><li><a href='%pathto:vl_impattern;'>Next</a></li></ul><div class="documentation"><p>
+J = <a href="%pathto:vl_imintegral;">VL_IMINTEGRAL</a>(I) calculates the integral image J of the image
+I.  I must a matrix with DOUBLE, SINGLE, UINT32, or INT32 storage
+class. J is given by
+</p><pre>
+ J(i,j) = sum(I(1:i,1:j)).
+</pre><p>
+J has the same size as I and the same storage class.
+</p><dl><dt>
+Example
+</dt><dd><p>
+The following identity holds:
+</p><pre>
+  VL_IMINTEGRAL(ONES(3)) = [ 1 2 3 ;
+                             2 4 6 ;
+                             3 6 9 ]
+</pre></dd></dl><p>
+See also: <a href="%pathto:vl_help;">VL_HELP</a>().
+</p></div></group>

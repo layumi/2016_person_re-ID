@@ -1,0 +1,65 @@
+<group>
+<ul class='breadcrumb'><li><a href='%pathto:matlab;'>Index</a></li><li><a href='%pathto:vl_rodr;'>Prev</a></li><li><a href='%pathto:vl_dwaffine;'>Next</a></li></ul><div class="documentation"><p>
+[MEANS, COVARIANCES, PRIORS] = <a href="%pathto:vl_gmm;">VL_GMM</a>(X, NUMCLUSTERS) fits a GMM with
+NUMCLUSTERS components to the data X. Each column of X represent a
+sample point. X may be either SINGLE or DOUBLE. MEANS, COVARIANCES, and
+PRIORS are respectively the means, the diagonal covariances, and
+the prior probabilities of the Guassian modes. MEANS and COVARIANCES
+have the same number of rows as X and NUMCLUSTERS columns with one
+column per mode. PRIORS is a row vector with NUMCLUSTER entries
+summing to one.
+</p><p>
+[MEANS, COVARIANCES, PRIORS, LL] = <a href="%pathto:vl_gmm;">VL_GMM</a>(...) returns the
+loglikelihood (LL) of the model as well.
+</p><p>
+[MEANS, COVARIANCES, PRIORS, LL, POSTERIORS] = <a href="%pathto:vl_gmm;">VL_GMM</a>(...) returns
+the posterior probabilities POSTERIORS of the Gaussian modes given
+each data point. The POSTERIORS matrix has NUMCLUSTERS rows and
+NUMDATA columns.
+</p><p>
+<a href="%pathto:vl_gmm;">VL_GMM</a>() supports different initialization and optimization
+methods. Specifically, the following options are supported:
+</p><dl><dt>
+Verbose
+</dt><dd><p>
+Increase the verbosity level (may be specified multiple times).
+</p></dd><dt>
+Initialization
+<span class="defaults">RAND</span></dt><dd><p>
+RAND initializes the means as random data poitns and the
+covaraince matrices as the covariance of X. CUSTOM allow
+specifying the initial means, covariances, and prior
+probabilities.
+</p></dd><dt>
+InitMeans
+<span class="defaults">none</span></dt><dd><p>
+Specify the initial means (size(X,1)-by-NUMCLUSTERS matrix).
+</p></dd><dt>
+InitPriors
+<span class="defaults">none</span></dt><dd><p>
+Specify the initial weights (a vector of dimension NUMCLUSTER).
+</p></dd><dt>
+InitCovariances
+<span class="defaults">none</span></dt><dd><p>
+Specify the initial diagonal covariance matrices
+</p></dd><dt>
+NumRepetitions
+<span class="defaults">1</span></dt><dd><p>
+Number of times to restart EM. The solution with maximum
+loglikelihood is returned.
+</p></dd><dt>
+CovarianceBound
+<span class="defaults">10e-6</span></dt><dd><p>
+Set the lower bound on the diagonal covariance values.
+The bound can be either a scalar or a vector with one
+entry per dimension. Using null bounds is possible, but
+may yield degenerate solutions, including NaNs.
+</p></dd><dt>
+Example
+</dt><dd><p>
+<a href="%pathto:vl_gmm;">VL_GMM</a>(X, 10, 'verbose', 'MaxNumIterations', 20) learns a
+mixture of ten Gaussians using at most twenty iterations of the
+algorithm.
+</p></dd></dl><p>
+See also: <a href="%dox:gmm;">GMMs</a>, <a href="%pathto:vl_kmeans;">VL_KMEANS</a>(), <a href="%pathto:vl_help;">VL_HELP</a>().
+</p></div></group>

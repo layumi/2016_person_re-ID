@@ -1,0 +1,23 @@
+<group>
+<ul class='breadcrumb'><li><a href='%pathto:matlab;'>Index</a></li><li><a href='%pathto:vl_hikmeans;'>Prev</a></li><li><a href='%pathto:vl_hikmeanspush;'>Next</a></li></ul><div class="documentation"><p>
+H = <a href="%pathto:vl_hikmeanshist;">VL_HIKMEANSHIST</a>(TREE,PATH) computes the histogram of the HIKM tree
+nodes activated by the root-to-leaf paths PATH. PATH is usually
+obtained by quantizing data by means of <a href="%pathto:vl_hikmeanspush;">VL_HIKMEANSPUSH</a>().
+</p><p>
+The histogram H has one bin for each node of the HIKM tree TREE.
+The tree has K = TREE.K nodes and depth D = TREE.DEPTH.  Therefore
+there are M = (K^(D+1) - 1) / (K - 1) nodes in the tree (not
+counting the root which carries no information). Nodes are stacked
+into a vector of bins in breadth first order.
+</p><dl><dt>
+Example
+</dt><dd><p>
+The following relations illustrate the structure of PATH:
+</p><pre>
+  H(1)   = # of paths such that PATH(1,:) = 1
+  H(K)   = # of paths such that PATH(1,:) = K
+  H(K+1) = # of paths such that PATH(1:2,:) = [1 ; 1]
+  H(K+K) = # of paths such that PATH(1:2,:) = [1 ; K]
+</pre></dd></dl><p>
+See also: <a href="%pathto:vl_hikmeans;">VL_HIKMEANS</a>(), <a href="%pathto:vl_hikmeanspush;">VL_HIKMEANSPUSH</a>(), <a href="%pathto:vl_help;">VL_HELP</a>().
+</p></div></group>

@@ -1,0 +1,312 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+  <!-- Page title -->
+  <title>VLFeat - Documentation > C API</title>
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  <link rel="stylesheet" type="text/css" href="doxygen.css"></link>
+  <!-- Scripts-->
+  <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li class='active'><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li class='active' class='activeLeaf'><a href="index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="../doc.html">Documentation</a></span><span class='separator'>></span><span class='page'><a href="index.html">C API</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+      <!-- <pagestyle href="%pathto:root;api/tabs.css"/> -->
+      <div class="doxygen">
+<div id="top">
+<div id="top">
+<!-- Generated by Doxygen 1.8.7 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li class="current"><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
+    </ul>
+  </div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="index.html">Vision Lab Features Library (VLFeat)</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Portability features </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="toc"><h3>Table of Contents</h3>
+<ul><li class="level1"><a href="#host-os">Host operating system</a></li>
+<li class="level1"><a href="#host-compiler">Host compiler</a><ul><li class="level2"><a href="#host-compiler-data-model">Data models</a></li>
+<li class="level2"><a href="#host-compiler-other">Other compiler-specific features</a></li>
+</ul>
+</li>
+<li class="level1"><a href="#host-arch">Host CPU architecture</a><ul><li class="level2"><a href="#host-arch-endianness">Endianness</a></li>
+</ul>
+</li>
+<li class="level1"><a href="#host-threads">Multi-threading</a></li>
+</ul>
+</div>
+<div class="textblock"><dl class="section author"><dt>Author</dt><dd>Andrea Vedaldi</dd></dl>
+<p>Platform dependent details are isolated in the <a class="el" href="host_8h.html">host.h</a>. This module provides functionalities to identify the host operating system, C compiler, and CPU architecture. It also provides a few features to abstract from such details.</p>
+<dl class="section see"><dt>See also</dt><dd><a href="http://predef.sourceforge.net/index.php">http://predef.sourceforge.net/index.php</a> </dd>
+<dd>
+<a href="http://en.wikipedia.org/wiki/64-bit_computing">http://en.wikipedia.org/wiki/64-bit_computing</a></dd></dl>
+<h1><a class="anchor" id="host-os"></a>
+Host operating system</h1>
+<p>The module defines a symbol to identify the host operating system: <a class="el" href="host_8h.html#a9e8b6b892c4c517efb458a908f8d8f89" title="Defined if the host operating system is Windows (32 or 64) ">VL_OS_WIN</a> for Windows, <a class="el" href="host_8h.html#ace5a6e77fa663303cfd489f3eaaf1cd9" title="Defined if the host operating system is Linux. ">VL_OS_LINUX</a> for Linux, <a class="el" href="host_8h.html#a6368203ab40afc45aa5d2faaf794038e" title="Defined if the host operating system is Mac OS X. ">VL_OS_MACOSX</a> for Mac OS X, and so on.</p>
+<h1><a class="anchor" id="host-compiler"></a>
+Host compiler</h1>
+<p>The module defines a symbol to identify the host compiler: <a class="el" href="host_8h.html#a27371f6fc56a871d3d2a2dea1b191cbf" title="Defined if the host compiler is Microsoft Visual C++. ">VL_COMPILER_MSC</a> for Microsoft Visual C++, <a class="el" href="host_8h.html#a1d501d055fcbcd42c1369c64f4bc8e8d" title="Defined if the host compiler is GNU C. ">VL_COMPILER_GNUC</a> for GNU C, and so on. The (integer) value of such symbols corresponds the version of the compiler.</p>
+<p>The module defines a symbol to identify the data model of the compiler: <a class="el" href="host_8h.html#a426f6e574a76d69692eace4d858b9adf" title="Defined if the host compiler data model is ILP32. ">VL_COMPILER_ILP32</a>, <a class="el" href="host_8h.html#a06056894ccd483c6171eec205fb253a6" title="Defined if the host compiler data model is LP64. ">VL_COMPILER_LP64</a>, or <a class="el" href="host_8h.html#a01af69f0de0af937ca06729348d3b1a6" title="Defined if the host compiler data model is LLP64. ">VL_COMPILER_LLP64</a> (see Sect. <a class="el" href="portability.html#host-compiler-data-model">Data models</a>). For convenience, it also defines a number of atomic types of prescribed width (<a class="el" href="host_8h.html#aee4cc9690b799a33dfc9614636ac34a1" title="Signed 8-bit integer. ">vl_int8</a>, <a class="el" href="host_8h.html#a47e046602e64d54280961328bf950ca1" title="Signed 16-bit integer. ">vl_int16</a>, <a class="el" href="host_8h.html#a03fa435c713d3141c4a700f79f5b2600" title="Signed 32-bit integer. ">vl_int32</a>, etc.).</p>
+<dl class="section remark"><dt>Remarks</dt><dd>While some of such functionalities are provided by the standard header <code>stdint.h</code>, the latter is not supported by all platforms.</dd></dl>
+<h2><a class="anchor" id="host-compiler-data-model"></a>
+Data models</h2>
+<p>The C language defines a number of atomic data types (such as <code>char</code>, <code>short</code>, <code>int</code> and so on). The number of bits (width) used to represent each data type depends on the compiler data model. The different models are <em>ILP32</em> (<code>int</code>, <code>long</code>, and pointer 32 bit), LP64* (<code>int</code> 32 bit, <code>long</code> and pointer 64 bit), <em>ILP64</em> (<code>int</code>, <code>long</code>, and pointer 64 bit), and <em>LLP64</em> (<code>int</code>, <code>long</code> 32 bit and pointer 64 &ndash; and <code>long long</code> &ndash; 64 bit). Note in particular that <code>long long</code> is 64 bit in all models of interest. The following table summarizes them:</p>
+<table class="doxtable">
+<caption align="bottom"><b>Compiler data models.</b> </caption>
+<tr style="font-weight:bold;">
+<td>Data model </td><td><code>short</code> </td><td><code>int</code> </td><td><code>long</code> </td><td><code>long long</code> </td><td><code>void*</code> </td><td>Compiler  </td></tr>
+<tr>
+<td>ILP32 </td><td style="background-color:#ffa;">16 </td><td style="background-color:#afa;">32 </td><td style="background-color:#afa;">32 </td><td>64 </td><td style="background-color:#afa;">32 </td><td>Most 32 bit architectures.  </td></tr>
+<tr>
+<td>LP64 </td><td style="background-color:#ffa;">16 </td><td style="background-color:#afa;">32 </td><td>64 </td><td>64 </td><td>64 </td><td>UNIX-64 (Linux, Mac OS X)  </td></tr>
+<tr>
+<td>ILP64 </td><td style="background-color:#ffa;">16 </td><td>64 </td><td>64 </td><td>64 </td><td>64 </td><td>Alpha, Cray  </td></tr>
+<tr>
+<td>SLIP64 </td><td>64 </td><td>64 </td><td>64 </td><td>64 </td><td>64 </td><td></td></tr>
+<tr>
+<td>LLP64 </td><td style="background-color:#ffa;">16 </td><td style="background-color:#afa;">32 </td><td style="background-color:#afa;">32 </td><td>64 </td><td>64 </td><td>Windows-64  </td></tr>
+</table>
+<p>Macros such as <a class="el" href="host_8h.html#a9fedb480a5681cef16985d34ec52f6fe" title="Create an integer constant of the specified width and sign. ">VL_UINT32_C</a> can be used to generate integer literal with the correct suffix for a type of a given width.</p>
+<h2><a class="anchor" id="host-compiler-other"></a>
+Other compiler-specific features</h2>
+<p>The module provides the macro <a class="el" href="host_8h.html#a489d7622ef2e3937985fcb9f89a5cbe5" title="Declares a DLL exported symbol. ">VL_EXPORT</a> to declare symbols exported from the library and the macro <a class="el" href="host_8h.html#a41b94143626a52276b1a0ffd1e29e496" title="Adds appropriate inline function qualifier. ">VL_INLINE</a> to declare inline functions. Such features are not part of the C89 standard, and change depending on the compiler.</p>
+<dl class="section user"><dt>Example:</dt><dd>The following header file declares a function <code>f</code> that should be visible from outside the library. <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="generic_8h.html">vl/generic.h</a>&gt;</span></div>
+<div class="line"><a class="code" href="host_8h.html#a489d7622ef2e3937985fcb9f89a5cbe5">VL_EXPORT</a> <span class="keywordtype">void</span> f () ;</div>
+<div class="line"><a class="code" href="host_8h.html#a489d7622ef2e3937985fcb9f89a5cbe5">VL_EXPORT</a> <span class="keywordtype">int</span> i ;</div>
+</div><!-- fragment --> Notice that the macro <a class="el" href="host_8h.html#a489d7622ef2e3937985fcb9f89a5cbe5" title="Declares a DLL exported symbol. ">VL_EXPORT</a> needs not to be included again when the function is defined.</dd></dl>
+<dl class="section user"><dt>Example:</dt><dd>The following header file declares an inline function <code>f:</code> <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="generic_8h.html">vl/generic.h</a>&gt;</span></div>
+<div class="line"><a class="code" href="host_8h.html#a41b94143626a52276b1a0ffd1e29e496">VL_INLINE</a> <span class="keywordtype">int</span> f() ;</div>
+<div class="line"></div>
+<div class="line"><a class="code" href="host_8h.html#a41b94143626a52276b1a0ffd1e29e496">VL_INLINE</a> <span class="keywordtype">int</span> f() { <span class="keywordflow">return</span> 1 ; }</div>
+</div><!-- fragment --></dd></dl>
+<p>Here the first instruction defines the function <code>f</code>, where the second declares it. Notice that since this is an inline function, its definition must be found in the header file rather than in an implementation file. Notice also that definition and declaration can be merged.</p>
+<p>These macros translate according to the following tables:</p>
+<table  class="doxtable" style="font-size:70%;">
+<caption align="bottom">Macros for exporting library symbols</caption>
+<tr>
+<td>Platform </td><td>Macro name </td><td>Value when building the library </td><td>Value when importing the library  </td></tr>
+<tr>
+<td>Unix/GCC </td><td><a class="el" href="host_8h.html#a489d7622ef2e3937985fcb9f89a5cbe5" title="Declares a DLL exported symbol. ">VL_EXPORT</a> </td><td>empty (assumes <code>-visibility=hidden</code> GCC option) </td><td><code>__attribute__((visibility ("default")))</code>  </td></tr>
+<tr>
+<td>Win/Visual C++ </td><td><a class="el" href="host_8h.html#a489d7622ef2e3937985fcb9f89a5cbe5" title="Declares a DLL exported symbol. ">VL_EXPORT</a> </td><td><code>__declspec(dllexport)</code>  </td><td><code>__declspec(dllimport)</code>   </td></tr>
+</table>
+<table  class="doxtable" style="font-size:70%;">
+<caption align="bottom">Macros for declaring inline functions</caption>
+<tr>
+<td>Platform </td><td>Macro name </td><td>Value  </td></tr>
+<tr>
+<td>Unix/GCC </td><td><a class="el" href="host_8h.html#a41b94143626a52276b1a0ffd1e29e496" title="Adds appropriate inline function qualifier. ">VL_INLINE</a> </td><td>static inline  </td></tr>
+<tr>
+<td>Win/Visual C++ </td><td><a class="el" href="host_8h.html#a41b94143626a52276b1a0ffd1e29e496" title="Adds appropriate inline function qualifier. ">VL_INLINE</a> </td><td>static __inline  </td></tr>
+</table>
+<h1><a class="anchor" id="host-arch"></a>
+Host CPU architecture</h1>
+<p>The module defines a symbol to identify the host CPU architecture: <a class="el" href="host_8h.html#aad2a5cd35841264fc165f9b92fad3feb" title="Defined if the host CPU is of the Intel x86 family. ">VL_ARCH_IX86</a> for Intel x86, <a class="el" href="host_8h.html#a55960eea1c39d0ed79519e4fbdb782bf" title="Defined if the host CPU is of the Intel Architecture-64 family. ">VL_ARCH_IA64</a> for Intel 64, and so on.</p>
+<h2><a class="anchor" id="host-arch-endianness"></a>
+Endianness</h2>
+<p>The module defines a symbol to identify the host CPU endianness: <a class="el" href="host_8h.html#a040b85d2764e6270f5d14515c8ab02aa" title="Defined if the host CPU is big endian. ">VL_ARCH_BIG_ENDIAN</a> for big endian and <a class="el" href="host_8h.html#a2f05e20e356b146f3d111f403657ca17" title="Defined if the host CPU is little endian. ">VL_ARCH_LITTLE_ENDIAN</a> for little endian. The functions <a class="el" href="host_8h.html#a0eb83ae66c944bcd8517b577b557f872" title="Host <-> big endian transformation for 8-bytes value. ">vl_swap_host_big_endianness_8()</a>, <a class="el" href="host_8h.html#aa1a8104ab44b97df0b09d1afdd4754fc" title="Host <-> big endian transformation for 4-bytes value. ">vl_swap_host_big_endianness_4()</a>, <a class="el" href="host_8h.html#ab2280db7d7cc2f6ce56100ab5ff6c81a" title="Host <-> big endian transformation for 2-bytes value. ">vl_swap_host_big_endianness_2()</a> to change the endianness of data (from/to host and network order).</p>
+<p>Recall that <em>endianness</em> concerns the way multi-byte data types (such as 16, 32 and 64 bits integers) are stored into the addressable memory. All CPUs uses a contiguous address range to store atomic data types (e.g. a 16-bit integer could be assigned to the addresses <code>0x10001</code> and <code>0x10002</code>), but the order may differ.</p>
+<ul>
+<li>The convention is <em>big endian</em>, or in <em>network order</em>, if the most significant byte of the multi-byte data types is assigned to the smaller memory address. This is the convention used for instance by the PPC architecture.</li>
+<li>The convention is <em>little endian</em> if the least significant byte is assigned to the smaller memory address. This is the convention used for instance by the x86 architecture.</li>
+</ul>
+<dl class="section remark"><dt>Remarks</dt><dd>The names &ldquo;big endian&rdquo; and &ldquo;little endian&rdquo; are a little confusing. &ldquo;Big endian&rdquo; means &ldquo;big endian first&rdquo;, i.e. the address of the most significant byte comes first. Similarly, &ldquo;little endian&rdquo; means &ldquo;little endian first&rdquo;, in the sense that the address of the least significant byte comes first.</dd></dl>
+<p>Endianness is a concern when data is either exchanged with processors that use different conventions, transmitted over a network, or stored to a file. For the latter two cases, one usually saves data in big endian (network) order regardless of the host CPU.</p>
+<h1><a class="anchor" id="host-threads"></a>
+Multi-threading</h1>
+<p>The file defines <a class="el" href="host_8h.html#a4b8e0e703e4bbdff30e1c3a00225e74f" title="Defined if the host uses Windows threads. ">VL_THREADS_WIN</a> if multi-threading support is enabled and the host supports Windows threads and <a class="el" href="host_8h.html#aa463843e959e6add43b050e78892e75a" title="Defiend if the host uses POISX threads. ">VL_THREADS_POSIX</a> if it supports POSIX threads. </p>
+</div></div><!-- contents -->
+        <!-- Doc Here -->
+      </div>
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>

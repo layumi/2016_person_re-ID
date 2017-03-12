@@ -1,0 +1,340 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+  <!-- Page title -->
+  <title>VLFeat - Documentation > C API</title>
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  <link rel="stylesheet" type="text/css" href="doxygen.css"></link>
+  <!-- Scripts-->
+  <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li class='active'><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li class='active' class='activeLeaf'><a href="index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="../doc.html">Documentation</a></span><span class='separator'>></span><span class='page'><a href="index.html">C API</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+      <!-- <pagestyle href="%pathto:root;api/tabs.css"/> -->
+      <div class="doxygen">
+<div id="top">
+<div id="top">
+<!-- Generated by Doxygen 1.8.7 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li class="current"><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
+    </ul>
+  </div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="index.html">Vision Lab Features Library (VLFeat)</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Developing the library </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="toc"><h3>Table of Contents</h3>
+<ul><li class="level1"><a href="#dev-copy">Copyright</a></li>
+<li class="level1"><a href="#dev-style">Coding style</a><ul><li class="level2"><a href="#dev-style-matlab">MATLAB coding style</a></li>
+</ul>
+</li>
+<li class="level1"><a href="#dev-doc">Documenting the code</a><ul><li class="level2"><a href="#devl-doc-modules">Documenting the library modules</a></li>
+<li class="level2"><a href="#devl-doc-functions">Documenting functions</a></li>
+<li class="level2"><a href="#devl-doc-structures">Documenting structures</a></li>
+<li class="level2"><a href="#devl-doc-bib">Bibliographic references</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="textblock"><p>This page contains information useful to the developer of VLFeat.</p>
+<h1><a class="anchor" id="dev-copy"></a>
+Copyright</h1>
+<p>A short copyright notice is added at the beginning of each file. For example:</p>
+<pre>
+Copyright (C) 2013 Milan Sulc
+Copyright (C) 2012 Daniele Perrone.
+Copyright (C) 2011-13 Andrea Vedaldi.
+All rights reserved.</pre><pre>This file is part of the VLFeat library and is made available under
+the terms of the BSD license (see the COPYING file).
+</pre><p>The copyright of each file is assigned to the authors of the file. Every author making a substantial contribution to a file should note its copyright by adding a line to the copyright list with the year of the modification. Year ranges are acceptable. Lines are never deleted, only appended, or potentially modified to list more years.</p>
+<h1><a class="anchor" id="dev-style"></a>
+Coding style</h1>
+<ul>
+<li>
+<p class="startli"><b>Look at existing code before you start.</b> The general rule is: try to match the style of the existing code as much as possible.</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><b>No white spaces at the end of lines.</b> White spaces introduce invisible changes in the code that are however picked up by control version systems such as Git.</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><b>Descriptive variable names.</b> Most variable names start with a lower case letter and are capitalized, e.g., <code>numElements</code>. Only the following abbreviations are considered acceptable: <code>num</code>. The <code>dimension</code> of a vector is the number of elements it contains (for other objects that could be a <code>size</code>, a <code>length</code>, or a <code>numElements</code>). For multi-dimensional arrays, <code>dimensions</code> could indicate the array with each of the <code>numDimensions</code> dimensions.</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><b>Short variable names.</b> For indexes in short for loops it is fine to use short index names such as <code>i</code>, <code>j</code>, and <code>k</code>. For example: </p><pre>
+for (i = 0 ; i &lt; numEntries ; ++i) values[i] ++ ;
+</pre><p> is considered acceptable.</p>
+<p class="endli"></p>
+</li>
+<li>
+<b>Function arguments.</b> VLFeat functions that operate on an object (member functions) should be passed the object address as first argument; this argument should be called <code>self</code>. For example: <pre>
+   void vl_object_do_something(VlObject *self) ;
+</pre> Multi-dimensional arrays should be specified first by their address, and then by their dimensions. For example <pre>
+  void vl_use_array (float * array, vl_size numColumns, vl_size numRows) ; // good
+  void vl_use_array (vl_size numColumns, vl_size numRows, float * array) ; // bad
+</pre> Arguments that are used as outputs should be specified first (closer to the left-hand side of an expression). For example <pre>
+ void vl_sum_numbers (float * output, float input1, float input2) ; // good
+ void vl_sum_numbers (float input1, float input2, float * output) ; // bad
+</pre> These rules can be combined. For example <pre>
+ void vl_object_sum_to_array (VlObject * self, float * outArray,
+        vl_size numColumns, vl_size numRows, float * inArray) ; // good
+</pre> Note that in this case no dimension for <code>inArray</code> is specified as it is assumed that <code>numColumns</code> and <code>numRows</code> are the dimensions of both arrays.  </li>
+</ul>
+<h2><a class="anchor" id="dev-style-matlab"></a>
+MATLAB coding style</h2>
+<ul>
+<li>
+<b>Help messages.</b> Each <code></code>.m file should include a standard help comment block (accessible from MATLAB <code>help()</code> command). The first line of the block has a space, the name of the function, 4 spaces, and a brief command description. The body of the help message is indented with 4 spaces. For example <div class="fragment"><div class="line">% VL_FUNCTION    An example <span class="keyword">function</span></div>
+<div class="line">%    VL_FUNCTION() does nothing.</div>
+</div><!-- fragment --> The content HELP message itself should follow MATLAB default style. For example, rather than giving a list of formal input and output arguments as often done, one simply shows how to use the function, explaining along the way the different ways the function can be called and the format of the parameters.  </li>
+</ul>
+<h1><a class="anchor" id="dev-doc"></a>
+Documenting the code</h1>
+<p>The VLFeat C library code contains its own in documentation <a href="http://www.stack.nl/~dimitri/doxygen/">Doxygen</a> format. The documentation consists in generic pages, such as the <a class="el" href="index.html">index</a> and the page you are reading, and documentations for each library module, usually corresponding to a certain header file.</p>
+<ul>
+<li><b>Inline comments.</b> Inline Doxygen comments are discouraged except in the documentation of data members of structures. They start with a capital letter and end with a period. For example: <div class="fragment"><div class="line"><span class="keyword">struct </span>VlExampleStructure {</div>
+<div class="line">  <span class="keywordtype">int</span> aMember ; /\*\*&lt; A useful data member.</div>
+<div class="line">}</div>
+</div><!-- fragment --></li>
+<li><b>Brief comments.</b> Brief Doxygen comments starts by a capital and end with a period. The documentation of all functions start with a brief comment.</li>
+</ul>
+<h2><a class="anchor" id="devl-doc-modules"></a>
+Documenting the library modules</h2>
+<p>A library module groups a number of data types and functions that implement a certain functionality of VLFeat. The documentation of a library module is generally organized as follows:</p>
+<ol type="1">
+<li>A page introducing the module and including a getting started section (3.g. <a class="el" href="svm.html#svm-starting">Getting started</a>) containing a short tutorial to quickly familiarize the user with the module (e.g. <a class="el" href="svm.html">Support Vector Machines (SVM)</a>).</li>
+<li>One or more pages of detailed technical background discussing the algorithms implemented. These sections are used not just as part of the C API, but also as documentation for other APIs such as MATLAB (e.g. <a class="el" href="svm-fundamentals.html">SVM fundamentals</a>).</li>
+<li>One or more pages with the structure and function documentation (e.g. <a class="el" href="svm_8h.html">svm.h</a>).</li>
+</ol>
+<p>More in detail, consider a module called <em>Example Module</em>. Then one would typically have:</p>
+<ul>
+<li>
+<p class="startli">A header or declaration file <code>example-module.h</code>. Such a file has an heading of the type:</p>
+<pre class="fragment"></pre><p>This comment block contains a file directive, causing the file to be included in the documentation, a brief directive, specifying a short description of what the file is, and a list of authors. A (non-Doxygen) comment block with a short the copyright notice follows. The brief directive should include a <code>@ref</code> directive to point to the main documentation page describing the module, if there is one. </p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">An implementation or definition file <code>example-module.c</code>. This file has an heading of the type:</p>
+<pre class="fragment"></pre><p class="endli">This is similar to the declaration file, except for the content of the brief comment.  </p>
+</li>
+</ul>
+<h2><a class="anchor" id="devl-doc-functions"></a>
+Documenting functions</h2>
+<h2><a class="anchor" id="devl-doc-structures"></a>
+Documenting structures</h2>
+<h2><a class="anchor" id="devl-doc-structures"></a>
+Documenting structures</h2>
+<p>As seen in <a class="el" href="objects.html">Objects</a>, VLFeat treats certain structures with an object-like semantics. Usually, a module defines exactly one such objects. In this case, the object member functions should be grouped (by using Doxygen grouping functionality) as</p>
+<ul>
+<li><b>Construct and destroy</b> for the <code>vl_object_new</code>, <code>vl_object_delete</code> and similar member functions.</li>
+<li><b>Set parameters</b> for setter functions.</li>
+<li><b>Retrieve parameters and data</b> for getter functions.</li>
+<li><b>Process data</b> for functions processing data.</li>
+</ul>
+<h2><a class="anchor" id="devl-doc-bib"></a>
+Bibliographic references</h2>
+<p>Since version 0.9.14, the VLFeat C library documentation makes use of a proper bibliographic reference in BibTeX format (see the file <code>docsrc/vlfeat.bib</code>). Doxygen uses this file when it sees instances of the <code>@cite xyz </code> command. Here <code>xyz</code> is a BibTeX key. For example, <code>vlfeat.bib</code> file contains the entry:</p>
+<pre>
+@inproceedings{martin97the-det-curve,
+  Author = {A. Martin and G. Doddington and T. Kamm and M. Ordowski and M. Przybocki},
+  Booktitle = {Proc. Conf. on Speech Communication and Technology},
+  Title = {The {DET} curve in assessment of detection task performance},
+  Year = {1997}}
+</pre><p>For example, the Doxygen directive <code>@cite martin97the-det-curve </code> generates the output <a class="el" href="citelist.html#CITEREF_martin97the-det-curve">[18]</a> , which is a link to the corresponding entry in the bibliography. </p>
+</div></div><!-- contents -->
+        <!-- Doc Here -->
+      </div>
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>

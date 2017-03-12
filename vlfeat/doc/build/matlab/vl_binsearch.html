@@ -1,0 +1,15 @@
+<group>
+<ul class='breadcrumb'><li><a href='%pathto:matlab;'>Index</a></li><li><a href='%pathto:vl_argparse;'>Prev</a></li><li><a href='%pathto:vl_binsum;'>Next</a></li></ul><div class="documentation"><p>
+IDX = <a href="%pathto:vl_binsearch;">VL_BINSEARCH</a>(B, X) maps the elements of X to the bins
+defined by B. B is a non-decreasing vector of M real numbers
+defining bins [-inf, B(1)), [B(1), B(2)), ... [B(M) +inf] (note
+that the last bin contains +inf). The bins are numbered from 0 to
+M. X is a real (plain) array and IDX is an array with the same
+dimensions of X, specifying the bin correpsonding to each element
+of X.
+</p><p>
+If B(1) = -inf the bin number 0 is removed and the bin number 1 is
+[-inf B(2)). If B(M) = +inf, the last bin M is the singleton +inf.
+</p><p>
+See also: <a href="%pathto:vl_binsum;">VL_BINSUM</a>(), <a href="%pathto:vl_help;">VL_HELP</a>().
+</p></div></group>

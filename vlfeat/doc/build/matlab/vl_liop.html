@@ -1,0 +1,44 @@
+<group>
+<ul class='breadcrumb'><li><a href='%pathto:matlab;'>Index</a></li><li><a href='%pathto:vl_frame2oell;'>Prev</a></li><li><a href='%pathto:vl_phow;'>Next</a></li></ul><div class="documentation"><p>
+D = <a href="%pathto:vl_liop;">VL_LIOP</a>(I) computes the LIOP descriptor of an image I, as
+described by [1]. I is a gray-scale square image with odd side
+length of class SINGLE. D is a column vector containing the LIOP
+descriptor of I. Note that LIOP is also integrated in the <a href="%pathto:vl_covdet;">VL_COVDET</a>()
+function for feature extraction.
+</p><p>
+<a href="%pathto:vl_liop;">VL_LIOP</a>() accepts the following options:
+</p><dl><dt>
+NumNeighbours
+<span class="defaults">4</span></dt><dd><p>
+Set the number of neighbours sampled to construct the order
+pattern of each image pixel.
+</p></dd><dt>
+Radius
+<span class="defaults">5</span></dt><dd><p>
+Set the radius of the circular neighbourhood used to sampled
+the local order pattern of each pixel.
+</p></dd><dt>
+NumSpatialBins
+<span class="defaults">6</span></dt><dd><p>
+Set the number of spatial pooling regions. The LIOP descriptor
+has dimension factorial(NumNeighbours) * NumSpatialBins.
+</p></dd><dt>
+IntensityThreshold
+<span class="defaults">-0.02</span></dt><dd><p>
+Set the intensity threshold used to weight order patterns as they
+are pooled into a histogram. A negative value is interpreted
+as a fraction of the difference between the maximum and minimum
+intensity in each local patch.
+</p></dd><dt>
+Verbose
+</dt><dd><p>
+If specified, be verbose
+</p></dd><dt>
+REFERENCES
+</dt></dl><p>
+[1] Z. Wang, B. Fan, F. Wu. Local Intensity Order Pattern for feature
+description. In ICCV, 2011
+</p><p>
+See: <a href="%dox:liop;">LIOP</a>, <a href="%pathto:vl_covdet;">VL_COVDET</a>(),
+<a href="%pathto:vl_help;">VL_HELP</a>().
+</p></div></group>

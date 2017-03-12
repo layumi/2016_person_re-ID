@@ -1,0 +1,321 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+
+  <!-- Page title -->
+  <title>VLFeat - Documentation > Man pages > mser</title>
+
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  
+
+  <!-- Scripts-->
+  
+
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li class='active'><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li><a href="../api/index.html">C API</a>
+</li>
+<li class='active'><a href="man.html">Man pages</a>
+<ul>
+<li class='active' class='activeLeaf'><a href="mser.html">mser</a>
+</li>
+<li><a href="sift.html">sift</a>
+</li>
+<li><a href="vlfeat.html">vlfeat</a>
+</li>
+</ul></li>
+</ul></li>
+</ul>
+
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="../doc.html">Documentation</a></span><span class='separator'>></span><span class='page'><a href="man.html">Man pages</a></span><span class='separator'>></span><span class='page'><a href="mser.html">mser</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+        
+
+<h1 align="center" id="id-6108">MSER</h1>
+<a shape="rect" href="#NAME">NAME</a><br clear="none"/>
+<a shape="rect" href="#SYNOPSIS">SYNOPSIS</a><br clear="none"/>
+<a shape="rect" href="#OPTIONS">OPTIONS</a><br clear="none"/>
+<a shape="rect" href="#DESCRIPTION">DESCRIPTION</a><br clear="none"/>
+<a shape="rect" href="#EXAMPLES">EXAMPLES</a><br clear="none"/>
+<a shape="rect" href="#SEE%20ALSO">SEE ALSO</a><br clear="none"/>
+<hr></hr>
+<a shape="rect" name="NAME" id="NAME"></a>
+<h2 id="id-6122">NAME</h2>
+<p style="margin-left:11%; margin-top: 1em">mser &minus; Maximally
+Stable Extremal Regions</p>
+<a shape="rect" name="SYNOPSIS" id="SYNOPSIS"></a>
+<h2 id="id-6124">SYNOPSIS</h2>
+<p style="margin-left:11%; margin-top: 1em"><b>mser</b>
+[<i>options</i>] FILE ...</p>
+<a shape="rect" name="OPTIONS" id="OPTIONS"></a>
+<h2 id="id-6128">OPTIONS</h2>
+<p style="margin-left:11%; margin-top: 1em"><b>&minus;v</b>,
+<b>&minus;&minus;verbose</b></p>
+<p style="margin-left:22%;">Increase verbosity level (may be
+repeated).</p>
+<p style="margin-left:11%;"><b>&minus;h</b>,
+<b>&minus;&minus;help</b></p>
+<p style="margin-left:22%;">Show options and version.</p>
+<p style="margin-left:11%;">
+<b>&minus;&minus;seeds</b>[=<i>FILESPEC</i>]</p>
+<p style="margin-left:22%;">Enable/specify seeds output.</p>
+<p style="margin-left:11%;">
+<b>&minus;&minus;frames</b>[=<i>FILESPEC</i>]</p>
+<p style="margin-left:22%;">Enable/specify frames output.</p>
+<p style="margin-left:11%;">
+<b>&minus;&minus;meta</b>[=<i>FILESPEC</i>]</p>
+<p style="margin-left:22%;">Enable/specify meta output.</p>
+<p style="margin-left:11%;"><b>&minus;d</b> <i>REAL</i>,
+<b>&minus;&minus;delta</b><i>=REAL</i></p>
+<p style="margin-left:22%;">Specify delta parameter.</p>
+<p style="margin-left:11%;">
+<b>&minus;&minus;min-area</b>=<i>REAL</i></p>
+<p style="margin-left:22%;">Specify minimum region area.</p>
+<p style="margin-left:11%;">
+<b>&minus;&minus;max-area</b>=<i>REAL</i></p>
+<p style="margin-left:22%;">Specify maximum region area.</p>
+<p style="margin-left:11%;">
+<b>&minus;&minus;max-variation</b>=<i>REAL</i></p>
+<p style="margin-left:22%;">Specify maximum region variation.</p>
+<p style="margin-left:11%;">
+<b>&minus;&minus;min-diversity</b>=<i>REAL</i></p>
+<p style="margin-left:22%;">Specify minimum region diversity.</p>
+<a shape="rect" name="DESCRIPTION" id="DESCRIPTION"></a>
+<h2 id="id-6171">DESCRIPTION</h2>
+<p style="margin-left:11%; margin-top: 1em"><b>mser</b> computes
+the <i>Maximally Stable Extremal Regions (MSER)</i> <b>mser</b>
+reads an image file (in PGM format), computes the MSERs, and writes
+them to a file of region seeds. Alternatively, the <b>--frames</b>
+option can be used to compute elliptical frames instead of region
+seeds. It is also possible to use <b>--frames</b> and
+<b>--seeds</b> in combination to save both seeds and frames.</p>
+<p style="margin-left:11%; margin-top: 1em">A
+<i>region&nbsp;seed</i> is and index pointing to one of the image
+pixels (pixels are enumerated in row major order, with 0
+corresponding to the upper-left corner of the image). An MSER
+containing a given seed is the largest connect subset of pixels
+whose value is not smaller than the seed value.</p>
+<p style="margin-left:11%; margin-top: 1em">A <i>frame</i> is an
+ellipse approximating an MSER and is specified by 5 floating point
+numbers: coordinate of the center <i>x</i> and <i>y,</i> and
+elements <i>S11</i>, <i>S12</i>, <i>S22</i> of the co-variance
+matrix.</p>
+<p style="margin-left:11%; margin-top: 1em">Both seeds and frames
+can be saved either in ascii or binary format, based on the
+specified <i>FILESPEC</i>s (see also <b>vlfeat</b>(7)):<br clear="none"/>
+Ascii format</p>
+<p style="margin-left:22%;">Each seed is a decimal number, one per
+line of text, and each frame is a list of 6 floating point numbers,
+one per line of text.</p>
+<p style="margin-left:11%;">Binary format</p>
+<p style="margin-left:22%;">The binary format is similar to the
+ascii format, except that each seed is stored as a unsigned integer
+(four bytes) and each frame component is stored as an IEEE double
+(eight bytes). The data is written in little endian order.</p>
+<p style="margin-left:11%; margin-top: 1em"><b>mser</b> can process
+multiple images. In this case the names of the corresponding output
+files are calculated based on <i>FILESPEC</i>s.</p>
+<a shape="rect" name="EXAMPLES" id="EXAMPLES"></a>
+<h2 id="id-6198">EXAMPLES</h2>
+<p style="margin-left:11%; margin-top: 1em">mser test.pgm -d 5</p>
+<p style="margin-left:22%;">Computes the MSERs of image
+<i>test.pgm</i> setting the parameter <i>delta</i> to 5 and save
+the result as a sequence of region seeds to <i>test.mser</i>.</p>
+<p style="margin-left:11%;">mser test.pgm &minus;&minus;frames</p>
+<p style="margin-left:22%;">Computes the MSERs of image
+<i>test.pgm</i>, fits elliptical frames to them and saves the
+frames to <i>test.frame</i>.</p>
+<p style="margin-left:11%;">mser test.pgm
+&minus;&minus;frames=bin:///tmp/%.frame &minus;&minus;seeds</p>
+<p style="margin-left:22%;">Computes the MSERs of image
+<i>test.pgm</i>, fits elliptical frames to them and saves the
+frames to <i>/tmp/test.frame</i> and the region seeds to
+<i>test.mser</i>.</p>
+<a shape="rect" name="SEE ALSO"></a>
+<h2 id="id-6214">SEE ALSO</h2>
+<p style="margin-left:11%; margin-top: 1em"><b>vlfeat</b>(7)</p>
+<p style="margin-left:11%; margin-top: 1em">J. Matas, O. Chum, M.
+Urban, and T. Pajdla. Robust wide baseline stereo from maximally
+stable extremal regions. In <i>Proc. BMVC</i>, 2002.</p>
+<hr></hr>
+
+
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>
+ 

@@ -1,0 +1,374 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+
+  <!-- Page title -->
+  <title>VLFeat - Documentation > MATLAB API</title>
+
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  
+
+  <!-- Scripts-->
+  
+
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li class='active'><a href="../doc.html">Documentation</a>
+<ul>
+<li class='active' class='activeLeaf'><a href="matlab.html">MATLAB API</a>
+</li>
+<li><a href="../api/index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+<ul>
+<li><a href="../man/mser.html">mser</a>
+</li>
+<li><a href="../man/sift.html">sift</a>
+</li>
+<li><a href="../man/vlfeat.html">vlfeat</a>
+</li>
+</ul></li>
+</ul></li>
+</ul>
+
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="../doc.html">Documentation</a></span><span class='separator'>></span><span class='page'><a href="matlab.html">MATLAB API</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+        
+    
+<b></b><ul>
+<li><b><a href="vl_compile.html">vl_compile</a></b> Compile VLFeat MEX files</li><li><b><a href="vl_demo.html">vl_demo</a></b> Run VLFeat demos</li><li><b><a href="vl_harris.html">vl_harris</a></b> Harris corner strength</li><li><b><a href="vl_help.html">vl_help</a></b> VLFeat toolbox builtin help</li><li><b><a href="vl_noprefix.html">vl_noprefix</a></b> Create a prefix-less version of VLFeat commands</li><li><b><a href="vl_root.html">vl_root</a></b> Obtain VLFeat root path</li><li><b><a href="vl_setup.html">vl_setup</a></b> Add VLFeat Toolbox to the path</li></ul>
+<b>AIB</b><ul>
+<li><b><a href="vl_aib.html">vl_aib</a></b> Agglomerative Information Bottleneck</li><li><b><a href="vl_aibcut.html">vl_aibcut</a></b> Cut VL_AIB tree</li><li><b><a href="vl_aibcuthist.html">vl_aibcuthist</a></b> Compute a histogram by using an AIB compressed alphabet</li><li><b><a href="vl_aibcutpush.html">vl_aibcutpush</a></b> Quantize based on VL_AIB cut</li><li><b><a href="vl_aibhist.html">vl_aibhist</a></b> Compute histogram over VL_AIB tree</li></ul>
+<b>FISHER</b><ul>
+<li><b><a href="vl_fisher.html">vl_fisher</a></b> Fisher vector feature encoding</li></ul>
+<b>GEOMETRY</b><ul>
+<li><b><a href="vl_hat.html">vl_hat</a></b> Hat operator</li><li><b><a href="vl_ihat.html">vl_ihat</a></b> Inverse vl_hat operator</li><li><b><a href="vl_irodr.html">vl_irodr</a></b> Inverse Rodrigues' formula</li><li><b><a href="vl_rodr.html">vl_rodr</a></b> Rodrigues' formula</li></ul>
+<b>GMM</b><ul>
+<li><b><a href="vl_gmm.html">vl_gmm</a></b> Learn a Gaussian Mixture Model using EM</li></ul>
+<b>IMOP</b><ul>
+<li><b><a href="vl_dwaffine.html">vl_dwaffine</a></b> Derivative of an affine warp</li><li><b><a href="vl_imarray.html">vl_imarray</a></b> Flattens image array</li><li><b><a href="vl_imarraysc.html">vl_imarraysc</a></b> Scale and flattens image array</li><li><b><a href="vl_imdisttf.html">vl_imdisttf</a></b> Image distance transform</li><li><b><a href="vl_imdown.html">vl_imdown</a></b> Downsample an image by two</li><li><b><a href="vl_imgrad.html">vl_imgrad</a></b> Image gradient</li><li><b><a href="vl_imintegral.html">vl_imintegral</a></b> Compute integral image</li><li><b><a href="vl_impattern.html">vl_impattern</a></b> Generate an image from a stock pattern</li><li><b><a href="vl_imreadbw.html">vl_imreadbw</a></b> Reads an image as gray-scale</li><li><b><a href="vl_imreadgray.html">vl_imreadgray</a></b> Reads an image as gray-scale</li><li><b><a href="vl_imsc.html">vl_imsc</a></b> Scale image</li><li><b><a href="vl_imsmooth.html">vl_imsmooth</a></b> Smooth image</li><li><b><a href="vl_imup.html">vl_imup</a></b> Upsample an image by two</li><li><b><a href="vl_imwbackward.html">vl_imwbackward</a></b> Image backward warping</li><li><b><a href="vl_imwhiten.html">vl_imwhiten</a></b> Whiten an image</li><li><b><a href="vl_rgb2xyz.html">vl_rgb2xyz</a></b> Convert RGB color space to XYZ</li><li><b><a href="vl_tps.html">vl_tps</a></b> Compute the thin-plate spline basis</li><li><b><a href="vl_tpsu.html">vl_tpsu</a></b> Compute the U matrix of a thin-plate spline transformation</li><li><b><a href="vl_waffine.html">vl_waffine</a></b> Apply affine transformation to points</li><li><b><a href="vl_witps.html">vl_witps</a></b> Inverse thin-plate spline warping</li><li><b><a href="vl_wtps.html">vl_wtps</a></b> Thin-plate spline warping</li><li><b><a href="vl_xyz2lab.html">vl_xyz2lab</a></b> Convert XYZ color space to LAB</li><li><b><a href="vl_xyz2luv.html">vl_xyz2luv</a></b> Convert XYZ color space to LUV</li><li><b><a href="vl_xyz2rgb.html">vl_xyz2rgb</a></b> Convert XYZ to RGB</li></ul>
+<b>KMEANS</b><ul>
+<li><b><a href="vl_hikmeans.html">vl_hikmeans</a></b> Hierachical integer K-means</li><li><b><a href="vl_hikmeanshist.html">vl_hikmeanshist</a></b> Compute histogram of quantized data</li><li><b><a href="vl_hikmeanspush.html">vl_hikmeanspush</a></b> Push data down an integer K-means tree</li><li><b><a href="vl_ikmeans.html">vl_ikmeans</a></b> Integer K-means</li><li><b><a href="vl_ikmeanshist.html">vl_ikmeanshist</a></b> Compute histogram of quantized data</li><li><b><a href="vl_ikmeanspush.html">vl_ikmeanspush</a></b> Project data on integer K-means paritions</li><li><b><a href="vl_kmeans.html">vl_kmeans</a></b> Cluster data using k-means</li></ul>
+<b>MISC</b><ul>
+<li><b><a href="vl_alldist2.html">vl_alldist2</a></b> Pairwise distances</li><li><b><a href="vl_alphanum.html">vl_alphanum</a></b> Sort strings using the Alphanum algorithm</li><li><b><a href="vl_argparse.html">vl_argparse</a></b> Parse list of parameter-value pairs</li><li><b><a href="vl_binsearch.html">vl_binsearch</a></b> Maps data to bins</li><li><b><a href="vl_binsum.html">vl_binsum</a></b> Binned summation</li><li><b><a href="vl_colsubset.html">vl_colsubset</a></b> Select a given number of columns</li><li><b><a href="vl_cummax.html">vl_cummax</a></b> Cumulative maximum</li><li><b><a href="vl_getpid.html">vl_getpid</a></b> Get MATLAB process ID</li><li><b><a href="vl_grad.html">vl_grad</a></b> Compute the gradient of an image</li><li><b><a href="vl_histmarg.html">vl_histmarg</a></b> Marginal of histogram</li><li><b><a href="vl_hog.html">vl_hog</a></b> Compute HOG features</li><li><b><a href="vl_homkermap.html">vl_homkermap</a></b> Homogeneous kernel map</li><li><b><a href="vl_ihashfind.html">vl_ihashfind</a></b> Find labels in an integer hash table</li><li><b><a href="vl_ihashsum.html">vl_ihashsum</a></b> Accumulate integer labels into a hash table</li><li><b><a href="vl_inthist.html">vl_inthist</a></b> Calculate Integral Histogram</li><li><b><a href="vl_isoctave.html">vl_isoctave</a></b> Determines whether Octave is running</li><li><b><a href="vl_kdtreebuild.html">vl_kdtreebuild</a></b> Build randomized kd-tree</li><li><b><a href="vl_kdtreequery.html">vl_kdtreequery</a></b> Query KD-tree</li><li><b><a href="vl_lbp.html">vl_lbp</a></b> Local Binary Patterns</li><li><b><a href="vl_lbpfliplr.html">vl_lbpfliplr</a></b> Flip LBP features left-right</li><li><b><a href="vl_localmax.html">vl_localmax</a></b> Find local maximizers</li><li><b><a href="vl_matlabversion.html">vl_matlabversion</a></b> Return MATLAB version as an integer</li><li><b><a href="vl_numder.html">vl_numder</a></b> Numerical derivative</li><li><b><a href="vl_numder2.html">vl_numder2</a></b> Numerical second derivative</li><li><b><a href="vl_override.html">vl_override</a></b> Override structure subset</li><li><b><a href="vl_pegasos.html">vl_pegasos</a></b> [deprecated]</li><li><b><a href="vl_sampleinthist.html">vl_sampleinthist</a></b> Sample integral histogram</li><li><b><a href="vl_simdctrl.html">vl_simdctrl</a></b> Toggle VLFeat SIMD optimizations</li><li><b><a href="vl_svmdataset.html">vl_svmdataset</a></b> Construct advanced SVM dataset structure</li><li><b><a href="vl_svmpegasos.html">vl_svmpegasos</a></b> [deprecated]</li><li><b><a href="vl_svmtrain.html">vl_svmtrain</a></b> Train a Support Vector Machine</li><li><b><a href="vl_threads.html">vl_threads</a></b> Control VLFeat computational threads</li><li><b><a href="vl_twister.html">vl_twister</a></b> Random number generator</li><li><b><a href="vl_version.html">vl_version</a></b> Obtain VLFeat version information</li><li><b><a href="vl_whistc.html">vl_whistc</a></b> Weighted histogram</li><li><b><a href="vl_xmkdir.html">vl_xmkdir</a></b> Create a directory recursively.</li></ul>
+<b>MSER</b><ul>
+<li><b><a href="vl_erfill.html">vl_erfill</a></b> Fill extremal region</li><li><b><a href="vl_ertr.html">vl_ertr</a></b> Transpose exremal regions frames</li><li><b><a href="vl_mser.html">vl_mser</a></b> Maximally Stable Extremal Regions</li></ul>
+<b>PLOTOP</b><ul>
+<li><b><a href="vl_cf.html">vl_cf</a></b> Creates a copy of a figure</li><li><b><a href="vl_click.html">vl_click</a></b> Click a point</li><li><b><a href="vl_clickpoint.html">vl_clickpoint</a></b> Select a point by clicking</li><li><b><a href="vl_clicksegment.html">vl_clicksegment</a></b> Select a segment by clicking</li><li><b><a href="vl_det.html">vl_det</a></b> Compute DET curve</li><li><b><a href="vl_figaspect.html">vl_figaspect</a></b> Set figure aspect ratio</li><li><b><a href="vl_linespec2prop.html">vl_linespec2prop</a></b> Convert PLOT style line specs to line properties</li><li><b><a href="vl_plotbox.html">vl_plotbox</a></b> Plot boxes</li><li><b><a href="vl_plotframe.html">vl_plotframe</a></b> Plot a geometric frame</li><li><b><a href="vl_plotgrid.html">vl_plotgrid</a></b> Plot a 2-D grid</li><li><b><a href="vl_plotpoint.html">vl_plotpoint</a></b> Plot 2 or 3 dimensional points</li><li><b><a href="vl_plotstyle.html">vl_plotstyle</a></b> Get a plot style</li><li><b><a href="vl_pr.html">vl_pr</a></b> Precision-recall curve.</li><li><b><a href="vl_printsize.html">vl_printsize</a></b> Set the printing size of a figure</li><li><b><a href="vl_roc.html">vl_roc</a></b> ROC curve.</li><li><b><a href="vl_tightsubplot.html">vl_tightsubplot</a></b> Tiles axes without wasting space</li><li><b><a href="vl_tpfp.html">vl_tpfp</a></b> Compute true positives and false positives</li></ul>
+<b>QUICKSHIFT</b><ul>
+<li><b><a href="vl_flatmap.html">vl_flatmap</a></b> Flatten a tree, assigning the label of the root to each node</li><li><b><a href="vl_imseg.html">vl_imseg</a></b> Color an image based on the segmentation</li><li><b><a href="vl_quickseg.html">vl_quickseg</a></b> Produce a quickshift segmentation of a grayscale or color image</li><li><b><a href="vl_quickshift.html">vl_quickshift</a></b> Quick shift image segmentation</li><li><b><a href="vl_quickvis.html">vl_quickvis</a></b> Create an edge image from a Quickshift segmentation.</li></ul>
+<b>SIFT</b><ul>
+<li><b><a href="vl_covdet.html">vl_covdet</a></b> Covariant feature detectors and descriptors</li><li><b><a href="vl_dsift.html">vl_dsift</a></b> Dense SIFT</li><li><b><a href="vl_frame2oell.html">vl_frame2oell</a></b> Convert a geometric frame to an oriented ellipse</li><li><b><a href="vl_liop.html">vl_liop</a></b> Local Intensity Order Pattern descriptor</li><li><b><a href="vl_phow.html">vl_phow</a></b> Extract PHOW features</li><li><b><a href="vl_plotsiftdescriptor.html">vl_plotsiftdescriptor</a></b> Plot SIFT descriptor</li><li><b><a href="vl_plotss.html">vl_plotss</a></b> Plot scale space</li><li><b><a href="vl_sift.html">vl_sift</a></b> Scale-Invariant Feature Transform</li><li><b><a href="vl_siftdescriptor.html">vl_siftdescriptor</a></b> Raw SIFT descriptor</li><li><b><a href="vl_ubcmatch.html">vl_ubcmatch</a></b> Match SIFT features</li><li><b><a href="vl_ubcread.html">vl_ubcread</a></b> Read Lowe's SIFT implementation data files</li></ul>
+<b>SLIC</b><ul>
+<li><b><a href="vl_slic.html">vl_slic</a></b> SLIC superpixels</li></ul>
+<b>SPECIAL</b><ul>
+<li><b><a href="vl_ddgaussian.html">vl_ddgaussian</a></b> Second derivative of the Gaussian density function</li><li><b><a href="vl_dgaussian.html">vl_dgaussian</a></b> Derivative of the Gaussian density function</li><li><b><a href="vl_dsigmoid.html">vl_dsigmoid</a></b> Derivative of the sigmoid function</li><li><b><a href="vl_gaussian.html">vl_gaussian</a></b> Standard Gaussian density function</li><li><b><a href="vl_rcos.html">vl_rcos</a></b> RCOS function</li><li><b><a href="vl_sigmoid.html">vl_sigmoid</a></b> Sigmoid function</li></ul>
+<b>VLAD</b><ul>
+<li><b><a href="vl_vlad.html">vl_vlad</a></b> VLAD feature encoding</li></ul>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>
+ 

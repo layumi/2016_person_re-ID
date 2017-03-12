@@ -1,0 +1,268 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+  <!-- Page title -->
+  <title>VLFeat - Documentation > C API</title>
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  <link rel="stylesheet" type="text/css" href="doxygen.css"></link>
+  <!-- Scripts-->
+  <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li class='active'><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li class='active' class='activeLeaf'><a href="index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="../doc.html">Documentation</a></span><span class='separator'>></span><span class='page'><a href="index.html">C API</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+      <!-- <pagestyle href="%pathto:root;api/tabs.css"/> -->
+      <div class="doxygen">
+<div id="top">
+<div id="top">
+<!-- Generated by Doxygen 1.8.7 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li class="current"><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
+    </ul>
+  </div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="index.html">Vision Lab Features Library (VLFeat)</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Vector of Locally Aggregated Descriptors (VLAD) encoding </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><dl class="section author"><dt>Author</dt><dd>David Novotny </dd>
+<dd>
+Andrea Vedaldi</dd></dl>
+<p><a class="el" href="vlad_8h.html">vlad.h</a> implements the <em>Vector of Linearly Aggregated Descriptors</em> (VLAD) image representation <a class="el" href="citelist.html#CITEREF_jegou10aggregating">[11]</a> <a class="el" href="citelist.html#CITEREF_arandjelovic13all-about">[2]</a> .</p>
+<p><a class="el" href="vlad.html#vlad-starting">Getting started with VLAD</a> demonstreates how to use the C API to compute the VLAD representation of an image. For further details on the VLAD image representation refer to:</p>
+<ul>
+<li><a class="el" href="vlad-fundamentals.html">VLAD fundamentals</a> - VLAD definition and computation.</li>
+</ul>
+<h1><a class="anchor" id="vlad-starting"></a>
+Getting started with VLAD</h1>
+<p>The VLAD encoding of a set of features is obtained by using the function <a class="el" href="vlad_8c.html#a6ee2926e14d4a76e9d99ba128bfe5a80" title="VLAD encoding of a set of vectors. ">vl_vlad_encode</a>. The function can be applied to both <code>float</code> or <code>double</code> data types.</p>
+<p><a class="el" href="vlad_8c.html#a6ee2926e14d4a76e9d99ba128bfe5a80" title="VLAD encoding of a set of vectors. ">vl_vlad_encode</a> requires a visual dictionary, for example obtained by using <a class="el" href="kmeans.html">K-means clustering</a>. Furthermore, the assignments of features to dictionary elements must be pre-computed, for example by using <a class="el" href="kdtree.html">KD-trees and forests</a>.</p>
+<p>In the following example code, the vocabulary is first created using the KMeans clustering, then the points, that are to be encoded are assigned to its corresponding nearest vocabulary words, after that the original vlad encoding routine without any normalization option takes place. At the end of the process the encoding is stored in the <code>enc</code> variable.</p>
+<div class="fragment"><div class="line"><a class="code" href="host_8h.html#aeb7c862765448a70017105efa4d25e7a">vl_uint32</a> * indexes;</div>
+<div class="line"><span class="keywordtype">float</span> * assignments;</div>
+<div class="line"><span class="keywordtype">float</span> * enc</div>
+<div class="line"><span class="keywordtype">int</span> i;</div>
+<div class="line"></div>
+<div class="line"><span class="comment">// create a KMeans object and run clustering to get vocabulary words (centers)</span></div>
+<div class="line">kmeans = <a class="code" href="kmeans_8c.html#a868a729d2ea5b9f9fec15a18e0a27a76">vl_kmeans_new</a> (VLDistanceL2, <a class="code" href="generic_8h.html#aa034d0b942f9800b2a02aeb30ff10fa2">VL_TYPE_FLOAT</a>) ;</div>
+<div class="line"><a class="code" href="kmeans_8c.html#a3f35fc9b75799b10a6e32ec81a9cd54d">vl_kmeans_cluster</a> (kmeans,</div>
+<div class="line">                   data,</div>
+<div class="line">                   dimension,</div>
+<div class="line">                   numData,</div>
+<div class="line">                   numCenters) ;</div>
+<div class="line"></div>
+<div class="line"><span class="comment">// find nearest cliuster centers for the data that should be encoded</span></div>
+<div class="line">indexes = <a class="code" href="generic_8c.html#a9f0d2ab48ad66f0588c89a3e526044ed">vl_malloc</a>(<span class="keyword">sizeof</span>(<a class="code" href="host_8h.html#aeb7c862765448a70017105efa4d25e7a">vl_uint32</a>) * numDataToEncode);</div>
+<div class="line"><a class="code" href="kmeans_8c.html#a3649fe42a94e9b4945511b5665f82355">vl_kmeans_quantize</a>(kmeans,indexes,dataToEncode,numDataToEncode);</div>
+<div class="line"></div>
+<div class="line"><span class="comment">// convert indexes array to assignments array,</span></div>
+<div class="line"><span class="comment">// which can be processed by vl_vlad_encode</span></div>
+<div class="line">assignments = <a class="code" href="generic_8c.html#a9f0d2ab48ad66f0588c89a3e526044ed">vl_malloc</a>(<span class="keyword">sizeof</span>(<span class="keywordtype">float</span>) * numDataToEncode * numCenters);</div>
+<div class="line">memset(assignments, 0, <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>) * numDataToEncode * numCenters);</div>
+<div class="line"><span class="keywordflow">for</span>(i = 0; i &lt; numDataToEncode; i++) {</div>
+<div class="line">  assignments[i * numCenters + indexes[i]] = 1.;</div>
+<div class="line">}</div>
+<div class="line"></div>
+<div class="line"><span class="comment">// allocate space for vlad encoding</span></div>
+<div class="line">enc = <a class="code" href="generic_8c.html#a9f0d2ab48ad66f0588c89a3e526044ed">vl_malloc</a>(<span class="keyword">sizeof</span>(TYPE) * dimension * numCenters);</div>
+<div class="line"></div>
+<div class="line"><span class="comment">// do the encoding job</span></div>
+<div class="line"><a class="code" href="vlad_8c.html#a6ee2926e14d4a76e9d99ba128bfe5a80">vl_vlad_encode</a> (enc, VL_F_TYPE,</div>
+<div class="line">                <a class="code" href="kmeans_8h.html#a69ecb61159ce9418679f5283c5cb427a">vl_kmeans_get_centers</a>(kmeans), dimension, numCenters,</div>
+<div class="line">                data, numData,</div>
+<div class="line">                assignments,</div>
+<div class="line">                0) ;</div>
+</div><!-- fragment --><p>Various <a class="el" href="vlad-fundamentals.html#vlad-normalization">VLAD normalization</a> normalizations can be applied to the VLAD vectors. These are controlled by the parameter <em>flag</em> of <a class="el" href="vlad_8c.html#a6ee2926e14d4a76e9d99ba128bfe5a80" title="VLAD encoding of a set of vectors. ">vl_vlad_encode</a>. </p>
+</div></div><!-- contents -->
+        <!-- Doc Here -->
+      </div>
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>

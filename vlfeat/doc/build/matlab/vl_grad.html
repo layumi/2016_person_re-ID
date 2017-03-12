@@ -1,0 +1,24 @@
+<group>
+<ul class='breadcrumb'><li><a href='%pathto:matlab;'>Index</a></li><li><a href='%pathto:vl_getpid;'>Prev</a></li><li><a href='%pathto:vl_histmarg;'>Next</a></li></ul><div class="documentation"><p>
+[IX,IY] = <a href="%pathto:vl_grad;">VL_GRAD</a>(I) returns the gradient components IX,IY of the
+2-D discrete function I. I must be a two-dimensional
+matrix. <a href="%pathto:vl_grad;">VL_GRAD</a>() computes the gradient by using finite
+differences; specifically, it uses central differences for all but
+the boundary pixels, for which it uses forward/backward
+differences as appropriate.
+</p><dl><dt>
+Remark
+</dt><dd><p>
+<a href="%pathto:vl_grad;">VL_GRAD</a>() is similar to the MATLAB built-in GRADIENT() function,
+excepts that it supports different gradient approximations.
+</p></dd></dl><p>
+<a href="%pathto:vl_grad;">VL_GRAD</a>() accepts the following options:
+</p><dl><dt>
+Type
+<span class="defaults">central</span></dt><dd><p>
+Specify which type of finite differences to use for all but the
+boundary samples. TYPE can be one of 'central', 'forward', or
+'backward'.
+</p></dd></dl><p>
+See also: GRADIENT(), <a href="%pathto:vl_help;">VL_HELP</a>().
+</p></div></group>

@@ -1,0 +1,35 @@
+<group>
+<ul class='breadcrumb'><li><a href='%pathto:matlab;'>Index</a></li><li><a href='%pathto:vl_plotpoint;'>Prev</a></li><li><a href='%pathto:vl_pr;'>Next</a></li></ul><div class="documentation"><p>
+STYLES = <a href="%pathto:vl_plotstyle;">VL_PLOTSTYLE</a>(INDEX) returns a cell array of PLOT() options
+for the color/line style of index INDEX. The available styles are
+defined the ColorOrder and LineStyleOrder properties of the
+current axes and cycled first by color and then by line style.
+</p><p>
+If there is no current axes can be found, then <a href="%pathto:vl_plotstyle;">VL_PLOTSTYLE</a>() uses
+the DefaultAxesColorOrder and DefaultLineStyleOrder root
+properties.
+</p><p>
+If INDEXES has more than one element, then <a href="%pathto:vl_plotstyle;">VL_PLOTSTYLE</a>(INDEXES)
+returns a cell array of styles of the same size of INDEXES.
+</p><dl><dt>
+Example
+</dt><dd><p>
+The code fragment
+</p><pre>
+   set(gca,'LineStyleOrder', {'-','-.'}, 'NextPlot', 'replacechildren') ;
+   plot([1 2], [1:20 ; 1:20]') ;
+</pre><p>
+and
+</p><pre>
+  set(gca,'NextPlot', 'replacechildren') ;
+  set(gca,'LineStyleOrder', {'-','-.'}) ;
+  for i = 1:20
+    style = vl_plotstyle(i) ;
+    plot([1 2], [i i], style{:}) ;
+    hold on ;
+  end
+</pre><p>
+produce visually similar results.
+</p></dd></dl><p>
+See also: <a href="%pathto:vl_help;">VL_HELP</a>().
+</p></div></group>

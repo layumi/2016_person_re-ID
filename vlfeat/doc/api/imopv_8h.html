@@ -1,0 +1,1349 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+  <!-- Page title -->
+  <title>VLFeat - Documentation > C API</title>
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  <link rel="stylesheet" type="text/css" href="doxygen.css"></link>
+  <!-- Scripts-->
+  <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li class='active'><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li class='active' class='activeLeaf'><a href="index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="../doc.html">Documentation</a></span><span class='separator'>></span><span class='page'><a href="index.html">C API</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+      <!-- <pagestyle href="%pathto:root;api/tabs.css"/> -->
+      <div class="doxygen">
+<div id="top">
+<div id="top">
+<!-- Generated by Doxygen 1.8.7 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li class="current"><a href="files.html"><span>Files</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>Globals</span></a></li>
+    </ul>
+  </div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_8dd540b382164c224dfa1eb6e8a3add6.html">vl</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">imopv.h File Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Vectorized image operations.  
+<a href="#details">More...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="generic_8h.html">generic.h</a>&quot;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Image convolution flags</div></td></tr>
+<tr class="memitem:af6e169f2ed366d16f9149a99d5574071"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af6e169f2ed366d16f9149a99d5574071"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="imopv_8h.html#af6e169f2ed366d16f9149a99d5574071">VL_PAD_BY_ZERO</a>&#160;&#160;&#160;(0x0 &lt;&lt; 0)</td></tr>
+<tr class="memdesc:af6e169f2ed366d16f9149a99d5574071"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pad with zeroes. <br /></td></tr>
+<tr class="separator:af6e169f2ed366d16f9149a99d5574071"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabcdd51c289c0d8db11dda9e26349a52"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aabcdd51c289c0d8db11dda9e26349a52"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="imopv_8h.html#aabcdd51c289c0d8db11dda9e26349a52">VL_PAD_BY_CONTINUITY</a>&#160;&#160;&#160;(0x1 &lt;&lt; 0)</td></tr>
+<tr class="memdesc:aabcdd51c289c0d8db11dda9e26349a52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pad by continuity. <br /></td></tr>
+<tr class="separator:aabcdd51c289c0d8db11dda9e26349a52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a4f0c469409eea71985bac3f10d08fb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2a4f0c469409eea71985bac3f10d08fb"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="imopv_8h.html#a2a4f0c469409eea71985bac3f10d08fb">VL_PAD_MASK</a>&#160;&#160;&#160;(0x3)</td></tr>
+<tr class="memdesc:a2a4f0c469409eea71985bac3f10d08fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Padding field selector. <br /></td></tr>
+<tr class="separator:a2a4f0c469409eea71985bac3f10d08fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2489ff30a8c5d4048038a90b640a038a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2489ff30a8c5d4048038a90b640a038a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="imopv_8h.html#a2489ff30a8c5d4048038a90b640a038a">VL_TRANSPOSE</a>&#160;&#160;&#160;(0x1 &lt;&lt; 2)</td></tr>
+<tr class="memdesc:a2489ff30a8c5d4048038a90b640a038a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transpose result. <br /></td></tr>
+<tr class="separator:a2489ff30a8c5d4048038a90b640a038a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Image convolution</div></td></tr>
+<tr class="memitem:a4d2fa6d46faace80e4d28f771cc1d2c1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="imopv_8h.html#a4d2fa6d46faace80e4d28f771cc1d2c1">vl_imconvcol_vf</a> (float *dst, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> dst_stride, float const *src, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> src_width, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> src_height, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> src_stride, float const *filt, <a class="el" href="host_8h.html#a66417c5847876295ea87b38140073879">vl_index</a> filt_begin, <a class="el" href="host_8h.html#a66417c5847876295ea87b38140073879">vl_index</a> filt_end, int step, unsigned int flags)</td></tr>
+<tr class="separator:a4d2fa6d46faace80e4d28f771cc1d2c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca77f25ca260644bfcba2b36efb0cb19"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="imopv_8h.html#aca77f25ca260644bfcba2b36efb0cb19">vl_imconvcol_vd</a> (double *dst, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> dst_stride, double const *src, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> src_width, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> src_height, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> src_stride, double const *filt, <a class="el" href="host_8h.html#a66417c5847876295ea87b38140073879">vl_index</a> filt_begin, <a class="el" href="host_8h.html#a66417c5847876295ea87b38140073879">vl_index</a> filt_end, int step, unsigned int flags)</td></tr>
+<tr class="memdesc:aca77f25ca260644bfcba2b36efb0cb19"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convolve image along columns.  <a href="#aca77f25ca260644bfcba2b36efb0cb19">More...</a><br /></td></tr>
+<tr class="separator:aca77f25ca260644bfcba2b36efb0cb19"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5561b2ed447b0099e7bf8dc79915382"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="imopv_8h.html#ab5561b2ed447b0099e7bf8dc79915382">vl_imconvcoltri_f</a> (float *dest, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> destStride, float const *image, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> imageWidth, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> imageHeight, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> imageStride, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> filterSize, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> step, int unsigned flags)</td></tr>
+<tr class="memdesc:ab5561b2ed447b0099e7bf8dc79915382"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convolve an image along the columns with a triangular kernel.  <a href="#ab5561b2ed447b0099e7bf8dc79915382">More...</a><br /></td></tr>
+<tr class="separator:ab5561b2ed447b0099e7bf8dc79915382"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad624650d3ab3d609f68634f83623677c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="imopv_8h.html#ad624650d3ab3d609f68634f83623677c">vl_imconvcoltri_d</a> (double *dest, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> destStride, double const *image, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> imageWidth, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> imageHeight, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> imageStride, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> filterSize, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> step, int unsigned flags)</td></tr>
+<tr class="memdesc:ad624650d3ab3d609f68634f83623677c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convolve an image along the columns with a triangular kernel.  <a href="#ad624650d3ab3d609f68634f83623677c">More...</a><br /></td></tr>
+<tr class="separator:ad624650d3ab3d609f68634f83623677c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Integral image</div></td></tr>
+<tr class="memitem:a783087728b77a88fb701426acf587956"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="imopv_8h.html#a783087728b77a88fb701426acf587956">vl_imintegral_f</a> (float *integral, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> integralStride, float const *image, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> imageWidth, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> imageHeight, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> imageStride)</td></tr>
+<tr class="memdesc:a783087728b77a88fb701426acf587956"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute integral image.  <a href="#a783087728b77a88fb701426acf587956">More...</a><br /></td></tr>
+<tr class="separator:a783087728b77a88fb701426acf587956"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63f63ca0445077d4baf05db04a1921e5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="imopv_8h.html#a63f63ca0445077d4baf05db04a1921e5">vl_imintegral_d</a> (double *integral, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> integralStride, double const *image, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> imageWidth, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> imageHeight, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> imageStride)</td></tr>
+<tr class="memdesc:a63f63ca0445077d4baf05db04a1921e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute integral image.  <a href="#a63f63ca0445077d4baf05db04a1921e5">More...</a><br /></td></tr>
+<tr class="separator:a63f63ca0445077d4baf05db04a1921e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33c2c2a2dc57e86aa03f0f5288001c46"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="imopv_8h.html#a33c2c2a2dc57e86aa03f0f5288001c46">vl_imintegral_i32</a> (<a class="el" href="host_8h.html#a03fa435c713d3141c4a700f79f5b2600">vl_int32</a> *integral, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> integralStride, <a class="el" href="host_8h.html#a03fa435c713d3141c4a700f79f5b2600">vl_int32</a> const *image, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> imageWidth, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> imageHeight, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> imageStride)</td></tr>
+<tr class="memdesc:a33c2c2a2dc57e86aa03f0f5288001c46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute integral image.  <a href="#a33c2c2a2dc57e86aa03f0f5288001c46">More...</a><br /></td></tr>
+<tr class="separator:a33c2c2a2dc57e86aa03f0f5288001c46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab02ddbe089220e3c33c548d2b45887a1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="imopv_8h.html#ab02ddbe089220e3c33c548d2b45887a1">vl_imintegral_ui32</a> (<a class="el" href="host_8h.html#aeb7c862765448a70017105efa4d25e7a">vl_uint32</a> *integral, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> integralStride, <a class="el" href="host_8h.html#aeb7c862765448a70017105efa4d25e7a">vl_uint32</a> const *image, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> imageWidth, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> imageHeight, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> imageStride)</td></tr>
+<tr class="memdesc:ab02ddbe089220e3c33c548d2b45887a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute integral image.  <a href="#ab02ddbe089220e3c33c548d2b45887a1">More...</a><br /></td></tr>
+<tr class="separator:ab02ddbe089220e3c33c548d2b45887a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Distance transform</div></td></tr>
+<tr class="memitem:ad13a54f025599cbde1e2f073733872b2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="imopv_8h.html#ad13a54f025599cbde1e2f073733872b2">vl_image_distance_transform_d</a> (double const *image, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> numColumns, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> numRows, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> columnStride, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> rowStride, double *distanceTransform, <a class="el" href="host_8h.html#ac13bd3cc913e1da576e189a3ec8d66fc">vl_uindex</a> *indexes, double coeff, double offset)</td></tr>
+<tr class="memdesc:ad13a54f025599cbde1e2f073733872b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the distance transform of an image.  <a href="#ad13a54f025599cbde1e2f073733872b2">More...</a><br /></td></tr>
+<tr class="separator:ad13a54f025599cbde1e2f073733872b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac20d3690d57a30ddb2937d051abaf192"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="imopv_8h.html#ac20d3690d57a30ddb2937d051abaf192">vl_image_distance_transform_f</a> (float const *image, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> numColumns, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> numRows, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> columnStride, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> rowStride, float *distanceTransform, <a class="el" href="host_8h.html#ac13bd3cc913e1da576e189a3ec8d66fc">vl_uindex</a> *indexes, float coeff, float offset)</td></tr>
+<tr class="separator:ac20d3690d57a30ddb2937d051abaf192"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Image smoothing</div></td></tr>
+<tr class="memitem:ae57b15ab6308fb8a20f358267645657d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="imopv_8h.html#ae57b15ab6308fb8a20f358267645657d">vl_imsmooth_f</a> (float *smoothed, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> smoothedStride, float const *image, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> width, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> height, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> stride, double sigmax, double sigmay)</td></tr>
+<tr class="memdesc:ae57b15ab6308fb8a20f358267645657d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Smooth an image with a Gaussian filter.  <a href="#ae57b15ab6308fb8a20f358267645657d">More...</a><br /></td></tr>
+<tr class="separator:ae57b15ab6308fb8a20f358267645657d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6c768d466c0c767bbad085166618daa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="imopv_8h.html#af6c768d466c0c767bbad085166618daa">vl_imsmooth_d</a> (double *smoothed, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> smoothedStride, double const *image, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> width, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> height, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> stride, double sigmax, double sigmay)</td></tr>
+<tr class="memdesc:af6c768d466c0c767bbad085166618daa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Smooth an image with a Gaussian filter.  <a href="#af6c768d466c0c767bbad085166618daa">More...</a><br /></td></tr>
+<tr class="separator:af6c768d466c0c767bbad085166618daa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Image gradients</div></td></tr>
+<tr class="memitem:a0733fd424fee11f8f4028eb83af90c16"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="imopv_8h.html#a0733fd424fee11f8f4028eb83af90c16">vl_imgradient_polar_f</a> (float *amplitudeGradient, float *angleGradient, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> gradWidthStride, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> gradHeightStride, float const *image, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> imageWidth, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> imageHeight, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> imageStride)</td></tr>
+<tr class="separator:a0733fd424fee11f8f4028eb83af90c16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52fe17840f8ca2c5ef8f25a3f92cf30f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="imopv_8h.html#a52fe17840f8ca2c5ef8f25a3f92cf30f">vl_imgradient_polar_d</a> (double *amplitudeGradient, double *angleGradient, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> gradWidthStride, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> gradHeightStride, double const *image, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> imageWidth, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> imageHeight, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> imageStride)</td></tr>
+<tr class="memdesc:a52fe17840f8ca2c5ef8f25a3f92cf30f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute gradient mangitudes and directions of an image.  <a href="#a52fe17840f8ca2c5ef8f25a3f92cf30f">More...</a><br /></td></tr>
+<tr class="separator:a52fe17840f8ca2c5ef8f25a3f92cf30f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2dcd361e5a644c8a8833aebab956ba63"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2dcd361e5a644c8a8833aebab956ba63"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>vl_imgradient_f</b> (float *xGradient, float *yGradient, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> gradWidthStride, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> gradHeightStride, float const *image, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> imageWidth, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> imageHeight, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> imageStride)</td></tr>
+<tr class="separator:a2dcd361e5a644c8a8833aebab956ba63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4822f37204b26d702a80ed36a03f988"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad4822f37204b26d702a80ed36a03f988"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>vl_imgradient_d</b> (double *xGradient, double *yGradient, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> gradWidthStride, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> gradHeightStride, double const *image, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> imageWidth, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> imageHeight, <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> imageStride)</td></tr>
+<tr class="separator:ad4822f37204b26d702a80ed36a03f988"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6bc5e21a9b210ab63e0149fec86113e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab6bc5e21a9b210ab63e0149fec86113e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>vl_imgradient_polar_f_callback</b> (float const *sourceImage, int sourceImageWidth, int sourceImageHeight, float *dstImage, int dstWidth, int dstHeight, int octave, int level, void *params)</td></tr>
+<tr class="separator:ab6bc5e21a9b210ab63e0149fec86113e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This module provides the following image operations:</p>
+<ul>
+<li><b>Separable convolution.</b> The function <a class="el" href="imopv_8h.html#a4d2fa6d46faace80e4d28f771cc1d2c1">vl_imconvcol_vf()</a> can be used to compute separable convolutions.</li>
+<li><b>Convolution by a triangular kernel.</b> The function vl_imconvcoltri_vf() is an optimized convolution routine for triangular kernels.</li>
+<li><b>Distance transform.</b> <a class="el" href="imopv_8h.html#ac20d3690d57a30ddb2937d051abaf192">vl_image_distance_transform_f()</a> is a linear algorithm to compute the distance transform of an image.</li>
+</ul>
+<dl class="section remark"><dt>Remarks</dt><dd>Some operations are optimized to exploit possible SIMD instructions. This requires image data to be properly aligned (typically to 16 bytes). Similalry, the image stride (the number of bytes to skip to move to the next image row), must be aligned.</dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Andrea Vedaldi </dd></dl>
+</div><h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="ad13a54f025599cbde1e2f073733872b2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vl_image_distance_transform_d </td>
+          <td>(</td>
+          <td class="paramtype">double const *&#160;</td>
+          <td class="paramname"><em>image</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>numColumns</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>numRows</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>columnStride</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>rowStride</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>distanceTransform</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#ac13bd3cc913e1da576e189a3ec8d66fc">vl_uindex</a> *&#160;</td>
+          <td class="paramname"><em>indexes</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>coeff</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>offset</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">image</td><td>image. </td></tr>
+    <tr><td class="paramname">numColumns</td><td>number of columns of the image. </td></tr>
+    <tr><td class="paramname">numRows</td><td>number of rows of the image. </td></tr>
+    <tr><td class="paramname">columnStride</td><td>offset from one column to the next. </td></tr>
+    <tr><td class="paramname">rowStride</td><td>offset from one row to the next. </td></tr>
+    <tr><td class="paramname">distanceTransform</td><td>distance transform (out). </td></tr>
+    <tr><td class="paramname">indexes</td><td>nearest neighbor indexes (in/out). </td></tr>
+    <tr><td class="paramname">coeff</td><td>quadratic cost coefficient (non-negative). </td></tr>
+    <tr><td class="paramname">offset</td><td>quadratic cost offset.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The function computes the distance transform along the first dimension of the image <em>image</em>. Let \( I(u,v) \) be <em>image</em>. Its distance transfrom \( D(u,v) \) is given by:</p>
+<p class="formulaDsp">
+\[ u^*(u,v) = \min_{u&#39;} I(u&#39;,v) + \mathtt{coeff} (u&#39; - u - \mathtt{offset})^2, \quad D(u,v) = I(u^*(u,v),v). \]
+</p>
+<p>Notice that <em>coeff</em> must be non negative.</p>
+<p>The function fills in the buffer <em>distanceTransform</em> with \( D \). This buffer must have the same size as <em>image</em>.</p>
+<p>If <em>indexes</em> is not <code>NULL</code>, it must be a matrix of the same size o the image. The function interprets the value of this matrix as indexes of the pixels, i.e \( \mathtt{indexes}(u,v) \) is the index of pixel \( (u,v) \). On output, the matrix <em>indexes</em> contains \( \mathtt{indexes}(u^*(u,v),v) \). This information can be used to determine for each pixel \( (u,v) \) its &ldquo;nearest neighbor&amp;rdquo.</p>
+<p>Notice that by swapping <em>numRows</em> and <em>numColumns</em> and <em>columnStride</em> and <em>rowStride</em>, the function can be made to operate along the other image dimension. Specifically, to compute the distance transform along columns and rows, call the functinon twice:</p>
+<div class="fragment"><div class="line"><span class="keywordflow">for</span> (i = 0 ; i &lt; numColumns * numRows ; ++i) indexes[i] = i ;</div>
+<div class="line"><a class="code" href="imopv_8h.html#ad13a54f025599cbde1e2f073733872b2">vl_image_distance_transform_d</a>(image,numColumns,numRows,1,numColumns,</div>
+<div class="line">                              distanceTransform,indexes,u_coeff,u_offset) ;</div>
+<div class="line"><a class="code" href="imopv_8h.html#ad13a54f025599cbde1e2f073733872b2">vl_image_distance_transform_d</a>(distanceTransform,numRows,numColumns,numColumns,1,</div>
+<div class="line">                              distanceTransform,indexes,u_coeff,u_offset) ;</div>
+</div><!-- fragment --><dl class="section user"><dt>Algorithm</dt><dd></dd></dl>
+<p>The function implements the algorithm described in: P. F. Felzenszwalb and D. P. Huttenlocher, <em>Distance Transforms of Sampled Functions,</em> Technical Report, Cornell University, 2004.</p>
+<p>Since the algorithm operates along one dimension per time, consider the 1D version of the problem for simplicity:</p>
+<p class="formulaDsp">
+\[ d(y) = \min_{x} g(y;x), \quad g(y;x) = f(x) + \alpha (y - x - \beta)^2, \quad x,y \in \{0,1,\dots,N-1\}. \]
+</p>
+<p>Hence the distance transform \( d(y) \) is the lower envelope of the family of parabolas \( g(y;x) \) indexed by \( x \). Notice that all parabolas have the same curvature and that their centers are located at \( x + \beta, \) \( x=0,\dots,N-1 \). The algorithm considers one parabola per time, from left to right, and finds the interval for which the parabola belongs to the lower envelope (if any).</p>
+<p>Initially, only the leftmost parabola \( g(y;0) \) has been considered, and its validity interval is \((-\infty, \infty) \). Then the second parabola \( g(y;1) \) is considered. As long as \( \alpha &gt; 0 \), the two parabolas \( g(y;0),\ g(y;1) \) intersect at a unique point \( \bar y \). Then the first parabola belongs to the envelope in the interval \( (-\infty, \bar y] \) and the second one in the interval \( (\bar y, +\infty] \). When the third parabola \( g(y;2) \) is considered, the intersection point \( \hat y \) with the previously added parabola \( g(y;1) \) is found. Now two cases may arise:</p>
+<ul>
+<li>\( \hat y &gt; \bar y \), in which case all three parabolas belong to the envelope in the intervals \( (-\infty,\bar y], (\bar y, \hat y], (\hat y, +\infty] \).</li>
+<li>\( \hat y \leq \bar y \), in which case the second parabola \( g(y;1) \) has no point beloning to the envelope, and it is removed. One then remains with the two parabolas \( g(y;0),\ g(y;2) \) and the algorithm is re-iterated.</li>
+</ul>
+<p>The algorithm proceeds in this fashion. Every time a new parabola is considered, its intersection point with the previously added parabola on the left is computed, and that parabola is potentially removed. The cost of an iteration is 1 plus the number of deleted parabolas. Since there are \( N \) iterations and at most \( N \) parabolas to delete overall, the complexity is linear, i.e. \( O(N) \). </p>
+
+</div>
+</div>
+<a class="anchor" id="ac20d3690d57a30ddb2937d051abaf192"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vl_image_distance_transform_f </td>
+          <td>(</td>
+          <td class="paramtype">float const *&#160;</td>
+          <td class="paramname"><em>image</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>numColumns</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>numRows</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>columnStride</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>rowStride</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *&#160;</td>
+          <td class="paramname"><em>distanceTransform</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#ac13bd3cc913e1da576e189a3ec8d66fc">vl_uindex</a> *&#160;</td>
+          <td class="paramname"><em>indexes</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>coeff</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>offset</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="imopv_8h.html#ad13a54f025599cbde1e2f073733872b2" title="Compute the distance transform of an image. ">vl_image_distance_transform_d</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aca77f25ca260644bfcba2b36efb0cb19"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vl_imconvcol_vd </td>
+          <td>(</td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>dst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>dst_stride</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double const *&#160;</td>
+          <td class="paramname"><em>src</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>src_width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>src_height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>src_stride</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double const *&#160;</td>
+          <td class="paramname"><em>filt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a66417c5847876295ea87b38140073879">vl_index</a>&#160;</td>
+          <td class="paramname"><em>filt_begin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a66417c5847876295ea87b38140073879">vl_index</a>&#160;</td>
+          <td class="paramname"><em>filt_end</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>step</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>flags</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dst</td><td>destination image. </td></tr>
+    <tr><td class="paramname">dst_stride</td><td>width of the destination image including padding. </td></tr>
+    <tr><td class="paramname">src</td><td>source image. </td></tr>
+    <tr><td class="paramname">src_width</td><td>width of the source image. </td></tr>
+    <tr><td class="paramname">src_height</td><td>height of the source image. </td></tr>
+    <tr><td class="paramname">src_stride</td><td>width of the source image including padding. </td></tr>
+    <tr><td class="paramname">filt</td><td>filter kernel. </td></tr>
+    <tr><td class="paramname">filt_begin</td><td>coordinate of the first filter element. </td></tr>
+    <tr><td class="paramname">filt_end</td><td>coordinate of the last filter element. </td></tr>
+    <tr><td class="paramname">step</td><td>sub-sampling step. </td></tr>
+    <tr><td class="paramname">flags</td><td>operation modes.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The function convolves the column of the image <em>src</em> by the filter <em>filt</em> and saves the result to the image <em>dst</em>. The size of <em>dst</em> must be equal to the size of <em>src</em>. Formally, this results in the calculation</p>
+<p class="formulaDsp">
+\[ \mathrm{dst} [x,y] = \sum_{p=y-\mathrm{filt\_end}}^{y-\mathrm{filt\_begin}} \mathrm{src}[x,y] \mathrm{filt}[y - p - \mathrm{filt\_begin}] \]
+</p>
+<p>The function subsamples the image along the columns according to the parameter <em>step</em>. Setting <em>step</em> to 1 (one) computes the elements \(\mathrm{dst}[x,y]\) for all pairs (x,0), (x,1), (x,2) and so on. Setting <em>step</em> two 2 (two) computes only (x,0), (x,2) and so on (in this case the height of the destination image is <code>floor(src_height/step)+1)</code>.</p>
+<p>Calling twice the function can be used to compute 2-D separable convolutions. Use the flag <a class="el" href="imopv_8h.html#a2489ff30a8c5d4048038a90b640a038a" title="Transpose result. ">VL_TRANSPOSE</a> to transpose the result (in this case <em>dst</em> has transposed dimension as well).</p>
+<p>The function allows the support of the filter to be any range. Usually the support is <code><em>filt_end</em> = -<em>filt_begin</code></em>.</p>
+<p>The convolution operation may pick up values outside the image boundary. To cope with this edge cases, the function either pads the image by zero (<a class="el" href="imopv_8h.html#af6e169f2ed366d16f9149a99d5574071" title="Pad with zeroes. ">VL_PAD_BY_ZERO</a>) or with the values at the boundary (<a class="el" href="imopv_8h.html#aabcdd51c289c0d8db11dda9e26349a52" title="Pad by continuity. ">VL_PAD_BY_CONTINUITY</a>). </p>
+
+</div>
+</div>
+<a class="anchor" id="a4d2fa6d46faace80e4d28f771cc1d2c1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vl_imconvcol_vf </td>
+          <td>(</td>
+          <td class="paramtype">float *&#160;</td>
+          <td class="paramname"><em>dst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>dst_stride</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float const *&#160;</td>
+          <td class="paramname"><em>src</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>src_width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>src_height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>src_stride</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float const *&#160;</td>
+          <td class="paramname"><em>filt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a66417c5847876295ea87b38140073879">vl_index</a>&#160;</td>
+          <td class="paramname"><em>filt_begin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a66417c5847876295ea87b38140073879">vl_index</a>&#160;</td>
+          <td class="paramname"><em>filt_end</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>step</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>flags</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="imopv_8h.html#aca77f25ca260644bfcba2b36efb0cb19" title="Convolve image along columns. ">vl_imconvcol_vd</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ad624650d3ab3d609f68634f83623677c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vl_imconvcoltri_d </td>
+          <td>(</td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>dest</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>destStride</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double const *&#160;</td>
+          <td class="paramname"><em>image</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>imageWidth</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>imageHeight</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>imageStride</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>filterSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>step</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int unsigned&#160;</td>
+          <td class="paramname"><em>flags</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dest</td><td>destination image. </td></tr>
+    <tr><td class="paramname">destStride</td><td>destination image stride. </td></tr>
+    <tr><td class="paramname">image</td><td>image to convolve. </td></tr>
+    <tr><td class="paramname">imageWidth</td><td>width of the image. </td></tr>
+    <tr><td class="paramname">imageHeight</td><td>height of the image. </td></tr>
+    <tr><td class="paramname">imageStride</td><td>width of the image including padding. </td></tr>
+    <tr><td class="paramname">filterSize</td><td>size of the triangular filter. </td></tr>
+    <tr><td class="paramname">step</td><td>sub-sampling step. </td></tr>
+    <tr><td class="paramname">flags</td><td>operation modes.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The function convolves the columns of the image <em>image</em> with the triangular kernel</p>
+<p class="formulaDsp">
+\[ k(t) = \frac{1}{\Delta^2} \max\{ \Delta - |t|, 0 \}, \quad t \in \mathbb{Z} \]
+</p>
+<p>The paramter \( \Delta \), equal to the function argument <em>filterSize</em>, controls the width of the kernel. Notice that the support of \( k(x) \) as a continuous function of \( x \) is the open interval \( (-\Delta,\Delta) \), which has length \( 2\Delta \). However, \( k(x) \) restricted to the ingeter domain \( x \in \mathcal{Z} \) has support \( \{ -\Delta + 1, \Delta +2, \dots, \Delta-1 \} \), which counts \( 2 \Delta - 1 \) elements only. In particular, the discrete kernel is symmetric about the origin for all values of \( \Delta \).</p>
+<p>The normalization factor \( 1 / \Delta^2 \) guaratnees that the filter is normalized to one, i.e.:</p>
+<p class="formulaDsp">
+\[ \sum_{t=-\infty}^{+\infty} k(t) = 1 \]
+</p>
+<dl class="section user"><dt>Algorithm</dt><dd></dd></dl>
+<p>The function exploits the fact that convolution by a triangular kernel can be expressed as the repeated convolution by a rectangular kernel, and that the latter can be performed in time indepenedent on the fiter width by using an integral-image type trick. Overall, the algorithm complexity is independent on the parameter <em>filterSize</em> and linear in the nubmer of image pixels.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="imopv_8h.html#aca77f25ca260644bfcba2b36efb0cb19" title="Convolve image along columns. ">vl_imconvcol_vd</a> for details on the meaning of the other parameters. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ab5561b2ed447b0099e7bf8dc79915382"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vl_imconvcoltri_f </td>
+          <td>(</td>
+          <td class="paramtype">float *&#160;</td>
+          <td class="paramname"><em>dest</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>destStride</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float const *&#160;</td>
+          <td class="paramname"><em>image</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>imageWidth</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>imageHeight</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>imageStride</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>filterSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>step</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int unsigned&#160;</td>
+          <td class="paramname"><em>flags</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="imopv_8h.html#ad624650d3ab3d609f68634f83623677c" title="Convolve an image along the columns with a triangular kernel. ">vl_imconvcoltri_d()</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a52fe17840f8ca2c5ef8f25a3f92cf30f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vl_imgradient_polar_d </td>
+          <td>(</td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>amplitudeGradient</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>angleGradient</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>gradWidthStride</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>gradHeightStride</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double const *&#160;</td>
+          <td class="paramname"><em>image</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>imageWidth</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>imageHeight</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>imageStride</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">amplitudeGradient</td><td>Pointer to amplitude gradient plane </td></tr>
+    <tr><td class="paramname">angleGradient</td><td>Pointer to angle gradient plane </td></tr>
+    <tr><td class="paramname">gradWidthStride</td><td>Width of the gradient plane including padding </td></tr>
+    <tr><td class="paramname">gradHeightStride</td><td>Height of the gradient plane including padding </td></tr>
+    <tr><td class="paramname">image</td><td>Pointer to the source image </td></tr>
+    <tr><td class="paramname">imageWidth</td><td>Source image width </td></tr>
+    <tr><td class="paramname">imageHeight</td><td>Source image height </td></tr>
+    <tr><td class="paramname">imageStride</td><td>Width of the source image including padding.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>This functions computes the amplitudes and angles of input image gradient.</p>
+<p>Gradient is computed simple by gradient kernel \( (-1 ~ 1) \), \( (-1 ~ 1)^T \) for border pixels and with sobel filter kernel \( (-0.5 ~ 0 ~ 0.5) \), \( (-0.5 ~ 0 ~ 0.5)^T \) otherwise on the input image <em>image</em> yielding x-gradient \( dx \), stored in <em>xGradient</em> and y-gradient \( dy \), stored in <em>yGradient</em>, respectively.</p>
+<p>The amplitude of the gradient, stored in plane <em>amplitudeGradient</em>, is then calculated as \( \sqrt(dx^2+dy^2) \) and the angle of the gradient, stored in <em>angleGradient</em> is \( atan(\frac{dy}{dx}) \) normalised into interval 0 and \( 2\pi \).</p>
+<p>This function also allows to process only part of the input image defining the <em>imageStride</em> as original image width and <em>width</em> as width of the sub-image.</p>
+<p>Also it allows to easily align the output data by definition of the <em>gradWidthStride</em> and <em>gradHeightStride</em> . </p>
+
+</div>
+</div>
+<a class="anchor" id="a0733fd424fee11f8f4028eb83af90c16"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vl_imgradient_polar_f </td>
+          <td>(</td>
+          <td class="paramtype">float *&#160;</td>
+          <td class="paramname"><em>amplitudeGradient</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *&#160;</td>
+          <td class="paramname"><em>angleGradient</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>gradWidthStride</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>gradHeightStride</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float const *&#160;</td>
+          <td class="paramname"><em>image</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>imageWidth</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>imageHeight</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>imageStride</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="imopv_8h.html#a52fe17840f8ca2c5ef8f25a3f92cf30f" title="Compute gradient mangitudes and directions of an image. ">vl_imgradient_polar_d</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a63f63ca0445077d4baf05db04a1921e5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vl_imintegral_d </td>
+          <td>(</td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>integral</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>integralStride</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double const *&#160;</td>
+          <td class="paramname"><em>image</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>imageWidth</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>imageHeight</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>imageStride</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">integral</td><td>integral image. </td></tr>
+    <tr><td class="paramname">integralStride</td><td>integral image stride. </td></tr>
+    <tr><td class="paramname">image</td><td>source image. </td></tr>
+    <tr><td class="paramname">imageWidth</td><td>source image width. </td></tr>
+    <tr><td class="paramname">imageHeight</td><td>source image height. </td></tr>
+    <tr><td class="paramname">imageStride</td><td>source image stride.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Let \( I(x,y), (x,y) \in [0, W-1] \times [0, H-1] \). The function computes the integral image \( J(x,y) \) of \( I(x,g) \):</p>
+<p class="formulaDsp">
+\[ J(x,y) = \sum_{x&#39;=0}^{x} \sum_{y&#39;=0}^{y} I(x&#39;,y&#39;) \]
+</p>
+<p>The integral image \( J(x,y) \) can be used to compute quickly the integral of of \( I(x,y) \) in a rectangular region \( R = [x&#39;,x&#39;&#39;]\times[y&#39;,y&#39;&#39;] \):</p>
+<p class="formulaDsp">
+\[ \sum_{(x,y)\in[x&#39;,x&#39;&#39;]\times[y&#39;,y&#39;&#39;]} I(x,y) = (J(x&#39;&#39;,y&#39;&#39;) - J(x&#39;-1, y&#39;&#39;)) - (J(x&#39;&#39;,y&#39;-1) - J(x&#39;-1,y&#39;-1)). \]
+</p>
+<p>Note that the order of operations is important when the integral image has an unsigned data type (e.g. <a class="el" href="host_8h.html#aeb7c862765448a70017105efa4d25e7a" title="Unsigned 32-bit integer. ">vl_uint32</a>). The formula is easily derived as follows:</p>
+<p class="formulaDsp">
+\begin{eqnarray*} \sum_{(x,y)\in R} I(x,y) &amp;=&amp; \sum_{x=x&#39;}^{x&#39;&#39;} \sum_{y=y&#39;}^{y&#39;&#39;} I(x,y)\\ &amp;=&amp; \sum_{x=0}^{x&#39;&#39;} \sum_{y=y&#39;}^{y&#39;&#39;} I(x,y) - \sum_{x=0}^{x&#39;-1} \sum_{y=y&#39;}^{y&#39;&#39;} I(x,y)\\ &amp;=&amp; \sum_{x=0}^{x&#39;&#39;} \sum_{y=0}^{y&#39;&#39;} I(x,y) - \sum_{x=0}^{x&#39;&#39;} \sum_{y=0}^{y&#39;-1} I(x,y) - \sum_{x=0}^{x&#39;-1} \sum_{y=0}^{y&#39;&#39;} I(x,y) + \sum_{x=0}^{x&#39;-1} \sum_{y=0}^{y&#39;-1} I(x,y)\\ &amp;=&amp; J(x&#39;&#39;,y&#39;&#39;) - J(x&#39;-1,y&#39;&#39;) - J(x&#39;&#39;,y&#39;-1) + J(x&#39;-1,y&#39;-1). \end{eqnarray*}
+</p>
+ 
+</div>
+</div>
+<a class="anchor" id="a783087728b77a88fb701426acf587956"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vl_imintegral_f </td>
+          <td>(</td>
+          <td class="paramtype">float *&#160;</td>
+          <td class="paramname"><em>integral</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>integralStride</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float const *&#160;</td>
+          <td class="paramname"><em>image</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>imageWidth</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>imageHeight</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>imageStride</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="imopv_8h.html#a63f63ca0445077d4baf05db04a1921e5" title="Compute integral image. ">vl_imintegral_d</a>. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a33c2c2a2dc57e86aa03f0f5288001c46"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vl_imintegral_i32 </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a03fa435c713d3141c4a700f79f5b2600">vl_int32</a> *&#160;</td>
+          <td class="paramname"><em>integral</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>integralStride</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a03fa435c713d3141c4a700f79f5b2600">vl_int32</a> const *&#160;</td>
+          <td class="paramname"><em>image</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>imageWidth</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>imageHeight</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>imageStride</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="imopv_8h.html#a63f63ca0445077d4baf05db04a1921e5" title="Compute integral image. ">vl_imintegral_d</a>. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ab02ddbe089220e3c33c548d2b45887a1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vl_imintegral_ui32 </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="host_8h.html#aeb7c862765448a70017105efa4d25e7a">vl_uint32</a> *&#160;</td>
+          <td class="paramname"><em>integral</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>integralStride</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#aeb7c862765448a70017105efa4d25e7a">vl_uint32</a> const *&#160;</td>
+          <td class="paramname"><em>image</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>imageWidth</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>imageHeight</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>imageStride</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="imopv_8h.html#a63f63ca0445077d4baf05db04a1921e5" title="Compute integral image. ">vl_imintegral_d</a>. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="af6c768d466c0c767bbad085166618daa"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vl_imsmooth_d </td>
+          <td>(</td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>smoothed</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>smoothedStride</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double const *&#160;</td>
+          <td class="paramname"><em>image</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>stride</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>sigmax</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>sigmay</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">smoothed</td><td></td></tr>
+    <tr><td class="paramname">smoothedStride</td><td></td></tr>
+    <tr><td class="paramname">image</td><td></td></tr>
+    <tr><td class="paramname">width</td><td></td></tr>
+    <tr><td class="paramname">height</td><td></td></tr>
+    <tr><td class="paramname">stride</td><td></td></tr>
+    <tr><td class="paramname">sigmax</td><td></td></tr>
+    <tr><td class="paramname">sigmay</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ae57b15ab6308fb8a20f358267645657d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vl_imsmooth_f </td>
+          <td>(</td>
+          <td class="paramtype">float *&#160;</td>
+          <td class="paramname"><em>smoothed</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>smoothedStride</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float const *&#160;</td>
+          <td class="paramname"><em>image</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>stride</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>sigmax</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>sigmay</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="imopv_8h.html#af6c768d466c0c767bbad085166618daa" title="Smooth an image with a Gaussian filter. ">vl_imsmooth_d</a> </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+        <!-- Doc Here -->
+      </div>
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>

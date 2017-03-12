@@ -1,0 +1,112 @@
+<!DOCTYPE group PUBLIC 
+  "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<group>
+<h1 align="center">MSER</h1>
+<a href="#NAME">NAME</a><br />
+<a href="#SYNOPSIS">SYNOPSIS</a><br />
+<a href="#OPTIONS">OPTIONS</a><br />
+<a href="#DESCRIPTION">DESCRIPTION</a><br />
+<a href="#EXAMPLES">EXAMPLES</a><br />
+<a href="#SEE%20ALSO">SEE ALSO</a><br />
+<hr />
+<a name="NAME" id="NAME"></a>
+<h2>NAME</h2>
+<p style="margin-left:11%; margin-top: 1em">mser &minus; Maximally
+Stable Extremal Regions</p>
+<a name="SYNOPSIS" id="SYNOPSIS"></a>
+<h2>SYNOPSIS</h2>
+<p style="margin-left:11%; margin-top: 1em"><b>mser</b>
+[<i>options</i>] FILE ...</p>
+<a name="OPTIONS" id="OPTIONS"></a>
+<h2>OPTIONS</h2>
+<p style="margin-left:11%; margin-top: 1em"><b>&minus;v</b>,
+<b>&minus;&minus;verbose</b></p>
+<p style="margin-left:22%;">Increase verbosity level (may be
+repeated).</p>
+<p style="margin-left:11%;"><b>&minus;h</b>,
+<b>&minus;&minus;help</b></p>
+<p style="margin-left:22%;">Show options and version.</p>
+<p style="margin-left:11%;">
+<b>&minus;&minus;seeds</b>[=<i>FILESPEC</i>]</p>
+<p style="margin-left:22%;">Enable/specify seeds output.</p>
+<p style="margin-left:11%;">
+<b>&minus;&minus;frames</b>[=<i>FILESPEC</i>]</p>
+<p style="margin-left:22%;">Enable/specify frames output.</p>
+<p style="margin-left:11%;">
+<b>&minus;&minus;meta</b>[=<i>FILESPEC</i>]</p>
+<p style="margin-left:22%;">Enable/specify meta output.</p>
+<p style="margin-left:11%;"><b>&minus;d</b> <i>REAL</i>,
+<b>&minus;&minus;delta</b><i>=REAL</i></p>
+<p style="margin-left:22%;">Specify delta parameter.</p>
+<p style="margin-left:11%;">
+<b>&minus;&minus;min-area</b>=<i>REAL</i></p>
+<p style="margin-left:22%;">Specify minimum region area.</p>
+<p style="margin-left:11%;">
+<b>&minus;&minus;max-area</b>=<i>REAL</i></p>
+<p style="margin-left:22%;">Specify maximum region area.</p>
+<p style="margin-left:11%;">
+<b>&minus;&minus;max-variation</b>=<i>REAL</i></p>
+<p style="margin-left:22%;">Specify maximum region variation.</p>
+<p style="margin-left:11%;">
+<b>&minus;&minus;min-diversity</b>=<i>REAL</i></p>
+<p style="margin-left:22%;">Specify minimum region diversity.</p>
+<a name="DESCRIPTION" id="DESCRIPTION"></a>
+<h2>DESCRIPTION</h2>
+<p style="margin-left:11%; margin-top: 1em"><b>mser</b> computes
+the <i>Maximally Stable Extremal Regions (MSER)</i> <b>mser</b>
+reads an image file (in PGM format), computes the MSERs, and writes
+them to a file of region seeds. Alternatively, the <b>--frames</b>
+option can be used to compute elliptical frames instead of region
+seeds. It is also possible to use <b>--frames</b> and
+<b>--seeds</b> in combination to save both seeds and frames.</p>
+<p style="margin-left:11%; margin-top: 1em">A
+<i>region&nbsp;seed</i> is and index pointing to one of the image
+pixels (pixels are enumerated in row major order, with 0
+corresponding to the upper-left corner of the image). An MSER
+containing a given seed is the largest connect subset of pixels
+whose value is not smaller than the seed value.</p>
+<p style="margin-left:11%; margin-top: 1em">A <i>frame</i> is an
+ellipse approximating an MSER and is specified by 5 floating point
+numbers: coordinate of the center <i>x</i> and <i>y,</i> and
+elements <i>S11</i>, <i>S12</i>, <i>S22</i> of the co-variance
+matrix.</p>
+<p style="margin-left:11%; margin-top: 1em">Both seeds and frames
+can be saved either in ascii or binary format, based on the
+specified <i>FILESPEC</i>s (see also <b>vlfeat</b>(7)):<br />
+Ascii format</p>
+<p style="margin-left:22%;">Each seed is a decimal number, one per
+line of text, and each frame is a list of 6 floating point numbers,
+one per line of text.</p>
+<p style="margin-left:11%;">Binary format</p>
+<p style="margin-left:22%;">The binary format is similar to the
+ascii format, except that each seed is stored as a unsigned integer
+(four bytes) and each frame component is stored as an IEEE double
+(eight bytes). The data is written in little endian order.</p>
+<p style="margin-left:11%; margin-top: 1em"><b>mser</b> can process
+multiple images. In this case the names of the corresponding output
+files are calculated based on <i>FILESPEC</i>s.</p>
+<a name="EXAMPLES" id="EXAMPLES"></a>
+<h2>EXAMPLES</h2>
+<p style="margin-left:11%; margin-top: 1em">mser test.pgm -d 5</p>
+<p style="margin-left:22%;">Computes the MSERs of image
+<i>test.pgm</i> setting the parameter <i>delta</i> to 5 and save
+the result as a sequence of region seeds to <i>test.mser</i>.</p>
+<p style="margin-left:11%;">mser test.pgm &minus;&minus;frames</p>
+<p style="margin-left:22%;">Computes the MSERs of image
+<i>test.pgm</i>, fits elliptical frames to them and saves the
+frames to <i>test.frame</i>.</p>
+<p style="margin-left:11%;">mser test.pgm
+&minus;&minus;frames=bin:///tmp/%.frame &minus;&minus;seeds</p>
+<p style="margin-left:22%;">Computes the MSERs of image
+<i>test.pgm</i>, fits elliptical frames to them and saves the
+frames to <i>/tmp/test.frame</i> and the region seeds to
+<i>test.mser</i>.</p>
+<a name="SEE ALSO"></a>
+<h2>SEE ALSO</h2>
+<p style="margin-left:11%; margin-top: 1em"><b>vlfeat</b>(7)</p>
+<p style="margin-left:11%; margin-top: 1em">J. Matas, O. Chum, M.
+Urban, and T. Pajdla. Robust wide baseline stereo from maximally
+stable extremal regions. In <i>Proc. BMVC</i>, 2002.</p>
+<hr />
+</group>

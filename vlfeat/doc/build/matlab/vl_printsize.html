@@ -1,0 +1,65 @@
+<group>
+<ul class='breadcrumb'><li><a href='%pathto:matlab;'>Index</a></li><li><a href='%pathto:vl_pr;'>Prev</a></li><li><a href='%pathto:vl_roc;'>Next</a></li></ul><div class="documentation"><p>
+<a href="%pathto:vl_printsize;">VL_PRINTSIZE</a>(R) adjusts the PaperPosition property of the current
+figure to make the figure paper width equal to R times the width
+of a 'uslsetter' page, while preserving the aspect ratio of the
+figure. Then, it sets the PaperSize property to match tightly the
+size of the figure.
+</p><p>
+<a href="%pathto:vl_printsize;">VL_PRINTSIZE</a>(FIG,R) operates on the specified figure FIG. The
+function accepts the following optional arguments:
+</p><dl><dt>
+AspectRatio
+<span class="defaults">[]</span></dt><dd><p>
+Change the figure aspect ratio (width/height) to the specified
+value.
+</p></dd><dt>
+Reference
+<span class="defaults">'horizontal'</span></dt><dd><p>
+If set to 'horizontal', <a href="%pathto:vl_printsize;">VL_PRINTSIZE</a>(R) makes the width of the
+figure equal to a fraction R of the width of the page. If set to
+'vertical', the height is used instead.
+</p></dd><dt>
+PaperType
+<span class="defaults">'usletter'</span></dt><dd><p>
+Set the type of the reference page to the specified type. Any of
+the paper types supported by MATLAB can be used (see
+PRINT()).
+</p></dd><dt>
+Margin
+<span class="defaults">0</span></dt><dd><p>
+If greater than zero, <a href="%pathto:vl_printsize;">VL_PRINTSIZE</a>(R) leaves the specified
+margin around the figure rather than fitting the paper size
+tightly around it. The margin is expressed as a fraction of the
+figure paper width (or height if Reference is set to
+'vertical').
+</p></dd></dl><p>
+PRINTING FIGURES IN MATLAB
+</p><p>
+The standard procedure to include a MATLAB figure in a publication
+consists in printing the figure to an EPS or PDF file (by using
+the PRINT() function) and then rescaling it to the desired size in
+the publication. PDF printing has the additional inconvenience
+that large white margins are generated, and requires cropping the
+figure too.
+</p><p>
+Unfortunately, rescalign a figure in this manner has the usually
+unwanted effect of rescaling elements of the graphics such as font
+sizes and line thicknesses. For example, a font which is 12pt in
+the original MATLAB figure may become too large or too small after
+rescaling.
+</p><p>
+The `proper' way of printing a figure is to specify its desired
+size on paper before calling the PRINT() function. <a href="%pathto:vl_printsize;">VL_PRINTSIZE</a>()
+helps doing so.
+</p><p>
+Margins are an additional nuances. When printing to certain
+formats such as PDF, MATLAB prints in fact entire page (e.g. a
+whole US Letter sheet), resulting in wide white margin all around
+the figure. <a href="%pathto:vl_printsize;">VL_PRINTSIZE</a>() alleviates this problem by setting the
+paper size to match the figure size tightly. This does not
+eliminate margins completely, especially if the figure has
+multiple subplots, but it is certainly a large improvement.
+</p><p>
+See also: <a href="%pathto:vl_help;">VL_HELP</a>().
+</p></div></group>

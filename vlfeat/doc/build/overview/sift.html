@@ -1,0 +1,578 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+
+  <!-- Page title -->
+  <title>VLFeat - Tutorials > SIFT detector and descriptor</title>
+
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  
+
+  <!-- Scripts-->
+  
+
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li class='active'><a href="tut.html">Tutorials</a>
+<ul>
+<li><a href="frame.html">Local feature frames</a>
+</li>
+<li><a href="covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="hog.html">HOG features</a>
+</li>
+<li class='active' class='activeLeaf'><a href="sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="dsift.html">Dense SIFT</a>
+</li>
+<li><a href="liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="mser.html">MSER feature detector</a>
+</li>
+<li><a href="imdisttf.html">Distance transform</a>
+</li>
+<li><a href="encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="kmeans.html">K-means clustering</a>
+</li>
+<li><a href="aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="slic.html">SLIC superpixels</a>
+</li>
+<li><a href="svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="ikm.html">Integer K-means</a>
+</li>
+<li><a href="hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li><a href="../api/index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="tut.html">Tutorials</a></span><span class='separator'>></span><span class='page'><a href="sift.html">SIFT detector and descriptor</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+        
+    
+
+<div class='toc'>
+<h3>Table of Contents</h3><ul><li class="level1"><a href="#tut.sift.extract">Extracting frames and descriptors</a></li>
+<li class="level1"><a href="#tut.sift.match">Basic matching</a></li>
+<li class="level1"><a href="#tut.sift.param">Detector parameters</a></li>
+<li class="level1"><a href="#tut.sift.custom">Custom frames</a></li>
+<li class="level1"><a href="#tut.sift.conventions">Conventions</a></li>
+<li class="level1"><a href="#tut.sift.ubc">Comparison with D. Lowe's SIFT</a></li>
+</ul>
+</div><!-- Table of contents -->
+
+
+<p>The <a shape="rect" href="dox:sift;"><em>Scale-Invariant Feature Transform
+(SIFT)</em></a> bundles a feature detector and a feature
+descriptor. The detector extracts from an image a number of frames
+(attributed regions) in a way which is consistent with (some)
+variations of the illumination, viewpoint and other viewing
+conditions. The descriptor associates to the regions a signature which
+identifies their appearance compactly and robustly. For a more
+in-depth description of the algorithm, see our
+<a shape="rect" href="../api/sift_8h.html">API reference for SIFT</a>.</p>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h1 id="tut.sift.extract">Extracting frames and descriptors</h1>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<p>Both the detector and descriptor are accessible by
+the <code/>vl_sift</code> MATLAB command (there is a similar command
+line utility). Open MATLAB and load a test image</p>
+
+<div class="highlight"><pre><span class="n">I</span> <span class="p">=</span> <span class="n">vl_impattern</span><span class="p">(</span><span class="s">&#39;roofs1&#39;</span><span class="p">)</span> <span class="p">;</span>
+<span class="n">image</span><span class="p">(</span><span class="n">I</span><span class="p">)</span> <span class="p">;</span>
+</pre></div>
+
+
+<div class="figure">
+ <img src="../demo/sift_basic_0.jpg"></img>
+ <div class="caption">
+  <span class="content">
+   Input image.
+  </span>
+ </div>
+</div>
+
+<p>The <code/>vl_sift</code> command requires a single precision gray
+scale image. It also expects the range to be normalized in the [0,255]
+interval (while this is not strictly required, the default values of
+some internal thresholds are tuned for this case). The image
+<code/>I</code> is converted in the appropriate format by</p>
+
+<div class="highlight"><pre><span class="n">I</span> <span class="p">=</span> <span class="n">single</span><span class="p">(</span><span class="n">rgb2gray</span><span class="p">(</span><span class="n">I</span><span class="p">))</span> <span class="p">;</span>
+</pre></div>
+
+
+<p>We compute the SIFT frames (keypoints) and descriptors by</p>
+
+<div class="highlight"><pre><span class="p">[</span><span class="n">f</span><span class="p">,</span><span class="n">d</span><span class="p">]</span> <span class="p">=</span> <span class="n">vl_sift</span><span class="p">(</span><span class="n">I</span><span class="p">)</span> <span class="p">;</span>
+</pre></div>
+
+
+<p>The matrix <code/>f</code> has a column for each frame. A frame is a
+disk of center <code/>f(1:2)</code>, scale <code/>f(3)</code> and
+orientation <code/>f(4)</code> . We visualize a random selection of 50
+features by:</p>
+
+<div class="highlight"><pre><span class="n">perm</span> <span class="p">=</span> <span class="n">randperm</span><span class="p">(</span><span class="nb">size</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span> <span class="p">;</span>
+<span class="n">sel</span> <span class="p">=</span> <span class="n">perm</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">50</span><span class="p">)</span> <span class="p">;</span>
+<span class="n">h1</span> <span class="p">=</span> <span class="n">vl_plotframe</span><span class="p">(</span><span class="n">f</span><span class="p">(:,</span><span class="n">sel</span><span class="p">))</span> <span class="p">;</span>
+<span class="n">h2</span> <span class="p">=</span> <span class="n">vl_plotframe</span><span class="p">(</span><span class="n">f</span><span class="p">(:,</span><span class="n">sel</span><span class="p">))</span> <span class="p">;</span>
+<span class="n">set</span><span class="p">(</span><span class="n">h1</span><span class="p">,</span><span class="s">&#39;color&#39;</span><span class="p">,</span><span class="s">&#39;k&#39;</span><span class="p">,</span><span class="s">&#39;linewidth&#39;</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="p">;</span>
+<span class="n">set</span><span class="p">(</span><span class="n">h2</span><span class="p">,</span><span class="s">&#39;color&#39;</span><span class="p">,</span><span class="s">&#39;y&#39;</span><span class="p">,</span><span class="s">&#39;linewidth&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="p">;</span>
+</pre></div>
+
+
+<div class="figure">
+ <img src="../demo/sift_basic_2.jpg"></img>
+ <div class="caption">
+  Some of the detected SIFT frames.
+ </div>
+</div>
+
+<p>We can also overlay the descriptors by</p>
+
+<div class="highlight"><pre><span class="n">h3</span> <span class="p">=</span> <span class="n">vl_plotsiftdescriptor</span><span class="p">(</span><span class="n">d</span><span class="p">(:,</span><span class="n">sel</span><span class="p">),</span><span class="n">f</span><span class="p">(:,</span><span class="n">sel</span><span class="p">))</span> <span class="p">;</span>
+<span class="n">set</span><span class="p">(</span><span class="n">h3</span><span class="p">,</span><span class="s">&#39;color&#39;</span><span class="p">,</span><span class="s">&#39;g&#39;</span><span class="p">)</span> <span class="p">;</span>
+</pre></div>
+
+
+<div class="figure">
+ <img src="../demo/sift_basic_3.jpg"></img>
+ <div class="caption">
+  A test image for the peak threshold parameter.
+ </div>
+</div>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h1 id="tut.sift.match">Basic matching</h1>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<p>SIFT descriptors are often used find similar regions in two
+images. <code/>vl_ubcmatch</code> implements a basic matching
+algorithm. Let <code/>Ia</code> and <code/>Ib</code> be images of the
+same object or scene. We extract and match the descriptors by:
+</p>
+
+<div class="highlight"><pre><span class="p">[</span><span class="n">fa</span><span class="p">,</span> <span class="n">da</span><span class="p">]</span> <span class="p">=</span> <span class="n">vl_sift</span><span class="p">(</span><span class="n">Ia</span><span class="p">)</span> <span class="p">;</span>
+<span class="p">[</span><span class="n">fb</span><span class="p">,</span> <span class="n">db</span><span class="p">]</span> <span class="p">=</span> <span class="n">vl_sift</span><span class="p">(</span><span class="n">Ib</span><span class="p">)</span> <span class="p">;</span>
+<span class="p">[</span><span class="n">matches</span><span class="p">,</span> <span class="n">scores</span><span class="p">]</span> <span class="p">=</span> <span class="n">vl_ubcmatch</span><span class="p">(</span><span class="n">da</span><span class="p">,</span> <span class="n">db</span><span class="p">)</span> <span class="p">;</span>
+</pre></div>
+
+
+<div class="figure">
+ <img src="../demo/sift_match_1.jpg"></img>
+ <img src="../demo/sift_match_2.jpg"></img>
+ <div class="caption">
+  Top: A pair of images of the same scene. Bottom: Matching of SIFT
+  descriptors with <code/>vl_ubcmatch</code>.
+ </div>
+</div>
+
+<p>
+For each descriptor in <code/>da</code>, <code/>vl_ubcmatch</code> finds
+the closest descriptor in <code/>db</code> (as measured by the L2 norm
+of the difference between them). The index of the original match and
+the closest descriptor is stored in each column of
+<code/>matches</code> and the distance between the pair is stored in
+<code/>scores</code>.
+</p>
+
+<p>
+Matches also can be filtered for uniqueness by passing a third
+parameter to <code/>vl_ubcmatch</code> which specifies a threshold.
+Here, the uniqueness of a pair is measured as the ratio of the
+distance between the best matching keypoint and the distance to the
+second best one (see <code/>vl_ubcmatch</code> for further details).
+</p>
+
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h1 id="tut.sift.param">Detector parameters</h1>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<p>The SIFT detector is controlled mainly by two parameters: the peak
+ threshold and the (non) edge threshold.</p>
+
+
+<p>The <em>peak threshold</em> filters peaks of the DoG scale space
+  that are too small (in absolute value). For instance, consider a
+  test image of 2D Gaussian blobs:</p>
+
+<div class="highlight"><pre><span class="n">I</span> <span class="p">=</span> <span class="n">double</span><span class="p">(</span><span class="nb">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">500</span><span class="p">)</span> <span class="o">&lt;</span><span class="p">=</span> <span class="p">.</span><span class="mi">005</span><span class="p">)</span> <span class="p">;</span>
+<span class="n">I</span> <span class="p">=</span> <span class="p">(</span><span class="nb">ones</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">500</span><span class="p">))</span> <span class="o">.*</span> <span class="n">I</span> <span class="p">;</span>
+<span class="n">I</span><span class="p">(:,</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">I</span><span class="p">(:,</span><span class="k">end</span><span class="p">)</span> <span class="p">=</span> <span class="mi">0</span> <span class="p">;</span>
+<span class="n">I</span><span class="p">(</span><span class="mi">1</span><span class="p">,:)</span> <span class="p">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">I</span><span class="p">(</span><span class="k">end</span><span class="p">,:)</span> <span class="p">=</span> <span class="mi">0</span> <span class="p">;</span>
+<span class="n">I</span> <span class="p">=</span> <span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="o">*</span><span class="mi">4</span>^<span class="mi">2</span> <span class="o">*</span> <span class="n">vl_imsmooth</span><span class="p">(</span><span class="n">I</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span> <span class="p">;</span>
+<span class="n">I</span> <span class="p">=</span> <span class="n">single</span><span class="p">(</span><span class="mi">255</span> <span class="o">*</span> <span class="n">I</span><span class="p">)</span> <span class="p">;</span>
+</pre></div>
+
+
+<div class="figure">
+ <img src="../demo/sift_peak_0.jpg"></img>
+  <div class="caption">
+   A test image for the peak threshold parameter.
+  </div>
+</div>
+
+<p>We run the detector with peak threshold <code/>peak_thresh</code> by</p>
+
+<div class="highlight"><pre><span class="n">f</span> <span class="p">=</span> <span class="n">vl_sift</span><span class="p">(</span><span class="n">I</span><span class="p">,</span> <span class="s">&#39;PeakThresh&#39;</span><span class="p">,</span> <span class="n">peak_thresh</span><span class="p">)</span> <span class="p">;</span>
+</pre></div>
+
+
+<p>obtaining fewer features as <code/>peak_thresh</code> is increased.</p>
+
+<div class="figure">
+ <img src="../demo/sift_peak_1.jpg"></img>
+ <img src="../demo/sift_peak_2.jpg"></img>
+ <img src="../demo/sift_peak_3.jpg"></img>
+ <img src="../demo/sift_peak_4.jpg"></img>
+ <div class="caption">
+   <span class="content">
+     Detected frames for increasing peak threshold.<br clear="none"/>
+     From top: <code/>peak_thresh = {0, 10, 20, 30}</code>.
+  </span>
+ </div>
+</div>
+
+<p>The <em>edge threshold</em> eliminates peaks of
+the DoG scale space whose curvature is too small (such peaks yield
+badly localized frames). For instance, consider the test image</p>
+
+<div class="highlight"><pre><span class="n">I</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">500</span><span class="p">)</span> <span class="p">;</span>
+<span class="k">for</span> <span class="nb">i</span><span class="p">=[</span><span class="mi">10</span> <span class="mi">20</span> <span class="mi">30</span> <span class="mi">40</span> <span class="mi">50</span> <span class="mi">60</span> <span class="mi">70</span> <span class="mi">80</span> <span class="mi">90</span><span class="p">]</span>
+<span class="n">I</span><span class="p">(</span><span class="mi">50</span><span class="o">-</span><span class="nb">round</span><span class="p">(</span><span class="nb">i</span><span class="o">/</span><span class="mi">3</span><span class="p">):</span><span class="mi">50</span><span class="o">+</span><span class="nb">round</span><span class="p">(</span><span class="nb">i</span><span class="o">/</span><span class="mi">3</span><span class="p">),</span><span class="nb">i</span><span class="o">*</span><span class="mi">5</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span> <span class="p">;</span>
+<span class="k">end</span>
+<span class="n">I</span> <span class="p">=</span> <span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="o">*</span><span class="mi">8</span>^<span class="mi">2</span> <span class="o">*</span> <span class="n">vl_imsmooth</span><span class="p">(</span><span class="n">I</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span> <span class="p">;</span>
+<span class="n">I</span> <span class="p">=</span> <span class="n">single</span><span class="p">(</span><span class="mi">255</span> <span class="o">*</span> <span class="n">I</span><span class="p">)</span> <span class="p">;</span>
+</pre></div>
+
+
+<div class="figure">
+<img src="../demo/sift_edge_0.jpg"></img>
+<div class="caption">
+<span class="content">
+A test image for the edge threshold parameter.
+</span>
+</div>
+</div>
+
+<p>We run the detector with edge threshold <code/>edge_thresh</code> by</p>
+
+<div class="highlight"><pre><span class="n">f</span> <span class="p">=</span> <span class="n">vl_sift</span><span class="p">(</span><span class="n">I</span><span class="p">,</span> <span class="s">&#39;edgethresh&#39;</span><span class="p">,</span> <span class="n">edge_thresh</span><span class="p">)</span> <span class="p">;</span>
+</pre></div>
+
+
+<p>obtaining more features as <code/>edge_thresh</code> is increased:</p>
+
+<div class="figure">
+<img src="../demo/sift_edge_1.jpg"></img>
+<img src="../demo/sift_edge_2.jpg"></img>
+<img src="../demo/sift_edge_3.jpg"></img>
+<img src="../demo/sift_edge_4.jpg"></img>
+<div class="caption">
+<span class="content">
+  Detected frames for increasing edge threshold.<br clear="none"/>
+  From top: <code/>edge_thresh = {3.5, 5, 7.5, 10}</code>
+</span>
+</div>
+</div>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h1 id="tut.sift.custom">Custom frames</h1>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<p>The MATLAB command <code/>vl_sift</code> (and the command line utility)
+can bypass the detector and compute the descriptor on custom frames using
+the <code/>Frames</code> option.</p>
+
+<p>For instance, we can compute the descriptor of a SIFT frame
+centered at position <code/>(100,100)</code>, of scale <code/>10</code>
+and orientation <code/>-pi/8</code> by</p>
+
+<div class="highlight"><pre><span class="n">fc</span> <span class="p">=</span> <span class="p">[</span><span class="mi">100</span><span class="p">;</span><span class="mi">100</span><span class="p">;</span><span class="mi">10</span><span class="p">;</span><span class="o">-</span><span class="nb">pi</span><span class="o">/</span><span class="mi">8</span><span class="p">]</span> <span class="p">;</span>
+<span class="p">[</span><span class="n">f</span><span class="p">,</span><span class="n">d</span><span class="p">]</span> <span class="p">=</span> <span class="n">vl_sift</span><span class="p">(</span><span class="n">I</span><span class="p">,</span><span class="s">&#39;frames&#39;</span><span class="p">,</span><span class="n">fc</span><span class="p">)</span> <span class="p">;</span>
+</pre></div>
+
+
+<div class="figure">
+<img src="../demo/sift_basic_4.jpg"></img>
+<div class="caption">
+<span class="content">
+  Custom frame at with fixed orientation.
+</span>
+</div>
+</div>
+
+ <p>Multiple frames <code/>fc</code> may be specified as well. In this
+  case they are re-ordered by increasing
+  scale. The <code/>Orientations</code> option instructs the program to
+  use the custom position and scale but to compute the keypoint
+  orientations, as in</p>
+
+<div class="highlight"><pre><span class="n">fc</span> <span class="p">=</span> <span class="p">[</span><span class="mi">100</span><span class="p">;</span><span class="mi">100</span><span class="p">;</span><span class="mi">10</span><span class="p">;</span><span class="mi">0</span><span class="p">]</span> <span class="p">;</span>
+<span class="p">[</span><span class="n">f</span><span class="p">,</span><span class="n">d</span><span class="p">]</span> <span class="p">=</span> <span class="n">vl_sift</span><span class="p">(</span><span class="n">I</span><span class="p">,</span><span class="s">&#39;frames&#39;</span><span class="p">,</span><span class="n">fc</span><span class="p">,</span><span class="s">&#39;orientations&#39;</span><span class="p">)</span> <span class="p">;</span>
+</pre></div>
+
+
+ <div class="figure">
+<img src="../demo/sift_basic_5.jpg"></img>
+<div class="caption">
+<span class="content">
+Custom frame with computed orientations.
+</span>
+</div>
+</div>
+
+<p>Notice that, depending on the local appearance, a keypoint may
+have <em>multiple</em> orientations.  Moreover, a keypoint computed on
+a constant image region (such as a one pixel region) has no
+orientations!</p>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h1 id="tut.sift.conventions">Conventions</h1>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<p>In our implementation SIFT frames are expressed in the standard
+image reference.  The only difference between the command line and
+MATLAB drivers is that the latter assumes that the image origin
+(top-left corner) has coordinate (1,1) as opposed to (0,0). Lowe's
+original implementation uses a different reference system, illustrated
+next:</p>
+
+<div class="figure">
+<img src="../figures/sift-conv-vlfeat.png"></img> <br clear="none"/>
+<img src="../figures/sift-conv.png"></img>
+<div class="caption">
+<span class="content">
+Our conventions (top) compared to Lowe's (bottom).
+</span>
+</div>
+</div>
+
+ <p>Our implementation uses the standard image reference system, with
+  the <code/>y</code> axis pointing downward. The frame
+  orientation <code/>&theta;</code> and descriptor use the same reference
+  system (i.e. a small positive rotation of the <code/>x</code> moves it
+  towards the <code/>y</code> axis). Recall that each descriptor element
+  is a bin indexed by <code/>(&theta;,x,y)</code>; the histogram is
+  vectorized in such a way that <code/>&theta;</code> is the fastest
+  varying index and <code/>y</code> the slowest.</p>
+
+ <p>By comparison, D. Lowe's implementation (see bottom half of the
+  figure) uses a slightly different convention: Frame centers are
+  expressed relatively to the standard image reference system, but the
+  frame orientation and the descriptor assume that the <em> y </em>
+  axis points upward. Consequently, to map from our to D. Lowe's
+  convention, frames orientations need to be negated and the descriptor
+  elements must be re-arranged.</p>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h1 id="tut.sift.ubc">Comparison with D. Lowe's SIFT</h1>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<p>VLFeat SIFT implementation is largely compatible with
+<a shape="rect" href="http://www.cs.ubc.ca/~lowe/keypoints/">UBC (D. Lowe's)
+implementation</a> (note however that the keypoints are stored in a
+slightly different format, see <code/>vl_ubcread</code>). The following
+figure compares SIFT keypoints computed by the VLFeat (blue) and UBC
+(red) implementations.</p>
+
+<div class="figure">
+<img src="../demo/sift_vs_ubc_1.jpg"></img>
+<div class="caption">
+<span class="content">
+VLFeat keypoints (blue) superimposed to D. Lowe's keypoints
+(red). Most keypoints match nearly exactly.
+</span>
+</div>
+</div>
+
+<p>The large majority of keypoints correspond nearly exactly. The
+following figure shows the percentage of keypoints computed by the two
+implementations whose center matches with a precision of at least 0.01
+pixels and 0.05 pixels respectively.</p>
+
+<div class="figure">
+<img src="../demo/sift_vs_ubc_2.jpg"></img>
+<div class="caption">
+<span class="content">
+Percentage of keypoints obtained from the VLFeat and UBC implementations
+that match up to 0.01 pixels and 0.05 pixels.
+</span>
+</div>
+</div>
+
+<p>Descriptors are also very similar. The following figure shows the
+percentage of descriptors computed by the two implementations whose
+distance is less than 5%, 10% and 20% of the average descriptor
+distance.</p>
+
+<div class="figure">
+<img src="../demo/sift_vs_ubc_3.jpg"></img>
+<div class="caption">
+<span class="content">
+Percentage of descriptors obtained from the VLFeat and UBC
+implementations whose distance is within 10% and 20% of the average
+descriptor distance.
+</span>
+</div>
+</div>
+
+
+  
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>
+ 

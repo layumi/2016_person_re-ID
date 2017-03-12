@@ -1,0 +1,24 @@
+<group>
+<ul class='breadcrumb'><li><a href='%pathto:matlab;'>Index</a></li><li><a href='%pathto:vl_hikmeanspush;'>Prev</a></li><li><a href='%pathto:vl_ikmeanshist;'>Next</a></li></ul><div class="documentation"><p>
+C = <a href="%pathto:vl_ikmeans;">VL_IKMEANS</a>(X,K) returns the centers of a K-means paritioning of
+the data space X. X must be of class UINT8. C is of class UINT32.
+</p><p>
+[C, I] = <a href="%pathto:vl_ikmeans;">VL_IKMEANS</a>(...) returns the cluster associations I of the
+data as well.
+</p><p>
+<a href="%pathto:vl_ikmeans;">VL_IKMEANS</a>() accepts the following options:
+</p><dl><dt>
+MaxIters
+<span class="defaults">200</span></dt><dd><p>
+Maximum number of iterations before giving up (the algorithm
+stops as soon as there is no change in the data to cluster
+associations).
+</p></dd><dt>
+Method
+<span class="defaults">Lloyd</span></dt><dd><p>
+Algorithm to use ('Lloyd', 'Elkan').
+</p></dd><dt>
+Verbose
+</dt><dd><p>
+Increase the verbosity level.
+</p></dd></dl></div></group>

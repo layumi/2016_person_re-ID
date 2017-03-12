@@ -1,0 +1,80 @@
+<group>
+<ul class='breadcrumb'><li><a href='%pathto:matlab;'>Index</a></li><li><a href='%pathto:vl_ertr;'>Prev</a></li><li><a href='%pathto:vl_cf;'>Next</a></li></ul><div class="documentation"><p>
+R=<a href="%pathto:vl_mser;">VL_MSER</a>(I) computes the Maximally Stable Extremal Regions (MSER)
+[1] of image I with stability threshold DELTA. I is any array of
+class UINT8. R is a vector of region seeds.
+</p><p>
+A (maximally stable) extremal region is just a connected component
+of one of the level sets of the image I.  An extremal region can
+be recovered from a seed X as the connected component of the level
+set {Y: I(Y) &lt;= I(X)} which contains the pixel o index X.
+</p><p>
+The function supports images of arbitrary dimension D.
+</p><p>
+[R,F]=<a href="%pathto:vl_mser;">VL_MSER</a>(...) also returns ellipsoids F fitted to the regions.
+Each column of F describes an ellipsoid; F(1:D,i) is the center of
+the elliposid and F(D:end,i) are the independent elements of the
+co-variance matrix of the ellipsoid.
+</p><p>
+Ellipsoids are computed according to the same reference frame of I
+seen as a matrix. This means that the first coordinate spans the
+first dimension of I.
+</p><p>
+Notice that for 2-D images usually the opposite convention is used
+(i.e. the first coordinate is the x-axis, which corresponds to the
+column index). Thus, if the function <a href="%pathto:vl_plotframe;">VL_PLOTFRAME</a>() is used to plot
+the ellipses, the frames F should be `transposed' as in F = F([2
+1 5 4 3],:). <a href="%pathto:vl_ertr;">VL_ERTR</a>() exists for this purpose.
+</p><p>
+<a href="%pathto:vl_mser;">VL_MSER</a>(I,'Option'[,Value]...) accepts the following options
+</p><dl><dt>
+Delta
+<span class="defaults">[5]</span></dt><dd><p>
+Set the DELTA parameter of the VL_MSER algorithm. Roughly
+speaking, the stability of a region is the relative variation
+of the region area when the intensity is changed of +/-
+Delta/2.
+</p></dd><dt>
+MaxArea
+<span class="defaults">[0.75]</span></dt><dd><p>
+Set the maximum area (volume) of the regions relative to
+the image domain area (volume).
+</p></dd><dt>
+MinArea
+<span class="defaults">[3 / numPixels]</span></dt><dd><p>
+Set the minimum area (volume) of the regions relative to
+the image domain area (volume).
+</p></dd><dt>
+MaxVariation
+<span class="defaults">[0.25]</span></dt><dd><p>
+Set the maximum variation (absolute stability score) of the
+regions.
+</p></dd><dt>
+MinDiversity
+<span class="defaults">[0.2]</span></dt><dd><p>
+Set the minimum diversity of the region. When the relative
+area variation of two nested regions is below this threshold,
+then only the most stable one is selected.
+</p></dd><dt>
+BrightOnDark
+<span class="defaults">[1]</span></dt><dd><p>
+Detect bright-on-dark MSERs. This corresponds to MSERs of the
+inverted image.
+</p></dd><dt>
+DarkOnBright
+<span class="defaults">[1]</span></dt><dd><p>
+Detect dark-on-bright MSERs. This corresponds to MSERs of the
+original image.
+</p></dd><dt>
+Verbose
+</dt><dd><p>
+Be verbose.
+</p></dd><dt>
+REFERENCES
+</dt><dd><p>
+[1] J. Matas, O. Chum, M. Urban, and T. Pajdla, &quot;Robust wide
+baseline stereo from maximally stable extremal regions,&quot; in
+Proc. BMVC, 2002.
+</p></dd></dl><p>
+See also: <a href="%pathto:vl_help;">VL_HELP</a>().
+</p></div></group>

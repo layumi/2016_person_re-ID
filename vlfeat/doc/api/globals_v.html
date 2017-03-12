@@ -1,0 +1,2898 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+  <!-- Page title -->
+  <title>VLFeat - Documentation > C API</title>
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  <link rel="stylesheet" type="text/css" href="doxygen.css"></link>
+  <!-- Scripts-->
+  <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li class='active'><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li class='active' class='activeLeaf'><a href="index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="../doc.html">Documentation</a></span><span class='separator'>></span><span class='page'><a href="index.html">C API</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+      <!-- <pagestyle href="%pathto:root;api/tabs.css"/> -->
+      <div class="doxygen">
+<div id="top">
+<div id="top">
+<!-- Generated by Doxygen 1.8.7 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li class="current"><a href="files.html"><span>Files</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li class="current"><a href="globals.html"><span>Globals</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow3" class="tabs2">
+    <ul class="tablist">
+      <li class="current"><a href="globals.html"><span>All</span></a></li>
+      <li><a href="globals_func.html"><span>Functions</span></a></li>
+      <li><a href="globals_vars.html"><span>Variables</span></a></li>
+      <li><a href="globals_type.html"><span>Typedefs</span></a></li>
+      <li><a href="globals_enum.html"><span>Enumerations</span></a></li>
+      <li><a href="globals_eval.html"><span>Enumerator</span></a></li>
+      <li><a href="globals_defs.html"><span>Macros</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow4" class="tabs3">
+    <ul class="tablist">
+      <li><a href="globals.html#index__"><span>_</span></a></li>
+      <li><a href="globals_a.html#index_a"><span>a</span></a></li>
+      <li><a href="globals_c.html#index_c"><span>c</span></a></li>
+      <li><a href="globals_d.html#index_d"><span>d</span></a></li>
+      <li><a href="globals_e.html#index_e"><span>e</span></a></li>
+      <li><a href="globals_f.html#index_f"><span>f</span></a></li>
+      <li><a href="globals_g.html#index_g"><span>g</span></a></li>
+      <li><a href="globals_h.html#index_h"><span>h</span></a></li>
+      <li><a href="globals_i.html#index_i"><span>i</span></a></li>
+      <li><a href="globals_n.html#index_n"><span>n</span></a></li>
+      <li><a href="globals_o.html#index_o"><span>o</span></a></li>
+      <li><a href="globals_p.html#index_p"><span>p</span></a></li>
+      <li><a href="globals_r.html#index_r"><span>r</span></a></li>
+      <li><a href="globals_u.html#index_u"><span>u</span></a></li>
+      <li class="current"><a href="globals_v.html#index_v"><span>v</span></a></li>
+      <li><a href="globals_x.html#index_x"><span>x</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div class="contents">
+<div class="textblock">Here is a list of all documented functions, variables, defines, enums, and typedefs with links to the documentation:</div>
+
+<h3><a class="anchor" id="index_v"></a>- v -</h3><ul>
+<li>vl_abs_d()
+: <a class="el" href="mathop_8h.html#a87c54a1c66beffacfba7bf7bac52fb09">mathop.h</a>
+</li>
+<li>vl_abs_f()
+: <a class="el" href="mathop_8h.html#a772d390dd8d1fb4adc4eda6e0d8f4c0b">mathop.h</a>
+</li>
+<li>vl_aib_calculate_information()
+: <a class="el" href="aib_8c.html#a531a6f39064384f6728df5a1641d7f54">aib.c</a>
+</li>
+<li>vl_aib_delete()
+: <a class="el" href="aib_8c.html#a145bb0e2d8f512613e8fd3fb92fe7ace">aib.c</a>
+, <a class="el" href="aib_8h.html#a145bb0e2d8f512613e8fd3fb92fe7ace">aib.h</a>
+</li>
+<li>vl_aib_get_costs()
+: <a class="el" href="aib_8h.html#a9fca2d098bd88a72132c5eca55db4f7b">aib.h</a>
+</li>
+<li>vl_aib_get_parents()
+: <a class="el" href="aib_8h.html#ab5f34e685e826902284748f40328f27e">aib.h</a>
+</li>
+<li>vl_aib_get_verbosity()
+: <a class="el" href="aib_8h.html#a7b284789083a9644e96f66da1319ec96">aib.h</a>
+</li>
+<li>vl_aib_merge_nodes()
+: <a class="el" href="aib_8c.html#a4b04bbe5d45b4a9fd84aecb173fbab93">aib.c</a>
+</li>
+<li>vl_aib_min_beta()
+: <a class="el" href="aib_8c.html#aa567101e4f0835b9a73a9b037afa0953">aib.c</a>
+</li>
+<li>vl_aib_new()
+: <a class="el" href="aib_8c.html#a4bb02325ebe150348976dbb46183f8f3">aib.c</a>
+, <a class="el" href="aib_8h.html#a4bb02325ebe150348976dbb46183f8f3">aib.h</a>
+</li>
+<li>vl_aib_new_nodelist()
+: <a class="el" href="aib_8c.html#af4a8a12f8fa47997c140b43cd993dc30">aib.c</a>
+</li>
+<li>vl_aib_new_Pc()
+: <a class="el" href="aib_8c.html#a171cd4a6e0622a97286a0a2b2130841c">aib.c</a>
+</li>
+<li>vl_aib_new_Px()
+: <a class="el" href="aib_8c.html#a9b903a69b8d1167f48cfe1e00a9e1d33">aib.c</a>
+</li>
+<li>vl_aib_normalize_P()
+: <a class="el" href="aib_8c.html#a14bc24cb8ad409132d16de6e3f27b002">aib.c</a>
+</li>
+<li>vl_aib_process()
+: <a class="el" href="aib_8c.html#a2adbc69469a6200896e6582474c398ee">aib.c</a>
+, <a class="el" href="aib_8h.html#a2adbc69469a6200896e6582474c398ee">aib.h</a>
+</li>
+<li>vl_aib_set_verbosity()
+: <a class="el" href="aib_8h.html#a452b9ca04f5c7a46a6b82df3f3ed9bf5">aib.h</a>
+</li>
+<li>vl_aib_update_beta()
+: <a class="el" href="aib_8c.html#a474eae5c9436f86251eea120221e8bd1">aib.c</a>
+</li>
+<li>VL_ARCH_BIG_ENDIAN
+: <a class="el" href="host_8h.html#a040b85d2764e6270f5d14515c8ab02aa">host.h</a>
+</li>
+<li>VL_ARCH_IA64
+: <a class="el" href="host_8h.html#a55960eea1c39d0ed79519e4fbdb782bf">host.h</a>
+</li>
+<li>VL_ARCH_IX86
+: <a class="el" href="host_8h.html#aad2a5cd35841264fc165f9b92fad3feb">host.h</a>
+</li>
+<li>VL_ARCH_LITTLE_ENDIAN
+: <a class="el" href="host_8h.html#a2f05e20e356b146f3d111f403657ca17">host.h</a>
+</li>
+<li>vl_array_dealloc()
+: <a class="el" href="array_8h.html#a22469f7d3a16d6bd56025330c87c351e">array.h</a>
+</li>
+<li>vl_array_delete()
+: <a class="el" href="array_8h.html#a32a8f1faf1c01c33c762b5a607a53582">array.h</a>
+</li>
+<li>vl_array_get_data()
+: <a class="el" href="array_8h.html#a0772023f96ae890d81dc8b18367da34e">array.h</a>
+</li>
+<li>vl_array_get_data_type()
+: <a class="el" href="array_8h.html#a8a855ba511380e99590905879e578ed2">array.h</a>
+</li>
+<li>vl_array_get_dimensions()
+: <a class="el" href="array_8h.html#a7c12c71703fc9a14d7006596a49e6da7">array.h</a>
+</li>
+<li>vl_array_get_num_dimensions()
+: <a class="el" href="array_8h.html#a5c38f7c444dbab895b31fc4fdb88422d">array.h</a>
+</li>
+<li>vl_array_get_num_elements()
+: <a class="el" href="array_8h.html#a96d147d44ba7cbe905565181fa8b970f">array.h</a>
+</li>
+<li>vl_array_init()
+: <a class="el" href="array_8h.html#ace20f981fb6eb4a7747d2401e39d2dc1">array.h</a>
+</li>
+<li>vl_array_init_envelope()
+: <a class="el" href="array_8h.html#a0c95a9c5c84f1424f0a6764fcd0aac04">array.h</a>
+</li>
+<li>vl_array_init_matrix()
+: <a class="el" href="array_8h.html#a55a46e1a99eb574cefc4eb0dd09b56cc">array.h</a>
+</li>
+<li>vl_array_init_matrix_envelope()
+: <a class="el" href="array_8h.html#a775d33f54544375456c90a9de92e72b3">array.h</a>
+</li>
+<li>VL_ARRAY_MAX_NUM_DIMENSIONS
+: <a class="el" href="array_8h.html#a80a9a517ee30d7400df369f6a126efd1">array.h</a>
+</li>
+<li>vl_array_new()
+: <a class="el" href="array_8h.html#ac6385e80257a49b73db54d6315148841">array.h</a>
+</li>
+<li>vl_array_new_envelope()
+: <a class="el" href="array_8h.html#ad6b2dfe3698bc8c2642eb188d1e06424">array.h</a>
+</li>
+<li>vl_array_new_matrix()
+: <a class="el" href="array_8h.html#a690d8fec203e2f5ffb320fc788421171">array.h</a>
+</li>
+<li>vl_array_new_matrix_envelope()
+: <a class="el" href="array_8h.html#a15b066f9b7c6a29c1a324e9cb2a581c6">array.h</a>
+</li>
+<li>VL_BIG_INT
+: <a class="el" href="host_8h.html#a2a2754158f58ad8118579b45f66426f3">host.h</a>
+</li>
+<li>VL_BIG_UINT
+: <a class="el" href="host_8h.html#a985a5b1b02b23f20c72ba5d5b9abab2d">host.h</a>
+</li>
+<li>vl_bool
+: <a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">host.h</a>
+</li>
+<li>vl_calloc()
+: <a class="el" href="generic_8c.html#ac825111065adbecc5f788a521ea890f2">generic.c</a>
+, <a class="el" href="generic_8h.html#ac825111065adbecc5f788a521ea890f2">generic.h</a>
+</li>
+<li>VL_CAT
+: <a class="el" href="host_8h.html#aeba7ee97f4e6474a78c242ca9c49798c">host.h</a>
+</li>
+<li>vl_ceil_d()
+: <a class="el" href="mathop_8h.html#a6a0c3cd1c2c65220bcdc472a5a9391d6">mathop.h</a>
+</li>
+<li>vl_ceil_f()
+: <a class="el" href="mathop_8h.html#a2e33bdf5324485def067bbbe66a54f91">mathop.h</a>
+</li>
+<li>VL_COMPILER_GNUC
+: <a class="el" href="host_8h.html#a1d501d055fcbcd42c1369c64f4bc8e8d">host.h</a>
+</li>
+<li>VL_COMPILER_ILP32
+: <a class="el" href="host_8h.html#a426f6e574a76d69692eace4d858b9adf">host.h</a>
+</li>
+<li>VL_COMPILER_LCC
+: <a class="el" href="host_8h.html#a8c241c8e1d46fc25653460876004fbee">host.h</a>
+</li>
+<li>VL_COMPILER_LLP64
+: <a class="el" href="host_8h.html#a01af69f0de0af937ca06729348d3b1a6">host.h</a>
+</li>
+<li>VL_COMPILER_LP64
+: <a class="el" href="host_8h.html#a06056894ccd483c6171eec205fb253a6">host.h</a>
+</li>
+<li>VL_COMPILER_MSC
+: <a class="el" href="host_8h.html#a27371f6fc56a871d3d2a2dea1b191cbf">host.h</a>
+</li>
+<li>vl_configuration_to_string_copy()
+: <a class="el" href="generic_8c.html#af5d5bc78259d28d72a02d730e5f14b04">generic.c</a>
+, <a class="el" href="generic_8h.html#a6616d4d878bfd9daf2440af24d42293c">generic.h</a>
+</li>
+<li>vl_constructor()
+: <a class="el" href="generic_8c.html#a1af550f58b02cee55be9c0b8a3bddee2">generic.c</a>
+</li>
+<li>vl_covdet_append_feature()
+: <a class="el" href="covdet_8c.html#af266ce65ae19bff2c5d9ef1ad499b5fd">covdet.c</a>
+, <a class="el" href="covdet_8h.html#af266ce65ae19bff2c5d9ef1ad499b5fd">covdet.h</a>
+</li>
+<li>vl_covdet_delete()
+: <a class="el" href="covdet_8c.html#a7abfa72a8bb2a05c12376052c29ea17f">covdet.c</a>
+, <a class="el" href="covdet_8h.html#a7abfa72a8bb2a05c12376052c29ea17f">covdet.h</a>
+</li>
+<li>vl_covdet_detect()
+: <a class="el" href="covdet_8c.html#abfe553fdb25132cbcf9cbb08839b7f98">covdet.c</a>
+, <a class="el" href="covdet_8h.html#abfe553fdb25132cbcf9cbb08839b7f98">covdet.h</a>
+</li>
+<li>vl_covdet_drop_features_outside()
+: <a class="el" href="covdet_8c.html#a614fd4d42d8d2c938c945c76a544680f">covdet.c</a>
+, <a class="el" href="covdet_8h.html#a614fd4d42d8d2c938c945c76a544680f">covdet.h</a>
+</li>
+<li>vl_covdet_extract_affine_shape()
+: <a class="el" href="covdet_8c.html#aee6fc0f35fb23b32e558e8d0131abb96">covdet.c</a>
+, <a class="el" href="covdet_8h.html#aee6fc0f35fb23b32e558e8d0131abb96">covdet.h</a>
+</li>
+<li>vl_covdet_extract_affine_shape_for_frame()
+: <a class="el" href="covdet_8c.html#ad3c1402a759e6056b6bd58a27ba4799c">covdet.c</a>
+, <a class="el" href="covdet_8h.html#ad3c1402a759e6056b6bd58a27ba4799c">covdet.h</a>
+</li>
+<li>vl_covdet_extract_laplacian_scales()
+: <a class="el" href="covdet_8c.html#a1858e75418d7c6364a66bbbd8899fdd6">covdet.c</a>
+, <a class="el" href="covdet_8h.html#a1858e75418d7c6364a66bbbd8899fdd6">covdet.h</a>
+</li>
+<li>vl_covdet_extract_laplacian_scales_for_frame()
+: <a class="el" href="covdet_8c.html#a6c8b9af2827291c930c6b1d6cce1794f">covdet.c</a>
+, <a class="el" href="covdet_8h.html#a6c8b9af2827291c930c6b1d6cce1794f">covdet.h</a>
+</li>
+<li>vl_covdet_extract_orientations()
+: <a class="el" href="covdet_8c.html#a0f9823a4cffd55760cf6c16352381f1a">covdet.c</a>
+, <a class="el" href="covdet_8h.html#a0f9823a4cffd55760cf6c16352381f1a">covdet.h</a>
+</li>
+<li>vl_covdet_extract_orientations_for_frame()
+: <a class="el" href="covdet_8c.html#adec4bf7848db7577c51a1e875a63beaa">covdet.c</a>
+, <a class="el" href="covdet_8h.html#adec4bf7848db7577c51a1e875a63beaa">covdet.h</a>
+</li>
+<li>vl_covdet_extract_patch_for_frame()
+: <a class="el" href="covdet_8c.html#a5332ef1f0e09654f5787c19e156404a9">covdet.c</a>
+, <a class="el" href="covdet_8h.html#a5332ef1f0e09654f5787c19e156404a9">covdet.h</a>
+</li>
+<li>vl_covdet_extract_patch_helper()
+: <a class="el" href="covdet_8c.html#a8cc86041f081986e633e621272ee9218">covdet.c</a>
+</li>
+<li>vl_covdet_get_aa_accurate_smoothing()
+: <a class="el" href="covdet_8c.html#ad91ad31d5ca752e14c351e9cffbde68c">covdet.c</a>
+, <a class="el" href="covdet_8h.html#ad91ad31d5ca752e14c351e9cffbde68c">covdet.h</a>
+</li>
+<li>vl_covdet_get_css()
+: <a class="el" href="covdet_8c.html#a6f400eefd8cd2a866295dd928b046f58">covdet.c</a>
+, <a class="el" href="covdet_8h.html#a6f400eefd8cd2a866295dd928b046f58">covdet.h</a>
+</li>
+<li>vl_covdet_get_edge_threshold()
+: <a class="el" href="covdet_8c.html#acd380e24e7525b6c5bc2dfa656d7a9b2">covdet.c</a>
+, <a class="el" href="covdet_8h.html#acd380e24e7525b6c5bc2dfa656d7a9b2">covdet.h</a>
+</li>
+<li>vl_covdet_get_features()
+: <a class="el" href="covdet_8c.html#a8a703daa248e50accd2c09430caeeadd">covdet.c</a>
+, <a class="el" href="covdet_8h.html#a8a703daa248e50accd2c09430caeeadd">covdet.h</a>
+</li>
+<li>vl_covdet_get_first_octave()
+: <a class="el" href="covdet_8c.html#ab06c5d750facf9105d6e3036c1ba40bb">covdet.c</a>
+, <a class="el" href="covdet_8h.html#ab06c5d750facf9105d6e3036c1ba40bb">covdet.h</a>
+</li>
+<li>vl_covdet_get_gss()
+: <a class="el" href="covdet_8c.html#a9416c377debcf2e9e630d4d20818da8e">covdet.c</a>
+, <a class="el" href="covdet_8h.html#a9416c377debcf2e9e630d4d20818da8e">covdet.h</a>
+</li>
+<li>vl_covdet_get_laplacian_peak_threshold()
+: <a class="el" href="covdet_8c.html#a997689d5bf1078028223ebad6f1f0626">covdet.c</a>
+</li>
+<li>vl_covdet_get_laplacian_scales_statistics()
+: <a class="el" href="covdet_8c.html#a2fce4c4f82f50598abe75f756b631366">covdet.c</a>
+, <a class="el" href="covdet_8h.html#a2fce4c4f82f50598abe75f756b631366">covdet.h</a>
+</li>
+<li>vl_covdet_get_non_extrema_suppression_threshold()
+: <a class="el" href="covdet_8c.html#a68dbea737c1c5ced8590b0b6ae66a3ad">covdet.c</a>
+, <a class="el" href="covdet_8h.html#a68dbea737c1c5ced8590b0b6ae66a3ad">covdet.h</a>
+</li>
+<li>vl_covdet_get_num_features()
+: <a class="el" href="covdet_8c.html#a463ed222516fe046e8b170e3d3c06585">covdet.c</a>
+, <a class="el" href="covdet_8h.html#a463ed222516fe046e8b170e3d3c06585">covdet.h</a>
+</li>
+<li>vl_covdet_get_num_non_extrema_suppressed()
+: <a class="el" href="covdet_8c.html#a6e2c647eb87bea3d0935734acd2ba8f5">covdet.c</a>
+, <a class="el" href="covdet_8h.html#a6e2c647eb87bea3d0935734acd2ba8f5">covdet.h</a>
+</li>
+<li>vl_covdet_get_octave_resolution()
+: <a class="el" href="covdet_8c.html#a9ccdfbf6b9fbfa01429ed2713c555846">covdet.c</a>
+, <a class="el" href="covdet_8h.html#a9ccdfbf6b9fbfa01429ed2713c555846">covdet.h</a>
+</li>
+<li>vl_covdet_get_peak_threshold()
+: <a class="el" href="covdet_8c.html#a4fd154b4600ca2bf32b87adf77f62825">covdet.c</a>
+, <a class="el" href="covdet_8h.html#a4fd154b4600ca2bf32b87adf77f62825">covdet.h</a>
+</li>
+<li>vl_covdet_get_transposed()
+: <a class="el" href="covdet_8c.html#a55d10412a55bc52e6468f347daa84c2d">covdet.c</a>
+, <a class="el" href="covdet_8h.html#a55d10412a55bc52e6468f347daa84c2d">covdet.h</a>
+</li>
+<li>vl_covdet_new()
+: <a class="el" href="covdet_8c.html#adff732c569785b7dff7f15601bc77a68">covdet.c</a>
+, <a class="el" href="covdet_8h.html#adff732c569785b7dff7f15601bc77a68">covdet.h</a>
+</li>
+<li>vl_covdet_put_image()
+: <a class="el" href="covdet_8c.html#affcedda1fdc7ed72d223e0aab003024e">covdet.c</a>
+, <a class="el" href="covdet_8h.html#affcedda1fdc7ed72d223e0aab003024e">covdet.h</a>
+</li>
+<li>vl_covdet_reset()
+: <a class="el" href="covdet_8c.html#a7cfe6bd396893127c69f02f189e7f359">covdet.c</a>
+, <a class="el" href="covdet_8h.html#a7cfe6bd396893127c69f02f189e7f359">covdet.h</a>
+</li>
+<li>vl_covdet_set_aa_accurate_smoothing()
+: <a class="el" href="covdet_8c.html#a8573f2724701397d5684e0dfbc987423">covdet.c</a>
+, <a class="el" href="covdet_8h.html#a8573f2724701397d5684e0dfbc987423">covdet.h</a>
+</li>
+<li>vl_covdet_set_edge_threshold()
+: <a class="el" href="covdet_8c.html#a16e0f9b96b16727a1bcec2df7bff0017">covdet.c</a>
+, <a class="el" href="covdet_8h.html#a16e0f9b96b16727a1bcec2df7bff0017">covdet.h</a>
+</li>
+<li>vl_covdet_set_first_octave()
+: <a class="el" href="covdet_8c.html#af51d1a729e1611201ae7208a1144b8d8">covdet.c</a>
+, <a class="el" href="covdet_8h.html#af51d1a729e1611201ae7208a1144b8d8">covdet.h</a>
+</li>
+<li>vl_covdet_set_laplacian_peak_threshold()
+: <a class="el" href="covdet_8c.html#a214c8968e436f281f70532fa85b54043">covdet.c</a>
+, <a class="el" href="covdet_8h.html#a214c8968e436f281f70532fa85b54043">covdet.h</a>
+</li>
+<li>vl_covdet_set_non_extrema_suppression_threshold()
+: <a class="el" href="covdet_8c.html#a50bd5cc5eb6584f585d0bf7af8feff2f">covdet.c</a>
+, <a class="el" href="covdet_8h.html#a50bd5cc5eb6584f585d0bf7af8feff2f">covdet.h</a>
+</li>
+<li>vl_covdet_set_octave_resolution()
+: <a class="el" href="covdet_8c.html#a3ab247f8ce822636bb32ccd48c753a1d">covdet.c</a>
+, <a class="el" href="covdet_8h.html#a3ab247f8ce822636bb32ccd48c753a1d">covdet.h</a>
+</li>
+<li>vl_covdet_set_peak_threshold()
+: <a class="el" href="covdet_8c.html#afcbfb9f6cade3f20bf429cd520b9cee8">covdet.c</a>
+, <a class="el" href="covdet_8h.html#afcbfb9f6cade3f20bf429cd520b9cee8">covdet.h</a>
+</li>
+<li>vl_covdet_set_transposed()
+: <a class="el" href="covdet_8c.html#aca7fefc61bf17249380bef9410e0b2b2">covdet.c</a>
+, <a class="el" href="covdet_8h.html#aca7fefc61bf17249380bef9410e0b2b2">covdet.h</a>
+</li>
+<li>vl_cpu_has_avx()
+: <a class="el" href="generic_8c.html#accbf3c00c4b86e465acb28d746a92f58">generic.c</a>
+, <a class="el" href="generic_8h.html#accbf3c00c4b86e465acb28d746a92f58">generic.h</a>
+</li>
+<li>vl_cpu_has_sse2()
+: <a class="el" href="generic_8c.html#ad2cf9346f3895f26bb7f05b5917614c9">generic.c</a>
+, <a class="el" href="generic_8h.html#ad2cf9346f3895f26bb7f05b5917614c9">generic.h</a>
+</li>
+<li>vl_cpu_has_sse3()
+: <a class="el" href="generic_8c.html#a84aadf91644a01036d3718fe595f5a26">generic.c</a>
+, <a class="el" href="generic_8h.html#a84aadf91644a01036d3718fe595f5a26">generic.h</a>
+</li>
+<li>vl_destructor()
+: <a class="el" href="generic_8c.html#aa3d76b59c0a5e7c45f80e172ec042c93">generic.c</a>
+</li>
+<li>VL_DISABLE_OPENMP
+: <a class="el" href="host_8h.html#aa685e90981c2eb133a361080cdf7b82f">host.h</a>
+</li>
+<li>VL_DISABLE_SSE2
+: <a class="el" href="host_8h.html#a7395dc017ee0e86717a1b5f8c38fcb44">host.h</a>
+</li>
+<li>VL_DISABLE_THREADS
+: <a class="el" href="host_8h.html#a6aa5ee10e7a31696751b3e5f6d18c829">host.h</a>
+</li>
+<li>vl_dsift_delete()
+: <a class="el" href="dsift_8c.html#aa123f1d9e79ab01882646f713dfb4f0c">dsift.c</a>
+, <a class="el" href="dsift_8h.html#aa123f1d9e79ab01882646f713dfb4f0c">dsift.h</a>
+</li>
+<li>vl_dsift_get_bounds()
+: <a class="el" href="dsift_8h.html#ae6847be5d2204f06551e12c4a2a84990">dsift.h</a>
+</li>
+<li>vl_dsift_get_descriptor_size()
+: <a class="el" href="dsift_8h.html#aeade8b18c21954f00d76f5dcb12b9bfe">dsift.h</a>
+</li>
+<li>vl_dsift_get_descriptors()
+: <a class="el" href="dsift_8h.html#acd5425e9764383a5ef05bce00fd40e94">dsift.h</a>
+</li>
+<li>vl_dsift_get_flat_window()
+: <a class="el" href="dsift_8h.html#a2f20d74d4250ebf12dc80235a31a64b6">dsift.h</a>
+</li>
+<li>vl_dsift_get_geometry()
+: <a class="el" href="dsift_8h.html#a55eb4068cd76b03c3bb120a895b7ed13">dsift.h</a>
+</li>
+<li>vl_dsift_get_keypoint_num()
+: <a class="el" href="dsift_8h.html#a3b5fabb1496fc91a70669d4201f47a5b">dsift.h</a>
+</li>
+<li>vl_dsift_get_keypoints()
+: <a class="el" href="dsift_8h.html#a0cba85e88ae5232fe74368175a8ba510">dsift.h</a>
+</li>
+<li>vl_dsift_get_steps()
+: <a class="el" href="dsift_8h.html#aaae1634a166ab5a61d89236fa5bf04d3">dsift.h</a>
+</li>
+<li>vl_dsift_get_window_size()
+: <a class="el" href="dsift_8h.html#afa8d4a02e6f7a0d8b89b585c689e164e">dsift.h</a>
+</li>
+<li>vl_dsift_new()
+: <a class="el" href="dsift_8c.html#aa9ba7ffaa72c137c457642ce833dab05">dsift.c</a>
+, <a class="el" href="dsift_8h.html#a5f86d3d3a12bedab236a12e55a91edd1">dsift.h</a>
+</li>
+<li>vl_dsift_new_basic()
+: <a class="el" href="dsift_8c.html#aa025e58a852d8df078c6b74b8136c704">dsift.c</a>
+, <a class="el" href="dsift_8h.html#a100b0508f06275474caf3de958f09ea6">dsift.h</a>
+</li>
+<li>vl_dsift_process()
+: <a class="el" href="dsift_8c.html#a09d5525ad7e16e2b9f3f1b9d273c85f6">dsift.c</a>
+, <a class="el" href="dsift_8h.html#a09d5525ad7e16e2b9f3f1b9d273c85f6">dsift.h</a>
+</li>
+<li>vl_dsift_set_bounds()
+: <a class="el" href="dsift_8h.html#a7d34c8e257c873f2ed580b046296d1ac">dsift.h</a>
+</li>
+<li>vl_dsift_set_flat_window()
+: <a class="el" href="dsift_8h.html#a8dfe2d20dbe9885d0c139c5b81b5f4b0">dsift.h</a>
+</li>
+<li>vl_dsift_set_geometry()
+: <a class="el" href="dsift_8h.html#a930f20c25eab08d9490830b0a358ff2b">dsift.h</a>
+</li>
+<li>vl_dsift_set_steps()
+: <a class="el" href="dsift_8h.html#a42ae6bf77a9b737fd1e45ad5c43263dd">dsift.h</a>
+</li>
+<li>vl_dsift_set_window_size()
+: <a class="el" href="dsift_8h.html#ae60fa31ff4df09e8025525714dac9563">dsift.h</a>
+</li>
+<li>vl_dsift_transpose_descriptor()
+: <a class="el" href="dsift_8h.html#ab31145db21c1f0ed2e8843c159598526">dsift.h</a>
+</li>
+<li>VL_E
+: <a class="el" href="mathop_8h.html#a72021996fb98d3130ead10a4989f4ca5">mathop.h</a>
+</li>
+<li>vl_enumeration_get()
+: <a class="el" href="stringop_8c.html#aadc62a75665e4d45a4e890def1eff7e4">stringop.c</a>
+, <a class="el" href="stringop_8h.html#aadc62a75665e4d45a4e890def1eff7e4">stringop.h</a>
+</li>
+<li>vl_enumeration_get_by_value()
+: <a class="el" href="stringop_8c.html#a41870b6b4f144d8b019c6f6371f41b28">stringop.c</a>
+, <a class="el" href="stringop_8h.html#a41870b6b4f144d8b019c6f6371f41b28">stringop.h</a>
+</li>
+<li>vl_enumeration_get_casei()
+: <a class="el" href="stringop_8c.html#a30b7412f99917d5907f9b683f727b188">stringop.c</a>
+, <a class="el" href="stringop_8h.html#a30b7412f99917d5907f9b683f727b188">stringop.h</a>
+</li>
+<li>VL_EPSILON_D
+: <a class="el" href="mathop_8h.html#aa2d957b08ce16011fc3827c270cd2664">mathop.h</a>
+</li>
+<li>VL_EPSILON_F
+: <a class="el" href="mathop_8h.html#a8088f3da04d6bce27544adaa6da948ca">mathop.h</a>
+</li>
+<li>VL_ERR_ALLOC
+: <a class="el" href="generic_8h.html#a0a05979eb0e5e1bb8edd1d6992d73f5f">generic.h</a>
+</li>
+<li>VL_ERR_BAD_ARG
+: <a class="el" href="generic_8h.html#aa4c6982fd95a25fca8ec202632581345">generic.h</a>
+</li>
+<li>VL_ERR_EOF
+: <a class="el" href="generic_8h.html#a67cc69e40d7af2aec137b36e53422982">generic.h</a>
+</li>
+<li>VL_ERR_IO
+: <a class="el" href="generic_8h.html#aba78f9bc7029f3e8f69e502ef10a1ea2">generic.h</a>
+</li>
+<li>VL_ERR_MSG_LEN
+: <a class="el" href="generic_8h.html#af35e10968d642caab4fbffe6f4b0789c">generic.h</a>
+</li>
+<li>VL_ERR_NO_MORE
+: <a class="el" href="generic_8h.html#a28c5e84bca772be393e834dfff61b22d">generic.h</a>
+</li>
+<li>VL_ERR_OK
+: <a class="el" href="generic_8h.html#a26519a3dd2966d2d46538eb46921abba">generic.h</a>
+</li>
+<li>VL_ERR_OVERFLOW
+: <a class="el" href="generic_8h.html#aad375cc4dcec5d098a94d072b6c5b3d4">generic.h</a>
+</li>
+<li>VL_ERR_PGM_INV_DATA
+: <a class="el" href="pgm_8h.html#a4623e454d921cad79d89ad3783d46739">pgm.h</a>
+</li>
+<li>VL_ERR_PGM_INV_HEAD
+: <a class="el" href="pgm_8h.html#aa0566322098c2b529a027f1f00a9b586">pgm.h</a>
+</li>
+<li>VL_ERR_PGM_INV_META
+: <a class="el" href="pgm_8h.html#ad7d582518c6bbb8409649207443b0d42">pgm.h</a>
+</li>
+<li>VL_ERR_PGM_IO
+: <a class="el" href="pgm_8h.html#a8d09e3f8171e1531db2045fe33c023f5">pgm.h</a>
+</li>
+<li>vl_eval_vector_comparison_on_all_pairs_d()
+: <a class="el" href="mathop_8h.html#a2fa33c2469aa77aea316927d13e8e644">mathop.h</a>
+</li>
+<li>vl_eval_vector_comparison_on_all_pairs_f()
+: <a class="el" href="mathop_8h.html#ae38ee42a415c7958c38c02ea57cf9b4e">mathop.h</a>
+</li>
+<li>VL_EXPORT
+: <a class="el" href="host_8h.html#a489d7622ef2e3937985fcb9f89a5cbe5">host.h</a>
+</li>
+<li>VL_FALSE
+: <a class="el" href="host_8h.html#abce143a5a9b51d987a74f2ad30046520">host.h</a>
+</li>
+<li>vl_fast_atan2_d()
+: <a class="el" href="mathop_8h.html#ae76d962e552bdddb02a687dd3dc38330">mathop.h</a>
+</li>
+<li>vl_fast_atan2_f()
+: <a class="el" href="mathop_8h.html#a302745de850d5b18b49359a830b74f6d">mathop.h</a>
+</li>
+<li>vl_fast_resqrt_d()
+: <a class="el" href="mathop_8h.html#a8aab2f55af664aaef0d51b84fb09ebc7">mathop.h</a>
+</li>
+<li>vl_fast_resqrt_f()
+: <a class="el" href="mathop_8h.html#a1a7ffdd0b23196a330e36d6e9aa8c6ff">mathop.h</a>
+</li>
+<li>vl_fast_sqrt_d()
+: <a class="el" href="mathop_8h.html#a8a7ca9f7a6df25bd6869f648f1e643d9">mathop.h</a>
+</li>
+<li>vl_fast_sqrt_f()
+: <a class="el" href="mathop_8h.html#a69441a371eeaa0c183214d8f19204d46">mathop.h</a>
+</li>
+<li>vl_fast_sqrt_ui16()
+: <a class="el" href="mathop_8h.html#a7475cc5573d9ff6147ebc9e97097740b">mathop.h</a>
+</li>
+<li>vl_fast_sqrt_ui32()
+: <a class="el" href="mathop_8h.html#a07ed33a01737b8aa5716e46d1afdf0b8">mathop.h</a>
+</li>
+<li>vl_fast_sqrt_ui64()
+: <a class="el" href="mathop_8h.html#a15c07a9b9ec933f685115779c8913f5c">mathop.h</a>
+</li>
+<li>vl_fast_sqrt_ui8()
+: <a class="el" href="mathop_8h.html#ad3ba8bee4d358e752175582321e96e10">mathop.h</a>
+</li>
+<li>vl_find_local_extrema_2()
+: <a class="el" href="covdet_8c.html#a25225132de55749d72a506c20565fbfc">covdet.c</a>
+</li>
+<li>vl_find_local_extrema_3()
+: <a class="el" href="covdet_8c.html#af951de09ebfe2adfb18887be739ed73e">covdet.c</a>
+</li>
+<li>vl_fisher_encode()
+: <a class="el" href="fisher_8c.html#a4c13fe11e9847f9046c2636a6e77c1bd">fisher.c</a>
+, <a class="el" href="fisher_8h.html#a4c13fe11e9847f9046c2636a6e77c1bd">fisher.h</a>
+</li>
+<li>VL_FISHER_FLAG_FAST
+: <a class="el" href="fisher_8h.html#aaa8a24c2d002294897dcd82f1d9456b5">fisher.h</a>
+</li>
+<li>VL_FISHER_FLAG_IMPROVED
+: <a class="el" href="fisher_8h.html#a73052d0cb0678620a8d52f97eada233c">fisher.h</a>
+</li>
+<li>VL_FISHER_FLAG_NORMALIZED
+: <a class="el" href="fisher_8h.html#aca9b5a03e0c6ff578cee1268f725afa5">fisher.h</a>
+</li>
+<li>VL_FISHER_FLAG_SQUARE_ROOT
+: <a class="el" href="fisher_8h.html#ac25863013987b97998d64b9f0695c223">fisher.h</a>
+</li>
+<li>VL_FL_INDEX
+: <a class="el" href="host_8h.html#a15a80f72eaf892a9f0d69167df1a071b">host.h</a>
+</li>
+<li>VL_FL_INT16
+: <a class="el" href="host_8h.html#a065ee814c68df328e58181c387f8ccf6">host.h</a>
+</li>
+<li>VL_FL_INT32
+: <a class="el" href="host_8h.html#ac08de2d648945a77801c9884a0ff752d">host.h</a>
+</li>
+<li>VL_FL_INT64
+: <a class="el" href="host_8h.html#a9e0dd28d4000da64e451fbce6939cb6f">host.h</a>
+</li>
+<li>VL_FL_INT8
+: <a class="el" href="host_8h.html#a782a8eb010de36cbc9c4517f73c23d29">host.h</a>
+</li>
+<li>vl_floor_d()
+: <a class="el" href="mathop_8h.html#a4573abdff2b32ef131f090a7cd8afeee">mathop.h</a>
+</li>
+<li>vl_floor_f()
+: <a class="el" href="mathop_8h.html#a7651faad897e764d74159d4661777115">mathop.h</a>
+</li>
+<li>VL_FMT_INDEX
+: <a class="el" href="host_8h.html#a79c56fd25ae0746b063266ec7fae930b">host.h</a>
+</li>
+<li>VL_FMT_INTPTR
+: <a class="el" href="host_8h.html#afade1e41badafa9c5280aaef35f87403">host.h</a>
+</li>
+<li>VL_FMT_SIZE
+: <a class="el" href="host_8h.html#a32387e8bdd1b0d03af42522deb12f127">host.h</a>
+</li>
+<li>VL_FMT_UINDEX
+: <a class="el" href="host_8h.html#addb8218f8f733565479705ff5f6c0e52">host.h</a>
+</li>
+<li>VL_FMT_UINTPTR
+: <a class="el" href="host_8h.html#afbbbf7b8cd264a829a6aecbe26bffba8">host.h</a>
+</li>
+<li>VL_FRAMETYPE_DISC
+: <a class="el" href="covdet_8h.html#afbadee402b023a061620226e2f4bb45ea7dc9a8930f7f37eedc693977464b3fd4">covdet.h</a>
+</li>
+<li>VL_FRAMETYPE_ELLIPSE
+: <a class="el" href="covdet_8h.html#afbadee402b023a061620226e2f4bb45ea6145863075f58a45373a3f72a7f411a9">covdet.h</a>
+</li>
+<li>VL_FRAMETYPE_ORIENTED_DISC
+: <a class="el" href="covdet_8h.html#afbadee402b023a061620226e2f4bb45ea18b389125522f1c5944e5d1d07edb218">covdet.h</a>
+</li>
+<li>VL_FRAMETYPE_ORIENTED_ELLIPSE
+: <a class="el" href="covdet_8h.html#afbadee402b023a061620226e2f4bb45ea5d51e0a1b4f08d13e50e689b990a7a87">covdet.h</a>
+</li>
+<li>vl_free()
+: <a class="el" href="generic_8c.html#ae070a0a4d3d367a1ba8308644c88ada3">generic.c</a>
+, <a class="el" href="generic_8h.html#ae070a0a4d3d367a1ba8308644c88ada3">generic.h</a>
+</li>
+<li>vl_get_cpu_time()
+: <a class="el" href="generic_8c.html#a4a2af50f50dfc91505947ced9656f5e7">generic.c</a>
+, <a class="el" href="generic_8h.html#a49738f9f66a6a6d8a70dbe712ab1f697">generic.h</a>
+</li>
+<li>vl_get_frame_size()
+: <a class="el" href="covdet_8h.html#ad245e479a99d398bfed34aa892530a23">covdet.h</a>
+</li>
+<li>vl_get_frame_type()
+: <a class="el" href="covdet_8h.html#a3dfa5e94c79c5dd14013eb075db487bf">covdet.h</a>
+</li>
+<li>vl_get_last_error()
+: <a class="el" href="generic_8c.html#aa5d08848df8c025fadd5430c8a6cb0e2">generic.c</a>
+, <a class="el" href="generic_8h.html#aa5d08848df8c025fadd5430c8a6cb0e2">generic.h</a>
+</li>
+<li>vl_get_last_error_message()
+: <a class="el" href="generic_8c.html#a9dbce0eb68f8c54a228664cc8f14fdfc">generic.c</a>
+, <a class="el" href="generic_8h.html#a9dbce0eb68f8c54a228664cc8f14fdfc">generic.h</a>
+</li>
+<li>vl_get_max_threads()
+: <a class="el" href="generic_8c.html#a2d38f8e7475ddb8f1e106e2b7495d28f">generic.c</a>
+, <a class="el" href="generic_8h.html#a2d38f8e7475ddb8f1e106e2b7495d28f">generic.h</a>
+</li>
+<li>vl_get_num_cpus()
+: <a class="el" href="generic_8c.html#a49f59f6c5355c146c8fae8959b7da782">generic.c</a>
+, <a class="el" href="generic_8h.html#a49f59f6c5355c146c8fae8959b7da782">generic.h</a>
+</li>
+<li>vl_get_printf_func()
+: <a class="el" href="generic_8c.html#afeb1328b069d33541dc21ea859b02d0a">generic.c</a>
+, <a class="el" href="generic_8h.html#afeb1328b069d33541dc21ea859b02d0a">generic.h</a>
+</li>
+<li>vl_get_rand()
+: <a class="el" href="generic_8c.html#a38f7f1bf904ad9e95df774ba824b36fb">generic.c</a>
+, <a class="el" href="generic_8h.html#a38f7f1bf904ad9e95df774ba824b36fb">generic.h</a>
+</li>
+<li>vl_get_simd_enabled()
+: <a class="el" href="generic_8c.html#ac4090b5a1fac0a0bc6e42cc1a7d77047">generic.c</a>
+, <a class="el" href="generic_8h.html#ac4090b5a1fac0a0bc6e42cc1a7d77047">generic.h</a>
+</li>
+<li>vl_get_state()
+: <a class="el" href="generic_8c.html#abccc32c43986a62ed389572157c768cc">generic.c</a>
+</li>
+<li>vl_get_thread_limit()
+: <a class="el" href="generic_8c.html#a426a9313eef611543f45fd3faaa9b343">generic.c</a>
+, <a class="el" href="generic_8h.html#a426a9313eef611543f45fd3faaa9b343">generic.h</a>
+</li>
+<li>vl_get_thread_specific_state()
+: <a class="el" href="generic_8c.html#a6c4407682ab9d2e18d83bf7b45ec2f2e">generic.c</a>
+</li>
+<li>vl_get_type_name()
+: <a class="el" href="generic_8h.html#a2e4f4c7b7a1d74606a62ca4077fddba8">generic.h</a>
+</li>
+<li>vl_get_type_size()
+: <a class="el" href="generic_8h.html#a477016b861e56130cfb95fe7085138d9">generic.h</a>
+</li>
+<li>vl_get_vector_comparison_function_d()
+: <a class="el" href="mathop_8h.html#a34ec850e1d4b291c4e7a4235206c23bd">mathop.h</a>
+</li>
+<li>vl_get_vector_comparison_function_f()
+: <a class="el" href="mathop_8h.html#ad5143f7d144cba8a1d302dacee14d23e">mathop.h</a>
+</li>
+<li>vl_get_vector_comparison_type_name()
+: <a class="el" href="mathop_8h.html#acf470a9c2b4c9f91129f883a54d85bad">mathop.h</a>
+</li>
+<li>vl_get_version_string()
+: <a class="el" href="generic_8c.html#ae7c089c95c8bff8fb32284fdeb4818a8">generic.c</a>
+, <a class="el" href="generic_8h.html#aadd5283710afacdf5280e8e47094299a">generic.h</a>
+</li>
+<li>vl_gmm_cluster()
+: <a class="el" href="gmm_8c.html#a856cdfe758b7c48c3309859853f38e36">gmm.c</a>
+, <a class="el" href="gmm_8h.html#a856cdfe758b7c48c3309859853f38e36">gmm.h</a>
+</li>
+<li>vl_gmm_delete()
+: <a class="el" href="gmm_8c.html#adbde533172047f780e2713d18387a9d0">gmm.c</a>
+, <a class="el" href="gmm_8h.html#adbde533172047f780e2713d18387a9d0">gmm.h</a>
+</li>
+<li>vl_gmm_em()
+: <a class="el" href="gmm_8c.html#a4f8f3fc91d284a2866fc5fd5d5b48dfd">gmm.c</a>
+, <a class="el" href="gmm_8h.html#a4f8f3fc91d284a2866fc5fd5d5b48dfd">gmm.h</a>
+</li>
+<li>vl_gmm_get_covariance_lower_bounds()
+: <a class="el" href="gmm_8c.html#a6e149ef463f029ba96788f0aa7442025">gmm.c</a>
+, <a class="el" href="gmm_8h.html#a6e149ef463f029ba96788f0aa7442025">gmm.h</a>
+</li>
+<li>vl_gmm_get_covariances()
+: <a class="el" href="gmm_8c.html#a319648cad7d83d2a31c7beb79b1ba125">gmm.c</a>
+, <a class="el" href="gmm_8h.html#a319648cad7d83d2a31c7beb79b1ba125">gmm.h</a>
+</li>
+<li>vl_gmm_get_data_type()
+: <a class="el" href="gmm_8c.html#ac8980d73a2bac3f4aba64108ea9b7986">gmm.c</a>
+, <a class="el" href="gmm_8h.html#ac8980d73a2bac3f4aba64108ea9b7986">gmm.h</a>
+</li>
+<li>vl_gmm_get_dimension()
+: <a class="el" href="gmm_8c.html#a5dd301238834c161a8ca142f32b2a83c">gmm.c</a>
+, <a class="el" href="gmm_8h.html#a5dd301238834c161a8ca142f32b2a83c">gmm.h</a>
+</li>
+<li>vl_gmm_get_initialization()
+: <a class="el" href="gmm_8c.html#a51e3a8e372e5d019c215d126823986b0">gmm.c</a>
+, <a class="el" href="gmm_8h.html#a51e3a8e372e5d019c215d126823986b0">gmm.h</a>
+</li>
+<li>vl_gmm_get_kmeans_init_object()
+: <a class="el" href="gmm_8c.html#a6c35a5179c1a1061b0ed243d56e12dc7">gmm.c</a>
+, <a class="el" href="gmm_8h.html#a6c35a5179c1a1061b0ed243d56e12dc7">gmm.h</a>
+</li>
+<li>vl_gmm_get_loglikelihood()
+: <a class="el" href="gmm_8c.html#a618c40e1338f2433505f83d0745fce7f">gmm.c</a>
+, <a class="el" href="gmm_8h.html#a618c40e1338f2433505f83d0745fce7f">gmm.h</a>
+</li>
+<li>vl_gmm_get_max_num_iterations()
+: <a class="el" href="gmm_8c.html#aaa311e17e0190fa3a247349d4e127e3d">gmm.c</a>
+, <a class="el" href="gmm_8h.html#aaa311e17e0190fa3a247349d4e127e3d">gmm.h</a>
+</li>
+<li>vl_gmm_get_means()
+: <a class="el" href="gmm_8c.html#ae8598b36a92ca066e26e03ea46dee466">gmm.c</a>
+, <a class="el" href="gmm_8h.html#ae8598b36a92ca066e26e03ea46dee466">gmm.h</a>
+</li>
+<li>vl_gmm_get_num_clusters()
+: <a class="el" href="gmm_8c.html#a6d4f30630fd47af3dec762a58df7b653">gmm.c</a>
+, <a class="el" href="gmm_8h.html#a6d4f30630fd47af3dec762a58df7b653">gmm.h</a>
+</li>
+<li>vl_gmm_get_num_data()
+: <a class="el" href="gmm_8c.html#a83a3fb14322069092b4618bcabaf5fda">gmm.c</a>
+, <a class="el" href="gmm_8h.html#a83a3fb14322069092b4618bcabaf5fda">gmm.h</a>
+</li>
+<li>vl_gmm_get_num_repetitions()
+: <a class="el" href="gmm_8c.html#aba79f6a785a9c33b84f5dc38c9b670aa">gmm.c</a>
+, <a class="el" href="gmm_8h.html#aba79f6a785a9c33b84f5dc38c9b670aa">gmm.h</a>
+</li>
+<li>vl_gmm_get_posteriors()
+: <a class="el" href="gmm_8c.html#a54b1da9397fdb22c1036690e80816e76">gmm.c</a>
+, <a class="el" href="gmm_8h.html#a54b1da9397fdb22c1036690e80816e76">gmm.h</a>
+</li>
+<li>vl_gmm_get_priors()
+: <a class="el" href="gmm_8c.html#a556605dddee3aa3f2c35898436c5e811">gmm.c</a>
+, <a class="el" href="gmm_8h.html#a556605dddee3aa3f2c35898436c5e811">gmm.h</a>
+</li>
+<li>vl_gmm_get_verbosity()
+: <a class="el" href="gmm_8c.html#a167e3a1208bc756e1681dfc44dab5928">gmm.c</a>
+, <a class="el" href="gmm_8h.html#a167e3a1208bc756e1681dfc44dab5928">gmm.h</a>
+</li>
+<li>vl_gmm_init_with_kmeans()
+: <a class="el" href="gmm_8c.html#a21934aa27cd02d67734d311c4207829e">gmm.c</a>
+, <a class="el" href="gmm_8h.html#a21934aa27cd02d67734d311c4207829e">gmm.h</a>
+</li>
+<li>vl_gmm_init_with_rand_data()
+: <a class="el" href="gmm_8c.html#aab9d461e2fca63960f2751ae86946804">gmm.c</a>
+, <a class="el" href="gmm_8h.html#aab9d461e2fca63960f2751ae86946804">gmm.h</a>
+</li>
+<li>vl_gmm_new()
+: <a class="el" href="gmm_8c.html#afe0bdce1cf97a7b64011ae58bc8b9697">gmm.c</a>
+, <a class="el" href="gmm_8h.html#afe0bdce1cf97a7b64011ae58bc8b9697">gmm.h</a>
+</li>
+<li>vl_gmm_new_copy()
+: <a class="el" href="gmm_8c.html#a2c6889a0569271e72096d18735f28211">gmm.c</a>
+, <a class="el" href="gmm_8h.html#ab2a3a0832857a77ffde344c42ea8b8e1">gmm.h</a>
+</li>
+<li>vl_gmm_reset()
+: <a class="el" href="gmm_8c.html#a1baeb175e0cdb68c548addc837d7baae">gmm.c</a>
+, <a class="el" href="gmm_8h.html#a1baeb175e0cdb68c548addc837d7baae">gmm.h</a>
+</li>
+<li>vl_gmm_set_covariance_lower_bound()
+: <a class="el" href="gmm_8c.html#a607ba2f82f3bfe5949f71acca0d332c8">gmm.c</a>
+, <a class="el" href="gmm_8h.html#a607ba2f82f3bfe5949f71acca0d332c8">gmm.h</a>
+</li>
+<li>vl_gmm_set_covariance_lower_bounds()
+: <a class="el" href="gmm_8c.html#ac5b9aa600e348e99907cdb9f160c8d1d">gmm.c</a>
+, <a class="el" href="gmm_8h.html#ac5b9aa600e348e99907cdb9f160c8d1d">gmm.h</a>
+</li>
+<li>vl_gmm_set_covariances()
+: <a class="el" href="gmm_8c.html#a9467941c38e0eb70f1e7de2cf8242716">gmm.c</a>
+, <a class="el" href="gmm_8h.html#a9467941c38e0eb70f1e7de2cf8242716">gmm.h</a>
+</li>
+<li>vl_gmm_set_initialization()
+: <a class="el" href="gmm_8c.html#a3f34a10ef70b880a81eabce9fc29cc2e">gmm.c</a>
+, <a class="el" href="gmm_8h.html#a3f34a10ef70b880a81eabce9fc29cc2e">gmm.h</a>
+</li>
+<li>vl_gmm_set_kmeans_init_object()
+: <a class="el" href="gmm_8c.html#ae740ca4d9c354ac9d83c89127bce744c">gmm.c</a>
+, <a class="el" href="gmm_8h.html#ae740ca4d9c354ac9d83c89127bce744c">gmm.h</a>
+</li>
+<li>vl_gmm_set_max_num_iterations()
+: <a class="el" href="gmm_8c.html#a606ce33d200101fa6a60e10a3e89cec1">gmm.c</a>
+, <a class="el" href="gmm_8h.html#a606ce33d200101fa6a60e10a3e89cec1">gmm.h</a>
+</li>
+<li>vl_gmm_set_means()
+: <a class="el" href="gmm_8c.html#a001f4a994fbb997e7b7b38d56e69e495">gmm.c</a>
+, <a class="el" href="gmm_8h.html#a001f4a994fbb997e7b7b38d56e69e495">gmm.h</a>
+</li>
+<li>vl_gmm_set_num_repetitions()
+: <a class="el" href="gmm_8c.html#a9801c187ad6f0561275a715d3e589a59">gmm.c</a>
+, <a class="el" href="gmm_8h.html#a9801c187ad6f0561275a715d3e589a59">gmm.h</a>
+</li>
+<li>vl_gmm_set_priors()
+: <a class="el" href="gmm_8c.html#a4c0e4759f7b082400cfe4da0991139c8">gmm.c</a>
+, <a class="el" href="gmm_8h.html#a4c0e4759f7b082400cfe4da0991139c8">gmm.h</a>
+</li>
+<li>vl_gmm_set_verbosity()
+: <a class="el" href="gmm_8c.html#a96708e3c10107c49f136a0fe1082684a">gmm.c</a>
+, <a class="el" href="gmm_8h.html#a96708e3c10107c49f136a0fe1082684a">gmm.h</a>
+</li>
+<li>VL_HEAP_array
+: <a class="el" href="heap-def_8h.html#ac2b59b9373be3df851dac7c594924a92">heap-def.h</a>
+</li>
+<li>VL_HEAP_cmp()
+: <a class="el" href="heap-def_8h.html#af926f2b2ea17e5adcf6ab144d87f96e2">heap-def.h</a>
+</li>
+<li>VL_HEAP_down()
+: <a class="el" href="heap-def_8h.html#affd0336086a1762e0ac2cace28c9656a">heap-def.h</a>
+</li>
+<li>vl_heap_left_child()
+: <a class="el" href="heap-def_8h.html#a95b7f92afacd889da252d5a77fde5d05">heap-def.h</a>
+</li>
+<li>vl_heap_parent()
+: <a class="el" href="heap-def_8h.html#a7256f361601ba43113c862d9477f1d4b">heap-def.h</a>
+</li>
+<li>VL_HEAP_pop()
+: <a class="el" href="heap-def_8h.html#ac9e07a24d045fbc08853213bc84be5ea">heap-def.h</a>
+</li>
+<li>VL_HEAP_prefix
+: <a class="el" href="heap-def_8h.html#ae0d8f7e617493c4a73696983e1c360b6">heap-def.h</a>
+</li>
+<li>VL_HEAP_push()
+: <a class="el" href="heap-def_8h.html#ab8d30a74d7d51d3ed4c9f3e35ef6c638">heap-def.h</a>
+</li>
+<li>vl_heap_right_child()
+: <a class="el" href="heap-def_8h.html#aacfa305e511251faa8cfb8b7114a31f7">heap-def.h</a>
+</li>
+<li>VL_HEAP_swap()
+: <a class="el" href="heap-def_8h.html#a23f32c850484c8824785a17e9d93272b">heap-def.h</a>
+</li>
+<li>VL_HEAP_type
+: <a class="el" href="heap-def_8h.html#a809b241c547ba76275bd10575086c3b2">heap-def.h</a>
+</li>
+<li>VL_HEAP_up()
+: <a class="el" href="heap-def_8h.html#a8c4d40e0b2309f0d897a8b1e9a55d726">heap-def.h</a>
+</li>
+<li>VL_HEAP_update()
+: <a class="el" href="heap-def_8h.html#a6718e132e6bfabc177ca2f5115dd6452">heap-def.h</a>
+</li>
+<li>vl_hikm_copy_subset()
+: <a class="el" href="hikmeans_8c.html#af2b531434c89a3b40ff8bf5a7a0670dd">hikmeans.c</a>
+</li>
+<li>vl_hikm_delete()
+: <a class="el" href="hikmeans_8c.html#a7830ea7acf7332e0eda8369b58853808">hikmeans.c</a>
+, <a class="el" href="hikmeans_8h.html#a7830ea7acf7332e0eda8369b58853808">hikmeans.h</a>
+</li>
+<li>vl_hikm_get_depth()
+: <a class="el" href="hikmeans_8c.html#a51b8a3da781958f50d4ef41dcbda2d32">hikmeans.c</a>
+, <a class="el" href="hikmeans_8h.html#a51b8a3da781958f50d4ef41dcbda2d32">hikmeans.h</a>
+</li>
+<li>vl_hikm_get_K()
+: <a class="el" href="hikmeans_8c.html#ad01623c87b275ba47ab9dcf6679d3bae">hikmeans.c</a>
+, <a class="el" href="hikmeans_8h.html#ad01623c87b275ba47ab9dcf6679d3bae">hikmeans.h</a>
+</li>
+<li>vl_hikm_get_max_niters()
+: <a class="el" href="hikmeans_8c.html#af305ded1d09a18af4ea3d9562a2bdb1c">hikmeans.c</a>
+, <a class="el" href="hikmeans_8h.html#af305ded1d09a18af4ea3d9562a2bdb1c">hikmeans.h</a>
+</li>
+<li>vl_hikm_get_ndims()
+: <a class="el" href="hikmeans_8c.html#a8bbbad989ed222178d7d80a7ef8a6a8c">hikmeans.c</a>
+, <a class="el" href="hikmeans_8h.html#a8bbbad989ed222178d7d80a7ef8a6a8c">hikmeans.h</a>
+</li>
+<li>vl_hikm_get_root()
+: <a class="el" href="hikmeans_8c.html#a4db5e0be37ea7fb20202e249046a4987">hikmeans.c</a>
+, <a class="el" href="hikmeans_8h.html#a4db5e0be37ea7fb20202e249046a4987">hikmeans.h</a>
+</li>
+<li>vl_hikm_get_verbosity()
+: <a class="el" href="hikmeans_8c.html#a41f0093905ef603a8b93e921522638e4">hikmeans.c</a>
+, <a class="el" href="hikmeans_8h.html#a41f0093905ef603a8b93e921522638e4">hikmeans.h</a>
+</li>
+<li>vl_hikm_init()
+: <a class="el" href="hikmeans_8c.html#a80b86a77cf5994e4c6675a7632e01e01">hikmeans.c</a>
+, <a class="el" href="hikmeans_8h.html#a80b86a77cf5994e4c6675a7632e01e01">hikmeans.h</a>
+</li>
+<li>vl_hikm_new()
+: <a class="el" href="hikmeans_8c.html#ae48c89b710a84568dcac00ddd763e604">hikmeans.c</a>
+, <a class="el" href="hikmeans_8h.html#ae48c89b710a84568dcac00ddd763e604">hikmeans.h</a>
+</li>
+<li>vl_hikm_push()
+: <a class="el" href="hikmeans_8c.html#aacb98ccf6f8e9cc45dcfda9ca4f648c9">hikmeans.c</a>
+, <a class="el" href="hikmeans_8h.html#aacb98ccf6f8e9cc45dcfda9ca4f648c9">hikmeans.h</a>
+</li>
+<li>vl_hikm_set_max_niters()
+: <a class="el" href="hikmeans_8c.html#a431d5ac9cb5d5ae058dcc9785ad08fe5">hikmeans.c</a>
+, <a class="el" href="hikmeans_8h.html#a431d5ac9cb5d5ae058dcc9785ad08fe5">hikmeans.h</a>
+</li>
+<li>vl_hikm_set_verbosity()
+: <a class="el" href="hikmeans_8c.html#a23789e4faee416be030f2a519de096e3">hikmeans.c</a>
+, <a class="el" href="hikmeans_8h.html#a23789e4faee416be030f2a519de096e3">hikmeans.h</a>
+</li>
+<li>vl_hikm_train()
+: <a class="el" href="hikmeans_8c.html#ace8de873d52287e32918999864b93fbd">hikmeans.c</a>
+, <a class="el" href="hikmeans_8h.html#ace8de873d52287e32918999864b93fbd">hikmeans.h</a>
+</li>
+<li>vl_hog_delete()
+: <a class="el" href="hog_8c.html#a31692138ce8b6c925bf9cf4761f9dd71">hog.c</a>
+, <a class="el" href="hog_8h.html#a31692138ce8b6c925bf9cf4761f9dd71">hog.h</a>
+</li>
+<li>vl_hog_extract()
+: <a class="el" href="hog_8c.html#ab66448d416e661344327f969aebb9a42">hog.c</a>
+, <a class="el" href="hog_8h.html#ab66448d416e661344327f969aebb9a42">hog.h</a>
+</li>
+<li>vl_hog_get_dimension()
+: <a class="el" href="hog_8c.html#acce19086c37f34edc0078933f224ebcc">hog.c</a>
+, <a class="el" href="hog_8h.html#acce19086c37f34edc0078933f224ebcc">hog.h</a>
+</li>
+<li>vl_hog_get_glyph_size()
+: <a class="el" href="hog_8c.html#a61ae53dfac6a9ed20a8865e531c23d5a">hog.c</a>
+, <a class="el" href="hog_8h.html#a61ae53dfac6a9ed20a8865e531c23d5a">hog.h</a>
+</li>
+<li>vl_hog_get_height()
+: <a class="el" href="hog_8c.html#ad7037e000f578c2abeeb4e8a3d6bbaf6">hog.c</a>
+, <a class="el" href="hog_8h.html#ad7037e000f578c2abeeb4e8a3d6bbaf6">hog.h</a>
+</li>
+<li>vl_hog_get_permutation()
+: <a class="el" href="hog_8c.html#ac700d5506dd453b9a41d3a17b9e3cca7">hog.c</a>
+, <a class="el" href="hog_8h.html#ac700d5506dd453b9a41d3a17b9e3cca7">hog.h</a>
+</li>
+<li>vl_hog_get_use_bilinear_orientation_assignments()
+: <a class="el" href="hog_8c.html#a901062389718b5584a194d15bbdaaad2">hog.c</a>
+, <a class="el" href="hog_8h.html#a901062389718b5584a194d15bbdaaad2">hog.h</a>
+</li>
+<li>vl_hog_get_width()
+: <a class="el" href="hog_8c.html#a8e899624c92435e77f3a1916b7ce5ed4">hog.c</a>
+, <a class="el" href="hog_8h.html#a8e899624c92435e77f3a1916b7ce5ed4">hog.h</a>
+</li>
+<li>vl_hog_new()
+: <a class="el" href="hog_8c.html#adb99ad366dbd4ea539a76f48df1dff9c">hog.c</a>
+, <a class="el" href="hog_8h.html#adb99ad366dbd4ea539a76f48df1dff9c">hog.h</a>
+</li>
+<li>vl_hog_prepare_buffers()
+: <a class="el" href="hog_8c.html#a5dbfa64119c885357735d6f7f2bd26b5">hog.c</a>
+</li>
+<li>vl_hog_put_image()
+: <a class="el" href="hog_8c.html#a86e1faec74ae8163db8dd1e0d292c305">hog.c</a>
+, <a class="el" href="hog_8h.html#a86e1faec74ae8163db8dd1e0d292c305">hog.h</a>
+</li>
+<li>vl_hog_put_polar_field()
+: <a class="el" href="hog_8c.html#a2da0444b21261c3db0309ca25ad5895b">hog.c</a>
+, <a class="el" href="hog_8h.html#a2da0444b21261c3db0309ca25ad5895b">hog.h</a>
+</li>
+<li>vl_hog_render()
+: <a class="el" href="hog_8c.html#aafce8a9f029f232887bda4e64c585aa3">hog.c</a>
+, <a class="el" href="hog_8h.html#a807b3e1a41f403eab4b2c22aba5cbbc2">hog.h</a>
+</li>
+<li>vl_hog_set_use_bilinear_orientation_assignments()
+: <a class="el" href="hog_8c.html#a1d3c6e1ebef79141b2ddbf8208f3e25e">hog.c</a>
+, <a class="el" href="hog_8h.html#a1d3c6e1ebef79141b2ddbf8208f3e25e">hog.h</a>
+</li>
+<li>vl_homogeneouskernelmap_delete()
+: <a class="el" href="homkermap_8c.html#a9a059f792833cb10e62f5f476f99f0da">homkermap.c</a>
+, <a class="el" href="homkermap_8h.html#a9a059f792833cb10e62f5f476f99f0da">homkermap.h</a>
+</li>
+<li>vl_homogeneouskernelmap_evaluate_d()
+: <a class="el" href="homkermap_8h.html#aa46c3f8cfdf0f1334727c27c13e77608">homkermap.h</a>
+</li>
+<li>vl_homogeneouskernelmap_evaluate_f()
+: <a class="el" href="homkermap_8h.html#a2ea4628d7a00b9543112fc4dd2d8f380">homkermap.h</a>
+</li>
+<li>vl_homogeneouskernelmap_get_dimension()
+: <a class="el" href="homkermap_8c.html#a9b0ff9e29e918d0591590a8857ca6ae1">homkermap.c</a>
+, <a class="el" href="homkermap_8h.html#a9b0ff9e29e918d0591590a8857ca6ae1">homkermap.h</a>
+</li>
+<li>vl_homogeneouskernelmap_get_kernel_type()
+: <a class="el" href="homkermap_8c.html#a61d8c4d7f2226bbdff7a67779c156bbb">homkermap.c</a>
+, <a class="el" href="homkermap_8h.html#a61d8c4d7f2226bbdff7a67779c156bbb">homkermap.h</a>
+</li>
+<li>vl_homogeneouskernelmap_get_order()
+: <a class="el" href="homkermap_8c.html#a5313ff7a41b555600e5d2379613e486f">homkermap.c</a>
+, <a class="el" href="homkermap_8h.html#a5313ff7a41b555600e5d2379613e486f">homkermap.h</a>
+</li>
+<li>vl_homogeneouskernelmap_get_smooth_spectrum()
+: <a class="el" href="homkermap_8c.html#ac2d0164090862bfa17f25364447676e7">homkermap.c</a>
+</li>
+<li>vl_homogeneouskernelmap_get_spectrum()
+: <a class="el" href="homkermap_8c.html#a86c2873e6353bcfcbaa4abd4314af9d8">homkermap.c</a>
+</li>
+<li>vl_homogeneouskernelmap_get_window_type()
+: <a class="el" href="homkermap_8c.html#ae3ed4aa68a26e81a8456743c7edda1c1">homkermap.c</a>
+, <a class="el" href="homkermap_8h.html#ae3ed4aa68a26e81a8456743c7edda1c1">homkermap.h</a>
+</li>
+<li>vl_homogeneouskernelmap_new()
+: <a class="el" href="homkermap_8c.html#a87e86a2981550ae60f565575c32966ea">homkermap.c</a>
+, <a class="el" href="homkermap_8h.html#a87e86a2981550ae60f565575c32966ea">homkermap.h</a>
+</li>
+<li>vl_ikm_delete()
+: <a class="el" href="ikmeans_8c.html#a33a659152e03286d390aa17b1a212a7b">ikmeans.c</a>
+, <a class="el" href="ikmeans_8h.html#a33a659152e03286d390aa17b1a212a7b">ikmeans.h</a>
+</li>
+<li>VL_IKM_ELKAN
+: <a class="el" href="ikmeans_8h.html#a4aa95067e495fa8309ab028307a3418da46d6e04c3599a881c16722b6969c5a21">ikmeans.h</a>
+</li>
+<li>vl_ikm_elkan_update_inter_dist()
+: <a class="el" href="ikmeans__elkan_8tc.html#a7664bd055d36da01663d01fd5d50da60">ikmeans_elkan.tc</a>
+</li>
+<li>vl_ikm_get_centers()
+: <a class="el" href="ikmeans_8c.html#a56e13744afc5e1917f4c036fe1c36678">ikmeans.c</a>
+, <a class="el" href="ikmeans_8h.html#a56e13744afc5e1917f4c036fe1c36678">ikmeans.h</a>
+</li>
+<li>vl_ikm_get_K()
+: <a class="el" href="ikmeans_8c.html#aba2ce262018aae7049c53a33af0db8e1">ikmeans.c</a>
+, <a class="el" href="ikmeans_8h.html#aba2ce262018aae7049c53a33af0db8e1">ikmeans.h</a>
+</li>
+<li>vl_ikm_get_max_niters()
+: <a class="el" href="ikmeans_8c.html#ad1dcf031fd04bdbaf9d389dcd960c953">ikmeans.c</a>
+, <a class="el" href="ikmeans_8h.html#ad1dcf031fd04bdbaf9d389dcd960c953">ikmeans.h</a>
+</li>
+<li>vl_ikm_get_ndims()
+: <a class="el" href="ikmeans_8c.html#a10787adeb3ac4c3d6cce7a2e3598525f">ikmeans.c</a>
+, <a class="el" href="ikmeans_8h.html#a10787adeb3ac4c3d6cce7a2e3598525f">ikmeans.h</a>
+</li>
+<li>vl_ikm_get_verbosity()
+: <a class="el" href="ikmeans_8c.html#afe77d60b7c64f773b9e5edbcebca6e21">ikmeans.c</a>
+, <a class="el" href="ikmeans_8h.html#afe77d60b7c64f773b9e5edbcebca6e21">ikmeans.h</a>
+</li>
+<li>vl_ikm_init()
+: <a class="el" href="ikmeans_8h.html#a8186963805a62e3f7f87c45471c9e56a">ikmeans.h</a>
+, <a class="el" href="ikmeans__init_8tc.html#a8186963805a62e3f7f87c45471c9e56a">ikmeans_init.tc</a>
+</li>
+<li>vl_ikm_init_elkan()
+: <a class="el" href="ikmeans__elkan_8tc.html#aee753adccae45559ab12120905e2ed57">ikmeans_elkan.tc</a>
+</li>
+<li>vl_ikm_init_helper()
+: <a class="el" href="ikmeans__init_8tc.html#a64bc8e2fb8307d6879c16ed78e3127e7">ikmeans_init.tc</a>
+</li>
+<li>vl_ikm_init_lloyd()
+: <a class="el" href="ikmeans__lloyd_8tc.html#a953ada58fb717a7a37883f05ee1859c5">ikmeans_lloyd.tc</a>
+</li>
+<li>vl_ikm_init_rand()
+: <a class="el" href="ikmeans_8h.html#a1d630ed16753218a87a28c0bf35b16a6">ikmeans.h</a>
+, <a class="el" href="ikmeans__init_8tc.html#a1d630ed16753218a87a28c0bf35b16a6">ikmeans_init.tc</a>
+</li>
+<li>vl_ikm_init_rand_data()
+: <a class="el" href="ikmeans_8h.html#abe6688368a83b5a38908ed0cc33f4ecd">ikmeans.h</a>
+, <a class="el" href="ikmeans__init_8tc.html#abe6688368a83b5a38908ed0cc33f4ecd">ikmeans_init.tc</a>
+</li>
+<li>VL_IKM_LLOYD
+: <a class="el" href="ikmeans_8h.html#a4aa95067e495fa8309ab028307a3418da03abd693c3d932bb543401274eb868c4">ikmeans.h</a>
+</li>
+<li>vl_ikm_new()
+: <a class="el" href="ikmeans_8c.html#af5a42441a336dd73c39c5a1ec8028444">ikmeans.c</a>
+, <a class="el" href="ikmeans_8h.html#af5a42441a336dd73c39c5a1ec8028444">ikmeans.h</a>
+</li>
+<li>vl_ikm_push()
+: <a class="el" href="ikmeans_8c.html#ac7e2bc8d34d514a4fe43b57d12dc244a">ikmeans.c</a>
+, <a class="el" href="ikmeans_8h.html#ac7e2bc8d34d514a4fe43b57d12dc244a">ikmeans.h</a>
+</li>
+<li>vl_ikm_push_elkan()
+: <a class="el" href="ikmeans__elkan_8tc.html#a7ef8176bfd4b305ec8ff4b273bff92f1">ikmeans_elkan.tc</a>
+</li>
+<li>vl_ikm_push_lloyd()
+: <a class="el" href="ikmeans__lloyd_8tc.html#a6d27ade79c68b887ff11571693e8222f">ikmeans_lloyd.tc</a>
+</li>
+<li>vl_ikm_push_one()
+: <a class="el" href="ikmeans_8c.html#af2fef6df8fbeb3bfe780a031b6d36861">ikmeans.c</a>
+, <a class="el" href="ikmeans_8h.html#a03f0ed5b6f3680b1f872c01e47b36cb8">ikmeans.h</a>
+</li>
+<li>vl_ikm_set_max_niters()
+: <a class="el" href="ikmeans_8c.html#a25053477cd794f1a0fc3095a08640c62">ikmeans.c</a>
+, <a class="el" href="ikmeans_8h.html#a25053477cd794f1a0fc3095a08640c62">ikmeans.h</a>
+</li>
+<li>vl_ikm_set_verbosity()
+: <a class="el" href="ikmeans_8c.html#adbf9d13d091a5bec378023de11bfa690">ikmeans.c</a>
+, <a class="el" href="ikmeans_8h.html#adbf9d13d091a5bec378023de11bfa690">ikmeans.h</a>
+</li>
+<li>vl_ikm_train()
+: <a class="el" href="ikmeans_8c.html#a58ccd60ab79dbfe8b9823a1caede7879">ikmeans.c</a>
+, <a class="el" href="ikmeans_8h.html#a58ccd60ab79dbfe8b9823a1caede7879">ikmeans.h</a>
+</li>
+<li>vl_ikm_train_elkan()
+: <a class="el" href="ikmeans__elkan_8tc.html#a9bd2349f05169e97d3aab33809525425">ikmeans_elkan.tc</a>
+</li>
+<li>vl_ikm_train_lloyd()
+: <a class="el" href="ikmeans__lloyd_8tc.html#a851e1c9ea16f4320c34c917872982850">ikmeans_lloyd.tc</a>
+</li>
+<li>vl_ikmacc_t
+: <a class="el" href="ikmeans_8h.html#a6a9ff8a15b1f0d96c187e96705d350e2">ikmeans.h</a>
+</li>
+<li>vl_image_distance_transform_d()
+: <a class="el" href="imopv_8h.html#ad13a54f025599cbde1e2f073733872b2">imopv.h</a>
+</li>
+<li>vl_image_distance_transform_f()
+: <a class="el" href="imopv_8h.html#ac20d3690d57a30ddb2937d051abaf192">imopv.h</a>
+</li>
+<li>vl_imconvcol_vd()
+: <a class="el" href="imopv_8h.html#aca77f25ca260644bfcba2b36efb0cb19">imopv.h</a>
+</li>
+<li>vl_imconvcol_vf()
+: <a class="el" href="imopv_8h.html#a4d2fa6d46faace80e4d28f771cc1d2c1">imopv.h</a>
+</li>
+<li>vl_imconvcoltri_d()
+: <a class="el" href="imopv_8h.html#ad624650d3ab3d609f68634f83623677c">imopv.h</a>
+</li>
+<li>vl_imconvcoltri_f()
+: <a class="el" href="imopv_8h.html#ab5561b2ed447b0099e7bf8dc79915382">imopv.h</a>
+</li>
+<li>vl_imgradient_polar_d()
+: <a class="el" href="imopv_8h.html#a52fe17840f8ca2c5ef8f25a3f92cf30f">imopv.h</a>
+</li>
+<li>vl_imgradient_polar_f()
+: <a class="el" href="imopv_8h.html#a0733fd424fee11f8f4028eb83af90c16">imopv.h</a>
+</li>
+<li>vl_imintegral_d()
+: <a class="el" href="imopv_8h.html#a63f63ca0445077d4baf05db04a1921e5">imopv.h</a>
+</li>
+<li>vl_imintegral_f()
+: <a class="el" href="imopv_8h.html#a783087728b77a88fb701426acf587956">imopv.h</a>
+</li>
+<li>vl_imintegral_i32()
+: <a class="el" href="imopv_8h.html#a33c2c2a2dc57e86aa03f0f5288001c46">imopv.h</a>
+</li>
+<li>vl_imintegral_ui32()
+: <a class="el" href="imopv_8h.html#ab02ddbe089220e3c33c548d2b45887a1">imopv.h</a>
+</li>
+<li>vl_imsmooth_d()
+: <a class="el" href="imopv_8h.html#af6c768d466c0c767bbad085166618daa">imopv.h</a>
+</li>
+<li>vl_imsmooth_f()
+: <a class="el" href="imopv_8h.html#ae57b15ab6308fb8a20f358267645657d">imopv.h</a>
+</li>
+<li>vl_index
+: <a class="el" href="host_8h.html#a66417c5847876295ea87b38140073879">host.h</a>
+</li>
+<li>vl_infinity_d
+: <a class="el" href="mathop_8h.html#afab36bf94fa017fd8c9023ab1c8caed1">mathop.h</a>
+</li>
+<li>VL_INFINITY_D
+: <a class="el" href="mathop_8h.html#a9eb876cf62894be62a2467db9db0bb03">mathop.h</a>
+</li>
+<li>vl_infinity_f
+: <a class="el" href="mathop_8h.html#aa229f0ad87d42202ad17cdc019428455">mathop.h</a>
+</li>
+<li>VL_INFINITY_F
+: <a class="el" href="mathop_8h.html#a7c8e51b4132fa5072a31ec38770e22c6">mathop.h</a>
+</li>
+<li>VL_INLINE
+: <a class="el" href="host_8h.html#a41b94143626a52276b1a0ffd1e29e496">host.h</a>
+</li>
+<li>vl_int
+: <a class="el" href="host_8h.html#a8127af01f6220099c1dd4ec579f5ae09">host.h</a>
+</li>
+<li>vl_int16
+: <a class="el" href="host_8h.html#a47e046602e64d54280961328bf950ca1">host.h</a>
+</li>
+<li>VL_INT16_C
+: <a class="el" href="host_8h.html#ad08cf90e9ab75508ff1a5a8c5a33f1fd">host.h</a>
+</li>
+<li>vl_int32
+: <a class="el" href="host_8h.html#a03fa435c713d3141c4a700f79f5b2600">host.h</a>
+</li>
+<li>VL_INT32_C
+: <a class="el" href="host_8h.html#a39f97aecddfe2a7abf90a358690410a1">host.h</a>
+</li>
+<li>vl_int64
+: <a class="el" href="host_8h.html#ab9925d4a6df873da6df7a59d2a97d81c">host.h</a>
+</li>
+<li>VL_INT64_C
+: <a class="el" href="host_8h.html#a2d1d0a4a0f2f80fd47ee405e4c92bba3">host.h</a>
+</li>
+<li>vl_int8
+: <a class="el" href="host_8h.html#aee4cc9690b799a33dfc9614636ac34a1">host.h</a>
+</li>
+<li>VL_INT8_C
+: <a class="el" href="host_8h.html#a39c44d2083958e498425a8abb29b407d">host.h</a>
+</li>
+<li>vl_intptr
+: <a class="el" href="host_8h.html#afa16bd9b637357fb5590b7154987239b">host.h</a>
+</li>
+<li>vl_irodrigues()
+: <a class="el" href="rodrigues_8c.html#a93ca856ba44cf313789442ed622b32fb">rodrigues.c</a>
+, <a class="el" href="rodrigues_8h.html#a93ca856ba44cf313789442ed622b32fb">rodrigues.h</a>
+</li>
+<li>vl_is_inf_d()
+: <a class="el" href="mathop_8h.html#a89b3b96cfa1fa17814e209721368f0f1">mathop.h</a>
+</li>
+<li>vl_is_inf_f()
+: <a class="el" href="mathop_8h.html#ab51e6a4e74b39c8b8226c682e317323b">mathop.h</a>
+</li>
+<li>vl_is_nan_d()
+: <a class="el" href="mathop_8h.html#a20334a5a243c1e6cee531e3f457b5a68">mathop.h</a>
+</li>
+<li>vl_is_nan_f()
+: <a class="el" href="mathop_8h.html#a3752bdd4daa1e678178543f51ad18d72">mathop.h</a>
+</li>
+<li>vl_kdforest_build()
+: <a class="el" href="kdtree_8c.html#ac886f1fd6024a74e9e4a5d7566b2125f">kdtree.c</a>
+, <a class="el" href="kdtree_8h.html#ac886f1fd6024a74e9e4a5d7566b2125f">kdtree.h</a>
+</li>
+<li>vl_kdforest_delete()
+: <a class="el" href="kdtree_8c.html#a68bcecfea6e63a41aafbd5ea9ca1a418">kdtree.c</a>
+, <a class="el" href="kdtree_8h.html#a68bcecfea6e63a41aafbd5ea9ca1a418">kdtree.h</a>
+</li>
+<li>vl_kdforest_get_data_dimension()
+: <a class="el" href="kdtree_8c.html#a548f72a02684f50ed2fc5d54e256b752">kdtree.c</a>
+, <a class="el" href="kdtree_8h.html#a548f72a02684f50ed2fc5d54e256b752">kdtree.h</a>
+</li>
+<li>vl_kdforest_get_data_type()
+: <a class="el" href="kdtree_8c.html#abba39fcd9a3693e9c8851b0b008c2db0">kdtree.c</a>
+, <a class="el" href="kdtree_8h.html#abba39fcd9a3693e9c8851b0b008c2db0">kdtree.h</a>
+</li>
+<li>vl_kdforest_get_depth_of_tree()
+: <a class="el" href="kdtree_8c.html#a55728e3e3e7a3619ed24e8b016dbf2a4">kdtree.c</a>
+, <a class="el" href="kdtree_8h.html#a55728e3e3e7a3619ed24e8b016dbf2a4">kdtree.h</a>
+</li>
+<li>vl_kdforest_get_max_num_comparisons()
+: <a class="el" href="kdtree_8c.html#af0d6436d4b42826cf4aaf50b2ec59b53">kdtree.c</a>
+, <a class="el" href="kdtree_8h.html#af0d6436d4b42826cf4aaf50b2ec59b53">kdtree.h</a>
+</li>
+<li>vl_kdforest_get_num_nodes_of_tree()
+: <a class="el" href="kdtree_8c.html#a766017f8aefa345762c3503f6a2b0b75">kdtree.c</a>
+, <a class="el" href="kdtree_8h.html#a766017f8aefa345762c3503f6a2b0b75">kdtree.h</a>
+</li>
+<li>vl_kdforest_get_num_trees()
+: <a class="el" href="kdtree_8c.html#a054701571177903a5369bb73da3139ef">kdtree.c</a>
+, <a class="el" href="kdtree_8h.html#a054701571177903a5369bb73da3139ef">kdtree.h</a>
+</li>
+<li>vl_kdforest_get_thresholding_method()
+: <a class="el" href="kdtree_8c.html#ac153ede5b0d8716f2ae7887ef7060884">kdtree.c</a>
+, <a class="el" href="kdtree_8h.html#ac153ede5b0d8716f2ae7887ef7060884">kdtree.h</a>
+</li>
+<li>vl_kdforest_new()
+: <a class="el" href="kdtree_8c.html#a52564e86ef0d9294a9bc9b13c5d44427">kdtree.c</a>
+, <a class="el" href="kdtree_8h.html#ab7e891d7cc5599ab13bc984289711af9">kdtree.h</a>
+</li>
+<li>vl_kdforest_new_searcher()
+: <a class="el" href="kdtree_8c.html#a9d909b0b42489ce438b03e99be9fd5d1">kdtree.c</a>
+, <a class="el" href="kdtree_8h.html#a9d909b0b42489ce438b03e99be9fd5d1">kdtree.h</a>
+</li>
+<li>vl_kdforest_query()
+: <a class="el" href="kdtree_8c.html#a2af87b58193ea0314fa971f8678e4e8c">kdtree.c</a>
+, <a class="el" href="kdtree_8h.html#a2af87b58193ea0314fa971f8678e4e8c">kdtree.h</a>
+</li>
+<li>vl_kdforest_query_recursively()
+: <a class="el" href="kdtree_8c.html#ab0f262a9cbe09b77e5a6eddd2c6c81db">kdtree.c</a>
+</li>
+<li>vl_kdforest_query_with_array()
+: <a class="el" href="kdtree_8c.html#a2b44b23d4ea1b3296a76c6a020831ac6">kdtree.c</a>
+, <a class="el" href="kdtree_8h.html#a01338d575e98246f59dfa80c22e833d1">kdtree.h</a>
+</li>
+<li>vl_kdforest_set_max_num_comparisons()
+: <a class="el" href="kdtree_8c.html#a4bf926f9406cec740d564b703236c68d">kdtree.c</a>
+, <a class="el" href="kdtree_8h.html#a4bf926f9406cec740d564b703236c68d">kdtree.h</a>
+</li>
+<li>vl_kdforest_set_thresholding_method()
+: <a class="el" href="kdtree_8h.html#adf66cf1b6be55d82a2ad4d568271f157">kdtree.h</a>
+, <a class="el" href="kdtree_8c.html#adf66cf1b6be55d82a2ad4d568271f157">kdtree.c</a>
+</li>
+<li>vl_kdforestsearcher_delete()
+: <a class="el" href="kdtree_8c.html#aaf7bb0d93fffba8cc0b1967b6a94293a">kdtree.c</a>
+, <a class="el" href="kdtree_8h.html#a621a1c0691c271f8e24f27dbe32cf039">kdtree.h</a>
+</li>
+<li>vl_kdforestsearcher_get_forest()
+: <a class="el" href="kdtree_8c.html#a1cbab77674ad3c634c1189143233a8a3">kdtree.c</a>
+</li>
+<li>vl_kdforestsearcher_query()
+: <a class="el" href="kdtree_8c.html#a2a6c7a53e155d26b62409157d8be7fef">kdtree.c</a>
+, <a class="el" href="kdtree_8h.html#a2a6c7a53e155d26b62409157d8be7fef">kdtree.h</a>
+</li>
+<li>vl_kdtree_build_recursively()
+: <a class="el" href="kdtree_8c.html#ac1b2bb2aa04dc77c102048d7f112fd5e">kdtree.c</a>
+</li>
+<li>vl_kdtree_calc_bounds_recursively()
+: <a class="el" href="kdtree_8c.html#a435c39094d6a630a7393e76fc8506630">kdtree.c</a>
+</li>
+<li>vl_kdtree_compare_index_entries()
+: <a class="el" href="kdtree_8c.html#af080598a5f9fe657bd3d3bdffe5c3a3d">kdtree.c</a>
+</li>
+<li>vl_kdtree_node_new()
+: <a class="el" href="kdtree_8c.html#a94cd8f55cedbb5512a83c234103921e7">kdtree.c</a>
+</li>
+<li>vl_kmeans_cluster()
+: <a class="el" href="kmeans_8c.html#a3f35fc9b75799b10a6e32ec81a9cd54d">kmeans.c</a>
+, <a class="el" href="kmeans_8h.html#a3f35fc9b75799b10a6e32ec81a9cd54d">kmeans.h</a>
+</li>
+<li>vl_kmeans_delete()
+: <a class="el" href="kmeans_8c.html#a55a50b06dfd493861651200c61458609">kmeans.c</a>
+, <a class="el" href="kmeans_8h.html#a55a50b06dfd493861651200c61458609">kmeans.h</a>
+</li>
+<li>vl_kmeans_get_algorithm()
+: <a class="el" href="kmeans_8h.html#ae6d9f44be8b5d6fc71f11554de742a63">kmeans.h</a>
+</li>
+<li>vl_kmeans_get_centers()
+: <a class="el" href="kmeans_8h.html#a69ecb61159ce9418679f5283c5cb427a">kmeans.h</a>
+</li>
+<li>vl_kmeans_get_data_type()
+: <a class="el" href="kmeans_8h.html#abc797cd0e7228d096313fd97b412a21c">kmeans.h</a>
+</li>
+<li>vl_kmeans_get_dimension()
+: <a class="el" href="kmeans_8h.html#a16d8a8bb5d3d7484c4645561dc42ee53">kmeans.h</a>
+</li>
+<li>vl_kmeans_get_distance()
+: <a class="el" href="kmeans_8h.html#a61bd032e28960a20cf86e8c77577b67e">kmeans.h</a>
+</li>
+<li>vl_kmeans_get_energy()
+: <a class="el" href="kmeans_8h.html#a02365a4146fabad03f76bb4cdad7cb77">kmeans.h</a>
+</li>
+<li>vl_kmeans_get_initialization()
+: <a class="el" href="kmeans_8h.html#af920d0fc7e802901fd071eec3def47d2">kmeans.h</a>
+</li>
+<li>vl_kmeans_get_max_num_comparisons()
+: <a class="el" href="kmeans_8h.html#aec83e043931adc13fe73f3e0a0586600">kmeans.h</a>
+</li>
+<li>vl_kmeans_get_max_num_iterations()
+: <a class="el" href="kmeans_8h.html#a6312397c35e56ccd50ac1fa8dbc6bcc2">kmeans.h</a>
+</li>
+<li>vl_kmeans_get_min_energy_variation()
+: <a class="el" href="kmeans_8h.html#a49bb2db622503ca24038be22e76aae24">kmeans.h</a>
+</li>
+<li>vl_kmeans_get_num_centers()
+: <a class="el" href="kmeans_8h.html#acba49a529f1393cd04c02a6ef8e2cacd">kmeans.h</a>
+</li>
+<li>vl_kmeans_get_num_repetitions()
+: <a class="el" href="kmeans_8h.html#ae84b1f054eacec5dd7cf2d54668ba181">kmeans.h</a>
+</li>
+<li>vl_kmeans_get_verbosity()
+: <a class="el" href="kmeans_8h.html#a7747422051ced08941d2306951445d79">kmeans.h</a>
+</li>
+<li>vl_kmeans_init_centers_plus_plus()
+: <a class="el" href="kmeans_8c.html#a5867c89e2916d933ecbc383c4da348c9">kmeans.c</a>
+, <a class="el" href="kmeans_8h.html#a08f5ecf2c5b1a75f7dacd6f29b922020">kmeans.h</a>
+</li>
+<li>vl_kmeans_init_centers_with_rand_data()
+: <a class="el" href="kmeans_8c.html#ae32387a856746fe4c39ae10fd533c8d3">kmeans.c</a>
+, <a class="el" href="kmeans_8h.html#a4fca3ae363d35813cde918fddc41a456">kmeans.h</a>
+</li>
+<li>vl_kmeans_new()
+: <a class="el" href="kmeans_8c.html#a868a729d2ea5b9f9fec15a18e0a27a76">kmeans.c</a>
+, <a class="el" href="kmeans_8h.html#a868a729d2ea5b9f9fec15a18e0a27a76">kmeans.h</a>
+</li>
+<li>vl_kmeans_new_copy()
+: <a class="el" href="kmeans_8c.html#ae251eb379788d26613057f0014bb15bd">kmeans.c</a>
+, <a class="el" href="kmeans_8h.html#ae251eb379788d26613057f0014bb15bd">kmeans.h</a>
+</li>
+<li>vl_kmeans_quantize()
+: <a class="el" href="kmeans_8c.html#a3649fe42a94e9b4945511b5665f82355">kmeans.c</a>
+, <a class="el" href="kmeans_8h.html#a3649fe42a94e9b4945511b5665f82355">kmeans.h</a>
+</li>
+<li>vl_kmeans_quantize_ann()
+: <a class="el" href="kmeans_8c.html#aa1b270ad6b6e303994629b74b4862f8e">kmeans.c</a>
+</li>
+<li>vl_kmeans_refine_centers()
+: <a class="el" href="kmeans_8c.html#a9fd1885e6b4742a93b4672f56eb9f2ce">kmeans.c</a>
+, <a class="el" href="kmeans_8h.html#a9fd1885e6b4742a93b4672f56eb9f2ce">kmeans.h</a>
+</li>
+<li>vl_kmeans_reset()
+: <a class="el" href="kmeans_8c.html#a77b5f58050110584e188534ad15c1dd0">kmeans.c</a>
+, <a class="el" href="kmeans_8h.html#a77b5f58050110584e188534ad15c1dd0">kmeans.h</a>
+</li>
+<li>vl_kmeans_set_algorithm()
+: <a class="el" href="kmeans_8h.html#ae2ab27c25bb4730d854219af20f37804">kmeans.h</a>
+</li>
+<li>vl_kmeans_set_centers()
+: <a class="el" href="kmeans_8c.html#ac86bd2fa181f6e23e22a6ad92f25288c">kmeans.c</a>
+, <a class="el" href="kmeans_8h.html#ac86bd2fa181f6e23e22a6ad92f25288c">kmeans.h</a>
+</li>
+<li>vl_kmeans_set_initialization()
+: <a class="el" href="kmeans_8h.html#a7c61513feb74bb5393326ed3cced2650">kmeans.h</a>
+</li>
+<li>vl_kmeans_set_max_num_comparisons()
+: <a class="el" href="kmeans_8h.html#ac19079ea46c3b5d719dc66f81b38bb5a">kmeans.h</a>
+</li>
+<li>vl_kmeans_set_max_num_iterations()
+: <a class="el" href="kmeans_8h.html#a34f80e7e3f4c7213366b88169cc2f70f">kmeans.h</a>
+</li>
+<li>vl_kmeans_set_min_energy_variation()
+: <a class="el" href="kmeans_8h.html#aa807a9a807f80ad1dc5359a81e06566b">kmeans.h</a>
+</li>
+<li>vl_kmeans_set_num_repetitions()
+: <a class="el" href="kmeans_8h.html#a7a1095cdba2192ee48e15d19144315fb">kmeans.h</a>
+</li>
+<li>vl_kmeans_set_num_trees()
+: <a class="el" href="kmeans_8h.html#a1a607e91823a83cbcb9c5eaecab99843">kmeans.h</a>
+</li>
+<li>vl_kmeans_set_verbosity()
+: <a class="el" href="kmeans_8h.html#af2411b97e440ef5419657c41273d38cb">kmeans.h</a>
+</li>
+<li>vl_lbp_delete()
+: <a class="el" href="lbp_8c.html#af4061c7ff063118d14893cafe5b55ed8">lbp.c</a>
+, <a class="el" href="lbp_8h.html#af4061c7ff063118d14893cafe5b55ed8">lbp.h</a>
+</li>
+<li>vl_lbp_get_dimension()
+: <a class="el" href="lbp_8h.html#a9fdc1d38de7ce1494cdd911bfd8957a7">lbp.h</a>
+, <a class="el" href="lbp_8c.html#a9fdc1d38de7ce1494cdd911bfd8957a7">lbp.c</a>
+</li>
+<li>vl_lbp_new()
+: <a class="el" href="lbp_8c.html#a3e6b2fc3465c379f3acc45c9fe5b179c">lbp.c</a>
+, <a class="el" href="lbp_8h.html#a3e6b2fc3465c379f3acc45c9fe5b179c">lbp.h</a>
+</li>
+<li>vl_lbp_process()
+: <a class="el" href="lbp_8h.html#a605c416d7ab3906609cbb62404a20253">lbp.h</a>
+, <a class="el" href="lbp_8c.html#a605c416d7ab3906609cbb62404a20253">lbp.c</a>
+</li>
+<li>vl_liopdesc_delete()
+: <a class="el" href="liop_8c.html#a2e765f1f59a64454f05999de06e48d28">liop.c</a>
+, <a class="el" href="liop_8h.html#a2e765f1f59a64454f05999de06e48d28">liop.h</a>
+</li>
+<li>vl_liopdesc_get_dimension()
+: <a class="el" href="liop_8h.html#aea42b7981535254d18c8d55a4c32f606">liop.h</a>
+, <a class="el" href="liop_8c.html#aea42b7981535254d18c8d55a4c32f606">liop.c</a>
+</li>
+<li>vl_liopdesc_get_intensity_threshold()
+: <a class="el" href="liop_8c.html#ad861a14df3f0236ca908726c9fbe269a">liop.c</a>
+, <a class="el" href="liop_8h.html#ad861a14df3f0236ca908726c9fbe269a">liop.h</a>
+</li>
+<li>vl_liopdesc_get_neighbourhood_radius()
+: <a class="el" href="liop_8c.html#a409893390d672968c871861a37c3dc0c">liop.c</a>
+, <a class="el" href="liop_8h.html#a409893390d672968c871861a37c3dc0c">liop.h</a>
+</li>
+<li>vl_liopdesc_get_num_neighbours()
+: <a class="el" href="liop_8c.html#ac90f67676f91f17d9f3b51df4dab4730">liop.c</a>
+, <a class="el" href="liop_8h.html#ac90f67676f91f17d9f3b51df4dab4730">liop.h</a>
+</li>
+<li>vl_liopdesc_get_num_spatial_bins()
+: <a class="el" href="liop_8h.html#afbb31827623d0b7f7957ba76e6a705cb">liop.h</a>
+, <a class="el" href="liop_8c.html#afbb31827623d0b7f7957ba76e6a705cb">liop.c</a>
+</li>
+<li>vl_liopdesc_new()
+: <a class="el" href="liop_8c.html#a58f0187de91697299f22036831453a9e">liop.c</a>
+, <a class="el" href="liop_8h.html#a58f0187de91697299f22036831453a9e">liop.h</a>
+</li>
+<li>vl_liopdesc_new_basic()
+: <a class="el" href="liop_8h.html#a62182ec2c1ee31d0eba5b7203f64f8bc">liop.h</a>
+, <a class="el" href="liop_8c.html#a62182ec2c1ee31d0eba5b7203f64f8bc">liop.c</a>
+</li>
+<li>vl_liopdesc_process()
+: <a class="el" href="liop_8c.html#a33e638228068ce2674b23eee7af5ce43">liop.c</a>
+, <a class="el" href="liop_8h.html#a027e15a74b23d371e90a5511d25c5f24">liop.h</a>
+</li>
+<li>vl_liopdesc_set_intensity_threshold()
+: <a class="el" href="liop_8c.html#a1d385f07442b954b658ae419abdd31eb">liop.c</a>
+, <a class="el" href="liop_8h.html#a1d385f07442b954b658ae419abdd31eb">liop.h</a>
+</li>
+<li>vl_lock_state()
+: <a class="el" href="generic_8c.html#aa4922f5efbe6b13c2527b1fcc6fc833a">generic.c</a>
+</li>
+<li>vl_log2_d()
+: <a class="el" href="mathop_8h.html#a2b8296f9c8f1266500860fcb08bf29b5">mathop.h</a>
+</li>
+<li>vl_log2_f()
+: <a class="el" href="mathop_8h.html#a9d76b809ad52b5a4080cb94fdeac425e">mathop.h</a>
+</li>
+<li>VL_LOG_OF_2
+: <a class="el" href="mathop_8h.html#a5103e2bf416806fb511feaa8ee96328f">mathop.h</a>
+</li>
+<li>vl_malloc()
+: <a class="el" href="generic_8c.html#a9f0d2ab48ad66f0588c89a3e526044ed">generic.c</a>
+, <a class="el" href="generic_8h.html#a9f0d2ab48ad66f0588c89a3e526044ed">generic.h</a>
+</li>
+<li>VL_MAX
+: <a class="el" href="generic_8h.html#ac8a3f4020a3e381daadd4214668dc63c">generic.h</a>
+</li>
+<li>VL_MIN
+: <a class="el" href="generic_8h.html#a36f2f85796040ca2f71bb34a9f55969f">generic.h</a>
+</li>
+<li>vl_mod_2pi_d()
+: <a class="el" href="mathop_8h.html#a6ee66acb41ce542899a6e99e4fe5b6f3">mathop.h</a>
+</li>
+<li>vl_mod_2pi_f()
+: <a class="el" href="mathop_8h.html#a99beafd23bc68c4bf8fb525e4efb2749">mathop.h</a>
+</li>
+<li>vl_mser_acc
+: <a class="el" href="mser_8h.html#a4da3be7334e5383e02c829c53ddb9e34">mser.h</a>
+</li>
+<li>vl_mser_delete()
+: <a class="el" href="mser_8h.html#a3d94ff216cb9389b49dc5799e26ad3ba">mser.h</a>
+, <a class="el" href="mser_8c.html#a3d94ff216cb9389b49dc5799e26ad3ba">mser.c</a>
+</li>
+<li>vl_mser_ell_fit()
+: <a class="el" href="mser_8c.html#aeeee08edd486e41126316f1d3bf90013">mser.c</a>
+, <a class="el" href="mser_8h.html#aeeee08edd486e41126316f1d3bf90013">mser.h</a>
+</li>
+<li>vl_mser_get_delta()
+: <a class="el" href="mser_8h.html#abcd71f7677c7daf6902c022c825637de">mser.h</a>
+</li>
+<li>vl_mser_get_ell()
+: <a class="el" href="mser_8h.html#a9ce0f94d6cc33244be2f5ca736a0bff4">mser.h</a>
+</li>
+<li>vl_mser_get_ell_dof()
+: <a class="el" href="mser_8h.html#a0e10d949e672ffd82dd230a7f0ab37a8">mser.h</a>
+</li>
+<li>vl_mser_get_ell_num()
+: <a class="el" href="mser_8h.html#a7f7172365b355735c1ee1cc4bded9915">mser.h</a>
+</li>
+<li>vl_mser_get_max_area()
+: <a class="el" href="mser_8h.html#a9598f59824914b8cd39ff384cdf2d708">mser.h</a>
+</li>
+<li>vl_mser_get_max_variation()
+: <a class="el" href="mser_8h.html#a546850260c72fa3ef1d5b5887a1240ad">mser.h</a>
+</li>
+<li>vl_mser_get_min_area()
+: <a class="el" href="mser_8h.html#a82b28392b17bfd5bd6765e1cab61f049">mser.h</a>
+</li>
+<li>vl_mser_get_min_diversity()
+: <a class="el" href="mser_8h.html#a420d10de58b8e7878c6e4708f223493f">mser.h</a>
+</li>
+<li>vl_mser_get_regions()
+: <a class="el" href="mser_8h.html#ac13e050b5ea00ae60d34f00ff2400126">mser.h</a>
+</li>
+<li>vl_mser_get_regions_num()
+: <a class="el" href="mser_8h.html#abb4d8f51eeecdda9be01fc99b8144c52">mser.h</a>
+</li>
+<li>vl_mser_get_stats()
+: <a class="el" href="mser_8h.html#af8d2c9381ee97127e5da27be9ad7cc38">mser.h</a>
+</li>
+<li>vl_mser_new()
+: <a class="el" href="mser_8c.html#af6dbdcb894693e90c43d51140d17cb9c">mser.c</a>
+, <a class="el" href="mser_8h.html#af6dbdcb894693e90c43d51140d17cb9c">mser.h</a>
+</li>
+<li>vl_mser_pix
+: <a class="el" href="mser_8h.html#a5f6872cfbb7787c2a38cc2d5f138c716">mser.h</a>
+</li>
+<li>VL_MSER_PIX_MAXVAL
+: <a class="el" href="mser_8h.html#ab88df95be093992e6c90caf07711182a">mser.h</a>
+</li>
+<li>vl_mser_process()
+: <a class="el" href="mser_8c.html#ae50c576bc27a1ee7837cbbe6e5089583">mser.c</a>
+, <a class="el" href="mser_8h.html#ae50c576bc27a1ee7837cbbe6e5089583">mser.h</a>
+</li>
+<li>vl_mser_set_delta()
+: <a class="el" href="mser_8h.html#a9aa9f3041186a969cb35268d4ab656bb">mser.h</a>
+</li>
+<li>vl_mser_set_max_area()
+: <a class="el" href="mser_8h.html#af517861a633fbd7cc5637ea4baef0db6">mser.h</a>
+</li>
+<li>vl_mser_set_max_variation()
+: <a class="el" href="mser_8h.html#a7feb4b477fe6340639d40461174cfabe">mser.h</a>
+</li>
+<li>vl_mser_set_min_area()
+: <a class="el" href="mser_8h.html#a25744f49395d441a8769b9f605480f4c">mser.h</a>
+</li>
+<li>vl_mser_set_min_diversity()
+: <a class="el" href="mser_8h.html#abb7fe6fc94bb7503bdc0dd160a549de1">mser.h</a>
+</li>
+<li>VL_MSER_VOID_NODE
+: <a class="el" href="mser_8h.html#a8dedc365f221c110cee8b0634ab86241">mser.h</a>
+</li>
+<li>VL_NAN_D
+: <a class="el" href="mathop_8h.html#a3f9df65fc71880e96e21e93e3abfd99c">mathop.h</a>
+</li>
+<li>vl_nan_d
+: <a class="el" href="mathop_8h.html#ad5d519fcbb9f3c90414e6987df2e4cb5">mathop.h</a>
+</li>
+<li>VL_NAN_F
+: <a class="el" href="mathop_8h.html#afcbfd66dfa72bf495e08e1d622d6da0e">mathop.h</a>
+</li>
+<li>vl_nan_f
+: <a class="el" href="mathop_8h.html#a2930ae1c9c5c58257ef2ca4f7946ebc4">mathop.h</a>
+</li>
+<li>VL_OS_LINUX
+: <a class="el" href="host_8h.html#ace5a6e77fa663303cfd489f3eaaf1cd9">host.h</a>
+</li>
+<li>VL_OS_MACOSX
+: <a class="el" href="host_8h.html#a6368203ab40afc45aa5d2faaf794038e">host.h</a>
+</li>
+<li>VL_OS_WIN
+: <a class="el" href="host_8h.html#a9e8b6b892c4c517efb458a908f8d8f89">host.h</a>
+</li>
+<li>VL_OS_WIN64
+: <a class="el" href="host_8h.html#a5a08df472ecc78e67b920ca29217fabf">host.h</a>
+</li>
+<li>VL_PAD_BY_CONTINUITY
+: <a class="el" href="imopv_8h.html#aabcdd51c289c0d8db11dda9e26349a52">imopv.h</a>
+</li>
+<li>VL_PAD_BY_ZERO
+: <a class="el" href="imopv_8h.html#af6e169f2ed366d16f9149a99d5574071">imopv.h</a>
+</li>
+<li>VL_PAD_MASK
+: <a class="el" href="imopv_8h.html#a2a4f0c469409eea71985bac3f10d08fb">imopv.h</a>
+</li>
+<li>vl_pgm_extract_data()
+: <a class="el" href="pgm_8c.html#a5ff673e681338e79a1c1591179504b5f">pgm.c</a>
+, <a class="el" href="pgm_8h.html#a5ff673e681338e79a1c1591179504b5f">pgm.h</a>
+</li>
+<li>vl_pgm_extract_head()
+: <a class="el" href="pgm_8c.html#a829c23407220c6e7953ee45cca900565">pgm.c</a>
+, <a class="el" href="pgm_8h.html#a829c23407220c6e7953ee45cca900565">pgm.h</a>
+</li>
+<li>vl_pgm_get_bpp()
+: <a class="el" href="pgm_8c.html#aef628fa82fec40803ce5cdcecdd82f14">pgm.c</a>
+, <a class="el" href="pgm_8h.html#aef628fa82fec40803ce5cdcecdd82f14">pgm.h</a>
+</li>
+<li>vl_pgm_get_npixels()
+: <a class="el" href="pgm_8h.html#aa0e5d7cf948817fa0929b4216100665b">pgm.h</a>
+, <a class="el" href="pgm_8c.html#aa0e5d7cf948817fa0929b4216100665b">pgm.c</a>
+</li>
+<li>vl_pgm_insert()
+: <a class="el" href="pgm_8c.html#a418f48a6aa8471ccaaf79640f4298d0a">pgm.c</a>
+, <a class="el" href="pgm_8h.html#a418f48a6aa8471ccaaf79640f4298d0a">pgm.h</a>
+</li>
+<li>vl_pgm_read_new()
+: <a class="el" href="pgm_8h.html#a5814312e5e026dc51396dd09b864fb8b">pgm.h</a>
+, <a class="el" href="pgm_8c.html#a5814312e5e026dc51396dd09b864fb8b">pgm.c</a>
+</li>
+<li>vl_pgm_read_new_f()
+: <a class="el" href="pgm_8c.html#a8b9eb82a66e8cb72bdf6ab3ad1d30015">pgm.c</a>
+, <a class="el" href="pgm_8h.html#a8b9eb82a66e8cb72bdf6ab3ad1d30015">pgm.h</a>
+</li>
+<li>vl_pgm_write()
+: <a class="el" href="pgm_8h.html#af2e33d504690aeff3eeb3e035727df9b">pgm.h</a>
+, <a class="el" href="pgm_8c.html#af2e33d504690aeff3eeb3e035727df9b">pgm.c</a>
+</li>
+<li>vl_pgm_write_f()
+: <a class="el" href="pgm_8c.html#a3751d1ee6548a567dd0860dfe921b498">pgm.c</a>
+, <a class="el" href="pgm_8h.html#a3751d1ee6548a567dd0860dfe921b498">pgm.h</a>
+</li>
+<li>VL_PI
+: <a class="el" href="mathop_8h.html#a19d43a5e0c355df553ebe825208a4cc1">mathop.h</a>
+</li>
+<li>VL_PRINT
+: <a class="el" href="generic_8h.html#a1d4b7e68329e078b0d9064b7f408c96b">generic.h</a>
+</li>
+<li>VL_PRINTF
+: <a class="el" href="generic_8h.html#af68d1c6327bf2226b15c84007eab3d94">generic.h</a>
+</li>
+<li>VL_PROT_ASCII
+: <a class="el" href="stringop_8h.html#a61dadd085c1777f559549e05962b2c9ea611cc6138919fdd98ce2a9137a762b91">stringop.h</a>
+</li>
+<li>VL_PROT_BINARY
+: <a class="el" href="stringop_8h.html#a61dadd085c1777f559549e05962b2c9eaa92055b1172e1b8fa98177304d495653">stringop.h</a>
+</li>
+<li>VL_PROT_NONE
+: <a class="el" href="stringop_8h.html#a61dadd085c1777f559549e05962b2c9ea94b2ad9436eeeb7e7a08baf24e00f3d6">stringop.h</a>
+</li>
+<li>VL_PROT_UNKNOWN
+: <a class="el" href="stringop_8h.html#a61dadd085c1777f559549e05962b2c9ea71fca21ec3ae6a26edbe380fedc2ebec">stringop.h</a>
+</li>
+<li>VL_QS_INF
+: <a class="el" href="quickshift_8h.html#a674ebf4b93ac727a31df15e6d5a45b91">quickshift.h</a>
+</li>
+<li>vl_qs_type
+: <a class="el" href="quickshift_8h.html#aee7aaa0947ccf164d8072bd798f419e2">quickshift.h</a>
+</li>
+<li>VL_QSORT_array
+: <a class="el" href="qsort-def_8h.html#a09b2946a2aa460a9d33a78f46056059c">qsort-def.h</a>
+</li>
+<li>VL_QSORT_cmp()
+: <a class="el" href="qsort-def_8h.html#a846b82fcc68f6bb540da6243d2670ed1">qsort-def.h</a>
+</li>
+<li>VL_QSORT_prefix
+: <a class="el" href="qsort-def_8h.html#a6bc1350759ef49165982d85fe1996be3">qsort-def.h</a>
+</li>
+<li>VL_QSORT_sort()
+: <a class="el" href="qsort-def_8h.html#a11be07172455010601a417058008ffa4">qsort-def.h</a>
+</li>
+<li>VL_QSORT_sort_recursive()
+: <a class="el" href="qsort-def_8h.html#aa91794fadc74f98458f58a22cd0bd6ae">qsort-def.h</a>
+</li>
+<li>VL_QSORT_swap()
+: <a class="el" href="qsort-def_8h.html#ac7face14222e47cac7d730925637ac91">qsort-def.h</a>
+</li>
+<li>VL_QSORT_type
+: <a class="el" href="qsort-def_8h.html#aa7bbcd78393c03275c0e3d55c1decdb0">qsort-def.h</a>
+</li>
+<li>vl_quickshift_delete()
+: <a class="el" href="quickshift_8c.html#a9c2a39344fb684d899f22faf358425e8">quickshift.c</a>
+, <a class="el" href="quickshift_8h.html#a9c2a39344fb684d899f22faf358425e8">quickshift.h</a>
+</li>
+<li>vl_quickshift_distance()
+: <a class="el" href="quickshift_8c.html#aa70ffb9d0d0c62908a46b425604a7065">quickshift.c</a>
+</li>
+<li>vl_quickshift_get_density()
+: <a class="el" href="quickshift_8h.html#acceb1733e008e0542164429e92253837">quickshift.h</a>
+</li>
+<li>vl_quickshift_get_dists()
+: <a class="el" href="quickshift_8h.html#a675666418f0bc2665be61f0b243a8c1d">quickshift.h</a>
+</li>
+<li>vl_quickshift_get_kernel_size()
+: <a class="el" href="quickshift_8h.html#a929d3f6d37b578d40edddb0e6aa9d4e3">quickshift.h</a>
+</li>
+<li>vl_quickshift_get_max_dist()
+: <a class="el" href="quickshift_8h.html#a0a6c066b205bf0382d19b7c9fe8628d5">quickshift.h</a>
+</li>
+<li>vl_quickshift_get_medoid()
+: <a class="el" href="quickshift_8h.html#a199679a6a594f25a690c97d5c67515a0">quickshift.h</a>
+</li>
+<li>vl_quickshift_get_parents()
+: <a class="el" href="quickshift_8h.html#ab116d2dbad717ce889e56ea8335a1463">quickshift.h</a>
+</li>
+<li>vl_quickshift_inner()
+: <a class="el" href="quickshift_8c.html#a7d317b966c114ce48d921fbeeef13a3c">quickshift.c</a>
+</li>
+<li>vl_quickshift_new()
+: <a class="el" href="quickshift_8c.html#a9fc34955bf121df6d1d5bd991b8d2b13">quickshift.c</a>
+, <a class="el" href="quickshift_8h.html#aec706b048c3f4de42a118e242fbd0105">quickshift.h</a>
+</li>
+<li>vl_quickshift_process()
+: <a class="el" href="quickshift_8c.html#aebfc7337283b7a8f8be1a1c0fd4f5f92">quickshift.c</a>
+, <a class="el" href="quickshift_8h.html#aebfc7337283b7a8f8be1a1c0fd4f5f92">quickshift.h</a>
+</li>
+<li>vl_quickshift_set_kernel_size()
+: <a class="el" href="quickshift_8h.html#ae54ca4abe8fb6ba0b8a8306d053b7628">quickshift.h</a>
+</li>
+<li>vl_quickshift_set_max_dist()
+: <a class="el" href="quickshift_8h.html#ac54275b6b97121f41cf3b64d9e6210a3">quickshift.h</a>
+</li>
+<li>vl_quickshift_set_medoid()
+: <a class="el" href="quickshift_8h.html#aacf51684900938c0eaec425e742d0a76">quickshift.h</a>
+</li>
+<li>vl_rand_init()
+: <a class="el" href="random_8c.html#adc85f15763be5c5de846697a2af843df">random.c</a>
+, <a class="el" href="random_8h.html#adc85f15763be5c5de846697a2af843df">random.h</a>
+</li>
+<li>vl_rand_int31()
+: <a class="el" href="random_8h.html#a4e4ed13a370eaa931eb5b55f4182c520">random.h</a>
+</li>
+<li>vl_rand_int63()
+: <a class="el" href="random_8h.html#a0f97cfce8f7f71de9a8ff7b78bb6660c">random.h</a>
+</li>
+<li>vl_rand_permute_indexes()
+: <a class="el" href="random_8c.html#af6690a982b19ecd8fcebe2909176d1f9">random.c</a>
+, <a class="el" href="random_8h.html#af6690a982b19ecd8fcebe2909176d1f9">random.h</a>
+</li>
+<li>vl_rand_real1()
+: <a class="el" href="random_8h.html#a9a615000c94ea12981fe04f3f12c8202">random.h</a>
+</li>
+<li>vl_rand_real2()
+: <a class="el" href="random_8h.html#a77c6737e2516d762e71acf4c6c700f0f">random.h</a>
+</li>
+<li>vl_rand_real3()
+: <a class="el" href="random_8h.html#a1de78dd0192fe5168f47e7181f94aeae">random.h</a>
+</li>
+<li>vl_rand_res53()
+: <a class="el" href="random_8h.html#a610a2d1017c661151d70711f4dfc9e05">random.h</a>
+</li>
+<li>vl_rand_seed()
+: <a class="el" href="random_8h.html#afd8d168b5b154f5f03615fda291b9364">random.h</a>
+, <a class="el" href="random_8c.html#afd8d168b5b154f5f03615fda291b9364">random.c</a>
+</li>
+<li>vl_rand_seed_by_array()
+: <a class="el" href="random_8c.html#a165da1d589640d329cddb64c779f813a">random.c</a>
+, <a class="el" href="random_8h.html#a165da1d589640d329cddb64c779f813a">random.h</a>
+</li>
+<li>vl_rand_uindex()
+: <a class="el" href="random_8h.html#abef2fe4cfd0c0d532b7c43b7960bd188">random.h</a>
+</li>
+<li>vl_rand_uint32()
+: <a class="el" href="random_8c.html#a0b444c85bf8f37b8b8050d66b9b0ab8b">random.c</a>
+, <a class="el" href="random_8h.html#a0b444c85bf8f37b8b8050d66b9b0ab8b">random.h</a>
+</li>
+<li>vl_rand_uint64()
+: <a class="el" href="random_8h.html#a04b5a46e955520edca48e8266db1057c">random.h</a>
+</li>
+<li>vl_realloc()
+: <a class="el" href="generic_8h.html#a46e9d9640b0c71f1210f320cd3f0e489">generic.h</a>
+, <a class="el" href="generic_8c.html#a46e9d9640b0c71f1210f320cd3f0e489">generic.c</a>
+</li>
+<li>vl_refine_local_extreum_2()
+: <a class="el" href="covdet_8c.html#a98a72bd26a4cb59bb9899e9cffc32bd3">covdet.c</a>
+</li>
+<li>vl_refine_local_extreum_3()
+: <a class="el" href="covdet_8c.html#a6eb190e7eb77268734e56bb9a8773f30">covdet.c</a>
+</li>
+<li>vl_rodrigues()
+: <a class="el" href="rodrigues_8c.html#aecd536d61f6f0f4c1d91a1df68da44bd">rodrigues.c</a>
+, <a class="el" href="rodrigues_8h.html#aecd536d61f6f0f4c1d91a1df68da44bd">rodrigues.h</a>
+</li>
+<li>vl_round_d()
+: <a class="el" href="mathop_8h.html#af3adf65b9d416b2438ccfe78748ed60f">mathop.h</a>
+</li>
+<li>vl_round_f()
+: <a class="el" href="mathop_8h.html#a97fb4b325bc0dc8bb8618e132fab736c">mathop.h</a>
+</li>
+<li>vl_scalespace_delete()
+: <a class="el" href="scalespace_8h.html#af4d66bec63bb5a3670f55a2fa7786830">scalespace.h</a>
+, <a class="el" href="scalespace_8c.html#af4d66bec63bb5a3670f55a2fa7786830">scalespace.c</a>
+</li>
+<li>vl_scalespace_get_default_geometry()
+: <a class="el" href="scalespace_8c.html#ab9a838a41d9fe1e04f1477061055b6d9">scalespace.c</a>
+, <a class="el" href="scalespace_8h.html#ab9a838a41d9fe1e04f1477061055b6d9">scalespace.h</a>
+</li>
+<li>vl_scalespace_get_geometry()
+: <a class="el" href="scalespace_8c.html#a13e0136527672f35a76ffb60fcea2bba">scalespace.c</a>
+, <a class="el" href="scalespace_8h.html#a13e0136527672f35a76ffb60fcea2bba">scalespace.h</a>
+</li>
+<li>vl_scalespace_get_level()
+: <a class="el" href="scalespace_8c.html#a5010e154df5b981f31afff3af704ae30">scalespace.c</a>
+, <a class="el" href="scalespace_8h.html#a5010e154df5b981f31afff3af704ae30">scalespace.h</a>
+</li>
+<li>vl_scalespace_get_level_const()
+: <a class="el" href="scalespace_8h.html#a98ea8b3d992c0303e2f41ba3d6cc4e01">scalespace.h</a>
+, <a class="el" href="scalespace_8c.html#a98ea8b3d992c0303e2f41ba3d6cc4e01">scalespace.c</a>
+</li>
+<li>vl_scalespace_get_level_sigma()
+: <a class="el" href="scalespace_8c.html#a105e697419bf9ddfaef70e498353a968">scalespace.c</a>
+, <a class="el" href="scalespace_8h.html#a105e697419bf9ddfaef70e498353a968">scalespace.h</a>
+</li>
+<li>vl_scalespace_get_octave_geometry()
+: <a class="el" href="scalespace_8h.html#a5c63aee8d9c6e9393308eb3306264108">scalespace.h</a>
+, <a class="el" href="scalespace_8c.html#a5c63aee8d9c6e9393308eb3306264108">scalespace.c</a>
+</li>
+<li>vl_scalespace_new()
+: <a class="el" href="scalespace_8c.html#a42931ebe6e7e762b7d0ccd7856d97834">scalespace.c</a>
+, <a class="el" href="scalespace_8h.html#a42931ebe6e7e762b7d0ccd7856d97834">scalespace.h</a>
+</li>
+<li>vl_scalespace_new_copy()
+: <a class="el" href="scalespace_8h.html#a74ed629b213fd52c3852eddb5df83a4e">scalespace.h</a>
+, <a class="el" href="scalespace_8c.html#aaea616bc66aee097260035536befd845">scalespace.c</a>
+</li>
+<li>vl_scalespace_new_shallow_copy()
+: <a class="el" href="scalespace_8c.html#a72281dc130acc23ebbcfed24aafc1ffd">scalespace.c</a>
+, <a class="el" href="scalespace_8h.html#afd7be36a99613014915e272569fad0c5">scalespace.h</a>
+</li>
+<li>vl_scalespace_new_with_geometry()
+: <a class="el" href="scalespace_8c.html#a6e997ce733e67a186769e2877a5aaa6a">scalespace.c</a>
+, <a class="el" href="scalespace_8h.html#a6e997ce733e67a186769e2877a5aaa6a">scalespace.h</a>
+</li>
+<li>vl_scalespace_put_image()
+: <a class="el" href="scalespace_8h.html#a2e2be28c7c1017222fec22a8c0df02f5">scalespace.h</a>
+, <a class="el" href="scalespace_8c.html#a2e2be28c7c1017222fec22a8c0df02f5">scalespace.c</a>
+</li>
+<li>vl_scalespacegeometry_is_equal()
+: <a class="el" href="scalespace_8c.html#ad515a7ec3d620d6b55f9869c5318b546">scalespace.c</a>
+, <a class="el" href="scalespace_8h.html#ad515a7ec3d620d6b55f9869c5318b546">scalespace.h</a>
+</li>
+<li>vl_set_alloc_func()
+: <a class="el" href="generic_8c.html#ac04fe278ac908fa6ed02bda099588cf0">generic.c</a>
+, <a class="el" href="generic_8h.html#ac04fe278ac908fa6ed02bda099588cf0">generic.h</a>
+</li>
+<li>vl_set_last_error()
+: <a class="el" href="generic_8c.html#a7a3ebca801573280aafbea04578ef124">generic.c</a>
+, <a class="el" href="generic_8h.html#a7a3ebca801573280aafbea04578ef124">generic.h</a>
+</li>
+<li>vl_set_num_threads()
+: <a class="el" href="generic_8c.html#a3e410efeeb102664d7b98417c8b5806c">generic.c</a>
+, <a class="el" href="generic_8h.html#adbbde4d47763c8e581640b23db5b6a1a">generic.h</a>
+</li>
+<li>vl_set_printf_func()
+: <a class="el" href="generic_8h.html#a17ef7f5dfc74e0ff032f46617a5bc1c5">generic.h</a>
+, <a class="el" href="generic_8c.html#a17ef7f5dfc74e0ff032f46617a5bc1c5">generic.c</a>
+</li>
+<li>vl_set_simd_enabled()
+: <a class="el" href="generic_8h.html#a3fb6cee731450d886e49da54e29788e8">generic.h</a>
+, <a class="el" href="generic_8c.html#a57a5db4e3647ce66b3c22741928a291a">generic.c</a>
+</li>
+<li>VL_SHIFT_LEFT
+: <a class="el" href="generic_8h.html#aee17b425e4672e582e26cf9e103fc0fb">generic.h</a>
+</li>
+<li>VL_SHUFFLE_array
+: <a class="el" href="shuffle-def_8h.html#a1b2ff17424758cd25468688d9eeb9768">shuffle-def.h</a>
+</li>
+<li>VL_SHUFFLE_prefix
+: <a class="el" href="shuffle-def_8h.html#a0f4417ddb60f347306e145cddc70632b">shuffle-def.h</a>
+</li>
+<li>VL_SHUFFLE_shuffle()
+: <a class="el" href="shuffle-def_8h.html#a81c4e7b542befcbed0beaabbf7535e3c">shuffle-def.h</a>
+</li>
+<li>VL_SHUFFLE_swap()
+: <a class="el" href="shuffle-def_8h.html#ad670015d69c1236260f8931a4e34dc7e">shuffle-def.h</a>
+</li>
+<li>VL_SHUFFLE_type
+: <a class="el" href="shuffle-def_8h.html#a1148a2ce5fc323d5c524e0f5d28f7702">shuffle-def.h</a>
+</li>
+<li>VL_SIFT_BILINEAR_ORIENTATIONS
+: <a class="el" href="sift_8c.html#a3292b2feb6b1aba4f34ba037f15bc2d0">sift.c</a>
+</li>
+<li>vl_sift_calc_keypoint_descriptor()
+: <a class="el" href="sift_8c.html#a85f3878a53ef7151b569c1b3ea4d13b6">sift.c</a>
+, <a class="el" href="sift_8h.html#a19140d86df12ff8c211c2728209de9b1">sift.h</a>
+</li>
+<li>vl_sift_calc_keypoint_orientations()
+: <a class="el" href="sift_8h.html#a2e409d464f81582dc3e839bf0fece66e">sift.h</a>
+, <a class="el" href="sift_8c.html#a2e409d464f81582dc3e839bf0fece66e">sift.c</a>
+</li>
+<li>vl_sift_calc_raw_descriptor()
+: <a class="el" href="sift_8h.html#a46d3e864618b4a940c2099b7c1f7b6a6">sift.h</a>
+, <a class="el" href="sift_8c.html#a335f3295ba77b3bb937e5272fe1a02fc">sift.c</a>
+</li>
+<li>vl_sift_delete()
+: <a class="el" href="sift_8c.html#ab242293326626641411e7d7f43a109b2">sift.c</a>
+, <a class="el" href="sift_8h.html#ab242293326626641411e7d7f43a109b2">sift.h</a>
+</li>
+<li>vl_sift_detect()
+: <a class="el" href="sift_8c.html#a65c55820964f4f6609ca9ef1d547b2c4">sift.c</a>
+, <a class="el" href="sift_8h.html#a65c55820964f4f6609ca9ef1d547b2c4">sift.h</a>
+</li>
+<li>vl_sift_get_edge_thresh()
+: <a class="el" href="sift_8h.html#adb5b0159af92e1ce1462ddaaaa55a747">sift.h</a>
+</li>
+<li>vl_sift_get_keypoints()
+: <a class="el" href="sift_8h.html#a8d7878f102c5e09b2df06b3662ed9c6a">sift.h</a>
+</li>
+<li>vl_sift_get_magnif()
+: <a class="el" href="sift_8h.html#ae0272723812d5072619475d4787be78e">sift.h</a>
+</li>
+<li>vl_sift_get_nkeypoints()
+: <a class="el" href="sift_8h.html#aa45b8e7413384c7d6525f439e68856fe">sift.h</a>
+</li>
+<li>vl_sift_get_nlevels()
+: <a class="el" href="sift_8h.html#a751c116352e72eed8a111e7c1e06a18e">sift.h</a>
+</li>
+<li>vl_sift_get_noctaves()
+: <a class="el" href="sift_8h.html#a5e0cd96b3985635b82adabc3ce8b2242">sift.h</a>
+</li>
+<li>vl_sift_get_norm_thresh()
+: <a class="el" href="sift_8h.html#ad4b57c390ca004dc56b0b0b1abf0c7a9">sift.h</a>
+</li>
+<li>vl_sift_get_octave()
+: <a class="el" href="sift_8h.html#a400759060e87dc7a6264555b90b0a221">sift.h</a>
+</li>
+<li>vl_sift_get_octave_first()
+: <a class="el" href="sift_8h.html#aa3db07e91c86f992c31b8e2335a760a9">sift.h</a>
+</li>
+<li>vl_sift_get_octave_height()
+: <a class="el" href="sift_8h.html#a9769e8f6d84ec75804e873229526eb10">sift.h</a>
+</li>
+<li>vl_sift_get_octave_index()
+: <a class="el" href="sift_8h.html#a70186e579c8eff1bcabf408f46169cad">sift.h</a>
+</li>
+<li>vl_sift_get_octave_width()
+: <a class="el" href="sift_8h.html#a89bd76ab5c1e584ff8e46dfdc93ea748">sift.h</a>
+</li>
+<li>vl_sift_get_peak_thresh()
+: <a class="el" href="sift_8h.html#a08959e6a90c98bf397e3430e79a6ea9c">sift.h</a>
+</li>
+<li>vl_sift_get_window_size()
+: <a class="el" href="sift_8h.html#a76053a5e655b9577995fea0fbe429078">sift.h</a>
+</li>
+<li>vl_sift_keypoint_init()
+: <a class="el" href="sift_8c.html#a6f3fc8e38b6c0c520cb90b1a63ddc031">sift.c</a>
+, <a class="el" href="sift_8h.html#a6f3fc8e38b6c0c520cb90b1a63ddc031">sift.h</a>
+</li>
+<li>vl_sift_new()
+: <a class="el" href="sift_8c.html#adff66a155e30ed412bc8bbb97dfa2fae">sift.c</a>
+, <a class="el" href="sift_8h.html#adff66a155e30ed412bc8bbb97dfa2fae">sift.h</a>
+</li>
+<li>vl_sift_pix
+: <a class="el" href="sift_8h.html#a7efac4fb08e4642f12ef439ac376a5cc">sift.h</a>
+</li>
+<li>vl_sift_process_first_octave()
+: <a class="el" href="sift_8c.html#a97cca9a09efaadc9dd0671912b9d5e05">sift.c</a>
+, <a class="el" href="sift_8h.html#a97cca9a09efaadc9dd0671912b9d5e05">sift.h</a>
+</li>
+<li>vl_sift_process_next_octave()
+: <a class="el" href="sift_8h.html#a610cab1a3bf7d38e389afda9037f14da">sift.h</a>
+, <a class="el" href="sift_8c.html#a610cab1a3bf7d38e389afda9037f14da">sift.c</a>
+</li>
+<li>vl_sift_set_edge_thresh()
+: <a class="el" href="sift_8h.html#ab7173b402b85de43ebf36fcabde77508">sift.h</a>
+</li>
+<li>vl_sift_set_magnif()
+: <a class="el" href="sift_8h.html#a595579dd7952807c074c5311a6500121">sift.h</a>
+</li>
+<li>vl_sift_set_norm_thresh()
+: <a class="el" href="sift_8h.html#a86703f33aad31638909acd9697f93115">sift.h</a>
+</li>
+<li>vl_sift_set_peak_thresh()
+: <a class="el" href="sift_8h.html#af69118a1c5d4d17bccac87d11fe8ce8f">sift.h</a>
+</li>
+<li>vl_sift_set_window_size()
+: <a class="el" href="sift_8h.html#af5996cc6171c6e3c8810fb400abbad21">sift.h</a>
+</li>
+<li>vl_size
+: <a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">host.h</a>
+</li>
+<li>vl_slic_segment()
+: <a class="el" href="slic_8h.html#adb6a4c91f40fc32528ba88cffba756ab">slic.h</a>
+, <a class="el" href="slic_8c.html#adb6a4c91f40fc32528ba88cffba756ab">slic.c</a>
+</li>
+<li>VL_SMALL_INT
+: <a class="el" href="host_8h.html#ab11084ae11b83378e74bf4b1e545f134">host.h</a>
+</li>
+<li>vl_sqrt_d()
+: <a class="el" href="mathop_8h.html#aff464f96f4eb9651aef329228c68dcf9">mathop.h</a>
+</li>
+<li>vl_sqrt_f()
+: <a class="el" href="mathop_8h.html#a0b02ca15f62d4ec9056bf7f55324e0bc">mathop.h</a>
+</li>
+<li>vl_static_configuration_to_string_copy()
+: <a class="el" href="host_8c.html#a026e5e76fb8e1c0ce4722b857ce7e406">host.c</a>
+, <a class="el" href="host_8h.html#a026e5e76fb8e1c0ce4722b857ce7e406">host.h</a>
+</li>
+<li>vl_string_basename()
+: <a class="el" href="stringop_8h.html#a7c19551fb6bb7e1f45c453caef5b9044">stringop.h</a>
+, <a class="el" href="stringop_8c.html#a303c8ed2006e76ba890080244c9e6439">stringop.c</a>
+</li>
+<li>vl_string_casei_cmp()
+: <a class="el" href="stringop_8c.html#ad006cebd610a7a6f7b6d97c93e398824">stringop.c</a>
+, <a class="el" href="stringop_8h.html#ad006cebd610a7a6f7b6d97c93e398824">stringop.h</a>
+</li>
+<li>vl_string_copy()
+: <a class="el" href="stringop_8c.html#a12595787245c1d92c5d3bbe6c0cea9f4">stringop.c</a>
+, <a class="el" href="stringop_8h.html#a12595787245c1d92c5d3bbe6c0cea9f4">stringop.h</a>
+</li>
+<li>vl_string_copy_sub()
+: <a class="el" href="stringop_8c.html#a3ecf896f613bca486a0821f076aa8855">stringop.c</a>
+, <a class="el" href="stringop_8h.html#a3ecf896f613bca486a0821f076aa8855">stringop.h</a>
+</li>
+<li>vl_string_find_char_rev()
+: <a class="el" href="stringop_8h.html#acc6a3ecad1c4fde280008c2bc7663dea">stringop.h</a>
+, <a class="el" href="stringop_8c.html#acc6a3ecad1c4fde280008c2bc7663dea">stringop.c</a>
+</li>
+<li>vl_string_length()
+: <a class="el" href="stringop_8c.html#acc9de03bedf2b67ce907a7478e34bc4e">stringop.c</a>
+, <a class="el" href="stringop_8h.html#acc9de03bedf2b67ce907a7478e34bc4e">stringop.h</a>
+</li>
+<li>vl_string_parse_protocol()
+: <a class="el" href="stringop_8c.html#aa45c4b3fc38383ad1d152485ccfe3356">stringop.c</a>
+, <a class="el" href="stringop_8h.html#aa45c4b3fc38383ad1d152485ccfe3356">stringop.h</a>
+</li>
+<li>vl_string_protocol_name()
+: <a class="el" href="stringop_8c.html#af2fe2454abf042cce2d9a7597b622c48">stringop.c</a>
+, <a class="el" href="stringop_8h.html#a79a3a25967d2fd344d3812c31f7af6d7">stringop.h</a>
+</li>
+<li>vl_string_replace_wildcard()
+: <a class="el" href="stringop_8c.html#af938e0e45610e0e1680c8ec41a958882">stringop.c</a>
+, <a class="el" href="stringop_8h.html#a3333f80d5012dadb8967ab297ff02645">stringop.h</a>
+</li>
+<li>VL_STRINGIFY
+: <a class="el" href="host_8h.html#a61a48096b951544d0554b8a06aa59306">host.h</a>
+</li>
+<li>vl_svm_delete()
+: <a class="el" href="svm_8h.html#a473c326f265db2ad4752e514b86f2786">svm.h</a>
+, <a class="el" href="svm_8c.html#a473c326f265db2ad4752e514b86f2786">svm.c</a>
+</li>
+<li>vl_svm_get_bias()
+: <a class="el" href="svm_8c.html#aa7fb1a06113795e0fd1f24ce99324981">svm.c</a>
+, <a class="el" href="svm_8h.html#aa7fb1a06113795e0fd1f24ce99324981">svm.h</a>
+</li>
+<li>vl_svm_get_bias_learning_rate()
+: <a class="el" href="svm_8c.html#af1e386cc2240d4dc793b43cf0581a8da">svm.c</a>
+, <a class="el" href="svm_8h.html#af1e386cc2240d4dc793b43cf0581a8da">svm.h</a>
+</li>
+<li>vl_svm_get_bias_multiplier()
+: <a class="el" href="svm_8h.html#a8d856e3af06dfc1cbb65858008f99279">svm.h</a>
+, <a class="el" href="svm_8c.html#a8d856e3af06dfc1cbb65858008f99279">svm.c</a>
+</li>
+<li>vl_svm_get_diagnostic_frequency()
+: <a class="el" href="svm_8h.html#adb4999d45e11c18ba92068b4184cd78e">svm.h</a>
+, <a class="el" href="svm_8c.html#adb4999d45e11c18ba92068b4184cd78e">svm.c</a>
+</li>
+<li>vl_svm_get_dimension()
+: <a class="el" href="svm_8h.html#ab3a28927b8bf3bcc241b15e4ee9ef091">svm.h</a>
+, <a class="el" href="svm_8c.html#ab3a28927b8bf3bcc241b15e4ee9ef091">svm.c</a>
+</li>
+<li>vl_svm_get_epsilon()
+: <a class="el" href="svm_8h.html#a409e6ad402041555ace5bea07bee8f4c">svm.h</a>
+, <a class="el" href="svm_8c.html#a409e6ad402041555ace5bea07bee8f4c">svm.c</a>
+</li>
+<li>vl_svm_get_iteration_number()
+: <a class="el" href="svm_8c.html#a38d626608707412d287d9878da3906a6">svm.c</a>
+, <a class="el" href="svm_8h.html#a38d626608707412d287d9878da3906a6">svm.h</a>
+</li>
+<li>vl_svm_get_lambda()
+: <a class="el" href="svm_8c.html#a8692ad5cb99ddc60db131e74a6d75d23">svm.c</a>
+, <a class="el" href="svm_8h.html#a8692ad5cb99ddc60db131e74a6d75d23">svm.h</a>
+</li>
+<li>vl_svm_get_max_num_iterations()
+: <a class="el" href="svm_8c.html#ac88536c7cdb604e94fc314c1b0b74f61">svm.c</a>
+, <a class="el" href="svm_8h.html#ac88536c7cdb604e94fc314c1b0b74f61">svm.h</a>
+</li>
+<li>vl_svm_get_model()
+: <a class="el" href="svm_8c.html#ac397b10574449237e2c736c775607edb">svm.c</a>
+, <a class="el" href="svm_8h.html#ac397b10574449237e2c736c775607edb">svm.h</a>
+</li>
+<li>vl_svm_get_num_data()
+: <a class="el" href="svm_8c.html#a07d588c6592e443a4366b295bb5e9ccc">svm.c</a>
+, <a class="el" href="svm_8h.html#a07d588c6592e443a4366b295bb5e9ccc">svm.h</a>
+</li>
+<li>vl_svm_get_scores()
+: <a class="el" href="svm_8c.html#aaf7566586c306e81eb6ead8414dd4365">svm.c</a>
+, <a class="el" href="svm_8h.html#aaf7566586c306e81eb6ead8414dd4365">svm.h</a>
+</li>
+<li>vl_svm_get_solver()
+: <a class="el" href="svm_8c.html#a53996f81113054b626c2333a648c14f6">svm.c</a>
+, <a class="el" href="svm_8h.html#a53996f81113054b626c2333a648c14f6">svm.h</a>
+</li>
+<li>vl_svm_get_statistics()
+: <a class="el" href="svm_8c.html#aab8e4b63c22ba6614ce98ceab7e8858c">svm.c</a>
+, <a class="el" href="svm_8h.html#aab8e4b63c22ba6614ce98ceab7e8858c">svm.h</a>
+</li>
+<li>vl_svm_get_weights()
+: <a class="el" href="svm_8c.html#a4d8f3d88ef40ebd22371d1281dcdf1fc">svm.c</a>
+, <a class="el" href="svm_8h.html#a4d8f3d88ef40ebd22371d1281dcdf1fc">svm.h</a>
+</li>
+<li>vl_svm_hinge2_conjugate_loss()
+: <a class="el" href="svm_8c.html#afcbc30c041d098f234c9212b949d5355">svm.c</a>
+, <a class="el" href="svm_8h.html#a1428c410f17db8b4d3d44b8ef19bf694">svm.h</a>
+</li>
+<li>vl_svm_hinge2_dca_update()
+: <a class="el" href="svm_8c.html#a2ad7b4c276cd0f8ed85a543703876cb9">svm.c</a>
+, <a class="el" href="svm_8h.html#a2ad7b4c276cd0f8ed85a543703876cb9">svm.h</a>
+</li>
+<li>vl_svm_hinge2_loss()
+: <a class="el" href="svm_8c.html#a5e8dae2afbec9d4b12a3b9fb41f22982">svm.c</a>
+, <a class="el" href="svm_8h.html#acb7865e9dcff8c7ffdb8691bf5a214c6">svm.h</a>
+</li>
+<li>vl_svm_hinge2_loss_derivative()
+: <a class="el" href="svm_8c.html#a4e05d57c98630a4b1dc8dd1d5fb5ee83">svm.c</a>
+, <a class="el" href="svm_8h.html#af5c2718ad2f5b60ab1c5e9ce342694af">svm.h</a>
+</li>
+<li>vl_svm_hinge_conjugate_loss()
+: <a class="el" href="svm_8c.html#af2fe18d9e0464d0dbea4f47085f965c7">svm.c</a>
+, <a class="el" href="svm_8h.html#a5fc0df0b86c5cc6abce979d0f41e7efb">svm.h</a>
+</li>
+<li>vl_svm_hinge_dca_update()
+: <a class="el" href="svm_8c.html#a124569cc46bef2e6d1ac6d1c6466cd04">svm.c</a>
+, <a class="el" href="svm_8h.html#a124569cc46bef2e6d1ac6d1c6466cd04">svm.h</a>
+</li>
+<li>vl_svm_hinge_loss()
+: <a class="el" href="svm_8c.html#a0716de4deae9d2c0dbfadbc341b5bd23">svm.c</a>
+, <a class="el" href="svm_8h.html#a9b840a87d2bff2d13d241f7939cd309c">svm.h</a>
+</li>
+<li>vl_svm_hinge_loss_derivative()
+: <a class="el" href="svm_8c.html#afb84322b6e73c3e52f7aad2d11cafa4d">svm.c</a>
+, <a class="el" href="svm_8h.html#a5ac4b8009090cc4d2d151bd6385d62ca">svm.h</a>
+</li>
+<li>vl_svm_l1_conjugate_loss()
+: <a class="el" href="svm_8h.html#ac0593cf7cc30e1070eaf28aa00eb0e85">svm.h</a>
+, <a class="el" href="svm_8c.html#a9ed9aee4e5c10c394e8c74fb07830d8e">svm.c</a>
+</li>
+<li>vl_svm_l1_dca_update()
+: <a class="el" href="svm_8h.html#a3beb0d1198c40cd81d554f3f6e45cfc3">svm.h</a>
+, <a class="el" href="svm_8c.html#a3beb0d1198c40cd81d554f3f6e45cfc3">svm.c</a>
+</li>
+<li>vl_svm_l1_loss()
+: <a class="el" href="svm_8c.html#a208fcdeed237af77411304dbf3a66d49">svm.c</a>
+, <a class="el" href="svm_8h.html#a18c9bd164991c23461aebfba7387ec6b">svm.h</a>
+</li>
+<li>vl_svm_l1_loss_derivative()
+: <a class="el" href="svm_8c.html#a1a9e4d9033578f22f4122cee332c5b96">svm.c</a>
+, <a class="el" href="svm_8h.html#a40f140dcba523b7b7eab8a1780d0fbfc">svm.h</a>
+</li>
+<li>vl_svm_l2_conjugate_loss()
+: <a class="el" href="svm_8h.html#a680af302cca5e1abc3c580dd37319012">svm.h</a>
+, <a class="el" href="svm_8c.html#ac17be0691987f74ff643b0e968d653f7">svm.c</a>
+</li>
+<li>vl_svm_l2_dca_update()
+: <a class="el" href="svm_8c.html#a19fdae42e265e3c89b9b390e9946bc8f">svm.c</a>
+, <a class="el" href="svm_8h.html#a19fdae42e265e3c89b9b390e9946bc8f">svm.h</a>
+</li>
+<li>vl_svm_l2_loss()
+: <a class="el" href="svm_8c.html#a0b0ee33bdc4c03bb1b145d31049cde99">svm.c</a>
+, <a class="el" href="svm_8h.html#a4302119703c72c34e82e4001dd6bccc4">svm.h</a>
+</li>
+<li>vl_svm_l2_loss_derivative()
+: <a class="el" href="svm_8h.html#a8abc5f1d42774b0b70803c3db2331fbc">svm.h</a>
+, <a class="el" href="svm_8c.html#ad1610aa045bd31aee3999b3738079931">svm.c</a>
+</li>
+<li>vl_svm_logistic_conjugate_loss()
+: <a class="el" href="svm_8c.html#ac6b56d51d0d2164c1deab595f42eb66d">svm.c</a>
+, <a class="el" href="svm_8h.html#a42c11deaac87f38fd9169fe94ec9cd89">svm.h</a>
+</li>
+<li>vl_svm_logistic_dca_update()
+: <a class="el" href="svm_8h.html#a351223c8a963451830a758e84e8ca3f5">svm.h</a>
+, <a class="el" href="svm_8c.html#a351223c8a963451830a758e84e8ca3f5">svm.c</a>
+</li>
+<li>vl_svm_logistic_loss()
+: <a class="el" href="svm_8h.html#a21196b4676f47d82db58d81ca24f21bd">svm.h</a>
+, <a class="el" href="svm_8c.html#a6bbc5ef9c1b1e070e8d08d4f4cf5db2d">svm.c</a>
+</li>
+<li>vl_svm_logistic_loss_derivative()
+: <a class="el" href="svm_8c.html#ae131f2f2cffaa8a187130fa379c4009d">svm.c</a>
+, <a class="el" href="svm_8h.html#a9062cd19f1ce595bd5858793b07df2de">svm.h</a>
+</li>
+<li>vl_svm_new()
+: <a class="el" href="svm_8h.html#a8fab77c387da4e87b4086df17b5066a3">svm.h</a>
+, <a class="el" href="svm_8c.html#a8fab77c387da4e87b4086df17b5066a3">svm.c</a>
+</li>
+<li>vl_svm_new_with_abstract_data()
+: <a class="el" href="svm_8c.html#ac96c38671c7659793070ce8bddacd7d9">svm.c</a>
+, <a class="el" href="svm_8h.html#a8de924009b4c449c4710abb5baad9833">svm.h</a>
+</li>
+<li>vl_svm_new_with_dataset()
+: <a class="el" href="svm_8h.html#a64fbe8549205bb42336bca98438a95fb">svm.h</a>
+, <a class="el" href="svm_8c.html#aec64380a2d230ae5144723b67bfc3be2">svm.c</a>
+</li>
+<li>vl_svm_set_bias()
+: <a class="el" href="svm_8h.html#a60d6f706dcde30fea14fbf80714c93ce">svm.h</a>
+, <a class="el" href="svm_8c.html#a60d6f706dcde30fea14fbf80714c93ce">svm.c</a>
+</li>
+<li>vl_svm_set_bias_learning_rate()
+: <a class="el" href="svm_8h.html#a330b9011895064b930c772c1b28e1d9e">svm.h</a>
+, <a class="el" href="svm_8c.html#a330b9011895064b930c772c1b28e1d9e">svm.c</a>
+</li>
+<li>vl_svm_set_bias_multiplier()
+: <a class="el" href="svm_8h.html#a1225f0f7f32f8fe5ee4090e77efc4e2c">svm.h</a>
+, <a class="el" href="svm_8c.html#a1225f0f7f32f8fe5ee4090e77efc4e2c">svm.c</a>
+</li>
+<li>vl_svm_set_conjugate_loss_function()
+: <a class="el" href="svm_8h.html#a58607879bd185df037f8a644e080a03b">svm.h</a>
+, <a class="el" href="svm_8c.html#a58607879bd185df037f8a644e080a03b">svm.c</a>
+</li>
+<li>vl_svm_set_data_functions()
+: <a class="el" href="svm_8c.html#ab452546b3f6e5e2116e983a5c6f9f2c3">svm.c</a>
+, <a class="el" href="svm_8h.html#ab452546b3f6e5e2116e983a5c6f9f2c3">svm.h</a>
+</li>
+<li>vl_svm_set_dca_update_function()
+: <a class="el" href="svm_8h.html#a51fa5a1151eb24dfb894df30f23a0ea7">svm.h</a>
+, <a class="el" href="svm_8c.html#a51fa5a1151eb24dfb894df30f23a0ea7">svm.c</a>
+</li>
+<li>vl_svm_set_diagnostic_frequency()
+: <a class="el" href="svm_8c.html#ab01a4bb3b6aa172fcc24caa2524c2e68">svm.c</a>
+, <a class="el" href="svm_8h.html#ab01a4bb3b6aa172fcc24caa2524c2e68">svm.h</a>
+</li>
+<li>vl_svm_set_diagnostic_function()
+: <a class="el" href="svm_8h.html#a0a01191236abfe94b65f895fa49e0a35">svm.h</a>
+, <a class="el" href="svm_8c.html#a0a01191236abfe94b65f895fa49e0a35">svm.c</a>
+</li>
+<li>vl_svm_set_epsilon()
+: <a class="el" href="svm_8h.html#a4a1a5228c945a145c1bc7e025a0ffe4e">svm.h</a>
+, <a class="el" href="svm_8c.html#a4a1a5228c945a145c1bc7e025a0ffe4e">svm.c</a>
+</li>
+<li>vl_svm_set_iteration_number()
+: <a class="el" href="svm_8h.html#a446295ef005b5f19fa3648a199c0254d">svm.h</a>
+, <a class="el" href="svm_8c.html#a446295ef005b5f19fa3648a199c0254d">svm.c</a>
+</li>
+<li>vl_svm_set_lambda()
+: <a class="el" href="svm_8c.html#afd55352a18d58c6dba0c49206263f96d">svm.c</a>
+</li>
+<li>vl_svm_set_loss()
+: <a class="el" href="svm_8h.html#a8d0d404bab46b9235c15e914146c05bc">svm.h</a>
+, <a class="el" href="svm_8c.html#a8d0d404bab46b9235c15e914146c05bc">svm.c</a>
+</li>
+<li>vl_svm_set_loss_derivative_function()
+: <a class="el" href="svm_8h.html#a3d3adc335fd789a702eb7771694464c8">svm.h</a>
+, <a class="el" href="svm_8c.html#a3d3adc335fd789a702eb7771694464c8">svm.c</a>
+</li>
+<li>vl_svm_set_loss_function()
+: <a class="el" href="svm_8h.html#a96b35e9e2b6000e40debe2c64ca7e09b">svm.h</a>
+, <a class="el" href="svm_8c.html#a96b35e9e2b6000e40debe2c64ca7e09b">svm.c</a>
+</li>
+<li>vl_svm_set_max_num_iterations()
+: <a class="el" href="svm_8c.html#a39b8dfc06c0eea75932efacf946df356">svm.c</a>
+, <a class="el" href="svm_8h.html#a18cb2adc040000ef02ba9c6a15f82cf0">svm.h</a>
+</li>
+<li>vl_svm_set_model()
+: <a class="el" href="svm_8c.html#a11cfeb959efa6d18ced2e55603e32097">svm.c</a>
+, <a class="el" href="svm_8h.html#a11cfeb959efa6d18ced2e55603e32097">svm.h</a>
+</li>
+<li>vl_svm_set_weights()
+: <a class="el" href="svm_8c.html#af81b6cb98f1730f41266ec69f2b6cece">svm.c</a>
+, <a class="el" href="svm_8h.html#af81b6cb98f1730f41266ec69f2b6cece">svm.h</a>
+</li>
+<li>vl_svm_train()
+: <a class="el" href="svm_8h.html#a0812e42b5511e8da15b9a283a0564d02">svm.h</a>
+, <a class="el" href="svm_8c.html#a0812e42b5511e8da15b9a283a0564d02">svm.c</a>
+</li>
+<li>vl_svmdataset_delete()
+: <a class="el" href="svmdataset_8c.html#af0085da6bb1cca9fc48ecfb267b107d5">svmdataset.c</a>
+, <a class="el" href="svmdataset_8h.html#aea5a446f62eb3ad21269f6a660b03bee">svmdataset.h</a>
+</li>
+<li>vl_svmdataset_get_accumulate_function()
+: <a class="el" href="svmdataset_8c.html#af311a005cf80188b291848969116c795">svmdataset.c</a>
+, <a class="el" href="svmdataset_8h.html#af311a005cf80188b291848969116c795">svmdataset.h</a>
+</li>
+<li>vl_svmdataset_get_data()
+: <a class="el" href="svmdataset_8c.html#a33b791a16f490aaf128d4081f7ef223d">svmdataset.c</a>
+, <a class="el" href="svmdataset_8h.html#a33b791a16f490aaf128d4081f7ef223d">svmdataset.h</a>
+</li>
+<li>vl_svmdataset_get_dimension()
+: <a class="el" href="svmdataset_8h.html#a7651f4dde6a4f607ce609eafbe8e9556">svmdataset.h</a>
+, <a class="el" href="svmdataset_8c.html#a7651f4dde6a4f607ce609eafbe8e9556">svmdataset.c</a>
+</li>
+<li>vl_svmdataset_get_homogeneous_kernel_map()
+: <a class="el" href="svmdataset_8h.html#a5b69e75bd761251792dcf0cdf106f375">svmdataset.h</a>
+, <a class="el" href="svmdataset_8c.html#a5b69e75bd761251792dcf0cdf106f375">svmdataset.c</a>
+</li>
+<li>vl_svmdataset_get_inner_product_function()
+: <a class="el" href="svmdataset_8c.html#a9eb6105fde6800091886cfd9f3f95927">svmdataset.c</a>
+, <a class="el" href="svmdataset_8h.html#a9eb6105fde6800091886cfd9f3f95927">svmdataset.h</a>
+</li>
+<li>vl_svmdataset_get_num_data()
+: <a class="el" href="svmdataset_8c.html#a9e26f54293c5999f146c1275662c96ae">svmdataset.c</a>
+, <a class="el" href="svmdataset_8h.html#a9e26f54293c5999f146c1275662c96ae">svmdataset.h</a>
+</li>
+<li>vl_svmdataset_new()
+: <a class="el" href="svmdataset_8c.html#aa418f02d933dd5f15267f42a6425cfe1">svmdataset.c</a>
+, <a class="el" href="svmdataset_8h.html#aa418f02d933dd5f15267f42a6425cfe1">svmdataset.h</a>
+</li>
+<li>vl_svmdataset_set_homogeneous_kernel_map()
+: <a class="el" href="svmdataset_8c.html#a6e72d282d3bb7e05410efe5d28026ad2">svmdataset.c</a>
+, <a class="el" href="svmdataset_8h.html#a6e72d282d3bb7e05410efe5d28026ad2">svmdataset.h</a>
+</li>
+<li>vl_swap_host_big_endianness_2()
+: <a class="el" href="host_8h.html#ab2280db7d7cc2f6ce56100ab5ff6c81a">host.h</a>
+</li>
+<li>vl_swap_host_big_endianness_4()
+: <a class="el" href="host_8h.html#aa1a8104ab44b97df0b09d1afdd4754fc">host.h</a>
+</li>
+<li>vl_swap_host_big_endianness_8()
+: <a class="el" href="host_8h.html#a0eb83ae66c944bcd8517b577b557f872">host.h</a>
+</li>
+<li>vl_thread_specific_state_delete()
+: <a class="el" href="generic_8c.html#aecf02e838af9ff971eca81a427c64165">generic.c</a>
+</li>
+<li>vl_thread_specific_state_new()
+: <a class="el" href="generic_8c.html#a6f7d17a2292676f8d6c88718578087e9">generic.c</a>
+</li>
+<li>VL_THREADS_POSIX
+: <a class="el" href="host_8h.html#aa463843e959e6add43b050e78892e75a">host.h</a>
+</li>
+<li>VL_THREADS_WIN
+: <a class="el" href="host_8h.html#a4b8e0e703e4bbdff30e1c3a00225e74f">host.h</a>
+</li>
+<li>vl_tic()
+: <a class="el" href="generic_8h.html#acc7e28d60e21ecef6e3f5d83b850b34b">generic.h</a>
+, <a class="el" href="generic_8c.html#acc7e28d60e21ecef6e3f5d83b850b34b">generic.c</a>
+</li>
+<li>vl_toc()
+: <a class="el" href="generic_8h.html#a429bff43a8deafa7c2ce016932738cd6">generic.h</a>
+, <a class="el" href="generic_8c.html#a429bff43a8deafa7c2ce016932738cd6">generic.c</a>
+</li>
+<li>VL_TRANSPOSE
+: <a class="el" href="imopv_8h.html#a2489ff30a8c5d4048038a90b640a038a">imopv.h</a>
+</li>
+<li>VL_TRUE
+: <a class="el" href="host_8h.html#a0c72a8c7d2abcd2871b3348138c5f1f4">host.h</a>
+</li>
+<li>VL_TYPE_DOUBLE
+: <a class="el" href="generic_8h.html#a41d6691dac0cc3648ca9701d27e5d2b0">generic.h</a>
+</li>
+<li>VL_TYPE_FLOAT
+: <a class="el" href="generic_8h.html#aa034d0b942f9800b2a02aeb30ff10fa2">generic.h</a>
+</li>
+<li>VL_TYPE_INT16
+: <a class="el" href="generic_8h.html#a4eb25b91045f880c1d10e609174d3f5c">generic.h</a>
+</li>
+<li>VL_TYPE_INT32
+: <a class="el" href="generic_8h.html#a4ca0c2adc987dcb7f57a7de7893f5b7c">generic.h</a>
+</li>
+<li>VL_TYPE_INT64
+: <a class="el" href="generic_8h.html#a873cea95408414b33bc0d0af250caf5e">generic.h</a>
+</li>
+<li>VL_TYPE_INT8
+: <a class="el" href="generic_8h.html#a90ea396337523c32c3022f358196ccc9">generic.h</a>
+</li>
+<li>VL_TYPE_UINT16
+: <a class="el" href="generic_8h.html#a2e47aef4fdd2aa9f388fd2adfc36f4b1">generic.h</a>
+</li>
+<li>VL_TYPE_UINT32
+: <a class="el" href="generic_8h.html#ac1ca77a71afce483185fbd23f4df9ec7">generic.h</a>
+</li>
+<li>VL_TYPE_UINT64
+: <a class="el" href="generic_8h.html#ace055d33cb1d7f213bfc0b3a55b86fa2">generic.h</a>
+</li>
+<li>VL_TYPE_UINT8
+: <a class="el" href="generic_8h.html#a4db234bb60c94d6f562f8e9ce3b1795e">generic.h</a>
+</li>
+<li>vl_uindex
+: <a class="el" href="host_8h.html#ac13bd3cc913e1da576e189a3ec8d66fc">host.h</a>
+</li>
+<li>vl_uint
+: <a class="el" href="host_8h.html#a5bd6e91d6bfd0be04101fdca94069c92">host.h</a>
+</li>
+<li>vl_uint16
+: <a class="el" href="host_8h.html#ab2275d6c7bf6fc027151d11072b45f03">host.h</a>
+</li>
+<li>VL_UINT16_C
+: <a class="el" href="host_8h.html#abd41ad6b0fecc0c06e89f556d30f5a05">host.h</a>
+</li>
+<li>vl_uint32
+: <a class="el" href="host_8h.html#aeb7c862765448a70017105efa4d25e7a">host.h</a>
+</li>
+<li>VL_UINT32_C
+: <a class="el" href="host_8h.html#a9fedb480a5681cef16985d34ec52f6fe">host.h</a>
+</li>
+<li>vl_uint64
+: <a class="el" href="host_8h.html#af37832522d1f5c028ac15d0ccda7ff48">host.h</a>
+</li>
+<li>VL_UINT64_C
+: <a class="el" href="host_8h.html#a555c4468bb49c4c17513ef5bcf470f62">host.h</a>
+</li>
+<li>vl_uint8
+: <a class="el" href="host_8h.html#a38fbd9a3cf53dfc9a5650c38497b7d35">host.h</a>
+</li>
+<li>VL_UINT8_C
+: <a class="el" href="host_8h.html#ae3cffa06d00149d83a3d2332f60b9134">host.h</a>
+</li>
+<li>vl_uintptr
+: <a class="el" href="host_8h.html#a20819052598008f96d3bd302a35c9d59">host.h</a>
+</li>
+<li>vl_unlock_state()
+: <a class="el" href="generic_8c.html#aa5589c034e06c5965ad91cdf2467dffd">generic.c</a>
+</li>
+<li>VL_USE_MATLAB_ENV
+: <a class="el" href="mexutils_8h.html#a76600f902337bf06037c62b27d76255c">mexutils.h</a>
+</li>
+<li>VL_VERSION_STRING
+: <a class="el" href="generic_8h.html#aa53b45e68c7ce79c6fc539e64ba027a6">generic.h</a>
+</li>
+<li>vl_vlad_encode()
+: <a class="el" href="vlad_8c.html#a6ee2926e14d4a76e9d99ba128bfe5a80">vlad.c</a>
+, <a class="el" href="vlad_8h.html#a6ee2926e14d4a76e9d99ba128bfe5a80">vlad.h</a>
+</li>
+<li>VL_VLAD_FLAG_NORMALIZE_COMPONENTS
+: <a class="el" href="vlad_8h.html#a2530f7175c68c931b9c195a227dd9d0e">vlad.h</a>
+</li>
+<li>VL_VLAD_FLAG_NORMALIZE_MASS
+: <a class="el" href="vlad_8h.html#a2047ae2d21cec965ab5db039b1f66d98">vlad.h</a>
+</li>
+<li>VL_VLAD_FLAG_SQUARE_ROOT
+: <a class="el" href="vlad_8h.html#adac275d53de92eba4f3a83325f85da3e">vlad.h</a>
+</li>
+<li>VL_VLAD_FLAG_UNNORMALIZED
+: <a class="el" href="vlad_8h.html#ac048897164a0ab938bc26bec91b85b9c">vlad.h</a>
+</li>
+<li>VL_XCAT
+: <a class="el" href="host_8h.html#a755f8d9673970b82ad9375e32d2693ef">host.h</a>
+</li>
+<li>VL_XCAT3
+: <a class="el" href="host_8h.html#ae5a425c5832ec8b91c3acd70cc30ad8d">host.h</a>
+</li>
+<li>VL_XCAT4
+: <a class="el" href="host_8h.html#a0b450714848c2941f3e00e7a9d2338f4">host.h</a>
+</li>
+<li>VL_XCAT5
+: <a class="el" href="host_8h.html#a551d8bfc670074c55bf8a0a7405f5e28">host.h</a>
+</li>
+<li>VL_XSTRINGIFY
+: <a class="el" href="host_8h.html#a2a5d283f40e6bf0fc1ca74644084a423">host.h</a>
+</li>
+<li>VL_YESNO
+: <a class="el" href="host_8h.html#addfdc610a7c5d53f5167f7a02b5baf4f">host.h</a>
+</li>
+<li>VlCovDet
+: <a class="el" href="covdet_8h.html#ac9ee6b09d1b6ace81783ecbb4de7303c">covdet.h</a>
+</li>
+<li>VlCovDetMethod
+: <a class="el" href="covdet_8h.html#a29fcb6ced2bee0db21c3c3f81a54477e">covdet.h</a>
+</li>
+<li>vlCovdetMethods
+: <a class="el" href="covdet_8h.html#a5498a8ca2643970858426c50a847f363">covdet.h</a>
+</li>
+<li>VlDistanceChi2
+: <a class="el" href="mathop_8h.html#af7397bb42d71000754eafba9458b09aca8bd37a4dd18960b8faf2c52093227857">mathop.h</a>
+</li>
+<li>VlDistanceHellinger
+: <a class="el" href="mathop_8h.html#af7397bb42d71000754eafba9458b09acaa2290709524875cbabbce86ba2d28635">mathop.h</a>
+</li>
+<li>VlDistanceJS
+: <a class="el" href="mathop_8h.html#af7397bb42d71000754eafba9458b09acaed22a8624bfdae0b2ca92a43750bf68a">mathop.h</a>
+</li>
+<li>VlDistanceL1
+: <a class="el" href="mathop_8h.html#af7397bb42d71000754eafba9458b09acaff42f6aa9da4f0d11415de32089a1348">mathop.h</a>
+</li>
+<li>VlDistanceL2
+: <a class="el" href="mathop_8h.html#af7397bb42d71000754eafba9458b09acab44b9322465d703274acfa21690de9fd">mathop.h</a>
+</li>
+<li>VlDistanceMahalanobis
+: <a class="el" href="mathop_8h.html#af7397bb42d71000754eafba9458b09aca0793259deafb1d691a1a6daed52b245b">mathop.h</a>
+</li>
+<li>VlDoubleVector3ComparisonFunction
+: <a class="el" href="mathop_8h.html#a7673a4c14ad203748a8e94467ac990c4">mathop.h</a>
+</li>
+<li>VlDoubleVectorComparisonFunction
+: <a class="el" href="mathop_8h.html#a9f01157d716a8023720436416e5b7ebd">mathop.h</a>
+</li>
+<li>VlFloatVector3ComparisonFunction
+: <a class="el" href="mathop_8h.html#a55ba767ecd79b6edebd798141f8f7a92">mathop.h</a>
+</li>
+<li>VlFloatVectorComparisonFunction
+: <a class="el" href="mathop_8h.html#ab3bfc8e36e1d3a558ad4d1ba7d028bc1">mathop.h</a>
+</li>
+<li>vlFrameNames
+: <a class="el" href="covdet_8h.html#ac0451e3eeb39245382946810e492424f">covdet.h</a>
+</li>
+<li>VlFrameType
+: <a class="el" href="covdet_8h.html#afbadee402b023a061620226e2f4bb45e">covdet.h</a>
+</li>
+<li>vlFrameTypes
+: <a class="el" href="covdet_8h.html#ad61cfa115e5bbc18bcf10ac1ae1c18a2">covdet.h</a>
+</li>
+<li>VlGMM
+: <a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f">gmm.h</a>
+</li>
+<li>VlGMMCustom
+: <a class="el" href="gmm_8h.html#a89681cfc201e4ddfff3084c2898d1974adaee798f6850c527ecf774cedfc44cb7">gmm.h</a>
+</li>
+<li>VlGMMInitialization
+: <a class="el" href="gmm_8h.html#a89681cfc201e4ddfff3084c2898d1974">gmm.h</a>
+</li>
+<li>VlGMMKMeans
+: <a class="el" href="gmm_8h.html#a89681cfc201e4ddfff3084c2898d1974a5a63bb7b0105d969855a9097d13ffd34">gmm.h</a>
+</li>
+<li>VlGMMRand
+: <a class="el" href="gmm_8h.html#a89681cfc201e4ddfff3084c2898d1974affba7144b2bd2505b6b0ccaa89bd4f51">gmm.h</a>
+</li>
+<li>VlHomogeneousKernelChi2
+: <a class="el" href="homkermap_8h.html#a13074dd7edec5d8c86dde5da80e8d8d8a0ddb0dafd4c63088336d983b944ac5df">homkermap.h</a>
+</li>
+<li>VlHomogeneousKernelIntersection
+: <a class="el" href="homkermap_8h.html#a13074dd7edec5d8c86dde5da80e8d8d8af793e7c7238192b64f007e7a5bc9b3b2">homkermap.h</a>
+</li>
+<li>VlHomogeneousKernelJS
+: <a class="el" href="homkermap_8h.html#a13074dd7edec5d8c86dde5da80e8d8d8a685a81b7c2636dffa06eb5b59e836df5">homkermap.h</a>
+</li>
+<li>VlHomogeneousKernelMap
+: <a class="el" href="homkermap_8h.html#a5606496b3524c531aef85d63e1f7d0d9">homkermap.h</a>
+</li>
+<li>VlHomogeneousKernelMapWindowRectangular
+: <a class="el" href="homkermap_8h.html#a35a05da3e1eb781a6fa997ec9be69a62a83070b8b6be773c61bc3f19fc4583053">homkermap.h</a>
+</li>
+<li>VlHomogeneousKernelMapWindowType
+: <a class="el" href="homkermap_8h.html#a35a05da3e1eb781a6fa997ec9be69a62">homkermap.h</a>
+</li>
+<li>VlHomogeneousKernelMapWindowUniform
+: <a class="el" href="homkermap_8h.html#a35a05da3e1eb781a6fa997ec9be69a62ab9d8903c4fc8d17dadf194dac6682238">homkermap.h</a>
+</li>
+<li>VlHomogeneousKernelType
+: <a class="el" href="homkermap_8h.html#a13074dd7edec5d8c86dde5da80e8d8d8">homkermap.h</a>
+</li>
+<li>VlIKMAlgorithms
+: <a class="el" href="ikmeans_8h.html#a4aa95067e495fa8309ab028307a3418d">ikmeans.h</a>
+</li>
+<li>VlKDTreeThresholdingMethod
+: <a class="el" href="kdtree_8h.html#a7132289873fbe45803ce724beaa74364">kdtree.h</a>
+</li>
+<li>VlKernelChi2
+: <a class="el" href="mathop_8h.html#af7397bb42d71000754eafba9458b09acad945961afcae876365e585655b3dbdde">mathop.h</a>
+</li>
+<li>VlKernelHellinger
+: <a class="el" href="mathop_8h.html#af7397bb42d71000754eafba9458b09acae6735870a9191f6f9c44492bd2fdeae8">mathop.h</a>
+</li>
+<li>VlKernelJS
+: <a class="el" href="mathop_8h.html#af7397bb42d71000754eafba9458b09aca2b327ebbf8e9ad7e76df758a9062145f">mathop.h</a>
+</li>
+<li>VlKernelL1
+: <a class="el" href="mathop_8h.html#af7397bb42d71000754eafba9458b09aca5e26182d2d853d6e16238535fd8f7f98">mathop.h</a>
+</li>
+<li>VlKernelL2
+: <a class="el" href="mathop_8h.html#af7397bb42d71000754eafba9458b09acaad5fb6e24379dd36f94bdfb10068ec6c">mathop.h</a>
+</li>
+<li>VlKMeansAlgorithm
+: <a class="el" href="kmeans_8h.html#a4c431fed2c5377435e08cbad0040c9f3">kmeans.h</a>
+</li>
+<li>VlKMeansANN
+: <a class="el" href="kmeans_8h.html#a4c431fed2c5377435e08cbad0040c9f3adc59056a09e72cdca518cfd6860d0ce4">kmeans.h</a>
+</li>
+<li>VlKMeansElkan
+: <a class="el" href="kmeans_8h.html#a4c431fed2c5377435e08cbad0040c9f3a5f262d513ca0a82ddb577bbe31aa164c">kmeans.h</a>
+</li>
+<li>VlKMeansInitialization
+: <a class="el" href="kmeans_8h.html#ab5a665f209dfbe8e9d53af18fdf489d5">kmeans.h</a>
+</li>
+<li>VlKMeansLloyd
+: <a class="el" href="kmeans_8h.html#a4c431fed2c5377435e08cbad0040c9f3a19e04f61cc224d6f970a6cba351d6692">kmeans.h</a>
+</li>
+<li>VlKMeansPlusPlus
+: <a class="el" href="kmeans_8h.html#ab5a665f209dfbe8e9d53af18fdf489d5a314ecb9e2d2f166ce7199e1a6cb0594a">kmeans.h</a>
+</li>
+<li>VlKMeansRandomSelection
+: <a class="el" href="kmeans_8h.html#ab5a665f209dfbe8e9d53af18fdf489d5a60e94b6baf611109b87ca291ff86943b">kmeans.h</a>
+</li>
+<li>VlLbpMappingType
+: <a class="el" href="lbp_8h.html#add3c75c3439f492a9c4b445d80af3d48">lbp.h</a>
+</li>
+<li>VlLbpUniform
+: <a class="el" href="lbp_8h.html#add3c75c3439f492a9c4b445d80af3d48a56d4fb4c61f28ddf9fb2569935a5a9a4">lbp.h</a>
+</li>
+<li>vlmxCompareStringsI()
+: <a class="el" href="mexutils_8h.html#a6a57980687db8396fdd97766fe1bec14">mexutils.h</a>
+</li>
+<li>vlmxCompareToStringI()
+: <a class="el" href="mexutils_8h.html#ac17232977bdd780e9387389212c6f318">mexutils.h</a>
+</li>
+<li>vlmxCreateArrayFromVlArray()
+: <a class="el" href="mexutils_8h.html#a1d87fc57011b9d4f46535e0fe5e3a55a">mexutils.h</a>
+</li>
+<li>vlmxCreatePlainScalar()
+: <a class="el" href="mexutils_8h.html#ac0a3df5e3dcf06641cf7cb7ae81c0f54">mexutils.h</a>
+</li>
+<li>vlmxDecodeEnumeration()
+: <a class="el" href="mexutils_8h.html#a005ec291acfc071a28348d3742cfda00">mexutils.h</a>
+</li>
+<li>vlmxEnvelopeArrayInVlArray()
+: <a class="el" href="mexutils_8h.html#a424bcf82af07807c0264291b48db9ab6">mexutils.h</a>
+</li>
+<li>vlmxError()
+: <a class="el" href="mexutils_8h.html#a41187a1ec528ba20cb338d321ddbd512">mexutils.h</a>
+</li>
+<li>VlmxErrorId
+: <a class="el" href="mexutils_8h.html#afe2395ec371beece50f65e7b18edf67a">mexutils.h</a>
+</li>
+<li>vlmxIsArray()
+: <a class="el" href="mexutils_8h.html#aa9cb2ff7d93e845c8e97260742e355da">mexutils.h</a>
+</li>
+<li>vlmxIsEqualToStringI()
+: <a class="el" href="mexutils_8h.html#a480999aaa7a6d34243ca858789937ae7">mexutils.h</a>
+</li>
+<li>vlmxIsMatrix()
+: <a class="el" href="mexutils_8h.html#ab2c48ea72560b1a395a6ce7d6f521ad5">mexutils.h</a>
+</li>
+<li>vlmxIsOfClass()
+: <a class="el" href="mexutils_8h.html#a738f24a24faa9ebfeedb7439ccc4bf44">mexutils.h</a>
+</li>
+<li>vlmxIsPlain()
+: <a class="el" href="mexutils_8h.html#af28c45fe72ed8814a863f2f00b6909b8">mexutils.h</a>
+</li>
+<li>vlmxIsPlainMatrix()
+: <a class="el" href="mexutils_8h.html#a853a2401a28a2b640f4510772057e75f">mexutils.h</a>
+</li>
+<li>vlmxIsPlainScalar()
+: <a class="el" href="mexutils_8h.html#ab77fcfb1602e857224014b8ffbad446b">mexutils.h</a>
+</li>
+<li>vlmxIsPlainVector()
+: <a class="el" href="mexutils_8h.html#a22eb52c5f6925ea272604bef184c6def">mexutils.h</a>
+</li>
+<li>vlmxIsReal()
+: <a class="el" href="mexutils_8h.html#a923b6ac320a8aa620a5e8edbe0ee2d2e">mexutils.h</a>
+</li>
+<li>vlmxIsScalar()
+: <a class="el" href="mexutils_8h.html#a98ffbf2c20ade9e5094e234e8d58fd8a">mexutils.h</a>
+</li>
+<li>vlmxIsString()
+: <a class="el" href="mexutils_8h.html#a1a0c4101bd3fa1e931867980f3f94240">mexutils.h</a>
+</li>
+<li>vlmxIsVector()
+: <a class="el" href="mexutils_8h.html#a62ed566c271ce76980b587ad2b62b18e">mexutils.h</a>
+</li>
+<li>vlmxNextOption()
+: <a class="el" href="mexutils_8h.html#a6b8c52584738d2616f7e0576dc035ea3">mexutils.h</a>
+</li>
+<li>vlmxWarning()
+: <a class="el" href="mexutils_8h.html#a8a91f9f60803e7a808e71123340bdcb1">mexutils.h</a>
+</li>
+<li>VlSvm
+: <a class="el" href="svm_8h.html#ad54eb871794742668e91b2e73c6f8ea4">svm.h</a>
+</li>
+<li>VlSvmAccumulateFunction
+: <a class="el" href="svmdataset_8h.html#afed5bca344240e8700ed1be9bf8567c1">svmdataset.h</a>
+</li>
+<li>VlSvmDataset
+: <a class="el" href="svmdataset_8h.html#a5861f5083aeff8991fa982e4809c7258">svmdataset.h</a>
+</li>
+<li>VlSvmDcaUpdateFunction
+: <a class="el" href="svmdataset_8h.html#a5bb6eb4863de6458604d5ddb77cdb057">svmdataset.h</a>
+</li>
+<li>VlSvmDiagnosticFunction
+: <a class="el" href="svmdataset_8h.html#aa88e0bfe32f34da8904ce26fef46207f">svmdataset.h</a>
+</li>
+<li>VlSvmInnerProductFunction
+: <a class="el" href="svmdataset_8h.html#a31cceb46535045f1176f718481569046">svmdataset.h</a>
+</li>
+<li>VlSvmLossFunction
+: <a class="el" href="svmdataset_8h.html#a0e6f309e6cfe483680ae0b5baad6e63c">svmdataset.h</a>
+</li>
+<li>VlSvmLossHinge
+: <a class="el" href="svm_8h.html#a039ed185475e457e96dcb41a096bd8a7a9f3f057683a70fc737622274a94e8d76">svm.h</a>
+</li>
+<li>VlSvmLossHinge2
+: <a class="el" href="svm_8h.html#a039ed185475e457e96dcb41a096bd8a7a9b9299ce069ae6dab29a0f99a82f370d">svm.h</a>
+</li>
+<li>VlSvmLossL1
+: <a class="el" href="svm_8h.html#a039ed185475e457e96dcb41a096bd8a7a0b10b3dc74d3a4908e22200fb314e9af">svm.h</a>
+</li>
+<li>VlSvmLossL2
+: <a class="el" href="svm_8h.html#a039ed185475e457e96dcb41a096bd8a7a8694da194009c2496e28e5be1c6d0a47">svm.h</a>
+</li>
+<li>VlSvmLossLogistic
+: <a class="el" href="svm_8h.html#a039ed185475e457e96dcb41a096bd8a7a2ce88153bc65e0ebad17b92b7841409a">svm.h</a>
+</li>
+<li>VlSvmLossType
+: <a class="el" href="svm_8h.html#a039ed185475e457e96dcb41a096bd8a7">svm.h</a>
+</li>
+<li>VlSvmSolverNone
+: <a class="el" href="svm_8h.html#a0c5120e756a9a2b06d23130d54db90c9a0813728ebdd6388e9df7d8ad8787d0ef">svm.h</a>
+</li>
+<li>VlSvmSolverSdca
+: <a class="el" href="svm_8h.html#a0c5120e756a9a2b06d23130d54db90c9a65819739f150850ac0033ddc142ec593">svm.h</a>
+</li>
+<li>VlSvmSolverSgd
+: <a class="el" href="svm_8h.html#a0c5120e756a9a2b06d23130d54db90c9ad7ec41888bf7474e5d92a8b0f0dfa05a">svm.h</a>
+</li>
+<li>VlSvmSolverStatus
+: <a class="el" href="svm_8h.html#ab10b6ec323abb9c4ed1c75290ac7032a">svm.h</a>
+</li>
+<li>VlSvmSolverType
+: <a class="el" href="svm_8h.html#a0c5120e756a9a2b06d23130d54db90c9">svm.h</a>
+</li>
+<li>VlSvmStatusConverged
+: <a class="el" href="svm_8h.html#ab10b6ec323abb9c4ed1c75290ac7032aa3aaf89d2a76ae35ce2a5761628ac6bbf">svm.h</a>
+</li>
+<li>VlSvmStatusMaxNumIterationsReached
+: <a class="el" href="svm_8h.html#ab10b6ec323abb9c4ed1c75290ac7032aa6a48b72e94b4f9b00053885982af3958">svm.h</a>
+</li>
+<li>VlSvmStatusTraining
+: <a class="el" href="svm_8h.html#ab10b6ec323abb9c4ed1c75290ac7032aa1b47ec65b19b761a65abd4c4864b162b">svm.h</a>
+</li>
+<li>VlVectorComparisonType
+: <a class="el" href="mathop_8h.html#aa4cc7d511f708d61bc8fe15c65ad6d74">mathop.h</a>
+</li>
+</ul>
+</div><!-- contents -->
+        <!-- Doc Here -->
+      </div>
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>

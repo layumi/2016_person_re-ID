@@ -1,0 +1,39 @@
+<group>
+<ul class='breadcrumb'><li><a href='%pathto:matlab;'>Index</a></li><li><a href='%pathto:vl_binsum;'>Prev</a></li><li><a href='%pathto:vl_cummax;'>Next</a></li></ul><div class="documentation"><p>
+Y = <a href="%pathto:vl_colsubset;">VL_COLSUBSET</a>(X, N) returns a random subset Y of N columns of
+X. The selection is order-preserving and without replacement. If N
+is larger or equal to the number of columns of X (e.g. N = Inf),
+then the function returns all the columns (i.e., Y = X).
+</p><p>
+If 0 &lt; N &lt; 1, then the function returns a fraction N of the
+columns (rounded to the closest integer).
+</p><p>
+[Y, SEL] = <a href="%pathto:vl_colsubset;">VL_COLSUBSET</a>(...) returns the indexes SEL of the
+selected columns.
+</p><p>
+The function accepts the following options:
+</p><dl><dt>
+Beginning
+</dt><dd><p>
+Returns the fist N columns.
+</p></dd><dt>
+Ending
+</dt><dd><p>
+Returns the last N columns.
+</p></dd><dt>
+Random
+<span class="defaults">[default]</span></dt><dd><p>
+Returns N columns selected at random (using RANDPERM()).
+</p></dd><dt>
+Uniform
+</dt><dd><p>
+Returns N uniformly spaced columns.
+</p></dd><dt>
+Largest
+</dt><dd><p>
+Returns the N largest columns (using SORTROWS()).
+</p></dd><dt>
+Smallest
+</dt><dd><p>
+Returns the N smallest columns (using SORTROWS()).
+</p></dd></dl></div></group>

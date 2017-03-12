@@ -1,0 +1,22 @@
+<group>
+<ul class='breadcrumb'><li><a href='%pathto:matlab;'>Index</a></li><li><a href='%pathto:vl_threads;'>Prev</a></li><li><a href='%pathto:vl_version;'>Next</a></li></ul><div class="documentation"><p>
+<a href="%pathto:vl_twister;">VL_TWISTER</a>() is essentially equivalent to MATLAB native RAND()
+when using the Twister random number generator. <a href="%pathto:vl_twister;">VL_TWISTER</a>(),
+<a href="%pathto:vl_twister;">VL_TWISTER</a>(M,N,P,...)  and <a href="%pathto:vl_twister;">VL_TWISTER</a>([M N P ...]) are equivalent
+to RAND(), RAND(M,N,P,...)  and RAND([M N P ...]) respectively.
+</p><p>
+The state of the random generator can be seeded by
+<a href="%pathto:vl_twister;">VL_TWISTER</a>('STATE', X), where X is a DOUBLE scalar (this is
+equivalent to RAND('TWISTER', X)). The state can be read by
+<a href="%pathto:vl_twister;">VL_TWISTER</a>('STATE') (equivalent to RAND('TWISTER')) and set by
+<a href="%pathto:vl_twister;">VL_TWISTER</a>('STATE', STATE) (equivalent to RAND('TWISTER',
+STATE)). Here STATE is a vector of 625 elements of class
+UINT32. Finally <a href="%pathto:vl_twister;">VL_TWISTER</a>('STATE',KEY) seeds the generator by a
+vector of DOUBLE of length not greater than 624.
+</p><p>
+<a href="%pathto:vl_twister;">VL_TWISTER</a>() is slightly faster than RAND(). Moreover it can be
+used to control the state of the random number generator used by
+all VLFEAT functions.
+</p><p>
+See also: <a href="%pathto:vl_help;">VL_HELP</a>().
+</p></div></group>

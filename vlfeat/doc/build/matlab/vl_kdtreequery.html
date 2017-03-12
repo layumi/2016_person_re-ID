@@ -1,0 +1,39 @@
+<group>
+<ul class='breadcrumb'><li><a href='%pathto:matlab;'>Index</a></li><li><a href='%pathto:vl_kdtreebuild;'>Prev</a></li><li><a href='%pathto:vl_lbp;'>Next</a></li></ul><div class="documentation"><p>
+[INDEX, DIST] = <a href="%pathto:vl_kdtreequery;">VL_KDTREEQUERY</a>(KDTREE, X, Y) computes the nearest
+column of X to each column of Y (in Euclidean distance). KDTREE is
+a forest of kd-trees build by <a href="%pathto:vl_kdtreebuild;">VL_KDTREEBUILD</a>(). X is a
+NUMDIMENSIONS x NUMDATA data matrix of class SINGLE or DOUBLE with
+the data indexed by the kd-trees (it must be the same data matrix
+passed to VK_KDTREEBUILD() to build the trees). Y is the
+NUMDIMENSIONS x NUMQUERIES matrix of query points and must have
+the same class of X. INDEX is a 1 x NUMQUERIES matrix of class
+UINT32 with the index of the nearest column of X for each column
+of Y. DIST is a 1 x NUMQUERIES vector of class SINGLE or DOUBLE
+(depending on the class of X and Y) with the corresponding squared
+Euclidean distances.
+</p><p>
+[INDEX, DIST] = <a href="%pathto:vl_kdtreequery;">VL_KDTREEQUERY</a>(..., 'NUMNEIGHBORS', NN) can be
+used to return the N nearest neighbors rather than just the
+nearest one. In this case INDEX and DIST are NN x NUMQUERIES
+matrices. Neighbors are returned by increasing distance.
+</p><p>
+<a href="%pathto:vl_kdtreequery;">VL_KDTREEQUERY</a>(..., 'MAXNUMCOMPARISONS', NCOMP) performs at most
+NCOMP comparisons for each query point. In this case the result is
+only approximate (i.e. approximated nearest-neighbors, or ANNs)
+but the speed can be greatly improved.
+</p><p>
+Options:
+</p><dl><dt>
+NumNeighbors
+</dt><dd><p>
+Sets the number of neighbors to compute for each query point (by
+default 1).
+</p></dd><dt>
+MaxNumComparisons
+</dt><dd><p>
+Sets the maximum number of comparisons per query point. The
+special value 0 means unbounded. The default is 0.
+</p></dd></dl><p>
+See also: <a href="%pathto:vl_kdtreebuild;">VL_KDTREEBUILD</a>(), <a href="%pathto:vl_help;">VL_HELP</a>().
+</p></div></group>

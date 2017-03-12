@@ -1,0 +1,24 @@
+<group>
+<ul class='breadcrumb'><li><a href='%pathto:matlab;'>Index</a></li><li><a href='%pathto:vl_click;'>Prev</a></li><li><a href='%pathto:vl_clicksegment;'>Next</a></li></ul><div class="documentation"><p>
+SEL = <a href="%pathto:vl_clickpoint;">VL_CLICKPOINT</a>(V) let the user vl_click a point in the current
+figure and returns the index v of the closest point (in Euclidean
+norm) in the collection V. The 2xK matrix V has a a column for
+each point.
+</p><p>
+The user can abort the operation by pressing any key. In this case
+the function returns the empty matrix.
+</p><p>
+<a href="%pathto:vl_clickpoint;">VL_CLICKPOINT</a>(V,N) selects N points in a row. The user can stop the
+selection at any time by pressing any key. In this case the
+partial selection is returned. This can be used in combination
+with N=inf to get an arbitrary number of points.
+</p><p>
+<a href="%pathto:vl_clickpoint;">VL_CLICKPOINT</a>() accepts the following options:
+</p><dl><dt>
+PlotMarker
+<span class="defaults">[0]</span></dt><dd><p>
+Put a marker as points are selected. The markers are deleted on
+exiting the function.
+</p></dd></dl><p>
+See also: <a href="%pathto:vl_click;">VL_CLICK</a>(), <a href="%pathto:vl_help;">VL_HELP</a>().
+</p></div></group>

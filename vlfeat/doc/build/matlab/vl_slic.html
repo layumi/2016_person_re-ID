@@ -1,0 +1,36 @@
+<group>
+<ul class='breadcrumb'><li><a href='%pathto:matlab;'>Index</a></li><li><a href='%pathto:vl_ubcread;'>Prev</a></li><li><a href='%pathto:vl_ddgaussian;'>Next</a></li></ul><div class="documentation"><p>
+SEGMENTS = <a href="%pathto:vl_slic;">VL_SLIC</a>(IM, REGIONSIZE, REGULARIZER) extracts the SLIC
+superpixes [1] from image IM. REGIONSIZE is the starting size of
+the superpixels and REGULARIZER is the trades-off appearance for
+spatial regularity when clustering (a larger value results in more
+spatial regularization). SEGMENTS is a UINT32 array containing the
+superpixel identifier for each image pixel.
+</p><p>
+The image IM is a SINGLE array with two or three dimensions. The
+third dimension is arbitrary, but it is usually three for RGB or
+LAB images.
+</p><p>
+<a href="%pathto:vl_slic;">VL_SLIC</a>() accepts the following options:
+</p><dl><dt>
+Verbose
+</dt><dd><p>
+Be verbose.
+</p></dd><dt>
+MinRegionSize
+<span class="defaults">(1/6 of REGIONSIZE)^2</span></dt><dd><p>
+The minimum size (in pixel area) of the extracted
+superpixels.
+</p></dd><dt>
+Example
+</dt><dd><p>
+If IM contains an RGB images, the SLIC superpixels can be
+extracted as:
+</p></dd><dt>
+REFERENCES
+</dt><dd><p>
+[1] R. Achanta, A. Shaji, K. Smith, A. Lucchi, P. Fua, and
+S. Susstrunk. SLIC superpixels. Technical report, EPFL, 2010.
+</p></dd><dt>
+See also
+<span class="defaults">http://www.vlfeat.org/doc/api/slic.html, VL_HELP().</span></dt></dl></div></group>

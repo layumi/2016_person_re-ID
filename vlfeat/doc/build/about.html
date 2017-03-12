@@ -1,0 +1,371 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+
+  <!-- Favicon -->
+  <link href="images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+
+  <!-- Page title -->
+  <title>VLFeat - Home > About</title>
+
+  <!-- Stylesheets -->
+  <link href="vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  <style rel="stylesheet" type="text/css" >
+img.photo {
+  float: left ;
+  margin: 0px 13px 0px 0px ;
+  width: 100px ;
+}
+</style>
+
+
+  <!-- Scripts-->
+  
+
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li class='active'><a href="index.html">Home</a>
+<ul>
+<li class='active' class='activeLeaf'><a href="about.html">About</a>
+</li>
+<li><a href="license.html">License</a>
+</li>
+</ul></li>
+<li><a href="download.html">Download</a>
+<ul>
+<li><a href="install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="install-octave.html">Using from Octave</a>
+</li>
+<li><a href="install-shell.html">Using from the command line</a>
+</li>
+<li><a href="install-c.html">Using from C</a>
+<ul>
+<li><a href="xcode.html">Xcode</a>
+</li>
+<li><a href="vsexpress.html">Visual C++</a>
+</li>
+<li><a href="gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="compiling.html">Compiling</a>
+<ul>
+<li><a href="compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="overview/hog.html">HOG features</a>
+</li>
+<li><a href="overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="applications/apps.html">Applications</a>
+</li>
+<li><a href="doc.html">Documentation</a>
+<ul>
+<li><a href="matlab/matlab.html">MATLAB API</a>
+</li>
+<li><a href="api/index.html">C API</a>
+</li>
+<li><a href="man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="index.html">Home</a></span><span class='separator'>></span><span class='page'><a href="about.html">About</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+        
+    
+    
+
+
+
+<div class='toc'>
+<h3>Table of Contents</h3><ul><ul><li class="level2"><a href="#about.sponsors">Sponsors</a></li>
+<li class="level2"><a href="#about.team">Team</a></li>
+<li class="level2"><a href="#about.advisors">Advisors</a></li>
+<li class="level2"><a href="#about.others">Users and community</a></li>
+</ul>
+</ul>
+</div><!-- Table of contents -->
+
+
+<p><b>VLFeat</b> is a cross-platform open source collection of vision
+algorithms with a special focus on visual features (for instance SIFT
+and MSER) and clustering (k-means, hierarchical k-means, agglomerative
+information bottleneck). It bundles a MATLAB toolbox, a clean and
+portable C library and a number of command line utilities. Thus it is
+possible to use the same algorithm both from MATLAB, the command line,
+and your own programs.</p>
+
+<p>Many parties make the development of VLFeat possible:</p>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h2 id="about.sponsors">Sponsors</h2>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<p><img src="images/PASCAL2.png" style="height:6em;float:left;" alt="PASCAL2 credits"></img> In 2012 the development of VLFeat is
+supported by the PASCAL Harvest programme. Several people have been
+working in Oxford to add new functionalities to the library. Moreover,
+leading researchers in computer vision were consulted as
+<a shape="rect" href="%pathto:about.adisors">advisors</a> of the project. Some of
+these advancements have been presented at a
+<a shape="rect" href="https://sites.google.com/site/eccv12features/">tutorial at
+the European Conference in Computer Vision</a> (ECCV) 2012. See
+the <a shape="rect" href="roadmap.html">PASCAL Harvest Roadmap</a> for further
+details.</p>
+
+<a shape="rect" href="http://company.yandex.com/">
+<img src="images/yandex.png" style="height:4em;" alt="Yandex credits"></img></a>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h2 id="about.team">Team</h2>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<p><b>VLFeat</b> is developed by a team of computer vision
+researchers, including master and PhD students, postgraduates, and
+senior researchers, as listed below. VLFeat was created by Andrea
+Vedaldi and Brian Fulkerson in 2007, based on previously published
+software by the same authors.</p>
+
+<p>
+ <img src="images/vedaldi.jpg" alt="Andrea Vedaldi picture" class="photo"></img>
+
+ <a shape="rect" href="http://www.vlfeat.org/~vedaldi">Andrea Vedaldi</a> joined
+ the faculty at the University of Oxford in 2012. Since 2008 he was
+ junior research fellow in the Oxford Visual Geometry Group. He
+ received the Ph.D. and Master's degrees in Computer Science from the
+ University of California - Los Angeles, in 2008 and 2005, and the
+ Bachelor's degree in Information Engineering from the University of
+ Padova, Italy, in 2003. He is the recipient of the UCLA outstanding
+ Master's and Ph.D. awards.
+</p>
+
+<p class="clearfix">
+ <img src="images/fulkerson.jpg" alt="Brian Fulkerson picture" class="photo"></img>
+
+ <a shape="rect" href="http://uk.linkedin.com/pub/brian-fulkerson/27/449/244">Brian
+ Fulkerson</a> received his B.S. in Computer Engineering from the
+ University of California - San Diego in 2004, and his M.S. and Ph.D.
+ in Computer Science from the University of California - Los Angeles
+ Vision Lab in 2006 and 2010.
+</p>
+
+<p class="clearfix">
+ <img src="images/lenc.jpg" alt="Karel Lenc picture" class="photo"></img>
+
+ <b>Karel Lenc</b> received his B.S. degree in Cybernetics and
+ Measurements from the Czech Technical University in 2010. He is
+ currently pursuing M.S. degree in Computer Vision and Computer
+ Engineering at the CTU, Center for Machine Perception. He visited the
+ Department of Engineering Mathematics, University of Bristol in 2011
+ and the Oxford Visual Geometry Group in 2012.</p>
+
+<p class="clearfix">
+ <img src="images/perrone.jpg" alt="Daniele Perrone picture" class="photo"></img>
+
+ <a shape="rect" href="http://www.cvg.unibe.ch/daniele%20perrone.html">Daniele
+ Perrone</a> received his B.S. degree in Computer Engineering from
+ Universit&agrave; della Calabria in 2007, and his M.S. degree in
+ Artificial Intelligence from &quot;Sapienza&quot; Universit&agrave; di Roma in
+ 2009. He started his Ph.D. in June 2010 at Heriot-Watt University,
+ Edinburgh, UK. From June 2012 he joined the Computer Vision Group at
+ the Universit&auml;t Bern, Switzerland.
+</p>
+
+<p class="clearfix">
+ <img src="images/perdoch.jpg" alt="Michal Perdoch picture" class="photo"></img>
+
+ <a shape="rect" href="http://cmp.felk.cvut.cz/~perdom1/">Michal Perdoch</a>
+ received his Bachelor's degree in Software Engineering from the
+ Slovak University of Technology in Bratislava in 2001, Master's
+ degree in Computer Science and Ph.D. degree in Artificial
+ Intelligence and Biocybernetics from the Czech Technical University
+ in Prague, in 2004 and 2011. He is currently a postdoctoral
+ researcher at the CTU Center for Machine Perception.
+</p>
+
+<p class="clearfix">
+ <img src="images/sulc.jpg" alt="Milan Sulc picture" class="photo"></img>
+
+ <a shape="rect" href="http://cmp.felk.cvut.cz/~sulcmila/">Milan Sulc</a>
+ received his Bachelor's degree in Cybernetics and Robotics from the
+ Czech Technical University in 2012.
+ He is currently pursuing Master degrees in Computer Vision
+ and Artificial Intelligence at the CTU
+ and Entrepreneurship and Commercial Engineering in Industry at CTU.
+ He is a student intern at the CTU Center for Machine Perception.
+</p>
+
+<p class="clearfix">
+ <img src="images/sarbortova.jpg" alt="Hana Sarbortova picture" class="photo"></img>
+
+ <a shape="rect" href="http://cz.linkedin.com/pub/hana-%C5%A1arbortov%C3%A1/65/a15/446">Hana Sarbortova</a>
+received her Bachelor of Engineering degree in Digital Signal and Image Processing from the
+University of Central Lancashire in 2012. She is currently studying Computer Vision and Digital Image
+at the Czech Technical University in Prague. She is a student intern at the CTU Center for Machine Perception.
+</p>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h2 id="about.advisors">Advisors</h2>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<p>The development of VLFeat is supported by a number of computer
+vision groups and researchers:</p>
+
+<ul>
+<li>Prof. Andrew
+Zisserman, <a shape="rect" href="http://www.robots.ox.ac.uk/~vgg/">Oxford VGG
+Lab</a>.</li>
+<li>Prof. Jiri Matas, Czech Technical University in Prague.</li>
+<li>Prof. Tinne Tuytelaars, KU Leuven.</li>
+<li>Dr. Cordelia Schmid, LEAR, Grenoble.</li>
+<li>Dr. Krystian Mikolajczyk, Surrey.</li>
+<li>Prof. Stefano Soatto, <a shape="rect" href="http://vision.ucla.edu">UCLA Vision
+Lab</a>.</li>
+</ul>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h2 id="about.others">Users and community</h2>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<p>The authors would like to thank the many colleagues that have
+contributed to VLFeat by testing and providing helpful suggestions and
+comments.</p>
+
+
+  
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>
+ 

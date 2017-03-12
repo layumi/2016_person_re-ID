@@ -1,0 +1,43 @@
+<group>
+<ul class='breadcrumb'><li><a href='%pathto:matlab;'>Index</a></li><li><a href='%pathto:vl_quickseg;'>Prev</a></li><li><a href='%pathto:vl_quickvis;'>Next</a></li></ul><div class="documentation"><p>
+Quick shift is a mode seeking algorithm which links each pixel to
+its nearest neighbor which has an increase in the estimate of the
+density. These links form a tree, where the root of the tree is
+the pixel which correspond to the highest mode in the image.
+</p><p>
+[MAP,GAPS] = <a href="%pathto:vl_quickshift;">VL_QUICKSHIFT</a>(I, KERNELSIZE, MAXDIST) computes quick shift on the
+image I. KERNELSIZE is the bandwidth of the Parzen window estimator of
+the density. Since searching over all pixels for the nearest
+neighbor which increases the density would be prohibitively
+expensive, MAXDIST controls the maximum L2 distance between neighbors
+that should be linked. MAP and GAP represent the resulting forest
+of trees. They are array of the same size of I.  Each element
+(pixel) of MAP is and index to the parent elemen in the forest and
+GAP contains the corresponding branch length. Pixels which are at
+the root of their respective tree have MAP(x) = x and GAPS(x) =
+inf.
+</p><p>
+[MAP,GAPS,E] = <a href="%pathto:vl_quickshift;">VL_QUICKSHIFT</a>(I, KERNELSIZE, MAXDIST) also returns the estimate
+of the density E.
+</p><p>
+[MAP,GAPS] = <a href="%pathto:vl_quickshift;">VL_QUICKSHIFT</a>(I, KERNELSIZE) uses a default MAXDIST of 3 * KERNELSIZE.
+</p><dl><dt>
+Notes
+</dt><dd><p>
+The distance between pixels is always measured in image
+coordinates (not normalized), so the importance of the color
+component should be weighted accordingly before calling this
+function.
+</p></dd></dl><p>
+Options:
+</p><dl><dt>
+Verbose
+</dt><dd><p>
+Toggles verbose output.
+</p></dd><dt>
+Medoid
+</dt><dd><p>
+Run medoid shift instead of quick shift.
+</p></dd></dl><p>
+See also: <a href="%pathto:vl_help;">VL_HELP</a>().
+</p></div></group>

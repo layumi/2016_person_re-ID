@@ -1,0 +1,279 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+  <!-- Page title -->
+  <title>VLFeat - Documentation > C API</title>
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  <link rel="stylesheet" type="text/css" href="doxygen.css"></link>
+  <!-- Scripts-->
+  <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li class='active'><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li class='active' class='activeLeaf'><a href="index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="../doc.html">Documentation</a></span><span class='separator'>></span><span class='page'><a href="index.html">C API</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+      <!-- <pagestyle href="%pathto:root;api/tabs.css"/> -->
+      <div class="doxygen">
+<div id="top">
+<div id="top">
+<!-- Generated by Doxygen 1.8.7 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li class="current"><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
+    </ul>
+  </div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="index.html">Vision Lab Features Library (VLFeat)</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Gaussian Mixture Models (GMM) </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="toc"><h3>Table of Contents</h3>
+<ul><li class="level1"><a href="#gmm-starting">Getting started</a></li>
+</ul>
+</div>
+<div class="textblock"><dl class="section author"><dt>Author</dt><dd>David Novotny </dd>
+<dd>
+Andrea Vedaldi</dd></dl>
+<p><a class="el" href="gmm_8h.html">gmm.h</a> is an implementation of <em>Gaussian Mixture Models</em> (GMMs). The main functionality provided by this module is learning GMMs from data by maximum likelihood. Model optimization uses the Expectation Maximization (EM) algorithm <a class="el" href="citelist.html#CITEREF_dempster77maximum">[6]</a> . The implementation supports <code>float</code> or <code>double</code> data types, is parallelized, and is tuned to work reliably and effectively on datasets of visual features. Stability is obtained in part by regularizing and restricting the parameters of the GMM.</p>
+<p><a class="el" href="gmm.html#gmm-starting">Getting started</a> demonstreates how to use the C API to compute the FV representation of an image. For further details refer to:</p>
+<ul>
+<li><a class="el" href="gmm-fundamentals.html">GMM fundamentals</a></li>
+</ul>
+<h1><a class="anchor" id="gmm-starting"></a>
+Getting started</h1>
+<p>In order to use <a class="el" href="gmm_8h.html">gmm.h</a> to learn a GMM from training data, create a new <a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f" title="GMM quantizer. ">VlGMM</a> object instance, set the parameters as desired, and run the training code. The following example learns <code>numClusters</code> Gaussian components from <code>numData</code> vectors of dimension <code>dimension</code> and storage class <code>float</code> using at most 100 EM iterations:</p>
+<div class="fragment"><div class="line"><span class="keywordtype">float</span> * means ;</div>
+<div class="line"><span class="keywordtype">float</span> * covariances ;</div>
+<div class="line"><span class="keywordtype">float</span> * priors ;</div>
+<div class="line"><span class="keywordtype">float</span> * posteriors ;</div>
+<div class="line"></div>
+<div class="line"><span class="keywordtype">double</span> loglikelihood ;</div>
+<div class="line"></div>
+<div class="line"><span class="comment">// create a new instance of a GMM object for float data</span></div>
+<div class="line">gmm = <a class="code" href="gmm_8c.html#afe0bdce1cf97a7b64011ae58bc8b9697">vl_gmm_new</a> (<a class="code" href="generic_8h.html#aa034d0b942f9800b2a02aeb30ff10fa2">VL_TYPE_FLOAT</a>, dimension, numClusters) ;</div>
+<div class="line"></div>
+<div class="line"><span class="comment">// set the maximum number of EM iterations to 100</span></div>
+<div class="line"><a class="code" href="gmm_8c.html#a606ce33d200101fa6a60e10a3e89cec1">vl_gmm_set_max_num_iterations</a> (gmm, 100) ;</div>
+<div class="line"></div>
+<div class="line"><span class="comment">// set the initialization to random selection</span></div>
+<div class="line"><a class="code" href="gmm_8c.html#a3f34a10ef70b880a81eabce9fc29cc2e">vl_gmm_set_initialization</a> (gmm,<a class="code" href="gmm_8h.html#a89681cfc201e4ddfff3084c2898d1974affba7144b2bd2505b6b0ccaa89bd4f51">VlGMMRand</a>);</div>
+<div class="line"></div>
+<div class="line"><span class="comment">// cluster the data, i.e. learn the GMM</span></div>
+<div class="line"><a class="code" href="gmm_8c.html#a856cdfe758b7c48c3309859853f38e36">vl_gmm_cluster</a> (gmm, data, numData);</div>
+<div class="line"></div>
+<div class="line"><span class="comment">// get the means, covariances, and priors of the GMM</span></div>
+<div class="line">means = <a class="code" href="gmm_8c.html#ae8598b36a92ca066e26e03ea46dee466">vl_gmm_get_means</a>(gmm);</div>
+<div class="line">covariances = <a class="code" href="gmm_8c.html#a319648cad7d83d2a31c7beb79b1ba125">vl_gmm_get_covariances</a>(gmm);</div>
+<div class="line">priors = <a class="code" href="gmm_8c.html#a556605dddee3aa3f2c35898436c5e811">vl_gmm_get_priors</a>(gmm);</div>
+<div class="line"></div>
+<div class="line"><span class="comment">// get loglikelihood of the estimated GMM</span></div>
+<div class="line">loglikelihood = <a class="code" href="gmm_8c.html#a618c40e1338f2433505f83d0745fce7f">vl_gmm_get_loglikelihood</a>(gmm) ;</div>
+<div class="line"></div>
+<div class="line"><span class="comment">// get the soft assignments of the data points to each cluster</span></div>
+<div class="line">posteriors = <a class="code" href="gmm_8c.html#a54b1da9397fdb22c1036690e80816e76">vl_gmm_get_posteriors</a>(gmm) ;</div>
+</div><!-- fragment --><dl class="section note"><dt>Note</dt><dd><a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f" title="GMM quantizer. ">VlGMM</a> assumes that the covariance matrices of the GMM are diagonal. This reduces significantly the number of parameters to learn and is usually an acceptable compromise in vision applications. If the data is significantly correlated, it can be beneficial to de-correlate it by PCA rotation or projection in pre-processing.</dd></dl>
+<p><a class="el" href="gmm_8c.html#a618c40e1338f2433505f83d0745fce7f" title="Get the log likelihood of the current mixture. ">vl_gmm_get_loglikelihood</a> is used to get the final loglikelihood of the estimated mixture, <a class="el" href="gmm_8c.html#ae8598b36a92ca066e26e03ea46dee466" title="Get means. ">vl_gmm_get_means</a> and <a class="el" href="gmm_8c.html#a319648cad7d83d2a31c7beb79b1ba125" title="Get covariances. ">vl_gmm_get_covariances</a> to obtain the means and the diagonals of the covariance matrices of the estimated Gaussian modes, and <a class="el" href="gmm_8c.html#a54b1da9397fdb22c1036690e80816e76" title="Get posteriors. ">vl_gmm_get_posteriors</a> to get the posterior probabilities that a given point is associated to each of the modes (soft assignments).</p>
+<p>The learning algorithm, which uses EM, finds a local optimum of the objective function. Therefore the initialization is crucial in obtaining a good model, measured in term of the final loglikelihood. <a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f" title="GMM quantizer. ">VlGMM</a> supports a few methods (use <a class="el" href="gmm_8c.html#a3f34a10ef70b880a81eabce9fc29cc2e" title="Set initialization algorithm. ">vl_gmm_set_initialization</a> to choose one) as follows:</p>
+<table class="doxtable">
+<tr>
+<th>Method </th><th><a class="el" href="gmm_8h.html#a89681cfc201e4ddfff3084c2898d1974" title="GMM initialization algorithms. ">VlGMMInitialization</a> enumeration </th><th>Description  </th></tr>
+<tr>
+<td>Random initialization </td><td><a class="el" href="gmm_8h.html#a89681cfc201e4ddfff3084c2898d1974affba7144b2bd2505b6b0ccaa89bd4f51">VlGMMRand</a> </td><td>Random initialization of the mixture parameters </td></tr>
+<tr>
+<td>KMeans </td><td><a class="el" href="gmm_8h.html#a89681cfc201e4ddfff3084c2898d1974a5a63bb7b0105d969855a9097d13ffd34">VlGMMKMeans</a> </td><td>Initialization of the mixture parameters using <a class="el" href="structVlKMeans.html" title="K-means quantizer. ">VlKMeans</a> </td></tr>
+<tr>
+<td>Custom </td><td><a class="el" href="gmm_8h.html#a89681cfc201e4ddfff3084c2898d1974adaee798f6850c527ecf774cedfc44cb7">VlGMMCustom</a> </td><td>User specified initialization </td></tr>
+</table>
+<p>Note that in the case of <a class="el" href="gmm_8h.html#a89681cfc201e4ddfff3084c2898d1974a5a63bb7b0105d969855a9097d13ffd34">VlGMMKMeans</a> initialization, an object of type <a class="el" href="structVlKMeans.html" title="K-means quantizer. ">VlKMeans</a> object must be created and passed to the <a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f" title="GMM quantizer. ">VlGMM</a> instance (see <a class="el" href="kmeans.html">K-means clustering</a> to see how to correctly set up this object).</p>
+<p>When a user wants to use the <a class="el" href="gmm_8h.html#a89681cfc201e4ddfff3084c2898d1974adaee798f6850c527ecf774cedfc44cb7">VlGMMCustom</a> method, the initial means, covariances and priors have to be specified using the <a class="el" href="gmm_8c.html#a001f4a994fbb997e7b7b38d56e69e495" title="Explicitly set the initial means for EM. ">vl_gmm_set_means</a>, <a class="el" href="gmm_8c.html#a9467941c38e0eb70f1e7de2cf8242716" title="Explicitly set the initial sigma diagonals for EM. ">vl_gmm_set_covariances</a> and <a class="el" href="gmm_8c.html#a4c0e4759f7b082400cfe4da0991139c8" title="Explicitly set the initial priors of the gaussians. ">vl_gmm_set_priors</a> methods. </p>
+</div></div><!-- contents -->
+        <!-- Doc Here -->
+      </div>
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>

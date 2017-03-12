@@ -1,0 +1,321 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+
+  <!-- Page title -->
+  <title>VLFeat - Tutorials > Dense SIFT</title>
+
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  
+
+  <!-- Scripts-->
+  
+
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li class='active'><a href="tut.html">Tutorials</a>
+<ul>
+<li><a href="frame.html">Local feature frames</a>
+</li>
+<li><a href="covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="hog.html">HOG features</a>
+</li>
+<li><a href="sift.html">SIFT detector and descriptor</a>
+</li>
+<li class='active' class='activeLeaf'><a href="dsift.html">Dense SIFT</a>
+</li>
+<li><a href="liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="mser.html">MSER feature detector</a>
+</li>
+<li><a href="imdisttf.html">Distance transform</a>
+</li>
+<li><a href="encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="kmeans.html">K-means clustering</a>
+</li>
+<li><a href="aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="slic.html">SLIC superpixels</a>
+</li>
+<li><a href="svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="ikm.html">Integer K-means</a>
+</li>
+<li><a href="hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li><a href="../api/index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="tut.html">Tutorials</a></span><span class='separator'>></span><span class='page'><a href="dsift.html">Dense SIFT</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+        
+    
+
+<div class='toc'>
+<h3>Table of Contents</h3><ul><li class="level1"><a href="#tut.dsift.fast">Dense SIFT as a faster SIFT</a></li>
+<li class="level1"><a href="#tut.dsift.phow">PHOW descriptors</a></li>
+<li class="level1"><a href="#tut.dsift.references">References</a></li>
+</ul>
+</div><!-- Table of contents -->
+
+
+<p>VLFeat implements a <a shape="rect" href="">fast dense version of
+SIFT</a>, called
+<code/>vl_dsift</code>. The function is roughly equivalent to running
+SIFT on a dense gird of locations at a fixed scale and
+orientation. This type of feature descriptors is often uses for object
+categorization.</p>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h1 id="tut.dsift.fast">Dense SIFT as a faster SIFT</h1>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<p>The main advantage of using <code/>vl_dsift</code>
+over <code/>vl_sift</code> is speed. To see this, load a test image</p>
+
+<div class="highlight"><pre><span class="n">I</span> <span class="p">=</span> <span class="n">vl_impattern</span><span class="p">(</span><span class="s">&#39;roofs1&#39;</span><span class="p">)</span> <span class="p">;</span>
+<span class="n">I</span> <span class="p">=</span> <span class="n">single</span><span class="p">(</span><span class="n">vl_imdown</span><span class="p">(</span><span class="n">rgb2gray</span><span class="p">(</span><span class="n">I</span><span class="p">)))</span> <span class="p">;</span>
+</pre></div>
+
+
+<p>To check the equivalence of <code/>vl_disft</code>
+and <code/>vl_sift</code> it is necessary to understand in detail how
+the parameters of the two descriptors are related.</p>
+
+<ul>
+<li><p><b>Bin size vs keypoint scale</b>. DSIFT specifies the
+descriptor size by a single parameter, <code/>size</code>, which controls
+the size of a SIFT spatial bin in pixels. In the standard SIFT
+descriptor, the bin size is related to the SIFT keypoint scale by a
+multiplier, denoted <code/>magnif</code> below, which defaults
+to <code/>3</code>. As a consequence, a DSIFT descriptor with bin size
+equal to 5 corresponds to a SIFT keypoint of scale 5/3=1.66.</p></li>
+
+<li><p><b>Smoothing.</b> The SIFT descriptor smoothes the image
+according to the scale of the keypoints (Gaussian scale space). By
+default, the smoothing is equivalent to a convolution by a Gaussian of
+variance <code/>s^2 - .25</code>, where <code/>s</code> is the scale of
+the keypoint and <code/>.25</code> is a nominal adjustment that
+accounts for the smoothing induced by the camera CCD.</p></li>
+</ul>
+
+<p>Thus the following code produces equivalent descriptors using
+  either DSIFT or SIFT:</p>
+
+<div class="highlight"><pre><span class="n">binSize</span> <span class="p">=</span> <span class="mi">8</span> <span class="p">;</span>
+<span class="n">magnif</span> <span class="p">=</span> <span class="mi">3</span> <span class="p">;</span>
+<span class="n">Is</span> <span class="p">=</span> <span class="n">vl_imsmooth</span><span class="p">(</span><span class="n">I</span><span class="p">,</span> <span class="nb">sqrt</span><span class="p">((</span><span class="n">binSize</span><span class="o">/</span><span class="n">magnif</span><span class="p">)</span>^<span class="mi">2</span> <span class="o">-</span> <span class="p">.</span><span class="mi">25</span><span class="p">))</span> <span class="p">;</span>
+
+<span class="p">[</span><span class="n">f</span><span class="p">,</span> <span class="n">d</span><span class="p">]</span> <span class="p">=</span> <span class="n">vl_dsift</span><span class="p">(</span><span class="n">Is</span><span class="p">,</span> <span class="s">&#39;size&#39;</span><span class="p">,</span> <span class="n">binSize</span><span class="p">)</span> <span class="p">;</span>
+<span class="n">f</span><span class="p">(</span><span class="mi">3</span><span class="p">,:)</span> <span class="p">=</span> <span class="n">binSize</span><span class="o">/</span><span class="n">magnif</span> <span class="p">;</span>
+<span class="n">f</span><span class="p">(</span><span class="mi">4</span><span class="p">,:)</span> <span class="p">=</span> <span class="mi">0</span> <span class="p">;</span>
+<span class="p">[</span><span class="n">f_</span><span class="p">,</span> <span class="n">d_</span><span class="p">]</span> <span class="p">=</span> <span class="n">vl_sift</span><span class="p">(</span><span class="n">I</span><span class="p">,</span> <span class="s">&#39;frames&#39;</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span> <span class="p">;</span>
+</pre></div>
+
+
+<p>The difference, of course, is that DSIFT is much faster.</p>
+
+<div class="figure">
+ <img src="../demo/dsift_accuracy.jpg"></img>
+ <img src="../demo/dsift_speedup.jpg"></img>
+ <div class="caption">
+  <span class="content">
+    Left: accuracy of the slow and fast dense SIFT implementations in
+    <code/>vl_dsift</code> compared to the SIFT baseline from <code/>
+    vl_sift</code>. Right: speedup. The fast version is less similar
+    to the original SIFT descriptors but from 30 to 70 times faster
+    than SIFT. Notice that the equivalence of the descriptors does not
+    necessarily indicate that one would work better than the other in
+    applications.
+  </span>
+ </div>
+</div>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h1 id="tut.dsift.phow">PHOW descriptors</h1>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<p>The PHOW features <a shape="rect" href="#ref1">[1]</a> are a variant of dense
+SIFT descriptors, extracted at multiple scales. A color version, named
+PHOW-color, extracts descriptors on the three HSV image channels and
+stacks them up. A combination of <code/>vl_dsift</code>
+and <code/>vl_imsmooth</code> can be used to easily and efficiently
+compute such features.</p>
+
+<p>VLFeat includes a simple wrapper, <code/>vl_phow</code>, that does
+exactly this:</p>
+
+<div class="highlight"><pre><span class="n">im</span> <span class="p">=</span> <span class="n">vl_impattern</span><span class="p">(</span><span class="s">&#39;roofs1&#39;</span><span class="p">)</span> <span class="p">;</span>
+<span class="p">[</span><span class="n">frames</span><span class="p">,</span> <span class="n">descrs</span><span class="p">]=</span><span class="n">vl_phow</span><span class="p">(</span><span class="n">im2single</span><span class="p">(</span><span class="n">im</span><span class="p">))</span> <span class="p">;</span>
+</pre></div>
+
+
+<p>Note that this typically generate a very large number of features.
+In this example, there are 162,574 features.</p>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h1 id="tut.dsift.references">References</h1>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<ul>
+  <li id="ref1">[1] A. Bosch, A. Zisserman, and X. Munoz. <em>Image
+  classifcation using random forests and ferns.</em> In Proc. ICCV,
+  2007.
+</li>
+</ul>
+
+
+  
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>
+ 

@@ -1,0 +1,169 @@
+<group>
+<ul class='breadcrumb'><li><a href='%pathto:matlab;'>Index</a></li><li><a href='%pathto:vl_svmpegasos;'>Prev</a></li><li><a href='%pathto:vl_threads;'>Next</a></li></ul><div class="documentation"><p>
+[W B] = <a href="%pathto:vl_svmtrain;">VL_SVMTRAIN</a>(X, Y, LAMBDA) trains a linear Support Vector
+Machine (SVM) from the data vectors X and the labels Y. X is a D
+by N matrix, with one column per example and D feature dimensions
+(SINGLE or DOUBLE). Y is a DOUBLE vector with N elements with a
+binary (-1 or +1) label for each training point. To a first order
+approximation, the function computes a weight vector W and offset
+B such that the score W'*X(:,i)+B has the same sign of LABELS(i)
+for all i.
+</p><p>
+<a href="%pathto:vl_svmtrain;">VL_SVMTRAIN</a>(DATASET, LABELS, LAMBDA) takes as input a DATASET
+structure, which allows more sophisticated input formats to be
+supported (see <a href="%pathto:vl_svmdataset;">VL_SVMDATASET</a>()).
+</p><p>
+[W, B, INFO] = <a href="%pathto:vl_svmtrain;">VL_SVMTRAIN</a>(...) additionally returns a structure
+INFO with the following fields:
+</p><dl><dt>
+iteration
+</dt><dd><p>
+Number of iterations performed.
+</p></dd><dt>
+epoch
+</dt><dd><p>
+Number of iterations over number of training data points.
+</p></dd><dt>
+elapsedTime
+</dt><dd><p>
+Time elapsed since the start of training.
+</p></dd><dt>
+objective
+</dt><dd><p>
+SVM objective value.
+</p></dd><dt>
+regularizer
+</dt><dd><p>
+Regularizer value.
+</p></dd><dt>
+loss
+</dt><dd><p>
+Loss value.
+</p></dd><dt>
+scoreVariation
+<span class="defaults">[SGD only]</span></dt><dd><p>
+Mean square root of the difference between the last two
+values of the SVM scores for each point.
+</p></dd><dt>
+dualObjective
+<span class="defaults">[SDCA only]</span></dt><dd><p>
+Dual objective value.
+</p></dd><dt>
+dualLoss
+<span class="defaults">[SDCA only]</span></dt><dd><dl><dt>
+Dual loss value
+</dt></dl></dd><dt>
+dualityGap
+<span class="defaults">[SDCA only]</span></dt><dd><p>
+Difference between the objective and the dual objective.
+</p></dd></dl><p>
+[W, B, INFO, SCORES] = <a href="%pathto:vl_svmtrain;">VL_SVMTRAIN</a>(X, Y, LABMDA) returns a row
+vector of the SVM score for each training point. This can be used
+in combination with the options SOLVER, MODEL, and BIAS to
+evaluate an existing SVM on new data points. Furthermore INFO will
+contain the corresponding SVM loss, regularizer, and objective
+function value. If this information is not of interest, it is
+possible to pass a null vector Y instead of the actual labels as
+well as a null regularizer.
+</p><p>
+<a href="%pathto:vl_svmtrain;">VL_SVMTRAIN</a>() accepts the following options:
+</p><dl><dt>
+Verbose
+</dt><dd><p>
+Specify one or multiple times to increase the verbosity level.
+Given only once, produces messages at the beginning and end of
+the learning. Verbosity of at least 2 prints information at
+every diagnostic step.
+</p></dd><dt>
+Epsilon
+<span class="defaults">1e-3</span></dt><dd><p>
+Tolerance for the stopping criterion.
+</p></dd><dt>
+MaxNumIterations
+<span class="defaults">10/LAMBDA</span></dt><dd><p>
+Maximum number of iterations.
+</p></dd><dt>
+BiasMultiplier
+<span class="defaults">1</span></dt><dd><p>
+Value of the constant B0 used as bias term (see below).
+</p></dd><dt>
+BiasLearningRate
+<span class="defaults">0.5</span></dt><dd><p>
+Learning rate for the bias (SGD solver only).
+</p></dd><dt>
+DiagnosticFunction
+<span class="defaults">[]</span></dt><dd><p>
+Diagnostic function callback. The callback takes the INFO
+structure as only argument. To trace energies and plot graphs,
+the callback can update a global variable or, preferably, be
+defined as a nested function and update a local variable in the
+parent function.
+</p></dd><dt>
+DiagnosticFrequency
+<span class="defaults">Number of data points</span></dt><dd><p>
+After how many iteration the diagnostic is run. This step check
+for convergence, and is done rarely, typically after each epoch
+(pass over the data). It also calls the DiangosticFunction,
+if any is specified.
+</p></dd><dt>
+Loss
+<span class="defaults">HINGE</span></dt><dd><p>
+Loss function. One of HINGE, HINGE2, L1, L2, LOGISTIC.
+</p></dd><dt>
+Solver
+<span class="defaults">SDCA</span></dt><dd><p>
+One of SGD (stochastic gradient descent [1]), SDCA (stochastic
+dual coordinate ascent [2,3]), or NONE (no training). The
+last option can be used in combination with the options MODEL
+and BIAS to evaluate an existing SVM.
+</p></dd><dt>
+Model
+<span class="defaults">null vector</span></dt><dd><p>
+Specifies the initial value for the weight vector W (SGD only).
+</p></dd><dt>
+Bias
+<span class="defaults">0</span></dt><dd><p>
+Specifies the initial value of the bias term (SGD only).
+</p></dd><dt>
+Weights
+<span class="defaults">[]</span></dt><dd><p>
+Specifies a weight vector to assign a different non-negative
+weight to each data point. An application is to rebalance
+unbalanced datasets.
+</p></dd></dl><p>
+FORMULATION
+</p><p>
+<a href="%pathto:vl_svmtrain;">VL_SVMTRAIN</a>() minimizes the objective function of the form:
+</p><pre>
+  LAMBDA/2 |W|^2 + 1/N SUM_i LOSS(W' X(:,i), Y(i))
+</pre><p>
+where LOSS(W' Xi,Yi) is the loss (hinge by default) for i-th
+data point. The bias is incorporated by extending each data
+point X with a feature of constant value B0, such that the
+objective becomes
+</p><pre>
+ LAMBDA/2 (|W|^2 + WB^2) 1/N SUM_i LOSS(W' X(:,i) + WB B0, Y(i))
+</pre><p>
+Note that this causes the learned bias B = WB B0 to shrink
+towards the origin.
+</p><dl><dt>
+Example
+</dt><dd><p>
+Learn a linear SVM from data X and labels Y using 0.1
+as regularization coefficient:
+</p><pre>
+  [w, b] = vl_svmtrain(x, y, 0.1) ;
+</pre><p>
+The SVM can be evaluated on new data XTEST with:
+</p><pre>
+  scores = w'*xtest + b ;
+</pre><p>
+Alternatively, <a href="%pathto:vl_svmtrain;">VL_SVMTRAIN</a>() can be used for evaluation too:
+</p><pre>
+  [~,~,~, scores] = vl_svmtrain(xtest, y, 0, 'model', w, 'bias', b, 'solver', 'none') ;
+</pre><p>
+The latter form is particularly useful when X is a DATASET structure.
+</p></dd></dl><p>
+See also: <a href="%dox:svm;">SVM fundamentals</a>,
+<a href="%pathto:vl_svmdataset;">VL_SVMDATASET</a>(), <a href="%pathto:vl_help;">VL_HELP</a>().
+</p></div></group>

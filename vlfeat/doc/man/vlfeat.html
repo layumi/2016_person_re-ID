@@ -1,0 +1,302 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+
+  <!-- Page title -->
+  <title>VLFeat - Documentation > Man pages > vlfeat</title>
+
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  
+
+  <!-- Scripts-->
+  
+
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li class='active'><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li><a href="../api/index.html">C API</a>
+</li>
+<li class='active'><a href="man.html">Man pages</a>
+<ul>
+<li><a href="mser.html">mser</a>
+</li>
+<li><a href="sift.html">sift</a>
+</li>
+<li class='active' class='activeLeaf'><a href="vlfeat.html">vlfeat</a>
+</li>
+</ul></li>
+</ul></li>
+</ul>
+
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="../doc.html">Documentation</a></span><span class='separator'>></span><span class='page'><a href="man.html">Man pages</a></span><span class='separator'>></span><span class='page'><a href="vlfeat.html">vlfeat</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+        
+
+<h1 align="center" id="id-6348">VLFEAT</h1>
+<a shape="rect" href="#NAME">NAME</a><br clear="none"/>
+<a shape="rect" href="#DESCRIPTION">DESCRIPTION</a><br clear="none"/>
+<a shape="rect" href="#FILE%20SPECIFIERS%20(FILESPEC)">FILE SPECIFIERS
+(FILESPEC)</a><br clear="none"/>
+<a shape="rect" href="#SEE%20ALSO">SEE ALSO</a><br clear="none"/>
+<hr></hr>
+<a shape="rect" name="NAME"></a>
+<h2 id="id-6359">NAME</h2>
+<p style="margin-left:11%; margin-top: 1em">VLFeat &minus;
+VisionLab Features Library</p>
+<a shape="rect" name="DESCRIPTION"></a>
+<h2 id="id-6362">DESCRIPTION</h2>
+<p style="margin-left:11%; margin-top: 1em"><b>VLFeat</b> is a
+collection of computer vision algorithms with a special focus on
+image features such as SIFT and MSER.</p>
+<p style="margin-left:11%; margin-top: 1em">The functionalities
+offered by the library can be accessed either through its API, or
+by means of command line and MATLAB programs. See the <b>SEE
+ALSO</b> section for a list of the related command line programs
+and for a pointer to the general documentation of the library.</p>
+<a shape="rect" name="FILE SPECIFIERS (FILESPEC)"></a>
+<h2 id="id-6368">FILE SPECIFIERS (FILESPEC)</h2>
+<p style="margin-left:11%; margin-top: 1em">Some commands in
+<b>VLFeat</b> make use of &lsquo;file specifiers&rsquo; to
+associate to one or more input files the appropriate
+output/auxiliary files. A file specifier is a string such as
+&lsquo;ascii://%.txt&rsquo; and contains two pieces of
+information:</p>
+<table rules="none" border="0" frame="void" width="100%" cellpadding="0" cellspacing="0">
+<tr align="left" valign="top">
+<td width="11%" rowspan="1" colspan="1"></td>
+<td width="1%" rowspan="1" colspan="1">
+<p style="margin-top: 1em" valign="top">&bull;</p>
+</td>
+<td width="5%" rowspan="1" colspan="1"></td>
+<td width="83%" rowspan="1" colspan="1">
+<p style="margin-top: 1em" valign="top">The <b>file format</b> (in
+this case <i>ascii</i>). The supported formats depend on the
+particular application. Two common formats are <i>ascii</i> and
+<i>bin</i>(ary).</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="11%" rowspan="1" colspan="1"></td>
+<td width="1%" rowspan="1" colspan="1">
+<p style="margin-top: 1em" valign="top">&bull;</p>
+</td>
+<td width="5%" rowspan="1" colspan="1"></td>
+<td width="83%" rowspan="1" colspan="1">
+<p style="margin-top: 1em" valign="top">A <b>name transformation
+rule</b> (in this case <i>%.txt</i>). This is used to transform the
+name an input file into the name of the corresponding
+output/auxiliary file. The transformed name is comput by extracting
+the basename of the input file substituting it to all occurences of
+the wildcard characer &lsquo;%&rsquo; in the transformation rule
+(&lsquo;%%&rsquo;) passes the wildcard character untouched.</p>
+</td>
+</tr>
+</table>
+<p style="margin-left:11%; margin-top: 1em">Recall that the
+basename of a file name is obtained by stripping the directory
+prefix (everything from the beginning up to the last
+&lsquo;/&rsquo; or &lsquo;\&rsquo; character) and extension
+(everything from the last &lsquo;.&rsquo; characeter (excluding the
+prefix) to the end).</p>
+<p style="margin-left:11%; margin-top: 1em">For instance, the
+filespec &lsquo;ascii://%.txt&rsquo; and the input file
+&lsquo;test.data&rsquo; specify a file named &lsquo;test.txt&rsquo;
+in ascii (text) format.</p>
+<p style="margin-left:11%; margin-top: 1em"><b>Partial file
+specifiers</b><br clear="none"/>
+Normally, a program provides default values for its file
+specifiers. In this case, partial file specifier (with only the
+file format or the name transformation rule are acceptable).</p>
+<p style="margin-left:11%; margin-top: 1em"><b>File specifiers
+equivalent to a file name</b><br clear="none"/>
+A partial specifier such as &lsquo;file.txt&rsquo; is in effect
+equivalent to the file name &lsquo;file.txt&rsquo;. If the
+specifier is used in conjunction with multiple input files, this
+causes the same file to be accessed multile times.</p>
+<a shape="rect" name="SEE ALSO"></a>
+<h2 id="id-6401">SEE ALSO</h2>
+<p style="margin-left:11%; margin-top: 1em"><b>sift</b>(1),
+<b>mser</b>(1)</p>
+<p style="margin-left:11%; margin-top: 1em">A. Vedaldi and B.
+Fulkerson. VLFeat Library. <i>http://www.vlfeat.org/</i></p>
+<hr></hr>
+
+
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>
+ 

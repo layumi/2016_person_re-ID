@@ -1,0 +1,324 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+  <!-- Page title -->
+  <title>VLFeat - Documentation > C API</title>
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  <link rel="stylesheet" type="text/css" href="doxygen.css"></link>
+  <!-- Scripts-->
+  <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li class='active'><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li class='active' class='activeLeaf'><a href="index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="../doc.html">Documentation</a></span><span class='separator'>></span><span class='page'><a href="index.html">C API</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+      <!-- <pagestyle href="%pathto:root;api/tabs.css"/> -->
+      <div class="doxygen">
+<div id="top">
+<div id="top">
+<!-- Generated by Doxygen 1.8.7 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li class="current"><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
+    </ul>
+  </div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="index.html">Vision Lab Features Library (VLFeat)</a></li><li class="navelem"><a class="el" href="svm.html">Support Vector Machines (SVM)</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Advanced SVM topics </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="toc"><h3>Table of Contents</h3>
+<ul><li class="level1"><a href="#svm-loss-functions">Loss functions</a></li>
+<li class="level1"><a href="#svm-data-abstraction">Data abstraction: working with compressed data</a></li>
+<li class="level1"><a href="#svm-dual-problem">Dual problem</a></li>
+<li class="level1"><a href="#svm-C">Parametrization in C</a></li>
+</ul>
+</div>
+<div class="textblock"><p>This page discusses advanced SVM topics. For an introduction to SVMs, please refer to <a class="el" href="svm.html">Support Vector Machines (SVM)</a> and <a class="el" href="svm-fundamentals.html">SVM fundamentals</a>.</p>
+<h1><a class="anchor" id="svm-loss-functions"></a>
+Loss functions</h1>
+<p>The SVM formulation given in <a class="el" href="svm-fundamentals.html">SVM fundamentals</a> uses the hinge loss, which is only one of a variety of loss functions that are often used for SVMs. More in general, one can consider the objective</p>
+<p class="formulaDsp">
+\begin{equation} E(\bw) = \frac{\lambda}{2} \left\| \bw \right\|^2 + \frac{1}{n} \sum_{i=1}^n \ell_i(\langle \bw,\bx\rangle). \label{e:svm-primal} \end{equation}
+</p>
+<p>where the loss \(\ell_i(z)\) is a convex function of the scalar variable \(z\). Losses differ by: (i) their purpose (some are suitable for classification, other for regression), (ii) their smoothness (which usually affects how quickly the SVM objective function can be minimized), and (iii) their statistical interpretation (for example the logistic loss can be used to learn logistic models).</p>
+<p>Concrete examples are the:</p>
+<table class="doxtable">
+<tr>
+<td>Name </td><td>Loss \(\ell_i(z)\) </td><td>Description  </td></tr>
+<tr>
+<td>Hinge </td><td>\(\max\{0, 1-y_i z\}\) </td><td>The standard SVM loss function.  </td></tr>
+<tr>
+<td>Square hinge </td><td>\(\max\{0, 1-y_i z\}^2\) </td><td>The standard SVM loss function, but squared. This version is smoother and may yield numerically easier problems.  </td></tr>
+<tr>
+<td>Square or l2 </td><td>\((y_i - z)^2\) </td><td>This loss yields the ridge regression model (l2 regularised least square).  </td></tr>
+<tr>
+<td>Linear or l1 </td><td>\(|y_i - z|\) </td><td>Another loss suitable for regression, usually more robust but harder to optimize than the squared one.  </td></tr>
+<tr>
+<td>Insensitive l1 </td><td>\(\max\{0, |y_i - z| - \epsilon\}\). </td><td>This is a variant of the previous loss, proposed in the original Support Vector Regression formulation. Differently from the previous two losses, the insensitivity may yield to a sparse selection of support vectors.  </td></tr>
+<tr>
+<td>Logistic </td><td>\(\log(1 + e^{-y_i z})\) </td><td>This corresponds to regularized logisitc regression. The loss can be seen as a negative log-likelihood: \(\ell_i(z) = -\log P[y_i | z] = - \log \sigma(y_iz/2)\), where \(\sigma(z) = e^z/(1 + e^z)\) is the sigmoid function, mapping a score \(z\) to a probability. The \(1/2\) factor in the sigmoid is due to the fact that labels are in \(\{-1,1\}\) rather than \(\{0,1\}\) as more common for the standard sigmoid model.  </td></tr>
+</table>
+<h1><a class="anchor" id="svm-data-abstraction"></a>
+Data abstraction: working with compressed data</h1>
+<p>VLFeat learning algorithms (SGD and SDCA) access the data by means of only two operations:</p>
+<ul>
+<li><em>inner product</em>: computing the inner product between the model and a data vector, i.e. \(\langle \bw, \bx \rangle\).</li>
+<li><em>accumulation</em>: summing a data vector to the model, i.e. \(\bw \leftarrow \bw + \beta \bx\).</li>
+</ul>
+<p>VLFeat learning algorithms are <em>parameterized</em> in these two operations. As a consequence, the data can be stored in any format suitable to the user (e.g. dense matrices, sparse matrices, block-sparse matrices, disk caches, and so on) provided that these two operations can be implemented efficiently. Differently from the data, however, the model vector \(\bw\) is represented simply as a dense array of doubles. This choice is adequate in almost any case.</p>
+<p>A particularly useful aspect of this design choice is that the training data can be store in <em>compressed format</em> (for example by using product quantization (PQ)). Furthermore, higher-dimensional encodings such as the homogeneous kernel map (<a class="el" href="homkermap.html">Homogeneous kernel map</a>) and the intersection kernel map can be <em>computed on the fly</em>. Such techniques are very important when dealing with GBs of data.</p>
+<h1><a class="anchor" id="svm-dual-problem"></a>
+Dual problem</h1>
+<p>In optimization, the <em>dual objective</em> \(D(\balpha)\) of the SVM objective \(E(\bw)\) is of great interest. To obtain the dual objective, one starts by approximating each loss term from below by a family of planes: </p><p class="formulaDsp">
+\[ \ell_i(z) = \sup_{u} (u z - \ell_i^*(u) ), \qquad \ell_i^*(u) = \sup_{z} (z u - \ell_i(z) ) \]
+</p>
+<p> where \(\ell_i^*(u)\) is the <em>dual conjugate</em> of the loss and gives the intercept of each approximating plane as a function of the slope. When the loss function is convex, the approximation is in fact exact. Examples include:</p>
+<table class="doxtable">
+<tr>
+<td>Name </td><td>Loss \(\ell_i(z)\) </td><td>Conjugate loss \(\ell_i^*(u)\)  </td></tr>
+<tr>
+<td>Hinge </td><td>\(\max\{0, 1-y_i z\}\) </td><td><p class="formulaDsp">
+\[ \ell_i^*(u) = \begin{cases} y_i u, &amp; -1 \leq y_i u \leq 0, \\ +\infty, &amp; \text{otherwise} \end{cases} \]
+</p>
+  </td></tr>
+<tr>
+<td>Square hinge </td><td>\(\max\{0, 1-y_i z\}^2\) </td><td><p class="formulaDsp">
+\[\ell_i^*(u) = \begin{cases} y_i u + \frac{u^2}{4}, &amp; y_i u \leq 0, \\ +\infty, &amp; \text{otherwise} \\ \end{cases}\]
+</p>
+  </td></tr>
+<tr>
+<td>Linear or l1 </td><td>\(|y_i - z|\) </td><td><p class="formulaDsp">
+\[\ell_i^*(u) = \begin{cases} y_i u, &amp; -1 \leq y_i u \leq 1, \\ +\infty, &amp; \text{otherwise} \\ \end{cases}\]
+</p>
+  </td></tr>
+<tr>
+<td>Square or l2 </td><td>\((y_i - z)^2\) </td><td><p class="formulaDsp">
+\[\ell_i^*(u)=y_iu + \frac{u^2}{4}\]
+</p>
+  </td></tr>
+<tr>
+<td>Insensitive l1 </td><td>\(\max\{0, |y_i - z| - \epsilon\}\). </td><td></td></tr>
+<tr>
+<td>Logistic </td><td>\(\log(1 + e^{-y_i z})\) </td><td><p class="formulaDsp">
+\[\ell_i^*(u) = \begin{cases} (1+u) \log(1+u) - u \log(-u), &amp; -1 \leq y_i u \leq 0, \\ +\infty, &amp; \text{otherwise} \\ \end{cases}\]
+</p>
+   </td></tr>
+</table>
+<p>Since each plane \(- z \alpha_i - \ell^*_i(-\alpha_i) \leq \ell_i(z)\) bounds the loss from below, by substituting in \(E(\bw)\) one can write a lower bound for the SVM objective </p><p class="formulaDsp">
+\[ F(\bw,\balpha) = \frac{\lambda}{2} \|\bw\|^2 - \frac{1}{n}\sum_{i=1}^n (\bw^\top \bx_i\alpha_i + \ell_i^*(-\alpha_i)) \leq E(\bw). \]
+</p>
+<p> for each setting of the <em>dual variables</em> \(\alpha_i\). The dual objective function \(D(\balpha)\) is obtained by minimizing the lower bound \(F(\bw,\balpha)\) w.r.t. to \(\bw\): </p><p class="formulaDsp">
+\[ D(\balpha) = \inf_{\bw} F(\bw,\balpha) \leq E(\bw). \]
+</p>
+<p> The minimizer and the dual objective are now easy to find: </p><p class="formulaDsp">
+\[ \boxed{\displaystyle \bw(\balpha) = \frac{1}{\lambda n} \sum_{i=1}^n \bx_i \alpha_i = \frac{1}{\lambda n} X\balpha, \quad D(\balpha) = - \frac{1}{2\lambda n^2} \balpha^\top X^\top X \balpha + \frac{1}{n} \sum_{i=1}^n - \ell_i^*(-\alpha_i) } \]
+</p>
+<p> where \(X = [\bx_1, \dots, \bx_n]\) is the data matrix. Since the dual is uniformly smaller than the primal, one has the <em>duality gap</em> bound: </p><p class="formulaDsp">
+\[ D(\balpha) \leq P(\bw^*) \leq P(\bw(\balpha)) \]
+</p>
+<p> This bound can be used to evaluate how far off \(\bw(\balpha)\) is from the primal minimizer \(\bw^*\). In fact, due to convexity, this bound can be shown to be zero when \(\balpha^*\) is the dual maximizer (strong duality): </p><p class="formulaDsp">
+\[ D(\balpha^*) = P(\bw^*) = P(\bw(\balpha^*)), \quad \bw^* = \bw(\balpha^*). \]
+</p>
+<h1><a class="anchor" id="svm-C"></a>
+Parametrization in C</h1>
+<p>Often a slightly different form of the SVM objective is considered, where a parameter \(C\) is used to scale the loss instead of the regularizer:</p>
+<p class="formulaDsp">
+\[ E_C(\bw) = \frac{1}{2} \|\bw\|^2 + C \sum_{i=1}^n \ell_i(\langle \bx_i, \bw\rangle) \]
+</p>
+<p>This and the objective function \(E(\bw)\) in \(\lambda\) are equivalent (proportional) if</p>
+<p class="formulaDsp">
+\[ \lambda = \frac{1}{nC}, \qquad C = \frac{1}{n\lambda}. \]
+</p>
+<p> up to an overall scaling factor to the problem. </p>
+</div></div><!-- contents -->
+        <!-- Doc Here -->
+      </div>
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>

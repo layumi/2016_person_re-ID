@@ -1,0 +1,652 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+  <!-- Page title -->
+  <title>VLFeat - Documentation > C API</title>
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  <link rel="stylesheet" type="text/css" href="doxygen.css"></link>
+  <!-- Scripts-->
+  <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li class='active'><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li class='active' class='activeLeaf'><a href="index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="../doc.html">Documentation</a></span><span class='separator'>></span><span class='page'><a href="index.html">C API</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+      <!-- <pagestyle href="%pathto:root;api/tabs.css"/> -->
+      <div class="doxygen">
+<div id="top">
+<div id="top">
+<!-- Generated by Doxygen 1.8.7 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
+      <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-attribs">Data Fields</a>  </div>
+  <div class="headertitle">
+<div class="title">VlMserFilt Struct Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>MSER filter.  
+ <a href="struct__VlMserFilt.html#details">More...</a></p>
+
+<p><code>#include &lt;mser.h&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Data Fields</h2></td></tr>
+<tr class="memitem:ade169ed435dead256a61ebc3dc47fa58"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#a5bd6e91d6bfd0be04101fdca94069c92">vl_uint</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__VlMserFilt.html#ade169ed435dead256a61ebc3dc47fa58">perm</a></td></tr>
+<tr class="separator:ade169ed435dead256a61ebc3dc47fa58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf8d0ebf133041eda51e3789cf6956ef"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#a5bd6e91d6bfd0be04101fdca94069c92">vl_uint</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__VlMserFilt.html#acf8d0ebf133041eda51e3789cf6956ef">joins</a></td></tr>
+<tr class="separator:acf8d0ebf133041eda51e3789cf6956ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ed0f15196286e91dfe0a34c51b04220"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__VlMserFilt.html#a1ed0f15196286e91dfe0a34c51b04220">njoins</a></td></tr>
+<tr class="separator:a1ed0f15196286e91dfe0a34c51b04220"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Image data and meta data @internal</div></td></tr>
+<tr class="memitem:a38bbbda6027a6cc5972e9909c4a12692"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__VlMserFilt.html#a38bbbda6027a6cc5972e9909c4a12692">ndims</a></td></tr>
+<tr class="separator:a38bbbda6027a6cc5972e9909c4a12692"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeaf813d7f58f2198b25a9ee7ff9e404e"><td class="memItemLeft" align="right" valign="top">int *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__VlMserFilt.html#aeaf813d7f58f2198b25a9ee7ff9e404e">dims</a></td></tr>
+<tr class="separator:aeaf813d7f58f2198b25a9ee7ff9e404e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade49647bf63afe9f0a695c92974d8764"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__VlMserFilt.html#ade49647bf63afe9f0a695c92974d8764">nel</a></td></tr>
+<tr class="separator:ade49647bf63afe9f0a695c92974d8764"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6f3cb73d9a7fd43f6d027b8584041b3"><td class="memItemLeft" align="right" valign="top">int *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__VlMserFilt.html#ac6f3cb73d9a7fd43f6d027b8584041b3">subs</a></td></tr>
+<tr class="separator:ac6f3cb73d9a7fd43f6d027b8584041b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2264b7c580aa2cf56b936260fd4c6d9b"><td class="memItemLeft" align="right" valign="top">int *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__VlMserFilt.html#a2264b7c580aa2cf56b936260fd4c6d9b">dsubs</a></td></tr>
+<tr class="separator:a2264b7c580aa2cf56b936260fd4c6d9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2629f43ce616ae381868a4f0f17b591b"><td class="memItemLeft" align="right" valign="top">int *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__VlMserFilt.html#a2629f43ce616ae381868a4f0f17b591b">strides</a></td></tr>
+<tr class="separator:a2629f43ce616ae381868a4f0f17b591b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Regions</div></td></tr>
+<tr class="memitem:aebb2464636ccd5eb4454d7ee535e0cd3"><td class="memItemLeft" align="right" valign="top">VlMserReg *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__VlMserFilt.html#aebb2464636ccd5eb4454d7ee535e0cd3">r</a></td></tr>
+<tr class="separator:aebb2464636ccd5eb4454d7ee535e0cd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80d6ab8f68d843050f6dfbb15fa76faa"><td class="memItemLeft" align="right" valign="top">VlMserExtrReg *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__VlMserFilt.html#a80d6ab8f68d843050f6dfbb15fa76faa">er</a></td></tr>
+<tr class="separator:a80d6ab8f68d843050f6dfbb15fa76faa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00c6ae0c602645621bcedc26c8204beb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#a5bd6e91d6bfd0be04101fdca94069c92">vl_uint</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__VlMserFilt.html#a00c6ae0c602645621bcedc26c8204beb">mer</a></td></tr>
+<tr class="separator:a00c6ae0c602645621bcedc26c8204beb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19abf235bce5559c4eb139facd47d842"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__VlMserFilt.html#a19abf235bce5559c4eb139facd47d842">ner</a></td></tr>
+<tr class="separator:a19abf235bce5559c4eb139facd47d842"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd315af1fd4c55ef8f03c8f8eb997a09"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__VlMserFilt.html#acd315af1fd4c55ef8f03c8f8eb997a09">nmer</a></td></tr>
+<tr class="separator:acd315af1fd4c55ef8f03c8f8eb997a09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11040e5cbc6455ef231459f4b991d56d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__VlMserFilt.html#a11040e5cbc6455ef231459f4b991d56d">rer</a></td></tr>
+<tr class="separator:a11040e5cbc6455ef231459f4b991d56d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabbd59fddb3c7bd765cdfafdaf5e0272"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__VlMserFilt.html#aabbd59fddb3c7bd765cdfafdaf5e0272">rmer</a></td></tr>
+<tr class="separator:aabbd59fddb3c7bd765cdfafdaf5e0272"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Ellipsoids fitting</div></td></tr>
+<tr class="memitem:a32c7bdfbce8c6b42457f4d9807e08d1f"><td class="memItemLeft" align="right" valign="top">float *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__VlMserFilt.html#a32c7bdfbce8c6b42457f4d9807e08d1f">acc</a></td></tr>
+<tr class="separator:a32c7bdfbce8c6b42457f4d9807e08d1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8406f80a3fca4c4e905f45e130c51a86"><td class="memItemLeft" align="right" valign="top">float *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__VlMserFilt.html#a8406f80a3fca4c4e905f45e130c51a86">ell</a></td></tr>
+<tr class="separator:a8406f80a3fca4c4e905f45e130c51a86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3b0841163944f505ca64da0c23299b3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__VlMserFilt.html#ab3b0841163944f505ca64da0c23299b3">rell</a></td></tr>
+<tr class="separator:ab3b0841163944f505ca64da0c23299b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afcdbe35c3718b946d0a1325be30e19a3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__VlMserFilt.html#afcdbe35c3718b946d0a1325be30e19a3">nell</a></td></tr>
+<tr class="separator:afcdbe35c3718b946d0a1325be30e19a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1ba51f153855bfec5e55085038a2041"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__VlMserFilt.html#aa1ba51f153855bfec5e55085038a2041">dof</a></td></tr>
+<tr class="separator:aa1ba51f153855bfec5e55085038a2041"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Configuration</div></td></tr>
+<tr class="memitem:a61de9f2acbff1ad0bc5e4a413531ab17"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__VlMserFilt.html#a61de9f2acbff1ad0bc5e4a413531ab17">verbose</a></td></tr>
+<tr class="separator:a61de9f2acbff1ad0bc5e4a413531ab17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42c761e11f5785eb405c017c3e6d0626"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__VlMserFilt.html#a42c761e11f5785eb405c017c3e6d0626">delta</a></td></tr>
+<tr class="separator:a42c761e11f5785eb405c017c3e6d0626"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97e972a7f749e0e1d4739775168d9eb4"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__VlMserFilt.html#a97e972a7f749e0e1d4739775168d9eb4">max_area</a></td></tr>
+<tr class="separator:a97e972a7f749e0e1d4739775168d9eb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abdd439ec557069eeca5cd684bd145431"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__VlMserFilt.html#abdd439ec557069eeca5cd684bd145431">min_area</a></td></tr>
+<tr class="separator:abdd439ec557069eeca5cd684bd145431"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a819ecb6c5cf221ef163f04d3d4773d62"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__VlMserFilt.html#a819ecb6c5cf221ef163f04d3d4773d62">max_variation</a></td></tr>
+<tr class="separator:a819ecb6c5cf221ef163f04d3d4773d62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16946e2db32dbddc90e63349b6f3a17e"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__VlMserFilt.html#a16946e2db32dbddc90e63349b6f3a17e">min_diversity</a></td></tr>
+<tr class="separator:a16946e2db32dbddc90e63349b6f3a17e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>MSER Filter.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="mser.html">Maximally Stable Extremal Regions (MSER)</a></dd></dl>
+<p>The MSER filter computes the Maximally Stable Extremal Regions of an image.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="mser.html">Maximally Stable Extremal Regions (MSER)</a> </dd></dl>
+</div><h2 class="groupheader">Field Documentation</h2>
+<a class="anchor" id="a32c7bdfbce8c6b42457f4d9807e08d1f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float* VlMserFilt::acc</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>moment accumulator. </p>
+
+</div>
+</div>
+<a class="anchor" id="a42c761e11f5785eb405c017c3e6d0626"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int VlMserFilt::delta</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>delta filter parameter </p>
+
+</div>
+</div>
+<a class="anchor" id="aeaf813d7f58f2198b25a9ee7ff9e404e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int* VlMserFilt::dims</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>dimensions </p>
+
+</div>
+</div>
+<a class="anchor" id="aa1ba51f153855bfec5e55085038a2041"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int VlMserFilt::dof</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>number of dof of ellipsoids. </p>
+
+</div>
+</div>
+<a class="anchor" id="a2264b7c580aa2cf56b936260fd4c6d9b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int* VlMserFilt::dsubs</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>another subscript </p>
+
+</div>
+</div>
+<a class="anchor" id="a8406f80a3fca4c4e905f45e130c51a86"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float* VlMserFilt::ell</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ellipsoids list. </p>
+
+</div>
+</div>
+<a class="anchor" id="a80d6ab8f68d843050f6dfbb15fa76faa"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">VlMserExtrReg* VlMserFilt::er</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>extremal tree </p>
+
+</div>
+</div>
+<a class="anchor" id="acf8d0ebf133041eda51e3789cf6956ef"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#a5bd6e91d6bfd0be04101fdca94069c92">vl_uint</a>* VlMserFilt::joins</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>sequence of join ops </p>
+
+</div>
+</div>
+<a class="anchor" id="a97e972a7f749e0e1d4739775168d9eb4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double VlMserFilt::max_area</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>badness test parameter </p>
+
+</div>
+</div>
+<a class="anchor" id="a819ecb6c5cf221ef163f04d3d4773d62"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double VlMserFilt::max_variation</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>badness test parameter </p>
+
+</div>
+</div>
+<a class="anchor" id="a00c6ae0c602645621bcedc26c8204beb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#a5bd6e91d6bfd0be04101fdca94069c92">vl_uint</a>* VlMserFilt::mer</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>maximally stable extremal regions </p>
+
+</div>
+</div>
+<a class="anchor" id="abdd439ec557069eeca5cd684bd145431"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double VlMserFilt::min_area</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>badness test parameter </p>
+
+</div>
+</div>
+<a class="anchor" id="a16946e2db32dbddc90e63349b6f3a17e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double VlMserFilt::min_diversity</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>minimum diversity </p>
+
+</div>
+</div>
+<a class="anchor" id="a38bbbda6027a6cc5972e9909c4a12692"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int VlMserFilt::ndims</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>number of dimensions </p>
+
+</div>
+</div>
+<a class="anchor" id="ade49647bf63afe9f0a695c92974d8764"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int VlMserFilt::nel</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>number of image elements (pixels) </p>
+
+</div>
+</div>
+<a class="anchor" id="afcdbe35c3718b946d0a1325be30e19a3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int VlMserFilt::nell</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>number of ellipsoids extracted </p>
+
+</div>
+</div>
+<a class="anchor" id="a19abf235bce5559c4eb139facd47d842"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int VlMserFilt::ner</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>number of extremal regions </p>
+
+</div>
+</div>
+<a class="anchor" id="a1ed0f15196286e91dfe0a34c51b04220"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int VlMserFilt::njoins</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>number of join ops </p>
+
+</div>
+</div>
+<a class="anchor" id="acd315af1fd4c55ef8f03c8f8eb997a09"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int VlMserFilt::nmer</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>number of maximally stable extr. reg. </p>
+
+</div>
+</div>
+<a class="anchor" id="ade169ed435dead256a61ebc3dc47fa58"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#a5bd6e91d6bfd0be04101fdca94069c92">vl_uint</a>* VlMserFilt::perm</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>pixel ordering </p>
+
+</div>
+</div>
+<a class="anchor" id="aebb2464636ccd5eb4454d7ee535e0cd3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">VlMserReg* VlMserFilt::r</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>basic regions </p>
+
+</div>
+</div>
+<a class="anchor" id="ab3b0841163944f505ca64da0c23299b3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int VlMserFilt::rell</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>size of ell buffer </p>
+
+</div>
+</div>
+<a class="anchor" id="a11040e5cbc6455ef231459f4b991d56d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int VlMserFilt::rer</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>size of er buffer </p>
+
+</div>
+</div>
+<a class="anchor" id="aabbd59fddb3c7bd765cdfafdaf5e0272"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int VlMserFilt::rmer</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>size of mer buffer </p>
+
+</div>
+</div>
+<a class="anchor" id="a2629f43ce616ae381868a4f0f17b591b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int* VlMserFilt::strides</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>strides to move in image data </p>
+
+</div>
+</div>
+<a class="anchor" id="ac6f3cb73d9a7fd43f6d027b8584041b3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int* VlMserFilt::subs</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>N-dimensional subscript </p>
+
+</div>
+</div>
+<a class="anchor" id="a61de9f2acbff1ad0bc5e4a413531ab17"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a> VlMserFilt::verbose</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>be verbose </p>
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li><a class="el" href="mser_8h.html">mser.h</a></li>
+</ul>
+</div><!-- contents -->
+        <!-- Doc Here -->
+      </div>
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>

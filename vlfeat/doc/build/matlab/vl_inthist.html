@@ -1,0 +1,25 @@
+<group>
+<ul class='breadcrumb'><li><a href='%pathto:matlab;'>Index</a></li><li><a href='%pathto:vl_ihashsum;'>Prev</a></li><li><a href='%pathto:vl_isoctave;'>Next</a></li></ul><div class="documentation"><p>
+INTHIST = <a href="%pathto:vl_inthist;">VL_INTHIST</a>(LABELS) computes the integral histogram for
+the label map(s) LABELS.
+</p><p>
+LABELS is a [M,N,L] UINT32 array containing L label maps (one for
+each MxN layer). Each label map associates to each of the MxN
+pixels one of K labels (a value of 0 denotes no association) with
+unitary mass.
+</p><p>
+INTHIST is the [M,N,K] integral histogram obtained by integrating
+the label maps (an integral histogram is just an array of K
+integral images, one for each of the K labels). All layers of
+labels are accumulated to the same integral histogram.
+</p><p>
+The total number of labels K is obtained as the maximum value of
+LABELS. <a href="%pathto:vl_inthist;">VL_INTHIST</a>(..., 'NUMLABELS', K) specifies the number of
+labels explicitly.
+</p><p>
+<a href="%pathto:vl_inthist;">VL_INTHIST</a>(..., 'MASS', MASSES) specifies a mass MASSES for each
+entry of LABELS. MASSES can be either of class UINT32 or DOUBLE,
+and the class of INTHIST varies accordingly.
+</p><p>
+See also: <a href="%pathto:vl_imintegral;">VL_IMINTEGRAL</a>(), <a href="%pathto:vl_sampleinthist;">VL_SAMPLEINTHIST</a>(), <a href="%pathto:vl_help;">VL_HELP</a>().
+</p></div></group>

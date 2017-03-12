@@ -1,0 +1,77 @@
+<group>
+<ul class='breadcrumb'><li><a href='%pathto:matlab;'>Index</a></li><li><a href='%pathto:vl_plotss;'>Prev</a></li><li><a href='%pathto:vl_siftdescriptor;'>Next</a></li></ul><div class="documentation"><p>
+F = <a href="%pathto:vl_sift;">VL_SIFT</a>(I) computes the SIFT frames [1] (keypoints) F of the
+image I. I is a gray-scale image in single precision. Each column
+of F is a feature frame and has the format [X;Y;S;TH], where X,Y
+is the (fractional) center of the frame, S is the scale and TH is
+the orientation (in radians).
+</p><p>
+[F,D] = <a href="%pathto:vl_sift;">VL_SIFT</a>(I) computes the SIFT descriptors [1] as well. Each
+column of D is the descriptor of the corresponding frame in F. A
+descriptor is a 128-dimensional vector of class UINT8.
+</p><p>
+<a href="%pathto:vl_sift;">VL_SIFT</a>() accepts the following options:
+</p><dl><dt>
+Octaves
+<span class="defaults">maximum possible</span></dt><dd><p>
+Set the number of octave of the DoG scale space.
+</p></dd><dt>
+Levels
+<span class="defaults">3</span></dt><dd><p>
+Set the number of levels per octave of the DoG scale space.
+</p></dd><dt>
+FirstOctave
+<span class="defaults">0</span></dt><dd><p>
+Set the index of the first octave of the DoG scale space.
+</p></dd><dt>
+PeakThresh
+<span class="defaults">0</span></dt><dd><p>
+Set the peak selection threshold.
+</p></dd><dt>
+EdgeThresh
+<span class="defaults">10</span></dt><dd><p>
+Set the non-edge selection threshold.
+</p></dd><dt>
+NormThresh
+<span class="defaults">-inf</span></dt><dd><p>
+Set the minimum l2-norm of the descriptors before
+normalization. Descriptors below the threshold are set to zero.
+</p></dd><dt>
+Magnif
+<span class="defaults">3</span></dt><dd><p>
+Set the descriptor magnification factor. The scale of the
+keypoint is multiplied by this factor to obtain the width (in
+pixels) of the spatial bins. For instance, if there are there
+are 4 spatial bins along each spatial direction, the
+``side'' of the descriptor is approximatively 4 * MAGNIF.
+</p></dd><dt>
+WindowSize
+<span class="defaults">2</span></dt><dd><p>
+Set the variance of the Gaussian window that determines the
+descriptor support. It is expressend in units of spatial
+bins.
+</p></dd><dt>
+Frames
+</dt><dd><p>
+If specified, set the frames to use (bypass the detector). If
+frames are not passed in order of increasing scale, they are
+re-orderded.
+</p></dd><dt>
+Orientations
+</dt><dd><p>
+If specified, compute the orientations of the frames overriding
+the orientation specified by the 'Frames' option.
+</p></dd><dt>
+Verbose
+</dt><dd><p>
+If specfified, be verbose (may be repeated to increase the
+verbosity level).
+</p></dd><dt>
+REFERENCES
+</dt><dd><p>
+[1] D. G. Lowe, Distinctive image features from scale-invariant
+keypoints. IJCV, vol. 2, no. 60, pp. 91-110, 2004.
+</p></dd></dl><p>
+See also: <a href="%dox:sift;">SIFT</a>
+<a href="%pathto:vl_ubcmatch;">VL_UBCMATCH</a>(), <a href="%pathto:vl_dsift;">VL_DSIFT</a>(), <a href="%pathto:vl_help;">VL_HELP</a>().
+</p></div></group>

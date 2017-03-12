@@ -1,0 +1,338 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+
+  <!-- Page title -->
+  <title>VLFeat - Documentation > MATLAB API > PLOTOP - vl_pr</title>
+
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  
+
+  <!-- Scripts-->
+  
+
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li class='active'><a href="../doc.html">Documentation</a>
+<ul>
+<li class='active'><a href="matlab.html">MATLAB API</a>
+</li>
+<li><a href="../api/index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+<ul>
+<li><a href="../man/mser.html">mser</a>
+</li>
+<li><a href="../man/sift.html">sift</a>
+</li>
+<li><a href="../man/vlfeat.html">vlfeat</a>
+</li>
+</ul></li>
+</ul></li>
+</ul>
+
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="../doc.html">Documentation</a></span><span class='separator'>></span><span class='page'><a href="matlab.html">MATLAB API</a></span><span class='separator'>></span><span class='page'><a href="vl_pr.html">PLOTOP - vl_pr</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+        <div class="mdoc">
+<ul class="breadcrumb"><li><a href="matlab.html">Index</a></li><li><a href="vl_plotstyle.html">Prev</a></li><li><a href="vl_printsize.html">Next</a></li></ul><div class="documentation"><p>
+[RECALL, PRECISION] = <a href="vl_pr.html">VL_PR</a>(LABELS, SCORES) computes the
+precision-recall (PR) curve. LABELS are the ground truth labels,
+greather than zero for a positive sample and smaller than zero for
+a negative one. SCORES are the scores of the samples obtained from
+a classifier, where lager scores should correspond to positive
+samples.
+</p><p>
+Samples are ranked by decreasing scores, starting from rank 1.
+PRECISION(K) and RECALL(K) are the precison and recall when
+samples of rank smaller or equal to K-1 are predicted to be
+positive and the remaining to be negative. So for example
+PRECISION(3) is the percentage of positive samples among the two
+samples with largest score. PRECISION(1) is the precision when no
+samples are predicted to be positive and is conventionally set to
+the value 1.
+</p><p>
+Set to zero the lables of samples that should be ignored in the
+evaluation. Set to -INF the scores of samples which are not
+retrieved. If there are samples with -INF score, then the PR curve
+may have maximum recall smaller than 1, unless the INCLUDEINF
+option is used (see below). The options NUMNEGATIVES and
+NUMPOSITIVES can be used to add additional surrogate samples with
+-INF score (see below).
+</p><p>
+[RECALL, PRECISION, INFO] = <a href="vl_pr.html">VL_PR</a>(...) returns an additional
+structure INFO with the following fields:
+</p><dl><dt>
+info.auc
+</dt><dd><p>
+The area under the precision-recall curve. If the INTERPOLATE
+option is set to FALSE, then trapezoidal interpolation is used
+to integrate the PR curve. If the INTERPOLATE option is set to
+TRUE, then the curve is piecewise constant and no other
+approximation is introduced in the calculation of the area. In
+the latter case, INFO.AUC is the same as INFO.AP.
+</p></dd><dt>
+info.ap
+</dt><dd><p>
+Average precision as defined by TREC. This is the average of the
+precision observed each time a new positive sample is
+recalled. In this calculation, any sample with -INF score
+(unless INCLUDEINF is used) and any additional positive induced
+by NUMPOSITIVES has precision equal to zero. If the INTERPOLATE
+option is set to true, the AP is computed from the interpolated
+precision and the result is the same as INFO.AUC. Note that AP
+as defined by TREC normally does not use interpolation [1].
+</p></dd><dt>
+info.ap_interp_11
+</dt><dd><p>
+11-points interpolated average precision as defined by TREC.
+This is the average of the maximum precision for recall levels
+greather than 0.0, 0.1, 0.2, ..., 1.0. This measure was used in
+the PASCAL VOC challenge up to the 2008 edition.
+</p></dd><dt>
+info.auc_pa08
+</dt><dd><p>
+Deprecated. It is the same of INFO.AP_INTERP_11.
+</p></dd></dl><p>
+<a href="vl_pr.html">VL_PR</a>(...) with no output arguments plots the PR curve in the
+current axis.
+</p><p>
+<a href="vl_pr.html">VL_PR</a>() accepts the following options:
+</p><dl><dt>
+Interpolate
+<span class="defaults">false</span></dt><dd><p>
+If set to true, use interpolated precision. The interpolated
+precision is defined as the maximum precision for a given recall
+level and onwards. Here it is implemented as the culumative
+maximum from low to high scores of the precision.
+</p></dd><dt>
+NumPositives
+<span class="defaults">[]</span></dt><dt>
+NumNegatives
+<span class="defaults">[]</span></dt><dd><p>
+If set to a number, pretend that LABELS contains this may
+positive/negative labels. NUMPOSITIVES/NUMNEGATIVES cannot be
+smaller than the actual number of positive/negative entrires in
+LABELS. The additional positive/negative labels are appended to
+the end of the sequence, as if they had -INF scores (not
+retrieved). This is useful to evaluate large retrieval systems
+for which one stores ony a handful of top results for efficiency
+reasons.
+</p></dd><dt>
+IncludeInf
+<span class="defaults">false</span></dt><dd><p>
+If set to true, data with -INF score SCORES is included in the
+evaluation and the maximum recall is 1 even if -INF scores are
+present. This option does not include any additional positive or
+negative data introduced by specifying NUMPOSITIVES and
+NUMNEGATIVES.
+</p></dd><dt>
+Stable
+<span class="defaults">false</span></dt><dd><p>
+If set to true, RECALL and PRECISION are returned in the same order
+of LABELS and SCORES rather than being sorted by decreasing
+score (increasing recall). Samples with -INF scores are assigned
+RECALL and PRECISION equal to NaN.
+</p></dd><dt>
+NormalizePrior
+<span class="defaults">[]</span></dt><dd><p>
+If set to a scalar, reweights positive and negative labels so
+that the fraction of positive ones is equal to the specified
+value. This computes the normalised PR curves of [2]
+</p></dd><dt>
+About the PR curve
+</dt><dd><p>
+This section uses the same symbols used in the documentation of
+the <a href="vl_roc.html">VL_ROC</a>() function. In addition to those quantities, define:
+</p><pre>
+  PRECISION(S) = TP(S) / (TP(S) + FP(S))
+  RECALL(S) = TPR(S) = TP(S) / P
+</pre><p>
+The precision is the fraction of positivie predictions which are
+correct, and the recall is the fraction of positive labels that
+have been correctly classified (recalled). Notice that the recall
+is also equal to the true positive rate for the ROC curve (see
+<a href="vl_roc.html">VL_ROC</a>()).
+</p></dd></dl><p>
+REFERENCES:
+[1] C. D. Manning, P. Raghavan, and H. Schutze. An Introduction to
+Information Retrieval. Cambridge University Press, 2008.
+[2] D. Hoiem, Y. Chodpathumwan, and Q. Dai. Diagnosing error in
+object detectors. In Proc. ECCV, 2012.
+</p><p>
+See also <a href="vl_roc.html">VL_ROC</a>(), <a href="vl_help.html">VL_HELP</a>().
+</p></div></div>
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>
+ 

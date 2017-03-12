@@ -1,0 +1,367 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+
+  <!-- Page title -->
+  <title>VLFeat - Tutorials > KD-trees and forests</title>
+
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  
+
+  <!-- Scripts-->
+  
+
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li class='active'><a href="tut.html">Tutorials</a>
+<ul>
+<li><a href="frame.html">Local feature frames</a>
+</li>
+<li><a href="covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="hog.html">HOG features</a>
+</li>
+<li><a href="sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="dsift.html">Dense SIFT</a>
+</li>
+<li><a href="liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="mser.html">MSER feature detector</a>
+</li>
+<li><a href="imdisttf.html">Distance transform</a>
+</li>
+<li><a href="encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="kmeans.html">K-means clustering</a>
+</li>
+<li><a href="aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="slic.html">SLIC superpixels</a>
+</li>
+<li><a href="svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li class='active' class='activeLeaf'><a href="kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="ikm.html">Integer K-means</a>
+</li>
+<li><a href="hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li><a href="../api/index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="tut.html">Tutorials</a></span><span class='separator'>></span><span class='page'><a href="kdtree.html">KD-trees and forests</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+        
+    
+
+<div class='toc'>
+<h3>Table of Contents</h3><ul><li class="level1"><a href="#tut.kdtree.introduction">Introduction</a></li>
+<li class="level1"><a href="#tut.kdtree.querying">Querying</a></li>
+<li class="level1"><a href="#tut.kdtree.forest">Randomized kd-tree forests</a></li>
+</ul>
+</div><!-- Table of contents -->
+
+
+<p><b>VLFeat</b> implements the randomized kd-tree forest from
+<a shape="rect" href="http://www.cs.ubc.ca/~mariusm/index.php/FLANN/FLANN">FLANN</a>.
+This enables fast medium and large scale nearest neighbor queries
+among high dimensional data points (such as those produced by SIFT).
+</p>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h1 id="tut.kdtree.introduction">Introduction</h1>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<p>A kd-tree is a data structure used to quickly solve
+nearest-neighbor queries. Consider a set of 2D points uniformly
+distributed in the unit square:</p>
+
+<div class="highlight"><pre>  <span class="n">X</span> <span class="p">=</span> <span class="nb">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> <span class="p">;</span>
+</pre></div>
+
+
+<p>A kd-tree is generated by using the <code/>vl_kdtreebuild</code> function:
+</p>
+
+<div class="highlight"><pre>  <span class="n">kdtree</span> <span class="p">=</span> <span class="n">vl_kdtreebuild</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="p">;</span>
+</pre></div>
+
+
+<p>The returned <code/>kdtree</code> indexes the set of
+points <code/>X</code>. Given a query point <code/>Q</code>, the
+function <code/>vl_kdtreequery</code> returns its nearest neighbor
+in <code/>X</code>:</p>
+
+<div class="highlight"><pre>  <span class="n">Q</span> <span class="p">=</span> <span class="nb">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="p">;</span>
+  <span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="n">distance</span><span class="p">]</span> <span class="p">=</span> <span class="n">vl_kdtreequery</span><span class="p">(</span><span class="n">kdforest</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Q</span><span class="p">)</span> <span class="p">;</span>
+</pre></div>
+
+
+<p>Here <code/>index</code> stores the index of the column
+of <code/>X</code> that is closest to the point <code/>Q</code>.
+<code/>distance</code> is the squared euclidean distance between <code/>X(index),Q</code>.</p>
+
+<p>A kd-tree is a hierarchal structure built by partitioning the data
+recursively along the dimension of maximum variance. At
+each iteration the variance of each column is computed and the data is
+split into two parts on the column with maximum variance. The
+splitting threshold can be selected to be the mean or the median (use
+the <code/>ThresholdMethod</code> option of
+<code/>vl_kdtreebuild</code>).</p>
+
+<div class="figure">
+ <img src="../demo/kdtree_uniform_mean.jpg"></img>
+ <img src="../demo/kdtree_uniform_median.jpg"></img>
+ <div class="caption">
+  <span class="content">
+   kd-tree partitions of a uniform set of data points, using
+   the mean (left image) and the median (right image) thresholding
+   options of <code/>vl_kdtreebuild</code>. On the bottom right corner
+   a query point is marked along with the ten closest neighbors as
+   found by <code/>vl_kdtreequery</code>. Figure generated
+   by <code/>vl_demo_kdtree</code>.
+  </span>
+ </div>
+</div>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h1 id="tut.kdtree.querying">Querying</h1>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<p><code/>vl_kdtreequery</code> uses a best-bin first search
+heuristic. This is a branch-and-bound technique that maintains an
+estimate of the smallest distance from the query point to any of the
+data points down all of the open paths.</p>
+
+<p><code/>vl_kdtreequery</code> supports two important operations:
+  <em>approximate nearest-neighbor search</em> and <em>k-nearest
+  neighbor search</em>. The latter can be used to return the
+  <em>k</em> nearest neighbors to a given query point <code/>Q</code>.
+  For instance:
+</p>
+
+<div class="highlight"><pre><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="n">distance</span><span class="p">]</span> <span class="p">=</span> <span class="n">vl_kdtreequery</span><span class="p">(</span><span class="n">kdtree</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Q</span><span class="p">,</span> <span class="s">&#39;NumNeighbors&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="p">;</span>
+</pre></div>
+
+
+<p>returns the closest 10 neighbors to <code/>Q</code>
+in <code/>X</code> and their distances, stored along the columns of
+<code/>index</code> and <code/>distance</code>.</p>
+
+<p>The <code/>MaxComparisons</code> option is used to run an ANN query.
+The parameter specifies how many paths in the best-bin-first search of
+the kd-tree can be checked before giving up and returning the closest
+point encountered so far. For instance:</p>
+
+<div class="highlight"><pre><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="n">distance</span><span class="p">]</span> <span class="p">=</span> <span class="n">vl_kdtreequery</span><span class="p">(</span><span class="n">kdtree</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Q</span><span class="p">,</span> <span class="s">&#39;NumNeighbors&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="s">&#39;MaxComparisons&#39;</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span> <span class="p">;</span>
+</pre></div>
+
+
+<p>does not compare any point in <code/>Q</code> with more than 15
+points in <code/>X</code>.</p>
+
+<div class="figure">
+ <img src="../demo/kdtree_ann_1.jpg"></img>
+ <img src="../demo/kdtree_ann_2.jpg"></img>
+ <img src="../demo/kdtree_ann_3.jpg"></img>
+ <img src="../demo/kdtree_ann_4.jpg"></img>
+ <div class="caption">
+  <span class="content">
+    Finding the 10 approximated nearest neighbors for increasing
+    values of the <code/>MaxComparisons</code> parameter. Note that at
+    most <code/>MaxComparisons</code> neighbors can be returned (if more
+    are requested, they are ignored). Figure generated
+    by <code/>vl_demo_kdtree_ann</code>.
+  </span>
+ </div>
+</div>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h1 id="tut.kdtree.forest">Randomized kd-tree forests</h1>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<p>VLFeat supports constructing randomized <em>forests</em> of
+kd-trees to improve the effectiveness of the representation in high
+dimensions. The parameter <code/>NumTrees</code> of
+<code/>vl_kdtreebuild</code> specifies how many trees to use in
+constructing the forest. Each tree is constructed independently.
+Instead of always splitting on the maximally variant dimension, each
+tree chooses randomly among the top five most variant dimensions at
+each level. When querying, <code/>vl_kdtreequery</code> runs
+best-bin-first across all the trees in parallel. For instance</p>
+
+<div class="highlight"><pre>  <span class="n">kdtree</span> <span class="p">=</span> <span class="n">vl_kdtreebuild</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="s">&#39;NumTrees&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="p">;</span>
+  <span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="n">distance</span><span class="p">]</span> <span class="p">=</span> <span class="n">vl_kdtreequery</span><span class="p">(</span><span class="n">kdtree</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Q</span><span class="p">)</span> <span class="p">;</span>
+</pre></div>
+
+
+<p>constructs four trees and queries them.</p>
+
+<div class="figure">
+ <img src="../demo/kdtree_forest_tree_1.jpg"></img>
+ <img src="../demo/kdtree_forest_tree_2.jpg"></img>
+ <img src="../demo/kdtree_forest_tree_3.jpg"></img>
+ <img src="../demo/kdtree_forest_tree_4.jpg"></img>
+ <div class="caption">
+  <span class="content">
+    The parameter <code/>NumTrees</code>
+    tells <code/>vl_kdtreebuild</code> to construct a number of
+    randomized kd-trees. Figure generated
+    by <code/>vl_demo_kdtree_forest</code>.
+  </span>
+ </div>
+</div>
+
+
+
+  
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>
+ 

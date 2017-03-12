@@ -1,0 +1,262 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+  <!-- Page title -->
+  <title>VLFeat - Documentation > C API</title>
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  <link rel="stylesheet" type="text/css" href="doxygen.css"></link>
+  <!-- Scripts-->
+  <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li class='active'><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li class='active' class='activeLeaf'><a href="index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="../doc.html">Documentation</a></span><span class='separator'>></span><span class='page'><a href="index.html">C API</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+      <!-- <pagestyle href="%pathto:root;api/tabs.css"/> -->
+      <div class="doxygen">
+<div id="top">
+<div id="top">
+<!-- Generated by Doxygen 1.8.7 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li class="current"><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
+    </ul>
+  </div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="index.html">Vision Lab Features Library (VLFeat)</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Histogram of Oriented Gradients (HOG) features </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><dl class="section author"><dt>Author</dt><dd>Andrea Vedaldi</dd></dl>
+<p><a class="el" href="hog_8h.html">hog.h</a> implements the Histogram of Oriented Gradients (HOG) features in the variants of Dalal Triggs <a class="el" href="citelist.html#CITEREF_dalal05histograms">[5]</a> and of UOCTTI <a class="el" href="citelist.html#CITEREF_felzenszwalb09object">[8]</a> . Applications include object detection and deformable object detection.</p>
+<ul>
+<li><a class="el" href="hog.html#hog-overview">Overview</a></li>
+<li><a class="el" href="hog.html#hog-tech">Technical details</a></li>
+</ul>
+<h1><a class="anchor" id="hog-overview"></a>
+Overview</h1>
+<p>HOG is a standard image feature used, among others, in object detection and deformable object detection. It decomposes the image into square cells of a given size (typically eight pixels), compute a histogram of oriented gradient in each cell (similar to <a class="el" href="sift.html">Scale Invariant Feature Transform (SIFT)</a>), and then renormalizes the cells by looking into adjacent blocks.</p>
+<p>VLFeat implements two HOG variants: the original one of Dalal-Triggs <a class="el" href="citelist.html#CITEREF_dalal05histograms">[5]</a> and the one proposed in Felzenszwalb et al. <a class="el" href="citelist.html#CITEREF_felzenszwalb09object">[8]</a> .</p>
+<p>In order to use HOG, start by creating a new HOG object, set the desired parameters, pass a (color or grayscale) image, and read off the results.</p>
+<div class="fragment"><div class="line">VlHog * hog = <a class="code" href="hog_8c.html#adb99ad366dbd4ea539a76f48df1dff9c">vl_hog_new</a>(VlHogVariantDalalTriggs, numOrientations, <a class="code" href="host_8h.html#abce143a5a9b51d987a74f2ad30046520">VL_FALSE</a>) ;</div>
+<div class="line"><a class="code" href="hog_8c.html#a86e1faec74ae8163db8dd1e0d292c305">vl_hog_put_image</a>(hog, image, height, width, numChannels, cellSize) ;</div>
+<div class="line">hogWidth = <a class="code" href="hog_8c.html#a8e899624c92435e77f3a1916b7ce5ed4">vl_hog_get_width</a>(hog) ;</div>
+<div class="line">hogHeight = <a class="code" href="hog_8c.html#ad7037e000f578c2abeeb4e8a3d6bbaf6">vl_hog_get_height</a>(hog) ;</div>
+<div class="line">hogDimenison = <a class="code" href="hog_8c.html#acce19086c37f34edc0078933f224ebcc">vl_hog_get_dimension</a>(hog) ;</div>
+<div class="line">hogArray = <a class="code" href="generic_8c.html#a9f0d2ab48ad66f0588c89a3e526044ed">vl_malloc</a>(hogWidth*hogHeight*hogDimension*<span class="keyword">sizeof</span>(<span class="keywordtype">float</span>)) ;</div>
+<div class="line"><a class="code" href="hog_8c.html#ab66448d416e661344327f969aebb9a42">vl_hog_extract</a>(hog, hogArray) ;</div>
+<div class="line"><a class="code" href="hog_8c.html#a31692138ce8b6c925bf9cf4761f9dd71">vl_hog_delete</a>(hog) ;</div>
+</div><!-- fragment --><p>HOG is a feature array of the dimension returned by <a class="el" href="hog_8c.html#a8e899624c92435e77f3a1916b7ce5ed4" title="Get the width of the HOG cell array. ">vl_hog_get_width</a>, <a class="el" href="hog_8c.html#ad7037e000f578c2abeeb4e8a3d6bbaf6" title="Get the height of the HOG cell array. ">vl_hog_get_height</a>, with each feature (histogram) having dimension <a class="el" href="hog_8c.html#acce19086c37f34edc0078933f224ebcc" title="Get the dimension of the HOG features. ">vl_hog_get_dimension</a>. The array is stored in row major order, with the slowest varying dimension beying the dimension indexing the histogram elements.</p>
+<p>The number of entreis in the histogram as well as their meaning depends on the HOG variant and is detailed later. However, it is usually unnecessary to know such details. <a class="el" href="hog_8h.html">hog.h</a> provides support for creating an inconic representation of a HOG feature array:</p>
+<div class="fragment"><div class="line">glyphSize = <a class="code" href="hog_8c.html#a61ae53dfac6a9ed20a8865e531c23d5a">vl_hog_get_glyph_size</a>(hog) ;</div>
+<div class="line">imageHeight = glyphSize * hogArrayHeight ;</div>
+<div class="line">imageWidth = glyphSize * hogArrayWidth ;</div>
+<div class="line">image = <a class="code" href="generic_8c.html#a9f0d2ab48ad66f0588c89a3e526044ed">vl_malloc</a>(<span class="keyword">sizeof</span>(<span class="keywordtype">float</span>)*imageWidth*imageHeight) ;</div>
+<div class="line"><a class="code" href="hog_8c.html#aafce8a9f029f232887bda4e64c585aa3">vl_hog_render</a>(hog, image, hogArray) ;</div>
+</div><!-- fragment --><p>It is often convenient to mirror HOG features from left to right. This can be obtained by mirroring an array of HOG cells, but the content of each cell must also be rearranged. This can be done by the permutation obtaiend by <a class="el" href="hog_8c.html#ac700d5506dd453b9a41d3a17b9e3cca7" title="Get HOG left-right flip permutation. ">vl_hog_get_permutation</a>.</p>
+<p>Furthermore, <a class="el" href="hog_8h.html">hog.h</a> suppots computing HOG features not from images but from vector fields.</p>
+<h1><a class="anchor" id="hog-tech"></a>
+Technical details</h1>
+<p>HOG divdes the input image into square cells of size <code>cellSize</code>, fitting as many cells as possible, filling the image domain from the upper-left corner down to the right one. For each row and column, the last cell is at least half contained in the image. More precisely, the number of cells obtained in this manner is:</p>
+<div class="fragment"><div class="line">hogWidth = (width + cellSize/2) / cellSize ;</div>
+<div class="line">hogHeight = (height + cellSize/2) / cellSize ;</div>
+</div><!-- fragment --><p>Then the image gradient \( \nabla \ell(x,y) \) is computed by using central difference (for colour image the channel with the largest gradient at that pixel is used). The gradient \( \nabla \ell(x,y) \) is assigned to one of <code>2*numOrientations</code> orientation in the range \( [0,2\pi) \) (see <a class="el" href="hog.html#hog-conventions">Conventions</a> for details). Contributions are then accumulated by using bilinear interpolation to four neigbhour cells, as in <a class="el" href="sift.html">Scale Invariant Feature Transform (SIFT)</a>. This results in an histogram \(h_d\) of dimension 2*numOrientations, called of <em>directed</em> orientations since it accounts for the direction as well as the orientation of the gradient. A second histogram \(h_u\) of undirected orientations of half the size is obtained by folding \( h_d \) into two.</p>
+<p>Let a block of cell be a \( 2\times 2 \) sub-array of cells. Let the norm of a block be the \( l^2 \) norm of the stacking of the respective unoriented histogram. Given a HOG cell, four normalisation factors are then obtained as the inverse of the norm of the four blocks that contain the cell.</p>
+<p>For the Dalal-Triggs variant, each histogram \( h_d \) is copied four times, normalised using the four different normalisation factors, the four vectors are stacked, saturated at 0.2, and finally stored as the descriptor of the cell. This results in a <code>numOrientations</code> * 4 dimensional cell descriptor. Blocks are visited from left to right and top to bottom when forming the final descriptor.</p>
+<p>For the UOCCTI descriptor, the same is done for both the undirected as well as the directed orientation histograms. This would yield a dimension of <code>4*</code>(2+1)*numOrientations elements, but the resulting vector is projected down to <code></code>(2+1)*numOrientations elements by averaging corresponding histogram dimensions. This was shown to be an algebraic approximation of PCA for descriptors computed on natural images.</p>
+<p>In addition, for the UOCTTI variant the l1 norm of each of the four l2 normalised undirected histograms is computed and stored as additional four dimensions, for a total of <code>4+3*numOrientations</code> dimensions.</p>
+<h2><a class="anchor" id="hog-conventions"></a>
+Conventions</h2>
+<p>The orientation of a gradient is expressed as the angle it forms with the horizontal axis of the image. Angles are measured clock-wise (as the vertical image axis points downards), and the null angle corresponds to an horizontal vector pointing right. The quantized directed orientations are \( \mathrm{k} \pi / \mathrm{numOrientations} \), where <code>k</code> is an index that varies in the ingeger range \( \{0, \dots, 2\mathrm{numOrientations} - 1\} \).</p>
+<p>Note that the orientations capture the orientation of the gradeint; image edges would be oriented at 90 degrees from these. </p>
+</div></div><!-- contents -->
+        <!-- Doc Here -->
+      </div>
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>

@@ -1,0 +1,15 @@
+<group>
+<ul class='breadcrumb'><li><a href='%pathto:matlab;'>Index</a></li><li><a href='%pathto:vl_aibcutpush;'>Prev</a></li><li><a href='%pathto:vl_fisher;'>Next</a></li></ul><div class="documentation"><p>
+H = <a href="%pathto:vl_aibhist;">VL_AIBHIST</a>(PARENTS, DATA) computes the histogram of the data
+points DATA on the VL_AIB tree defined by PARENTS. Each element of
+DATA indexes one of the leaves of the VL_AIB tree.
+</p><p>
+H = <a href="%pathto:vl_aibhist;">VL_AIBHIST</a>(PARENTS, DATA, 'HIST') treats DATA as an histograms.
+In this case each compoment of DATA is the number of occurences of
+the VL_AIB leaves corresponding to that component.
+</p><p>
+H has the same dimension of parents and counts how many data points
+are descendent of the corresponding node of the VL_AIB tree.
+</p><p>
+See also: <a href="%pathto:vl_help;">VL_HELP</a>(), <a href="%pathto:vl_aib;">VL_AIB</a>(), <a href="%pathto:vl_aibcutpush;">VL_AIBCUTPUSH</a>().
+</p></div></group>

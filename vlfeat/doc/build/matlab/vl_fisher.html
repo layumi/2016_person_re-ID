@@ -1,0 +1,47 @@
+<group>
+<ul class='breadcrumb'><li><a href='%pathto:matlab;'>Index</a></li><li><a href='%pathto:vl_aibhist;'>Prev</a></li><li><a href='%pathto:vl_hat;'>Next</a></li></ul><div class="documentation"><p>
+ENC = <a href="%pathto:vl_fisher;">VL_FISHER</a>(X, MEANS, COVARIANCES, PRIORS) computes the Fisher
+vector encoding of the vectors X relative to the Gaussian mixture
+model with means MEANS, covariances COVARIANCES, and prior mode
+probabilities PRIORS.
+</p><p>
+X has one column per data vector (e.g. a SIFT descriptor), and
+MEANS and COVARIANCES one column per GMM component (covariance
+matrices are assumed diagonal, hence these are simply the variance
+of each data dimension). PRIORS has size equal to the number of
+GMM components. All data must be of the same class, either SINGLE
+or DOUBLE.
+</p><p>
+ENC is a vector of the same class of X of size equal to the
+product of the data dimension and the number of components.
+</p><p>
+By default, the standard Fisher vector is computed. <a href="%pathto:vl_fisher;">VL_FISHER</a>()
+accepts the following options:
+</p><dl><dt>
+Normalized
+</dt><dd><p>
+If specified, L2 normalize the Fisher vector.
+</p></dd><dt>
+SquareRoot
+</dt><dd><p>
+If specified, the signed square root function is applied to
+ENC before normalization.
+</p></dd><dt>
+Improved
+</dt><dd><p>
+If specified, compute the improved variant of the Fisher
+Vector. This is equivalent to specifying the Normalized and
+SquareRoot options.
+</p></dd><dt>
+Fast
+</dt><dd><p>
+If specified, uses slightly less accurate computations but
+significantly increase the speed in some cases (particularly
+with a large number of Gaussian modes).
+</p></dd><dt>
+Verbose
+</dt><dd><p>
+Increase the verbosity level (may be specified multiple times).
+</p></dd></dl><p>
+See: <a href="%dox:fisher;">Fisher vectors</a>, <a href="%pathto:vl_help;">VL_HELP</a>().
+</p></div></group>

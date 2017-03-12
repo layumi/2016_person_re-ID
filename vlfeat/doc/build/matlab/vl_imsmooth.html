@@ -1,0 +1,30 @@
+<group>
+<ul class='breadcrumb'><li><a href='%pathto:matlab;'>Index</a></li><li><a href='%pathto:vl_imsc;'>Prev</a></li><li><a href='%pathto:vl_imup;'>Next</a></li></ul><div class="documentation"><p>
+J = <a href="%pathto:vl_imsmooth;">VL_IMSMOOTH</a>(I,SIGMA) convolves the image I by an isotropic
+Gaussian kernel of standard deviation SIGMA.  I must be an array
+of doubles. IF the array is three dimensional, the third dimension
+is assumed to span different channels (e.g. R,G,B). In this case,
+each channel is convolved independently.
+</p><p>
+<a href="%pathto:vl_imsmooth;">VL_IMSMOOTH</a>() accepts the following options:
+</p><dl><dt>
+Kernel
+</dt><dd><p>
+Selects between GAUSSIAN and TRIANGULAR kernels. The triangular
+kernel support has 2*SIGMA-1 sampels. Kernels have unit mass.
+</p></dd><dt>
+Padding
+</dt><dd><p>
+Selects between ZERO or CONTINUITY padding method to handle the
+image boundaries. ZERO extends the input image with zeroes
+around the border, and CONTINUITY extends the image with
+constant pixels.
+</p></dd><dt>
+Step
+</dt><dd><p>
+Sets the subsampling step. A subsampling step of STEP pixels
+causes J(1:STEPS:end, 1:STEPS:end, :) to be computed. This is
+useful to downsample the image.
+</p></dd></dl><p>
+See also: <a href="%pathto:vl_help;">VL_HELP</a>().
+</p></div></group>

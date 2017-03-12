@@ -1,0 +1,271 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+  <!-- Page title -->
+  <title>VLFeat - Documentation > C API</title>
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  <link rel="stylesheet" type="text/css" href="doxygen.css"></link>
+  <!-- Scripts-->
+  <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li class='active'><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li class='active' class='activeLeaf'><a href="index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="../doc.html">Documentation</a></span><span class='separator'>></span><span class='page'><a href="index.html">C API</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+      <!-- <pagestyle href="%pathto:root;api/tabs.css"/> -->
+      <div class="doxygen">
+<div id="top">
+<div id="top">
+<!-- Generated by Doxygen 1.8.7 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li class="current"><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
+    </ul>
+  </div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="index.html">Vision Lab Features Library (VLFeat)</a></li><li class="navelem"><a class="el" href="gmm.html">Gaussian Mixture Models (GMM)</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">GMM fundamentals </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="toc"><h3>Table of Contents</h3>
+<ul><li class="level1"><a href="#gmm-em">Learning a GMM by expectation maximization</a><ul><li class="level2"><a href="#gmm-expectation-step">Expectation step</a></li>
+<li class="level2"><a href="#gmm-maximization-step">Maximization step</a></li>
+</ul>
+</li>
+<li class="level1"><a href="#gmm-fundamentals-init">Initialization algorithms</a></li>
+</ul>
+</div>
+<div class="textblock"><p>A <em>Gaussian Mixture Model</em> (GMM) is a mixture of \(K\) multivariate Gaussian distributions. In order to sample from a GMM, one samples first the component index \(k \in \{1,\dots,K\}\) with <em>prior probability</em> \(\pi_k\), and then samples the vector \(\bx \in \mathbb{R}^d\) from the \(k\)-th Gaussian distribution \(p(\bx|\mu_k,\Sigma_k)\). Here \(\mu_k\) and \(\Sigma_k\) are respectively the <em>mean</em> and <em>covariance</em> of the distribution. The GMM is completely specified by the parameters \(\Theta=\{\pi_k,\mu_k,\Sigma_k; k = 1,\dots,K\}\)</p>
+<p>The density \(p(\bx|\Theta)\) induced on the training data is obtained by marginalizing the component selector \(k\), obtaining </p><p class="formulaDsp">
+\[ p(\bx|\Theta) = \sum_{k=1}^{K} \pi_k p( \bx_i |\mu_k,\Sigma_k), \qquad p( \bx |\mu_k,\Sigma_k) = \frac{1}{\sqrt{(2\pi)^d\det\Sigma_k}} \exp\left[ -\frac{1}{2} (\bx-\mu_k)^\top\Sigma_k^{-1}(\bx-\mu_k) \right]. \]
+</p>
+<p> Learning a GMM to fit a dataset \(X=(\bx_1, \dots, \bx_n)\) is usually done by maximizing the log-likelihood of the data: </p><p class="formulaDsp">
+\[ \ell(\Theta;X) = E_{\bx\sim\hat p} [ \log p(\bx|\Theta) ] = \frac{1}{n}\sum_{i=1}^{n} \log \sum_{k=1}^{K} \pi_k p(\bx_i|\mu_k, \Sigma_k) \]
+</p>
+<p> where \(\hat p\) is the empirical distribution of the data. An algorithm to solve this problem is introduced next.</p>
+<h1><a class="anchor" id="gmm-em"></a>
+Learning a GMM by expectation maximization</h1>
+<p>The direct maximization of the log-likelihood function of a GMM is difficult due to the fact that the assignments of points to Gaussian mode is not observable and, as such, must be treated as a latent variable.</p>
+<p>Usually, GMMs are learned by using the <em>Expectation Maximization</em> (EM) algorithm <a class="el" href="citelist.html#CITEREF_dempster77maximum">[6]</a> . Consider in general the problem of estimating to the maximum likelihood a distribution \(p(x|\Theta) = \int p(x,h|\Theta)\,dh\), where \(x\) is a measurement, \(h\) is a <em>latent variable</em>, and \(\Theta\) are the model parameters. By introducing an auxiliary distribution \(q(h|x)\) on the latent variable, one can use Jensen inequality to obtain the following lower bound on the log-likelihood:</p>
+<p class="formulaDsp">
+\begin{align*} \ell(\Theta;X) = E_{x\sim\hat p} \log p(x|\Theta) &amp;= E_{x\sim\hat p} \log \int p(x,h|\Theta) \,dh \\ &amp;= E_{x\sim\hat p} \log \int \frac{p(x,h|\Theta)}{q(h|x)} q(h|x)\,dh \\ &amp;\geq E_{x\sim\hat p} \int q(h) \log \frac{p(x,h|\Theta)}{q(h|x)}\,dh \\ &amp;= E_{(x,q) \sim q(h|x) \hat p(x)} \log p(x,h|\Theta) - E_{(x,q) \sim q(h|x) \hat p(x)} \log q(h|x) \end{align*}
+</p>
+<p>The first term of the last expression is the log-likelihood of the model where both the \(x\) and \(h\) are observed and joinlty distributed as \(q(x|h)\hat p(x)\); the second term is the a average entropy of the latent variable, which does not depend on \(\Theta\). This lower bound is maximized and becomes tight by setting \(q(h|x) = p(h|x,\Theta)\) to be the posterior distribution on the latent variable \(h\) (given the current estimate of the parameters \(\Theta\)). In fact:</p>
+<p class="formulaDsp">
+\[ E_{x \sim \hat p} \log p(x|\Theta) = E_{(x,h) \sim p(h|x,\Theta) \hat p(x)}\left[ \log \frac{p(x,h|\Theta)}{p(h|x,\Theta)} \right] = E_{(x,h) \sim p(h|x,\Theta) \hat p(x)} [ \log p(x|\Theta) ] = \ell(\Theta;X). \]
+</p>
+<p>EM alternates between updating the latent variable auxiliary distribution \(q(h|x) = p(h|x,\Theta_t)\) (<em>expectation step</em>) given the current estimate of the parameters \(\Theta_t\), and then updating the model parameters \(\Theta_{t+1}\) by maximizing the log-likelihood lower bound derived (<em>maximization step</em>). The simplification is that in the maximization step both \(x\) and \(h\) are now ``observed'' quantities. This procedure converges to a local optimum of the model log-likelihood.</p>
+<h2><a class="anchor" id="gmm-expectation-step"></a>
+Expectation step</h2>
+<p>In the case of a GMM, the latent variables are the point-to-cluster assignments \(k_i, i=1,\dots,n\), one for each of \(n\) data points. The auxiliary distribution \(q(k_i|\bx_i) = q_{ik}\) is a matrix with \(n \times K\) entries. Each row \(q_{i,:}\) can be thought of as a vector of soft assignments of the data points \(\bx_i\) to each of the Gaussian modes. Setting \(q_{ik} = p(k_i | \bx_i, \Theta)\) yields</p>
+<p class="formulaDsp">
+\[ q_{ik} = \frac {\pi_k p(\bx_i|\mu_k,\Sigma_k)} {\sum_{l=1}^K \pi_l p(\bx_i|\mu_l,\Sigma_l)} \]
+</p>
+<p>where the Gaussian density \(p(\bx_i|\mu_k,\Sigma_k)\) was given above.</p>
+<p>One important point to keep in mind when these probabilities are computed is the fact that the Gaussian densities may attain very low values and underflow in a vanilla implementation. Furthermore, VLFeat GMM implementation restricts the covariance matrices to be diagonal. In this case, the computation of the determinant of \(\Sigma_k\) reduces to computing the trace of the matrix and the inversion of \(\Sigma_k\) could be obtained by inverting the elements on the diagonal of the covariance matrix.</p>
+<h2><a class="anchor" id="gmm-maximization-step"></a>
+Maximization step</h2>
+<p>The M step estimates the parameters of the Gaussian mixture components and the prior probabilities \(\pi_k\) given the auxiliary distribution on the point-to-cluster assignments computed in the E step. Since all the variables are now ``observed'', the estimate is quite simple. For example, the mean \(\mu_k\) of a Gaussian mode is obtained as the mean of the data points assigned to it (accounting for the strength of the soft assignments). The other quantities are obtained in a similar manner, yielding to:</p>
+<p class="formulaDsp">
+\begin{align*} \mu_k &amp;= { { \sum_{i=1}^n q_{ik} \bx_{i} } \over { \sum_{i=1}^n q_{ik} } }, \\ \Sigma_k &amp;= { { \sum_{i=1}^n { q_{ik} (\bx_{i} - \mu_{k}) {(\bx_{i} - \mu_{k})}^T } } \over { \sum_{i=1}^n q_{ik} } }, \\ \pi_k &amp;= { \sum_{i=1}^n { q_{ik} } \over { \sum_{i=1}^n \sum_{l=1}^K q_{il} } }. \end{align*}
+</p>
+<h1><a class="anchor" id="gmm-fundamentals-init"></a>
+Initialization algorithms</h1>
+<p>The EM algorithm is a local optimization method. As such, the quality of the solution strongly depends on the quality of the initial values of the parameters (i.e. of the locations and shapes of the Gaussian modes).</p>
+<p><a class="el" href="gmm_8h.html">gmm.h</a> supports the following cluster initialization algorithms:</p>
+<ul>
+<li><b>Random data points.</b> (<a class="el" href="gmm_8c.html#aab9d461e2fca63960f2751ae86946804" title="Initialize mixture before EM takes place using random initialization. ">vl_gmm_init_with_rand_data</a>) This method sets the means of the modes by sampling at random a corresponding number of data points, sets the covariance matrices of all the modes are to the covariance of the entire dataset, and sets the prior probabilities of the Gaussian modes to be uniform. This initialization method is the fastest, simplest, as well as the one most likely to end in a bad local minimum.</li>
+<li><b>KMeans initialization</b> (<a class="el" href="gmm_8c.html#a21934aa27cd02d67734d311c4207829e" title="Initializes the GMM using KMeans. ">vl_gmm_init_with_kmeans</a>) This method uses KMeans to pre-cluster the points. It then sets the means and covariances of the Gaussian distributions the sample means and covariances of each KMeans cluster. It also sets the prior probabilities to be proportional to the mass of each cluster. In order to use this initialization method, a user can specify an instance of <a class="el" href="structVlKMeans.html" title="K-means quantizer. ">VlKMeans</a> by using the function <a class="el" href="gmm_8c.html#ae740ca4d9c354ac9d83c89127bce744c" title="Set KMeans initialization object. ">vl_gmm_set_kmeans_init_object</a>, or let <a class="el" href="gmm_8h.html#a01f10e60632745b4c4aa7cf8b796647f" title="GMM quantizer. ">VlGMM</a> create one automatically.</li>
+</ul>
+<p>Alternatively, one can manually specify a starting point (<a class="el" href="gmm_8c.html#a4c0e4759f7b082400cfe4da0991139c8" title="Explicitly set the initial priors of the gaussians. ">vl_gmm_set_priors</a>, <a class="el" href="gmm_8c.html#a001f4a994fbb997e7b7b38d56e69e495" title="Explicitly set the initial means for EM. ">vl_gmm_set_means</a>, <a class="el" href="gmm_8c.html#a9467941c38e0eb70f1e7de2cf8242716" title="Explicitly set the initial sigma diagonals for EM. ">vl_gmm_set_covariances</a>). </p>
+</div></div><!-- contents -->
+        <!-- Doc Here -->
+      </div>
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>

@@ -1,0 +1,312 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+
+  <!-- Page title -->
+  <title>VLFeat - Applications</title>
+
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  <style rel="stylesheet" type="text/css" >
+#content table.checker {
+    border-collapse: collapse ;
+    margin-left: auto ;
+    margin-right: auto ;
+}
+#content table.checker td {
+    background-color: #f6f6f6 ;
+    border: 1px solid #DDD ;
+    padding: 0.5em ;
+}
+</style>
+
+
+  <!-- Scripts-->
+  
+
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li class='active' class='activeLeaf'><a href="apps.html">Applications</a>
+</li>
+<li><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li><a href="../api/index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="apps.html">Applications</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+        
+    
+
+
+
+<p>This page lists a number of example VLFeat applications. The code
+can be found in the <code/>VLROOT/apps/</code> subdirectory in the
+VLFeat package.</p>
+
+<h1 id="apps.caltech-101">Basic recognition</h1>
+
+
+
+<img src="../images/caltech-collage.jpg" alt="Caltech-101 Collage"></img>
+
+<p>This sample application uses VLFeat to train an test an image
+classifier on the Caltech-101 data. The classifier achieves 65%
+average accuracy by using a single feature and 15 training images per
+class. It uses:</p>
+<ul>
+<li>PHOW features (dense multi-scale SIFT descriptors)</li>
+<li>Elkan k-means for fast visual word dictionary
+construction</li>
+<li>Spatial histograms as image descriptors</li>
+<li>A homogeneous kernel map to transform a Chi2 support vector
+machine (SVM) into a linear one</li>
+<li>SVM classifiers</li>
+</ul>
+
+<p>The program is fully contained in
+a <a shape="rect" href="caltech-101-code.html">single MATLAB M-file</a>,
+and can also be simply adapted to use your own data (change
+conf.calDir).</p>
+
+<h1 id="apps.recognition">Advanced encodings for recognition</h1>
+
+
+
+<p>This example application extends the Caltech-101 demo above in many
+ways: it supports multiple encoding methods, including BoVW, VLAD, and
+Fisher Vectors, tweaked image features, and multiple benchmark
+datasets. The code is located int <code/>apps/recognition</code>. Start
+from the <a shape="rect" href="experiments.html">main
+file</a>.</p>
+
+<p>The following tables report results on a few standard benchmark
+datasets (PASCAL VOC 2007 classification challenge, Caltech 101 30
+training images, MIT Scene 67, and Flickr Material Dataset) for a
+number of different encodings:</p>
+
+<table class="checker">
+<tr><th colspan="1" rowspan="1">method</th><th colspan="1" rowspan="1">VOC07</th><th colspan="1" rowspan="1">Caltech 101</th><th colspan="1" rowspan="1">Scene 67</th><th colspan="1" rowspan="1">FMD</th></tr>
+<tr><td colspan="1" rowspan="1">FV</td><td colspan="1" rowspan="1">59.12% <span style="font-size:8px;">mAP</span></td><td colspan="1" rowspan="1">73.02% <span style="font-size:8px;">Acc</span></td><td colspan="1" rowspan="1">58.25% <span style="font-size:8px;">Acc</span></td><td colspan="1" rowspan="1">59.60% <span style="font-size:8px;">Acc</span></td></tr>
+<tr><td colspan="1" rowspan="1">FV + aug.</td><td colspan="1" rowspan="1">60.25% <span style="font-size:8px;">mAP</span></td><td colspan="1" rowspan="1">75.61% <span style="font-size:8px;">Acc</span></td><td colspan="1" rowspan="1">57.57% <span style="font-size:8px;">Acc</span></td><td colspan="1" rowspan="1">60.80% <span style="font-size:8px;">Acc</span></td></tr>
+<tr><td colspan="1" rowspan="1">FV + s.p.</td><td colspan="1" rowspan="1">62.23% <span style="font-size:8px;">mAP</span></td><td colspan="1" rowspan="1">77.63% <span style="font-size:8px;">Acc</span></td><td colspan="1" rowspan="1">61.83% <span style="font-size:8px;">Acc</span></td><td colspan="1" rowspan="1">60.80% <span style="font-size:8px;">Acc</span></td></tr>
+<tr><td colspan="1" rowspan="1">VLAD + aug.</td><td colspan="1" rowspan="1">54.66% <span style="font-size:8px;">mAP</span></td><td colspan="1" rowspan="1">78.68% <span style="font-size:8px;">Acc</span></td><td colspan="1" rowspan="1">53.29% <span style="font-size:8px;">Acc</span></td><td colspan="1" rowspan="1">49.40% <span style="font-size:8px;">Acc</span></td></tr>
+<tr><td colspan="1" rowspan="1">BOVW + aug.</td><td colspan="1" rowspan="1">49.87% <span style="font-size:8px;">mAP</span></td><td colspan="1" rowspan="1">75.98% <span style="font-size:8px;">Acc</span></td><td colspan="1" rowspan="1">50.22% <span style="font-size:8px;">Acc</span></td><td colspan="1" rowspan="1">46.00% <span style="font-size:8px;">Acc</span></td></tr>
+</table>
+
+<p>The baseline feature is SIFT (<code/>vl_dsift</code>) computed at
+seven scales with a factor $\sqrt{2}$ between successive scales, bins
+8 pixel wide, and computed with a step of 4 pixels. All experiments
+but the Caltech-101 ones start by doubling the resolution of the input
+image. The details of the encodings are as follows:</p>
+
+<ul>
+<li>Bag-of-visual-words uses 4096 vector quantized visual words
+histogram square rooting, followed by $L^2$ normalization (Hellinger's
+kernel).</li>
+<li><a shape="rect" href="">VLAD</a> uses 256 vector quantized visual
+words, signed square-rooting, component wise $L^2$ normalization, and
+global $L^2$ normalization (see <code/>vl_vlad</code>).</li>
+<li><a shape="rect" href="">Fisher vectors</a> uses a 256 visual words
+GMM and the improved formulation (signed square-rooting followed by
+$L^2$ normalization, see <code/>vl_fisher</code>).</li>
+<li>Learning uses a <a shape="rect" href="">linear SVM</a>
+(see <code/>vl_svmtrain</code>). The parameter $C$ is set to 10 for all
+dataset except PASCAL VOC, for which it is set to 1.</li>
+<li>Experiments labelled with &ldquo;aug.&rdquo; encode spatial
+information by appending the feature coordinates to the descriptor;
+the ones labelled with &ldquo;s.p.&rdquo; use a spatial pyramid with
+1x1 and 3x1 subdivisions.</li>
+</ul>
+
+<h1 id="apps.sift-mosaic">SIFT mosaic</h1>
+
+
+
+<img src="../images/sift-mosaic.jpg" alt="SIFT mosaic"></img>
+
+<p>This sample application uses VLFeat to extract SIFT features form a
+pair of images and match them. It then filters the matches based on
+RANSAC and produces a mosaic. Read
+the <a shape="rect" href="sift-mosaic-code.html">code</a>.</p>
+
+
+  
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>
+ 

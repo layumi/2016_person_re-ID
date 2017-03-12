@@ -1,0 +1,261 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+  <!-- Page title -->
+  <title>VLFeat - Documentation > C API</title>
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  <link rel="stylesheet" type="text/css" href="doxygen.css"></link>
+  <!-- Scripts-->
+  <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li class='active'><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li class='active' class='activeLeaf'><a href="index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="../doc.html">Documentation</a></span><span class='separator'>></span><span class='page'><a href="index.html">C API</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+      <!-- <pagestyle href="%pathto:root;api/tabs.css"/> -->
+      <div class="doxygen">
+<div id="top">
+<div id="top">
+<!-- Generated by Doxygen 1.8.7 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li class="current"><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
+    </ul>
+  </div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="index.html">Vision Lab Features Library (VLFeat)</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Quick shift image segmentation </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><dl class="section author"><dt>Author</dt><dd>Brian Fulkerson </dd>
+<dd>
+Andrea Vedaldi</dd></dl>
+<p><a class="el" href="quickshift_8h.html">quickshift.h</a> implements an image segmentation algorithm based on the quick shift clustering algorithm <a class="el" href="citelist.html#CITEREF_vedaldi08quick">[29]</a> .</p>
+<ul>
+<li><a class="el" href="quickshift.html#quickshift-intro">Overview</a></li>
+<li><a class="el" href="quickshift.html#quickshift-usage">Usage</a></li>
+<li><a class="el" href="quickshift.html#quickshift-tech">Technical details</a></li>
+</ul>
+<h1><a class="anchor" id="quickshift-intro"></a>
+Overview</h1>
+<p>Quick shift <a class="el" href="citelist.html#CITEREF_vedaldi08quick">[29]</a> is a fast mode seeking algorithm, similar to mean shift. The algorithm segments an RGB image (or any image with more than one channel) by identifying clusters of pixels in the joint spatial and color dimensions. Segments are local (superpixels) and can be used as a basis for further processing.</p>
+<p>Given an image, the algorithm calculates a forest of pixels whose branches are labeled with a distance value (<a class="el" href="quickshift_8h.html#ab116d2dbad717ce889e56ea8335a1463" title="Get parents. ">vl_quickshift_get_parents</a>, <a class="el" href="quickshift_8h.html#a675666418f0bc2665be61f0b243a8c1d" title="Get dists. ">vl_quickshift_get_dists</a>). This specifies a hierarchical segmentation of the image, with segments corresponding to subtrees. Useful superpixels can be identified by cutting the branches whose distance label is above a given threshold (the threshold can be either fixed by hand, or determined by cross validation).</p>
+<p>Parameter influencing the algorithm are:</p>
+<ul>
+<li><b>Kernel size.</b> The pixel density and its modes are estimated by using a Parzen window estimator with a Gaussian kernel of the specified size (<a class="el" href="quickshift_8h.html#ae54ca4abe8fb6ba0b8a8306d053b7628" title="Set sigma. ">vl_quickshift_set_kernel_size</a>). The larger the size, the larger the neighborhoods of pixels considered.</li>
+<li><b>Maximum distance.</b> This (<a class="el" href="quickshift_8h.html#ac54275b6b97121f41cf3b64d9e6210a3" title="Set max distance. ">vl_quickshift_set_max_dist</a>) is the maximum distance between two pixels that the algorithm considers when building the forest. In principle, it can be infinity (so that a tree is returned), but in practice it is much faster to consider only relatively small distances (the maximum distance can be set to a small multiple of the kernel size).</li>
+</ul>
+<h1><a class="anchor" id="quickshift-usage"></a>
+Usage</h1>
+<ul>
+<li>Create a new quick shift object (<a class="el" href="quickshift_8c.html#a9fc34955bf121df6d1d5bd991b8d2b13" title="Create a quick shift object. ">vl_quickshift_new</a>). The object can be reused for multiple images of the same size.</li>
+<li>Configure quick shift by setting the kernel size (<a class="el" href="quickshift_8h.html#ae54ca4abe8fb6ba0b8a8306d053b7628" title="Set sigma. ">vl_quickshift_set_kernel_size</a>) and the maximum gap (<a class="el" href="quickshift_8h.html#ac54275b6b97121f41cf3b64d9e6210a3" title="Set max distance. ">vl_quickshift_set_max_dist</a>). The latter is in principle not necessary, but useful to speedup processing.</li>
+<li>Process an image (<a class="el" href="quickshift_8c.html#aebfc7337283b7a8f8be1a1c0fd4f5f92" title="Create a quick shift objet. ">vl_quickshift_process</a>).</li>
+<li>Retrieve the parents (<a class="el" href="quickshift_8h.html#ab116d2dbad717ce889e56ea8335a1463" title="Get parents. ">vl_quickshift_get_parents</a>) and the distances (<a class="el" href="quickshift_8h.html#a675666418f0bc2665be61f0b243a8c1d" title="Get dists. ">vl_quickshift_get_dists</a>). These can be used to segment the image in superpixels.</li>
+<li>Delete the quick shift object (<a class="el" href="quickshift_8c.html#a9c2a39344fb684d899f22faf358425e8" title="Delete quick shift object. ">vl_quickshift_delete</a>).</li>
+</ul>
+<h1><a class="anchor" id="quickshift-tech"></a>
+Technical details</h1>
+<p>For each pixel <em>(x,y)</em>, quick shift regards \( (x,y,I(x,y)) \) as a sample from a <em>d + 2</em> dimensional vector space. It then calculates the Parzen density estimate (with a Gaussian kernel of standard deviation \( \sigma \))</p>
+<p class="formulaDsp">
+\[ E(x,y) = P(x,y,I(x,y)) = \sum_{x&#39;y&#39;} \frac{1}{(2\pi\sigma)^{d+2}} \exp \left( -\frac{1}{2\sigma^2} \left[ \begin{array}{c} x - x&#39; \\ y - y&#39; \\ I(x,y) - I(x&#39;,y&#39;) \\ \end{array} \right] \right) \]
+</p>
+<p>Then quick shift construct a tree connecting each image pixel to its nearest neighbor which has greater density value. Formally, write \( (x&#39;,y&#39;) &gt;_P (x,y) \) if, and only if,</p>
+<p class="formulaDsp">
+\[ P(x&#39;,y&#39;,I(x&#39;,y&#39;)) &gt; P(x,y,I(x,y))}. \]
+</p>
+<p>Each pixel <em>(x, y)</em> is connected to the closest higher density pixel <em>parent(x, y)</em> that achieves the minimum distance in</p>
+<p class="formulaDsp">
+\[ \mathrm{dist}(x,y) = \mathrm{min}_{(x&#39;,y&#39;) &gt; P(x,y)} \left( (x - x&#39;)^2 + (y - y&#39;)^2 + \| I(x,y) - I(x&#39;,y&#39;) \|_2^2 \right). \]
+</p>
+ </div></div><!-- contents -->
+        <!-- Doc Here -->
+      </div>
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>

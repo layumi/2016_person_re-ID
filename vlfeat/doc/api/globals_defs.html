@@ -1,0 +1,640 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+  <!-- Page title -->
+  <title>VLFeat - Documentation > C API</title>
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  <link rel="stylesheet" type="text/css" href="doxygen.css"></link>
+  <!-- Scripts-->
+  <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li class='active'><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li class='active' class='activeLeaf'><a href="index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="../doc.html">Documentation</a></span><span class='separator'>></span><span class='page'><a href="index.html">C API</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+      <!-- <pagestyle href="%pathto:root;api/tabs.css"/> -->
+      <div class="doxygen">
+<div id="top">
+<div id="top">
+<!-- Generated by Doxygen 1.8.7 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li class="current"><a href="files.html"><span>Files</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li class="current"><a href="globals.html"><span>Globals</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow3" class="tabs2">
+    <ul class="tablist">
+      <li><a href="globals.html"><span>All</span></a></li>
+      <li><a href="globals_func.html"><span>Functions</span></a></li>
+      <li><a href="globals_vars.html"><span>Variables</span></a></li>
+      <li><a href="globals_type.html"><span>Typedefs</span></a></li>
+      <li><a href="globals_enum.html"><span>Enumerations</span></a></li>
+      <li><a href="globals_eval.html"><span>Enumerator</span></a></li>
+      <li class="current"><a href="globals_defs.html"><span>Macros</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow4" class="tabs3">
+    <ul class="tablist">
+      <li><a href="#index_e"><span>e</span></a></li>
+      <li><a href="#index_h"><span>h</span></a></li>
+      <li><a href="#index_i"><span>i</span></a></li>
+      <li><a href="#index_n"><span>n</span></a></li>
+      <li><a href="#index_o"><span>o</span></a></li>
+      <li><a href="#index_r"><span>r</span></a></li>
+      <li class="current"><a href="#index_v"><span>v</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div class="contents">
+&#160;
+
+<h3><a class="anchor" id="index_e"></a>- e -</h3><ul>
+<li>EXPN_MAX
+: <a class="el" href="sift_8c.html#a4b559178f5db3bdf1ae9b89b58a703da">sift.c</a>
+</li>
+<li>EXPN_SZ
+: <a class="el" href="sift_8c.html#a98146d82a06b921641fa84448c41343d">sift.c</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_h"></a>- h -</h3><ul>
+<li>HAS_CPUID
+: <a class="el" href="host_8c.html#a64a428a197a6f71e42806354612841ef">host.c</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_i"></a>- i -</h3><ul>
+<li>IN
+: <a class="el" href="mexutils_8h.html#a602414ed5181cca60faf1b9fbea4d240">mexutils.h</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_n"></a>- n -</h3><ul>
+<li>no_argument
+: <a class="el" href="getopt__long_8h.html#a3bc1d5f667b5b4ca4b4abb685dc874ce">getopt_long.h</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_o"></a>- o -</h3><ul>
+<li>optional_argument
+: <a class="el" href="getopt__long_8h.html#acca06c0a947656bd8b395bf1084ffb72">getopt_long.h</a>
+</li>
+<li>OUT
+: <a class="el" href="mexutils_8h.html#a14e866e302d035546fbec8dd1ba8c8ca">mexutils.h</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_r"></a>- r -</h3><ul>
+<li>required_argument
+: <a class="el" href="getopt__long_8h.html#a6ece8d8dfa8378778f7290fdaba5b8bc">getopt_long.h</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_v"></a>- v -</h3><ul>
+<li>VL_ARCH_BIG_ENDIAN
+: <a class="el" href="host_8h.html#a040b85d2764e6270f5d14515c8ab02aa">host.h</a>
+</li>
+<li>VL_ARCH_IA64
+: <a class="el" href="host_8h.html#a55960eea1c39d0ed79519e4fbdb782bf">host.h</a>
+</li>
+<li>VL_ARCH_IX86
+: <a class="el" href="host_8h.html#aad2a5cd35841264fc165f9b92fad3feb">host.h</a>
+</li>
+<li>VL_ARCH_LITTLE_ENDIAN
+: <a class="el" href="host_8h.html#a2f05e20e356b146f3d111f403657ca17">host.h</a>
+</li>
+<li>VL_ARRAY_MAX_NUM_DIMENSIONS
+: <a class="el" href="array_8h.html#a80a9a517ee30d7400df369f6a126efd1">array.h</a>
+</li>
+<li>VL_BIG_INT
+: <a class="el" href="host_8h.html#a2a2754158f58ad8118579b45f66426f3">host.h</a>
+</li>
+<li>VL_BIG_UINT
+: <a class="el" href="host_8h.html#a985a5b1b02b23f20c72ba5d5b9abab2d">host.h</a>
+</li>
+<li>VL_CAT
+: <a class="el" href="host_8h.html#aeba7ee97f4e6474a78c242ca9c49798c">host.h</a>
+</li>
+<li>VL_COMPILER_GNUC
+: <a class="el" href="host_8h.html#a1d501d055fcbcd42c1369c64f4bc8e8d">host.h</a>
+</li>
+<li>VL_COMPILER_ILP32
+: <a class="el" href="host_8h.html#a426f6e574a76d69692eace4d858b9adf">host.h</a>
+</li>
+<li>VL_COMPILER_LCC
+: <a class="el" href="host_8h.html#a8c241c8e1d46fc25653460876004fbee">host.h</a>
+</li>
+<li>VL_COMPILER_LLP64
+: <a class="el" href="host_8h.html#a01af69f0de0af937ca06729348d3b1a6">host.h</a>
+</li>
+<li>VL_COMPILER_LP64
+: <a class="el" href="host_8h.html#a06056894ccd483c6171eec205fb253a6">host.h</a>
+</li>
+<li>VL_COMPILER_MSC
+: <a class="el" href="host_8h.html#a27371f6fc56a871d3d2a2dea1b191cbf">host.h</a>
+</li>
+<li>VL_DISABLE_OPENMP
+: <a class="el" href="host_8h.html#aa685e90981c2eb133a361080cdf7b82f">host.h</a>
+</li>
+<li>VL_DISABLE_SSE2
+: <a class="el" href="host_8h.html#a7395dc017ee0e86717a1b5f8c38fcb44">host.h</a>
+</li>
+<li>VL_DISABLE_THREADS
+: <a class="el" href="host_8h.html#a6aa5ee10e7a31696751b3e5f6d18c829">host.h</a>
+</li>
+<li>VL_E
+: <a class="el" href="mathop_8h.html#a72021996fb98d3130ead10a4989f4ca5">mathop.h</a>
+</li>
+<li>VL_EPSILON_D
+: <a class="el" href="mathop_8h.html#aa2d957b08ce16011fc3827c270cd2664">mathop.h</a>
+</li>
+<li>VL_EPSILON_F
+: <a class="el" href="mathop_8h.html#a8088f3da04d6bce27544adaa6da948ca">mathop.h</a>
+</li>
+<li>VL_ERR_ALLOC
+: <a class="el" href="generic_8h.html#a0a05979eb0e5e1bb8edd1d6992d73f5f">generic.h</a>
+</li>
+<li>VL_ERR_BAD_ARG
+: <a class="el" href="generic_8h.html#aa4c6982fd95a25fca8ec202632581345">generic.h</a>
+</li>
+<li>VL_ERR_EOF
+: <a class="el" href="generic_8h.html#a67cc69e40d7af2aec137b36e53422982">generic.h</a>
+</li>
+<li>VL_ERR_IO
+: <a class="el" href="generic_8h.html#aba78f9bc7029f3e8f69e502ef10a1ea2">generic.h</a>
+</li>
+<li>VL_ERR_MSG_LEN
+: <a class="el" href="generic_8h.html#af35e10968d642caab4fbffe6f4b0789c">generic.h</a>
+</li>
+<li>VL_ERR_NO_MORE
+: <a class="el" href="generic_8h.html#a28c5e84bca772be393e834dfff61b22d">generic.h</a>
+</li>
+<li>VL_ERR_OK
+: <a class="el" href="generic_8h.html#a26519a3dd2966d2d46538eb46921abba">generic.h</a>
+</li>
+<li>VL_ERR_OVERFLOW
+: <a class="el" href="generic_8h.html#aad375cc4dcec5d098a94d072b6c5b3d4">generic.h</a>
+</li>
+<li>VL_ERR_PGM_INV_DATA
+: <a class="el" href="pgm_8h.html#a4623e454d921cad79d89ad3783d46739">pgm.h</a>
+</li>
+<li>VL_ERR_PGM_INV_HEAD
+: <a class="el" href="pgm_8h.html#aa0566322098c2b529a027f1f00a9b586">pgm.h</a>
+</li>
+<li>VL_ERR_PGM_INV_META
+: <a class="el" href="pgm_8h.html#ad7d582518c6bbb8409649207443b0d42">pgm.h</a>
+</li>
+<li>VL_ERR_PGM_IO
+: <a class="el" href="pgm_8h.html#a8d09e3f8171e1531db2045fe33c023f5">pgm.h</a>
+</li>
+<li>VL_EXPORT
+: <a class="el" href="host_8h.html#a489d7622ef2e3937985fcb9f89a5cbe5">host.h</a>
+</li>
+<li>VL_FALSE
+: <a class="el" href="host_8h.html#abce143a5a9b51d987a74f2ad30046520">host.h</a>
+</li>
+<li>VL_FISHER_FLAG_FAST
+: <a class="el" href="fisher_8h.html#aaa8a24c2d002294897dcd82f1d9456b5">fisher.h</a>
+</li>
+<li>VL_FISHER_FLAG_IMPROVED
+: <a class="el" href="fisher_8h.html#a73052d0cb0678620a8d52f97eada233c">fisher.h</a>
+</li>
+<li>VL_FISHER_FLAG_NORMALIZED
+: <a class="el" href="fisher_8h.html#aca9b5a03e0c6ff578cee1268f725afa5">fisher.h</a>
+</li>
+<li>VL_FISHER_FLAG_SQUARE_ROOT
+: <a class="el" href="fisher_8h.html#ac25863013987b97998d64b9f0695c223">fisher.h</a>
+</li>
+<li>VL_FL_INDEX
+: <a class="el" href="host_8h.html#a15a80f72eaf892a9f0d69167df1a071b">host.h</a>
+</li>
+<li>VL_FL_INT16
+: <a class="el" href="host_8h.html#a065ee814c68df328e58181c387f8ccf6">host.h</a>
+</li>
+<li>VL_FL_INT32
+: <a class="el" href="host_8h.html#ac08de2d648945a77801c9884a0ff752d">host.h</a>
+</li>
+<li>VL_FL_INT64
+: <a class="el" href="host_8h.html#a9e0dd28d4000da64e451fbce6939cb6f">host.h</a>
+</li>
+<li>VL_FL_INT8
+: <a class="el" href="host_8h.html#a782a8eb010de36cbc9c4517f73c23d29">host.h</a>
+</li>
+<li>VL_FMT_INDEX
+: <a class="el" href="host_8h.html#a79c56fd25ae0746b063266ec7fae930b">host.h</a>
+</li>
+<li>VL_FMT_INTPTR
+: <a class="el" href="host_8h.html#afade1e41badafa9c5280aaef35f87403">host.h</a>
+</li>
+<li>VL_FMT_SIZE
+: <a class="el" href="host_8h.html#a32387e8bdd1b0d03af42522deb12f127">host.h</a>
+</li>
+<li>VL_FMT_UINDEX
+: <a class="el" href="host_8h.html#addb8218f8f733565479705ff5f6c0e52">host.h</a>
+</li>
+<li>VL_FMT_UINTPTR
+: <a class="el" href="host_8h.html#afbbbf7b8cd264a829a6aecbe26bffba8">host.h</a>
+</li>
+<li>VL_HEAP_array
+: <a class="el" href="heap-def_8h.html#ac2b59b9373be3df851dac7c594924a92">heap-def.h</a>
+</li>
+<li>VL_HEAP_prefix
+: <a class="el" href="heap-def_8h.html#ae0d8f7e617493c4a73696983e1c360b6">heap-def.h</a>
+</li>
+<li>VL_HEAP_type
+: <a class="el" href="heap-def_8h.html#a809b241c547ba76275bd10575086c3b2">heap-def.h</a>
+</li>
+<li>VL_INFINITY_D
+: <a class="el" href="mathop_8h.html#a9eb876cf62894be62a2467db9db0bb03">mathop.h</a>
+</li>
+<li>VL_INFINITY_F
+: <a class="el" href="mathop_8h.html#a7c8e51b4132fa5072a31ec38770e22c6">mathop.h</a>
+</li>
+<li>VL_INLINE
+: <a class="el" href="host_8h.html#a41b94143626a52276b1a0ffd1e29e496">host.h</a>
+</li>
+<li>VL_INT16_C
+: <a class="el" href="host_8h.html#ad08cf90e9ab75508ff1a5a8c5a33f1fd">host.h</a>
+</li>
+<li>VL_INT32_C
+: <a class="el" href="host_8h.html#a39f97aecddfe2a7abf90a358690410a1">host.h</a>
+</li>
+<li>VL_INT64_C
+: <a class="el" href="host_8h.html#a2d1d0a4a0f2f80fd47ee405e4c92bba3">host.h</a>
+</li>
+<li>VL_INT8_C
+: <a class="el" href="host_8h.html#a39c44d2083958e498425a8abb29b407d">host.h</a>
+</li>
+<li>VL_LOG_OF_2
+: <a class="el" href="mathop_8h.html#a5103e2bf416806fb511feaa8ee96328f">mathop.h</a>
+</li>
+<li>VL_MAX
+: <a class="el" href="generic_8h.html#ac8a3f4020a3e381daadd4214668dc63c">generic.h</a>
+</li>
+<li>VL_MIN
+: <a class="el" href="generic_8h.html#a36f2f85796040ca2f71bb34a9f55969f">generic.h</a>
+</li>
+<li>VL_MSER_PIX_MAXVAL
+: <a class="el" href="mser_8h.html#ab88df95be093992e6c90caf07711182a">mser.h</a>
+</li>
+<li>VL_MSER_VOID_NODE
+: <a class="el" href="mser_8h.html#a8dedc365f221c110cee8b0634ab86241">mser.h</a>
+</li>
+<li>VL_NAN_D
+: <a class="el" href="mathop_8h.html#a3f9df65fc71880e96e21e93e3abfd99c">mathop.h</a>
+</li>
+<li>VL_NAN_F
+: <a class="el" href="mathop_8h.html#afcbfd66dfa72bf495e08e1d622d6da0e">mathop.h</a>
+</li>
+<li>VL_OS_LINUX
+: <a class="el" href="host_8h.html#ace5a6e77fa663303cfd489f3eaaf1cd9">host.h</a>
+</li>
+<li>VL_OS_MACOSX
+: <a class="el" href="host_8h.html#a6368203ab40afc45aa5d2faaf794038e">host.h</a>
+</li>
+<li>VL_OS_WIN
+: <a class="el" href="host_8h.html#a9e8b6b892c4c517efb458a908f8d8f89">host.h</a>
+</li>
+<li>VL_OS_WIN64
+: <a class="el" href="host_8h.html#a5a08df472ecc78e67b920ca29217fabf">host.h</a>
+</li>
+<li>VL_PAD_BY_CONTINUITY
+: <a class="el" href="imopv_8h.html#aabcdd51c289c0d8db11dda9e26349a52">imopv.h</a>
+</li>
+<li>VL_PAD_BY_ZERO
+: <a class="el" href="imopv_8h.html#af6e169f2ed366d16f9149a99d5574071">imopv.h</a>
+</li>
+<li>VL_PAD_MASK
+: <a class="el" href="imopv_8h.html#a2a4f0c469409eea71985bac3f10d08fb">imopv.h</a>
+</li>
+<li>VL_PI
+: <a class="el" href="mathop_8h.html#a19d43a5e0c355df553ebe825208a4cc1">mathop.h</a>
+</li>
+<li>VL_PRINT
+: <a class="el" href="generic_8h.html#a1d4b7e68329e078b0d9064b7f408c96b">generic.h</a>
+</li>
+<li>VL_PRINTF
+: <a class="el" href="generic_8h.html#af68d1c6327bf2226b15c84007eab3d94">generic.h</a>
+</li>
+<li>VL_QS_INF
+: <a class="el" href="quickshift_8h.html#a674ebf4b93ac727a31df15e6d5a45b91">quickshift.h</a>
+</li>
+<li>VL_QSORT_array
+: <a class="el" href="qsort-def_8h.html#a09b2946a2aa460a9d33a78f46056059c">qsort-def.h</a>
+</li>
+<li>VL_QSORT_prefix
+: <a class="el" href="qsort-def_8h.html#a6bc1350759ef49165982d85fe1996be3">qsort-def.h</a>
+</li>
+<li>VL_QSORT_type
+: <a class="el" href="qsort-def_8h.html#aa7bbcd78393c03275c0e3d55c1decdb0">qsort-def.h</a>
+</li>
+<li>VL_SHIFT_LEFT
+: <a class="el" href="generic_8h.html#aee17b425e4672e582e26cf9e103fc0fb">generic.h</a>
+</li>
+<li>VL_SHUFFLE_array
+: <a class="el" href="shuffle-def_8h.html#a1b2ff17424758cd25468688d9eeb9768">shuffle-def.h</a>
+</li>
+<li>VL_SHUFFLE_prefix
+: <a class="el" href="shuffle-def_8h.html#a0f4417ddb60f347306e145cddc70632b">shuffle-def.h</a>
+</li>
+<li>VL_SHUFFLE_type
+: <a class="el" href="shuffle-def_8h.html#a1148a2ce5fc323d5c524e0f5d28f7702">shuffle-def.h</a>
+</li>
+<li>VL_SIFT_BILINEAR_ORIENTATIONS
+: <a class="el" href="sift_8c.html#a3292b2feb6b1aba4f34ba037f15bc2d0">sift.c</a>
+</li>
+<li>VL_SMALL_INT
+: <a class="el" href="host_8h.html#ab11084ae11b83378e74bf4b1e545f134">host.h</a>
+</li>
+<li>VL_STRINGIFY
+: <a class="el" href="host_8h.html#a61a48096b951544d0554b8a06aa59306">host.h</a>
+</li>
+<li>VL_THREADS_POSIX
+: <a class="el" href="host_8h.html#aa463843e959e6add43b050e78892e75a">host.h</a>
+</li>
+<li>VL_THREADS_WIN
+: <a class="el" href="host_8h.html#a4b8e0e703e4bbdff30e1c3a00225e74f">host.h</a>
+</li>
+<li>VL_TRANSPOSE
+: <a class="el" href="imopv_8h.html#a2489ff30a8c5d4048038a90b640a038a">imopv.h</a>
+</li>
+<li>VL_TRUE
+: <a class="el" href="host_8h.html#a0c72a8c7d2abcd2871b3348138c5f1f4">host.h</a>
+</li>
+<li>VL_TYPE_DOUBLE
+: <a class="el" href="generic_8h.html#a41d6691dac0cc3648ca9701d27e5d2b0">generic.h</a>
+</li>
+<li>VL_TYPE_FLOAT
+: <a class="el" href="generic_8h.html#aa034d0b942f9800b2a02aeb30ff10fa2">generic.h</a>
+</li>
+<li>VL_TYPE_INT16
+: <a class="el" href="generic_8h.html#a4eb25b91045f880c1d10e609174d3f5c">generic.h</a>
+</li>
+<li>VL_TYPE_INT32
+: <a class="el" href="generic_8h.html#a4ca0c2adc987dcb7f57a7de7893f5b7c">generic.h</a>
+</li>
+<li>VL_TYPE_INT64
+: <a class="el" href="generic_8h.html#a873cea95408414b33bc0d0af250caf5e">generic.h</a>
+</li>
+<li>VL_TYPE_INT8
+: <a class="el" href="generic_8h.html#a90ea396337523c32c3022f358196ccc9">generic.h</a>
+</li>
+<li>VL_TYPE_UINT16
+: <a class="el" href="generic_8h.html#a2e47aef4fdd2aa9f388fd2adfc36f4b1">generic.h</a>
+</li>
+<li>VL_TYPE_UINT32
+: <a class="el" href="generic_8h.html#ac1ca77a71afce483185fbd23f4df9ec7">generic.h</a>
+</li>
+<li>VL_TYPE_UINT64
+: <a class="el" href="generic_8h.html#ace055d33cb1d7f213bfc0b3a55b86fa2">generic.h</a>
+</li>
+<li>VL_TYPE_UINT8
+: <a class="el" href="generic_8h.html#a4db234bb60c94d6f562f8e9ce3b1795e">generic.h</a>
+</li>
+<li>VL_UINT16_C
+: <a class="el" href="host_8h.html#abd41ad6b0fecc0c06e89f556d30f5a05">host.h</a>
+</li>
+<li>VL_UINT32_C
+: <a class="el" href="host_8h.html#a9fedb480a5681cef16985d34ec52f6fe">host.h</a>
+</li>
+<li>VL_UINT64_C
+: <a class="el" href="host_8h.html#a555c4468bb49c4c17513ef5bcf470f62">host.h</a>
+</li>
+<li>VL_UINT8_C
+: <a class="el" href="host_8h.html#ae3cffa06d00149d83a3d2332f60b9134">host.h</a>
+</li>
+<li>VL_USE_MATLAB_ENV
+: <a class="el" href="mexutils_8h.html#a76600f902337bf06037c62b27d76255c">mexutils.h</a>
+</li>
+<li>VL_VERSION_STRING
+: <a class="el" href="generic_8h.html#aa53b45e68c7ce79c6fc539e64ba027a6">generic.h</a>
+</li>
+<li>VL_VLAD_FLAG_NORMALIZE_COMPONENTS
+: <a class="el" href="vlad_8h.html#a2530f7175c68c931b9c195a227dd9d0e">vlad.h</a>
+</li>
+<li>VL_VLAD_FLAG_NORMALIZE_MASS
+: <a class="el" href="vlad_8h.html#a2047ae2d21cec965ab5db039b1f66d98">vlad.h</a>
+</li>
+<li>VL_VLAD_FLAG_SQUARE_ROOT
+: <a class="el" href="vlad_8h.html#adac275d53de92eba4f3a83325f85da3e">vlad.h</a>
+</li>
+<li>VL_VLAD_FLAG_UNNORMALIZED
+: <a class="el" href="vlad_8h.html#ac048897164a0ab938bc26bec91b85b9c">vlad.h</a>
+</li>
+<li>VL_XCAT
+: <a class="el" href="host_8h.html#a755f8d9673970b82ad9375e32d2693ef">host.h</a>
+</li>
+<li>VL_XCAT3
+: <a class="el" href="host_8h.html#ae5a425c5832ec8b91c3acd70cc30ad8d">host.h</a>
+</li>
+<li>VL_XCAT4
+: <a class="el" href="host_8h.html#a0b450714848c2941f3e00e7a9d2338f4">host.h</a>
+</li>
+<li>VL_XCAT5
+: <a class="el" href="host_8h.html#a551d8bfc670074c55bf8a0a7405f5e28">host.h</a>
+</li>
+<li>VL_XSTRINGIFY
+: <a class="el" href="host_8h.html#a2a5d283f40e6bf0fc1ca74644084a423">host.h</a>
+</li>
+<li>VL_YESNO
+: <a class="el" href="host_8h.html#addfdc610a7c5d53f5167f7a02b5baf4f">host.h</a>
+</li>
+</ul>
+</div><!-- contents -->
+        <!-- Doc Here -->
+      </div>
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>

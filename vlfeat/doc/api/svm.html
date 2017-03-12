@@ -1,0 +1,280 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+  <!-- Page title -->
+  <title>VLFeat - Documentation > C API</title>
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  <link rel="stylesheet" type="text/css" href="doxygen.css"></link>
+  <!-- Scripts-->
+  <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li class='active'><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li class='active' class='activeLeaf'><a href="index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="../doc.html">Documentation</a></span><span class='separator'>></span><span class='page'><a href="index.html">C API</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+      <!-- <pagestyle href="%pathto:root;api/tabs.css"/> -->
+      <div class="doxygen">
+<div id="top">
+<div id="top">
+<!-- Generated by Doxygen 1.8.7 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li class="current"><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
+    </ul>
+  </div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="index.html">Vision Lab Features Library (VLFeat)</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Support Vector Machines (SVM) </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="toc"><h3>Table of Contents</h3>
+<ul><li class="level1"><a href="#svm-starting">Getting started</a></li>
+</ul>
+</div>
+<div class="textblock"><dl class="section author"><dt>Author</dt><dd>Milan Sulc </dd>
+<dd>
+Daniele Perrone </dd>
+<dd>
+Andrea Vedaldi</dd></dl>
+<p>Support Vector Machines* (SVMs) are one of the most popular types of discriminate classifiers. VLFeat implements two solvers, SGD and SDCA, capable of learning linear SVMs on a large scale. These linear solvers can be combined with explicit feature maps to learn non-linear models as well. The solver supports a few variants of the standard SVM formulation, including using loss functions other than the hinge loss.</p>
+<p><a class="el" href="svm.html#svm-starting">Getting started</a> demonstrates how to use VLFeat to learn an SVM. Information on SVMs and the corresponding optimization algorithms as implemented by VLFeat are given in:</p>
+<ul>
+<li><a class="el" href="svm-fundamentals.html">SVM fundamentals</a> - Linear SVMs and their learning.</li>
+<li><a class="el" href="svm-advanced.html">Advanced SVM topics</a> - Loss functions, dual objective, and other details.</li>
+<li><a class="el" href="svm-sgd.html">Stochastic Gradient Descent</a> - The SGD algorithm.</li>
+<li><a class="el" href="svm-sdca.html">Stochastic Dual Coordinate Ascent</a> - The SDCA algorithm.</li>
+</ul>
+<h1><a class="anchor" id="svm-starting"></a>
+Getting started</h1>
+<p>This section demonstrates how to learn an SVM by using VLFeat. SVM learning is implemented by the <a class="el" href="svm_8h.html#ad54eb871794742668e91b2e73c6f8ea4" title="SVM solver. This object implements VLFeat SVM solvers (see svm.h). ">VlSvm</a> object type. Let's start by a complete example:</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="svm_8h.html">vl/svm.h</a>&gt;</span></div>
+<div class="line"></div>
+<div class="line"><span class="keywordtype">int</span> main()</div>
+<div class="line">{</div>
+<div class="line">  <a class="code" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> <span class="keyword">const</span> numData = 4 ;</div>
+<div class="line">  <a class="code" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> <span class="keyword">const</span> dimension = 2 ;</div>
+<div class="line">  <span class="keywordtype">double</span> x [dimension * numData] = {</div>
+<div class="line">    0.0, -0.5,</div>
+<div class="line">    0.6, -0.3,</div>
+<div class="line">    0.0,  0.5</div>
+<div class="line">    0.6,  0.0} ;</div>
+<div class="line">  <span class="keywordtype">double</span> y [numData] = {1, 1, -1, 1} ;</div>
+<div class="line">  <span class="keywordtype">double</span> lambda = 0.01;</div>
+<div class="line">  <span class="keywordtype">double</span> * <span class="keyword">const</span> model ;</div>
+<div class="line">  <span class="keywordtype">double</span> bias ;</div>
+<div class="line"></div>
+<div class="line">  <a class="code" href="svm_8h.html#ad54eb871794742668e91b2e73c6f8ea4">VlSvm</a> * svm = <a class="code" href="svm_8c.html#a8fab77c387da4e87b4086df17b5066a3">vl_svm_new</a>(<a class="code" href="svm_8h.html#a0c5120e756a9a2b06d23130d54db90c9ad7ec41888bf7474e5d92a8b0f0dfa05a">VlSvmSolverSgd</a>,</div>
+<div class="line">                           x, dimension, numData,</div>
+<div class="line">                           y,</div>
+<div class="line">                           lambda) ;</div>
+<div class="line">  <a class="code" href="svm_8c.html#a0812e42b5511e8da15b9a283a0564d02">vl_svm_train</a>(svm) ;</div>
+<div class="line"></div>
+<div class="line">  model = <a class="code" href="svm_8c.html#ac397b10574449237e2c736c775607edb">vl_svm_get_model</a>(svm) ;</div>
+<div class="line">  bias = <a class="code" href="svm_8c.html#aa7fb1a06113795e0fd1f24ce99324981">vl_svm_get_bias</a>(svm) ;</div>
+<div class="line"></div>
+<div class="line">  printf(<span class="stringliteral">&quot;model w = [ %f , %f ] , bias b = %f \n&quot;</span>,</div>
+<div class="line">         model[0],</div>
+<div class="line">         model[1],</div>
+<div class="line">         bias);</div>
+<div class="line"></div>
+<div class="line">  <a class="code" href="svm_8c.html#a473c326f265db2ad4752e514b86f2786">vl_svm_delete</a>(svm) ;</div>
+<div class="line">  <span class="keywordflow">return</span> 0;</div>
+<div class="line">}</div>
+</div><!-- fragment --><p>This code learns a binary linear SVM using the SGD algorithm on four two-dimensional points using 0.01 as regularization parameter.</p>
+<p><a class="el" href="svm_8h.html#a0c5120e756a9a2b06d23130d54db90c9a65819739f150850ac0033ddc142ec593">VlSvmSolverSdca</a> can be specified in place of <a class="el" href="svm_8h.html#a0c5120e756a9a2b06d23130d54db90c9a65819739f150850ac0033ddc142ec593">VlSvmSolverSdca</a> in orer to use the SDCA algorithm instead.</p>
+<p>Convergence and other diagnostic information can be obtained after training by using the <a class="el" href="svm_8c.html#aab8e4b63c22ba6614ce98ceab7e8858c" title="Get the solver statistics. ">vl_svm_get_statistics</a> function. Algorithms regularly check for convergence (usally after each pass over the data). The <a class="el" href="svm_8c.html#a0a01191236abfe94b65f895fa49e0a35" title="Set the diagnostic function callback. ">vl_svm_set_diagnostic_function</a> can be used to specify a callback to be invoked when diagnostic is run. This can be used, for example, to dump information on the screen as the algorithm progresses.</p>
+<p>Convergence is reached after a maximum number of iterations (<a class="el" href="svm_8c.html#a39b8dfc06c0eea75932efacf946df356" title="Set the maximum number of iterations. ">vl_svm_set_max_num_iterations</a>) or after a given criterion falls below a threshold (<a class="el" href="svm_8c.html#a4a1a5228c945a145c1bc7e025a0ffe4e" title="Set the convergence threshold. ">vl_svm_set_epsilon</a>). The meaning of these may depend on the specific algorithm (see <a class="el" href="svm.html">Support Vector Machines (SVM)</a> for further details).</p>
+<p><a class="el" href="svm_8h.html#ad54eb871794742668e91b2e73c6f8ea4" title="SVM solver. This object implements VLFeat SVM solvers (see svm.h). ">VlSvm</a> is a quite powerful object. Algorithms only need to perform inner product and accumulation operation on the data (see <a class="el" href="svm-advanced.html">Advanced SVM topics</a>). This is used to abstract from the data type and support almost anything by speciying just two functions (<a class="el" href="svm_8c.html#ab452546b3f6e5e2116e983a5c6f9f2c3" title="Set the data functions. ">vl_svm_set_data_functions</a>).</p>
+<p>A simple interface to this advanced functionality is provided by the <a class="el" href="svmdataset_8h.html#a5861f5083aeff8991fa982e4809c7258" title="SVM dataset object. ">VlSvmDataset</a> object. This supports natively <code>float</code> and <code>double</code> data types, as well as applying on the fly the homogeneous kernel map (<a class="el" href="homkermap.html">Homogeneous kernel map</a>). This is exemplified in <a class="el" href="svmdataset_8h.html#svmdataset-starting">Getting started</a>. </p>
+</div></div><!-- contents -->
+        <!-- Doc Here -->
+      </div>
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>

@@ -1,0 +1,1379 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+  <!-- Page title -->
+  <title>VLFeat - Documentation > C API</title>
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  <link rel="stylesheet" type="text/css" href="doxygen.css"></link>
+  <!-- Scripts-->
+  <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li class='active'><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li class='active' class='activeLeaf'><a href="index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="../doc.html">Documentation</a></span><span class='separator'>></span><span class='page'><a href="index.html">C API</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+      <!-- <pagestyle href="%pathto:root;api/tabs.css"/> -->
+      <div class="doxygen">
+<div id="top">
+<div id="top">
+<!-- Generated by Doxygen 1.8.7 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li class="current"><a href="files.html"><span>Files</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>Globals</span></a></li>
+    </ul>
+  </div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_8dd540b382164c224dfa1eb6e8a3add6.html">vl</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">generic.h File Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Generic (<a class="el" href="generic.html">General support functionalities</a>)  
+<a href="#details">More...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="host_8h.html">host.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="random_8h.html">random.h</a>&quot;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;stddef.h&gt;</code><br />
+<code>#include &lt;time.h&gt;</code><br />
+<code>#include &lt;assert.h&gt;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:aa53b45e68c7ce79c6fc539e64ba027a6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa53b45e68c7ce79c6fc539e64ba027a6"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic_8h.html#aa53b45e68c7ce79c6fc539e64ba027a6">VL_VERSION_STRING</a>&#160;&#160;&#160;&quot;0.9.20&quot;</td></tr>
+<tr class="memdesc:aa53b45e68c7ce79c6fc539e64ba027a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Library version string. <br /></td></tr>
+<tr class="separator:aa53b45e68c7ce79c6fc539e64ba027a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af35e10968d642caab4fbffe6f4b0789c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af35e10968d642caab4fbffe6f4b0789c"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic_8h.html#af35e10968d642caab4fbffe6f4b0789c">VL_ERR_MSG_LEN</a>&#160;&#160;&#160;1024</td></tr>
+<tr class="memdesc:af35e10968d642caab4fbffe6f4b0789c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum length (in characters) of an error message. <br /></td></tr>
+<tr class="separator:af35e10968d642caab4fbffe6f4b0789c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Common operations</div></td></tr>
+<tr class="memitem:a36f2f85796040ca2f71bb34a9f55969f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic_8h.html#a36f2f85796040ca2f71bb34a9f55969f">VL_MIN</a>(x, y)&#160;&#160;&#160;(((x)&lt;(y))?(x):(y))</td></tr>
+<tr class="memdesc:a36f2f85796040ca2f71bb34a9f55969f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the minimum between two values.  <a href="#a36f2f85796040ca2f71bb34a9f55969f">More...</a><br /></td></tr>
+<tr class="separator:a36f2f85796040ca2f71bb34a9f55969f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8a3f4020a3e381daadd4214668dc63c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic_8h.html#ac8a3f4020a3e381daadd4214668dc63c">VL_MAX</a>(x, y)&#160;&#160;&#160;(((x)&gt;(y))?(x):(y))</td></tr>
+<tr class="memdesc:ac8a3f4020a3e381daadd4214668dc63c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the maximum between two values.  <a href="#ac8a3f4020a3e381daadd4214668dc63c">More...</a><br /></td></tr>
+<tr class="separator:ac8a3f4020a3e381daadd4214668dc63c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee17b425e4672e582e26cf9e103fc0fb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic_8h.html#aee17b425e4672e582e26cf9e103fc0fb">VL_SHIFT_LEFT</a>(x, n)&#160;&#160;&#160;(((n)&gt;=0)?((x)&lt;&lt;(n)):((x)&gt;&gt;-(n)))</td></tr>
+<tr class="memdesc:aee17b425e4672e582e26cf9e103fc0fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Signed left shift operation.  <a href="#aee17b425e4672e582e26cf9e103fc0fb">More...</a><br /></td></tr>
+<tr class="separator:aee17b425e4672e582e26cf9e103fc0fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:aadd5283710afacdf5280e8e47094299a"><td class="memItemLeft" align="right" valign="top">char const *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic_8h.html#aadd5283710afacdf5280e8e47094299a">vl_get_version_string</a> (void)</td></tr>
+<tr class="memdesc:aadd5283710afacdf5280e8e47094299a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get VLFeat version string.  <a href="#aadd5283710afacdf5280e8e47094299a">More...</a><br /></td></tr>
+<tr class="separator:aadd5283710afacdf5280e8e47094299a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6616d4d878bfd9daf2440af24d42293c"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic_8h.html#a6616d4d878bfd9daf2440af24d42293c">vl_configuration_to_string_copy</a> (void)</td></tr>
+<tr class="memdesc:a6616d4d878bfd9daf2440af24d42293c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get VLFeat configuration string.  <a href="#a6616d4d878bfd9daf2440af24d42293c">More...</a><br /></td></tr>
+<tr class="separator:a6616d4d878bfd9daf2440af24d42293c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3fb6cee731450d886e49da54e29788e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic_8h.html#a3fb6cee731450d886e49da54e29788e8">vl_set_simd_enabled</a> (<a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a> x)</td></tr>
+<tr class="memdesc:a3fb6cee731450d886e49da54e29788e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Toggle usage of SIMD instructions.  <a href="#a3fb6cee731450d886e49da54e29788e8">More...</a><br /></td></tr>
+<tr class="separator:a3fb6cee731450d886e49da54e29788e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4090b5a1fac0a0bc6e42cc1a7d77047"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic_8h.html#ac4090b5a1fac0a0bc6e42cc1a7d77047">vl_get_simd_enabled</a> (void)</td></tr>
+<tr class="memdesc:ac4090b5a1fac0a0bc6e42cc1a7d77047"><td class="mdescLeft">&#160;</td><td class="mdescRight">Are SIMD instructons enabled?  <a href="#ac4090b5a1fac0a0bc6e42cc1a7d77047">More...</a><br /></td></tr>
+<tr class="separator:ac4090b5a1fac0a0bc6e42cc1a7d77047"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:accbf3c00c4b86e465acb28d746a92f58"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic_8h.html#accbf3c00c4b86e465acb28d746a92f58">vl_cpu_has_avx</a> (void)</td></tr>
+<tr class="memdesc:accbf3c00c4b86e465acb28d746a92f58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check for AVX instruction set.  <a href="#accbf3c00c4b86e465acb28d746a92f58">More...</a><br /></td></tr>
+<tr class="separator:accbf3c00c4b86e465acb28d746a92f58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84aadf91644a01036d3718fe595f5a26"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic_8h.html#a84aadf91644a01036d3718fe595f5a26">vl_cpu_has_sse3</a> (void)</td></tr>
+<tr class="memdesc:a84aadf91644a01036d3718fe595f5a26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check for SSE3 instruction set.  <a href="#a84aadf91644a01036d3718fe595f5a26">More...</a><br /></td></tr>
+<tr class="separator:a84aadf91644a01036d3718fe595f5a26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2cf9346f3895f26bb7f05b5917614c9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic_8h.html#ad2cf9346f3895f26bb7f05b5917614c9">vl_cpu_has_sse2</a> (void)</td></tr>
+<tr class="memdesc:ad2cf9346f3895f26bb7f05b5917614c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check for SSE2 instruction set.  <a href="#ad2cf9346f3895f26bb7f05b5917614c9">More...</a><br /></td></tr>
+<tr class="separator:ad2cf9346f3895f26bb7f05b5917614c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49f59f6c5355c146c8fae8959b7da782"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic_8h.html#a49f59f6c5355c146c8fae8959b7da782">vl_get_num_cpus</a> (void)</td></tr>
+<tr class="memdesc:a49f59f6c5355c146c8fae8959b7da782"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of CPU cores of the host.  <a href="#a49f59f6c5355c146c8fae8959b7da782">More...</a><br /></td></tr>
+<tr class="separator:a49f59f6c5355c146c8fae8959b7da782"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38f7f1bf904ad9e95df774ba824b36fb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structVlRand.html">VlRand</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic_8h.html#a38f7f1bf904ad9e95df774ba824b36fb">vl_get_rand</a> (void)</td></tr>
+<tr class="memdesc:a38f7f1bf904ad9e95df774ba824b36fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the default random number generator.  <a href="#a38f7f1bf904ad9e95df774ba824b36fb">More...</a><br /></td></tr>
+<tr class="separator:a38f7f1bf904ad9e95df774ba824b36fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Multi-thread computations</div></td></tr>
+<tr class="memitem:a2d38f8e7475ddb8f1e106e2b7495d28f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic_8h.html#a2d38f8e7475ddb8f1e106e2b7495d28f">vl_get_max_threads</a> (void)</td></tr>
+<tr class="memdesc:a2d38f8e7475ddb8f1e106e2b7495d28f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the maximum number of computational threads used by VLFeat.  <a href="#a2d38f8e7475ddb8f1e106e2b7495d28f">More...</a><br /></td></tr>
+<tr class="separator:a2d38f8e7475ddb8f1e106e2b7495d28f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adbbde4d47763c8e581640b23db5b6a1a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic_8h.html#adbbde4d47763c8e581640b23db5b6a1a">vl_set_num_threads</a> (<a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> n)</td></tr>
+<tr class="memdesc:adbbde4d47763c8e581640b23db5b6a1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the maximum number of threads used by VLFeat.  <a href="#adbbde4d47763c8e581640b23db5b6a1a">More...</a><br /></td></tr>
+<tr class="separator:adbbde4d47763c8e581640b23db5b6a1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a426a9313eef611543f45fd3faaa9b343"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic_8h.html#a426a9313eef611543f45fd3faaa9b343">vl_get_thread_limit</a> (void)</td></tr>
+<tr class="memdesc:a426a9313eef611543f45fd3faaa9b343"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of computational threads available to the application.  <a href="#a426a9313eef611543f45fd3faaa9b343">More...</a><br /></td></tr>
+<tr class="separator:a426a9313eef611543f45fd3faaa9b343"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Memory allocation</div></td></tr>
+<tr class="memitem:ac04fe278ac908fa6ed02bda099588cf0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic_8h.html#ac04fe278ac908fa6ed02bda099588cf0">vl_set_alloc_func</a> (void *(*malloc_func)(size_t), void *(*realloc_func)(void *, size_t), void *(*calloc_func)(size_t, size_t), void(*free_func)(void *))</td></tr>
+<tr class="memdesc:ac04fe278ac908fa6ed02bda099588cf0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set memory allocation functions.  <a href="#ac04fe278ac908fa6ed02bda099588cf0">More...</a><br /></td></tr>
+<tr class="separator:ac04fe278ac908fa6ed02bda099588cf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f0d2ab48ad66f0588c89a3e526044ed"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic_8h.html#a9f0d2ab48ad66f0588c89a3e526044ed">vl_malloc</a> (size_t n)</td></tr>
+<tr class="memdesc:a9f0d2ab48ad66f0588c89a3e526044ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate a memory block.  <a href="#a9f0d2ab48ad66f0588c89a3e526044ed">More...</a><br /></td></tr>
+<tr class="separator:a9f0d2ab48ad66f0588c89a3e526044ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46e9d9640b0c71f1210f320cd3f0e489"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic_8h.html#a46e9d9640b0c71f1210f320cd3f0e489">vl_realloc</a> (void *ptr, size_t n)</td></tr>
+<tr class="memdesc:a46e9d9640b0c71f1210f320cd3f0e489"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reallocate a memory block.  <a href="#a46e9d9640b0c71f1210f320cd3f0e489">More...</a><br /></td></tr>
+<tr class="separator:a46e9d9640b0c71f1210f320cd3f0e489"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac825111065adbecc5f788a521ea890f2"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic_8h.html#ac825111065adbecc5f788a521ea890f2">vl_calloc</a> (size_t n, size_t size)</td></tr>
+<tr class="memdesc:ac825111065adbecc5f788a521ea890f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free and clear a memory block.  <a href="#ac825111065adbecc5f788a521ea890f2">More...</a><br /></td></tr>
+<tr class="separator:ac825111065adbecc5f788a521ea890f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ab0491ed4fecae50fbb510db772015f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1ab0491ed4fecae50fbb510db772015f"></a>
+void *&#160;</td><td class="memItemRight" valign="bottom"><b>vl_memalign</b> (size_t n, size_t size)</td></tr>
+<tr class="separator:a1ab0491ed4fecae50fbb510db772015f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae070a0a4d3d367a1ba8308644c88ada3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic_8h.html#ae070a0a4d3d367a1ba8308644c88ada3">vl_free</a> (void *ptr)</td></tr>
+<tr class="memdesc:ae070a0a4d3d367a1ba8308644c88ada3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free a memory block.  <a href="#ae070a0a4d3d367a1ba8308644c88ada3">More...</a><br /></td></tr>
+<tr class="separator:ae070a0a4d3d367a1ba8308644c88ada3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Measuring time</div></td></tr>
+<tr class="memitem:acc7e28d60e21ecef6e3f5d83b850b34b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic_8h.html#acc7e28d60e21ecef6e3f5d83b850b34b">vl_tic</a> (void)</td></tr>
+<tr class="memdesc:acc7e28d60e21ecef6e3f5d83b850b34b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset processor time reference The function resets VLFeat TIC/TOC time reference. There is one such reference per thread.  <a href="#acc7e28d60e21ecef6e3f5d83b850b34b">More...</a><br /></td></tr>
+<tr class="separator:acc7e28d60e21ecef6e3f5d83b850b34b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a429bff43a8deafa7c2ce016932738cd6"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic_8h.html#a429bff43a8deafa7c2ce016932738cd6">vl_toc</a> (void)</td></tr>
+<tr class="memdesc:a429bff43a8deafa7c2ce016932738cd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get elapsed time since tic.  <a href="#a429bff43a8deafa7c2ce016932738cd6">More...</a><br /></td></tr>
+<tr class="separator:a429bff43a8deafa7c2ce016932738cd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49738f9f66a6a6d8a70dbe712ab1f697"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic_8h.html#a49738f9f66a6a6d8a70dbe712ab1f697">vl_get_cpu_time</a> (void)</td></tr>
+<tr class="memdesc:a49738f9f66a6a6d8a70dbe712ab1f697"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get processor time.  <a href="#a49738f9f66a6a6d8a70dbe712ab1f697">More...</a><br /></td></tr>
+<tr class="separator:a49738f9f66a6a6d8a70dbe712ab1f697"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="member-group"></a>
+Type identifiers for atomic data types</h2></td></tr>
+<tr class="memitem:aa034d0b942f9800b2a02aeb30ff10fa2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic_8h.html#aa034d0b942f9800b2a02aeb30ff10fa2">VL_TYPE_FLOAT</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:aa034d0b942f9800b2a02aeb30ff10fa2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41d6691dac0cc3648ca9701d27e5d2b0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic_8h.html#a41d6691dac0cc3648ca9701d27e5d2b0">VL_TYPE_DOUBLE</a>&#160;&#160;&#160;2</td></tr>
+<tr class="separator:a41d6691dac0cc3648ca9701d27e5d2b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90ea396337523c32c3022f358196ccc9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic_8h.html#a90ea396337523c32c3022f358196ccc9">VL_TYPE_INT8</a>&#160;&#160;&#160;3</td></tr>
+<tr class="separator:a90ea396337523c32c3022f358196ccc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4db234bb60c94d6f562f8e9ce3b1795e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic_8h.html#a4db234bb60c94d6f562f8e9ce3b1795e">VL_TYPE_UINT8</a>&#160;&#160;&#160;4</td></tr>
+<tr class="separator:a4db234bb60c94d6f562f8e9ce3b1795e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4eb25b91045f880c1d10e609174d3f5c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic_8h.html#a4eb25b91045f880c1d10e609174d3f5c">VL_TYPE_INT16</a>&#160;&#160;&#160;5</td></tr>
+<tr class="separator:a4eb25b91045f880c1d10e609174d3f5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e47aef4fdd2aa9f388fd2adfc36f4b1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic_8h.html#a2e47aef4fdd2aa9f388fd2adfc36f4b1">VL_TYPE_UINT16</a>&#160;&#160;&#160;6</td></tr>
+<tr class="separator:a2e47aef4fdd2aa9f388fd2adfc36f4b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ca0c2adc987dcb7f57a7de7893f5b7c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic_8h.html#a4ca0c2adc987dcb7f57a7de7893f5b7c">VL_TYPE_INT32</a>&#160;&#160;&#160;7</td></tr>
+<tr class="separator:a4ca0c2adc987dcb7f57a7de7893f5b7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1ca77a71afce483185fbd23f4df9ec7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic_8h.html#ac1ca77a71afce483185fbd23f4df9ec7">VL_TYPE_UINT32</a>&#160;&#160;&#160;8</td></tr>
+<tr class="separator:ac1ca77a71afce483185fbd23f4df9ec7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a873cea95408414b33bc0d0af250caf5e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic_8h.html#a873cea95408414b33bc0d0af250caf5e">VL_TYPE_INT64</a>&#160;&#160;&#160;9</td></tr>
+<tr class="separator:a873cea95408414b33bc0d0af250caf5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace055d33cb1d7f213bfc0b3a55b86fa2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic_8h.html#ace055d33cb1d7f213bfc0b3a55b86fa2">VL_TYPE_UINT64</a>&#160;&#160;&#160;10</td></tr>
+<tr class="separator:ace055d33cb1d7f213bfc0b3a55b86fa2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7e54723741819a9f91160cce44f0bbc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac7e54723741819a9f91160cce44f0bbc"></a>
+typedef <a class="el" href="host_8h.html#aeb7c862765448a70017105efa4d25e7a">vl_uint32</a>&#160;</td><td class="memItemRight" valign="bottom"><b>vl_type</b></td></tr>
+<tr class="separator:ac7e54723741819a9f91160cce44f0bbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e4f4c7b7a1d74606a62ca4077fddba8"><td class="memItemLeft" align="right" valign="top">char const *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic_8h.html#a2e4f4c7b7a1d74606a62ca4077fddba8">vl_get_type_name</a> (vl_type type)</td></tr>
+<tr class="memdesc:a2e4f4c7b7a1d74606a62ca4077fddba8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of a data type.  <a href="#a2e4f4c7b7a1d74606a62ca4077fddba8">More...</a><br /></td></tr>
+<tr class="separator:a2e4f4c7b7a1d74606a62ca4077fddba8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a477016b861e56130cfb95fe7085138d9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic_8h.html#a477016b861e56130cfb95fe7085138d9">vl_get_type_size</a> (vl_type type)</td></tr>
+<tr class="memdesc:a477016b861e56130cfb95fe7085138d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get data type size.  <a href="#a477016b861e56130cfb95fe7085138d9">More...</a><br /></td></tr>
+<tr class="separator:a477016b861e56130cfb95fe7085138d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="member-group"></a>
+Error handling</h2></td></tr>
+<tr class="memitem:a26519a3dd2966d2d46538eb46921abba"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic_8h.html#a26519a3dd2966d2d46538eb46921abba">VL_ERR_OK</a>&#160;&#160;&#160;0</td></tr>
+<tr class="separator:a26519a3dd2966d2d46538eb46921abba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad375cc4dcec5d098a94d072b6c5b3d4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic_8h.html#aad375cc4dcec5d098a94d072b6c5b3d4">VL_ERR_OVERFLOW</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:aad375cc4dcec5d098a94d072b6c5b3d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a05979eb0e5e1bb8edd1d6992d73f5f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic_8h.html#a0a05979eb0e5e1bb8edd1d6992d73f5f">VL_ERR_ALLOC</a>&#160;&#160;&#160;2</td></tr>
+<tr class="separator:a0a05979eb0e5e1bb8edd1d6992d73f5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4c6982fd95a25fca8ec202632581345"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic_8h.html#aa4c6982fd95a25fca8ec202632581345">VL_ERR_BAD_ARG</a>&#160;&#160;&#160;3</td></tr>
+<tr class="separator:aa4c6982fd95a25fca8ec202632581345"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba78f9bc7029f3e8f69e502ef10a1ea2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic_8h.html#aba78f9bc7029f3e8f69e502ef10a1ea2">VL_ERR_IO</a>&#160;&#160;&#160;4</td></tr>
+<tr class="separator:aba78f9bc7029f3e8f69e502ef10a1ea2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67cc69e40d7af2aec137b36e53422982"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic_8h.html#a67cc69e40d7af2aec137b36e53422982">VL_ERR_EOF</a>&#160;&#160;&#160;5</td></tr>
+<tr class="separator:a67cc69e40d7af2aec137b36e53422982"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28c5e84bca772be393e834dfff61b22d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic_8h.html#a28c5e84bca772be393e834dfff61b22d">VL_ERR_NO_MORE</a>&#160;&#160;&#160;5</td></tr>
+<tr class="separator:a28c5e84bca772be393e834dfff61b22d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5d08848df8c025fadd5430c8a6cb0e2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic_8h.html#aa5d08848df8c025fadd5430c8a6cb0e2">vl_get_last_error</a> (void)</td></tr>
+<tr class="memdesc:aa5d08848df8c025fadd5430c8a6cb0e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the code of the last error.  <a href="#aa5d08848df8c025fadd5430c8a6cb0e2">More...</a><br /></td></tr>
+<tr class="separator:aa5d08848df8c025fadd5430c8a6cb0e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9dbce0eb68f8c54a228664cc8f14fdfc"><td class="memItemLeft" align="right" valign="top">char const *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic_8h.html#a9dbce0eb68f8c54a228664cc8f14fdfc">vl_get_last_error_message</a> (void)</td></tr>
+<tr class="memdesc:a9dbce0eb68f8c54a228664cc8f14fdfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the last error message.  <a href="#a9dbce0eb68f8c54a228664cc8f14fdfc">More...</a><br /></td></tr>
+<tr class="separator:a9dbce0eb68f8c54a228664cc8f14fdfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a3ebca801573280aafbea04578ef124"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic_8h.html#a7a3ebca801573280aafbea04578ef124">vl_set_last_error</a> (int error, char const *errorMessage,...)</td></tr>
+<tr class="memdesc:a7a3ebca801573280aafbea04578ef124"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set last VLFeat error.  <a href="#a7a3ebca801573280aafbea04578ef124">More...</a><br /></td></tr>
+<tr class="separator:a7a3ebca801573280aafbea04578ef124"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="member-group"></a>
+Logging</h2></td></tr>
+<tr class="memitem:af68d1c6327bf2226b15c84007eab3d94"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic_8h.html#af68d1c6327bf2226b15c84007eab3d94">VL_PRINTF</a>&#160;&#160;&#160;(*<a class="el" href="generic_8h.html#afeb1328b069d33541dc21ea859b02d0a">vl_get_printf_func</a>())</td></tr>
+<tr class="memdesc:af68d1c6327bf2226b15c84007eab3d94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call user-customizable <code>printf</code> function.  <a href="#af68d1c6327bf2226b15c84007eab3d94">More...</a><br /></td></tr>
+<tr class="separator:af68d1c6327bf2226b15c84007eab3d94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d4b7e68329e078b0d9064b7f408c96b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1d4b7e68329e078b0d9064b7f408c96b"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic_8h.html#a1d4b7e68329e078b0d9064b7f408c96b">VL_PRINT</a>&#160;&#160;&#160;(*<a class="el" href="generic_8h.html#afeb1328b069d33541dc21ea859b02d0a">vl_get_printf_func</a>())</td></tr>
+<tr class="memdesc:a1d4b7e68329e078b0d9064b7f408c96b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same as <a class="el" href="generic_8h.html#af68d1c6327bf2226b15c84007eab3d94" title="Call user-customizable printf function. ">VL_PRINTF</a> (legacy code) <br /></td></tr>
+<tr class="separator:a1d4b7e68329e078b0d9064b7f408c96b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abed0f89efbee38c21c99d2967bab01c1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abed0f89efbee38c21c99d2967bab01c1"></a>
+typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic_8h.html#abed0f89efbee38c21c99d2967bab01c1">printf_func_t</a> )(char const *format,...)</td></tr>
+<tr class="memdesc:abed0f89efbee38c21c99d2967bab01c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Customizable printf function pointer type. <br /></td></tr>
+<tr class="separator:abed0f89efbee38c21c99d2967bab01c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17ef7f5dfc74e0ff032f46617a5bc1c5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic_8h.html#a17ef7f5dfc74e0ff032f46617a5bc1c5">vl_set_printf_func</a> (<a class="el" href="generic_8h.html#abed0f89efbee38c21c99d2967bab01c1">printf_func_t</a> printf_func)</td></tr>
+<tr class="memdesc:a17ef7f5dfc74e0ff032f46617a5bc1c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the printf function.  <a href="#a17ef7f5dfc74e0ff032f46617a5bc1c5">More...</a><br /></td></tr>
+<tr class="separator:a17ef7f5dfc74e0ff032f46617a5bc1c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afeb1328b069d33541dc21ea859b02d0a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="generic_8h.html#abed0f89efbee38c21c99d2967bab01c1">printf_func_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic_8h.html#afeb1328b069d33541dc21ea859b02d0a">vl_get_printf_func</a> (void)</td></tr>
+<tr class="memdesc:afeb1328b069d33541dc21ea859b02d0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the printf function.  <a href="#afeb1328b069d33541dc21ea859b02d0a">More...</a><br /></td></tr>
+<tr class="separator:afeb1328b069d33541dc21ea859b02d0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><dl class="section author"><dt>Author</dt><dd>Andrea Vedaldi </dd></dl>
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a class="anchor" id="a0a05979eb0e5e1bb8edd1d6992d73f5f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define VL_ERR_ALLOC&#160;&#160;&#160;2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Resource allocation error </p>
+
+</div>
+</div>
+<a class="anchor" id="aa4c6982fd95a25fca8ec202632581345"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define VL_ERR_BAD_ARG&#160;&#160;&#160;3</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Bad argument or illegal data error </p>
+
+</div>
+</div>
+<a class="anchor" id="a67cc69e40d7af2aec137b36e53422982"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define VL_ERR_EOF&#160;&#160;&#160;5</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>End-of-file or end-of-sequence error </p>
+
+</div>
+</div>
+<a class="anchor" id="aba78f9bc7029f3e8f69e502ef10a1ea2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define VL_ERR_IO&#160;&#160;&#160;4</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Input/output error </p>
+
+</div>
+</div>
+<a class="anchor" id="a28c5e84bca772be393e834dfff61b22d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define VL_ERR_NO_MORE&#160;&#160;&#160;5</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>End-of-sequence</p><dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000001">Deprecated:</a></b></dt><dd></dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a26519a3dd2966d2d46538eb46921abba"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define VL_ERR_OK&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>No error </p>
+
+</div>
+</div>
+<a class="anchor" id="aad375cc4dcec5d098a94d072b6c5b3d4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define VL_ERR_OVERFLOW&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Buffer overflow error </p>
+
+</div>
+</div>
+<a class="anchor" id="ac8a3f4020a3e381daadd4214668dc63c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define VL_MAX</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">x, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">y&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;(((x)&gt;(y))?(x):(y))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>value. </td></tr>
+    <tr><td class="paramname">y</td><td>value. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the maximum of <em>x</em> and <em>y</em>. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a36f2f85796040ca2f71bb34a9f55969f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define VL_MIN</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">x, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">y&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;(((x)&lt;(y))?(x):(y))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>value </td></tr>
+    <tr><td class="paramname">y</td><td>value </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the minimum of <em>x</em> and <em>y</em>. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="af68d1c6327bf2226b15c84007eab3d94"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define VL_PRINTF&#160;&#160;&#160;(*<a class="el" href="generic_8h.html#afeb1328b069d33541dc21ea859b02d0a">vl_get_printf_func</a>())</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The function calls the user customizable <code>printf</code>. </p>
+
+</div>
+</div>
+<a class="anchor" id="aee17b425e4672e582e26cf9e103fc0fb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define VL_SHIFT_LEFT</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">x, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">n&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;(((n)&gt;=0)?((x)&lt;&lt;(n)):((x)&gt;&gt;-(n)))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>value. </td></tr>
+    <tr><td class="paramname">n</td><td>number of shift positions. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>x</code> &lt;&lt; n . The macro is equivalent to the builtin <code>&lt;&lt;</code> operator, but it supports negative shifts too. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a41d6691dac0cc3648ca9701d27e5d2b0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define VL_TYPE_DOUBLE&#160;&#160;&#160;2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><code>double</code> type </p>
+
+</div>
+</div>
+<a class="anchor" id="aa034d0b942f9800b2a02aeb30ff10fa2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define VL_TYPE_FLOAT&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><code>float</code> type </p>
+
+</div>
+</div>
+<a class="anchor" id="a4eb25b91045f880c1d10e609174d3f5c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define VL_TYPE_INT16&#160;&#160;&#160;5</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><code><a class="el" href="host_8h.html#a47e046602e64d54280961328bf950ca1" title="Signed 16-bit integer. ">vl_int16</a></code> type </p>
+
+</div>
+</div>
+<a class="anchor" id="a4ca0c2adc987dcb7f57a7de7893f5b7c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define VL_TYPE_INT32&#160;&#160;&#160;7</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><code><a class="el" href="host_8h.html#a03fa435c713d3141c4a700f79f5b2600" title="Signed 32-bit integer. ">vl_int32</a></code> type </p>
+
+</div>
+</div>
+<a class="anchor" id="a873cea95408414b33bc0d0af250caf5e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define VL_TYPE_INT64&#160;&#160;&#160;9</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><code><a class="el" href="host_8h.html#ab9925d4a6df873da6df7a59d2a97d81c" title="Signed 64-bit integer. ">vl_int64</a></code> type </p>
+
+</div>
+</div>
+<a class="anchor" id="a90ea396337523c32c3022f358196ccc9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define VL_TYPE_INT8&#160;&#160;&#160;3</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><code><a class="el" href="host_8h.html#aee4cc9690b799a33dfc9614636ac34a1" title="Signed 8-bit integer. ">vl_int8</a></code> type </p>
+
+</div>
+</div>
+<a class="anchor" id="a2e47aef4fdd2aa9f388fd2adfc36f4b1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define VL_TYPE_UINT16&#160;&#160;&#160;6</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><code><a class="el" href="host_8h.html#ab2275d6c7bf6fc027151d11072b45f03" title="Unsigned 16-bit integer. ">vl_uint16</a></code> type </p>
+
+</div>
+</div>
+<a class="anchor" id="ac1ca77a71afce483185fbd23f4df9ec7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define VL_TYPE_UINT32&#160;&#160;&#160;8</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><code><a class="el" href="host_8h.html#aeb7c862765448a70017105efa4d25e7a" title="Unsigned 32-bit integer. ">vl_uint32</a></code> type </p>
+
+</div>
+</div>
+<a class="anchor" id="ace055d33cb1d7f213bfc0b3a55b86fa2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define VL_TYPE_UINT64&#160;&#160;&#160;10</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><code><a class="el" href="host_8h.html#af37832522d1f5c028ac15d0ccda7ff48" title="Unsigned 64-bit integer. ">vl_uint64</a></code> type </p>
+
+</div>
+</div>
+<a class="anchor" id="a4db234bb60c94d6f562f8e9ce3b1795e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define VL_TYPE_UINT8&#160;&#160;&#160;4</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><code><a class="el" href="host_8h.html#a38fbd9a3cf53dfc9a5650c38497b7d35" title="Unsigned 8-bit integer. ">vl_uint8</a></code> type </p>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="ac825111065adbecc5f788a521ea890f2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* vl_calloc </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>n</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">n</td><td>number of items to allocate. </td></tr>
+    <tr><td class="paramname">size</td><td>size in bytes of an item. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>pointer to the new block.</dd></dl>
+<p>This function allocates and clears a memory block. The synopsis is the same as the POSIX <code>calloc</code> function. </p>
+
+</div>
+</div>
+<a class="anchor" id="a6616d4d878bfd9daf2440af24d42293c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* vl_configuration_to_string_copy </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>a new configuration string.</dd></dl>
+<p>The function returns a new string containing a human readable description of the library configuration. </p>
+
+</div>
+</div>
+<a class="anchor" id="accbf3c00c4b86e465acb28d746a92f58"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a> vl_cpu_has_avx </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if AVX is present. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ad2cf9346f3895f26bb7f05b5917614c9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a> vl_cpu_has_sse2 </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if SSE2 is present. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a84aadf91644a01036d3718fe595f5a26"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a> vl_cpu_has_sse3 </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if SSE3 is present. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ae070a0a4d3d367a1ba8308644c88ada3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_free </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>ptr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ptr</td><td>pointer to the memory block.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>This function frees a memory block allocated by <a class="el" href="generic_8c.html#a9f0d2ab48ad66f0588c89a3e526044ed" title="Allocate a memory block. ">vl_malloc</a>, <a class="el" href="generic_8c.html#ac825111065adbecc5f788a521ea890f2" title="Free and clear a memory block. ">vl_calloc</a>, or <a class="el" href="generic_8c.html#a46e9d9640b0c71f1210f320cd3f0e489" title="Reallocate a memory block. ">vl_realloc</a>. The synopsis is the same as the POSIX <code>malloc</code> function. </p>
+
+</div>
+</div>
+<a class="anchor" id="a49738f9f66a6a6d8a70dbe712ab1f697"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double vl_get_cpu_time </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>processor time in seconds. </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="generic_8c.html#acc7e28d60e21ecef6e3f5d83b850b34b" title="Reset processor time reference The function resets VLFeat TIC/TOC time reference. There is one such r...">vl_tic</a>, <a class="el" href="generic_8c.html#a429bff43a8deafa7c2ce016932738cd6" title="Get elapsed time since tic. ">vl_toc</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aa5d08848df8c025fadd5430c8a6cb0e2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int vl_get_last_error </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>error code. </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="generic_8c.html#a9dbce0eb68f8c54a228664cc8f14fdfc" title="Get the last error message. ">vl_get_last_error_message</a>. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a9dbce0eb68f8c54a228664cc8f14fdfc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char const* vl_get_last_error_message </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>pointer to the error message. </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="generic_8c.html#aa5d08848df8c025fadd5430c8a6cb0e2" title="Get the code of the last error. ">vl_get_last_error</a>. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a2d38f8e7475ddb8f1e106e2b7495d28f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> vl_get_max_threads </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>number of threads.</dd></dl>
+<p>This function returns the maximum number of thread used by VLFeat. VLFeat will try to use this number of computational threads and never exceed it.</p>
+<p>This is similar to the OpenMP function <code>omp_get_max_threads()</code>; however, it reads a parameter private to VLFeat which is independent of the value used by the OpenMP library.</p>
+<p>If VLFeat was compiled without OpenMP support, this function returns 1.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="generic_8c.html#a3e410efeeb102664d7b98417c8b5806c" title="Set the maximum number of threads used by VLFeat. ">vl_set_num_threads()</a>, <a class="el" href="threads.html#threads-parallel">Parallel computations</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a49f59f6c5355c146c8fae8959b7da782"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> vl_get_num_cpus </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>number of CPU cores. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="afeb1328b069d33541dc21ea859b02d0a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="generic_8h.html#abed0f89efbee38c21c99d2967bab01c1">printf_func_t</a> vl_get_printf_func </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>printf_func pointer to the <code>printf</code> implementation. </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="generic_8c.html#a17ef7f5dfc74e0ff032f46617a5bc1c5" title="Set the printf function. ">vl_set_printf_func</a>. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a38f7f1bf904ad9e95df774ba824b36fb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structVlRand.html">VlRand</a>* vl_get_rand </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>random number generator.</dd></dl>
+<p>The function returns a pointer to the default random number generator. There is one such generator per thread. </p>
+
+</div>
+</div>
+<a class="anchor" id="ac4090b5a1fac0a0bc6e42cc1a7d77047"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a> vl_get_simd_enabled </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if SIMD instructions are enabled. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a426a9313eef611543f45fd3faaa9b343"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> vl_get_thread_limit </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>number of threads.</dd></dl>
+<p>This function wraps the OpenMP function <code>omp_get_thread_limit()</code>. If VLFeat was compiled without OpenMP support, this function returns 1. If VLFeat was compiled with OpenMP prior to version 3.0 (2008/05), it returns 0.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="threads.html#threads-parallel">Parallel computations</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a2e4f4c7b7a1d74606a62ca4077fddba8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char const* vl_get_type_name </td>
+          <td>(</td>
+          <td class="paramtype">vl_type&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>data type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>data name of the data type.</dd></dl>
+<p><code>type</code> is one of <a class="el" href="generic_8h.html#aa034d0b942f9800b2a02aeb30ff10fa2">VL_TYPE_FLOAT</a>, <a class="el" href="generic_8h.html#a41d6691dac0cc3648ca9701d27e5d2b0">VL_TYPE_DOUBLE</a>, <a class="el" href="generic_8h.html#a90ea396337523c32c3022f358196ccc9">VL_TYPE_INT8</a>, <a class="el" href="generic_8h.html#a4eb25b91045f880c1d10e609174d3f5c">VL_TYPE_INT16</a>, <a class="el" href="generic_8h.html#a4ca0c2adc987dcb7f57a7de7893f5b7c">VL_TYPE_INT32</a>, <a class="el" href="generic_8h.html#a873cea95408414b33bc0d0af250caf5e">VL_TYPE_INT64</a>, <a class="el" href="generic_8h.html#a4db234bb60c94d6f562f8e9ce3b1795e">VL_TYPE_UINT8</a>, <a class="el" href="generic_8h.html#a2e47aef4fdd2aa9f388fd2adfc36f4b1">VL_TYPE_UINT16</a>, <a class="el" href="generic_8h.html#ac1ca77a71afce483185fbd23f4df9ec7">VL_TYPE_UINT32</a>, <a class="el" href="generic_8h.html#ace055d33cb1d7f213bfc0b3a55b86fa2">VL_TYPE_UINT64</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="a477016b861e56130cfb95fe7085138d9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a> vl_get_type_size </td>
+          <td>(</td>
+          <td class="paramtype">vl_type&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>data type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>size (in byte)</dd></dl>
+<p><code>type</code> is one of <a class="el" href="generic_8h.html#aa034d0b942f9800b2a02aeb30ff10fa2">VL_TYPE_FLOAT</a>, <a class="el" href="generic_8h.html#a41d6691dac0cc3648ca9701d27e5d2b0">VL_TYPE_DOUBLE</a>, <a class="el" href="generic_8h.html#a90ea396337523c32c3022f358196ccc9">VL_TYPE_INT8</a>, <a class="el" href="generic_8h.html#a4eb25b91045f880c1d10e609174d3f5c">VL_TYPE_INT16</a>, <a class="el" href="generic_8h.html#a4ca0c2adc987dcb7f57a7de7893f5b7c">VL_TYPE_INT32</a>, <a class="el" href="generic_8h.html#a873cea95408414b33bc0d0af250caf5e">VL_TYPE_INT64</a>, <a class="el" href="generic_8h.html#a4db234bb60c94d6f562f8e9ce3b1795e">VL_TYPE_UINT8</a>, <a class="el" href="generic_8h.html#a2e47aef4fdd2aa9f388fd2adfc36f4b1">VL_TYPE_UINT16</a>, <a class="el" href="generic_8h.html#ac1ca77a71afce483185fbd23f4df9ec7">VL_TYPE_UINT32</a>, <a class="el" href="generic_8h.html#ace055d33cb1d7f213bfc0b3a55b86fa2">VL_TYPE_UINT64</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="aadd5283710afacdf5280e8e47094299a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char const* vl_get_version_string </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>the library version string. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a9f0d2ab48ad66f0588c89a3e526044ed"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* vl_malloc </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>n</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">n</td><td>size in bytes of the new block. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>pointer to the allocated block.</dd></dl>
+<p>This function allocates a memory block of the specified size. The synopsis is the same as the POSIX <code>malloc</code> function. </p>
+
+</div>
+</div>
+<a class="anchor" id="a46e9d9640b0c71f1210f320cd3f0e489"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* vl_realloc </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>n</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ptr</td><td>pointer to a memory block previously allocated. </td></tr>
+    <tr><td class="paramname">n</td><td>size in bytes of the new block. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>pointer to the new block.</dd></dl>
+<p>This function reallocates a memory block to change its size. The synopsis is the same as the POSIX <code>realloc</code> function. </p>
+
+</div>
+</div>
+<a class="anchor" id="ac04fe278ac908fa6ed02bda099588cf0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_set_alloc_func </td>
+          <td>(</td>
+          <td class="paramtype">void *(*)(size_t)&#160;</td>
+          <td class="paramname"><em>malloc_func</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *(*)(void *, size_t)&#160;</td>
+          <td class="paramname"><em>realloc_func</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *(*)(size_t, size_t)&#160;</td>
+          <td class="paramname"><em>calloc_func</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void(*)(void *)&#160;</td>
+          <td class="paramname"><em>free_func</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">malloc_func</td><td>pointer to <code>malloc</code>. </td></tr>
+    <tr><td class="paramname">realloc_func</td><td>pointer to <code>realloc</code>. </td></tr>
+    <tr><td class="paramname">calloc_func</td><td>pointer to <code>calloc</code>. </td></tr>
+    <tr><td class="paramname">free_func</td><td>pointer to <code>free</code>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a7a3ebca801573280aafbea04578ef124"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int vl_set_last_error </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>error</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char const *&#160;</td>
+          <td class="paramname"><em>errorMessage</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>...</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">error</td><td>error code. </td></tr>
+    <tr><td class="paramname">errorMessage</td><td>error message format string. </td></tr>
+    <tr><td class="paramname">...</td><td>format string arguments. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>error code.</dd></dl>
+<p>The function sets the code and optionally the error message of the last encountered error. <em>errorMessage</em> is the message format. It uses the <code>printf</code> convention and is followed by the format arguments. The maximum length of the error message is given by <a class="el" href="generic_8h.html#af35e10968d642caab4fbffe6f4b0789c" title="Maximum length (in characters) of an error message. ">VL_ERR_MSG_LEN</a> (longer messages are truncated).</p>
+<p>Passing <code>NULL</code> as <em>errorMessage</em> sets the error message to the empty string. </p>
+
+</div>
+</div>
+<a class="anchor" id="adbbde4d47763c8e581640b23db5b6a1a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_set_num_threads </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="host_8h.html#a0ee26101458c663510d620e3ee7e2555">vl_size</a>&#160;</td>
+          <td class="paramname"><em>numThreads</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">numThreads</td><td>number of threads to use.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>This function sets the maximum number of computational threads that will be used by VLFeat. VLFeat may in practice use fewer threads (for example because <em>numThreads</em> is larger than the number of computational cores in the host, or because the number of threads exceeds the limit available to the application).</p>
+<p>If <code>numThreads</code> is set to 0, then VLFeat sets the number of threads to the OpenMP current maximum, obtained by calling <code>omp_get_max_threads()</code>.</p>
+<p>This function is similar to <code>omp_set_num_threads()</code> but changes a parameter internal to VLFeat rather than affecting OpenMP global state.</p>
+<p>If VLFeat was compiled without, this function does nothing.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="generic_8c.html#a2d38f8e7475ddb8f1e106e2b7495d28f" title="Get the maximum number of computational threads used by VLFeat. ">vl_get_max_threads()</a>, <a class="el" href="threads.html#threads-parallel">Parallel computations</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a17ef7f5dfc74e0ff032f46617a5bc1c5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_set_printf_func </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="generic_8h.html#abed0f89efbee38c21c99d2967bab01c1">printf_func_t</a>&#160;</td>
+          <td class="paramname"><em>printf_func</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">printf_func</td><td>pointer to a <code>printf</code> implementation. Set <code>print_func</code> to NULL to disable printf. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a3fb6cee731450d886e49da54e29788e8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_set_simd_enabled </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="host_8h.html#ad32e7f8ec7333ff33998cf671a3b1412">vl_bool</a>&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td><code>true</code> if SIMD instructions are used.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Notice that SIMD instructions are used only if the CPU model supports them. Note also that data alignment may restrict the use of such instructions.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="generic_8c.html#ad2cf9346f3895f26bb7f05b5917614c9" title="Check for SSE2 instruction set. ">vl_cpu_has_sse2()</a>, <a class="el" href="generic_8c.html#a84aadf91644a01036d3718fe595f5a26" title="Check for SSE3 instruction set. ">vl_cpu_has_sse3()</a>, etc. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="acc7e28d60e21ecef6e3f5d83b850b34b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vl_tic </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="generic_8c.html#a4a2af50f50dfc91505947ced9656f5e7" title="Get processor time. ">vl_get_cpu_time</a>, <a class="el" href="generic_8c.html#a429bff43a8deafa7c2ce016932738cd6" title="Get elapsed time since tic. ">vl_toc</a>. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a429bff43a8deafa7c2ce016932738cd6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double vl_toc </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>elapsed time in seconds.</dd></dl>
+<p>The function returns the processor time elapsed since <a class="el" href="generic_8c.html#acc7e28d60e21ecef6e3f5d83b850b34b" title="Reset processor time reference The function resets VLFeat TIC/TOC time reference. There is one such r...">vl_tic</a> was called last.</p>
+<dl class="section remark"><dt>Remarks</dt><dd>In multi-threaded applications, there is an independent timer for each execution thread.</dd>
+<dd>
+On UNIX, this function uses the <code>clock()</code> system call. On Windows, it uses the <code>QueryPerformanceCounter()</code> system call, which is more accurate than <code>clock()</code> on this platform. </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+        <!-- Doc Here -->
+      </div>
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>

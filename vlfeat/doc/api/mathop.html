@@ -1,0 +1,269 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+  <!-- Page title -->
+  <title>VLFeat - Documentation > C API</title>
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  <link rel="stylesheet" type="text/css" href="doxygen.css"></link>
+  <!-- Scripts-->
+  <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li class='active'><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li class='active' class='activeLeaf'><a href="index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="../doc.html">Documentation</a></span><span class='separator'>></span><span class='page'><a href="index.html">C API</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+      <!-- <pagestyle href="%pathto:root;api/tabs.css"/> -->
+      <div class="doxygen">
+<div id="top">
+<div id="top">
+<!-- Generated by Doxygen 1.8.7 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li class="current"><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
+    </ul>
+  </div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="index.html">Vision Lab Features Library (VLFeat)</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Mathematical operations </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="toc"><h3>Table of Contents</h3>
+<ul><li class="level1"><a href="#mathop-usage-vector-comparison">Comparing vectors</a></li>
+<li class="level1"><a href="#mathop-integer-ops">Fast basic functions operations</a></li>
+</ul>
+</div>
+<div class="textblock"><dl class="section author"><dt>Author</dt><dd>Andrea Vedaldi </dd>
+<dd>
+Brian Fulkerson</dd></dl>
+<p>VLFeat include several low-level routines to speedup common mathematical operations used throughout the library. Most are collected in the <a class="el" href="mathop_8h.html">mathop.h</a> module.</p>
+<h1><a class="anchor" id="mathop-usage-vector-comparison"></a>
+Comparing vectors</h1>
+<p><a class="el" href="mathop_8h.html">mathop.h</a> includes a number of functions to quickly compute distances or similarity of pairs of vector. Applications include clustering and evaluation of SVM-like classifiers.</p>
+<p>Use <a class="el" href="mathop_8h.html#ad5143f7d144cba8a1d302dacee14d23e" title="Get vector comparison function from comparison type. ">vl_get_vector_comparison_function_f</a> or <a class="el" href="mathop_8h.html#a34ec850e1d4b291c4e7a4235206c23bd" title="Get vector comparison function from comparison type. ">vl_get_vector_comparison_function_d</a> obtain an approprite function to comprare vectors of floats or doubles, respectively. Such functions are usually optimized (for instance, on X86 platforms they use the SSE vector extension) and are several times faster than a naive implementation. <a class="el" href="mathop_8h.html#ae38ee42a415c7958c38c02ea57cf9b4e" title="Evaluate vector comparison function on all vector pairs. ">vl_eval_vector_comparison_on_all_pairs_f</a> and <a class="el" href="mathop_8h.html#a2fa33c2469aa77aea316927d13e8e644" title="Evaluate vector comparison function on all vector pairs. ">vl_eval_vector_comparison_on_all_pairs_d</a> can be used to evaluate the comparison function on all pairs of one or two sequences of vectors.</p>
+<p>Let \( \mathbf{x} = (x_1,\dots,x_d) \) and \( \mathbf{y} = (y_1,\dots,y_d) \) be two vectors. The following comparison functions are supported:</p>
+<table class="doxtable">
+<tr>
+<td>\( l^1 \) </td><td><a class="el" href="mathop_8h.html#af7397bb42d71000754eafba9458b09acaff42f6aa9da4f0d11415de32089a1348">VlDistanceL1</a> </td><td>\( \sum_{i=1}^d |x_i - y_i| \) </td><td>l1 distance (squared intersection metric)  </td></tr>
+<tr>
+<td>\( l^2 \) </td><td><a class="el" href="mathop_8h.html#af7397bb42d71000754eafba9458b09acab44b9322465d703274acfa21690de9fd">VlDistanceL2</a> </td><td>\(\sum_{i=1}^d (x_i - y_i)^2\) </td><td>Squared Euclidean disance  </td></tr>
+<tr>
+<td>\( \chi^2 \) </td><td><a class="el" href="mathop_8h.html#af7397bb42d71000754eafba9458b09aca8bd37a4dd18960b8faf2c52093227857">VlDistanceChi2</a> </td><td>\(\sum_{i=1}^d \frac{(x_i - y_i)^2}{x_i + y_i}\) </td><td>Squared chi-square distance  </td></tr>
+<tr>
+<td>- </td><td><a class="el" href="mathop_8h.html#af7397bb42d71000754eafba9458b09acaa2290709524875cbabbce86ba2d28635">VlDistanceHellinger</a> </td><td>\(\sum_{i=1}^d (\sqrt{x_i} - \sqrt{y_i})^2\) </td><td>Squared Hellinger's distance  </td></tr>
+<tr>
+<td>- </td><td><a class="el" href="mathop_8h.html#af7397bb42d71000754eafba9458b09acaed22a8624bfdae0b2ca92a43750bf68a">VlDistanceJS</a> </td><td>\( \sum_{i=1}^d \left( x_i \log\frac{2x_i}{x_i+y_i} + y_i \log\frac{2y_i}{x_i+y_i} \right) \)  </td><td>Squared Jensen-Shannon distance  </td></tr>
+<tr>
+<td>\( l^1 \) </td><td><a class="el" href="mathop_8h.html#af7397bb42d71000754eafba9458b09aca5e26182d2d853d6e16238535fd8f7f98">VlKernelL1</a> </td><td>\( \sum_{i=1}^d \min\{ x_i, y_i \} \) </td><td>intersection kernel  </td></tr>
+<tr>
+<td>\( l^2 \) </td><td><a class="el" href="mathop_8h.html#af7397bb42d71000754eafba9458b09acaad5fb6e24379dd36f94bdfb10068ec6c">VlKernelL2</a> </td><td>\(\sum_{i=1}^d x_iy_i \) </td><td>linear kernel  </td></tr>
+<tr>
+<td>\( \chi^2 \) </td><td><a class="el" href="mathop_8h.html#af7397bb42d71000754eafba9458b09acad945961afcae876365e585655b3dbdde">VlKernelChi2</a> </td><td>\(\sum_{i=1}^d 2 \frac{x_iy_i}{x_i + y_i}\) </td><td>chi-square kernel  </td></tr>
+<tr>
+<td>- </td><td><a class="el" href="mathop_8h.html#af7397bb42d71000754eafba9458b09acae6735870a9191f6f9c44492bd2fdeae8">VlKernelHellinger</a> </td><td>\(\sum_{i=1}^d 2 \sqrt{x_i y_i}\) </td><td>Hellinger's kernel (Bhattacharya coefficient)  </td></tr>
+<tr>
+<td>- </td><td><a class="el" href="mathop_8h.html#af7397bb42d71000754eafba9458b09aca2b327ebbf8e9ad7e76df758a9062145f">VlKernelJS</a> </td><td>\( \sum_{i=1}^d \left( \frac{x_i}{2} \log_2\frac{x_i+y_i}{x_i} + \frac{y_i}{2} \log_2\frac{x_i+y_i}{y_i} \right) \)  </td><td>Jensen-Shannon kernel  </td></tr>
+</table>
+<dl class="section remark"><dt>Remarks</dt><dd>The definitions have been choosen so that corresponding kernels and distances are related by the equation: <p class="formulaDsp">
+\[ d^2(\mathbf{x},\mathbf{y}) = k(\mathbf{x},\mathbf{x}) +k(\mathbf{y},\mathbf{y}) -k(\mathbf{x},\mathbf{y}) -k(\mathbf{y},\mathbf{x}) \]
+</p>
+ This means that each of these distances can be interpreted as a squared distance or metric in the corresponding reproducing kernel Hilbert space. Notice in particular that the \( l^1 \) or Manhattan distance is also a <em>squared</em> distance in this sense.</dd></dl>
+<h1><a class="anchor" id="mathop-integer-ops"></a>
+Fast basic functions operations</h1>
+<p>In certain algorithm it is useful to quickly compute integer approximation of certain mathematical operations. Presently, VLFeat includes and implementations of:</p>
+<ul>
+<li>Fast single precision atan2: <a class="el" href="mathop_8h.html#a69441a371eeaa0c183214d8f19204d46" title="Fast sqrt approximation. ">vl_fast_sqrt_f</a>.</li>
+<li>Fast inverse square root: <a class="el" href="mathop_8h.html#a1a7ffdd0b23196a330e36d6e9aa8c6ff" title="Fast resqrt approximation. ">vl_fast_resqrt_f</a>, <a class="el" href="mathop_8h.html#a8aab2f55af664aaef0d51b84fb09ebc7" title="Fast resqrt approximation. ">vl_fast_resqrt_d</a>.</li>
+<li>Fast square root: <a class="el" href="mathop_8h.html#a69441a371eeaa0c183214d8f19204d46" title="Fast sqrt approximation. ">vl_fast_sqrt_f</a>, <a class="el" href="mathop_8h.html#a8a7ca9f7a6df25bd6869f648f1e643d9" title="Fast sqrt approximation. ">vl_fast_sqrt_d</a>.</li>
+<li>Fast integer square root: <a class="el" href="mathop_8h.html#a7475cc5573d9ff6147ebc9e97097740b" title="Fast sqrt approximation. ">vl_fast_sqrt_ui16</a>, <a class="el" href="mathop_8h.html#a07ed33a01737b8aa5716e46d1afdf0b8" title="Fast sqrt approximation. ">vl_fast_sqrt_ui32</a>, <a class="el" href="mathop_8h.html#a15c07a9b9ec933f685115779c8913f5c" title="Fast integer sqrt approximation. ">vl_fast_sqrt_ui64</a> (see also <a class="el" href="mathop-sqrti.html">Fast integer square root algorithm</a>). </li>
+</ul>
+</div></div><!-- contents -->
+        <!-- Doc Here -->
+      </div>
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>

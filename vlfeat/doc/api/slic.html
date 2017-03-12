@@ -1,0 +1,264 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+  <!-- Page title -->
+  <title>VLFeat - Documentation > C API</title>
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  <link rel="stylesheet" type="text/css" href="doxygen.css"></link>
+  <!-- Scripts-->
+  <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li class='active'><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li class='active' class='activeLeaf'><a href="index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="../doc.html">Documentation</a></span><span class='separator'>></span><span class='page'><a href="index.html">C API</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+      <!-- <pagestyle href="%pathto:root;api/tabs.css"/> -->
+      <div class="doxygen">
+<div id="top">
+<div id="top">
+<!-- Generated by Doxygen 1.8.7 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li class="current"><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
+    </ul>
+  </div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="index.html">Vision Lab Features Library (VLFeat)</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Simple Linear Iterative Clustering (SLIC) </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><dl class="section author"><dt>Author</dt><dd>Andrea Vedaldi</dd></dl>
+<p><a class="el" href="slic_8h.html">slic.h</a> implements the <em>Simple Linear Iterative Clustering</em> (SLIC) algorithm, an image segmentation method described in <a class="el" href="citelist.html#CITEREF_achanta10slic">[1]</a> .</p>
+<ul>
+<li><a class="el" href="slic.html#slic-overview">Overview</a></li>
+<li><a class="el" href="slic.html#slic-usage">Usage from the C library</a></li>
+<li><a class="el" href="slic.html#slic-tech">Technical details</a></li>
+</ul>
+<h1><a class="anchor" id="slic-overview"></a>
+Overview</h1>
+<p>SLIC <a class="el" href="citelist.html#CITEREF_achanta10slic">[1]</a> is a simple and efficient method to decompose an image in visually homogeneous regions. It is based on a spatially localized version of k-means clustering. Similar to mean shift or quick shift (<a class="el" href="quickshift_8h.html">quickshift.h</a>), each pixel is associated to a feature vector</p>
+<p class="formulaDsp">
+\[ \Psi(x,y) = \left[ \begin{array}{c} \lambda x \\ \lambda y \\ I(x,y) \end{array} \right] \]
+</p>
+<p>and then k-means clustering is run on those. As discussed below, the coefficient \( \lambda \) balances the spatial and appearance components of the feature vectors, imposing a degree of spatial regularization to the extracted regions.</p>
+<p>SLIC takes two parameters: the nominal size of the regions (superpixels) <code>regionSize</code> and the strength of the spatial regularization <code>regularizer</code>. The image is first divided into a grid with step <code>regionSize</code>. The center of each grid tile is then used to initialize a corresponding k-means (up to a small shift to avoid image edges). Finally, the k-means centers and clusters are refined by using the Lloyd algorithm, yielding segmenting the image. As a further restriction and simplification, during the k-means iterations each pixel can be assigned to only the <em>2 x 2</em> centers corresponding to grid tiles adjacent to the pixel.</p>
+<p>The parameter <code>regularizer</code> sets the trade-off between clustering appearance and spatial regularization. This is obtained by setting</p>
+<p class="formulaDsp">
+\[ \lambda = \frac{\mathtt{regularizer}}{\mathtt{regionSize}} \]
+</p>
+<p>in the definition of the feature \( \psi(x,y) \).</p>
+<p>After the k-means step, SLIC optionally removes any segment whose area is smaller than a threshld <code>minRegionSize</code> by merging them into larger ones.</p>
+<h1><a class="anchor" id="slic-usage"></a>
+Usage from the C library</h1>
+<p>To compute the SLIC superpixels of an image use the function <a class="el" href="slic_8c.html#adb6a4c91f40fc32528ba88cffba756ab" title="SLIC superpixel segmentation. ">vl_slic_segment</a>.</p>
+<h1><a class="anchor" id="slic-tech"></a>
+Technical details</h1>
+<p>SLIC starts by dividing the image domain into a regular grid with \( M \times N \) tiles, where</p>
+<p class="formulaDsp">
+\[ M = \lceil \frac{\mathtt{imageWidth}}{\mathtt{regionSize}} \rceil, \quad N = \lceil \frac{\mathtt{imageHeight}}{\mathtt{regionSize}} \rceil. \]
+</p>
+<p>A region (superpixel or k-means cluster) is initialized from each grid center</p>
+<p class="formulaDsp">
+\[ x_i = \operatorname{round} i \frac{\mathtt{imageWidth}}{\mathtt{regionSize}} \quad y_j = \operatorname{round} j \frac{\mathtt{imageWidth}}{\mathtt{regionSize}}. \]
+</p>
+<p>In order to avoid placing these centers on top of image discontinuities, the centers are then moved in a 3 x 3 neighbourohood to minimize the edge strength</p>
+<p class="formulaDsp">
+\[ \operatorname{edge}(x,y) = \| I(x+1,y) - I(x-1,y) \|_2^2 + \| I(x,y+1) - I(x,y-1) \|_2^2. \]
+</p>
+<p>Then the regions are obtained by running k-means clustering, started from the centers</p>
+<p class="formulaDsp">
+\[ C = \{ \Psi(x_i,y_j), i=0,1,\dots,M-1\ j=0,1,\dots,N-1 \} \]
+</p>
+<p>thus obtained. K-means uses the standard LLoyd algorithm alternating assigning pixels to the clostest centers a re-estiamting the centers as the average of the corresponding feature vectors of the pixel assigned to them. The only difference compared to standard k-means is that each pixel can be assigned only to the center originated from the neighbour tiles. This guarantees that there are exactly four pixel-to-center comparisons at each round of minimization, which threfore cost \( O(n) \), where \( n \) is the number of superpixels.</p>
+<p>After k-means has converged, SLIC eliminates any connected region whose area is less than <code>minRegionSize</code> pixels. This is done by greedily merging regions to neighbour ones: the pixels \( p \) are scanned in lexicographical order and the corresponding connected components are visited. If a region has already been visited, it is skipped; if not, its area is computed and if this is less than <code>minRegionSize</code> its label is changed to the one of a neighbour region at \( p \) that has already been vistied (there is always one except for the very first pixel). </p>
+</div></div><!-- contents -->
+        <!-- Doc Here -->
+      </div>
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>

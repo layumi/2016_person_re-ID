@@ -1,0 +1,16 @@
+<group>
+<ul class='breadcrumb'><li><a href='%pathto:matlab;'>Index</a></li><li><a href='%pathto:vl_hikmeanshist;'>Prev</a></li><li><a href='%pathto:vl_ikmeans;'>Next</a></li></ul><div class="documentation"><p>
+PATH = <a href="%pathto:vl_hikmeanspush;">VL_HIKMEANSPUSH</a>(TREE,X) quanizes the data X with the
+hierachical integer K-means tree TREE. This is obtained by
+calculating the path of each datum from the root of TREE down to a
+leaf. Here X has a datum for each column and each column of PATH
+represents the corresponding root-to-leaf path.
+</p><dl><dt>
+Example
+</dt><dd><p>
+PATH(:,1) = [2 1 4] means that the first datum follows
+the branches number 2, 1 and 4 starting from the root of the
+HIKM tree ending to a leaf.
+</p></dd></dl><p>
+See also: <a href="%pathto:vl_hikmeans;">VL_HIKMEANS</a>(), <a href="%pathto:vl_help;">VL_HELP</a>().
+</p></div></group>

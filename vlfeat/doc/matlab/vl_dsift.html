@@ -1,0 +1,346 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+
+  <!-- Page title -->
+  <title>VLFeat - Documentation > MATLAB API > SIFT - vl_dsift</title>
+
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  
+
+  <!-- Scripts-->
+  
+
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li class='active'><a href="../doc.html">Documentation</a>
+<ul>
+<li class='active'><a href="matlab.html">MATLAB API</a>
+</li>
+<li><a href="../api/index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+<ul>
+<li><a href="../man/mser.html">mser</a>
+</li>
+<li><a href="../man/sift.html">sift</a>
+</li>
+<li><a href="../man/vlfeat.html">vlfeat</a>
+</li>
+</ul></li>
+</ul></li>
+</ul>
+
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="../doc.html">Documentation</a></span><span class='separator'>></span><span class='page'><a href="matlab.html">MATLAB API</a></span><span class='separator'>></span><span class='page'><a href="vl_dsift.html">SIFT - vl_dsift</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+        <div class="mdoc">
+<ul class="breadcrumb"><li><a href="matlab.html">Index</a></li><li><a href="vl_covdet.html">Prev</a></li><li><a href="vl_frame2oell.html">Next</a></li></ul><div class="documentation"><p>
+[FRAMES,DESCRS] = <a href="vl_dsift.html">VL_DSIFT</a>(I) extracts a dense set of SIFT
+features from image I. I must be of class SINGLE and grayscale.
+FRAMES is a 2 x NUMKEYPOINTS, each colum storing the center (X,Y)
+of a keypoint frame (all frames have the same scale and
+orientation). DESCRS is a 128 x NUMKEYPOINTS matrix with one
+descriptor per column, in the same format of <a href="vl_sift.html">VL_SIFT</a>().
+</p><p>
+<a href="vl_dsift.html">VL_DSIFT</a>() does NOT compute a Gaussian scale space of the image
+I. Instead, the image should be pre-smoothed at the desired scale
+level, e.b. by using the <a href="vl_imsmooth.html">VL_IMSMOOTH</a>() function.
+</p><p>
+The scale of the extracted descriptors is controlled by the option
+SIZE, i.e. the width in pixels of a spatial bin (recall that a
+SIFT descriptor is a spatial histogram with 4 x 4 bins).
+</p><p>
+The sampling density is controlled by the option STEP, which is
+the horizontal and vertical displacement of each feature cetner to
+the next.
+</p><p>
+The sampled image area is controlled by the option BOUNDS,
+defining a rectangle in which features are comptued. A descriptor
+is included in the rectangle if all the centers of the spatial
+bins are included. The upper-left descriptor is placed so that the
+uppler-left spatial bin center is algined with the upper-left
+corner of the rectangle.
+</p><p>
+By default, <a href="vl_dsift.html">VL_DSIFT</a>() computes features equivalent to
+<a href="vl_sift.html">VL_SIFT</a>(). However, the FAST option can be used to turn on an
+variant of the descriptor (see VLFeat C API documentation for
+further details) which, while not strictly equivalent, it is much
+faster.
+</p><p>
+<a href="vl_dsift.html">VL_DSIFT</a>() accepts the following options:
+</p><dl><dt>
+Step
+<span class="defaults">1</span></dt><dd><p>
+Extracts a SIFT descriptor each STEP pixels.
+</p></dd><dt>
+Size
+<span class="defaults">3</span></dt><dd><p>
+A spatial bin covers SIZE pixels.
+</p></dd><dt>
+Bounds
+<span class="defaults">[whole image]</span></dt><dd><p>
+Specifies a rectangular area where descriptors should be
+extracted. The format is [XMIN, YMIN, XMAX, YMAX]. If this
+option is not specified, the entiere image is used.  The
+bounding box is clipped to the image boundaries.
+</p></dd><dt>
+Norm
+</dt><dd><p>
+If specified, adds to the FRAMES ouptut argument a third
+row containint the descriptor norm, or engergy, before
+contrast normalization. This information can be used to
+suppress low contrast descriptors.
+</p></dd><dt>
+Fast
+</dt><dd><p>
+If specified, use a piecewise-flat, rather than Gaussian,
+windowing function. While this breaks exact SIFT equivalence,
+in practice is much faster to compute.
+</p></dd><dt>
+FloatDescriptors
+</dt><dd><p>
+If specified, the descriptor are returned in floating point
+rather than integer format.
+</p></dd><dt>
+Geomerty
+<span class="defaults">[4 4 8]</span></dt><dd><p>
+Specify the geometry of the descriptor as [NX NY NO], where NX
+is the number of bin in the X direction, NY in the Y direction,
+and NO the nubmer of orientation bins.
+</p></dd><dt>
+Verbose
+</dt><dd><p>
+If specified, be verbose.
+</p></dd></dl><p>
+RELATION TO THE SIFT DETECTOR
+</p><p>
+In the standard SIFT detector/descriptor, implemented by
+<a href="vl_sift.html">VL_SIFT</a>(), the size of a spatial bin is related to the keypoint
+scale by a multiplier, called magnification factor, and denoted
+MAGNIF. Therefore, the keypoint scale corresponding to the
+descriptors extracted by <a href="vl_dsift.html">VL_DSIFT</a>() is equal to SIZE /
+MAGNIF. <a href="vl_dsift.html">VL_DSIFT</a>() does not use MAGNIF because, by using dense
+sampling, it avoids detecting keypoints in the first plance.
+</p><p>
+<a href="vl_dsift.html">VL_DSIFT</a>() does not smooth the image as SIFT does. Therefore, in
+order to obtain equivalent results, the image should be
+pre-smoothed approriately. Recall that in SIFT, for a keypoint of
+scale S, the image is pre-smoothed by a Gaussian of variance S.^2
+- 1/4 (see <a href="vl_sift.html">VL_SIFT</a>() and VLFeat C API documentation).
+</p><dl><dt>
+Example
+</dt><dd><p>
+This example produces equivalent SIFT descriptors using
+<a href="vl_dsift.html">VL_DSIFT</a>() and <a href="vl_sift.html">VL_SIFT</a>():
+</p><pre>
+ binSize = 8 ;
+ magnif = 3 ;
+ Is = vl_imsmooth(I, sqrt((binSize/magnif)^2 - .25)) ;
+
+ [f, d] = vl_dsift(Is, 'size', binSize) ;
+ f(3,:) = binSize/magnif ;
+ f(4,:) = 0 ;
+ [f_, d_] = vl_sift(I, 'frames', f) ;
+</pre></dd><dt>
+Remark
+</dt><dd><p>
+The equivalence is never exact due to (i) boundary effects
+and (ii) the fact that <a href="vl_sift.html">VL_SIFT</a>() downsamples the image to save
+computation. It is, however, usually very good.
+</p></dd><dt>
+Remark
+</dt><dd><p>
+In categorization it is often useful to under-smooth the image,
+comared to standard SIFT, in order to keep the gradients
+sharp.
+</p></dd></dl><p>
+FURTHER DETAILS ON THE GEOMETRY
+</p><p>
+As mentioned, the <a href="vl_dsift.html">VL_DSIFT</a>() descriptors cover the bounding box
+specified by BOUNDS = [XMIN YMIN XMAX YMAX]. Thus the top-left bin
+of the top-left descriptor is placed at (XMIN, YMIN). The next
+three bins to the right are at XMIN + SIZE, XMIN + 2*SIZE, XMIN +
+3*SIZE. The X coordiante of the center of the first descriptor is
+therefore at (XMIN + XMIN + 3*SIZE) / 2 = XMIN + 3/2 * SIZE.  For
+instance, if XMIN = 1 and SIZE = 3 (default values), the X
+coordinate of the center of the first descriptor is at 1 + 3/2 * 3
+= 5.5. For the second descriptor immediately to its right this is
+5.5 + STEP, and so on.
+</p><p>
+See also: <a href="vl_sift.html">VL_SIFT</a>(), <a href="vl_help.html">VL_HELP</a>().
+</p></div></div>
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>
+ 

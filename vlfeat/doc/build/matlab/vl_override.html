@@ -1,0 +1,38 @@
+<group>
+<ul class='breadcrumb'><li><a href='%pathto:matlab;'>Index</a></li><li><a href='%pathto:vl_numder2;'>Prev</a></li><li><a href='%pathto:vl_pegasos;'>Next</a></li></ul><div class="documentation"><p>
+CONFIG = <a href="%pathto:vl_override;">VL_OVERRIDE</a>(CONFIG, UPDATE) copies recursively the fileds
+of the structure UPDATE to the corresponding fields of the
+struture CONFIG.
+</p><p>
+Usually CONFIG is interpreted as a list of paramters with their
+default values and UPDATE as a list of new paramete values.
+</p><p>
+<a href="%pathto:vl_override;">VL_OVERRIDE</a>(..., 'Warn') prints a warning message whenever: (i)
+UPDATE has a field not found in CONFIG, or (ii) non-leaf values of
+CONFIG are overwritten.
+</p><p>
+<a href="%pathto:vl_override;">VL_OVERRIDE</a>(..., 'Skip') skips fields of UPDATE that are not found
+in CONFIG instead of copying them.
+</p><p>
+<a href="%pathto:vl_override;">VL_OVERRIDE</a>(..., 'CaseI') matches field names in a
+case-insensitive manner.
+</p><dl><dt>
+Remark
+</dt><dd><p>
+Fields are copied at the deepest possible level. For instance,
+if CONFIG has fields A.B.C1=1 and A.B.C2=2, and if UPDATE is the
+structure A.B.C1=3, then <a href="%pathto:vl_override;">VL_OVERRIDE</a>() returns a strucuture with
+fields A.B.C1=3, A.B.C2=2. By contrast, if UPDATE is the
+structure A.B=4, then the field A.B is copied, and <a href="%pathto:vl_override;">VL_OVERRIDE</a>()
+returns the structure A.B=4 (specifying 'Warn' would warn about
+the fact that the substructure B.C1, B.C2 is being deleted).
+</p></dd><dt>
+Remark
+</dt><dd><p>
+Two fields are matched if they correspond exactly. Specifically,
+two fileds A(IA).(FA) and B(IA).FB of two struct arrays A and B
+match if, and only if, (i) A and B have the same dimensions,
+(ii) IA == IB, and (iii) FA == FB.
+</p></dd></dl><p>
+See also: <a href="%pathto:vl_argparse;">VL_ARGPARSE</a>(), <a href="%pathto:vl_help;">VL_HELP</a>().
+</p></div></group>

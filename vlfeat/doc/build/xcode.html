@@ -1,0 +1,288 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+
+  <!-- Favicon -->
+  <link href="images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+
+  <!-- Page title -->
+  <title>VLFeat - Download > Using from C > Xcode</title>
+
+  <!-- Stylesheets -->
+  <link href="vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  
+
+  <!-- Scripts-->
+  
+
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="index.html">Home</a>
+<ul>
+<li><a href="about.html">About</a>
+</li>
+<li><a href="license.html">License</a>
+</li>
+</ul></li>
+<li class='active'><a href="download.html">Download</a>
+<ul>
+<li><a href="install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="install-octave.html">Using from Octave</a>
+</li>
+<li><a href="install-shell.html">Using from the command line</a>
+</li>
+<li class='active'><a href="install-c.html">Using from C</a>
+<ul>
+<li class='active' class='activeLeaf'><a href="xcode.html">Xcode</a>
+</li>
+<li><a href="vsexpress.html">Visual C++</a>
+</li>
+<li><a href="gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="compiling.html">Compiling</a>
+<ul>
+<li><a href="compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="overview/hog.html">HOG features</a>
+</li>
+<li><a href="overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="applications/apps.html">Applications</a>
+</li>
+<li><a href="doc.html">Documentation</a>
+<ul>
+<li><a href="matlab/matlab.html">MATLAB API</a>
+</li>
+<li><a href="api/index.html">C API</a>
+</li>
+<li><a href="man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="download.html">Download</a></span><span class='separator'>></span><span class='page'><a href="install-c.html">Using from C</a></span><span class='separator'>></span><span class='page'><a href="xcode.html">Xcode</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+        
+
+ <p>These instructions show how to setup a basic <b>VLFeat</b> project
+  with Apple Xcode.  For the sake of simplicty, we create a command
+  line tool written in C. However, these steps apply with minor
+  modifications to other project types and to the C++ lanuage.</p>
+
+ <p>First, let us create a new project
+  called <code/>vlfeat-client</code>. Open Xcode and select <b>File
+  &gt; New Project &gt; Command Line Utility &gt; Standard Tool</b>
+  and click <b>Choose</b>. Give a name to your project (in our
+  case <code/>vlfeat-client</code>), and click <b>Save</b>.</p>
+
+ <div class="figure">
+ <img src="images/using-xcode-new.png" alt="Xcode new project"></img>
+ </div>
+
+ <p>Now we need to add <b>VLFeat</b> to the C compiler include search
+  path. To do this, select the <code/>vlfeat-client</code> target and
+  open the information panel (the blue button,
+  or <b>Command-i</b>). Then select the <b>Build</b> panel, search for
+  the field <b>Header Search Paths</b>, and add
+  <b>VLFeat</b> root path (in our case this is
+  just <code/>~/src/vlfeat</code>).</p>
+
+ <img src="images/using-xcode-info.png" alt="Xcode info"></img>
+
+ <p>Next, we add the <code/>libvl.dylib</code> library file to the
+  project resources so that Xcode links against it. To do this, drag
+  and drop the <code/>libvl.dylib</code> file (in our example
+  <code/>~/src/vlfeat/bin/maci/libvl.dylib</code>) to the left panel and click
+  <b>Add</b>.</p>
+
+ <img src="images/using-xcode-dylib.png" alt="Xcode dylib"></img>
+
+ <p>Next, edit the <code/>main.c</code> source file and type the following code:</p>
+
+<div class="highlight"><pre><span class="cp">#include &lt;vl/generic.h&gt;</span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+  <span class="n">VL_PRINT</span> <span class="p">(</span><span class="s">&quot;Hello world!&quot;</span><span class="p">)</span> <span class="p">;</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+ <img src="images/using-xcode-edit.png" alt="Xcode edit"></img>
+
+ <p>If you try to build the project, it should compile without errors
+  (if you are using C++, do not forget to wrap the <code/>include</code>
+  statements in a <code/>extern &quot;C&quot; {}</code> block). However, if you try
+  to run the program, it will fail, complaining that it cannot find the
+  library image.</p>
+
+ <img src="images/using-xcode-err.png" alt="Xcode error"></img>
+
+ <p>The reason is that <code/>libvl.dylib</code> is compiled with the
+  library <code/>install_name</code> equal
+  to <code/>@loader_path/libvl.dylib</code>. This causes the run-time
+  loader to look for the library in the same directory of the
+  executable. There are two ways around this problem: The first is to
+  install the library in a standard location
+  (e.g. <code/>/usr/local/lib</code>) and use the <code/>otool</code>
+  command to change the
+  library <code/>install_name</code>. The other is to simply copy
+  the <code/>libvl.dylib</code> file in the executable directory. Here we
+  demonstrate the second technique.</p>
+
+ <p>To copy <code/>libvl.dylib</code> in the executable directory, we
+  add a <b>Copy Files</b> build phase to the project. Right-click
+  the <code/>vlfeat-client</code> target in the project panel and select
+  <b>Add &gt; New Build Phase &gt; New Copy Files Build
+   Phase</b>. Select <b>Destination: Executables</b>. Then drag-and-drop
+  the <code/>libvl.dylib</code> item from the panel to the <b>Copy
+   Files</b> build phase.</p>
+
+ <img src="images/using-xcode-copy.png" alt="Xcode copy"></img>
+ <img src="images/using-xcode-copy-2.png" alt="Xcode copy"></img>
+
+ <p>Now rebuild the project, and run it. It should run correctly,
+  and if you open the debugger console you should see this:</p>
+
+ <img src="images/using-xcode-ok.png" alt="Xcode ok"></img>
+
+
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>
+ 

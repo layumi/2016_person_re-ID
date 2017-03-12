@@ -1,0 +1,20 @@
+<group>
+<ul class='breadcrumb'><li><a href='%pathto:matlab;'>Index</a></li><li><a href='%pathto:vl_imup;'>Prev</a></li><li><a href='%pathto:vl_imwhiten;'>Next</a></li></ul><div class="documentation"><p>
+J = <a href="%pathto:vl_imwbackward;">VL_IMWBACKWARD</a>(I, X, Y) returns the values of image I at
+locations X,Y. X and Y are real matrices of arbitrary but
+identical dimensions. I is bilinearly interpolated between samples
+and extended with NaNs to the whole real plane.
+</p><p>
+[J,JX,JY] = <a href="%pathto:vl_imwbackward;">VL_IMWBACKWARD</a>(...) returns the warped derivatives JX and
+JY too.
+</p><p>
+By default, <a href="%pathto:vl_imwbackward;">VL_IMWBACKWARD</a>() assumes that the image I uses the standard
+coordinate system. <a href="%pathto:vl_imwbackward;">VL_IMWBACKWARD</a>(XR,YR,I,X,Y) assumes instead that I
+is defined on a rectangular grid specified by the vectors XR and
+YR.
+</p><p>
+<a href="%pathto:vl_imwbackward;">VL_IMWBACKWARD</a>() is less general than the MATLAB native function
+INTERP2(), but it is significantly faster.
+</p><p>
+See also: IMWFORWARD(), INTERP2(), <a href="%pathto:vl_help;">VL_HELP</a>().
+</p></div></group>

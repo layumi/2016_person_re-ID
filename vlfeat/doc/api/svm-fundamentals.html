@@ -1,0 +1,274 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+  <!-- Page title -->
+  <title>VLFeat - Documentation > C API</title>
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  <link rel="stylesheet" type="text/css" href="doxygen.css"></link>
+  <!-- Scripts-->
+  <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li class='active'><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li class='active' class='activeLeaf'><a href="index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="../doc.html">Documentation</a></span><span class='separator'>></span><span class='page'><a href="index.html">C API</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+      <!-- <pagestyle href="%pathto:root;api/tabs.css"/> -->
+      <div class="doxygen">
+<div id="top">
+<div id="top">
+<!-- Generated by Doxygen 1.8.7 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li class="current"><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
+    </ul>
+  </div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="index.html">Vision Lab Features Library (VLFeat)</a></li><li class="navelem"><a class="el" href="svm.html">Support Vector Machines (SVM)</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">SVM fundamentals </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="toc"><h3>Table of Contents</h3>
+<ul><li class="level1"><a href="#svm-learning">Learning</a></li>
+<li class="level1"><a href="#svm-bias">Adding a bias</a></li>
+<li class="level1"><a href="#svm-feature-maps">Non-linear SVMs and feature maps</a></li>
+</ul>
+</div>
+<div class="textblock"><p>This page introduces the SVM formulation used in VLFeat. See <a class="el" href="svm.html">Support Vector Machines (SVM)</a> for more information on VLFeat SVM support.</p>
+<p>Let \( \bx \in \real^d \) be a vector representing, for example, an image, an audio track, or a fragment of text. Our goal is to design a classifier*, i.e. a function that associates to each vector \(\bx\) a positive or negative label based on a desired criterion, for example the fact that the image contains or not a cat, that the audio track contains or not English speech, or that the text is or not a scientific paper.</p>
+<p>The vector \(\bx\) is classified by looking at the sign of a <em>linear scoring function</em> \(\langle \bx, \bw \rangle\). The goal of learning is to estimate the parameter \(\bw \in \real^d\) in such a way that the score is positive if the vector \(\bx\) belongs to the positive class and negative otherwise. In fact, in the standard SVM formulation the the goal is to have a score of <em>at least 1</em> in the first case, and of at most -1* in the second one, imposing a <em>margin</em>.</p>
+<p>The parameter \(\bw\) is estimated or <em>learned</em> by fitting the scoring function to a training set of \(n\) example pairs \((\bx_i,y_i), i=1,\dots,n\). Here \(y_i \in \{-1,1\}\) are the <em>ground truth labels</em> of the corresponding example vectors. The fit quality is measured by a loss function* which, in standard SVMs, is the <em>hinge loss</em>:</p>
+<p class="formulaDsp">
+\[ \ell_i(\langle \bw,\bx\rangle) = \max\{0, 1 - y_i \langle \bw,\bx\rangle\}. \]
+</p>
+<p>Note that the hinge loss is zero only if the score \(\langle \bw,\bx\rangle\) is at least 1 or at most -1, depending on the label \(y_i\).</p>
+<p>Fitting the training data is usually insufficient. In order for the scoring function <em>generalize to future data</em> as well, it is usually preferable to trade off the fitting accuracy with the <em>regularity</em> of the learned scoring function \(\langle \bx, \bw \rangle\). Regularity in the standard formulation is measured by the norm of the parameter vector \(\|\bw\|^2\) (see <a class="el" href="svm-advanced.html">Advanced SVM topics</a>). Averaging the loss on all training samples and adding to it the regularizer weighed by a parameter \(\lambda\) yields the <em>regularized loss objective</em></p>
+<p class="formulaDsp">
+\begin{equation} \boxed{\displaystyle E(\bw) = \frac{\lambda}{2} \left\| \bw \right\|^2 + \frac{1}{n} \sum_{i=1}^n \max\{0, 1 - y_i \langle \bw,\bx\rangle\}. \label{e:svm-primal-hinge} } \end{equation}
+</p>
+<p>Note that this objective function is <em>convex</em>, so that there exists a single global optimum.</p>
+<p>The scoring function \(\langle \bx, \bw \rangle\) considered so far has been linear and unbiased. <a class="el" href="svm-fundamentals.html#svm-bias">Adding a bias</a> discusses how a bias term can be added to the SVM and <a class="el" href="svm-fundamentals.html#svm-feature-maps">Non-linear SVMs and feature maps</a> shows how non-linear SVMs can be reduced to the linear case by computing suitable feature maps.</p>
+<p><a class="el" href="svm-fundamentals.html#svm-learning">Learning</a> shows how VLFeat can be used to learn an SVM by minimizing \(E(\bw)\).</p>
+<h1><a class="anchor" id="svm-learning"></a>
+Learning</h1>
+<p>Learning an SVM amounts to finding the minimizer \(\bw^*\) of the cost function \(E(\bw)\). While there are dozens of methods that can be used to do so, VLFeat implements two large scale methods, designed to work with linear SVMs (see <a class="el" href="svm-fundamentals.html#svm-feature-maps">Non-linear SVMs and feature maps</a> to go beyond linear):</p>
+<ul>
+<li><a class="el" href="svm-sgd.html">Stochastic Gradient Descent</a></li>
+<li><a class="el" href="svm-sdca.html">Stochastic Dual Coordinate Ascent</a></li>
+</ul>
+<p>Using these solvers is exemplified in <a class="el" href="svm.html#svm-starting">Getting started</a>.</p>
+<h1><a class="anchor" id="svm-bias"></a>
+Adding a bias</h1>
+<p>It is common to add to the SVM scoring function a <em>bias term</em> \(b\), and to consider the score \(\langle \bx,\bw \rangle + b\). In practice the bias term can be crucial to fit the training data optimally, as there is no reason why the inner products \(\langle \bx,\bw \rangle\) should be naturally centered at zero.</p>
+<p>Some SVM learning algorithms can estimate both \(\bw\) and \(b\) directly. However, other algorithms such as SGD and SDCA cannot. In this case, a simple workaround is to add a constant component \(B &gt; 0\) (we call this constant the <em>bias multiplier</em>) to the data, i.e. consider the extended data vectors: </p><p class="formulaDsp">
+\[ \bar \bx = \begin{bmatrix} \bx \\ B \end{bmatrix}, \quad \bar \bw = \begin{bmatrix} \bw \\ w_b \end{bmatrix}. \]
+</p>
+<p> In this manner the scoring function incorporates implicitly a bias \(b = B w_b\): </p><p class="formulaDsp">
+\[ \langle \bar\bx, \bar\bw \rangle = \langle \bx, \bw \rangle + B w_b. \]
+</p>
+<p>The disadvantage of this reduction is that the term \(w_b^2\) becomes part of the SVM regularizer, which shrinks the bias \(b\) towards zero. This effect can be alleviated by making \(B\) sufficiently large, because in this case \(\|\bw\|^2 \gg w_b^2\) and the shrinking effect is negligible.</p>
+<p>Unfortunately, making \(B\) too large makes the problem numerically unbalanced, so a reasonable trade-off between shrinkage and stability is generally sought. Typically, a good trade-off is obtained by normalizing the data to have unitary Euclidean norm and then choosing \(B \in [1, 10]\).</p>
+<p>Specific implementations of SGD and SDCA may provide explicit support to learn the bias in this manner, but it is important to understand the implications on speed and accuracy of the learning if this is done.</p>
+<h1><a class="anchor" id="svm-feature-maps"></a>
+Non-linear SVMs and feature maps</h1>
+<p>So far only linear scoring function \(\langle \bx,\bw \rangle\) have been considered. Implicitly, however, this assumes that the objects to be classified (e.g. images) have been encoded as vectors \(\bx\) in a way that makes linear classification possible. This encoding step can be made explicit by introducing the <em>feature map</em> \(\Phi(\bx) \in \real^d\). Including the feature map yields a scoring function non-linear* in \(\bx\): </p><p class="formulaDsp">
+\[ \bx\in\mathcal{X} \quad\longrightarrow\quad \langle \Phi(\bx), \bw \rangle. \]
+</p>
+<p> The nature of the input space \(\mathcal{X}\) can be arbitrary and might not have a vector space structure at all.</p>
+<p>The representation or encoding captures a notion of <em>similarity</em> between objects: if two vectors \(\Phi(\bx_1)\) and \(\Phi(\bx_2)\) are similar, then their scores will also be similar. Note that choosing a feature map amounts to incorporating this information in the model prior* to learning.</p>
+<p>The relation of feature maps to similarity functions is formalized by the notion of a <em>kernel</em>, a positive definite function \(K(\bx,\bx&#39;)\) measuring the similarity of a pair of objects. A feature map defines a kernel by</p>
+<p class="formulaDsp">
+\[ K(\bx,\bx&#39;) = \langle \Phi(\bx),\Phi(\bx&#39;) \rangle. \]
+</p>
+<p>Viceversa, any kernel function can be represented by a feature map in this manner, establishing an equivalence.</p>
+<p>So far, all solvers in VLFeat assume that the feature map \(\Psi(\bx)\) can be explicitly computed. Although classically kernels were introduced to generalize solvers to non-linear SVMs for which a feature map <em>cannot</em> be computed (e.g. for a Gaussian kernel the feature map is infinite dimensional), in practice using explicit feature representations allow to use much faster solvers, so it makes sense to <em>reverse</em> this process. </p>
+</div></div><!-- contents -->
+        <!-- Doc Here -->
+      </div>
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>

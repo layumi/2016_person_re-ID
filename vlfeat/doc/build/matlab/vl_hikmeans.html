@@ -1,0 +1,39 @@
+<group>
+<ul class='breadcrumb'><li><a href='%pathto:matlab;'>Index</a></li><li><a href='%pathto:vl_xyz2rgb;'>Prev</a></li><li><a href='%pathto:vl_hikmeanshist;'>Next</a></li></ul><div class="documentation"><p>
+[TREE,ASGN] = <a href="%pathto:vl_hikmeans;">VL_HIKMEANS</a>(DATA,K,NLEAVES) applies integer K-menas
+recursively to cluster the data DATA, returing a structure TREE
+representing the clusters and a vector ASGN with the data to
+cluster assignments. The depth of the recursive partition is
+computed so that at least NLEAVES are generated.
+</p><p>
+<a href="%pathto:vl_hikmeans;">VL_HIKMEANS</a>() is built on top of <a href="%pathto:vl_ikmeans;">VL_IKMEANS</a>() and requires the
+data to be of class UINT8.
+</p><p>
+TREE is a structure representing the hierarchical clusters.  Each
+node of the tree is also a structure with fields:
+</p><dl><dt>
+DEPTH
+</dt><dd><p>
+Depth of the tree (only at the root node)
+</p></dd><dt>
+CENTERS
+</dt><dd><p>
+K cluster centers
+</p></dd><dt>
+SUB
+</dt><dd><p>
+Array of K node structures representing subtrees
+(this field is missing at leaves).
+</p></dd></dl><p>
+ASGN is a matrix with one column per datum and height equal to the
+depth of the tree. Each column encodes the branch of the tree that
+correspond to each datum.
+</p><dl><dt>
+Example
+</dt><dd><p>
+ASGN(:,7) = [1 5 3] means that the tree as depth equal to 3 and
+that the datum X(:,7) corresponds to the branch
+ROOT-&gt;SUB(1)-&gt;SUB(5)-&gt;SUB(3).
+</p></dd></dl><p>
+See also: <a href="%pathto:vl_hikmeanspush;">VL_HIKMEANSPUSH</a>(), <a href="%pathto:vl_hikmeanshist;">VL_HIKMEANSHIST</a>(), <a href="%pathto:vl_ikmeans;">VL_IKMEANS</a>(), <a href="%pathto:vl_help;">VL_HELP</a>().
+</p></div></group>

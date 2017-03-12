@@ -1,0 +1,63 @@
+<group>
+<ul class='breadcrumb'><li><a href='%pathto:matlab;'>Index</a></li><li><a href='%pathto:vl_plotbox;'>Prev</a></li><li><a href='%pathto:vl_plotgrid;'>Next</a></li></ul><div class="documentation"><p>
+<a href="%pathto:vl_plotframe;">VL_PLOTFRAME</a>(FRAME) plots the feature frame FRAME. The frame can be
+either a 2D point, a circle, an oriented circle, an ellipse, or an
+oriented ellipse, as follows:
+</p><dl><dt>
+Point
+</dt><dd><p>
+FRAME has 2 components. FRAME(1:2) are the x,y coordinates of the
+point.
+</p></dd><dt>
+Circle
+</dt><dd><p>
+FRAME has 3 components. FRAME(1:2) are the x,y coordinates of the
+center and FRAME(3) is its radius.
+</p></dd><dt>
+Oriented circle
+</dt><dd><p>
+FRAME has 4 components. FRAME(1:2) are the x,y coordiantes of the
+center of the circle, FRAME(3) is the radius, and FRAME(4) is the
+orientation, expressed as a rotation in radians of the standard
+oriented frame (see below). Positive rotations appear clockwise
+since the image coordinate system is left-handed.
+</p></dd><dt>
+Ellipse
+</dt><dd><p>
+FRAME has 5 components. FRAME(1:2) are the x,y coordiantes of the
+center and FRAME(3:5) are the elements S11, S12, S22 of a 2x2
+covariance matrix S (a positive semidefinite matrix) defining the
+ellipse shape. The ellipse is the set of points {x + T: x' inv(S)
+x = 1}, where T is the ellipse center.
+</p></dd><dt>
+Oriented ellipse
+</dt><dd><p>
+FAME has 6 components. FRAME(1:2) are the coordiantes T=[x;y] of
+the center. FRAME(3:6) is the column-wise stacking of a 2x2
+matrix A. The oriented ellipse is obtained by applying the affine
+transformation (A,T) to the standard oriented frame (see below).
+</p></dd></dl><p>
+A standard unoriented frame is a circle of unit radius centered at
+the origin; a standard oriented frame is the same, but marked with
+a radius pointing towards the positive Y axis (i.e. downwards
+according to the standard MATLAB image reference frame) to
+represent the frame orientation. All other frames can be obtained
+as affine transformations of these two. In the case of unoriented
+frames, this transformation is ambiguous up to a rotation.
+</p><p>
+<a href="%pathto:vl_plotframe;">VL_PLOTFRAME</a>(FRAMES), where FRAMES is a D x N matrix, plots N
+frames, one per column. This is significantly more efficient than
+looping over frames explicitly.
+</p><p>
+H = <a href="%pathto:vl_plotframe;">VL_PLOTFRAME</a>(...) returns the handle H of the graphical object
+representing the frames.
+</p><p>
+<a href="%pathto:vl_plotframe;">VL_PLOTFRAME</a>(FRAMES,...) passes any extra argument to the
+underlying plotting function. The first optional argument, in
+particular, can be a line specification string such as the one used
+by PLOT().
+</p><p>
+See also: <a href="%dox:sift;">SIFT</a>,
+<a href="%dox:covdet;">covariant detectors</a>,
+<a href="%pathto:vl_frame2oell;">VL_FRAME2OELL</a>(), <a href="%pathto:vl_help;">VL_HELP</a>().
+</p></div></group>

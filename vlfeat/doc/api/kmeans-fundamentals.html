@@ -1,0 +1,309 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+  <!-- Page title -->
+  <title>VLFeat - Documentation > C API</title>
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  <link rel="stylesheet" type="text/css" href="doxygen.css"></link>
+  <!-- Scripts-->
+  <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li class='active'><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li class='active' class='activeLeaf'><a href="index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="../doc.html">Documentation</a></span><span class='separator'>></span><span class='page'><a href="index.html">C API</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+      <!-- <pagestyle href="%pathto:root;api/tabs.css"/> -->
+      <div class="doxygen">
+<div id="top">
+<div id="top">
+<!-- Generated by Doxygen 1.8.7 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li class="current"><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
+    </ul>
+  </div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="index.html">Vision Lab Features Library (VLFeat)</a></li><li class="navelem"><a class="el" href="kmeans.html">K-means clustering</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">K-means fundamentals </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="toc"><h3>Table of Contents</h3>
+<ul><li class="level1"><a href="#kmeans-init">Initialization methods</a></li>
+<li class="level1"><a href="#kmeans-lloyd">Lloyd's algorithm</a></li>
+<li class="level1"><a href="#kmeans-elkan">Elkan's algorithm</a></li>
+<li class="level1"><a href="#kmeans-ann">ANN algorithm</a></li>
+</ul>
+</div>
+<div class="textblock"><p>Given \(n\) points \(\bx_1,\dots,\bx_n \in \real^d\), the goal of K-means is find \(K\) <code>centers</code> \(\bc_1,\dots,\bc_m \in \real^d\) and <code>assignments</code> \(q_1,\dots,q_n \in \{1,\dots,K\}\) of the points to the centers such that the sum of distances</p>
+<p class="formulaDsp">
+\[ E(\bc_1,\dots,\bc_k,q_1,\dots,q_n) = \sum_{i=1}^n \|\bx_i - \bc_{q_i} \|_p^p \]
+</p>
+<p>is minimized. \(K\)-means is obtained for the case \(p=2\) ( \(l^2\) norm), because in this case the optimal centers are the means of the input vectors assigned to them. Here the generalization \(p=1\) ( \(l^1\) norm) will also be considered.</p>
+<p>Up to normalization, the K-means objective \(E\) is also the average reconstruction error if the original points are approximated with the cluster centers. Thus K-means is used not only to group the input points into cluster, but also to <code>quantize</code> their values.</p>
+<p>K-means is widely used in computer vision, for example in the construction of vocabularies of visual features (visual words). In these applications the number \(n\) of points to cluster and/or the number \(K\) of clusters is often large. Unfortunately, minimizing the objective \(E\) is in general a difficult combinatorial problem, so locally optimal or approximated solutions are sought instead.</p>
+<p>The basic K-means algorithm alternate between re-estimating the centers and the assignments (<a class="el" href="kmeans-fundamentals.html#kmeans-lloyd">Lloyd's algorithm</a>). Combined with a good initialization strategy (<a class="el" href="kmeans-fundamentals.html#kmeans-init">Initialization methods</a>) and, potentially, by re-running the optimization from a number of randomized starting states, this algorithm may attain satisfactory solutions in practice.</p>
+<p>However, despite its simplicity, Lloyd's algorithm is often too slow. A good replacement is Elkan's algorithm (<a class="el" href="kmeans-fundamentals.html#kmeans-elkan">Elkan's algorithm</a>), which uses the triangular inequality to cut down significantly the cost of Lloyd's algorithm. Since this algorithm is otherwise equivalent, it should often be preferred.</p>
+<p>For very large problems (millions of point to clusters and hundreds, thousands, or more clusters to find), even Elkan's algorithm is not sufficiently fast. In these cases, one can resort to a variant of Lloyd's algorithm that uses an approximated nearest neighbors routine (<a class="el" href="kmeans-fundamentals.html#kmeans-ann">ANN algorithm</a>).</p>
+<h1><a class="anchor" id="kmeans-init"></a>
+Initialization methods</h1>
+<p>All the \(K\)-means algorithms considered here find locally optimal solutions; as such the way they are initialized is important. <a class="el" href="kmeans_8h.html">kmeans.h</a> supports the following initialization algorithms:</p>
+<dl class="section user"><dt>Random data samples</dt><dd></dd></dl>
+<p>The simplest initialization method is to sample \(K\) points at random from the input data and use them as initial values for the cluster centers.</p>
+<dl class="section user"><dt>K-means++</dt><dd></dd></dl>
+<p><a class="el" href="citelist.html#CITEREF_arthur07k-means">[3]</a> proposes a randomized initialization of the centers which improves upon random selection. The first center \(\bc_1\) is selected at random from the data points \(\bx_1, \dots, \bx_n \) and the distance from this center to all points \(\|\bx_i - \bc_1\|_p^p\) is computed. Then the second center \(\bc_2\) is selected at random from the data points with probability proportional to the distance. The procedure is repeated to obtain the other centers by using the minimum distance to the centers collected so far.</p>
+<h1><a class="anchor" id="kmeans-lloyd"></a>
+Lloyd's algorithm</h1>
+<p>The most common K-means method is Lloyd's algorithm <a class="el" href="citelist.html#CITEREF_lloyd82least">[16]</a> . This algorithm is based on the observation that, while jointly optimizing clusters and assignment is difficult, optimizing one given the other is easy. Lloyd's algorithm alternates the steps:</p>
+<ol type="1">
+<li><b>Quantization.</b> Each point \(\bx_i\) is reassigned to the center \(\bc_{q_j}\) closer to it. This requires finding for each point the closest among \(K\) other points, which is potentially slow.</li>
+<li><b>Center estimation.</b> Each center \(\bc_q\) is updated to minimize its average distances to the points assigned to it. It is easy to show that the best center is the mean or median of the points, respectively if the \(l^2\) or \(l^1\) norm is considered.</li>
+</ol>
+<p>A naive implementation of the assignment step requires \(O(dnK)\) operations, where \(d\) is the dimensionality of the data, \(n\) the number of data points, and \(K\) the number of centers. Updating the centers is much cheaper: \(O(dn)\) operations suffice to compute the \(K\) means and a slightly higher cost is required for the medians. Clearly, the bottleneck is the assignment computation, and this is what the other K-means algorithm try to improve.</p>
+<p>During the iterations, it can happen that a cluster becomes empty. In this case, K-means automatically **&ldquo;restarts&rdquo; the cluster** center by selecting a training point at random.</p>
+<h1><a class="anchor" id="kmeans-elkan"></a>
+Elkan's algorithm</h1>
+<p>Elkan's algorithm <a class="el" href="citelist.html#CITEREF_elkan03using">[7]</a> is a variation of Lloyd alternate optimization algorithm (<a class="el" href="kmeans-fundamentals.html#kmeans-lloyd">Lloyd's algorithm</a>) that uses the triangular inequality to avoid many distance calculations when assigning points to clusters. While much faster than Lloyd, Elkan's method uses storage proportional to the umber of clusters by data points, which makes it unpractical for a very large number of clusters.</p>
+<p>The idea of this algorithm is that, if a center update does not move them much, then most of the point-to-center computations can be avoided when the point-to-center assignments are recomputed. To detect which distances need evaluation, the triangular inequality is used to lower and upper bound distances after a center update.</p>
+<p>Elkan algorithms uses two key observations. First, one has</p>
+<p class="formulaDsp">
+\[ \|\bx_i - \bc_{q_i}\|_p \leq \|\bc - \bc_{q_i}\|_p / 2 \quad\Rightarrow\quad \|\bx_i - \bc_{q_i}\|_p \leq \|\bx_i - \bc\|_p. \]
+</p>
+<p>Thus if the distance between \(\bx_i\) and its current center \(\bc_{q_i}\) is less than half the distance of the center \(\bc_{q_i}\) to another center \(\bc\), then \(\bc\) can be skipped when the new assignment for \(\bx_i\) is searched. Checking this requires keeping track of all the inter-center distances, but centers are typically a small fraction of the training data, so overall this can be a significant saving. In particular, if this condition is satisfied for all the centers \(\bc \not= \bc_{q_i}\), the point \(\bx_i\) can be skipped completely. Furthermore, the condition can be tested also based on an upper bound \(UB_i\) of \(\|\bx_i - \bc_{q_i}\|_p\).</p>
+<p>Second, if a center \(\bc\) is updated to \(\hat{\bc}\), then the new distance from \(\bx\) to \(\hat{\bc}\) is bounded from below and above by</p>
+<p class="formulaDsp">
+\[ \|\bx - \bc\|_p - \|bc - \hat\bc\|_p \leq \|\bx - \hat{\bc}\|_p \leq \|\bx - \hat{\bc}\|_p + \|\bc + \hat{\bc}\|_p. \]
+</p>
+<p>This allows to maintain an upper bound on the distance of \(\bx_i\) to its current center \(\bc_{q_i}\) and a lower bound to any other center \(\bc\):</p>
+<p class="formulaDsp">
+\begin{align*} UB_i &amp; \leftarrow UB_i + \|\bc_{q_i} - \hat{\bc}_{q_i} \|_p \\ LB_i(\bc) &amp; \leftarrow LB_i(\bc) - \|\bc -\hat \bc\|_p. \end{align*}
+</p>
+<p>Thus the K-means algorithm becomes:</p>
+<ol type="1">
+<li><b>Initialization.</b> Compute \(LB_i(\bc) = \|\bx_i -\hat \bc\|_p\) for all points and centers. Find the current assignments \(q_i\) and bounds \(UB_i\) by finding the closest centers to each point: \(UB_i = \min_{\bc} LB_i(\bc)\).</li>
+<li><b>Center estimation.</b><ol type="a">
+<li>Recompute all the centers based on the new means; call the updated version \(\hat{\bc}\).</li>
+<li>Update all the bounds based on the distance \(\|\bc - \hat\bc\|_p\) as explained above.</li>
+<li>Set \(\bc \leftarrow \hat\bc\) for all the centers and go to the next iteration.</li>
+</ol>
+</li>
+<li><b>Quantization.</b><ol type="a">
+<li>Skip any point \(\bx_i\) such that \(UB_i \leq \frac{1}{2} \|\bc_{q_i} - \bc\|_p\) for all centers \(\bc \not= \bc_{q_i}\).</li>
+<li>For each remaining point \(\bx_i\) and center \(\bc \not= \bc_{q_i}\):<ol type="i">
+<li>Skip \(\bc\) if <p class="formulaDsp">
+\[ UB_i \leq \frac{1}{2} \| \bc_{q_i} - \bc \| \quad\text{or}\quad UB_i \leq LB_i(\bc). \]
+</p>
+ The first condition reflects the first observation above; the second uses the bounds to decide if \(\bc\) can be closer than the current center \(\bc_{q_i}\) to the point \(\bx_i\). If the center cannot be skipped, continue as follows.</li>
+<li>Skip \(\bc\) if the condition above is satisfied after making the upper bound tight: <p class="formulaDsp">
+\[ UB_i = LB_i(\bc_{q_i}) = \| \bx_i - \bc_{q_i} \|_p. \]
+</p>
+ Note that the latter calculation can be done only once for \(\bx_i\). If the center cannot be skipped still, continue as follows.</li>
+<li>Tighten the lower bound too: <p class="formulaDsp">
+\[ LB_i(\bc) = \| \bx_i - \bc \|_p. \]
+</p>
+ At this point both \(UB_i\) and \(LB_i(\bc)\) are tight. If \(LB_i &lt; UB_i\), then the point \(\bx_i\) should be reassigned to \(\bc\). Update \(q_i\) to the index of center \(\bc\) and reset \(UB_i = LB_i(\bc)\).</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h1><a class="anchor" id="kmeans-ann"></a>
+ANN algorithm</h1>
+<p>The <em>Approximate Nearest Neighbor</em> (ANN) K-means algorithm <a class="el" href="citelist.html#CITEREF_beis97shape">[4]</a> <a class="el" href="citelist.html#CITEREF_silpa-anan08optimised">[27]</a> <a class="el" href="citelist.html#CITEREF_muja09fast">[21]</a> is a variant of Lloyd's algorithm (<a class="el" href="kmeans-fundamentals.html#kmeans-lloyd">Lloyd's algorithm</a>) uses a best-bin-first randomized KD-tree algorithm to approximately (and quickly) find the closest cluster center to each point. The KD-tree implementation is based on <a class="el" href="kdtree.html">KD-trees and forests</a>.</p>
+<p>The algorithm can be summarized as follows:</p>
+<ol type="1">
+<li><b>Quantization.</b> Each point \(\bx_i\) is reassigned to the center \(\bc_{q_j}\) closer to it. This starts by indexing the \(K\) centers by a KD-tree and then using the latter to quickly find the closest center for every training point. The search is approximated to further improve speed. This opens up the possibility that a data point may receive an assignment that is <em>worse</em> than the current one. This is avoided by checking that the new assignment estimated by using ANN is an improvement; otherwise the old assignment is kept.</li>
+<li><b>Center estimation.</b> Each center \(\bc_q\) is updated to minimize its average distances to the points assigned to it. It is easy to show that the best center is the mean or median of the points, respectively if the \(l^2\) or \(l^1\) norm is considered.</li>
+</ol>
+<p>The key is to trade-off carefully the speedup obtained by using the ANN algorithm and the loss in accuracy when retrieving neighbors. Due to the curse of dimensionality, KD-trees become less effective for higher dimensional data, so that the search cost, which in the best case is logarithmic with this data structure, may become effectively linear. This is somehow mitigated by the fact that new a new KD-tree is computed at each iteration, reducing the likelihood that points may get stuck with sub-optimal assignments.</p>
+<p>Experiments with the quantization of 128-dimensional SIFT features show that the ANN algorithm may use one quarter of the comparisons of Elkan's while retaining a similar solution accuracy. </p>
+</div></div><!-- contents -->
+        <!-- Doc Here -->
+      </div>
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>

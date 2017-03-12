@@ -1,0 +1,396 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+
+  <!-- Page title -->
+  <title>VLFeat - Tutorials > Support Vector Machines (SVMs)</title>
+
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  
+
+  <!-- Scripts-->
+  
+
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li class='active'><a href="tut.html">Tutorials</a>
+<ul>
+<li><a href="frame.html">Local feature frames</a>
+</li>
+<li><a href="covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="hog.html">HOG features</a>
+</li>
+<li><a href="sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="dsift.html">Dense SIFT</a>
+</li>
+<li><a href="liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="mser.html">MSER feature detector</a>
+</li>
+<li><a href="imdisttf.html">Distance transform</a>
+</li>
+<li><a href="encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="kmeans.html">K-means clustering</a>
+</li>
+<li><a href="aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="slic.html">SLIC superpixels</a>
+</li>
+<li class='active' class='activeLeaf'><a href="svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="ikm.html">Integer K-means</a>
+</li>
+<li><a href="hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li><a href="../api/index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="tut.html">Tutorials</a></span><span class='separator'>></span><span class='page'><a href="svm.html#tut.svm">Support Vector Machines (SVMs)</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+        
+    
+
+<div class='toc'>
+<h3>Table of Contents</h3><ul><li class="level1"><a href="#tut.svm">Support vector machine</a></li>
+<li class="level1"><a href="#tut.svm.diagn">Diagnostics</a></li>
+<li class="level1"><a href="#tut.svm.references">References</a></li>
+</ul>
+</div><!-- Table of contents -->
+
+
+<p><b>VLFeat</b> includes fast SVM solvers,
+SGC <a shape="rect" href="#ref1">[1]</a> and (S)DCA <a shape="rect" href="#ref2">[2]</a>, both
+implemented in <code/>vl_svmtrain</code>.  The function also implements
+features, like Homogeneous kernel map expansion and SVM online
+statistics. (S)DCA can also be used with different loss functions.</p>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h1 id="tut.svm">Support vector machine</h1>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<p>A simple example on how to use <code/>vl_svmtrain</code> is
+presented below. Let's first load and plot the training data:</p>
+
+<div class="highlight"><pre><span class="c">% Load training data X and their labels y</span>
+<span class="n">vl_setup</span> <span class="n">demo</span> <span class="c">% to load the demo data</span>
+<span class="n">load</span><span class="p">(</span><span class="s">&#39;vl_demo_svm_data.mat&#39;</span><span class="p">);</span>
+
+<span class="n">Xp</span> <span class="p">=</span> <span class="n">X</span><span class="p">(:,</span><span class="n">y</span><span class="o">==</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">Xn</span> <span class="p">=</span> <span class="n">X</span><span class="p">(:,</span><span class="n">y</span><span class="o">==-</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="n">figure</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">Xn</span><span class="p">(</span><span class="mi">1</span><span class="p">,:),</span><span class="n">Xn</span><span class="p">(</span><span class="mi">2</span><span class="p">,:),</span><span class="s">&#39;*r&#39;</span><span class="p">)</span>
+<span class="n">hold</span> <span class="n">on</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">Xp</span><span class="p">(</span><span class="mi">1</span><span class="p">,:),</span><span class="n">Xp</span><span class="p">(</span><span class="mi">2</span><span class="p">,:),</span><span class="s">&#39;*b&#39;</span><span class="p">)</span>
+<span class="n">axis</span> <span class="n">equal</span> <span class="p">;</span>
+</pre></div>
+
+<p>Now we have a plot of the tutorial training data:</p>
+<div class="figure">
+ <img src="../demo/svm_training.jpg"></img>
+ <div class="caption">
+  <span class="content">
+   Training Data.
+  </span>
+ </div>
+</div>
+
+<p>Now we will set the learning parameters:</p>
+
+<div class="highlight"><pre><span class="n">lambda</span> <span class="p">=</span> <span class="mf">0.01</span> <span class="p">;</span> <span class="c">% Regularization parameter</span>
+<span class="n">maxIter</span> <span class="p">=</span> <span class="mi">1000</span> <span class="p">;</span> <span class="c">% Maximum number of iterations</span>
+</pre></div>
+
+
+
+
+<p>Learning a linear classifier can be easily done with the following 1
+line of code:</p>
+
+<div class="highlight"><pre><span class="p">[</span><span class="n">w</span> <span class="n">b</span> <span class="n">info</span><span class="p">]</span> <span class="p">=</span> <span class="n">vl_svmtrain</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lambda</span><span class="p">,</span> <span class="s">&#39;MaxNumIterations&#39;</span><span class="p">,</span> <span class="n">maxIter</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Now we can plot the output model over the training
+data.</p>
+
+<div class="highlight"><pre><span class="c">% Visualisation</span>
+<span class="n">eq</span> <span class="p">=</span> <span class="p">[</span><span class="n">num2str</span><span class="p">(</span><span class="n">w</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span> <span class="s">&#39;*x+&#39;</span> <span class="n">num2str</span><span class="p">(</span><span class="n">w</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span> <span class="s">&#39;*y+&#39;</span> <span class="n">num2str</span><span class="p">(</span><span class="n">b</span><span class="p">)];</span>
+<span class="n">line</span> <span class="p">=</span> <span class="n">ezplot</span><span class="p">(</span><span class="n">eq</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.9</span> <span class="mf">0.9</span> <span class="o">-</span><span class="mf">0.9</span> <span class="mf">0.9</span><span class="p">]);</span>
+<span class="n">set</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="s">&#39;Color&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span> <span class="mf">0.8</span> <span class="mi">0</span><span class="p">],</span><span class="s">&#39;linewidth&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+</pre></div>
+
+
+<p>The result is plotted in the following figure. </p>
+
+<div class="figure">
+ <img src="../demo/svm_training_result.jpg"></img>
+ <div class="caption">
+  <span class="content">
+   Learned model.
+  </span>
+ </div>
+</div>
+
+<p> The output <code/>info</code> is a struct containing some
+  statistic on the learned SVM: </p>
+
+<div class="highlight"><pre><span class="n">info</span> <span class="p">=</span>
+
+            <span class="n">solver</span><span class="p">:</span> <span class="s">&#39;sdca&#39;</span>
+            <span class="n">lambda</span><span class="p">:</span> <span class="mf">0.0100</span>
+    <span class="n">biasMultiplier</span><span class="p">:</span> <span class="mi">1</span>
+              <span class="n">bias</span><span class="p">:</span> <span class="mf">0.0657</span>
+         <span class="n">objective</span><span class="p">:</span> <span class="mf">0.2105</span>
+       <span class="n">regularizer</span><span class="p">:</span> <span class="mf">0.0726</span>
+              <span class="n">loss</span><span class="p">:</span> <span class="mf">0.1379</span>
+     <span class="n">dualObjective</span><span class="p">:</span> <span class="mf">0.2016</span>
+          <span class="n">dualLoss</span><span class="p">:</span> <span class="mf">0.2742</span>
+        <span class="n">dualityGap</span><span class="p">:</span> <span class="mf">0.0088</span>
+         <span class="n">iteration</span><span class="p">:</span> <span class="mi">525</span>
+             <span class="n">epoch</span><span class="p">:</span> <span class="mi">3</span>
+       <span class="n">elapsedTime</span><span class="p">:</span> <span class="mf">0.0300</span>
+</pre></div>
+
+
+<p>It is also possible to use under some
+  assumptions <a shape="rect" href="#ref3">[3]</a> a homogeneous kernel map expanded online inside the
+  solver. This can be done with the following commands:  </p>
+
+<div class="highlight"><pre><span class="c">% create a structure with kernel map parameters</span>
+<span class="n">hom</span><span class="p">.</span><span class="n">kernel</span> <span class="p">=</span> <span class="s">&#39;KChi2&#39;</span><span class="p">;</span>
+<span class="n">hom</span><span class="p">.</span><span class="n">order</span> <span class="p">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="c">% create the dataset structure</span>
+<span class="n">dataset</span> <span class="p">=</span> <span class="n">vl_svmdataset</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="s">&#39;homkermap&#39;</span><span class="p">,</span> <span class="n">hom</span><span class="p">);</span>
+<span class="c">% learn the SVM with online kernel map expansion using the dataset structure</span>
+<span class="p">[</span><span class="n">w</span> <span class="n">b</span> <span class="n">info</span><span class="p">]</span> <span class="p">=</span> <span class="n">vl_svmtrain</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lambda</span><span class="p">,</span> <span class="s">&#39;MaxNumIterations&#39;</span><span class="p">,</span> <span class="n">maxIter</span><span class="p">)</span>
+</pre></div>
+
+
+<p>The above code creates a training set without applying any
+  homogeneous kernel map to the data. When the solver is called it will expand each data point with a Chi Squared kernel
+  of period 2.</p>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h1 id="tut.svm.diagn">Diagnostics</h1>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<p>VLFeat allows to get statistics during the training process. It is
+  sufficient to pass a function handle to the solver. The function
+  will be then called every <code/>DiagnosticFrequency</code> time.</p>
+
+<p>(S)DCA diagnostics also provides the duality gap value (the difference between primal and dual energy),
+  which is the upper bound of the primal task sub-optimality.</p>
+
+<div class="highlight"><pre><span class="c">% Diagnostic function</span>
+<span class="k">function</span><span class="w"> </span><span class="nf">diagnostics</span><span class="p">(</span>svm<span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="n">energy</span> <span class="p">=</span> <span class="p">[</span><span class="n">energy</span> <span class="p">[</span><span class="n">svm</span><span class="p">.</span><span class="n">objective</span> <span class="p">;</span> <span class="n">svm</span><span class="p">.</span><span class="n">dualObjective</span> <span class="p">;</span> <span class="n">svm</span><span class="p">.</span><span class="n">dualityGap</span> <span class="p">]</span> <span class="p">]</span> <span class="p">;</span>
+<span class="k">end</span>
+
+<span class="c">% Training the SVM</span>
+<span class="n">energy</span> <span class="p">=</span> <span class="p">[]</span> <span class="p">;</span>
+<span class="p">[</span><span class="n">w</span> <span class="n">b</span> <span class="n">info</span><span class="p">]</span> <span class="p">=</span> <span class="n">vl_svmtrain</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lambda</span><span class="p">,</span><span class="c">...</span>
+                           <span class="s">&#39;MaxNumIterations&#39;</span><span class="p">,</span><span class="n">maxIter</span><span class="p">,</span><span class="c">...</span>
+                           <span class="s">&#39;DiagnosticFunction&#39;</span><span class="p">,@</span><span class="n">diagnostics</span><span class="p">,</span><span class="c">...</span>
+                           <span class="s">&#39;DiagnosticFrequency&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+
+<p>The objective values for the past iterations are kept in the
+  matrix <code/>energy</code>. Now we can plot the objective values from the learning process. </p>
+
+<div class="highlight"><pre><span class="n">figure</span>
+<span class="n">hold</span> <span class="n">on</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">energy</span><span class="p">(</span><span class="mi">1</span><span class="p">,:),</span><span class="s">&#39;--b&#39;</span><span class="p">)</span> <span class="p">;</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">energy</span><span class="p">(</span><span class="mi">2</span><span class="p">,:),</span><span class="s">&#39;-.g&#39;</span><span class="p">)</span> <span class="p">;</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">energy</span><span class="p">(</span><span class="mi">3</span><span class="p">,:),</span><span class="s">&#39;r&#39;</span><span class="p">)</span> <span class="p">;</span>
+<span class="n">legend</span><span class="p">(</span><span class="s">&#39;Primal objective&#39;</span><span class="p">,</span><span class="s">&#39;Dual objective&#39;</span><span class="p">,</span><span class="s">&#39;Duality gap&#39;</span><span class="p">)</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Diagnostics iteration&#39;</span><span class="p">)</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Energy&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="figure">
+ <img src="../demo/svm_energy.jpg"></img>
+ <div class="caption">
+  <span class="content">
+   SVM objective values plot.
+  </span>
+ </div>
+</div>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<h1 id="tut.svm.references">References</h1>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<ul>
+
+<li id="ref1">[1] Y. Singer and N. Srebro. <em>Pegasos: Primal
+  estimated sub-gradient solver for SVM</em>. In Proc. ICML,
+  2007.
+</li>
+
+<li id="ref2">[2] S. Shalev-Schwartz and T. Zhang. <em>Stochastic Dual Coordinate Ascent Methods for Regularized Loss Minimization</em>. 2013.
+</li>
+
+<li id="ref3">[3] A. Vedaldi and A. Zisserman. <em>Efficient additive
+    kernels via explicit feature maps</em>. In PAMI, 2011.
+</li>
+
+</ul>
+
+
+  
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>
+ 

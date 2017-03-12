@@ -1,0 +1,248 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+  <!-- Page title -->
+  <title>VLFeat - Documentation > C API</title>
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  <link rel="stylesheet" type="text/css" href="doxygen.css"></link>
+  <!-- Scripts-->
+  <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li class='active'><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li class='active' class='activeLeaf'><a href="index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="../doc.html">Documentation</a></span><span class='separator'>></span><span class='page'><a href="index.html">C API</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+      <!-- <pagestyle href="%pathto:root;api/tabs.css"/> -->
+      <div class="doxygen">
+<div id="top">
+<div id="top">
+<!-- Generated by Doxygen 1.8.7 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li class="current"><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
+    </ul>
+  </div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="index.html">Vision Lab Features Library (VLFeat)</a></li><li class="navelem"><a class="el" href="generic.html">General support functionalities</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Preprocssor, library state, etc. </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="toc"><h3>Table of Contents</h3>
+<ul><li class="level1"><a href="#misc-preproc">C preprocessor helpers</a></li>
+<li class="level1"><a href="#misc-state">VLFeat state and configuration parameters</a></li>
+<li class="level1"><a href="#misc-error">Error handling</a></li>
+<li class="level1"><a href="#misc-memory">Memory allocation</a></li>
+<li class="level1"><a href="#misc-logging">Logging</a></li>
+<li class="level1"><a href="#misc-time">Measuring time</a></li>
+</ul>
+</div>
+<div class="textblock"><dl class="section author"><dt>Author</dt><dd>Andrea Vedaldi</dd></dl>
+<h1><a class="anchor" id="misc-preproc"></a>
+C preprocessor helpers</h1>
+<p>VLFeat provides a few C preprocessor macros of general utility. These include stringification (<a class="el" href="host_8h.html#a61a48096b951544d0554b8a06aa59306" title="Convert the argument to a string. ">VL_STRINGIFY</a>, <a class="el" href="host_8h.html#a2a5d283f40e6bf0fc1ca74644084a423" title="Expand and then convert the argument to a string. ">VL_XSTRINGIFY</a>) and concatenation (<a class="el" href="host_8h.html#aeba7ee97f4e6474a78c242ca9c49798c" title="Concatenate two arguments into a lexical unit. ">VL_CAT</a>, <a class="el" href="host_8h.html#a755f8d9673970b82ad9375e32d2693ef" title="Expand and then concatenate two arguments into a lexical unit. ">VL_XCAT</a>) of symbols.</p>
+<h1><a class="anchor" id="misc-state"></a>
+VLFeat state and configuration parameters</h1>
+<p>VLFeat has some global configuration parameters that can changed. Changing the configuration is thread unsave (<a class="el" href="threads.html">Threading</a>). Use <a class="el" href="generic_8c.html#a57a5db4e3647ce66b3c22741928a291a" title="Toggle usage of SIMD instructions. ">vl_set_simd_enabled</a> to toggle the use of a SIMD unit (Intel SSE code), <a class="el" href="generic_8c.html#ac04fe278ac908fa6ed02bda099588cf0" title="Set memory allocation functions. ">vl_set_alloc_func</a> to change the memory allocation functions, and <a class="el" href="generic_8c.html#a17ef7f5dfc74e0ff032f46617a5bc1c5" title="Set the printf function. ">vl_set_printf_func</a> to change the logging function.</p>
+<h1><a class="anchor" id="misc-error"></a>
+Error handling</h1>
+<p>Some VLFeat functions signal errors in a way similar to the standard C library. In case of error, a VLFeat function may return an error code directly, or an invalid result (for instance a negative file descriptor or a null pointer). Then <a class="el" href="generic_8c.html#aa5d08848df8c025fadd5430c8a6cb0e2" title="Get the code of the last error. ">vl_get_last_error</a> and <a class="el" href="generic_8c.html#a9dbce0eb68f8c54a228664cc8f14fdfc" title="Get the last error message. ">vl_get_last_error_message</a> can be used to retrieve further details about the error (these functions should be used right after an error has occurred, before any other VLFeat call).</p>
+<h1><a class="anchor" id="misc-memory"></a>
+Memory allocation</h1>
+<p>VLFeat uses the <a class="el" href="generic_8c.html#a9f0d2ab48ad66f0588c89a3e526044ed" title="Allocate a memory block. ">vl_malloc</a>, <a class="el" href="generic_8c.html#a46e9d9640b0c71f1210f320cd3f0e489" title="Reallocate a memory block. ">vl_realloc</a>, <a class="el" href="generic_8c.html#ac825111065adbecc5f788a521ea890f2" title="Free and clear a memory block. ">vl_calloc</a> and <a class="el" href="generic_8c.html#ae070a0a4d3d367a1ba8308644c88ada3" title="Free a memory block. ">vl_free</a> functions to allocate memory. Normally these functions are mapped to the underlying standard C library implementations. However <a class="el" href="generic_8c.html#ac04fe278ac908fa6ed02bda099588cf0" title="Set memory allocation functions. ">vl_set_alloc_func</a> can be used to map them to other implementations. For instance, in MATALB MEX files these functions are mapped to the MATLAB equivalent which has a garbage collection mechanism to cope with interruptions during execution.</p>
+<h1><a class="anchor" id="misc-logging"></a>
+Logging</h1>
+<p>VLFeat uses the macros <a class="el" href="generic_8h.html#a1d4b7e68329e078b0d9064b7f408c96b" title="Same as VL_PRINTF (legacy code) ">VL_PRINT</a> and <a class="el" href="generic_8h.html#af68d1c6327bf2226b15c84007eab3d94" title="Call user-customizable printf function. ">VL_PRINTF</a> to print progress or debug informations. These functions are normally mapped to the <code>printf</code> function of the underlying standard C library. However <a class="el" href="generic_8c.html#a17ef7f5dfc74e0ff032f46617a5bc1c5" title="Set the printf function. ">vl_set_printf_func</a> can be used to map it to a different implementation. For instance, in MATLAB MEX files this function is mapped to <code>mexPrintf</code>. Setting the function to <code>NULL</code> disables logging.</p>
+<h1><a class="anchor" id="misc-time"></a>
+Measuring time</h1>
+<p>VLFeat provides <a class="el" href="generic_8c.html#acc7e28d60e21ecef6e3f5d83b850b34b" title="Reset processor time reference The function resets VLFeat TIC/TOC time reference. There is one such r...">vl_tic</a> and <a class="el" href="generic_8c.html#a429bff43a8deafa7c2ce016932738cd6" title="Get elapsed time since tic. ">vl_toc</a> as an easy way of measuring elapsed time. </p>
+</div></div><!-- contents -->
+        <!-- Doc Here -->
+      </div>
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>

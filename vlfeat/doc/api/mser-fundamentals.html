@@ -1,0 +1,298 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <!-- IE Standards Mode -->
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
+  <!-- Favicon -->
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="icon"></link>
+  <link href="../images/vl_blue.ico" type="image/x-icon" rel="shortcut icon"></link>
+  <!-- Page title -->
+  <title>VLFeat - Documentation > C API</title>
+  <!-- Stylesheets -->
+  <link href="../vlfeat.css" type="text/css" rel="stylesheet"></link>
+  <link href="../pygmentize.css" type="text/css" rel="stylesheet"></link>
+  <style xml:space="preserve">
+    /* fixes a conflict between Pygmentize and MathJax */
+    .MathJax .mo, .MathJax .mi {color: inherit ! important}
+  </style>
+  <link rel="stylesheet" type="text/css" href="doxygen.css"></link>
+  <!-- Scripts-->
+  <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+  <!-- MathJax -->
+  <script xml:space="preserve" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+      processEscapes: true,
+    },
+    TeX: {
+      Macros: {
+        balpha: '\\boldsymbol{\\alpha}',
+        bc: '\\mathbf{c}',
+        be: '\\mathbf{e}',
+        bg: '\\mathbf{g}',
+        bq: '\\mathbf{q}',
+        bu: '\\mathbf{u}',
+        bv: '\\mathbf{v}',
+        bw: '\\mathbf{w}',
+        bx: '\\mathbf{x}',
+        by: '\\mathbf{y}',
+        bz: '\\mathbf{z}',
+        bsigma: '\\mathbf{\\sigma}',
+        sign: '\\operatorname{sign}',
+        diag: '\\operatorname{diag}',
+        real: '\\mathbb{R}',
+      },
+      equationNumbers: { autoNumber: 'AMS' }
+      }
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" xml:space="preserve" type="text/javascript"></script>
+  <!-- Google Custom Search -->
+  <script xml:space="preserve">
+    (function() {
+    var cx = '003215582122030917471:oq23albfeam';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+    '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+  <!-- Google Analytics -->
+  <script xml:space="preserve" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4936091-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+ </head>
+ <!-- Body Start -->
+ <body>
+  <div id="header-section">
+    <div id="header">
+      <!-- Google CSE Search Box -->
+      <div class="searchbox">
+        <gcse:searchbox-only autoCompleteMaxCompletions="5" autoCompleteMatchType="any" resultsUrl="http://www.vlfeat.org/search.html"></gcse:searchbox-only>
+      </div>
+      <h1 id="id-16"><a shape="rect" href="../index.html" class="plain"><span id="vlfeat">VLFeat</span><span id="dotorg">.org</span></a></h1>
+    </div>
+    <div id="sidebar"> <!-- Navigation Start -->
+      <ul>
+<li><a href="../index.html">Home</a>
+<ul>
+<li><a href="../about.html">About</a>
+</li>
+<li><a href="../license.html">License</a>
+</li>
+</ul></li>
+<li><a href="../download.html">Download</a>
+<ul>
+<li><a href="../install-matlab.html">Using from MATLAB</a>
+</li>
+<li><a href="../install-octave.html">Using from Octave</a>
+</li>
+<li><a href="../install-shell.html">Using from the command line</a>
+</li>
+<li><a href="../install-c.html">Using from C</a>
+<ul>
+<li><a href="../xcode.html">Xcode</a>
+</li>
+<li><a href="../vsexpress.html">Visual C++</a>
+</li>
+<li><a href="../gcc.html">g++</a>
+</li>
+</ul></li>
+<li><a href="../compiling.html">Compiling</a>
+<ul>
+<li><a href="../compiling-unix.html">Compiling on UNIX-like platforms</a>
+</li>
+<li><a href="../compiling-windows.html">Compiling on Windows</a>
+</li>
+</ul></li>
+</ul></li>
+<li><a href="../overview/tut.html">Tutorials</a>
+<ul>
+<li><a href="../overview/frame.html">Local feature frames</a>
+</li>
+<li><a href="../overview/covdet.html">Covariant feature detectors</a>
+</li>
+<li><a href="../overview/hog.html">HOG features</a>
+</li>
+<li><a href="../overview/sift.html">SIFT detector and descriptor</a>
+</li>
+<li><a href="../overview/dsift.html">Dense SIFT</a>
+</li>
+<li><a href="../overview/liop.html">LIOP local descriptor</a>
+</li>
+<li><a href="../overview/mser.html">MSER feature detector</a>
+</li>
+<li><a href="../overview/imdisttf.html">Distance transform</a>
+</li>
+<li><a href="../overview/encodings.html">Fisher Vector and VLAD</a>
+</li>
+<li><a href="../overview/gmm.html">Gaussian Mixture Models</a>
+</li>
+<li><a href="../overview/kmeans.html">K-means clustering</a>
+</li>
+<li><a href="../overview/aib.html">Agglomerative Infromation Bottleneck</a>
+</li>
+<li><a href="../overview/quickshift.html">Quick shift superpixels</a>
+</li>
+<li><a href="../overview/slic.html">SLIC superpixels</a>
+</li>
+<li><a href="../overview/svm.html#tut.svm">Support Vector Machines (SVMs)</a>
+</li>
+<li><a href="../overview/kdtree.html">KD-trees and forests</a>
+</li>
+<li><a href="../overview/plots-rank.html">Plotting AP and ROC curves</a>
+</li>
+<li><a href="../overview/utils.html">Miscellaneous utilities</a>
+</li>
+<li><a href="../overview/ikm.html">Integer K-means</a>
+</li>
+<li><a href="../overview/hikm.html">Hierarchical integer k-means</a>
+</li>
+</ul></li>
+<li><a href="../applications/apps.html">Applications</a>
+</li>
+<li class='active'><a href="../doc.html">Documentation</a>
+<ul>
+<li><a href="../matlab/matlab.html">MATLAB API</a>
+</li>
+<li class='active' class='activeLeaf'><a href="index.html">C API</a>
+</li>
+<li><a href="../man/man.html">Man pages</a>
+</li>
+</ul></li>
+</ul>
+    </div> <!-- sidebar -->
+  </div>
+  <div id="headbanner-section">
+    <div id="headbanner">
+      <span class='page'><a href="../doc.html">Documentation</a></span><span class='separator'>></span><span class='page'><a href="index.html">C API</a></span>
+    </div>
+  </div>
+  <div id="content-section">
+    <div id="content-wrapper">
+      <div id="content">
+      <!-- <pagestyle href="%pathto:root;api/tabs.css"/> -->
+      <div class="doxygen">
+<div id="top">
+<div id="top">
+<!-- Generated by Doxygen 1.8.7 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li class="current"><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
+    </ul>
+  </div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="index.html">Vision Lab Features Library (VLFeat)</a></li><li class="navelem"><a class="el" href="mser.html">Maximally Stable Extremal Regions (MSER)</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">MSER fundamentals </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="toc"><h3>Table of Contents</h3>
+<ul><li class="level1"><a href="#mser-vol">Volumetric images</a></li>
+<li class="level1"><a href="#mser-ell">Ellipsoids</a></li>
+<li class="level1"><a href="#mser-algo">Algorithm</a></li>
+</ul>
+</div>
+<div class="textblock"><p>The <em>extermal regions</em> of an image are the connected components of the level sets \(S_l = \{ x : I(x) \leq l \}, l \in \real\) of the image \(I(x)\). Consider a discretization of the intensity levels \(l\) consisting of \(M\) samples \(\mathcal{L}=\{0,\dots,M-1\}\). The extremal regions \(R_l \subset S_l\) of the level sets \(S_l, l \in \mathcal{L}\) can be arranged in a tree, where a region \(R_l\) is a children of a region \(R_{l+1}\) if \(R_l \subset R_{l+1}\). The following figures shows a 1D example where the regions are denoted by dark thick lines:</p>
+<div class="image">
+<img src="mser-tree.png" alt="mser-tree.png"/>
+<div class="caption">
+Connected components of the image level sets arranged in a tree.</div></div>
+<p> Note that, depending on the image, regions at different levels can be identical as sets:</p>
+<div class="image">
+<img src="mser-er-step.png" alt="mser-er-step.png"/>
+<div class="caption">
+Connected components when the image contains step changes.</div></div>
+<p> A <em>stable extremal region</em> is an extremal region that does not change much as the index \(l\) is varied. Here we use a criterion which is similar but not identical to the original paper. This definition is somewhat simpler both to understand and code.</p>
+<p>Let \(B(R_l)=(R_l,R_{l+1},\dots,R_{l+\Delta})\) be the branch of the tree \(R_l \subset R_{l+1} \subset \dots \subset R_{l + \Delta}\) rooted at \(R_l\). We associate to the branch the (in)stability score</p>
+<p class="formulaDsp">
+\[ v(R_l) = \frac{|R_{l+\Delta} - R_l|}{|R_l|}. \]
+</p>
+<p>This score is a relative measure of how much \(R_l\) changes as the index is increased from \(l\) to \(l+\Delta\), as illustrated in the following figure.</p>
+<div class="image">
+<img src="mser-er.png" alt="mser-er.png"/>
+<div class="caption">
+Stability is measured by looking at how much a region changes with the intensity level.</div></div>
+<p> The score is low if the regions along the branch have similar area (and thus similar shape). We aim to select maximally stable branches; then a maximally stable region is just a representative region selected from a maximally stable branch (for simplicity we select \(R_l\), but one could choose for example \(R_{l+\Delta/2}\)).</p>
+<p>Roughly speaking, a branch is maximally stable if it is a local minimum of the (in)stability score. More accurately, we start by assuming that all branches are maximally stable. Then we consider each branch \(B(R_{l})\) and its parent branch \(B(R_{l+1}):R_{l+1}\supset R_l\) (notice that, due to the discrete nature of the calculations, they might be geometrically identical) and we mark as unstable the less stable one, i.e.:</p>
+<ul>
+<li>if \(v(R_l)&lt;v(R_{l+1})\), mark \(R_{l+1}\) as unstable;</li>
+<li>if \(v(R_l)&gt;v(R_{l+1})\), mark \(R_{l}\) as unstable;</li>
+<li>otherwise, do nothing.</li>
+</ul>
+<p>This criterion selects among nearby regions the ones that are more stable. We optionally refine the selection by running (starting from the bigger and going to the smaller regions) the following tests:</p>
+<ul>
+<li>\(a_- \leq |R_{l}|/|R_{\infty}| \leq a_+\): exclude MSERs too small or too big ( \(|R_{\infty}|\) is the area of the image).</li>
+<li>\(v(R_{l}) &lt; v_+\): exclude MSERs too unstable.</li>
+<li><p class="startli">For any MSER \(R_l\), find the parent MSER \(R_{l&#39;}\) and check if \(|R_{l&#39;} - R_l|/|R_l&#39;| &lt; d_+\): remove duplicated MSERs.</p>
+<table class="doxtable">
+<tr>
+<td>parameter </td><td>alt. name </td><td>standard value </td><td>set by  </td></tr>
+<tr>
+<td>\(\Delta\) </td><td><code>delta</code>  </td><td>5 </td><td><a class="el" href="mser_8h.html#a9aa9f3041186a969cb35268d4ab656bb" title="Set delta. ">vl_mser_set_delta()</a>  </td></tr>
+<tr>
+<td>\(a_+\) </td><td><code>max_area</code>  </td><td>0.75 </td><td><a class="el" href="mser_8h.html#af517861a633fbd7cc5637ea4baef0db6" title="Set maximum region area. ">vl_mser_set_max_area()</a>  </td></tr>
+<tr>
+<td>\(a_-\) </td><td><code>min_area</code>  </td><td>3.0/ \(|R_\infty|\) </td><td><a class="el" href="mser_8h.html#a25744f49395d441a8769b9f605480f4c" title="Set minimum region area. ">vl_mser_set_min_area()</a>  </td></tr>
+<tr>
+<td>\(v_+\) </td><td><code>max_var</code>  </td><td>0.25 </td><td><a class="el" href="mser_8h.html#a7feb4b477fe6340639d40461174cfabe" title="Set maximum region variation. ">vl_mser_set_max_variation()</a>  </td></tr>
+<tr>
+<td>\(d_+\) </td><td><code>min_diversity</code>  </td><td>0.2 </td><td><a class="el" href="mser_8h.html#abb7fe6fc94bb7503bdc0dd160a549de1" title="Set minimum diversity. ">vl_mser_set_min_diversity()</a>  </td></tr>
+</table>
+</li>
+</ul>
+<h1><a class="anchor" id="mser-vol"></a>
+Volumetric images</h1>
+<p>The code supports images of arbitrary dimension. For instance, it is possible to find the MSER regions of volumetric images or time sequences. See <a class="el" href="mser_8c.html#af6dbdcb894693e90c43d51140d17cb9c" title="Create a new MSER filter. ">vl_mser_new()</a> for further details</p>
+<h1><a class="anchor" id="mser-ell"></a>
+Ellipsoids</h1>
+<p>Usually extremal regions are returned as a set of ellipsoids fitted to the actual regions (which have arbitrary shape). The fit is done by calculating the mean and variance of the pixels composing the region: </p><p class="formulaDsp">
+\[ \mu_l = \frac{1}{|R_l|}\sum_{x\in R_l}x, \qquad \Sigma_l = \frac{1}{|R_l|}\sum_{x\in R_l} (x-\mu_l)^\top(x-\mu_l) \]
+</p>
+<p> Ellipsoids are fitted by <a class="el" href="mser_8c.html#aeeee08edd486e41126316f1d3bf90013" title="Fit ellipsoids. ">vl_mser_ell_fit()</a>. Notice that for a <em>n</em> dimensional image, the mean has <em>n</em> components and the variance has <em>n(n+1)/2</em> independent components. The total number of components is obtained by <a class="el" href="mser_8h.html#a0e10d949e672ffd82dd230a7f0ab37a8" title="Get number of degrees of freedom of ellipsoids. ">vl_mser_get_ell_dof()</a> and the total number of fitted ellipsoids by <a class="el" href="mser_8h.html#a7f7172365b355735c1ee1cc4bded9915" title="Get number of ellipsoids. ">vl_mser_get_ell_num()</a>. A matrix with an ellipsoid per column is returned by <a class="el" href="mser_8h.html#a9ce0f94d6cc33244be2f5ca736a0bff4" title="Get ellipsoids. ">vl_mser_get_ell()</a>. The column is the stacking of the mean and of the independent components of the variance, in the order <em>(1,1),(1,2),..,(1,n), (2,2),(2,3)...</em>. In the calculations, the pixel coordinate \(x=(x_1,...,x_n)\) use the standard index order and ranges.</p>
+<h1><a class="anchor" id="mser-algo"></a>
+Algorithm</h1>
+<p>The algorithm is quite efficient. While some details may be tricky, the overall idea is easy to grasp.</p>
+<ul>
+<li>Pixels are sorted by increasing intensity.</li>
+<li>Pixels are added to a forest by increasing intensity. The forest has the following properties:<ul>
+<li>All the descendent of a certain pixels are subset of an extremal region.</li>
+<li>All the extremal regions are the descendants of some pixels.</li>
+</ul>
+</li>
+<li>Extremal regions are extracted from the region tree and the extremal regions tree is calculated.</li>
+<li>Stable regions are marked.</li>
+<li>Duplicates and other bad regions are removed.</li>
+</ul>
+<dl class="section remark"><dt>Remarks</dt><dd>The extremal region tree which is calculated is a subset of the actual extremal region tree. In particular, it does not contain redundant entries extremal regions that coincide as sets. So, for example, in the calculated extremal region tree, the parent \(R_q\) of an extremal region \(R_{l}\) may or may <em>not</em> correspond to \(R_{l+1}\), depending whether \(q\leq l+1\) or not. These subtleties are important when calculating the stability tests. </dd></dl>
+</div></div><!-- contents -->
+        <!-- Doc Here -->
+      </div>
+      </div>
+      <div class="clear">&nbsp;</div>
+    </div>
+  </div> <!-- content-section -->
+  <div id="footer-section">
+    <div id="footer">
+      &copy; 2007-13 The authors of VLFeat
+    </div> <!-- footer -->
+  </div> <!-- footer section -->
+ </body>
+ <!-- Body ends -->
+</html>
