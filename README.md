@@ -33,20 +33,21 @@ Download [Market1501 Dataset] (http://www.liangzheng.org/Project/project_reid.ht
 If you want to rehearsal our result on CUHK03, you may just change the number of kernal from 751 to 1367. Because there are 751 IDs in Market1501 while 1367 training identities are in CUHK03.
 
 ## Test 
-Run `test2/test_gallery_res.m` to extract the features of gallery. They will store in a .mat file. You can use it to do evaluation.
-(For example, you may modify the [Market1501 baseline code](http://www.liangzheng.org/Project/project_reid.html) to evaluate our model. It may take a while.)
+1. Run `test/test_gallery_res.m` to extract the features of gallery. They will store in a .mat file. You can use it to do evaluation.
+2. Evaluate feature on the Market. Run `evaluation/zzd_evaluation_res_faster.m`. You can get the following result.
+
+### Single-query Result
+|Methods |   Rank@1 | mAP|
+| --------   | -----  | ----  |
+|Ours* | 80.82% | 62.30%|
+
+*This result is slightly higher than the result reported in our paper.
 
 ## Train
 1. Add your dataset path into `prepare_data.m` and run it. Make sure the code outputs the right image path.
 
 2. Run `train_id_net_res_2stream.m` to have fun.
 
-## Result
-|Methods |   Rank@1 | mAP|
-| --------   | -----  | ----  |
-|This Code* | 80.82% | 62.30%|
-
-*This result is slightly higher than the result reported in the paper.
 ## Citation
 Please cite this paper in your publications if it helps your research:
 ```
