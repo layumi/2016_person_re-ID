@@ -4,6 +4,8 @@ In this package, we provide our training and testing code written in [Matconvnet
  
 We also include matconvnet-beta23 which has been modified for our paper. All codes have been test on Ubuntu14.04 and Ubuntu16.04 with Matlab R2015b.
 
+**This code is ONLY released for academic use.**
+
 * [Xuanyi Dong](https://github.com/D-X-Y) also realizes our paper in [Caffe](https://github.com/D-X-Y/caffe-reid). Alternatively, you can run the code with Caffe.
 
 ~What's new: We make the code of model structure more easy to follow.
