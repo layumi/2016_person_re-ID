@@ -24,6 +24,7 @@ We also include matconvnet-beta23 which has been modified for our paper. All cod
 	```
 
 2. Download the pretrained model. 
+	
 	**This model is ONLY released for academic use.**
 	You can find the pretrained model in [GoogleDriver](https://drive.google.com/open?id=0B0VOCNYh8HeRS2RtZ1pMUUtPZ2M) or [BaiduYun] (https://pan.baidu.com/s/1miG2OpM). Download and put them into the `./data`.
 
