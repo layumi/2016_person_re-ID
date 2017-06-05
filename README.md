@@ -45,8 +45,8 @@ If you want to rehearsal our result on CUHK03, you can simply change the number 
 1. Run `test/test_gallery_query_crazy.m` to extract the features of images in the gallery and query set. They will store in a .mat file. Then you can use it to do evaluation.
 2. Evaluate feature on the Market-1501. Run `evaluation/zzd_evaluation_res_faster.m`. You can get the following Single-query Result.
 
-|Methods |   Rank@1 | mAP|   
-| --------   | -----  | ----  | 
+|Methods | Rank@1 | mAP|   
+| --------   | -----  | ----  |
 | Ours* (SQ) | 80.82% | 62.30%|  
 | Ours* (MQ-avg) | 86.67% | 70.16% |
 | Ours* (MQ-max) | 86.76% | 70.68% |
