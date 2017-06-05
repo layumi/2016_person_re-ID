@@ -48,9 +48,6 @@ If you want to rehearsal our result on CUHK03, you can simply change the number 
 | Methods | Rank@1 | mAP|   
 | --------   | -----  | ---- |
 | Ours* (SQ) | 80.82% | 62.30%|
-| Ours* (MQ-avg) | 86.67% | 70.16% |
-| Ours* (MQ-max) | 86.76% | 70.68% |
-| Ours* (MQ-max+rerank) | 86.67% | 72.55% |
 
 *Note that the result is slightly higher than the result reported in our paper.
 *For multi-query result, you can use `evaluation/zzd_evaluation_res_fast.m` . It is slower than `evaluation/zzd_evaluation_res_faster.m`  since it need to extract extra features. (The evaluation code is modified from the [Market-1501 Baseline Code](http://www.liangzheng.org/Project/project_reid.html))
