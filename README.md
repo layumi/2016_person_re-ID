@@ -56,6 +56,12 @@ If you want to rehearsal our result on CUHK03, you can simply change the number 
 
 *For multi-query result, you can use `evaluation/zzd_evaluation_res_fast.m` . It is slower than `evaluation/zzd_evaluation_res_faster.m`  since it need to extract extra features. (The evaluation code is modified from the [Market-1501 Baseline Code](http://www.liangzheng.org/Project/project_reid.html))
 
+## FQA
+1. What is multi-query setting?
+Actually, we can get a sequence of the query under one camera instead of one image. Then we can use every image in this sequence to extract a query mean feature (mean of feature extracted from several images).
+We call it multi-query. If we use this feature to do person retrieval, we usually get a better result.
+But it use additional images (in 'Market-1501/gt_bboxes'). You can find more detail in the original [paper](http://www.cv-foundation.org/openaccess/content_iccv_2015/papers/Zheng_Scalable_Person_Re-Identification_ICCV_2015_paper.pdf). 
+
 ## Train
 1. Add your dataset path into `prepare_data.m` and run it. Make sure the code outputs the right image path.
 
