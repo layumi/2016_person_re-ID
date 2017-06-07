@@ -42,7 +42,7 @@ label1 = imdb.images.label(:,batch) ;
 batchsize = numel(batch);
 % every epoch we will add negative pairs until 1:4
 dividor = 2;
-dividor = max(5,dividor*power(1.01,opts.epoch));
+dividor = min(5,dividor*power(1.01,opts.epoch));
 half = round(batchsize/dividor);
 
 label_f = cat(1,ones(half,1,'single'),ones(batchsize-half,1,'single')*2);
