@@ -30,7 +30,7 @@ We also include matconvnet-beta23 which has been modified for our paper. All cod
 
 	BaiduYun sometime changes the link. If you find the url fail, you can contact me to update it.
 	
-3. Compile matconvnet (Note that I have included my Matconvnet in this repo)
+3. Compile matconvnet (Note that I have included my Matconvnet in this repo, so you do not need to download it again.)
 
 	You just need to uncomment and modify some lines in `gpu_compile.m` and run it in Matlab. Try it~
 
