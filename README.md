@@ -79,7 +79,7 @@ Please cite this paper in your publications if it helps your research:
   year={2016}
 }
 ```
-##Acknowledge
+## Acknowledge
 Thanks for Xuanyi Dong to realize our paper in Caffe.
 
 Thanks for Weihang Chen to report the bug in `prepare_data.m`.
