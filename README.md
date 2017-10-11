@@ -44,7 +44,7 @@ We also include matconvnet-beta23 which has been modified for our paper. All cod
 
 * If you want to rehearsal our result on CUHK03, you can simply change the number of kernel from 751 to 1367 in `resnet52_market.m` and recreate `net.mat`. Because there are 751 IDs in Market-1501 while 1367 training identities are in CUHK03. More information can be found in `cuhk03-prepare-eval` dir. We add the data preparation and evaluation codes for CUHK03.
 
-* `DukeMTMC-reID` is a larger dataset in the same format of `Market1501`. The images are shot in Duke University.
+* `DukeMTMC-reID` is a larger dataset in the same format of `Market1501`. The photos are taken in Duke University.
 You can download it from https://github.com/layumi/DukeMTMC-reID_evaluation.
 
 ## Test 
