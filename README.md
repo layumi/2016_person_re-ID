@@ -36,6 +36,7 @@ We also include matconvnet-beta23 which has been modified for our paper. All cod
 **(Note that I have included my Matconvnet in this repo, so you do not need to download it again. I has changed some codes comparing with the original version. For example, one of the difference is in `/matlab/+dagnn/@DagNN/initParams.m`. If one layer has params, I will not initialize it again, especially for pretrained model.)**
 
 	You just need to uncomment and modify some lines in `gpu_compile.m` and run it in Matlab. Try it~
+	(The code does not support cudnn 6.0. You may just turn off the Enablecudnn or try cudnn5.1)
 
 	If you fail in compilation, you may refer to http://www.vlfeat.org/matconvnet/install/
 
