@@ -43,10 +43,10 @@ We also include matconvnet-beta23 which has been modified for our paper. All cod
 ## Dataset
 * Download [Market1501 Dataset] (http://www.liangzheng.org/Project/project_reid.html) The photos are taken in Tsinghua University.
 
-* If you want to rehearsal our result on CUHK03, you can simply change the number of kernel from 751 to 1367 in `resnet52_market.m` and recreate `net.mat`. Because there are 751 IDs in Market-1501 while 1367 training identities are in CUHK03. More information can be found in `cuhk03-prepare-eval` dir. We add the data preparation and evaluation codes for CUHK03.
-
 * `DukeMTMC-reID` is a larger dataset in the same format of `Market1501`. The photos are taken in Duke University.
-You can download it from https://github.com/layumi/DukeMTMC-reID_evaluation.
+You can download it from https://github.com/layumi/DukeMTMC-reID_evaluation. We also upload the result to DukeMTMC-reID leaderboard.
+
+* If you want to rehearsal our result on CUHK03, you can simply change the number of kernel from 751 to 1367 in `resnet52_market.m` and recreate `net.mat`. Because there are 751 IDs in Market-1501 while 1367 training identities are in CUHK03. More information can be found in `cuhk03-prepare-eval` dir. We add the data preparation and evaluation codes for CUHK03.
 
 ## Test 
 1. Run `test/test_gallery_query_crazy.m` to extract the features of images in the gallery and query set. They will store in a .mat file. Then you can use it to do evaluation.
