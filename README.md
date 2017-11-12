@@ -91,5 +91,5 @@ Thanks for Xuanyi Dong to realize our paper in Caffe.
 Thanks for Weihang Chen to report the bug in `prepare_data.m`.
 
 ## Related Repos
-1. (Person re-id with GAN)[https://github.com/layumi/Person-reID_GAN]
-2. (Pedestrian Alignment Network)[https://github.com/layumi/Pedestrian_Alignment] 
+1. [Person re-ID with GAN](https://github.com/layumi/Person-reID_GAN)
+2. [Pedestrian Alignment Network](https://github.com/layumi/Pedestrian_Alignment)
