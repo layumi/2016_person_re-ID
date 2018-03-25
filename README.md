@@ -6,7 +6,8 @@ We also include matconvnet-beta23 which has been modified for our paper. All cod
 
 **This code is ONLY released for academic use.**
 
-* [Xuanyi Dong](https://github.com/D-X-Y) also realizes our paper in [Caffe](https://github.com/D-X-Y/caffe-reid). Alternatively, you can run the code with Caffe.
+* [Weihang Chen](https://github.com/ahangchen) also realizes our paper in [Keras](https://github.com/ahangchen/rank-reid/tree/release).
+* [Xuanyi Dong](https://github.com/D-X-Y) also realizes our paper in [Caffe](https://github.com/D-X-Y/caffe-reid). 
 * [Zhun Zhong](https://github.com/zhunzhong07/IDE-baseline-Market-1501) provides a extensive [Caffe baseline code](https://github.com/zhunzhong07/IDE-baseline-Market-1501). You may check it.
 
 ~What's new: We add the data preparation and evaluation codes for CUHK03.
@@ -91,6 +92,8 @@ Please cite this paper in your publications if it helps your research:
 ```
 ## Acknowledge
 Thanks for Xuanyi Dong to realize our paper in Caffe.
+
+Thanks for Weihang Chen to realize our paper in Keras.
 
 Thanks for Weihang Chen to report the bug in `prepare_data.m`.
 
