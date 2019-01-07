@@ -8,10 +8,10 @@ We also include matconvnet-beta23 which has been modified for our paper. All cod
 
 **This code is ONLY released for academic use.**
 
-* [Weihang Chen](https://github.com/ahangchen) also realizes our paper in [Keras](https://github.com/ahangchen/rank-reid/tree/release).
-* [Xuanyi Dong](https://github.com/D-X-Y) also realizes our paper in [Caffe](https://github.com/D-X-Y/caffe-reid). 
-* [Zhun Zhong](https://github.com/zhunzhong07/IDE-baseline-Market-1501) provides a extensive [Caffe baseline code](https://github.com/zhunzhong07/IDE-baseline-Market-1501). You may check it.
-* [Zhedong Zheng](https://github.com/layumi) provides a [strong Pytorch baseline](https://github.com/layumi/Person_reID_baseline_pytorch) and realizes our paper in [Pytorch](https://github.com/layumi/Person-reID-verification).
+* [Weihang Chen](https://github.com/ahangchen) also realizes our paper in [Keras](https://github.com/ahangchen/rank-reid/tree/release). ([![GitHub stars](https://img.shields.io/github/stars/ahangchen/rank-reid.svg?style=flat&label=Star)](https://github.com/ahangchen/rank-reid/tree/release))
+* [Xuanyi Dong](https://github.com/D-X-Y) also realizes our paper in [Caffe](https://github.com/D-X-Y/caffe-reid). ([![GitHub stars](https://img.shields.io/github/stars/D-X-Y/caffe-reid.svg?style=flat&label=Star)](https://github.com/D-X-Y/caffe-reid))
+* [Zhun Zhong](https://github.com/zhunzhong07/IDE-baseline-Market-1501) provides a extensive [Caffe baseline code](https://github.com/zhunzhong07/IDE-baseline-Market-1501). You may check it. ([![GitHub stars](https://img.shields.io/github/stars/zhunzhong07/IDE-baseline-Market-1501.svg?style=flat&label=Star)](https://github.com/zhunzhong07/IDE-baseline-Market-1501))
+* [Zhedong Zheng](https://github.com/layumi) provides a [strong Pytorch baseline](https://github.com/layumi/Person_reID_baseline_pytorch) ([![GitHub stars](https://img.shields.io/github/stars/layumi/Person_reID_baseline_pytorch.svg?style=flat&label=Star)](https://github.com/layumi/Person_reID_baseline_pytorch)) and realizes our paper in [Pytorch](https://github.com/layumi/Person-reID-verification). ([![GitHub stars](https://img.shields.io/github/stars/layumi/Person-reID-verification.svg?style=flat&label=Star)](https://github.com/layumi/Person-reID-verification))
 
 ~What's new: We add the data preparation and evaluation codes for CUHK03.
 
