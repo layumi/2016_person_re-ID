@@ -1,4 +1,4 @@
-# A Discriminatively Learned CNN Embedding for Person Re-identification
+## A Discriminatively Learned CNN Embedding for Person Re-identification
 
 ![](https://github.com/layumi/2016_person_re-ID/blob/master/paper.jpg)
 
@@ -7,6 +7,8 @@ In this package, we provide our training and testing code written in [Matconvnet
 We also include matconvnet-beta23 which has been modified for our paper. All codes have been test on Ubuntu14.04 and Ubuntu16.04 with Matlab R2015b.
 
 **This code is ONLY released for academic use.**
+
+## Resources
 
 * [Weihang Chen](https://github.com/ahangchen) also realizes our paper in [Keras](https://github.com/ahangchen/rank-reid/tree/release). ([![GitHub stars](https://img.shields.io/github/stars/ahangchen/rank-reid.svg?style=flat&label=Star)](https://github.com/ahangchen/rank-reid/tree/release))
 * [Xuanyi Dong](https://github.com/D-X-Y) also realizes our paper in [Caffe](https://github.com/D-X-Y/caffe-reid). ([![GitHub stars](https://img.shields.io/github/stars/D-X-Y/caffe-reid.svg?style=flat&label=Star)](https://github.com/D-X-Y/caffe-reid))
