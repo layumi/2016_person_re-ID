@@ -48,7 +48,7 @@ We also include matconvnet-beta23 which has been modified for our paper. All cod
 	If you fail in compilation, you may refer to http://www.vlfeat.org/matconvnet/install/
 
 ## Dataset
-* Download [Market1501 Dataset](http://www.liangzheng.org/Project/project_reid.html). The photos are taken in Tsinghua University.
+* Download [Market1501 Dataset](http://www.liangzheng.org/Project/project_reid.html). [[Google]](https://drive.google.com/file/d/0B8-rUzbwVRk0c054eEozWG9COHM/view) [[Baidu]](https://pan.baidu.com/s/1ntIi2Op) The photos are taken in Tsinghua University.
 
 * DukeMTMC-reID is a larger dataset in the same format of Market1501. The photos are taken in Duke University.
 You can download it from [DukeMTMC-reID Dataset](https://github.com/layumi/DukeMTMC-reID_evaluation). We also upload the result to DukeMTMC-reID leaderboard.
