@@ -91,6 +91,7 @@ Please cite this paper in your publications if it helps your research:
   title={A Discriminatively Learned CNN Embedding for Person Re-identification},
   author={Zheng, Zhedong and Zheng, Liang and Yang, Yi},
   doi={10.1145/3159171},
+  note={\mbox{doi}:\url{10.1145/3159171}},
   journal={ACM Transactions on Multimedia Computing Communications and Applications},
   year={2017}
 }
