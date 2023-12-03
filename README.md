@@ -86,7 +86,7 @@ But it use additional images (in 'Market-1501/gt_bboxes'). You can find more det
 
 ## Citation
 Please cite this paper in your publications if it helps your research:
-```
+```bibtex
 @article{zheng2016discriminatively,
   title={A Discriminatively Learned CNN Embedding for Person Re-identification},
   author={Zheng, Zhedong and Zheng, Liang and Yang, Yi},
